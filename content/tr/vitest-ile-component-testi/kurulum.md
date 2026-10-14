@@ -193,12 +193,12 @@ Test geçerse kurulum tamamdır. Vitest, adında `.test.` veya `.spec.` geçen d
 - Beklenen değeri bilerek bozun. Testin başarısız olduğunu görün.
 - Beklenen değeri düzeltin. Testin geçtiğini görün.
 
-[^1]: [Vitest: Getting Started](https://vitest.dev/guide/) *(doc)* — Vite ve Node gereksinimleri, kurulum komutu ve `.vitest` klasörü.
-[^2]: [React Testing Library: Introduction](https://testing-library.com/docs/react-testing-library/intro) *(doc)* — `@testing-library/react` kurulumu ve `@testing-library/dom` peer dependency'si.
-[^3]: [Vitest: environment](https://vitest.dev/config/environment) *(doc)* — Varsayılan `node` ortamı ve jsdom'un ayrıca kurulması.
-[^4]: [Vitest: globals](https://vitest.dev/config/globals) *(doc)* — `globals` ayarı, `vitest/globals` tipi ve React Testing Library'nin otomatik temizliği.
-[^5]: [Vitest: setupFiles](https://vitest.dev/config/setupfiles) *(doc)* — Setup dosyalarının her test dosyasından önce çalışması.
-[^6]: [jest-dom](https://github.com/testing-library/jest-dom) *(repo)* — Vitest ile `@testing-library/jest-dom/vitest` import'u.
-[^7]: [Vitest: Features](https://vitest.dev/guide/features) *(doc)* — Watch mode'da yalnızca ilgili testlerin yeniden çalışması.
-[^8]: [Vitest: include](https://vitest.dev/config/include) *(doc)* — Varsayılan test dosyası deseni: `.test.` ve `.spec.`.
-[^9]: [Next.js: Testing with Vitest](https://nextjs.org/docs/app/guides/testing/vitest) *(doc)* — `async` Server Component'lerin Vitest ile desteklenmemesi ve E2E önerisi.
+1. [Vitest: Getting Started](https://vitest.dev/guide/) *(doc)* — Vite ve Node gereksinimleri, kurulum komutu ve `.vitest` klasörü.
+2. [React Testing Library: Introduction](https://testing-library.com/docs/react-testing-library/intro) *(doc)* — `@testing-library/react` kurulumu ve `@testing-library/dom` peer dependency'si.
+3. [Vitest: environment](https://vitest.dev/config/environment) *(doc)* — Varsayılan `node` ortamı ve jsdom'un ayrıca kurulması.
+4. [Vitest: globals](https://vitest.dev/config/globals) *(doc)* — `globals` ayarı, `vitest/globals` tipi ve React Testing Library'nin otomatik temizliği.
+5. [Vitest: setupFiles](https://vitest.dev/config/setupfiles) *(doc)* — Setup dosyalarının her test dosyasından önce çalışması.
+6. [jest-dom](https://github.com/testing-library/jest-dom) *(repo)* — Vitest ile `@testing-library/jest-dom/vitest` import'u.
+7. [Vitest: Features](https://vitest.dev/guide/features) *(doc)* — Watch mode'da yalnızca ilgili testlerin yeniden çalışması.
+8. [Vitest: include](https://vitest.dev/config/include) *(doc)* — Varsayılan test dosyası deseni: `.test.` ve `.spec.`.
+9. [Next.js: Testing with Vitest](https://nextjs.org/docs/app/guides/testing/vitest) *(doc)* — `async` Server Component'lerin Vitest ile desteklenmemesi ve E2E önerisi.
