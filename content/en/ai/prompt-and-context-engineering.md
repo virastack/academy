@@ -2,7 +2,7 @@
 title: "Prompt ve Context Engineering"
 description: "İyi istek yazma, doğru bağlam verme, CLAUDE.md/AGENTS.md ve proje kural dosyaları."
 lastVerified: "2026-10-14"
-translationKey: "ai/prompt-ve-context-engineering"
+translationKey: "ai/prompt-and-context-engineering"
 ---
 
 Yapay zekadan aldığınız kodun kalitesi iki şeye bağlı: modele **ne dediğiniz** (prompt) ve modelin **o an neleri gördüğü** (context). Bu rehber önce ikisini, sonra projeniz için bir kez yazıp her konuşmada kullanacağınız kural dosyalarını anlatıyor.

@@ -2,8 +2,9 @@
 
 Markdown curriculum for [virastack.com](https://virastack.com) Academy.
 
-- `content/curriculum.json` — track and lesson tree
+- `content/<locale>/curriculum.json` — track and lesson tree for that locale
 - `content/tr/**/*.md` — Turkish lesson bodies
+- `content/en/**/*.md` — English lesson files (same `translationKey` as Turkish)
 - `CONTENT.md` — authoring syntax
 
 The website clones this repository at build time. Pushing to `main` triggers a

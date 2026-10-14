@@ -1,22 +1,13 @@
 {
   "groups": [
     {
-      "id": "fundamentals",
-      "title": {
-        "tr": "Temeller",
-        "en": "Fundamentals"
-      },
+      "id": "temeller",
+      "title": "Fundamentals",
       "tracks": [
         {
           "slug": "html-css",
-          "title": {
-            "tr": "HTML ve CSS",
-            "en": "HTML and CSS"
-          },
-          "description": {
-            "tr": "Anlamlı yapı, form, layout ve responsive tasarım.",
-            "en": "Semantic structure, forms, layout and responsive design."
-          },
+          "title": "HTML and CSS",
+          "description": "Semantic structure, forms, layout and responsive design.",
           "status": "published",
           "lessonGroups": [
             {
@@ -25,15 +16,15 @@
               "lessons": [
                 {
                   "slug": "semantik-html",
-                  "title": "Semantik HTML",
-                  "description": "Anlamlı etiketler, başlık hiyerarşisi ve erişilebilir sayfa yapısı.",
+                  "title": "Semantic HTML",
+                  "description": "Meaningful tags, heading hierarchy and accessible page structure.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
                   "slug": "formlar",
-                  "title": "Formlar",
-                  "description": "Input türleri, label, yerleşik doğrulama ve erişilebilir formlar.",
+                  "title": "Forms",
+                  "description": "Input types, labels, built-in validation and accessible forms.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 }
@@ -45,29 +36,29 @@
               "lessons": [
                 {
                   "slug": "css-temelleri",
-                  "title": "CSS Temelleri",
-                  "description": "Seçiciler, kutu modeli, cascade ve özgüllük.",
+                  "title": "CSS Basics",
+                  "description": "Selectors, the box model, the cascade and specificity.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
                   "slug": "flexbox-ve-grid",
-                  "title": "Flexbox ve Grid",
-                  "description": "Modern layout kurma ve ne zaman hangisini seçeceğin.",
+                  "title": "Flexbox and Grid",
+                  "description": "Building modern layouts and when to choose which.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
                   "slug": "responsive-tasarim",
-                  "title": "Responsive Tasarım",
-                  "description": "Media query, container query ve akışkan birimler.",
+                  "title": "Responsive Design",
+                  "description": "Media queries, container queries and fluid units.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
                   "slug": "tailwind-css",
                   "title": "Tailwind CSS",
-                  "description": "Utility-first yaklaşım, kurulum ve responsive stil yazımı.",
+                  "description": "The utility-first approach, setup and writing responsive styles.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 }
@@ -75,12 +66,12 @@
             },
             {
               "id": "proje",
-              "title": "Proje",
+              "title": "Project",
               "lessons": [
                 {
                   "slug": "landing-page",
                   "title": "Landing Page",
-                  "description": "Semantik, responsive ve erişilebilir bir sayfayı baştan sona kurma.",
+                  "description": "Build a semantic, responsive and accessible page from start to finish.",
                   "status": "coming_soon",
                   "kind": "project"
                 }
@@ -90,38 +81,32 @@
         },
         {
           "slug": "javascript",
-          "title": {
-            "tr": "JavaScript",
-            "en": "JavaScript"
-          },
-          "description": {
-            "tr": "Dilin temelleri ve asenkron akış.",
-            "en": "Language fundamentals and asynchronous flow."
-          },
+          "title": "JavaScript",
+          "description": "Language fundamentals and asynchronous flow.",
           "status": "published",
           "lessonGroups": [
             {
               "id": "baslangic",
-              "title": "Başlangıç",
+              "title": "Getting Started",
               "lessons": [
                 {
                   "slug": "giris-ve-kurulum",
-                  "title": "Giriş ve Kurulum",
-                  "description": "JavaScript nedir? Tarayıcı konsolu, Node.js ve ilk script.",
+                  "title": "Introduction and Setup",
+                  "description": "What is JavaScript? The browser console, Node.js and your first script.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
                   "slug": "degisken-tip-ve-kosullar",
-                  "title": "Değişken, Tip ve Koşullar",
-                  "description": "let/const, temel veri tipleri, operatörler, if ve switch.",
+                  "title": "Variables, Types and Conditions",
+                  "description": "let/const, basic data types, operators, if and switch.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
                   "slug": "donguler-ve-fonksiyonlar",
-                  "title": "Döngüler ve Fonksiyonlar",
-                  "description": "for/while, fonksiyon, arrow function, scope ve closure.",
+                  "title": "Loops and Functions",
+                  "description": "for/while, functions, arrow functions, scope and closures.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 }
@@ -129,26 +114,26 @@
             },
             {
               "id": "veri-yapilari",
-              "title": "Veri Yapıları",
+              "title": "Data Structures",
               "lessons": [
                 {
                   "slug": "array-metotlari",
-                  "title": "Array Metotları",
-                  "description": "map, filter, find, reduce ve sort ile veri dönüştürme.",
+                  "title": "Array Methods",
+                  "description": "Transforming data with map, filter, find, reduce and sort.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
                   "slug": "object-ve-modern-sozdizimi",
-                  "title": "Object ve Modern Sözdizimi",
-                  "description": "Destructuring, spread/rest, optional chaining ve ES modules.",
+                  "title": "Objects and Modern Syntax",
+                  "description": "Destructuring, spread/rest, optional chaining and ES modules.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
                   "slug": "sepet-hesaplayici",
-                  "title": "Sepet Hesaplayıcı",
-                  "description": "Array ve object ile toplam, filtreleme ve sıralama yapan küçük proje.",
+                  "title": "Cart Calculator",
+                  "description": "A small project that totals, filters and sorts with arrays and objects.",
                   "status": "coming_soon",
                   "kind": "project"
                 }
@@ -156,19 +141,19 @@
             },
             {
               "id": "tarayici",
-              "title": "Tarayıcı",
+              "title": "Browser",
               "lessons": [
                 {
                   "slug": "dom-ve-event",
-                  "title": "DOM ve Event",
-                  "description": "Element seçme, olay dinleme ve sayfayı JavaScript ile güncelleme.",
+                  "title": "DOM and Events",
+                  "description": "Selecting elements, listening to events and updating the page with JavaScript.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
                   "slug": "quiz-uygulamasi",
-                  "title": "Quiz Uygulaması",
-                  "description": "DOM ve event ile soru, cevap ve skor akışı.",
+                  "title": "Quiz App",
+                  "description": "A question, answer and score flow built with the DOM and events.",
                   "status": "coming_soon",
                   "kind": "project"
                 }
@@ -176,26 +161,26 @@
             },
             {
               "id": "asenkron",
-              "title": "Asenkron",
+              "title": "Asynchronous",
               "lessons": [
                 {
                   "slug": "promise-ve-async-await",
-                  "title": "Promise ve async/await",
-                  "description": "Asenkron akış, event loop'a kısa bakış ve try/catch ile hata yönetimi.",
+                  "title": "Promises and async/await",
+                  "description": "Asynchronous flow, a short look at the event loop and error handling with try/catch.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
                   "slug": "fetch-ve-api",
-                  "title": "Fetch ve API",
-                  "description": "İstek atma, JSON ile çalışma ve yükleme/hata durumları.",
+                  "title": "Fetch and APIs",
+                  "description": "Making requests, working with JSON and handling loading and error states.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
                   "slug": "urun-arama",
-                  "title": "Ürün Arama",
-                  "description": "Fetch ile API'den veri çekip listeleyen ve arama yapan proje.",
+                  "title": "Product Search",
+                  "description": "A project that fetches data from an API, lists it and supports search.",
                   "status": "coming_soon",
                   "kind": "project"
                 }
@@ -205,14 +190,8 @@
         },
         {
           "slug": "git",
-          "title": {
-            "tr": "Git",
-            "en": "Git"
-          },
-          "description": {
-            "tr": "Commit, branch ve uzak depo ile sürüm kontrolü.",
-            "en": "Version control with commits, branches and remotes."
-          },
+          "title": "Git",
+          "description": "Version control with commits, branches and remotes.",
           "status": "published",
           "lessonGroups": [
             {
@@ -221,22 +200,22 @@
               "lessons": [
                 {
                   "slug": "git-temelleri",
-                  "title": "Git Temelleri",
-                  "description": "Repo oluşturma, commit, geçmiş ve .gitignore.",
+                  "title": "Git Basics",
+                  "description": "Creating a repo, commits, history and .gitignore.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
                   "slug": "branch-ve-merge",
-                  "title": "Branch ve Merge",
-                  "description": "Dal açma, birleştirme, conflict çözme ve rebase.",
+                  "title": "Branch and Merge",
+                  "description": "Creating branches, merging, resolving conflicts and rebasing.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
                   "slug": "github-ve-ortak-calisma",
-                  "title": "GitHub ve Ortak Çalışma",
-                  "description": "Remote, push/pull, pull request ve code review akışı.",
+                  "title": "GitHub and Collaboration",
+                  "description": "Remotes, push/pull, pull requests and the code review flow.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 }
@@ -246,14 +225,8 @@
         },
         {
           "slug": "typescript",
-          "title": {
-            "tr": "TypeScript",
-            "en": "TypeScript"
-          },
-          "description": {
-            "tr": "Tipler, generic'ler ve React ile tip güvenliği.",
-            "en": "Types, generics and type safety with React."
-          },
+          "title": "TypeScript",
+          "description": "Types, generics and type safety with React.",
           "status": "published",
           "lessonGroups": [
             {
@@ -262,22 +235,22 @@
               "lessons": [
                 {
                   "slug": "tip-temelleri",
-                  "title": "Tip Temelleri",
-                  "description": "Temel tipler, type inference, union ve interface/type farkı.",
+                  "title": "Type Basics",
+                  "description": "Basic types, type inference, unions and the interface/type difference.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
                   "slug": "generic-ve-yardimci-tipler",
-                  "title": "Generic ve Yardımcı Tipler",
-                  "description": "Generic fonksiyonlar, Partial, Pick, Omit ve Record.",
+                  "title": "Generics and Utility Types",
+                  "description": "Generic functions, Partial, Pick, Omit and Record.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
                   "slug": "react-ile-typescript",
-                  "title": "React ile TypeScript",
-                  "description": "Props, state, event ve hook tipleri.",
+                  "title": "TypeScript with React",
+                  "description": "Types for props, state, events and hooks.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 }
@@ -288,53 +261,44 @@
       ]
     },
     {
-      "id": "react-ecosystem",
-      "title": {
-        "tr": "React Ekosistemi",
-        "en": "React Ecosystem"
-      },
+      "id": "react-ekosistemi",
+      "title": "React Ecosystem",
       "tracks": [
         {
           "slug": "react",
-          "title": {
-            "tr": "React",
-            "en": "React"
-          },
-          "description": {
-            "tr": "Component, state ve hook temelleri.",
-            "en": "Components, state and hook fundamentals."
-          },
+          "title": "React",
+          "description": "Components, state and hook fundamentals.",
           "status": "published",
           "lessonGroups": [
             {
               "id": "baslangic",
-              "title": "Başlangıç",
+              "title": "Getting Started",
               "lessons": [
                 {
                   "slug": "giris-ve-kurulum",
-                  "title": "Giriş ve Kurulum",
-                  "description": "React nedir, neden kullanılır? Vite ile ilk proje.",
+                  "title": "Introduction and Setup",
+                  "description": "What is React and why use it? Your first project with Vite.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
                   "slug": "component-ve-jsx",
-                  "title": "Component ve JSX",
-                  "description": "Component yazma, JSX kuralları ve component'leri birleştirme.",
+                  "title": "Components and JSX",
+                  "description": "Writing components, JSX rules and composing components.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
                   "slug": "props",
                   "title": "Props",
-                  "description": "Veri aktarma, children ve component'leri yeniden kullanılabilir yapma.",
+                  "description": "Passing data, children and making components reusable.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
                   "slug": "profil-karti",
-                  "title": "Profil Kartı",
-                  "description": "Component ve props ile ilk arayüzünü kur.",
+                  "title": "Profile Card",
+                  "description": "Build your first interface with components and props.",
                   "status": "coming_soon",
                   "kind": "project"
                 }
@@ -342,33 +306,33 @@
             },
             {
               "id": "temel-konular",
-              "title": "Temel Konular",
+              "title": "Core Topics",
               "lessons": [
                 {
                   "slug": "state-ve-event",
-                  "title": "State ve Event",
-                  "description": "useState, tıklama olayları ve state güncelleme kuralları.",
+                  "title": "State and Events",
+                  "description": "useState, click events and the rules for updating state.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
                   "slug": "liste-ve-kosullu-render",
-                  "title": "Liste ve Koşullu Render",
-                  "description": "map, key ve ekranda duruma göre içerik gösterme.",
+                  "title": "Lists and Conditional Rendering",
+                  "description": "map, keys and showing content based on state.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
                   "slug": "form-ve-input",
-                  "title": "Form ve Input",
-                  "description": "Controlled input, form gönderme ve basit doğrulama.",
+                  "title": "Forms and Inputs",
+                  "description": "Controlled inputs, submitting forms and simple validation.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
                   "slug": "todo-uygulamasi",
-                  "title": "Todo Uygulaması",
-                  "description": "State, liste ve formu birleştirdiğin küçük proje.",
+                  "title": "Todo App",
+                  "description": "A small project that combines state, lists and forms.",
                   "status": "coming_soon",
                   "kind": "project"
                 }
@@ -376,40 +340,40 @@
             },
             {
               "id": "hooklar",
-              "title": "Hook'lar",
+              "title": "Hooks",
               "lessons": [
                 {
                   "slug": "use-effect",
                   "title": "useEffect",
-                  "description": "Yan etkiler, veri çekme ve cleanup.",
+                  "description": "Side effects, data fetching and cleanup.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
                   "slug": "use-ref",
                   "title": "useRef",
-                  "description": "DOM'a erişim, focus yönetimi ve render tetiklemeyen değerler.",
+                  "description": "Accessing the DOM, managing focus and values that don't trigger renders.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
                   "slug": "context-ve-use-reducer",
-                  "title": "Context ve useReducer",
-                  "description": "Prop drilling'i çözme ve karmaşık state'i düzenleme.",
+                  "title": "Context and useReducer",
+                  "description": "Solving prop drilling and organizing complex state.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
                   "slug": "custom-hook",
-                  "title": "Custom Hook",
-                  "description": "Tekrar eden mantığı hook'a taşıma.",
+                  "title": "Custom Hooks",
+                  "description": "Moving repeated logic into a hook.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
                   "slug": "urun-listesi-ve-sepet",
-                  "title": "Ürün Listesi ve Sepet",
-                  "description": "Hook'ları kullanarak arama, listeleme ve sepete ekleme akışı.",
+                  "title": "Product List and Cart",
+                  "description": "Search, listing and add-to-cart flow built with hooks.",
                   "status": "coming_soon",
                   "kind": "project"
                 }
@@ -421,22 +385,22 @@
               "lessons": [
                 {
                   "slug": "actions-ve-form-hooklari",
-                  "title": "Actions ve Form Hook'ları",
-                  "description": "useActionState, useFormStatus ve useOptimistic ile modern form akışı.",
+                  "title": "Actions and Form Hooks",
+                  "description": "Modern form flow with useActionState, useFormStatus and useOptimistic.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
                   "slug": "use-ve-suspense",
-                  "title": "use ve Suspense",
-                  "description": "Asenkron veriyi render içinde okuma ve yükleme durumları.",
+                  "title": "use and Suspense",
+                  "description": "Reading async data during render and handling loading states.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
                   "slug": "performans-ve-react-compiler",
-                  "title": "Performans ve React Compiler",
-                  "description": "Gereksiz render'lar, memo ve Compiler'ın işi nasıl otomatikleştirdiği.",
+                  "title": "Performance and React Compiler",
+                  "description": "Unnecessary renders, memo and how the Compiler automates the work.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 }
@@ -446,45 +410,39 @@
         },
         {
           "slug": "nextjs",
-          "title": {
-            "tr": "Next.js",
-            "en": "Next.js"
-          },
-          "description": {
-            "tr": "App Router, render stratejileri ve veri akışı.",
-            "en": "App Router, rendering strategies and data flow."
-          },
+          "title": "Next.js",
+          "description": "App Router, rendering strategies and data flow.",
           "status": "published",
           "lessonGroups": [
             {
               "id": "baslangic",
-              "title": "Başlangıç",
+              "title": "Getting Started",
               "lessons": [
                 {
                   "slug": "giris-ve-kurulum",
-                  "title": "Giriş ve Kurulum",
-                  "description": "Next.js nedir, neden kullanılır? create-next-app ve proje yapısı.",
+                  "title": "Introduction and Setup",
+                  "description": "What is Next.js and why use it? create-next-app and project structure.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
                   "slug": "routing-ve-layout",
-                  "title": "Routing ve Layout",
-                  "description": "App Router, dinamik route'lar, layout'lar ve Link ile gezinme.",
+                  "title": "Routing and Layouts",
+                  "description": "App Router, dynamic routes, layouts and navigating with Link.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
                   "slug": "server-ve-client-component",
-                  "title": "Server ve Client Component",
-                  "description": "İkisi arasındaki fark, use client sınırı ve hangisini ne zaman seçeceğin.",
+                  "title": "Server and Client Components",
+                  "description": "The difference between them, the use client boundary and when to choose which.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
                   "slug": "blog-sitesi",
-                  "title": "Blog Sitesi",
-                  "description": "Routing, layout ve server component ile içerik odaklı bir site.",
+                  "title": "Blog Site",
+                  "description": "A content-focused site built with routing, layouts and server components.",
                   "status": "coming_soon",
                   "kind": "project"
                 }
@@ -492,33 +450,33 @@
             },
             {
               "id": "veri-ve-render",
-              "title": "Veri ve Render",
+              "title": "Data and Rendering",
               "lessons": [
                 {
                   "slug": "veri-cekme",
-                  "title": "Veri Çekme",
-                  "description": "Server Component'te fetch, loading.tsx, error.tsx ve Suspense.",
+                  "title": "Data Fetching",
+                  "description": "fetch in Server Components, loading.tsx, error.tsx and Suspense.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
                   "slug": "server-actions",
                   "title": "Server Actions",
-                  "description": "Form gönderme, veri güncelleme ve ekranı yenileme.",
+                  "description": "Submitting forms, updating data and refreshing the screen.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
                   "slug": "caching-ve-render-stratejileri",
-                  "title": "Caching ve Render Stratejileri",
-                  "description": "Statik ve dinamik render, use cache ve Cache Components.",
+                  "title": "Caching and Rendering Strategies",
+                  "description": "Static and dynamic rendering, use cache and Cache Components.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
                   "slug": "urun-katalogu",
-                  "title": "Ürün Kataloğu",
-                  "description": "Veri çekme, arama ve Server Action ile tam bir akış.",
+                  "title": "Product Catalog",
+                  "description": "A full flow with data fetching, search and a Server Action.",
                   "status": "coming_soon",
                   "kind": "project"
                 }
@@ -526,33 +484,33 @@
             },
             {
               "id": "yayina-hazirlik",
-              "title": "Yayına Hazırlık",
+              "title": "Preparing for Launch",
               "lessons": [
                 {
                   "slug": "metadata-ve-seo",
-                  "title": "Metadata ve SEO",
-                  "description": "Metadata API, Open Graph görselleri, sitemap ve robots.",
+                  "title": "Metadata and SEO",
+                  "description": "The Metadata API, Open Graph images, sitemap and robots.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
                   "slug": "optimizasyon",
-                  "title": "Optimizasyon",
-                  "description": "next/image, next/font ve Core Web Vitals ile ilişkisi.",
+                  "title": "Optimization",
+                  "description": "next/image, next/font and their relation to Core Web Vitals.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
                   "slug": "proxy-ve-route-handlers",
-                  "title": "Proxy ve Route Handlers",
-                  "description": "proxy.ts ile yönlendirme, API endpoint'leri ve ortam değişkenleri.",
+                  "title": "Proxy and Route Handlers",
+                  "description": "Redirects with proxy.ts, API endpoints and environment variables.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
                   "slug": "yayina-alma",
-                  "title": "Yayına Alma",
-                  "description": "Vercel'e deploy ve production kontrolleri.",
+                  "title": "Deployment",
+                  "description": "Deploying to Vercel and production checks.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 }
@@ -563,53 +521,44 @@
       ]
     },
     {
-      "id": "state-and-data",
-      "title": {
-        "tr": "State ve Veri Yönetimi",
-        "en": "State and Data Management"
-      },
+      "id": "state-ve-veri-yonetimi",
+      "title": "State and Data Management",
       "tracks": [
         {
           "slug": "tanstack-query",
-          "title": {
-            "tr": "TanStack Query",
-            "en": "TanStack Query"
-          },
-          "description": {
-            "tr": "Sunucu state'i, cache ve mutation yönetimi.",
-            "en": "Server state, caching and mutation management."
-          },
+          "title": "TanStack Query",
+          "description": "Server state, caching and mutation management.",
           "status": "published",
           "lessonGroups": [
             {
               "id": "baslangic",
-              "title": "Başlangıç",
+              "title": "Getting Started",
               "lessons": [
                 {
                   "slug": "giris-ve-kurulum",
-                  "title": "Giriş ve Kurulum",
-                  "description": "Sunucu state'i nedir? QueryClient, Provider ve Devtools kurulumu.",
+                  "title": "Introduction and Setup",
+                  "description": "What is server state? Setting up QueryClient, the Provider and Devtools.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
                   "slug": "use-query",
                   "title": "useQuery",
-                  "description": "Veri çekme, queryKey, yükleme ve hata durumları.",
+                  "description": "Fetching data, queryKey, loading and error states.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
                   "slug": "cache-ve-guncel-tutma",
-                  "title": "Cache ve Güncel Tutma",
-                  "description": "staleTime, gcTime, refetch davranışı ve invalidation.",
+                  "title": "Cache and Freshness",
+                  "description": "staleTime, gcTime, refetch behavior and invalidation.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
                   "slug": "urun-listesi",
-                  "title": "Ürün Listesi",
-                  "description": "Arama, filtreleme ve cache ile çalışan bir liste.",
+                  "title": "Product List",
+                  "description": "A list that works with search, filtering and the cache.",
                   "status": "coming_soon",
                   "kind": "project"
                 }
@@ -617,26 +566,26 @@
             },
             {
               "id": "veri-guncelleme",
-              "title": "Veri Güncelleme",
+              "title": "Updating Data",
               "lessons": [
                 {
                   "slug": "use-mutation",
                   "title": "useMutation",
-                  "description": "Ekleme, güncelleme, silme ve ardından veriyi yenileme.",
+                  "description": "Creating, updating, deleting and then refreshing data.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
                   "slug": "optimistic-update",
-                  "title": "Optimistic Update",
-                  "description": "Arayüzü anında güncelleme ve hata olursa geri alma.",
+                  "title": "Optimistic Updates",
+                  "description": "Updating the UI instantly and rolling back on error.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
                   "slug": "sepet-yonetimi",
-                  "title": "Sepet Yönetimi",
-                  "description": "Mutation ve optimistic update ile sepete ekleme/çıkarma akışı.",
+                  "title": "Cart Management",
+                  "description": "An add/remove cart flow with mutations and optimistic updates.",
                   "status": "coming_soon",
                   "kind": "project"
                 }
@@ -644,26 +593,26 @@
             },
             {
               "id": "ileri-seviye",
-              "title": "İleri Seviye",
+              "title": "Advanced",
               "lessons": [
                 {
                   "slug": "sayfalama-ve-sonsuz-scroll",
-                  "title": "Sayfalama ve Sonsuz Scroll",
-                  "description": "useInfiniteQuery, sayfalama ve yeni sayfa yüklenirken eski veriyi gösterme.",
+                  "title": "Pagination and Infinite Scroll",
+                  "description": "useInfiniteQuery, pagination and showing old data while a new page loads.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
                   "slug": "suspense-ve-nextjs",
-                  "title": "Suspense ve Next.js ile Kullanım",
-                  "description": "useSuspenseQuery, sunucuda prefetch ve hydration.",
+                  "title": "Suspense and Usage with Next.js",
+                  "description": "useSuspenseQuery, server-side prefetching and hydration.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
                   "slug": "test",
-                  "title": "Test",
-                  "description": "Query hook'larını ve component'leri MSW ile test etme.",
+                  "title": "Testing",
+                  "description": "Testing query hooks and components with MSW.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 }
@@ -673,14 +622,8 @@
         },
         {
           "slug": "zustand",
-          "title": {
-            "tr": "Zustand",
-            "en": "Zustand"
-          },
-          "description": {
-            "tr": "Küçük ve hızlı client state yönetimi.",
-            "en": "Small and fast client state management."
-          },
+          "title": "Zustand",
+          "description": "Small and fast client state management.",
           "status": "published",
           "lessonGroups": [
             {
@@ -689,29 +632,29 @@
               "lessons": [
                 {
                   "slug": "store-kurulumu",
-                  "title": "Store Kurulumu",
-                  "description": "create, state, action'lar ve component içinde kullanım.",
+                  "title": "Store Setup",
+                  "description": "create, state, actions and using them in components.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
                   "slug": "selector-ve-performans",
-                  "title": "Selector ve Performans",
-                  "description": "Gereksiz render'ları önleme ve useShallow.",
+                  "title": "Selectors and Performance",
+                  "description": "Preventing unnecessary renders and useShallow.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
                   "slug": "middleware-ve-typescript",
-                  "title": "Middleware ve TypeScript",
-                  "description": "persist, devtools ve store'u tiplendirme.",
+                  "title": "Middleware and TypeScript",
+                  "description": "persist, devtools and typing the store.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
                   "slug": "sepet-store",
-                  "title": "Sepet Store'u",
-                  "description": "Sepet state'ini Zustand'da, ürün verisini TanStack Query'de tutarak ikisini birlikte kullanma.",
+                  "title": "Cart Store",
+                  "description": "Using both together: cart state in Zustand and product data in TanStack Query.",
                   "status": "coming_soon",
                   "kind": "project"
                 }
@@ -722,46 +665,37 @@
       ]
     },
     {
-      "id": "forms-and-validation",
-      "title": {
-        "tr": "Form ve Doğrulama",
-        "en": "Forms and Validation"
-      },
+      "id": "form-ve-dogrulama",
+      "title": "Forms and Validation",
       "tracks": [
         {
           "slug": "react-hook-form",
-          "title": {
-            "tr": "React Hook Form",
-            "en": "React Hook Form"
-          },
-          "description": {
-            "tr": "Form state, doğrulama ve hata mesajları.",
-            "en": "Form state, validation and error messages."
-          },
+          "title": "React Hook Form",
+          "description": "Form state, validation and error messages.",
           "status": "published",
           "lessonGroups": [
             {
               "id": "baslangic",
-              "title": "Başlangıç",
+              "title": "Getting Started",
               "lessons": [
                 {
                   "slug": "kurulum-ve-register",
-                  "title": "Kurulum ve register",
-                  "description": "useForm, register, handleSubmit ve form değerlerini okuma.",
+                  "title": "Setup and register",
+                  "description": "useForm, register, handleSubmit and reading form values.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
                   "slug": "dogrulama-ve-hata-mesajlari",
-                  "title": "Doğrulama ve Hata Mesajları",
-                  "description": "Yerleşik kurallar, formState.errors, mode ve reset.",
+                  "title": "Validation and Error Messages",
+                  "description": "Built-in rules, formState.errors, mode and reset.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
                   "slug": "kayit-formu",
-                  "title": "Kayıt Formu",
-                  "description": "Ad, e-posta ve şifre alanlarıyla ilk formunu kur.",
+                  "title": "Sign-up Form",
+                  "description": "Build your first form with name, email and password fields.",
                   "status": "coming_soon",
                   "kind": "project"
                 }
@@ -769,33 +703,33 @@
             },
             {
               "id": "gelismis-formlar",
-              "title": "Gelişmiş Formlar",
+              "title": "Advanced Forms",
               "lessons": [
                 {
                   "slug": "controller-ve-ui-kutuphaneleri",
-                  "title": "Controller ve UI Kütüphaneleri",
-                  "description": "Select, checkbox ve shadcn/ui gibi kontrollü component'leri forma bağlama.",
+                  "title": "Controller and UI Libraries",
+                  "description": "Connecting controlled components like Select, checkbox and shadcn/ui to a form.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
                   "slug": "dinamik-alanlar",
-                  "title": "Dinamik Alanlar",
-                  "description": "useFieldArray ile alan ekleme/çıkarma ve useWatch ile alanları izleme.",
+                  "title": "Dynamic Fields",
+                  "description": "Adding and removing fields with useFieldArray and watching fields with useWatch.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
                   "slug": "buyuk-formlari-bolme",
-                  "title": "Büyük Formları Bölme",
-                  "description": "FormProvider, useFormContext ve çok adımlı form.",
+                  "title": "Splitting Large Forms",
+                  "description": "FormProvider, useFormContext and multi-step forms.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
                   "slug": "siparis-formu",
-                  "title": "Sipariş Formu",
-                  "description": "Adres, ödeme ve çok adımlı akışı birleştiren proje.",
+                  "title": "Order Form",
+                  "description": "A project that combines address, payment and a multi-step flow.",
                   "status": "coming_soon",
                   "kind": "project"
                 }
@@ -805,14 +739,8 @@
         },
         {
           "slug": "zod",
-          "title": {
-            "tr": "Zod",
-            "en": "Zod"
-          },
-          "description": {
-            "tr": "Şema ile tip ve çalışma zamanı doğrulaması.",
-            "en": "Types and runtime validation from a single schema."
-          },
+          "title": "Zod",
+          "description": "Types and runtime validation from a single schema.",
           "status": "published",
           "lessonGroups": [
             {
@@ -821,36 +749,36 @@
               "lessons": [
                 {
                   "slug": "sema-ve-tip-cikarimi",
-                  "title": "Şema ve Tip Çıkarımı",
-                  "description": "z.object, temel tipler, parse/safeParse ve z.infer ile TypeScript tipi üretme.",
+                  "title": "Schemas and Type Inference",
+                  "description": "z.object, basic types, parse/safeParse and generating TypeScript types with z.infer.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
                   "slug": "dogrulama-kurallari",
-                  "title": "Doğrulama Kuralları",
-                  "description": "min/max, email, refine, özel hata mesajları ve şemaları birleştirme.",
+                  "title": "Validation Rules",
+                  "description": "min/max, email, refine, custom error messages and combining schemas.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
                   "slug": "react-hook-form-ile-kullanim",
-                  "title": "React Hook Form ile Kullanım",
-                  "description": "zodResolver, form şeması ve hata mesajlarını arayüze bağlama.",
+                  "title": "Using Zod with React Hook Form",
+                  "description": "zodResolver, the form schema and connecting error messages to the UI.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
                   "slug": "api-ve-ortam-verisini-dogrulama",
-                  "title": "API ve Ortam Verisini Doğrulama",
-                  "description": "Server Action girdisi, API yanıtı ve environment variable doğrulama.",
+                  "title": "Validating API and Environment Data",
+                  "description": "Validating Server Action input, API responses and environment variables.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
                   "slug": "kayit-ve-siparis-formu",
-                  "title": "Kayıt ve Sipariş Formu",
-                  "description": "React Hook Form kursundaki formlara Zod şemasını bağlayan proje.",
+                  "title": "Sign-up and Order Form",
+                  "description": "A project that connects a Zod schema to the forms from the React Hook Form course.",
                   "status": "coming_soon",
                   "kind": "project"
                 }
@@ -861,53 +789,44 @@
       ]
     },
     {
-      "id": "testing-and-quality",
-      "title": {
-        "tr": "Test ve Kalite",
-        "en": "Testing and Quality"
-      },
+      "id": "test-ve-kalite",
+      "title": "Testing and Quality",
       "tracks": [
         {
           "slug": "vitest",
-          "title": {
-            "tr": "Vitest",
-            "en": "Vitest"
-          },
-          "description": {
-            "tr": "React Testing Library ve MSW ile component testi.",
-            "en": "Component testing with React Testing Library and MSW."
-          },
+          "title": "Vitest",
+          "description": "Component testing with React Testing Library and MSW.",
           "status": "published",
           "lessonGroups": [
             {
               "id": "baslangic",
-              "title": "Başlangıç",
+              "title": "Getting Started",
               "lessons": [
                 {
                   "slug": "introduction",
-                  "title": "Giriş",
-                  "description": "Frontend test nedir? Hangi araçlar kullanılır?",
+                  "title": "Introduction",
+                  "description": "What is frontend testing? Which tools are used?",
                   "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "setup",
-                  "title": "Kurulum",
-                  "description": "Vitest, jsdom ve React Testing Library kurulumu.",
+                  "title": "Setup",
+                  "description": "Setting up Vitest, jsdom and React Testing Library.",
                   "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "basics",
-                  "title": "Temeller",
-                  "description": "İlk test, render, expect ve matcher'lar.",
+                  "title": "Basics",
+                  "description": "Your first test, render, expect and matchers.",
                   "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "project-product-card",
-                  "title": "Ürün Kartı",
-                  "description": "E-ticaret ürün kartı için adım adım test.",
+                  "title": "Product Card",
+                  "description": "A step-by-step test for an e-commerce product card.",
                   "status": "published",
                   "kind": "project"
                 }
@@ -915,33 +834,33 @@
             },
             {
               "id": "component-testi",
-              "title": "Component Testi",
+              "title": "Component Testing",
               "lessons": [
                 {
                   "slug": "queries",
-                  "title": "Sorgular",
-                  "description": "getBy, queryBy, findBy ve sorgu önceliği.",
+                  "title": "Queries",
+                  "description": "getBy, queryBy, findBy and query priority.",
                   "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "user-interaction",
-                  "title": "Kullanıcı Etkileşimi",
-                  "description": "userEvent, arama kutusu ve kupon formu.",
+                  "title": "User Interaction",
+                  "description": "userEvent, a search box and a coupon form.",
                   "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "async",
-                  "title": "Asenkron Testler",
-                  "description": "findBy, waitFor ve fake timers.",
+                  "title": "Async Tests",
+                  "description": "findBy, waitFor and fake timers.",
                   "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "project-product-list",
-                  "title": "Ürün Listesi",
-                  "description": "Yükleme, arama ve sepete ekleme akışı.",
+                  "title": "Product List",
+                  "description": "Loading, search and add-to-cart flow.",
                   "status": "published",
                   "kind": "project"
                 }
@@ -949,33 +868,33 @@
             },
             {
               "id": "ileri-seviye",
-              "title": "İleri Seviye",
+              "title": "Advanced",
               "lessons": [
                 {
                   "slug": "mock",
-                  "title": "Mock",
-                  "description": "vi.fn, vi.mock ve MSW ile API mock'u.",
+                  "title": "Mocking",
+                  "description": "API mocking with vi.fn, vi.mock and MSW.",
                   "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "provider-and-hook",
-                  "title": "Provider ve Hook",
-                  "description": "Sepet Provider'ı, renderWithProviders ve renderHook.",
+                  "title": "Provider and Hook",
+                  "description": "The cart Provider, renderWithProviders and renderHook.",
                   "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "debugging",
-                  "title": "Hata Ayıklama",
-                  "description": "screen.debug, sık hatalar ve coverage.",
+                  "title": "Debugging",
+                  "description": "screen.debug, common errors and coverage.",
                   "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "project-cart-flow",
-                  "title": "Sepet Akışı",
-                  "description": "Ürün listesinden sepete tam akış testi.",
+                  "title": "Cart Flow",
+                  "description": "A full flow test from the product list to the cart.",
                   "status": "published",
                   "kind": "project"
                 }
@@ -985,45 +904,39 @@
         },
         {
           "slug": "playwright",
-          "title": {
-            "tr": "Playwright",
-            "en": "Playwright"
-          },
-          "description": {
-            "tr": "Gerçek tarayıcıda uçtan uca testler ve kullanıcı akışları.",
-            "en": "End-to-end tests and user flows in a real browser."
-          },
+          "title": "Playwright",
+          "description": "End-to-end tests and user flows in a real browser.",
           "status": "published",
           "lessonGroups": [
             {
               "id": "baslangic",
-              "title": "Başlangıç",
+              "title": "Getting Started",
               "lessons": [
                 {
                   "slug": "giris-ve-kurulum",
-                  "title": "Giriş ve Kurulum",
-                  "description": "E2E testi nedir, component testinden farkı ne? Kurulum ve ilk test.",
+                  "title": "Introduction and Setup",
+                  "description": "What is E2E testing and how does it differ from component testing? Setup and your first test.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
                   "slug": "locator-ve-assertion",
-                  "title": "Locator ve Assertion",
-                  "description": "getByRole, getByText, auto-waiting ve expect ile doğrulama.",
+                  "title": "Locators and Assertions",
+                  "description": "getByRole, getByText, auto-waiting and verifying with expect.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
                   "slug": "kullanici-etkilesimi",
-                  "title": "Kullanıcı Etkileşimi",
-                  "description": "Tıklama, form doldurma, sayfa geçişleri ve dosya yükleme.",
+                  "title": "User Interaction",
+                  "description": "Clicking, filling forms, page navigation and file uploads.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
                   "slug": "arama-ve-giris-akisi",
-                  "title": "Arama ve Giriş Akışı",
-                  "description": "Ürün arama ve giriş yapma senaryolarını baştan sona test etme.",
+                  "title": "Search and Login Flow",
+                  "description": "Testing product search and login scenarios end to end.",
                   "status": "coming_soon",
                   "kind": "project"
                 }
@@ -1031,26 +944,26 @@
             },
             {
               "id": "gercekci-senaryolar",
-              "title": "Gerçekçi Senaryolar",
+              "title": "Realistic Scenarios",
               "lessons": [
                 {
                   "slug": "test-duzeni",
-                  "title": "Test Düzeni",
-                  "description": "Fixture'lar, beforeEach, Page Object Model ve giriş durumunu saklama (storageState).",
+                  "title": "Test Organization",
+                  "description": "Fixtures, beforeEach, Page Object Model and saving login state (storageState).",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
                   "slug": "ag-ve-api-mock",
-                  "title": "Ağ ve API Mock",
-                  "description": "İstekleri yakalama, sahte yanıt dönme ve hata durumlarını test etme.",
+                  "title": "Network and API Mocking",
+                  "description": "Intercepting requests, returning fake responses and testing error states.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
                   "slug": "siparis-akisi",
-                  "title": "Sipariş Akışı",
-                  "description": "Ürün seçmeden ödemeye kadar tam e-ticaret akışı.",
+                  "title": "Order Flow",
+                  "description": "A full e-commerce flow from choosing a product to payment.",
                   "status": "coming_soon",
                   "kind": "project"
                 }
@@ -1058,19 +971,19 @@
             },
             {
               "id": "hata-ayiklama-ve-ci",
-              "title": "Hata Ayıklama ve CI",
+              "title": "Debugging and CI",
               "lessons": [
                 {
                   "slug": "debug-ve-trace-viewer",
-                  "title": "Debug ve Trace Viewer",
-                  "description": "UI Mode, codegen, trace viewer, screenshot ve video.",
+                  "title": "Debug and Trace Viewer",
+                  "description": "UI Mode, codegen, trace viewer, screenshots and video.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
                   "slug": "ci-ve-coklu-tarayici",
-                  "title": "CI ve Çoklu Tarayıcı",
-                  "description": "GitHub Actions, paralel çalıştırma, Chromium/Firefox/WebKit ve mobil görünüm.",
+                  "title": "CI and Multiple Browsers",
+                  "description": "GitHub Actions, parallel runs, Chromium/Firefox/WebKit and mobile viewports.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 }
@@ -1080,45 +993,39 @@
         },
         {
           "slug": "performance-accessibility",
-          "title": {
-            "tr": "Performans ve Erişilebilirlik",
-            "en": "Performance and Accessibility"
-          },
-          "description": {
-            "tr": "Core Web Vitals, semantik HTML ve klavye erişimi.",
-            "en": "Core Web Vitals, semantic HTML and keyboard access."
-          },
+          "title": "Performance and Accessibility",
+          "description": "Core Web Vitals, semantic HTML and keyboard access.",
           "status": "published",
           "lessonGroups": [
             {
               "id": "performans",
-              "title": "Performans",
+              "title": "Performance",
               "lessons": [
                 {
                   "slug": "core-web-vitals",
                   "title": "Core Web Vitals",
-                  "description": "LCP, INP, CLS nedir? Lighthouse ve PageSpeed ile ölçüm.",
+                  "description": "What are LCP, INP and CLS? Measuring with Lighthouse and PageSpeed.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
                   "slug": "yukleme-performansi",
-                  "title": "Yükleme Performansı",
-                  "description": "Görsel, font ve JavaScript boyutunu küçültme, lazy loading ve code splitting.",
+                  "title": "Loading Performance",
+                  "description": "Reducing image, font and JavaScript size, lazy loading and code splitting.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
                   "slug": "react-ve-render-performansi",
-                  "title": "React ve Render Performansı",
-                  "description": "Gereksiz render'ları bulma, React DevTools Profiler ve büyük listeleri yönetme.",
+                  "title": "React and Render Performance",
+                  "description": "Finding unnecessary renders, the React DevTools Profiler and handling large lists.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
                   "slug": "performans-iyilestirme",
-                  "title": "Performans İyileştirme",
-                  "description": "Yavaş bir e-ticaret sayfasını ölçüp adım adım hızlandırma.",
+                  "title": "Performance Improvement",
+                  "description": "Measure a slow e-commerce page and speed it up step by step.",
                   "status": "coming_soon",
                   "kind": "project"
                 }
@@ -1126,33 +1033,33 @@
             },
             {
               "id": "erisilebilirlik",
-              "title": "Erişilebilirlik",
+              "title": "Accessibility",
               "lessons": [
                 {
                   "slug": "semantik-yapi-ve-aria",
-                  "title": "Semantik Yapı ve ARIA",
-                  "description": "Doğru HTML, landmark'lar, alt metin ve ARIA'yı ne zaman kullanacağın.",
+                  "title": "Semantic Structure and ARIA",
+                  "description": "Correct HTML, landmarks, alt text and when to use ARIA.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
                   "slug": "klavye-ve-odak-yonetimi",
-                  "title": "Klavye ve Odak Yönetimi",
-                  "description": "Tab sırası, focus görünürlüğü, modal ve menülerde odak kontrolü.",
+                  "title": "Keyboard and Focus Management",
+                  "description": "Tab order, focus visibility and focus control in modals and menus.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
                   "slug": "renk-kontrast-ve-test",
-                  "title": "Renk, Kontrast ve Test",
-                  "description": "WCAG kontrast kuralları, ekran okuyucu ile deneme ve axe ile otomatik test.",
+                  "title": "Color, Contrast and Testing",
+                  "description": "WCAG contrast rules, trying a screen reader and automated testing with axe.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
                   "slug": "erisilebilirlik-iyilestirme",
-                  "title": "Erişilebilirlik İyileştirme",
-                  "description": "Formlu ve modallı bir sayfayı erişilebilir hale getirme.",
+                  "title": "Accessibility Improvement",
+                  "description": "Make a page with forms and modals accessible.",
                   "status": "coming_soon",
                   "kind": "project"
                 }
@@ -1163,46 +1070,37 @@
       ]
     },
     {
-      "id": "advanced",
-      "title": {
-        "tr": "İleri Seviye",
-        "en": "Advanced"
-      },
+      "id": "ileri-seviye",
+      "title": "Advanced",
       "tracks": [
         {
           "slug": "architecture",
-          "title": {
-            "tr": "Mimari ve Ölçeklenebilirlik",
-            "en": "Architecture and Scalability"
-          },
-          "description": {
-            "tr": "Feature sınırları, klasör yapısı ve büyüyen kod tabanı.",
-            "en": "Feature boundaries, folder structure and growing codebases."
-          },
+          "title": "Architecture and Scalability",
+          "description": "Feature boundaries, folder structure and growing codebases.",
           "status": "published",
           "lessonGroups": [
             {
               "id": "proje-yapisi",
-              "title": "Proje Yapısı",
+              "title": "Project Structure",
               "lessons": [
                 {
                   "slug": "klasor-yapisi-ve-isimlendirme",
-                  "title": "Klasör Yapısı ve İsimlendirme",
-                  "description": "Feature-based yapı, dosya isimlendirme ve import kuralları.",
+                  "title": "Folder Structure and Naming",
+                  "description": "Feature-based structure, file naming and import rules.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
                   "slug": "component-ve-kod-organizasyonu",
-                  "title": "Component ve Kod Organizasyonu",
-                  "description": "Component'leri bölme, ortak kodu ayırma ve sınırları koruma.",
+                  "title": "Component and Code Organization",
+                  "description": "Splitting components, separating shared code and protecting boundaries.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
                   "slug": "proje-yapisini-duzenleme",
-                  "title": "Proje Yapısını Düzenleme",
-                  "description": "Dağınık bir e-ticaret projesini feature-based yapıya taşıma.",
+                  "title": "Restructuring a Project",
+                  "description": "Move a messy e-commerce project to a feature-based structure.",
                   "status": "coming_soon",
                   "kind": "project"
                 }
@@ -1210,26 +1108,26 @@
             },
             {
               "id": "buyuk-olcek",
-              "title": "Büyük Ölçek",
+              "title": "Large Scale",
               "lessons": [
                 {
                   "slug": "monorepo",
                   "title": "Monorepo",
-                  "description": "pnpm workspace ve Turborepo ile paylaşılan paketler ve ortak UI kütüphanesi.",
+                  "description": "Shared packages and a common UI library with pnpm workspaces and Turborepo.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
                   "slug": "micro-frontend",
-                  "title": "Micro Frontend",
-                  "description": "Ne zaman gerekir, ne zaman gerekmez? Module Federation ile temel kurulum.",
+                  "title": "Micro Frontends",
+                  "description": "When you need them and when you don't. Basic setup with Module Federation.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
                   "slug": "coklu-paket-projesi",
-                  "title": "Çoklu Paket Projesi",
-                  "description": "Monorepo içinde ortak UI paketi ve iki uygulama kurma.",
+                  "title": "Multi-Package Project",
+                  "description": "Set up a shared UI package and two apps inside a monorepo.",
                   "status": "coming_soon",
                   "kind": "project"
                 }
@@ -1237,19 +1135,19 @@
             },
             {
               "id": "kalite-ve-urun",
-              "title": "Kalite ve Ürün",
+              "title": "Quality and Product",
               "lessons": [
                 {
                   "slug": "coklu-dil",
-                  "title": "Çoklu Dil (i18n)",
-                  "description": "next-intl ile çeviri, dil yönlendirmesi ve tarih/para birimi formatı.",
+                  "title": "Internationalization (i18n)",
+                  "description": "Translations, locale routing and date and currency formatting with next-intl.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
                   "slug": "kod-kalitesi-ve-ekip-standartlari",
-                  "title": "Kod Kalitesi ve Ekip Standartları",
-                  "description": "ESLint, Prettier, commit kuralları ve CI ile otomatik kontrol.",
+                  "title": "Code Quality and Team Standards",
+                  "description": "ESLint, Prettier, commit conventions and automated checks with CI.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 }
@@ -1259,52 +1157,46 @@
         },
         {
           "slug": "auth-security",
-          "title": {
-            "tr": "Auth ve Güvenlik",
-            "en": "Auth and Security"
-          },
-          "description": {
-            "tr": "Kimlik doğrulama, oturum yönetimi ve XSS/CSRF önlemleri.",
-            "en": "Authentication, session management and XSS/CSRF protections."
-          },
+          "title": "Auth and Security",
+          "description": "Authentication, session management and XSS/CSRF protections.",
           "status": "published",
           "lessonGroups": [
             {
               "id": "kimlik-dogrulama",
-              "title": "Kimlik Doğrulama",
+              "title": "Authentication",
               "lessons": [
                 {
                   "slug": "auth-temelleri",
-                  "title": "Auth Temelleri",
-                  "description": "Authentication ile authorization farkı, session ve token mantığı, cookie türleri.",
+                  "title": "Auth Basics",
+                  "description": "Authentication vs authorization, session and token logic, and cookie types.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
                   "slug": "better-auth-ile-giris-sistemi",
-                  "title": "Better Auth ile Giriş Sistemi",
-                  "description": "E-posta/şifre ile kayıt, giriş ve çıkış akışı.",
+                  "title": "Login System with Better Auth",
+                  "description": "Sign-up, sign-in and sign-out flow with email and password.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
                   "slug": "oauth-ve-sosyal-giris",
-                  "title": "OAuth ve Sosyal Giriş",
-                  "description": "Google ve GitHub ile giriş, OAuth/OIDC akışının mantığı.",
+                  "title": "OAuth and Social Login",
+                  "description": "Signing in with Google and GitHub, and the logic of the OAuth/OIDC flow.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
                   "slug": "rota-ve-rol-koruma",
-                  "title": "Rota ve Rol Koruma",
-                  "description": "proxy.ts ve Server Component'te giriş kontrolü, rol bazlı erişim.",
+                  "title": "Route and Role Protection",
+                  "description": "Login checks in proxy.ts and Server Components, and role-based access.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
                   "slug": "giris-sistemi-kurma",
-                  "title": "Giriş Sistemi Kurma",
-                  "description": "Kayıt, giriş, sosyal giriş ve korumalı sayfaları içeren proje.",
+                  "title": "Building a Login System",
+                  "description": "A project with sign-up, sign-in, social login and protected pages.",
                   "status": "coming_soon",
                   "kind": "project"
                 }
@@ -1312,26 +1204,26 @@
             },
             {
               "id": "guvenlik",
-              "title": "Güvenlik",
+              "title": "Security",
               "lessons": [
                 {
                   "slug": "xss-ve-csrf",
-                  "title": "XSS ve CSRF",
-                  "description": "Saldırı türleri, React'in sağladığı koruma ve token/SameSite ile savunma.",
+                  "title": "XSS and CSRF",
+                  "description": "Attack types, the protection React provides and defending with tokens and SameSite.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
                   "slug": "guvenlik-basliklari",
-                  "title": "Güvenlik Başlıkları",
-                  "description": "CSP, HSTS ve diğer header'ları Next.js'te ayarlama.",
+                  "title": "Security Headers",
+                  "description": "Configuring CSP, HSTS and other headers in Next.js.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
                   "slug": "guvenli-gelistirme-aliskanliklari",
-                  "title": "Güvenli Geliştirme Alışkanlıkları",
-                  "description": "Girdi doğrulama, secret yönetimi, bağımlılık güvenliği ve rate limiting.",
+                  "title": "Secure Development Habits",
+                  "description": "Input validation, secret management, dependency security and rate limiting.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 }
@@ -1341,59 +1233,53 @@
         },
         {
           "slug": "ai",
-          "title": {
-            "tr": "Yapay Zeka ile Frontend",
-            "en": "Frontend with AI"
-          },
-          "description": {
-            "tr": "Sohbet arayüzleri, agent'lar, MCP ve AI destekli geliştirme akışı.",
-            "en": "Chat interfaces, agents, MCP and AI-assisted development workflows."
-          },
+          "title": "Frontend with AI",
+          "description": "Chat interfaces, agents, MCP and AI-assisted development workflows.",
           "status": "published",
           "lessonGroups": [
             {
               "id": "ai-ile-gelistirme",
-              "title": "AI ile Geliştirme",
+              "title": "Developing with AI",
               "lessons": [
                 {
-                  "slug": "modeller-ve-araclar",
-                  "title": "Modeller ve Araçlar",
-                  "description": "Model türleri, güçlü ve zayıf yönleri; sohbet, editör ve terminal tabanlı araçlar.",
+                  "slug": "models-and-tools",
+                  "title": "Models and Tools",
+                  "description": "Model types, their strengths and weaknesses; chat, editor and terminal-based tools.",
                   "status": "published",
                   "kind": "lesson"
                 },
                 {
-                  "slug": "prompt-ve-context-engineering",
-                  "title": "Prompt ve Context Engineering",
-                  "description": "İyi istek yazma, doğru bağlam verme, CLAUDE.md/AGENTS.md ve proje kural dosyaları.",
+                  "slug": "prompt-and-context-engineering",
+                  "title": "Prompt and Context Engineering",
+                  "description": "Writing good requests, giving the right context, CLAUDE.md/AGENTS.md and project rule files.",
                   "status": "published",
                   "kind": "lesson"
                 },
                 {
-                  "slug": "agentic-kodlama",
-                  "title": "Agentic Kodlama",
-                  "description": "Claude Code ve Cursor gibi araçlarla planla, kodla, test et döngüsü ve subagent'lar.",
+                  "slug": "agentic-coding",
+                  "title": "Agentic Coding",
+                  "description": "The plan, code, test loop and subagents with tools like Claude Code and Cursor.",
                   "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "skills",
                   "title": "Skills",
-                  "description": "Tekrar eden işleri skill'e dönüştürme ve hazır frontend skill'lerini kullanma.",
+                  "description": "Turning repeated work into skills and using ready-made frontend skills.",
                   "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "mcp",
                   "title": "MCP",
-                  "description": "MCP nedir? Figma, Playwright ve Next.js DevTools gibi sunucuları agent'a bağlama.",
+                  "description": "What is MCP? Connecting servers like Figma, Playwright and Next.js DevTools to an agent.",
                   "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "tasarimdan-sayfaya",
-                  "title": "Tasarımdan Sayfaya",
-                  "description": "Agent, skill ve MCP ile bir tasarımı çalışan, test edilmiş bir sayfaya çevirme.",
+                  "title": "From Design to Page",
+                  "description": "Turn a design into a working, tested page with agents, skills and MCP.",
                   "status": "coming_soon",
                   "kind": "project"
                 }
@@ -1401,33 +1287,33 @@
             },
             {
               "id": "uygulamaya-ai-ekleme",
-              "title": "Uygulamaya AI Ekleme",
+              "title": "Adding AI to an App",
               "lessons": [
                 {
                   "slug": "ai-sdk-ve-streaming-sohbet",
-                  "title": "AI SDK ve Streaming Sohbet",
-                  "description": "useChat, streamText, model sağlayıcısı seçimi ve akan yanıtı arayüze yansıtma.",
+                  "title": "AI SDK and Streaming Chat",
+                  "description": "useChat, streamText, choosing a model provider and rendering streamed responses in the UI.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
                   "slug": "tool-calling-ve-structured-output",
-                  "title": "Tool Calling ve Structured Output",
-                  "description": "Modelin fonksiyon çağırması, Zod şemasıyla yapılandırılmış çıktı ve kullanıcı onayı.",
+                  "title": "Tool Calling and Structured Output",
+                  "description": "The model calling functions, structured output with a Zod schema and user approval.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
                   "slug": "generative-ui",
                   "title": "Generative UI",
-                  "description": "Tool sonucunu component olarak gösterme, yükleme ve hata durumları.",
+                  "description": "Showing tool results as components, with loading and error states.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
                   "slug": "ai-alisveris-asistani",
-                  "title": "AI Alışveriş Asistanı",
-                  "description": "Ürün arama ve sepete ekleme tool'larıyla çalışan sohbet asistanı.",
+                  "title": "AI Shopping Assistant",
+                  "description": "A chat assistant that works with product search and add-to-cart tools.",
                   "status": "coming_soon",
                   "kind": "project"
                 }
@@ -1435,19 +1321,19 @@
             },
             {
               "id": "dogrulama-ve-guvenlik",
-              "title": "Doğrulama ve Güvenlik",
+              "title": "Verification and Security",
               "lessons": [
                 {
                   "slug": "ai-ile-test-ve-code-review",
-                  "title": "AI ile Test ve Code Review",
-                  "description": "Test yazdırma, Playwright MCP ile kontrol ve AI çıktısını gözden geçirme.",
+                  "title": "Testing and Code Review with AI",
+                  "description": "Generating tests, checking with Playwright MCP and reviewing AI output.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
                   "slug": "guvenlik-ve-maliyet",
-                  "title": "Güvenlik ve Maliyet",
-                  "description": "Prompt injection, API anahtarı koruma, rate limit ve token maliyeti.",
+                  "title": "Security and Cost",
+                  "description": "Prompt injection, protecting API keys, rate limits and token cost.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 }
