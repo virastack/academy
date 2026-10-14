@@ -11,7 +11,7 @@ translationKey: "vitest-ile-component-testi/kurulum"
 - Vite 6.4 veya üstü.
 - React 18 veya 19.
 
-Bu gereksinimler Vitest 5 içindir. Projeniz Vite ile oluşturulduysa ek bir ayar gerekmez.
+Bu gereksinimler Vitest 5 içindir.[^1] Projeniz Vite ile oluşturulduysa ek bir ayar gerekmez.
 
 ## Paketleri kurun
 
@@ -30,7 +30,7 @@ npm install -D vitest jsdom @testing-library/react @testing-library/dom @testing
 
 > [!WARNING]
 >
-> `@testing-library/dom` paketini ayrıca kurun. React Testing Library bu paketi kendisi kurmaz.
+> `@testing-library/dom` paketini ayrıca kurun. React Testing Library bu paketi kendisi kurmaz.[^2]
 
 ## Vitest ayarı
 
@@ -52,9 +52,9 @@ export default defineConfig({
 
 | Ayar | Anlamı |
 | --- | --- |
-| `environment: "jsdom"` | Testler jsdom ortamında çalışır. Bu ayar olmadan `document` tanımsız olur. |
-| `globals: true` | `describe`, `test`, `expect` ve `vi` fonksiyonlarını import etmeden kullanırsınız. |
-| `setupFiles` | Her test dosyasından önce çalışan dosya. |
+| `environment: "jsdom"` | Testler jsdom ortamında çalışır. Varsayılan ortam `node` olduğu için bu ayar olmadan `document` tanımsız olur.[^3] |
+| `globals: true` | `describe`, `test`, `expect` ve `vi` fonksiyonlarını import etmeden kullanırsınız.[^4] |
+| `setupFiles` | Her test dosyasından önce çalışan dosya.[^5] |
 
 ## Setup dosyası
 
@@ -64,11 +64,11 @@ export default defineConfig({
 import "@testing-library/jest-dom/vitest";
 ```
 
-Bu satır `toBeInTheDocument` gibi matcher'ları Vitest'e ekler.
+Bu satır `toBeInTheDocument` gibi matcher'ları Vitest'e ekler.[^6]
 
 ## TypeScript tipleri
 
-`tsconfig.app.json` dosyasındaki `types` listesine iki paket ekleyin. Projenizde tek bir `tsconfig.json` varsa o dosyayı kullanın.
+`tsconfig.app.json` dosyasındaki `types` listesine iki paket ekleyin. Projenizde tek bir `tsconfig.json` varsa o dosyayı kullanın.[^4]
 
 ```json
 {
@@ -91,10 +91,10 @@ Bu satır `toBeInTheDocument` gibi matcher'ları Vitest'e ekler.
 
 | Komut | Davranış |
 | --- | --- |
-| `npm test` | Watch mode. Dosya değişince ilgili testler tekrar çalışır. |
+| `npm test` | Watch mode. Dosya değişince ilgili testler tekrar çalışır.[^7] |
 | `npm run test:run` | Testleri bir kez çalıştırır. CI ortamında bunu kullanın. |
 
-Vitest, rapor dosyalarını `.vitest` klasörüne yazar. Bu klasörü `.gitignore` dosyasına ekleyin:
+Vitest, rapor dosyalarını `.vitest` klasörüne yazar. Bu klasörü `.gitignore` dosyasına ekleyin:[^1]
 
 ```bash
 .vitest/
@@ -166,27 +166,23 @@ Testi çalıştırın:
 npm run test:run
 ```
 
-Test geçerse kurulum tamamdır. Vitest, adında `.test.` veya `.spec.` geçen dosyaları çalıştırır. Test dosyasını, test ettiğiniz dosyanın yanına koyun.
+Test geçerse kurulum tamamdır. Vitest, adında `.test.` veya `.spec.` geçen dosyaları çalıştırır.[^8] Test dosyasını, test ettiğiniz dosyanın yanına koyun.
 
 <details>
 <summary>Sık kurulum hataları</summary>
 
-<ul>
-<li>`document is not defined`: Test ortamı `node` olarak kalmış. `environment: "jsdom"` ayarını ekleyin.</li>
-<li>`Invalid Chai property: toBeInTheDocument`: Setup dosyası yüklenmemiş. `setupFiles` yolunu kontrol edin.</li>
-<li>TypeScript `toBeInTheDocument` için hata verir: `types` listesine `@testing-library/jest-dom` ekleyin.</li>
-<li>`Cannot find module '@testing-library/dom'`: Peer dependency eksik. Paketi kurun.</li>
-</ul>
+- `document is not defined`: Test ortamı `node` olarak kalmış. `environment: "jsdom"` ayarını ekleyin.
+- `Invalid Chai property: toBeInTheDocument`: Setup dosyası yüklenmemiş. `setupFiles` yolunu kontrol edin.
+- TypeScript `toBeInTheDocument` için hata verir: `types` listesine `@testing-library/jest-dom` ekleyin.
+- `Cannot find module '@testing-library/dom'`: Peer dependency eksik. Paketi kurun.
 
 </details>
 
 <details>
 <summary>globals: false ve Next.js</summary>
 
-<ul>
-<li>`globals: false` kullanırsanız her test dosyasında `test`, `expect` ve `vi` fonksiyonlarını `vitest` paketinden import edin. React Testing Library'nin otomatik temizliği global `afterEach` fonksiyonuna bağlıdır. Bu durumda setup dosyasında `afterEach(() => cleanup())` çağırın.</li>
-<li>Next.js projelerinde Vitest, Client Component ve senkron Server Component testleri için çalışır. `async` Server Component'ler için E2E test kullanın.</li>
-</ul>
+- `globals: false` kullanırsanız her test dosyasında `test`, `expect` ve `vi` fonksiyonlarını `vitest` paketinden import edin. React Testing Library'nin otomatik temizliği global `afterEach` fonksiyonuna bağlıdır. Bu durumda setup dosyasında `afterEach(() => cleanup())` çağırın.[^4]
+- Next.js projelerinde Vitest, Client Component ve senkron Server Component testleri için çalışır. `async` Server Component'ler için E2E test kullanın.[^9]
 
 </details>
 
@@ -197,5 +193,12 @@ Test geçerse kurulum tamamdır. Vitest, adında `.test.` veya `.spec.` geçen d
 - Beklenen değeri bilerek bozun. Testin başarısız olduğunu görün.
 - Beklenen değeri düzeltin. Testin geçtiğini görün.
 
-- [Vitest: Başlangıç](https://vitest.dev/guide/)
-- [React Testing Library: Giriş](https://testing-library.com/docs/react-testing-library/intro)
+[^1]: [Vitest: Getting Started](https://vitest.dev/guide/) *(doc)* — Vite ve Node gereksinimleri, kurulum komutu ve `.vitest` klasörü.
+[^2]: [React Testing Library: Introduction](https://testing-library.com/docs/react-testing-library/intro) *(doc)* — `@testing-library/react` kurulumu ve `@testing-library/dom` peer dependency'si.
+[^3]: [Vitest: environment](https://vitest.dev/config/environment) *(doc)* — Varsayılan `node` ortamı ve jsdom'un ayrıca kurulması.
+[^4]: [Vitest: globals](https://vitest.dev/config/globals) *(doc)* — `globals` ayarı, `vitest/globals` tipi ve React Testing Library'nin otomatik temizliği.
+[^5]: [Vitest: setupFiles](https://vitest.dev/config/setupfiles) *(doc)* — Setup dosyalarının her test dosyasından önce çalışması.
+[^6]: [jest-dom](https://github.com/testing-library/jest-dom) *(repo)* — Vitest ile `@testing-library/jest-dom/vitest` import'u.
+[^7]: [Vitest: Features](https://vitest.dev/guide/features) *(doc)* — Watch mode'da yalnızca ilgili testlerin yeniden çalışması.
+[^8]: [Vitest: include](https://vitest.dev/config/include) *(doc)* — Varsayılan test dosyası deseni: `.test.` ve `.spec.`.
+[^9]: [Next.js: Testing with Vitest](https://nextjs.org/docs/app/guides/testing/vitest) *(doc)* — `async` Server Component'lerin Vitest ile desteklenmemesi ve E2E önerisi.
