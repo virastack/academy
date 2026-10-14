@@ -2,7 +2,7 @@
 title: "Skills"
 description: "Tekrar eden işleri skill'e dönüştürme ve hazır frontend skill'lerini kullanma."
 lastVerified: "2026-10-14"
-translationKey: "yapay-zeka/skills"
+translationKey: "ai/skills"
 ---
 
 Aynı talimatı üçüncü kez sohbete yapıştırıyorsanız, o iş skill olmak istiyordur. [!claudeCode] dokümanı skill'i tam bu durumlar için öneriyor: aynı talimatı, kontrol listesini ya da çok adımlı prosedürü tekrar tekrar yapıştırıyorsanız veya `CLAUDE.md`'nizdeki bir bölüm olgu olmaktan çıkıp prosedüre dönüştüyse.[^1]

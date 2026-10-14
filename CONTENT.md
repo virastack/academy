@@ -4,6 +4,9 @@ Lessons live as Markdown under `content/<locale>/<track>/<lesson>.md`.
 The curriculum tree (including `coming_soon` lessons without a body) lives in
 `content/curriculum.json`.
 
+Track and group `title`, and track `description`, may be a string or
+`{ "tr": "...", "en": "..." }`. A plain string is shown in both locales.
+
 ## Frontmatter
 
 ```yaml

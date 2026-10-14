@@ -1,13 +1,22 @@
 {
   "groups": [
     {
-      "id": "temeller",
-      "title": "Temeller",
+      "id": "fundamentals",
+      "title": {
+        "tr": "Temeller",
+        "en": "Fundamentals"
+      },
       "tracks": [
         {
           "slug": "html-css",
-          "title": "HTML ve CSS",
-          "description": "Anlamlı yapı, form, layout ve responsive tasarım.",
+          "title": {
+            "tr": "HTML ve CSS",
+            "en": "HTML and CSS"
+          },
+          "description": {
+            "tr": "Anlamlı yapı, form, layout ve responsive tasarım.",
+            "en": "Semantic structure, forms, layout and responsive design."
+          },
           "status": "published",
           "lessonGroups": [
             {
@@ -81,8 +90,14 @@
         },
         {
           "slug": "javascript",
-          "title": "JavaScript",
-          "description": "Dilin temelleri ve asenkron akış.",
+          "title": {
+            "tr": "JavaScript",
+            "en": "JavaScript"
+          },
+          "description": {
+            "tr": "Dilin temelleri ve asenkron akış.",
+            "en": "Language fundamentals and asynchronous flow."
+          },
           "status": "published",
           "lessonGroups": [
             {
@@ -190,8 +205,14 @@
         },
         {
           "slug": "git",
-          "title": "Git",
-          "description": "Commit, branch ve uzak depo ile sürüm kontrolü.",
+          "title": {
+            "tr": "Git",
+            "en": "Git"
+          },
+          "description": {
+            "tr": "Commit, branch ve uzak depo ile sürüm kontrolü.",
+            "en": "Version control with commits, branches and remotes."
+          },
           "status": "published",
           "lessonGroups": [
             {
@@ -225,8 +246,14 @@
         },
         {
           "slug": "typescript",
-          "title": "TypeScript",
-          "description": "Tipler, generic'ler ve React ile tip güvenliği.",
+          "title": {
+            "tr": "TypeScript",
+            "en": "TypeScript"
+          },
+          "description": {
+            "tr": "Tipler, generic'ler ve React ile tip güvenliği.",
+            "en": "Types, generics and type safety with React."
+          },
           "status": "published",
           "lessonGroups": [
             {
@@ -261,13 +288,22 @@
       ]
     },
     {
-      "id": "react-ekosistemi",
-      "title": "React Ekosistemi",
+      "id": "react-ecosystem",
+      "title": {
+        "tr": "React Ekosistemi",
+        "en": "React Ecosystem"
+      },
       "tracks": [
         {
           "slug": "react",
-          "title": "React",
-          "description": "Component, state ve hook temelleri.",
+          "title": {
+            "tr": "React",
+            "en": "React"
+          },
+          "description": {
+            "tr": "Component, state ve hook temelleri.",
+            "en": "Components, state and hook fundamentals."
+          },
           "status": "published",
           "lessonGroups": [
             {
@@ -410,8 +446,14 @@
         },
         {
           "slug": "nextjs",
-          "title": "Next.js",
-          "description": "App Router, render stratejileri ve veri akışı.",
+          "title": {
+            "tr": "Next.js",
+            "en": "Next.js"
+          },
+          "description": {
+            "tr": "App Router, render stratejileri ve veri akışı.",
+            "en": "App Router, rendering strategies and data flow."
+          },
           "status": "published",
           "lessonGroups": [
             {
@@ -521,13 +563,22 @@
       ]
     },
     {
-      "id": "state-ve-veri-yonetimi",
-      "title": "State ve Veri Yönetimi",
+      "id": "state-and-data",
+      "title": {
+        "tr": "State ve Veri Yönetimi",
+        "en": "State and Data Management"
+      },
       "tracks": [
         {
           "slug": "tanstack-query",
-          "title": "TanStack Query",
-          "description": "Sunucu state'i, cache ve mutation yönetimi.",
+          "title": {
+            "tr": "TanStack Query",
+            "en": "TanStack Query"
+          },
+          "description": {
+            "tr": "Sunucu state'i, cache ve mutation yönetimi.",
+            "en": "Server state, caching and mutation management."
+          },
           "status": "published",
           "lessonGroups": [
             {
@@ -622,8 +673,14 @@
         },
         {
           "slug": "zustand",
-          "title": "Zustand",
-          "description": "Küçük ve hızlı client state yönetimi.",
+          "title": {
+            "tr": "Zustand",
+            "en": "Zustand"
+          },
+          "description": {
+            "tr": "Küçük ve hızlı client state yönetimi.",
+            "en": "Small and fast client state management."
+          },
           "status": "published",
           "lessonGroups": [
             {
@@ -665,13 +722,22 @@
       ]
     },
     {
-      "id": "form-ve-dogrulama",
-      "title": "Form ve Doğrulama",
+      "id": "forms-and-validation",
+      "title": {
+        "tr": "Form ve Doğrulama",
+        "en": "Forms and Validation"
+      },
       "tracks": [
         {
           "slug": "react-hook-form",
-          "title": "React Hook Form",
-          "description": "Form state, doğrulama ve hata mesajları.",
+          "title": {
+            "tr": "React Hook Form",
+            "en": "React Hook Form"
+          },
+          "description": {
+            "tr": "Form state, doğrulama ve hata mesajları.",
+            "en": "Form state, validation and error messages."
+          },
           "status": "published",
           "lessonGroups": [
             {
@@ -739,8 +805,14 @@
         },
         {
           "slug": "zod",
-          "title": "Zod",
-          "description": "Şema ile tip ve çalışma zamanı doğrulaması.",
+          "title": {
+            "tr": "Zod",
+            "en": "Zod"
+          },
+          "description": {
+            "tr": "Şema ile tip ve çalışma zamanı doğrulaması.",
+            "en": "Types and runtime validation from a single schema."
+          },
           "status": "published",
           "lessonGroups": [
             {
@@ -789,13 +861,22 @@
       ]
     },
     {
-      "id": "test-ve-kalite",
-      "title": "Test ve Kalite",
+      "id": "testing-and-quality",
+      "title": {
+        "tr": "Test ve Kalite",
+        "en": "Testing and Quality"
+      },
       "tracks": [
         {
           "slug": "vitest",
-          "title": "Vitest",
-          "description": "React Testing Library ve MSW ile component testi.",
+          "title": {
+            "tr": "Vitest",
+            "en": "Vitest"
+          },
+          "description": {
+            "tr": "React Testing Library ve MSW ile component testi.",
+            "en": "Component testing with React Testing Library and MSW."
+          },
           "status": "published",
           "lessonGroups": [
             {
@@ -904,8 +985,14 @@
         },
         {
           "slug": "playwright",
-          "title": "Playwright",
-          "description": "Gerçek tarayıcıda uçtan uca testler ve kullanıcı akışları.",
+          "title": {
+            "tr": "Playwright",
+            "en": "Playwright"
+          },
+          "description": {
+            "tr": "Gerçek tarayıcıda uçtan uca testler ve kullanıcı akışları.",
+            "en": "End-to-end tests and user flows in a real browser."
+          },
           "status": "published",
           "lessonGroups": [
             {
@@ -993,8 +1080,14 @@
         },
         {
           "slug": "performance-accessibility",
-          "title": "Performans ve Erişilebilirlik",
-          "description": "Core Web Vitals, semantik HTML ve klavye erişimi.",
+          "title": {
+            "tr": "Performans ve Erişilebilirlik",
+            "en": "Performance and Accessibility"
+          },
+          "description": {
+            "tr": "Core Web Vitals, semantik HTML ve klavye erişimi.",
+            "en": "Core Web Vitals, semantic HTML and keyboard access."
+          },
           "status": "published",
           "lessonGroups": [
             {
@@ -1070,13 +1163,22 @@
       ]
     },
     {
-      "id": "ileri-seviye",
-      "title": "İleri Seviye",
+      "id": "advanced",
+      "title": {
+        "tr": "İleri Seviye",
+        "en": "Advanced"
+      },
       "tracks": [
         {
           "slug": "architecture",
-          "title": "Mimari ve Ölçeklenebilirlik",
-          "description": "Feature sınırları, klasör yapısı ve büyüyen kod tabanı.",
+          "title": {
+            "tr": "Mimari ve Ölçeklenebilirlik",
+            "en": "Architecture and Scalability"
+          },
+          "description": {
+            "tr": "Feature sınırları, klasör yapısı ve büyüyen kod tabanı.",
+            "en": "Feature boundaries, folder structure and growing codebases."
+          },
           "status": "published",
           "lessonGroups": [
             {
@@ -1157,8 +1259,14 @@
         },
         {
           "slug": "auth-security",
-          "title": "Auth ve Güvenlik",
-          "description": "Kimlik doğrulama, oturum yönetimi ve XSS/CSRF önlemleri.",
+          "title": {
+            "tr": "Auth ve Güvenlik",
+            "en": "Auth and Security"
+          },
+          "description": {
+            "tr": "Kimlik doğrulama, oturum yönetimi ve XSS/CSRF önlemleri.",
+            "en": "Authentication, session management and XSS/CSRF protections."
+          },
           "status": "published",
           "lessonGroups": [
             {
@@ -1233,8 +1341,14 @@
         },
         {
           "slug": "ai",
-          "title": "Yapay Zeka ile Frontend",
-          "description": "Sohbet arayüzleri, agent'lar, MCP ve AI destekli geliştirme akışı.",
+          "title": {
+            "tr": "Yapay Zeka ile Frontend",
+            "en": "Frontend with AI"
+          },
+          "description": {
+            "tr": "Sohbet arayüzleri, agent'lar, MCP ve AI destekli geliştirme akışı.",
+            "en": "Chat interfaces, agents, MCP and AI-assisted development workflows."
+          },
           "status": "published",
           "lessonGroups": [
             {

@@ -2,14 +2,14 @@
 title: "MCP"
 description: "MCP nedir? Figma, Playwright ve Next.js DevTools gibi sunucuları agent'a bağlama."
 lastVerified: "2026-10-14"
-translationKey: "yapay-zeka/mcp"
+translationKey: "ai/mcp"
 ---
 
 MCP (Model Context Protocol), yapay zeka uygulamalarını dış sistemlere bağlamak için açık bir standarttır.[^1] Bir sunucu bağladığınızda ajan o sistemin araçlarını kendisi çağırır: Figma'dan tasarımı okur, tarayıcıyı sürer, çalışan dev sunucusundan hataları alır. Sizin sohbete yapıştırdığınız bilgiyle yetinmez.
 
 Ne zaman bağlamalı? [!claudeCode] dokümanının ölçütü basit: bir araçtan sohbete sürekli veri kopyalıyorsanız (issue takipçisi, izleme paneli) o aracı bağlayın.[^2]
 
-|  | [Skill](/academy/yapay-zeka/skills) | MCP |
+|  | [Skill](/academy/ai/skills) | MCP |
 | --- | --- | --- |
 | Ne verir? | Bir işi nasıl yapacağına dair talimat | Ajanın erişemediği bir sisteme araç erişimi |
 | Frontend örneği | *"Yeni bileşen ekleme adımları"* | *"Figma çerçevesini oku"*, *"dev sunucusundaki hataları al"* |

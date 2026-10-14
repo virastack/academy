@@ -2,7 +2,7 @@
 title: "Modeller ve Araçlar"
 description: "Model türleri, güçlü ve zayıf yönleri; sohbet, editör ve terminal tabanlı araçlar[^1]."
 lastVerified: "2026-10-14"
-translationKey: "yapay-zeka/modeller-ve-araclar"
+translationKey: "ai/modeller-ve-araclar"
 ---
 
 Frontend geliştirmesinde yapay zeka iki katmandan oluşur:
@@ -10,7 +10,7 @@ Frontend geliştirmesinde yapay zeka iki katmandan oluşur:
 - **Model:** Kodu üreten yapay zekadır *(örn: [!claude], [!gpt], [!gemini] sürümleri)*.
 - **Araç:** Dosyaları okuyan, projeyi anlayan ve komut çalıştıran arayüzdür *(örn: [!cursor], [!claudeCode])*.
 
-Yazılan kodun kalitesini büyük ölçüde seçilen model belirler. Araç da fark yaratır: aynı model farklı araçlarda farklı sonuç verebilir, çünkü her araç modele farklı bağlam gönderir. Bunu [Prompt ve Context Engineering](/academy/yapay-zeka/prompt-ve-context-engineering) rehberinde göreceksiniz.
+Yazılan kodun kalitesini büyük ölçüde seçilen model belirler. Araç da fark yaratır: aynı model farklı araçlarda farklı sonuç verebilir, çünkü her araç modele farklı bağlam gönderir. Bunu [Prompt ve Context Engineering](/academy/ai/prompt-ve-context-engineering) rehberinde göreceksiniz.
 
 Araç tarafındaki asıl ayrım sohbet ile ajan arasındadır. `useCart` hook'unu bir sohbet aracına yazdırırsanız kodu kendiniz kopyalayıp projeye eklersiniz. Bir ajan *([!claudeCode], [!cursor]'ın agent modu)* aynı hook'u doğrudan dosyaya yazar, testi çalıştırır ve hata çıkarsa kendisi düzeltir[^1].
 

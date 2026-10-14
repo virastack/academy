@@ -2,7 +2,7 @@
 title: "Agentic Kodlama"
 description: "Claude Code ve Cursor gibi araçlarla planla, kodla, test et döngüsü ve subagent'lar."
 lastVerified: "2026-10-14"
-translationKey: "yapay-zeka/agentic-kodlama"
+translationKey: "ai/agentic-kodlama"
 ---
 
 Ajanla çalışmak, sohbetteki *"soruyu sor, cevabı kopyala"* düzenine benzemez. Ajana bir iş verirsiniz: dosyaları açar, kodu değiştirir, komutları çalıştırır. Sizin işiniz görevi doğru kurmak ve çıkan sonucu kontrol etmektir.
@@ -11,7 +11,7 @@ Ajanla çalışmak, sohbetteki *"soruyu sor, cevabı kopyala"* düzenine benzeme
 
 [!claudeCode] dokümanı ajanın çalışmasını üç aşamada anlatıyor: **bağlam toplar**, **aksiyon alır**, **sonucu doğrular**. Hedef bitene kadar döngüyü tekrarlar ve her adımda bir öncekinden öğrendiğine göre ne yapacağını seçer.[^1] Siz de döngünün içindesiniz, istediğiniz an durdurup yönlendirebilirsiniz.[^1]
 
-*"Sepet toplamı yanlış çıkıyor, düzelt"* dediğinizde ajan şöyle ilerler: testleri çalıştırır, hata çıktısını okur, ilgili dosyaları arar, `CartSummary.tsx`'i düzenler, testleri yeniden çalıştırır.[^1] Yani sonucun kalitesi, ajanın kullanabileceği bir kontrole (test, lint, tip kontrolü) bağlıdır. [Prompt ve Context Engineering](/academy/yapay-zeka/prompt-ve-context-engineering) rehberinde buna "bitiş ölçütü" demiştik.
+*"Sepet toplamı yanlış çıkıyor, düzelt"* dediğinizde ajan şöyle ilerler: testleri çalıştırır, hata çıktısını okur, ilgili dosyaları arar, `CartSummary.tsx`'i düzenler, testleri yeniden çalıştırır.[^1] Yani sonucun kalitesi, ajanın kullanabileceği bir kontrole (test, lint, tip kontrolü) bağlıdır. [Prompt ve Context Engineering](/academy/ai/prompt-ve-context-engineering) rehberinde buna "bitiş ölçütü" demiştik.
 
 ## Planla, uygula, test et, commit et
 
@@ -57,7 +57,7 @@ Küçük ve sık commit atın. Her commit, ajanın bir sonraki hatasında geri d
 
 ## Subagent'lar
 
-Subagent, **kendi context penceresi olan yardımcı bir ajandır**. Ağır işi orada yapar, ana konuşmaya yalnızca özet döner.[^5][^6] Böylece ana konuşmanızın bağlamı şişmez (bkz. [Prompt ve Context Engineering](/academy/yapay-zeka/prompt-ve-context-engineering)).
+Subagent, **kendi context penceresi olan yardımcı bir ajandır**. Ağır işi orada yapar, ana konuşmaya yalnızca özet döner.[^5][^6] Böylece ana konuşmanızın bağlamı şişmez (bkz. [Prompt ve Context Engineering](/academy/ai/prompt-ve-context-engineering)).
 
 Örnek: *"Projedeki tüm `fetch` çağrılarına bak, hangilerinde hata yönetimi yok raporla."* Ajan onlarca dosya okuyacak. Bunu subagent'a verirseniz o dosyaların içeriği ana konuşmaya girmez, yalnızca *"şu dört dosyada eksik"* özeti gelir.
 
