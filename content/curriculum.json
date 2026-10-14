@@ -189,41 +189,6 @@
           ]
         },
         {
-          "slug": "typescript",
-          "title": "TypeScript",
-          "description": "Tipler, generic'ler ve React ile tip güvenliği.",
-          "status": "published",
-          "lessonGroups": [
-            {
-              "id": "typescript",
-              "title": "TypeScript",
-              "lessons": [
-                {
-                  "slug": "tip-temelleri",
-                  "title": "Tip Temelleri",
-                  "description": "Temel tipler, type inference, union ve interface/type farkı.",
-                  "status": "coming_soon",
-                  "kind": "lesson"
-                },
-                {
-                  "slug": "generic-ve-yardimci-tipler",
-                  "title": "Generic ve Yardımcı Tipler",
-                  "description": "Generic fonksiyonlar, Partial, Pick, Omit ve Record.",
-                  "status": "coming_soon",
-                  "kind": "lesson"
-                },
-                {
-                  "slug": "react-ile-typescript",
-                  "title": "React ile TypeScript",
-                  "description": "Props, state, event ve hook tipleri.",
-                  "status": "coming_soon",
-                  "kind": "lesson"
-                }
-              ]
-            }
-          ]
-        },
-        {
           "slug": "git",
           "title": "Git",
           "description": "Commit, branch ve uzak depo ile sürüm kontrolü.",
@@ -257,6 +222,41 @@
               ]
             }
           ]
+        },
+        {
+          "slug": "typescript",
+          "title": "TypeScript",
+          "description": "Tipler, generic'ler ve React ile tip güvenliği.",
+          "status": "published",
+          "lessonGroups": [
+            {
+              "id": "typescript",
+              "title": "TypeScript",
+              "lessons": [
+                {
+                  "slug": "tip-temelleri",
+                  "title": "Tip Temelleri",
+                  "description": "Temel tipler, type inference, union ve interface/type farkı.",
+                  "status": "coming_soon",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "generic-ve-yardimci-tipler",
+                  "title": "Generic ve Yardımcı Tipler",
+                  "description": "Generic fonksiyonlar, Partial, Pick, Omit ve Record.",
+                  "status": "coming_soon",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "react-ile-typescript",
+                  "title": "React ile TypeScript",
+                  "description": "Props, state, event ve hook tipleri.",
+                  "status": "coming_soon",
+                  "kind": "lesson"
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -266,7 +266,7 @@
       "tracks": [
         {
           "slug": "react",
-          "title": "React 19",
+          "title": "React",
           "description": "Component, state ve hook temelleri.",
           "status": "published",
           "lessonGroups": [
@@ -794,8 +794,8 @@
       "tracks": [
         {
           "slug": "vitest",
-          "title": "Vitest ile Component Testi",
-          "description": "React Testing Library ve MSW ile e-ticaret senaryoları üzerinden component testi.",
+          "title": "Vitest",
+          "description": "React Testing Library ve MSW ile component testi.",
           "status": "published",
           "lessonGroups": [
             {
@@ -904,8 +904,8 @@
         },
         {
           "slug": "playwright",
-          "title": "Playwright ile E2E",
-          "description": "Gerçek tarayıcı ortamında uçtan uca testler, kullanıcı akışları ve otomasyon.",
+          "title": "Playwright",
+          "description": "Gerçek tarayıcıda uçtan uca testler ve kullanıcı akışları.",
           "status": "published",
           "lessonGroups": [
             {
@@ -992,9 +992,9 @@
           ]
         },
         {
-          "slug": "performans-erisilebilirlik",
-          "title": "Web Performansı ve Erişilebilirlik",
-          "description": "Core Web Vitals, semantik yapı ve klavye erişimi.",
+          "slug": "performance-accessibility",
+          "title": "Performans ve Erişilebilirlik",
+          "description": "Core Web Vitals, semantik HTML ve klavye erişimi.",
           "status": "published",
           "lessonGroups": [
             {
@@ -1074,9 +1074,9 @@
       "title": "İleri Seviye",
       "tracks": [
         {
-          "slug": "mimari-ve-olceklenebilirlik",
+          "slug": "architecture",
           "title": "Mimari ve Ölçeklenebilirlik",
-          "description": "Feature sınırları, klasör yapısı, monorepo ve büyüyen kod tabanı.",
+          "description": "Feature sınırları, klasör yapısı ve büyüyen kod tabanı.",
           "status": "published",
           "lessonGroups": [
             {
@@ -1156,9 +1156,9 @@
           ]
         },
         {
-          "slug": "auth-ve-guvenlik",
+          "slug": "auth-security",
           "title": "Auth ve Güvenlik",
-          "description": "Kimlik doğrulama, oturum yönetimi ve XSS/CSRF gibi temel güvenlik önlemleri.",
+          "description": "Kimlik doğrulama, oturum yönetimi ve XSS/CSRF önlemleri.",
           "status": "published",
           "lessonGroups": [
             {
@@ -1232,9 +1232,9 @@
           ]
         },
         {
-          "slug": "yapay-zeka",
+          "slug": "ai",
           "title": "Yapay Zeka ile Frontend",
-          "description": "Sohbet arayüzleri, agent'lar, MCP ve AI ile frontend geliştirme akışı.",
+          "description": "Sohbet arayüzleri, agent'lar, MCP ve AI destekli geliştirme akışı.",
           "status": "published",
           "lessonGroups": [
             {
@@ -1244,7 +1244,7 @@
                 {
                   "slug": "modeller-ve-araclar",
                   "title": "Modeller ve Araçlar",
-                  "description": "Model türleri, güçlü ve zayıf yönleri; sohbet, editör ve terminal tabanlı araçlar[^1].",
+                  "description": "Model türleri, güçlü ve zayıf yönleri; sohbet, editör ve terminal tabanlı araçlar.",
                   "status": "published",
                   "kind": "lesson"
                 },
