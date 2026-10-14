@@ -150,14 +150,14 @@ API çağrısı başarısız olunca ne görünür? Bunu test edin:
 - `findByRole("alert")` ile **Ürünler yüklenemedi.** mesajını bulun.
 - [!queryBy] ile **Ürünler yükleniyor...** mesajının kaybolduğunu doğrulayın.
 
-[^1]: [Testing Library: Async Methods](https://testing-library.com/docs/dom-testing-library/api-async) · Doküman · Resmi — `findBy`, `waitFor` ve `waitForElementToBeRemoved`.
-[^2]: [Vitest: Timers](https://vitest.dev/guide/mocking/timers) · Doküman · Resmi — Fake timers rehberi.
-[^3]: [Testing Library: About Queries](https://testing-library.com/docs/queries/about) · Doküman · Resmi — `getBy`, `queryBy` ve `findBy` farkı.
-[^4]: [Kent C. Dodds: Common mistakes with React Testing Library](https://kentcdodds.com/blog/common-mistakes-with-react-testing-library) · Makale · Resmi — `waitFor` içinde yan etki ve `find*` yerine `waitFor` hataları.
-[^5]: [jest-dom: toBeInTheDocument kaynak kodu](https://github.com/testing-library/jest-dom/blob/main/src/to-be-in-the-document.js) · Repo · Resmi — Verilen değerin HTMLElement olup olmadığı kontrol edilir.
-[^6]: [Vitest: vi API](https://vitest.dev/api/vi) · Doküman · Resmi — Fake timers komutları.
-[^7]: [React: act](https://react.dev/reference/react/act) · Doküman · Resmi — Güncellemeleri assertion'dan önce uygulama.
-[^8]: [Testing Library: Using Fake Timers](https://testing-library.com/docs/using-fake-timers) · Doküman · Resmi — Fake timers kurulumu ve temizliği.
-[^9]: [dom-testing-library #1218: useFakeTimers ve findBy](https://github.com/testing-library/dom-testing-library/issues/1218) · Repo · Resmi — Vitest'te `findBy` timeout'a düşer.
-[^10]: [Vitest: fakeTimers yapılandırması](https://vitest.dev/config/faketimers) · Doküman · Resmi — `shouldAdvanceTime` seçeneği.
-[^11]: [user-event: Options](https://testing-library.com/docs/user-event/options) · Doküman · Resmi — `advanceTimers` seçeneği.
+1. [Testing Library: Async Methods](https://testing-library.com/docs/dom-testing-library/api-async) *(Doküman)* — `findBy`, `waitFor` ve `waitForElementToBeRemoved`.
+2. [Vitest: Timers](https://vitest.dev/guide/mocking/timers) *(Doküman)* — Fake timers rehberi.
+3. [Testing Library: About Queries](https://testing-library.com/docs/queries/about) *(Doküman)* — `getBy`, `queryBy` ve `findBy` farkı.
+4. [Kent C. Dodds: Common mistakes with React Testing Library](https://kentcdodds.com/blog/common-mistakes-with-react-testing-library) *(Makale)* — `waitFor` içinde yan etki ve `find*` yerine `waitFor` hataları.
+5. [jest-dom: toBeInTheDocument kaynak kodu](https://github.com/testing-library/jest-dom/blob/main/src/to-be-in-the-document.js) *(Repo)* — Verilen değerin HTMLElement olup olmadığı kontrol edilir.
+6. [Vitest: vi API](https://vitest.dev/api/vi) *(Doküman)* — Fake timers komutları.
+7. [React: act](https://react.dev/reference/react/act) *(Doküman)* — Güncellemeleri assertion'dan önce uygulama.
+8. [Testing Library: Using Fake Timers](https://testing-library.com/docs/using-fake-timers) *(Doküman)* — Fake timers kurulumu ve temizliği.
+9. [dom-testing-library #1218: useFakeTimers ve findBy](https://github.com/testing-library/dom-testing-library/issues/1218) *(Repo)* — Vitest'te `findBy` timeout'a düşer.
+10. [Vitest: fakeTimers yapılandırması](https://vitest.dev/config/faketimers) *(Doküman)* — `shouldAdvanceTime` seçeneği.
+11. [user-event: Options](https://testing-library.com/docs/user-event/options) *(Doküman)* — `advanceTimers` seçeneği.
