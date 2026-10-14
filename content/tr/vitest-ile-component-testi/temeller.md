@@ -72,7 +72,7 @@ test("Sepete ekle butonuna tıklayınca ürünü bildirir", async () => {
 
 ## test ve describe
 
-- `test` ve `it` aynı işi yapar. **Birini seçin** ve tüm projede onu kullanın.
+- `test` ve `it` aynı işi yapar.[^1] **Birini seçin** ve tüm projede onu kullanın.
 - `describe` aynı component'in testlerini gruplar.
 
 ```tsx
@@ -94,7 +94,7 @@ Test adını *davranış* olarak yazın. Örnek: `"stokta olmayan ürün için b
 
 ## render ve screen
 
-`render`, component'i jsdom içindeki `document.body` alanına çizer. Her testten sonra React Testing Library bu alanı otomatik temizler. Render sonrası elemanlara `screen` ile erişin.
+`render`, component'i jsdom içindeki `document.body` alanına çizer. Her testten sonra React Testing Library bu alanı otomatik temizler. Render sonrası elemanlara `screen` ile erişin.[^2]
 
 `screen` ile elemanları üç sorgu ailesiyle bulursunuz: [!getBy], [!queryBy] ve [!findBy]. Aralarındaki farkı **Sorgular** adımında öğrenirsiniz. Şimdilik üç ön eki tanıyın.
 
@@ -105,17 +105,15 @@ Test adını *davranış* olarak yazın. Örnek: `"stokta olmayan ürün için b
 <details>
 <summary>render'ın döndürdüğü sonuç</summary>
 
-<ul>
-<li>`rerender(ui)` aynı component'i yeni props ile tekrar render eder.</li>
-<li>`unmount()` component'i DOM'dan kaldırır. Temizlik davranışını test etmek için kullanın.</li>
-<li>`container` render edilen kök elemanı verir. Elemanları `container` ile aramayın. Bunun yerine `screen` sorgularını kullanın.</li>
-</ul>
+- `rerender(ui)` aynı component'i yeni props ile tekrar render eder.[^2]
+- `unmount()` component'i DOM'dan kaldırır. Temizlik davranışını test etmek için kullanın.[^2]
+- `container` render edilen kök elemanı verir. Elemanları `container` ile aramayın. Bunun yerine `screen` sorgularını kullanın.[^2]
 
 </details>
 
 ## En sık kullanılan matcher'lar
 
-`expect(değer)` ifadesinden sonra bir matcher çağırırsınız. Component testlerinin büyük bölümü şu matcher'larla yazılır:
+`expect(değer)` ifadesinden sonra bir matcher çağırırsınız. DOM matcher'ları jest-dom'dan,[^3] genel ve mock matcher'ları Vitest'ten gelir.[^4] Component testlerinin büyük bölümü şu matcher'larla yazılır:
 
 | Matcher | Ne kontrol eder |
 | --- | --- |
@@ -135,16 +133,14 @@ Test adını *davranış* olarak yazın. Örnek: `"stokta olmayan ürün için b
 <details>
 <summary>Diğer matcher'lar</summary>
 
-<ul>
-<li>**jest-dom:** `toBeChecked()`, `toHaveFocus()`, `toHaveClass("x")`, `toHaveAccessibleName("x")`. Tam liste için [jest-dom belgesine](https://github.com/testing-library/jest-dom) bakın.</li>
-<li>**Vitest:** `toHaveLength(n)`, `toThrow()`, `toHaveBeenCalled()`, `toHaveBeenCalledTimes(n)`.</li>
-</ul>
+- **jest-dom:** `toBeChecked()`, `toHaveFocus()`, `toHaveClass("x")`, `toHaveAccessibleName("x")`. Tam liste için [jest-dom belgesine](https://github.com/testing-library/jest-dom) bakın.[^3]
+- **Vitest:** `toHaveLength(n)`, `toThrow()`, `toHaveBeenCalled()`, `toHaveBeenCalledTimes(n)`.[^4]
 
 </details>
 
 ## Aynı testi farklı verilerle çalıştırma
 
-Saf fonksiyonlar için `test.each` kullanın. Her veri satırı ayrı bir test olur:
+Saf fonksiyonlar için `test.each` kullanın. Her veri satırı ayrı bir test olur:[^1]
 
 ```ts
 import { formatPrice } from "./format-price";
@@ -165,15 +161,13 @@ Her test *kendi başına* çalışmalıdır. Her testte component'i yeniden rend
 
 > [!WARNING]
 >
-> `test.only` kodunu commit etmeyin. Diğer testler çalışmaz ve CI başarılı görünür.
+> `test.only` kodunu commit etmeyin. Yerelde diğer testler çalışmaz ve eksik bir sonuca güvenmiş olursunuz. CI ortamında Vitest varsayılan olarak `.only` için hata verir, ama CI'a kadar gitmeden `.only`'yi silin.[^5]
 
 <details>
 <summary>beforeEach ve test.skip</summary>
 
-<ul>
-<li>`beforeEach` ortak hazırlık için kullanılır. Yalnızca her testte tekrar eden hazırlık için tercih edin. Testin ne yaptığını okurken hazırlığı da görmek istersiniz.</li>
-<li>`test.skip(...)` testi atlar. `test.todo("...")` henüz yazılmamış testi not eder.</li>
-</ul>
+- `beforeEach` ortak hazırlık için kullanılır. Yalnızca her testte tekrar eden hazırlık için tercih edin. Testin ne yaptığını okurken hazırlığı da görmek istersiniz.
+- `test.skip(...)` testi atlar. `test.todo("...")` henüz yazılmamış testi not eder.[^1]
 
 </details>
 
@@ -184,5 +178,8 @@ Her test *kendi başına* çalışmalıdır. Her testte component'i yeniden rend
 - **Stokta yok** yazısı görünür.
 - **Sepete ekle** butonu devre dışıdır.
 
-- [Vitest: expect API](https://vitest.dev/api/expect)
-- [jest-dom: Matcher listesi](https://github.com/testing-library/jest-dom)
+[^1]: [Vitest: Test API](https://vitest.dev/api/test) *(doc)* — `test` ve `it` takma adı, `test.each`, `test.only`, `test.skip`, `test.todo` ve `describe`.
+[^2]: [React Testing Library: API](https://testing-library.com/docs/react-testing-library/api) *(doc)* — `render` sonucu, `document.body` içine çizim, otomatik temizlik ve `container` uyarısı.
+[^3]: [jest-dom: Matcher listesi](https://github.com/testing-library/jest-dom) *(repo)* — `toBeInTheDocument`, `toBeVisible`, `toBeDisabled`, `toHaveTextContent` ve diğer DOM matcher'ları.
+[^4]: [Vitest: expect API](https://vitest.dev/api/expect) *(doc)* — `toBe`, `toEqual`, `toHaveLength`, `toThrow` ve mock matcher'ları.
+[^5]: [Vitest: allowOnly](https://vitest.dev/config/allowonly) *(doc)* — CI ortamında `.only` varsayılan olarak yasak.
