@@ -93,6 +93,8 @@ export function ProductList({ loadProducts, onAddToCart }: ProductListProps) {
 }
 ```
 
+Effect içindeki `ignore` bayrağı, `loadProducts` değiştiğinde ya da component kaldırıldığında eski cevabın state'i güncellemesini engeller.[^1] Arama `toLocaleLowerCase("tr-TR")` kullanır. Türkçe gibi dillerde büyük-küçük harf eşlemesi varsayılandan farklı olabilir.[^2]
+
 ## Testler
 
 Önce ortak veriyi ve bir yardımcı fonksiyonu yazın:
@@ -121,7 +123,7 @@ function renderList(
 
 ### Adım 1: Yükleme
 
-Konu: [!getBy], [!findBy] ve [!queryBy].
+Konu: [!getBy], [!findBy] ve [!queryBy].[^3]
 
 ```tsx
 test("yüklenirken bilgi mesajı, sonra ürünleri gösterir", async () => {
@@ -176,7 +178,7 @@ test("eşleşme yoksa boş durum mesajı gösterir", async () => {
 
 ### Adım 4: Sepete ekleme
 
-Konu: `within` ile kart içinde arama.
+Konu: `within` ile kart içinde arama.[^4]
 
 ```tsx
 test("seçilen ürünü sepete ekler", async () => {
@@ -202,7 +204,7 @@ test("stokta olmayan ürünün butonu devre dışıdır", async () => {
 
 ### Adım 5: Yükleme mesajının kaybolması
 
-Konu: `waitFor` ve `queryByRole`.
+Konu: `waitFor` ve `queryByRole`.[^5]
 
 ```tsx
 test("yükleme bitince durum mesajı kaybolur", async () => {
@@ -218,11 +220,11 @@ test("yükleme bitince durum mesajı kaybolur", async () => {
 
 | Adım | Tekrar edilen konu |
 | --- | --- |
-| 1 | Sorgu ailesi ve `findAllByRole` |
+| 1 | Sorgu ailesi ve `findAllByRole`[^3] |
 | 2 | Asenkron hata durumu |
 | 3 | `userEvent.type`, boş durum |
-| 4 | `within`, `toBeDisabled` |
-| 5 | `waitFor` ile kaybolan eleman |
+| 4 | `within`, `toBeDisabled`[^4] |
+| 5 | `waitFor` ile kaybolan eleman[^5] |
 
 > [!TIP]
 >
@@ -236,5 +238,5 @@ Listeye fiyat sıralaması ekleyin ve test edin:
 - `user.selectOptions` ile **Fiyat: artan** seçeneğini seçin.
 - İlk kartın en ucuz ürün (**Oyuncu Faresi**) olduğunu test edin. İpucu: `getAllByRole("article")[0]`.
 
-- [Testing Library: within](https://testing-library.com/docs/dom-testing-library/api-within)
-- [Testing Library: Async API'leri](https://testing-library.com/docs/dom-testing-library/api-async)
+[^1]: [React: You Might Not Need an Effect](https://react.dev/learn/you-might-not-need-an-effect) *(doc)* — Veri çekerken yarış durumu ve eski cevapları yok sayan `ignore` bayrağı.
+[^2]: [MDN: String.prototype.toLocaleLowerCase()](https:
