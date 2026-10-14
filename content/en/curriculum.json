@@ -1290,17 +1290,17 @@
               "title": "Adding AI to an App",
               "lessons": [
                 {
-                  "slug": "ai-sdk-ve-streaming-sohbet",
+                  "slug": "ai-sdk-and-streaming-chat",
                   "title": "AI SDK and Streaming Chat",
                   "description": "useChat, streamText, choosing a model provider and rendering streamed responses in the UI.",
-                  "status": "coming_soon",
+                  "status": "published",
                   "kind": "lesson"
                 },
                 {
-                  "slug": "tool-calling-ve-structured-output",
+                  "slug": "tool-calling-and-structured-output",
                   "title": "Tool Calling and Structured Output",
                   "description": "The model calling functions, structured output with a Zod schema and user approval.",
-                  "status": "coming_soon",
+                  "status": "published",
                   "kind": "lesson"
                 },
                 {
