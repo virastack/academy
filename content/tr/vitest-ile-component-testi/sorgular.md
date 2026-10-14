@@ -9,7 +9,7 @@ translationKey: "vitest-ile-component-testi/sorgular"
 
 Elemanları kullanıcının bulduğu gibi bulun. Kullanıcı elemanları rol, label ve metin ile bulur. Kullanıcı state adlarını veya CSS class'larını görmez.
 
-İç yapıya bağlı testler küçük bir refactoring işleminde kırılır. Davranışa bağlı testler kırılmaz.
+İç yapıya bağlı testler küçük bir refactoring işleminde kırılır. Davranışa bağlı testler kırılmaz.[^1]
 
 ## Sorgu önceliği
 
@@ -23,17 +23,18 @@ Listede yukarıdaki sorgu, aşağıdakinden daha iyidir. Her zaman ilk uygun sor
 | `getByAltText` | `alt` attribute'lu görsel. |
 | `getByTestId` | **Son çare.** Başka hiçbir sorgu çalışmıyorsa. |
 
+Tam sıra şöyledir: `getByRole`, `getByLabelText`, `getByPlaceholderText`, `getByText`, `getByDisplayValue`, ardından `getByAltText`, `getByTitle` ve en sonda `getByTestId`.[^2]
+
 > [!WARNING]
 >
-> `getByTestId` kullanıcının gördüğü bir şey değildir. Önce yukarıdaki sorguları deneyin.
+> `getByTestId` kullanıcının gördüğü bir şey değildir. Önce yukarıdaki sorguları deneyin.[^2]
 
 <details>
 <summary>Diğer sorgular</summary>
 
-<ul>
-<li>`getByPlaceholderText`: Label yoksa kullanılır. Placeholder, label'ın yerini tutmaz. Önce label ekleyin.</li>
-<li>`getByDisplayValue`: Değeri dolu olan input, select veya textarea için. `getByTitle`: `title` attribute'lu eleman için. Ekran okuyucular `title` değerini güvenilir okumaz.</li>
-</ul>
+- `getByPlaceholderText`: Label yoksa kullanılır. Placeholder, label'ın yerini tutmaz. Önce label ekleyin.[^3]
+- `getByDisplayValue`: Değeri dolu olan input, select veya textarea için.
+- `getByTitle`: `title` attribute'lu eleman için. `title` yardımcı teknoloji kullananlar için sorunludur, çünkü tarayıcı ve ekran okuyucu desteği tutarsızdır.[^4]
 
 </details>
 
@@ -94,7 +95,7 @@ test("ürünü rol, label ve metin ile bulur", async () => {
 
 ## getByRole kullanımı
 
-`getByRole`, elemanın ARIA rolünü ve erişilebilir adını kullanır. HTML elemanları otomatik bir role sahiptir.
+`getByRole`, elemanın ARIA rolünü ve erişilebilir adını kullanır. HTML elemanları otomatik bir role sahiptir.[^5][^6]
 
 | HTML | Rol |
 | --- | --- |
@@ -108,7 +109,7 @@ test("ürünü rol, label ve metin ile bulur", async () => {
 | `<article aria-labelledby>` | `article` |
 | `<section aria-label>` | `region` |
 
-`name` seçeneği erişilebilir adı belirtir. Aynı roldeki elemanları ayırmak için bunu kullanın:
+`name` seçeneği erişilebilir adı belirtir. Aynı roldeki elemanları ayırmak için bunu kullanın:[^5]
 
 ```tsx
 screen.getByRole("button", { name: "Sepete ekle" });
@@ -117,11 +118,15 @@ screen.getByRole("article", { name: "Mekanik Klavye" });
 screen.getByRole("region", { name: "Ürünler" });
 ```
 
-`getByRole`, görünmeyen elemanları (`hidden`, `display: none`) varsayılan olarak yoksayar. Görünmeyen elemanı bulmak için `hidden: true` ekleyin.
+`getByRole`, erişilebilirlik ağacından çıkarılan elemanları (`hidden`, `display: none`, `visibility: hidden`, `aria-hidden="true"`) varsayılan olarak yoksayar. Bu elemanları bulmak için `hidden: true` ekleyin.[^5]
+
+> [!NOTE]
+>
+> Gizli bir elemanın içerikten gelen adı boş hesaplanabilir. Bu durumda `hidden: true` ile birlikte `name` kullanırsanız eşleşme olmaz. Gizli eleman için `name` olmadan sorgulayın veya `aria-label` ile ad verin.
 
 ## Sorgu ailesi
 
-Her sorgunun üç ön eki vardır. Ön ek, elemanın şu anda DOM'da olup olmadığını belirler.
+Her sorgunun üç ön eki vardır. Ön ek, elemanın şu anda DOM'da olup olmadığını belirler.[^2]
 
 | Ön ek | Eleman bulunamazsa | Ne zaman kullanılır |
 | --- | --- | --- |
@@ -147,7 +152,7 @@ test("sorgu ailesi", async () => {
 
 ## Metin eşleştirme
 
-Metin sorguları varsayılan olarak **tam eşleşme** ve **büyük/küçük harf duyarlı** çalışır.
+Metin sorguları varsayılan olarak **tam eşleşme** ve **büyük/küçük harf duyarlı** çalışır.[^2][^7]
 
 | Kod | Sonuç |
 | --- | --- |
@@ -155,11 +160,11 @@ Metin sorguları varsayılan olarak **tam eşleşme** ve **büyük/küçük harf
 | `getByText("klavye")` | Bulamaz. Eşleşme tam değil. |
 | `getByText(/klavye/i)` | Bulur. Regex kısmi ve büyük/küçük harf duyarsız eşleşir. |
 
-Arayüz metinleri değişebilir. Bu nedenle `/sepete ekle/i` gibi regex kullanmak güvenlidir.
+Metin sık değişiyorsa `/sepete ekle/i` gibi regex kullanabilirsiniz. Regex büyük/küçük harf farkından doğan kırılmaları azaltır. Çok geniş bir regex ise yanlış elemanı da yakalayabilir. Rol sorgusuyla birlikte kullanıp `name` ile daraltın.
 
 ## Alan daraltma: within
 
-Listede üç **Sepete ekle** butonu vardır. `getByRole("button", { name: "Sepete ekle" })` hata verir. Aramayı bir kartla sınırlayın:
+Listede üç **Sepete ekle** butonu vardır. `getByRole("button", { name: "Sepete ekle" })` hata verir. Aramayı bir kartla sınırlayın:[^8]
 
 ```tsx
 import { screen, within } from "@testing-library/react";
@@ -194,10 +199,11 @@ HTML'iniz için en uygun sorguyu bu araç önerir. Aşağıdaki örnek bu derste
 - `within` ile kartın içindeki **Stokta yok** yazısının görünür olduğunu test edin.
 - **Mekanik Klavye** kartında **Stokta yok** yazısının bulunmadığını `queryByText` ile test edin.
 
-- [Testing Library: Sorgular](https://testing-library.com/docs/queries/about)
-- [Testing Library: ByRole](https://testing-library.com/docs/queries/byrole)
-
-## Ek kaynaklar
-
-- [Kent C. Dodds: Making your UI tests resilient to change](https://kentcdodds.com/blog/making-your-ui-tests-resilient-to-change) *(article)*
-- [Matan Borenkraout: Testing Library, everybody uses it, but nobody understands it](https://gitnation.com/contents/testing-library-everybody-uses-it-but-nobody-understands-it) *(video)*
+[^1]: [Kent C. Dodds: Making your UI tests resilient to change](https://kentcdodds.com/blog/making-your-ui-tests-resilient-to-change) *(article)* — Uygulama ayrıntılarına bağlı kırılgan testler ve kullanıcının bulduğu gibi sorgulama.
+[^2]: [Testing Library: Sorgular](https://testing-library.com/docs/queries/about) *(doc)* — Sorgu önceliği, `getBy`/`queryBy`/`findBy` farkı ve `exact` varsayılanı.
+[^3]: [Testing Library: ByPlaceholderText](https://testing-library.com/docs/queries/byplaceholdertext) *(doc)* — Placeholder, label'ın yerini tutmaz; genelde `getByLabelText` tercih edilir.
+[^4]: [MDN: title attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Global_attributes/title) *(doc)* — `title` kullanımının yardımcı teknoloji kullananlar için sorunları.
+[^5]: [Testing Library: ByRole](https://testing-library.com/docs/queries/byrole) *(doc)* — Örtük roller, `name`, `level` ve `hidden` seçenekleri.
+[^6]: [Matan Borenkraout: Testing Library, everybody uses it, but nobody understands it](https://gitnation.com/contents/testing-library-everybody-uses-it-but-nobody-understands-it) *(video)* — `getByRole`'ün erişilebilirlik ağacı ve örtük rollerle çalışması.
+[^7]: [Testing Library: ByText](https://testing-library.com/docs/queries/bytext) *(doc)* — Metin eşleştirme, regex kullanımı ve `ignore` seçeneği.
+[^8]: [Testing Library: within](https://testing-library.com/docs/dom-testing-library/api-within) *(doc)* — Sorguyu tek bir elemanın içine daraltma.
