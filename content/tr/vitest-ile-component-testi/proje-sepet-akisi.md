@@ -45,15 +45,17 @@ Sayfa gerçek `fetchProducts` fonksiyonunu kullanır. Testte MSW, API yanıtın�
 ```tsx
 import { screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { http, HttpResponse } from "msw";
+import { http, HttpResponse } from "msw/http";
 import { server } from "./mocks/server";
 import { ShopPage } from "./ShopPage";
 import { renderWithProviders } from "./test-utils";
 ```
 
+`http` ve `HttpResponse` MSW 3'te `msw/http` yolundan import edilir.[^1]
+
 ### Adım 1: Sepete ekleme ve toplam
 
-Konu: MSW, `within`, `findByRole`, `userEvent`, Context.
+Konu: MSW, `within`,[^2] `findByRole`,[^3] `userEvent`, Context.
 
 ```tsx
 describe("ShopPage", () => {
@@ -91,6 +93,10 @@ describe("ShopPage", () => {
 
 Hesabı kontrol edin: 2 × 2.199 + 1.299 = 5.697. Beklenen değeri elle hesaplayın. Beklenen değeri koddaki formülle hesaplamayın.
 
+> [!TIP]
+>
+> `article` ve `region` rollerinin erişilebilir adı içeriğinden değil, sizin verdiğiniz etiketten gelir. Bu yüzden `ProductCard` içinde `aria-labelledby`, `CartSummary` içinde `aria-label` bulunmalıdır. Etiket yoksa `name` ile sorgu eşleşmez.[^4]
+
 ### Adım 2: Sepetten çıkarma
 
 Konu: erişilebilir isim (`aria-label`) ve sepetin boşalması.
@@ -119,7 +125,7 @@ Konu: erişilebilir isim (`aria-label`) ve sepetin boşalması.
 
 ### Adım 3: Stokta olmayan ürün
 
-Konu: `toBeVisible` ve `toBeDisabled`.
+Konu: `toBeVisible` ve `toBeDisabled`.[^5]
 
 ```tsx
   test("stokta olmayan ürün sepete eklenemez", async () => {
@@ -136,7 +142,7 @@ Konu: `toBeVisible` ve `toBeDisabled`.
 
 ### Adım 4: API hatası
 
-Konu: `server.use` ile tek test için farklı yanıt.
+Konu: `server.use` ile tek test için farklı yanıt.[^6]
 
 ```tsx
   test("API hata verirse sepet çalışmaya devam eder", async () => {
@@ -162,20 +168,20 @@ Konu: `server.use` ile tek test için farklı yanıt.
 
 > [!DO]
 >
-> - Kullanıcı gibi davranır: arar, tıklar, sonucu görür.
+> - Kullanıcı gibi davranır: arar, tıklar, sonucu görür.[^7]
 > - Component'lerin iç yapısını bilmez. Kodu refactor edince kırılmaz.
-> - Yalnızca ağ sınırı mock'lanmıştır. Component'ler gerçek birlikte çalışır.
+> - Yalnızca ağ sınırı mock'lanmıştır. Component'ler gerçek birlikte çalışır.[^8]
 > - Başarılı akışı ve hata akışını birlikte kapsar.
 
 ## Tüm rehberin özeti
 
 | Konu | Kural |
 | --- | --- |
-| Sorgu | `getByRole` ile başlayın. |
-| Yokluk | `queryBy` kullanın. |
-| Bekleme | `findBy` kullanın. |
+| Sorgu | `getByRole` ile başlayın.[^3] |
+| Yokluk | `queryBy` kullanın.[^3] |
+| Bekleme | `findBy` kullanın.[^3] |
 | Etkileşim | `userEvent.setup()` ve her çağrıda `await`. |
-| Mock | Yalnızca sınırları mock'layın: ağ, analitik, tarayıcı API'si. |
+| Mock | Yalnızca sınırları mock'layın: ağ, analitik, tarayıcı API'si.[^8] |
 | Provider | `renderWithProviders` yardımcı fonksiyonu yazın. |
 | Hata | Mesajı okuyun, `screen.debug()` kullanın. |
 
@@ -187,5 +193,11 @@ Sepete **Azalt** butonu ekleyin. Önce testi yazın:
 - `CartSummary` içinde her ürün için erişilebilir adı **"<ürün adı> adedini azalt"** olan bir buton gösterin.
 - Test: Sepette 2 adet **Mekanik Klavye** varken **Azalt** tıklanınca **Mekanik Klavye × 1** görünür. İkinci tıklamada ürün listeden kalkar ve **Sepetiniz boş.** görünür.
 
-- [Testing Library: Rehber ilkeleri](https://testing-library.com/docs/guiding-principles)
-- [Vitest: İstek mock'lama](https://vitest.dev/guide/mocking/requests)
+[^1]: [MSW: Migrating from 2.x to 3.x](https://mswjs.io/docs/migrations/2.x-to-3.x) *(doc)* — `http` ve `HttpResponse` için `msw/http` import yolu.
+[^2]: [Testing Library: within](https://testing-library.com/docs/dom-testing-library/api-within) *(doc)* — Sorguyu tek bir elemanın içine daraltma.
+[^3]: [Testing Library: About Queries](https://testing-library.com/docs/queries/about) *(doc)* — `getByRole` önceliği, `queryBy` ile yokluk ve `findBy` ile bekleme.
+[^4]: [WAI-ARIA 1.2: Roles](https://www.w3.org/TR/wai-aria-1.2/#article) *(doc)* — `article` ve `region` rollerinin adı yazardan gelir, `region` için ad zorunludur.
+[^5]: [jest-dom](https://github.com/testing-library/jest-dom) *(repo)* — `toBeVisible` ve `toBeDisabled` matcher'larının kuralları.
+[^6]: [MSW: server.use()](https://mswjs.io/docs/api/setup-server/use) *(doc)* — Çalışma anında handler ekleme.
+[^7]: [Testing Library: Guiding Principles](https://testing-library.com/docs/guiding-principles) *(doc)* — Testler yazılımın kullanılış biçimine ne kadar benzerse o kadar güven verir.
+[^8]: [Vitest: Mocking Requests](https://vitest.dev/guide/mocking/requests) *(doc)* — MSW ile ağ isteklerini mock'lama.
