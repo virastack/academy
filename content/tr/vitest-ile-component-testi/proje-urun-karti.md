@@ -16,7 +16,7 @@ Mağaza sayfasında her ürün bir kartta görünür. Kart şunları yapar:
 
 ## Component
 
-Bu proje boyunca kullanacağınız son `ProductCard` sürümü. Önceki sürüme `oldPrice` ve `aria-labelledby` eklendi. Bu iki ekleme sonraki derslerde işe yarar.
+Bu proje boyunca kullanacağınız son `ProductCard` sürümü. Önceki sürüme `oldPrice` ve `aria-labelledby` eklendi.[^1] Bu iki ekleme sonraki derslerde işe yarar.
 
 ```tsx
 import { formatPrice } from "./format-price";
@@ -149,24 +149,22 @@ test("indirimli üründe eski fiyatı gösterir", () => {
 
 > [!TIP]
 >
-> `userEvent` tarayıcı gibi davranır. Devre dışı butona tıklamak `onAddToCart` fonksiyonunu çağırmaz.
+> `userEvent` tarayıcı gibi davranır. Devre dışı butona tıklamak `onAddToCart` fonksiyonunu çağırmaz.[^2]
 
 ## Hangi konuyu tekrar ettiniz?
 
 | Adım | Tekrar edilen konu |
 | --- | --- |
-| 1 | `render`, `screen`, `getByRole`, `toBeInTheDocument` |
-| 2 | `userEvent`, `vi.fn`, `toHaveBeenCalledWith` |
-| 3 | `toBeVisible`, `toBeDisabled`, `not.toHaveBeenCalled` |
+| 1 | `render`, `screen`, `getByRole`, `toBeInTheDocument`[^3] |
+| 2 | `userEvent`, `vi.fn`, `toHaveBeenCalledWith`[^2] |
+| 3 | `toBeVisible`, `toBeDisabled`, `not.toHaveBeenCalled`[^4] |
 | 4 | `getByText` ve ortak test verisi |
 
 <details>
 <summary>Fiyat metni neden sabit yazılır?</summary>
 
-<ul>
-<li>Fiyat metnini `formatPrice` ile üretmeyin. Testte `"₺1.299,00"` gibi sabit metin yazın. Biçim bozulursa test başarısız olur ve hatayı gösterir.</li>
-<li>Fiyat biçimi `Intl` ve tarayıcı veya Node.js sürümüne bağlıdır. Takımınız farklı sürümler kullanıyorsa CI ortamında bir kez çalıştırarak doğrulayın.</li>
-</ul>
+- Fiyat metnini `formatPrice` ile üretmeyin. Testte `"₺1.299,00"` gibi sabit metin yazın. Biçim bozulursa test başarısız olur ve hatayı gösterir.
+- Fiyat biçimi `Intl` için kullanılan ICU verisine bağlıdır. Bu veri Node.js derlemesine ve sisteme göre değişebilir. Takımınız farklı ortamlar kullanıyorsa CI ortamında bir kez çalıştırarak doğrulayın.[^5]
 
 </details>
 
@@ -179,5 +177,8 @@ test("indirimli üründe eski fiyatı gösterir", () => {
 - `ProductCard` içine yüzdeyi hesaplayıp gösterin.
 - Testin geçtiğini görün.
 
-- [React Testing Library: Örnek](https://testing-library.com/docs/react-testing-library/example-intro)
-- [user-event: Giriş](https://testing-library.com/docs/user-event/intro)
+[^1]: [WAI-ARIA 1.2: Roles](https://www.w3.org/TR/wai-aria-1.2/#article) *(doc)* — `article` rolünün adı içerikten değil yazardan gelir, bu yüzden `aria-labelledby` gerekir.
+[^2]: [user-event: Giriş](https://testing-library.com/docs/user-event/intro) *(doc)* — `userEvent` tarayıcının izin vermediği etkileşimi, örneğin devre dışı alanı, yapmaz.
+[^3]: [React Testing Library: Örnek](https://testing-library.com/docs/react-testing-library/example-intro) *(doc)* — `render`, `screen` ve rol sorgularıyla örnek test.
+[^4]: [jest-dom](https://github.com/testing-library/jest-dom) *(repo)* — `toBeVisible` ve `toBeDisabled` matcher'larının kuralları.
+[^5]: [Node.js: Internationalization support](https://nodejs.org/api/intl.html) *(doc)* — `Intl` çıktısının ICU verisine ve Node.js derlemesine bağlılığı.
