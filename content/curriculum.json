@@ -793,7 +793,7 @@
       "title": "Test ve Kalite",
       "tracks": [
         {
-          "slug": "vitest-ile-component-testi",
+          "slug": "vitest",
           "title": "Vitest ile Component Testi",
           "description": "React Testing Library ve MSW ile e-ticaret senaryoları üzerinden component testi.",
           "status": "published",

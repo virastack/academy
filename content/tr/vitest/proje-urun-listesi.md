@@ -2,7 +2,7 @@
 title: "Ürün Listesi"
 description: "Yükleme, arama ve sepete ekleme akışı."
 lastVerified: "2026-10-14"
-translationKey: "vitest-ile-component-testi/proje-urun-listesi"
+translationKey: "vitest/proje-urun-listesi"
 ---
 
 ## Senaryo

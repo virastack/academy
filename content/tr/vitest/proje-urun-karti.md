@@ -2,7 +2,7 @@
 title: "Ürün Kartı"
 description: "E-ticaret ürün kartı için adım adım test."
 lastVerified: "2026-10-14"
-translationKey: "vitest-ile-component-testi/proje-urun-karti"
+translationKey: "vitest/proje-urun-karti"
 ---
 
 ## Senaryo

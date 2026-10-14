@@ -2,7 +2,7 @@
 title: "Mock"
 description: "vi.fn, vi.mock ve MSW ile API mock'u."
 lastVerified: "2026-10-14"
-translationKey: "vitest-ile-component-testi/mock"
+translationKey: "vitest/mock"
 ---
 
 ## Mock nedir?

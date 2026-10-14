@@ -2,7 +2,7 @@
 title: "Temeller"
 description: "İlk test, render, expect ve matcher'lar."
 lastVerified: "2026-10-14"
-translationKey: "vitest-ile-component-testi/temeller"
+translationKey: "vitest/temeller"
 ---
 
 ## Test yapısı

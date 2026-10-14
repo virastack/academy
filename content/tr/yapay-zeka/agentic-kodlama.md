@@ -43,7 +43,7 @@ Ajan "bitti" dediğinde kanıt isteyin: test çıktısı, çalıştırdığı ko
 4. Ajandan testlere dokunmadan, hepsi geçene kadar kod yazmasını isteyin.
 5. Uygulamayı commit edin.
 
-Frontend'de bu, [Vitest ile Component Testi](/academy/vitest-ile-component-testi) rehberinde yazdığınız component testlerini ajana hedef olarak vermek demektir.
+Frontend'de bu, [Vitest ile Component Testi](/academy/vitest) rehberinde yazdığınız component testlerini ajana hedef olarak vermek demektir.
 
 ### 4. Commit et
 

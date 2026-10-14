@@ -11,7 +11,7 @@ The curriculum tree (including `coming_soon` lessons without a body) lives in
 title: "Giriş"
 description: "Frontend test nedir?"
 lastVerified: "2026-10-14"
-translationKey: "vitest-ile-component-testi/giris"
+translationKey: "vitest/giris"
 ---
 ```
 

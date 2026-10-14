@@ -2,7 +2,7 @@
 title: "Hata Ayıklama"
 description: "screen.debug, sık hatalar ve coverage."
 lastVerified: "2026-10-14"
-translationKey: "vitest-ile-component-testi/hata-ayiklama"
+translationKey: "vitest/hata-ayiklama"
 ---
 
 ## Test kırıldığında ne yapmalı?
