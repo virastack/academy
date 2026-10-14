@@ -1307,7 +1307,7 @@
                   "slug": "generative-ui",
                   "title": "Generative UI",
                   "description": "Showing tool results as components, with loading and error states.",
-                  "status": "coming_soon",
+                  "status": "published",
                   "kind": "lesson"
                 },
                 {
