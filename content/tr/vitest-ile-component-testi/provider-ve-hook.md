@@ -130,7 +130,7 @@ export function CartSummary() {
 
 ## renderWithProviders
 
-Her testte Provider yazmak tekrar yaratır. Bir yardımcı fonksiyon yazın. React Testing Library bunun için `wrapper` seçeneğini sunar.
+Her testte Provider yazmak tekrar yaratır. Bir yardımcı fonksiyon yazın. React Testing Library bunun için `wrapper` seçeneğini sunar.[^1]
 
 ```tsx
 import { render, type RenderOptions } from "@testing-library/react";
@@ -226,7 +226,7 @@ test("Çıkar butonu ürünü sepetten kaldırır", async () => {
 
 ## Hook testi
 
-Hook'u bir component üzerinden test etmek en iyisidir. Bu yaklaşım kullanıcının gördüğü davranışı doğrular. Hook'u component'ten bağımsız test etmek istiyorsanız `renderHook` kullanın. State değiştiren çağrıları `act` ile sarın.
+Hook'u bir component üzerinden test etmek en iyisidir.[^2] Bu yaklaşım kullanıcının gördüğü davranışı doğrular. Hook'u component'ten bağımsız test etmek istiyorsanız `renderHook` kullanın. State değiştiren çağrıları `act` ile sarın.[^3]
 
 ```tsx
 import { act, renderHook } from "@testing-library/react";
@@ -258,16 +258,14 @@ test("Provider dışında kullanılırsa hata fırlatır", () => {
 
 > [!TIP]
 >
-> React, fırlatılan hatayı konsola da yazar. İkinci testte konsolda kırmızı hata görürseniz test yine geçer. Bu normaldir.
+> Render sırasında hata fırlatan bir test, React sürümüne göre konsola hata yazabilir. Konsolda kırmızı hata görürseniz test yine geçer. Bu normaldir.
 
 <details>
 <summary>Diğer Provider türleri</summary>
 
-<ul>
-<li>**Router:** Testte `MemoryRouter` (React Router) veya aynı işi yapan bir test router'ı kullanın. `wrapper` içine ekleyin.</li>
-<li>**TanStack Query:** Her test için yeni bir `QueryClient` oluşturun. Testlerde `retry: false` ayarlayın. Başarısız istek tekrar denenirse test uzun sürer.</li>
-<li>Provider sayısı arttıkça `renderWithProviders` fonksiyonuna seçenek ekleyin. Örnek: `initialItems`.</li>
-</ul>
+- **Router:** React Router kullanıyorsanız router bağlamı gerektiren component'i `createRoutesStub` ile render edin.[^4]
+- **TanStack Query:** Her test için yeni bir `QueryClient` oluşturun. Testlerde `retry: false` ayarlayın. Başarısız istek tekrar denenirse test uzun sürer.[^5]
+- Provider sayısı arttıkça `renderWithProviders` fonksiyonuna seçenek ekleyin. Örnek: `initialItems`.
 
 </details>
 
@@ -279,10 +277,8 @@ test("Provider dışında kullanılırsa hata fırlatır", () => {
 - **Mekanik Klavye** için **Çıkar** butonuna tıklayın.
 - Rozetin **Sepet (1)** olduğunu doğrulayın.
 
-- [React Testing Library: Kurulum (wrapper)](https://testing-library.com/docs/react-testing-library/setup)
-- [React Testing Library: API](https://testing-library.com/docs/react-testing-library/api)
-
-## Ek kaynaklar
-
-- [Kent C. Dodds: How to test custom React hooks](https://kentcdodds.com/blog/how-to-test-custom-react-hooks) *(article)*
-- [TkDodo: Testing React Query](https://tkdodo.eu/blog/testing-react-query) *(article)* — Yalnızca Provider kutusundaki QueryClient ve retry: false notu içindir.
+[^1]: [React Testing Library: Kurulum (wrapper)](https://testing-library.com/docs/react-testing-library/setup) *(doc)* — Provider'ları `wrapper` ile saran özel `render` fonksiyonu.
+[^2]: [Kent C. Dodds: How to test custom React hooks](https://kentcdodds.com/blog/how-to-test-custom-react-hooks) *(article)* — Hook'u örnek bir component üzerinden test etme önerisi ve `renderHook` için uygun durumlar.
+[^3]: [React Testing Library: API](https://testing-library.com/docs/react-testing-library/api) *(doc)* — `renderHook`, `wrapper` seçeneği, `result.current` ve `act`.
+[^4]: [React Router: Testing](https://reactrouter.com/start/framework/testing) *(doc)* — Router bağlamı gerektiren component'leri `createRoutesStub` ile test etme.
+[^5]: [TkDodo: Testing React Query](https://tkdodo.eu/blog/testing-react-query) *(article)* — Her test için yeni `QueryClient` ve `retry: false` ayarı.
