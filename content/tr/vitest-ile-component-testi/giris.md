@@ -101,5 +101,5 @@ Projenizden bir ürün kartı veya benzeri bir component seçin. Kağıda şunla
 
 ## Ek kaynaklar
 
-- [Kent C. Dodds: The Testing Trophy](https://kentcdodds.com/blog/the-testing-trophy-and-testing-classifications) *(article)*
-- [Kent C. Dodds: Write tests. Not too many. Mostly integration.](https://www.youtube.com/watch?v=Fha2bVoC8SE) *(video)* — Strateji bu dersle aynıdır. Örnek araçlar Jest ve Cypress dönemine aittir.
+1. [Kent C. Dodds: The Testing Trophy](https://kentcdodds.com/blog/the-testing-trophy-and-testing-classifications) *(article)*
+2. [Kent C. Dodds: Write tests. Not too many. Mostly integration.](https://www.youtube.com/watch?v=Fha2bVoC8SE) *(video)* — Strateji bu dersle aynıdır. Örnek araçlar Jest ve Cypress dönemine aittir.
