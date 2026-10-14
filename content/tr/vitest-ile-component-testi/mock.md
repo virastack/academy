@@ -35,6 +35,8 @@ Mock, gerçek bir bağımlılığın yerine geçen test kopyasıdır. Testin kon
 | `vi.fn().mockResolvedValue(data)` | `Promise.resolve(data)` döner. Async fonksiyonlar için. |
 | `vi.fn().mockRejectedValue(new Error("hata"))` | Reddedilen Promise döner. |
 
+Bu tablodaki dönüş değerleri için bkz. [^1]
+
 ```tsx
 const loadProducts = vi.fn().mockResolvedValue(products);
 
@@ -78,7 +80,7 @@ export function AddToCartButton({ product, onAdd }: AddToCartButtonProps) {
 }
 ```
 
-`trackEvent` fonksiyonu `navigator.sendBeacon` çağırır. jsdom bu API'yi desteklemez. Mock olmadan test hata verir. Modülü mock'layın:
+`trackEvent` fonksiyonu `navigator.sendBeacon` çağırır. jsdom bu API'yi sunmaz. Mock olmadan test hata verir. Modülü mock'layın:
 
 ```tsx
 import { render, screen } from "@testing-library/react";
@@ -108,30 +110,28 @@ test("ürünü ekler ve analitik olayı gönderir", async () => {
 });
 ```
 
-`vi.mock(import("./analytics"))` modülün tüm fonksiyonlarını sahte fonksiyonla değiştirir. Dosyadaki diğer import'larla birlikte tip güvenliği de korunur.
+Fabrika fonksiyonu vermezseniz Vitest özgün modülü yükler ve dışa aktardığı her şeyi otomatik olarak mock'lar. Metotlar `undefined` döner.[^2] `import("./analytics")` biçimi yolun yazım hatasını TypeScript'e doğrulatır. Dosya taşınırsa yol ile tipler birlikte güncellenir.[^2]
 
 > [!WARNING]
 >
-> `vi.mock` çağrısını dosyanın **en üst seviyesine** yazın. Vitest bu çağrıyı dosyanın başına taşır. `test` veya `describe` içine yazarsanız Vitest hata fırlatır.
+> Vitest `vi.mock` çağrısını dosyanın başına taşır (hoisting). Çağrıyı nereye yazarsanız yazın, import'lardan önce çalışır. Bu yüzden çağrıyı dosyanın **en üst seviyesine** yazın. Mock'un `fabrika` fonksiyonunda dosyadaki diğer değişkenleri kullanamazsınız.[^2]
 
 > [!TIP]
 >
-> Vitest varsayılan olarak her testten önce mock çağrı geçmişini temizler (`clearMocks`). Bu yüzden bir testteki çağrı sayısı diğer testi etkilemez.
+> Vitest varsayılan olarak her testten önce mock çağrı geçmişini temizler (`clearMocks`). Bu yüzden bir testteki çağrı sayısı diğer testi etkilemez.[^3]
 
 <details>
 <summary>spyOn ve restoreAllMocks</summary>
 
-<ul>
-<li>`vi.spyOn(nesne, "metot")` mevcut bir metodu izler. Örnek: `vi.spyOn(window, "open").mockImplementation(() => null)`. Böylece "Paylaş" butonunun yeni pencere açtığını test edersiniz.</li>
-<li>`vi.restoreAllMocks()` yalnızca `vi.spyOn` ile oluşturulan spy'ları orijinal haline döndürür. `vi.fn()` ve `vi.mock` mock'larını etkilemez.</li>
-<li>Spy'ı her testten sonra geri almak için `afterEach(() => vi.restoreAllMocks())` yazın.</li>
-</ul>
+- `vi.spyOn(nesne, "metot")` mevcut bir metodu izler. Örnek: `vi.spyOn(window, "open").mockImplementation(() => null)`. Böylece "Paylaş" butonunun yeni pencere açtığını test edersiniz.
+- `vi.restoreAllMocks()` yalnızca `vi.spyOn` ile oluşturulan spy'ları orijinal haline döndürür. Otomatik mock'lanan modülleri etkilemez.[^4]
+- Spy'ı her testten sonra geri almak için `afterEach(() => vi.restoreAllMocks())` yazın.
 
 </details>
 
 ## MSW: ağ isteğini mock'lama
 
-Ürünler API'den gelir. `fetch` fonksiyonunu elle mock'lamak yerine MSW ([Mock Service Worker](https://mswjs.io)) kullanın. MSW ağ isteğini yakalar ve sahte yanıt döner. Uygulama kodunuz gerçek `fetch` kullanmaya devam eder.
+Ürünler API'den gelir. `fetch` fonksiyonunu elle mock'lamak yerine MSW ([Mock Service Worker](https://mswjs.io)) kullanın.[^5] MSW ağ isteğini yakalar ve sahte yanıt döner.[^6][^7] Uygulama kodunuz gerçek `fetch` kullanmaya devam eder.
 
 Önce API çağrısını yazın:
 
@@ -153,16 +153,16 @@ export async function fetchProducts(): Promise<Product[]> {
 >
 > Testte `fetch("/products")` gibi göreli URL kullanmayın. Node ortamında göreli URL çözümlenemez ve istek başarısız olur. Tam URL kullanın.
 
-Paketi kurun:
+Paketi kurun:[^8]
 
-```bash
-pnpm add -D msw
+```command
+npm install -D msw
 ```
 
-Varsayılan yanıtları `handlers.ts` dosyasında tanımlayın:
+Varsayılan yanıtları `src/mocks/handlers.ts` dosyasında tanımlayın. `http` ve `HttpResponse` MSW 3'te `msw/http` yolundan gelir:[^9]
 
 ```ts
-import { http, HttpResponse } from "msw";
+import { http, HttpResponse } from "msw/http";
 import type { Product } from "../types";
 
 export const products: Product[] = [
@@ -178,6 +178,8 @@ export const handlers = [
 ];
 ```
 
+Sunucuyu `src/mocks/server.ts` dosyasında oluşturun:
+
 ```ts
 import { setupServer } from "msw/node";
 import { handlers } from "./handlers";
@@ -185,27 +187,31 @@ import { handlers } from "./handlers";
 export const server = setupServer(...handlers);
 ```
 
-Sunucuyu `vitest.setup.ts` dosyasında başlatın:
+Sunucuyu `src/vitest.setup.ts` dosyasında başlatın:
 
 ```ts
 import "@testing-library/jest-dom/vitest";
 import { server } from "./mocks/server";
 
-beforeAll(() => server.listen({ onUnhandledRequest: "error" }));
+beforeAll(() => server.listen({ onUnhandledFrame: "error" }));
 afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
 ```
 
 | Satır | Görevi |
 | --- | --- |
-| `onUnhandledRequest: "error"` | Handler'ı olmayan istek hata verir. Gerçek API'ye yanlışlıkla istek atmazsınız. |
+| `onUnhandledFrame: "error"` | Handler'ı olmayan istek hata verir. Gerçek API'ye yanlışlıkla istek atmazsınız.[^10] |
 | `resetHandlers()` | Bir testte eklenen geçici handler'ları siler. Testler birbirini etkilemez. |
+
+> [!NOTE]
+>
+> MSW 2.x kullanıyorsanız seçeneğin adı `onUnhandledRequest` ve `http` ile `HttpResponse` doğrudan `msw` paketinden import edilir.[^9]
 
 Artık `fetchProducts` fonksiyonunu doğrudan kullanın:
 
 ```tsx
 import { render, screen } from "@testing-library/react";
-import { http, HttpResponse } from "msw";
+import { http, HttpResponse } from "msw/http";
 import { fetchProducts } from "./fetch-products";
 import { server } from "./mocks/server";
 import { ProductList } from "./ProductList";
@@ -227,7 +233,7 @@ test("API boş liste dönerse boş durum gösterir", async () => {
 });
 ```
 
-`server.use` yalnızca o test için varsayılan handler'ı değiştirir. `afterEach` içindeki `resetHandlers` çağrısı değişikliği geri alır.
+`server.use` yeni handler'ı mevcut handler'ların önüne ekler. Bu handler `resetHandlers` çağrılana kadar kalır.[^11] `afterEach` içindeki `resetHandlers` çağrısı bu yüzden gereklidir.
 
 > [!TIP]
 >
@@ -240,7 +246,7 @@ test("API boş liste dönerse boş durum gösterir", async () => {
 | Callback prop'u | `vi.fn()` |
 | Analitik, logger, tarayıcı API'si | `vi.mock` veya `vi.spyOn` |
 | API çağrısı | MSW |
-| `setTimeout`, `Date` | Fake timers |
+| `setTimeout`, `Date` | Fake timers.[^12] |
 
 ## Kendin dene
 
@@ -250,10 +256,15 @@ API 500 hatası döndürdüğünde ne olur? Bunu test edin:
 - `ProductList` bileşenini `fetchProducts` ile render edin.
 - `findByRole("alert")` ile **Ürünler yüklenemedi.** mesajını doğrulayın.
 
-- [Vitest: Mock'lama](https://vitest.dev/guide/mocking)
-- [MSW: Hızlı başlangıç](https://mswjs.io/docs/quick-start)
-
-## Ek kaynaklar
-
-- [Kent C. Dodds: Stop mocking fetch](https://kentcdodds.com/blog/stop-mocking-fetch) *(article)* — Kod örnekleri MSW v1 ve Jest kullanır. Ağ sınırını mock'lama fikri bu dersle aynıdır.
-- [Artem Zakharchenko: Mock Service Worker 2.0](https://gitnation.com/contents/a-sneak-peek-into-mock-service-worker-20) *(video)*
+1. [Vitest: Mock Functions](https://vitest.dev/api/mock) *(doc)* — `mockReturnValue`, `mockResolvedValue` ve `mockRejectedValue` davranışı.
+2. [Vitest: Mocking Modules](https://vitest.dev/guide/mocking/modules) *(doc)* — `vi.mock` hoisting'i, otomatik mock kuralları ve `import()` biçimi.
+3. [Vitest: clearMocks](https://vitest.dev/config/clearmocks) *(doc)* — Her testten önce `vi.clearAllMocks()` çağrısı ve varsayılan değer.
+4. [Vitest: vi](https://vitest.dev/api/vi) *(doc)* — `vi.spyOn`, `vi.restoreAllMocks` ve `mockImplementation` davranışı.
+5. [Kent C. Dodds: Stop mocking fetch](https://kentcdodds.com/blog/stop-mocking-fetch) *(article)* — Kod örnekleri MSW v1 ve Jest kullanır. Ağ sınırını mock'lama fikri bu dersle aynıdır.
+6. [Vitest: Mocking Requests](https://vitest.dev/guide/mocking/requests) *(doc)* — MSW kurulumu, `onUnhandledRequest` ve sunucu yaşam döngüsü.
+7. [Artem Zakharchenko: Mock Service Worker 2.0](https://gitnation.com/contents/a-sneak-peek-into-mock-service-worker-20) *(video)* — MSW'nin isteği yakalayıp sahte yanıt dönme mantığı. Konuşma 2.0 sürümünü anlatır.
+8. [MSW: Quick start](https://mswjs.io/docs/quick-start) *(doc)* — Kurulum, handler tanımı, `setupServer` ve Vitest setup dosyası.
+9. [MSW: Migrating from 2.x to 3.x](https://mswjs.io/docs/migrations/2.x-to-3.x) *(doc)* — `msw/http` import yolu, `onUnhandledFrame` adı ve Node 22 gereksinimi.
+10. [MSW: server.listen()](https://mswjs.io/docs/api/setup-server/listen) *(doc)* — `onUnhandledFrame` seçeneği ve `"error"` stratejisi.
+11. [MSW: server.use()](https://mswjs.io/docs/api/setup-server/use) *(doc)* — Çalışma anında handler ekleme ve kalıcılığı.
+12. [Vitest: Mocking](https://vitest.dev/guide/mocking) *(doc)* — Zaman mock'lama ve `vi.useFakeTimers` ile `Date`'in değişmesi.
