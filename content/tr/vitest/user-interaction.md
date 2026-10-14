@@ -2,7 +2,7 @@
 title: "Kullanıcı Etkileşimi"
 description: "userEvent, arama kutusu ve kupon formu."
 lastVerified: "2026-10-14"
-translationKey: "vitest/kullanici-etkilesimi"
+translationKey: "vitest/user-interaction"
 ---
 
 ## userEvent kullanın

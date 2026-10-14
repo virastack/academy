@@ -2,7 +2,7 @@
 title: "Sorgular"
 description: "getBy, queryBy, findBy ve sorgu önceliği."
 lastVerified: "2026-10-14"
-translationKey: "vitest/sorgular"
+translationKey: "vitest/queries"
 ---
 
 ## Temel kural

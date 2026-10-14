@@ -2,7 +2,7 @@
 title: "Provider ve Hook"
 description: "Sepet Provider'ı, renderWithProviders ve renderHook."
 lastVerified: "2026-10-14"
-translationKey: "vitest/provider-ve-hook"
+translationKey: "vitest/provider-and-hook"
 ---
 
 ## Neden Provider gerekir?

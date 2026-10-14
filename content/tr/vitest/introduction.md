@@ -2,7 +2,7 @@
 title: "Giriş"
 description: "Frontend test nedir? Hangi araçlar kullanılır?"
 lastVerified: "2026-10-14"
-translationKey: "vitest/giris"
+translationKey: "vitest/introduction"
 ---
 
 ## Frontend test nedir?

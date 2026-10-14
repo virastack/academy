@@ -2,7 +2,7 @@
 title: "Asenkron Testler"
 description: "findBy, waitFor ve fake timers."
 lastVerified: "2026-10-14"
-translationKey: "vitest/asenkron"
+translationKey: "vitest/async"
 ---
 
 ## Asenkron arayüz nedir?

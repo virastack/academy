@@ -884,28 +884,28 @@
               "title": "Başlangıç",
               "lessons": [
                 {
-                  "slug": "giris",
+                  "slug": "introduction",
                   "title": "Giriş",
                   "description": "Frontend test nedir? Hangi araçlar kullanılır?",
                   "status": "published",
                   "kind": "lesson"
                 },
                 {
-                  "slug": "kurulum",
+                  "slug": "setup",
                   "title": "Kurulum",
                   "description": "Vitest, jsdom ve React Testing Library kurulumu.",
                   "status": "published",
                   "kind": "lesson"
                 },
                 {
-                  "slug": "temeller",
+                  "slug": "basics",
                   "title": "Temeller",
                   "description": "İlk test, render, expect ve matcher'lar.",
                   "status": "published",
                   "kind": "lesson"
                 },
                 {
-                  "slug": "proje-urun-karti",
+                  "slug": "project-product-card",
                   "title": "Ürün Kartı",
                   "description": "E-ticaret ürün kartı için adım adım test.",
                   "status": "published",
@@ -918,28 +918,28 @@
               "title": "Component Testi",
               "lessons": [
                 {
-                  "slug": "sorgular",
+                  "slug": "queries",
                   "title": "Sorgular",
                   "description": "getBy, queryBy, findBy ve sorgu önceliği.",
                   "status": "published",
                   "kind": "lesson"
                 },
                 {
-                  "slug": "kullanici-etkilesimi",
+                  "slug": "user-interaction",
                   "title": "Kullanıcı Etkileşimi",
                   "description": "userEvent, arama kutusu ve kupon formu.",
                   "status": "published",
                   "kind": "lesson"
                 },
                 {
-                  "slug": "asenkron",
+                  "slug": "async",
                   "title": "Asenkron Testler",
                   "description": "findBy, waitFor ve fake timers.",
                   "status": "published",
                   "kind": "lesson"
                 },
                 {
-                  "slug": "proje-urun-listesi",
+                  "slug": "project-product-list",
                   "title": "Ürün Listesi",
                   "description": "Yükleme, arama ve sepete ekleme akışı.",
                   "status": "published",
@@ -959,21 +959,21 @@
                   "kind": "lesson"
                 },
                 {
-                  "slug": "provider-ve-hook",
+                  "slug": "provider-and-hook",
                   "title": "Provider ve Hook",
                   "description": "Sepet Provider'ı, renderWithProviders ve renderHook.",
                   "status": "published",
                   "kind": "lesson"
                 },
                 {
-                  "slug": "hata-ayiklama",
+                  "slug": "debugging",
                   "title": "Hata Ayıklama",
                   "description": "screen.debug, sık hatalar ve coverage.",
                   "status": "published",
                   "kind": "lesson"
                 },
                 {
-                  "slug": "proje-sepet-akisi",
+                  "slug": "project-cart-flow",
                   "title": "Sepet Akışı",
                   "description": "Ürün listesinden sepete tam akış testi.",
                   "status": "published",

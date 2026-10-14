@@ -14,7 +14,7 @@ Track and group `title`, and track `description`, may be a string or
 title: "Giriş"
 description: "Frontend test nedir?"
 lastVerified: "2026-10-14"
-translationKey: "vitest/giris"
+translationKey: "vitest/introduction"
 ---
 ```
 
