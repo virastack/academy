@@ -1277,9 +1277,9 @@
                   "kind": "lesson"
                 },
                 {
-                  "slug": "testing-and-code-review",
-                  "title": "AI ile Test ve Code Review",
-                  "description": "Test yazdırma, Playwright MCP ile kontrol ve AI çıktısını gözden geçirme.",
+                  "slug": "testing-evals-and-code-review",
+                  "title": "AI ile Test, Eval ve Code Review",
+                  "description": "Test yazdırma, Playwright MCP ile kontrol, model çıktısını ölçme (eval) ve AI kodunu gözden geçirme.",
                   "status": "published",
                   "kind": "lesson"
                 },
