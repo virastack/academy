@@ -1277,7 +1277,14 @@
                   "kind": "lesson"
                 },
                 {
-                  "slug": "tasarimdan-sayfaya",
+                  "slug": "ai-testing-and-code-review",
+                  "title": "AI ile Test ve Code Review",
+                  "description": "Test yazdırma, Playwright MCP ile kontrol ve AI çıktısını gözden geçirme.",
+                  "status": "coming_soon",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "design-to-page",
                   "title": "Tasarımdan Sayfaya",
                   "description": "Agent, skill ve MCP ile bir tasarımı çalışan, test edilmiş bir sayfaya çevirme.",
                   "status": "coming_soon",
@@ -1293,25 +1300,32 @@
                   "slug": "ai-sdk-and-streaming-chat",
                   "title": "AI SDK ve Streaming Sohbet",
                   "description": "useChat, streamText, model sağlayıcısı seçimi ve akan yanıtı arayüze yansıtma.",
-                  "status": "published",
+                  "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
                   "slug": "tool-calling-and-structured-output",
                   "title": "Tool Calling ve Structured Output",
                   "description": "Modelin fonksiyon çağırması, Zod şemasıyla yapılandırılmış çıktı ve kullanıcı onayı.",
-                  "status": "published",
+                  "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
                   "slug": "generative-ui",
                   "title": "Generative UI",
                   "description": "Tool sonucunu component olarak gösterme, yükleme ve hata durumları.",
-                  "status": "published",
+                  "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
-                  "slug": "ai-alisveris-asistani",
+                  "slug": "security-and-cost",
+                  "title": "Güvenlik ve Maliyet",
+                  "description": "Prompt injection, API anahtarı koruma, rate limit ve token maliyeti.",
+                  "status": "coming_soon",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "ai-shopping-assistant",
                   "title": "AI Alışveriş Asistanı",
                   "description": "Ürün arama ve sepete ekleme tool'larıyla çalışan sohbet asistanı.",
                   "status": "coming_soon",
@@ -1320,22 +1334,22 @@
               ]
             },
             {
-              "id": "dogrulama-ve-guvenlik",
-              "title": "Doğrulama ve Güvenlik",
+              "id": "araclar-ve-kaynaklar",
+              "title": "Araçlar ve Kaynaklar",
               "lessons": [
                 {
-                  "slug": "ai-ile-test-ve-code-review",
-                  "title": "AI ile Test ve Code Review",
-                  "description": "Test yazdırma, Playwright MCP ile kontrol ve AI çıktısını gözden geçirme.",
+                  "slug": "recommended-tools",
+                  "title": "Önerilen Araçlar ve Eklentiler",
+                  "description": "Günlük işte işine yarayan eklentiler, MCP sunucuları ve skill setleri; her biri ne işe yarar.",
                   "status": "coming_soon",
-                  "kind": "lesson"
+                  "kind": "reference"
                 },
                 {
-                  "slug": "guvenlik-ve-maliyet",
-                  "title": "Güvenlik ve Maliyet",
-                  "description": "Prompt injection, API anahtarı koruma, rate limit ve token maliyeti.",
+                  "slug": "reading-list",
+                  "title": "Okuma ve İzleme Listesi",
+                  "description": "Derslerde geçmeyen makale, video ve araştırmalar; türüne göre ayrılmış.",
                   "status": "coming_soon",
-                  "kind": "lesson"
+                  "kind": "reference"
                 }
               ]
             }
