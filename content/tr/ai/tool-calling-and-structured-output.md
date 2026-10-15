@@ -50,9 +50,10 @@ export const tools = {
 };
 ```
 
-- **`description`:** Model aracı ne zaman çağıracağına buna bakarak karar verir.[^1] "Geri alınamaz" gibi uyarıları buraya yazın.
-- **`inputSchema`:** Zod şemasıdır. Model şemayı görür, SDK gelen girdiyi bu şemaya göre doğrular.[^1] Alanlara `.describe()` ile ipucu ekleyebilirsiniz.
+- **`description`:** Model aracı ne zaman çağıracağına buna bakarak karar verir.[^1] "Geri alınamaz" gibi uyarıları buraya yazın. Matt Pocock'un eğitiminde de bu alan, modele aracı ne için kullanacağını söyleyen alan olarak anlatılıyor.[^3]
+- **`inputSchema`:** Zod şemasıdır. Model şemayı görür, SDK gelen girdiyi bu şemaya göre doğrular.[^1] Alanlara `.describe()` ile ipucu ekleyebilirsiniz. Sahte modelle denedim: açıklama modele giden şemada `description` olarak yer alıyor.
 - **`execute`:** Doğrulanmış girdiyle çağrılır. Döndürdüğünüz değer modele geri verilir.
+- **`steps`:** `generateText` sonucunda her adımın `toolCalls` ve `toolResults` alanları bulunur. Pocock bunu hata ayıklama için öneriyor.[^3] İki adımlı sahte bir akışta `result.steps[0].toolCalls` çağrının adını ve girdisini, `toolResults` de `execute`'un döndürdüğü değeri verdi.
 
 ## Route: araç döngüsü
 
@@ -327,7 +328,7 @@ export async function classify(text: string) {
 }
 ```
 
-`output` şemadan tip çıkarımıyla gelir ve şemaya göre doğrulanır.[^3] Beş çıktı türü var:[^3]
+`output` şemadan tip çıkarımıyla gelir ve şemaya göre doğrulanır.[^4] Beş çıktı türü var:[^4]
 
 | Çıktı | Ne verir |
 | --- | --- |
@@ -337,8 +338,8 @@ export async function classify(text: string) {
 | `Output.json()` | Yalnızca geçerli JSON, yapı doğrulanmaz |
 | `Output.text()` | Düz metin, `output` verilmezse varsayılan |
 
-- **Şemaya uymayan çıktı:** `NoObjectGeneratedError` fırlatılır. Hata nesnesindeki `text`, modelin ham çıktısını verir ve hata ayıklamak için işinize yarar.[^3]
-- **Araçla birlikte:** Çıktıyı üretmek de bir adım sayılır. `stopWhen` yetmezse `result.output`'a erişmek `NoOutputGeneratedError` fırlatır.[^3]
+- **Şemaya uymayan çıktı:** `NoObjectGeneratedError` fırlatılır. Hata nesnesindeki `text`, modelin ham çıktısını verir ve hata ayıklamak için işinize yarar.[^4]
+- **Araçla birlikte:** Çıktıyı üretmek de bir adım sayılır. `stopWhen` yetmezse `result.output`'a erişmek `NoOutputGeneratedError` fırlatır.[^4]
 - **Eski API:** `generateObject` ve `streamObject` deprecated. Yerine `generateText` ve `streamText` ile `output` kullanın.
 
 ### Akan structured output
@@ -370,9 +371,21 @@ export async function streamRecipe() {
 }
 ```
 
-- **Yarım değerler:** `partialOutputStream` her an eldeki parçalı nesneyi verir. Doğrulanmadığı için `ingredients: ['mercimek', 's']` gibi yarım değerler içerebilir.[^3] Bunu yalnızca önizleme için kullanın, kaydetmek veya işlemek için `await result.output`'u bekleyin.
-- **Eleman eleman:** `Output.array` ile `elementStream` yalnızca tamamlanmış ve doğrulanmış elemanları verir.[^3] Liste türü sonuçları ekrana kart kart eklemek için uygundur.
-- **İstemcide:** Akan nesneyi doğrudan hook'a bağlamak için `@ai-sdk/react` içinde `useObject` var.[^3]
+- **Yarım değerler:** `partialOutputStream` her an eldeki parçalı nesneyi verir. Doğrulanmadığı için `ingredients: ['mercimek', 's']` gibi yarım değerler içerebilir.[^4] Bunu yalnızca önizleme için kullanın, kaydetmek veya işlemek için `await result.output`'u bekleyin.
+- **Eleman eleman:** `Output.array` ile `elementStream` yalnızca tamamlanmış ve doğrulanmış elemanları verir.[^4] Liste türü sonuçları ekrana kart kart eklemek için uygundur.
+- **İstemcide:** Akan nesneyi doğrudan hook'a bağlamak için `@ai-sdk/react` içinde `useObject` var.[^4]
+
+### Şema açıklamaları ve sınırları
+
+Zod alanlarına yazdığınız `.describe()` metni modele giden JSON şemasında `description` olarak yer alır. Sahte modelin aldığı `responseFormat` içinde `Kişinin adı` açıklaması göründü. Matt Pocock bu ipucunun özellikle alan adları açıklayıcı olmadığında işe yaradığını söylüyor. Örneği `generateObject` ile yazılmış ve sayfa Ocak 2025'te güncellenmiş. Kavram `Output.object` için de geçerli, API ise eski.[^5]
+
+Sağlayıcı şemanın tamamını desteklemeyebilir. JSONSchemaBench 10.000 gerçek JSON şeması üzerinde altı çerçeveyi karşılaştırıyor. OpenAI ve Gemini için kapsama en düşük, uyum oranı çok yüksek çıkmış. Yazarlar bunu "daha muhafazakâr" bir strateji olarak, yani şema özelliklerinin yalnızca bir alt kümesinin desteklenmesi olarak yorumluyor. Örneğin OpenAI için GitHub Easy veri kümesinde "empirical coverage" 0,29, "compliance rate" 0,97.[^6] Çalışma Ocak 2025'te yayımlandı ve o günkü sağlayıcı davranışını ölçtü. Sağlayıcıların bugün de aynı olduğunu doğrulamadım.
+
+Format kısıtı akıl yürütmeyi de etkileyebilir. Tam ve arkadaşlarının çalışması, JSON gibi format kısıtlarının LLM'lerin akıl yürütme performansını anlamlı biçimde düşürdüğünü, kısıt sıkılaştıkça düşüşün büyüdüğünü bildiriyor (Ağustos 2024).[^7] Bu tek bir çalışma. Yeniden üretmedim ve karşı görüşleri doğrulayamadım.
+
+> [!TIP]
+>
+> Şemayı gerçek sağlayıcıda bir çağrıyla deneyin. Muhakeme gerektiren görevlerde `Output.object` ile serbest metin sürümünü kendi örneklerinizle karşılaştırıp doğruluğun düşüp düşmediğine bakın.
 
 ## Hangisini seçmeli?
 
@@ -383,6 +396,12 @@ export async function streamRecipe() {
 | Geri alınamaz veya maliyetli işlem | Sunucu aracı ve `toolApproval` |
 | Cevap bir şemaya uyan veri olsun (sınıflandırma, form doldurma) | `Output.object` |
 | Cevap önceden belli seçeneklerden biri olsun | `Output.choice` |
+
+Model seçerken araç çağırma doğruluğunu Berkeley Function Calling Leaderboard'da karşılaştırabilirsiniz. Sayfaya göre V3 çok turlu etkileşimleri ekledi, V4 "holistic agentic evaluation" olarak tanımlanıyor ve sayfa 12 Nisan 2026'da güncellenmiş.[^8] Sayfa araç hatalarının hangi türlerinin sık olduğuna dair bir bulgu vermiyor. Sıralamadaki sayıları rehbere almadım.
+
+> [!NOTE]
+>
+> Aynı işleri yapan başka kütüphaneler de var. PodRocket'in TanStack AI bölümünün açıklamasına göre Jack Herrington tip güvenli araç çağrılarını ve tek seferde TypeScript çalıştıran "code mode"u anlatıyor (18 Haziran 2026).[^9] Yalnızca bölüm açıklamasını okudum, AI SDK ile karşılaştırması hakkında bir şey söyleyemem.
 
 ## Eski öğreticilerle karşılaştırma
 
@@ -407,4 +426,10 @@ export async function streamRecipe() {
 
 1. [AI SDK: Tool Calling](https://ai-sdk.dev/docs/ai-sdk-core/tools-and-tool-calling) *(article)* — `tool()`, `inputSchema`, `stopWhen`, hata davranışı ve `toolApproval`.
 2. [AI SDK: Chatbot Tool Usage](https://ai-sdk.dev/docs/ai-sdk-ui/chatbot-tool-usage) *(article)* — `useChat`'te araç parçaları ve durumları, `addToolOutput`, onay arayüzü ve `sendAutomaticallyWhen`.
-3. [AI SDK: Generating Structured Data](https://ai-sdk.dev/docs/ai-sdk-core/generating-structured-data) *(article)* — `Output.object`, `Output.array`, `Output.choice`, akış ve hata türleri.
+3. [Matt Pocock (AI Hero): Tool Calls with Vercel AI SDK](https://www.aihero.dev/tool-calls-with-vercel-ai-sdk) *(article)* — `tool()`, `description` ve `steps` ile hata ayıklama. Sayfa 7 Ocak 2025'te güncellenmiş.
+4. [AI SDK: Generating Structured Data](https://ai-sdk.dev/docs/ai-sdk-core/generating-structured-data) *(article)* — `Output.object`, `Output.array`, `Output.choice`, akış ve hata türleri.
+5. [Matt Pocock (AI Hero): Structured Outputs with Vercel AI SDK](https://www.aihero.dev/structured-outputs-with-vercel-ai-sdk) *(article)* — Zod şeması ve `describe` ile alan ipuçları. Sayfa 5 Ocak 2025'te güncellenmiş.
+6. [Geng ve ark.: JSONSchemaBench](https://arxiv.org/abs/2501.10868) *(research)* — 10.000 gerçek JSON şemasında kısıtlı çözümleme çerçevelerinin ve sağlayıcıların kapsaması.
+7. [Tam ve ark.: Let Me Speak Freely?](https://arxiv.org/abs/2408.02442) *(research)* — Format kısıtlarının LLM akıl yürütme performansına etkisi.
+8. [Berkeley Function Calling Leaderboard](https://gorilla.cs.berkeley.edu/leaderboard.html) *(research)* — Araç çağırma doğruluğunu ölçen sıralama, V4.
+9. [PodRocket: TanStack AI with Jack Herrington](https://podrocket.logrocket.com/tanstack-ai-with-jack-herrington) *(article)* — Bölüm açıklaması: tip güvenli araç çağrıları ve "code mode".
