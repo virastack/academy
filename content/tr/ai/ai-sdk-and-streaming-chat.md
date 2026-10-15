@@ -20,8 +20,8 @@ Yapay zeka yanıtının tamamını beklemek yerine, model ürettikçe parça par
 
 ## Kurulum
 
-```command
-npm install ai @ai-sdk/react
+```bash
+pnpm add ai @ai-sdk/react
 ```
 
 Sağlayıcı paketleri (`@ai-sdk/anthropic` gibi) yalnızca modeli AI Gateway yerine doğrudan sağlayıcıdan çağıracaksanız gerekir. Bunu aşağıdaki "Model sağlayıcısı seçimi" bölümünde göreceksiniz.
@@ -140,6 +140,10 @@ export default function Chat() {
 | `ready` | Yanıt tamamlandı | Gönder butonu aktif |
 | `error` | İstek başarısız oldu | Hata mesajı ve Tekrar dene |
 
+> [!TIP]
+>
+> Cloudscape Design System, "işleniyor" ile "akıyor" aşamalarını ayırır: model henüz çıktı vermediyse sohbet balonunda yükleme göstergesi gösterin, metin akmaya başladıktan sonra da yanıt bitene kadar görünür bir gösterge bırakın, çünkü akış yavaşlarsa kullanıcı yanıtın sürdüğünü anlamalıdır. 1 saniyeden kısa beklemelerde yükleme durumu göstermeyin, titreme yapar.[^3] `submitted` birinci aşamaya, `streaming` ikinciye denk gelir. Yukarıdaki `Chat` bileşeni 1 saniyelik bu gecikmeyi uygulamıyor.
+
 ## Durdurma, yeniden üretme ve hata
 
 ```tsx
@@ -189,15 +193,15 @@ toUIMessageStream({
 
 ## Model sağlayıcısı seçimi
 
-AI SDK, sağlayıcıları ortak bir model arayüzünün arkasına saklar. Bu yüzden `streamText` çağrınızı değiştirmeden sağlayıcı değiştirebilirsiniz.[^3] `model` alanı üç biçimde verilebilir:
+AI SDK, sağlayıcıları ortak bir model arayüzünün arkasına saklar. Bu yüzden `streamText` çağrınızı değiştirmeden sağlayıcı değiştirebilirsiniz.[^4] `model` alanı üç biçimde verilebilir:
 
 | Yol | `model` değeri | Kimlik doğrulama | Ne zaman |
 | --- | --- | --- | --- |
-| Gateway dizesi | `'anthropic/claude-sonnet-5.5'` | `AI_GATEWAY_API_KEY`, Vercel'de OIDC[^4] | Tek anahtarla birçok sağlayıcı, istek logu, harcama limiti |
-| Sağlayıcı paketi | `anthropic('claude-sonnet-5-5')` | `ANTHROPIC_API_KEY`[^5] | Sağlayıcıya doğrudan bağlanmak |
+| Gateway dizesi | `'anthropic/claude-sonnet-5.5'` | `AI_GATEWAY_API_KEY`, Vercel'de OIDC[^5] | Tek anahtarla birçok sağlayıcı, istek logu, harcama limiti |
+| Sağlayıcı paketi | `anthropic('claude-sonnet-5-5')` | `ANTHROPIC_API_KEY`[^6] | Sağlayıcıya doğrudan bağlanmak |
 | Global varsayılan sağlayıcı | `'gpt-6-astra'` (ön eksiz) | Seçtiğiniz sağlayıcının anahtarı | Ön ek yazmadan tek sağlayıcı kullanmak |
 
-Düz bir dize verdiğinizde AI SDK global sağlayıcıyı kullanır ve varsayılan global sağlayıcı AI Gateway'dir.[^6]
+Düz bir dize verdiğinizde AI SDK global sağlayıcıyı kullanır ve varsayılan global sağlayıcı AI Gateway'dir.[^7]
 
 ```ts
 import { anthropic } from '@ai-sdk/anthropic';
@@ -217,7 +221,7 @@ streamText({ model: 'gpt-6-astra', messages });
 
 > [!WARNING]
 >
-> Aynı model iki farklı yazılır. Gateway dizesinde sürüm numarası noktalı (`claude-sonnet-5.5`),[^1] sağlayıcı paketinde tireli (`claude-sonnet-5-5`).[^5] Kimliği, kullandığınız yola göre yazın. Model kimlikleri sık değişir, güncel listeyi sağlayıcı sayfasından kontrol edin.[^3]
+> Aynı model iki farklı yazılır. Gateway dizesinde sürüm numarası noktalı (`claude-sonnet-5.5`),[^1] sağlayıcı paketinde tireli (`claude-sonnet-5-5`).[^6] Kimliği, kullandığınız yola göre yazın. Model kimlikleri sık değişir, güncel listeyi sağlayıcı sayfasından kontrol edin.[^4]
 
 > [!TIP]
 >
@@ -273,6 +277,26 @@ toUIMessageStream({ stream: result.stream, sendReasoning: true });
 - **Kullanım bilgisi:** Zaman damgası veya token sayısı gibi bilgileri `messageMetadata` ile sunucudan mesaja ekleyip `message.metadata` ile okuyabilirsiniz.[^1]
 - **Geçmişi sunucuda tutmak:** `DefaultChatTransport`'taki `prepareSendMessagesRequest` ile yalnızca son mesajı gönderebilir, geçmişi sunucuda yükleyebilirsiniz.[^1]
 - **Düz metin akışı:** Backend'iniz yalnızca düz metin akıtıyorsa `TextStreamChatTransport` kullanın. Bu transport'ta araç çağrıları ve kullanım bilgisi gelmez.[^1]
+
+### Metni pürüzsüz akıtma
+
+Model bazen metni iri parçalar hâlinde gönderir ve yanıt ekranda sıçrayarak büyür. `smoothStream` parçaları sunucuda kelime kelime yeniden böler:
+
+```ts
+import { smoothStream, streamText } from 'ai';
+
+const result = streamText({
+  model: 'anthropic/claude-sonnet-5.5',
+  messages: await convertToModelMessages(messages),
+  experimental_transform: smoothStream({ delayInMs: 20, chunking: 'word' }),
+});
+```
+
+Sahte modelde tek parçalık `Merhaba dünya bu uzun bir cümle` metni `"Merhaba "`, `"dünya "`, `"bu "` gibi altı kelime parçasına bölündü. Upstash'te geliştirici ilişkileri çalışanı bir yazar, ağ zamanlamasını ekran zamanlamasından ayırma fikrini AI SDK v5 için anlatıyor. Yerleşik `experimental_transform` yolunu "esnek değil" ve "deneysel" bulup `requestAnimationFrame` ile kendi hook'unu yazıyor.[^8] Her parçaya gecikme eklendiği için yanıtın bitişi de gecikir. Yazar bu ödünü kabul ediyor.[^8]
+
+### Render maliyeti
+
+Gelen her parça bir `setState` demekse React her seferinde yeniden render eder. SitePoint yazısı parçaları `useRef`'te biriktirip `requestAnimationFrame` ile kare başına bir kez state'e yazmayı öneriyor. Yazarın kendi ölçümünde (M2 MacBook Pro, Chrome, saniyede 30 token) ortalama commit süresi 18 ms'den 3 ms'ye düşmüş.[^9] Bu ölçüm yazara ait, ben yeniden üretmedim. `useChat`'in `throttle` seçeneği aynı soruna SDK içinden yaklaşır. İkisini karşılaştırmadım.
 
 ## Gerçek anahtar olmadan test
 
@@ -354,7 +378,10 @@ data: [DONE]
 
 1. [AI SDK: Chatbot](https://ai-sdk.dev/docs/ai-sdk-ui/chatbot) *(article)* — `useChat`, `status`, transport, hata, durdurma, yeniden üretme, metadata ve reasoning.
 2. [npm: ai](https://www.npmjs.com/package/ai) *(article)* — Güncel sürüm ve dist-tag'ler.
-3. [AI SDK: Providers and Models](https://ai-sdk.dev/docs/foundations/providers-and-models) *(article)* — Sağlayıcı mimarisi, sağlayıcı paketleri ve model yetenekleri tablosu.
-4. [Vercel: AI Gateway](https://vercel.com/docs/ai-gateway) *(article)* — Gateway ile düz dize model kullanımı, API anahtarı ve OIDC.
-5. [AI SDK: Anthropic provider](https://ai-sdk.dev/providers/ai-sdk-providers/anthropic) *(article)* — Kurulum, `ANTHROPIC_API_KEY` ve model kimlikleri.
-6. [AI SDK: Provider & Model Management](https://ai-sdk.dev/docs/ai-sdk-core/provider-management) *(article)* — Global sağlayıcı ve `AI_SDK_DEFAULT_PROVIDER`.
+3. [Cloudscape Design System: Generative AI loading states](https://cloudscape.design/patterns/genai/genai-loading-states/) *(article)* — İşleme ve akış aşamaları, yükleme göstergesi, 1 saniyeden kısa beklemeler ve erişilebilirlik.
+4. [AI SDK: Providers and Models](https://ai-sdk.dev/docs/foundations/providers-and-models) *(article)* — Sağlayıcı mimarisi, sağlayıcı paketleri ve model yetenekleri tablosu.
+5. [Vercel: AI Gateway](https://vercel.com/docs/ai-gateway) *(article)* — Gateway ile düz dize model kullanımı, API anahtarı ve OIDC.
+6. [AI SDK: Anthropic provider](https://ai-sdk.dev/providers/ai-sdk-providers/anthropic) *(article)* — Kurulum, `ANTHROPIC_API_KEY` ve model kimlikleri.
+7. [AI SDK: Provider & Model Management](https://ai-sdk.dev/docs/ai-sdk-core/provider-management) *(article)* — Global sağlayıcı ve `AI_SDK_DEFAULT_PROVIDER`.
+8. [Upstash: Smooth Text Streaming in AI SDK v5](https://upstash.com/blog/smooth-streaming) *(article)* — Ağ ve ekran zamanlamasını ayırma, `smoothStream` ve özel hook yaklaşımı.
+9. [SitePoint: Streaming Backends & React: Controlling the Re-render Chaos](https://www.sitepoint.com/streaming-backends-react-controlling-re-render-chaos/) *(article)* — Akışta yeniden render maliyeti, `useRef` ve `requestAnimationFrame` ile biriktirme.
