@@ -177,8 +177,10 @@ test("indirimli üründe eski fiyatı gösterir", () => {
 - `ProductCard` içine yüzdeyi hesaplayıp gösterin.
 - Testin geçtiğini görün.
 
-[^1]: [WAI-ARIA 1.2: Roles](https://www.w3.org/TR/wai-aria-1.2/#article) *(doc)* — `article` rolünün adı içerikten değil yazardan gelir, bu yüzden `aria-labelledby` gerekir.
-[^2]: [user-event: Giriş](https://testing-library.com/docs/user-event/intro) *(doc)* — `userEvent` tarayıcının izin vermediği etkileşimi, örneğin devre dışı alanı, yapmaz.
-[^3]: [React Testing Library: Örnek](https://testing-library.com/docs/react-testing-library/example-intro) *(doc)* — `render`, `screen` ve rol sorgularıyla örnek test.
-[^4]: [jest-dom](https://github.com/testing-library/jest-dom) *(repo)* — `toBeVisible` ve `toBeDisabled` matcher'larının kuralları.
-[^5]: [Node.js: Internationalization support](https://nodejs.org/api/intl.html) *(doc)* — `Intl` çıktısının ICU verisine ve Node.js derlemesine bağlılığı.
+## Kaynaklar
+
+1. [WAI-ARIA 1.2: Roles](https://www.w3.org/TR/wai-aria-1.2/#article) *(doc)* — `article` rolünün adı içerikten değil yazardan gelir, bu yüzden `aria-labelledby` gerekir.
+2. [user-event: Giriş](https://testing-library.com/docs/user-event/intro) *(doc)* — `userEvent` tarayıcının izin vermediği etkileşimi, örneğin devre dışı alanı, yapmaz.
+3. [React Testing Library: Örnek](https://testing-library.com/docs/react-testing-library/example-intro) *(doc)* — `render`, `screen` ve rol sorgularıyla örnek test.
+4. [jest-dom](https://github.com/testing-library/jest-dom) *(repo)* — `toBeVisible` ve `toBeDisabled` matcher'larının kuralları.
+5. [Node.js: Internationalization support](https://nodejs.org/api/intl.html) *(doc)* — `Intl` çıktısının ICU verisine ve Node.js derlemesine bağlılığı.

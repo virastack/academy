@@ -193,6 +193,8 @@ Test geçerse kurulum tamamdır. Vitest, adında `.test.` veya `.spec.` geçen d
 - Beklenen değeri bilerek bozun. Testin başarısız olduğunu görün.
 - Beklenen değeri düzeltin. Testin geçtiğini görün.
 
+## Kaynaklar
+
 1. [Vitest: Getting Started](https://vitest.dev/guide/) *(doc)* — Vite ve Node gereksinimleri, kurulum komutu ve `.vitest` klasörü.
 2. [React Testing Library: Introduction](https://testing-library.com/docs/react-testing-library/intro) *(doc)* — `@testing-library/react` kurulumu ve `@testing-library/dom` peer dependency'si.
 3. [Vitest: environment](https://vitest.dev/config/environment) *(doc)* — Varsayılan `node` ortamı ve jsdom'un ayrıca kurulması.

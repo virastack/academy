@@ -96,11 +96,13 @@ Projenizden bir ürün kartı veya benzeri bir component seçin. Kağıda şunla
 - Kullanıcının yapabildiği 1 işlem ve beklenen sonucu.
 - Test **etmeyeceğiniz** 1 şey.
 
-[^1]: [Kent C. Dodds: The Testing Trophy](https://kentcdodds.com/blog/the-testing-trophy-and-testing-classifications) *(article)* — Statik, unit, entegrasyon ve E2E katmanları; yatırımın entegrasyona kayması.
-[^2]: [Kent C. Dodds: Write tests. Not too many. Mostly integration.](https://www.youtube.com/watch?v=Fha2bVoC8SE) *(video)* — Strateji bu dersle aynıdır. Örnek araçlar Jest ve Cypress dönemine aittir.
-[^3]: [Vitest: Başlangıç](https://vitest.dev/guide/) *(doc)* — Vite tabanlı test framework'ü, watch modu ve tek seferlik çalıştırma.
-[^4]: [Vitest: environment](https://vitest.dev/config/environment) *(doc)* — Varsayılan `node` ortamı; jsdom ve happy-dom tarayıcı benzeri alternatifler.
-[^5]: [Vitest: Browser Mode](https://vitest.dev/guide/browser/) *(doc)* — Testleri gerçek tarayıcıda çalıştırma ve sağlayıcılar.
-[^6]: [Vitest: Locators](https://vitest.dev/api/browser/locators) *(doc)* — `page.getByRole` ve `vitest/browser` import'u.
-[^7]: [Vitest: Component Testing](https://vitest.dev/guide/browser/component-testing) *(doc)* — `vitest-browser-react`, `render` ve `expect.element`.
-[^8]: [Testing Library: Temel ilkeler](https://testing-library.com/docs/guiding-principles) *(doc)* — Testler yazılımın kullanımına ne kadar benzerse o kadar güven verir.
+## Kaynaklar
+
+1. [Kent C. Dodds: The Testing Trophy](https://kentcdodds.com/blog/the-testing-trophy-and-testing-classifications) *(article)* — Statik, unit, entegrasyon ve E2E katmanları; yatırımın entegrasyona kayması.
+2. [Kent C. Dodds: Write tests. Not too many. Mostly integration.](https://www.youtube.com/watch?v=Fha2bVoC8SE) *(video)* — Strateji bu dersle aynıdır. Örnek araçlar Jest ve Cypress dönemine aittir.
+3. [Vitest: Başlangıç](https://vitest.dev/guide/) *(doc)* — Vite tabanlı test framework'ü, watch modu ve tek seferlik çalıştırma.
+4. [Vitest: environment](https://vitest.dev/config/environment) *(doc)* — Varsayılan `node` ortamı; jsdom ve happy-dom tarayıcı benzeri alternatifler.
+5. [Vitest: Browser Mode](https://vitest.dev/guide/browser/) *(doc)* — Testleri gerçek tarayıcıda çalıştırma ve sağlayıcılar.
+6. [Vitest: Locators](https://vitest.dev/api/browser/locators) *(doc)* — `page.getByRole` ve `vitest/browser` import'u.
+7. [Vitest: Component Testing](https://vitest.dev/guide/browser/component-testing) *(doc)* — `vitest-browser-react`, `render` ve `expect.element`.
+8. [Testing Library: Temel ilkeler](https://testing-library.com/docs/guiding-principles) *(doc)* — Testler yazılımın kullanımına ne kadar benzerse o kadar güven verir.

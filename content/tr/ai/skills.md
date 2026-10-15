@@ -103,7 +103,7 @@ Emil Kowalski aynı sorunu animasyon tarafında çözüyor: ajanlar "iyi hissett
 3. Yeni bir konuşmada aynı işi skill'li ve skill'siz isteyin, kaç düzeltme turu gerektiğini karşılaştırın.
 4. Hazır bir skill kurun (örneğin `react-best-practices`). Kurmadan önce `SKILL.md`'sini okuyun, sonra bir bileşene *"performans açısından incele"* dedirtin.
 
-## Ek kaynaklar
+## Kaynaklar
 
 1. [Claude Code: Extend Claude with skills](https://code.claude.com/docs/en/skills) *(article)* — Skill ne zaman yazılır, `SKILL.md` alanları, konumlar, tetikleme kontrolü ve açıklama bütçesi.
 2. [Anthropic: Skill authoring best practices](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices) *(article)* — Kısalık, `description` yazımı, katılık düzeyi, kontrol döngüsü ve değerlendirme.

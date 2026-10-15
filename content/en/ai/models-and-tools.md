@@ -105,7 +105,7 @@ Bu katman mantığını ve model tercihlerini, bir e-ticaret sitesinin sepet ve 
 | `CartItem` bileşenini ve `useCart` hook'unu yazmak | Dengeli katman ([!claude] **Sonnet**) + editör *([!cursor] veya [!copilot])* | Günlük arayüz geliştirmede yüksek kod kalitesini hızlı ve makul maliyetle almak esastır. |
 | 30 dosyada import yollarını güncellemek | Hızlı ve ucuz katman ([!claude] **Haiku**) + terminal *(CLI)* veya editör | Mantıksal risk taşımayan mekanik güncellemeleri pahalı modellere bırakmamak gerekir. |
 
-## Ek kaynaklar
+## Kaynaklar
 
 1. [Addy Osmani: AI Coding Agent](https://addyosmani.com/agentic-engineering/ai-coding-agent/) *(article)* — Kodu yalnızca öneren sohbet ile kodu yazıp çalıştıran ve düzelten kodlama ajanı arasındaki fark.
 2. [Arena: Code Arena | WebDev](https://arena.ai/leaderboard/code/webdev) *(article)* — Şirket ve model sıralamalarının alındığı frontend kodlama sıralaması.

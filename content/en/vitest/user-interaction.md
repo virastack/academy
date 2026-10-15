@@ -229,6 +229,8 @@ Kullanıcının gördüğü sonucu kontrol edin.[^10]
 - Kullanıcı `"  YAZ2026  "` yazar ve gönderir.
 - `onApply` fonksiyonu `"YAZ2026"` ile çağrılır.
 
+## Kaynaklar
+
 1. [user-event: Introduction](https://testing-library.com/docs/user-event/intro) *(Doküman)* — `fireEvent` ile farkı, `userEvent.setup()` ve `render` sırası.
 2. [user-event: Setup](https://testing-library.com/docs/user-event/setup) *(Doküman)* — `setup()` ile oluşturulan örnek ve doğrudan API'lerle farkı.
 3. [user-event: Convenience APIs](https://testing-library.com/docs/user-event/convenience) *(Doküman)* — `click`, `dblClick`, `hover`, `unhover` ve `tab`.

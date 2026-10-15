@@ -150,6 +150,8 @@ API çağrısı başarısız olunca ne görünür? Bunu test edin:
 - `findByRole("alert")` ile **Ürünler yüklenemedi.** mesajını bulun.
 - [!queryBy] ile **Ürünler yükleniyor...** mesajının kaybolduğunu doğrulayın.
 
+## Kaynaklar
+
 1. [Testing Library: Async Methods](https://testing-library.com/docs/dom-testing-library/api-async) *(Doküman)* — `findBy`, `waitFor` ve `waitForElementToBeRemoved`.
 2. [Vitest: Timers](https://vitest.dev/guide/mocking/timers) *(Doküman)* — Fake timers rehberi.
 3. [Testing Library: About Queries](https://testing-library.com/docs/queries/about) *(Doküman)* — `getBy`, `queryBy` ve `findBy` farkı.

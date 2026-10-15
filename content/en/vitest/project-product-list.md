@@ -238,5 +238,7 @@ Listeye fiyat sıralaması ekleyin ve test edin:
 - `user.selectOptions` ile **Fiyat: artan** seçeneğini seçin.
 - İlk kartın en ucuz ürün (**Oyuncu Faresi**) olduğunu test edin. İpucu: `getAllByRole("article")[0]`.
 
-[^1]: [React: You Might Not Need an Effect](https://react.dev/learn/you-might-not-need-an-effect) *(doc)* — Veri çekerken yarış durumu ve eski cevapları yok sayan `ignore` bayrağı.
-[^2]: [MDN: String.prototype.toLocaleLowerCase()](https:
+## Kaynaklar
+
+1. [React: You Might Not Need an Effect](https://react.dev/learn/you-might-not-need-an-effect) *(doc)* — Veri çekerken yarış durumu ve eski cevapları yok sayan `ignore` bayrağı.
+2. [MDN: String.prototype.toLocaleLowerCase()](https:

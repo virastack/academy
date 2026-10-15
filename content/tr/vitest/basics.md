@@ -178,8 +178,10 @@ Her test *kendi başına* çalışmalıdır. Her testte component'i yeniden rend
 - **Stokta yok** yazısı görünür.
 - **Sepete ekle** butonu devre dışıdır.
 
-[^1]: [Vitest: Test API](https://vitest.dev/api/test) *(doc)* — `test` ve `it` takma adı, `test.each`, `test.only`, `test.skip`, `test.todo` ve `describe`.
-[^2]: [React Testing Library: API](https://testing-library.com/docs/react-testing-library/api) *(doc)* — `render` sonucu, `document.body` içine çizim, otomatik temizlik ve `container` uyarısı.
-[^3]: [jest-dom: Matcher listesi](https://github.com/testing-library/jest-dom) *(repo)* — `toBeInTheDocument`, `toBeVisible`, `toBeDisabled`, `toHaveTextContent` ve diğer DOM matcher'ları.
-[^4]: [Vitest: expect API](https://vitest.dev/api/expect) *(doc)* — `toBe`, `toEqual`, `toHaveLength`, `toThrow` ve mock matcher'ları.
-[^5]: [Vitest: allowOnly](https://vitest.dev/config/allowonly) *(doc)* — CI ortamında `.only` varsayılan olarak yasak.
+## Kaynaklar
+
+1. [Vitest: Test API](https://vitest.dev/api/test) *(doc)* — `test` ve `it` takma adı, `test.each`, `test.only`, `test.skip`, `test.todo` ve `describe`.
+2. [React Testing Library: API](https://testing-library.com/docs/react-testing-library/api) *(doc)* — `render` sonucu, `document.body` içine çizim, otomatik temizlik ve `container` uyarısı.
+3. [jest-dom: Matcher listesi](https://github.com/testing-library/jest-dom) *(repo)* — `toBeInTheDocument`, `toBeVisible`, `toBeDisabled`, `toHaveTextContent` ve diğer DOM matcher'ları.
+4. [Vitest: expect API](https://vitest.dev/api/expect) *(doc)* — `toBe`, `toEqual`, `toHaveLength`, `toThrow` ve mock matcher'ları.
+5. [Vitest: allowOnly](https://vitest.dev/config/allowonly) *(doc)* — CI ortamında `.only` varsayılan olarak yasak.

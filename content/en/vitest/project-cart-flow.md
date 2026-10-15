@@ -193,11 +193,13 @@ Sepete **Azalt** butonu ekleyin. Önce testi yazın:
 - `CartSummary` içinde her ürün için erişilebilir adı **"<ürün adı> adedini azalt"** olan bir buton gösterin.
 - Test: Sepette 2 adet **Mekanik Klavye** varken **Azalt** tıklanınca **Mekanik Klavye × 1** görünür. İkinci tıklamada ürün listeden kalkar ve **Sepetiniz boş.** görünür.
 
-[^1]: [MSW: Migrating from 2.x to 3.x](https://mswjs.io/docs/migrations/2.x-to-3.x) *(doc)* — `http` ve `HttpResponse` için `msw/http` import yolu.
-[^2]: [Testing Library: within](https://testing-library.com/docs/dom-testing-library/api-within) *(doc)* — Sorguyu tek bir elemanın içine daraltma.
-[^3]: [Testing Library: About Queries](https://testing-library.com/docs/queries/about) *(doc)* — `getByRole` önceliği, `queryBy` ile yokluk ve `findBy` ile bekleme.
-[^4]: [WAI-ARIA 1.2: Roles](https://www.w3.org/TR/wai-aria-1.2/#article) *(doc)* — `article` ve `region` rollerinin adı yazardan gelir, `region` için ad zorunludur.
-[^5]: [jest-dom](https://github.com/testing-library/jest-dom) *(repo)* — `toBeVisible` ve `toBeDisabled` matcher'larının kuralları.
-[^6]: [MSW: server.use()](https://mswjs.io/docs/api/setup-server/use) *(doc)* — Çalışma anında handler ekleme.
-[^7]: [Testing Library: Guiding Principles](https://testing-library.com/docs/guiding-principles) *(doc)* — Testler yazılımın kullanılış biçimine ne kadar benzerse o kadar güven verir.
-[^8]: [Vitest: Mocking Requests](https://vitest.dev/guide/mocking/requests) *(doc)* — MSW ile ağ isteklerini mock'lama.
+## Kaynaklar
+
+1. [MSW: Migrating from 2.x to 3.x](https://mswjs.io/docs/migrations/2.x-to-3.x) *(doc)* — `http` ve `HttpResponse` için `msw/http` import yolu.
+2. [Testing Library: within](https://testing-library.com/docs/dom-testing-library/api-within) *(doc)* — Sorguyu tek bir elemanın içine daraltma.
+3. [Testing Library: About Queries](https://testing-library.com/docs/queries/about) *(doc)* — `getByRole` önceliği, `queryBy` ile yokluk ve `findBy` ile bekleme.
+4. [WAI-ARIA 1.2: Roles](https://www.w3.org/TR/wai-aria-1.2/#article) *(doc)* — `article` ve `region` rollerinin adı yazardan gelir, `region` için ad zorunludur.
+5. [jest-dom](https://github.com/testing-library/jest-dom) *(repo)* — `toBeVisible` ve `toBeDisabled` matcher'larının kuralları.
+6. [MSW: server.use()](https://mswjs.io/docs/api/setup-server/use) *(doc)* — Çalışma anında handler ekleme.
+7. [Testing Library: Guiding Principles](https://testing-library.com/docs/guiding-principles) *(doc)* — Testler yazılımın kullanılış biçimine ne kadar benzerse o kadar güven verir.
+8. [Vitest: Mocking Requests](https://vitest.dev/guide/mocking/requests) *(doc)* — MSW ile ağ isteklerini mock'lama.

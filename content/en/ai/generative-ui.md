@@ -283,7 +283,7 @@ export async function loadValidated(stored: unknown[]): Promise<GenMessage[]> {
 3. Kayıtlı bir mesajda `status` değerini enum dışı bir değerle değiştirin. Önce `ToolBoundary`'nin, sonra `validateUIMessages`'ın bunu nasıl yakaladığını karşılaştırın.
 4. `trackShipment` aracını ekleyin ve `part.preliminary` ile ara sonuçtan kesin sonuca geçişi ekranda gösterin.
 
-## Ek kaynaklar
+## Kaynaklar
 
 1. [AI SDK: Generative User Interfaces](https://ai-sdk.dev/docs/ai-sdk-ui/generative-user-interfaces) *(article)* — Araç sonucunun bileşene prop olarak geçmesi ve `tool-<ad>` parçalarının render edilmesi.
 2. [AI SDK: RSC Overview](https://ai-sdk.dev/docs/ai-sdk-rsc/overview) *(article)* — AI SDK RSC'nin deneysel durumu ve AI SDK UI önerisi.

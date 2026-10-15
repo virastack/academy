@@ -374,7 +374,7 @@ data: [DONE]
 3. `onError` ile genel bir hata mesajı verin. Sağlayıcı anahtarını bilerek bozup istemcide ne göründüğünü, sunucu loglarında ne göründüğünü karşılaştırın.
 4. Aynı route'ta Gateway dizesinden sağlayıcı paketine geçin ve değişen tek satırı not edin. Model kimliğinin yazımının neden değiştiğine dikkat edin.
 
-## Ek kaynaklar
+## Kaynaklar
 
 1. [AI SDK: Chatbot](https://ai-sdk.dev/docs/ai-sdk-ui/chatbot) *(article)* — `useChat`, `status`, transport, hata, durdurma, yeniden üretme, metadata ve reasoning.
 2. [npm: ai](https://www.npmjs.com/package/ai) *(article)* — Güncel sürüm ve dist-tag'ler.

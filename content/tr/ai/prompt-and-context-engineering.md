@@ -150,7 +150,7 @@ Model her oturuma projeniz hakkında hiçbir şey bilmeden başlar: hangi paket 
 
 </details>
 
-## Ek kaynaklar
+## Kaynaklar
 
 1. [Anthropic: Prompting best practices](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices) *(article)* — Netlik, örnek, uzun veride sıra ve frontend talimatı için güncel referans.
 2. [OpenAI: Prompt engineering](https://developers.openai.com/api/docs/guides/prompt-engineering) *(article)* — Mesaj bölümleri ve düşünen modelle küçük modelin farklı yönlendirilmesi.

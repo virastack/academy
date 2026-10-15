@@ -256,6 +256,8 @@ API 500 hatası döndürdüğünde ne olur? Bunu test edin:
 - `ProductList` bileşenini `fetchProducts` ile render edin.
 - `findByRole("alert")` ile **Ürünler yüklenemedi.** mesajını doğrulayın.
 
+## Kaynaklar
+
 1. [Vitest: Mock Functions](https://vitest.dev/api/mock) *(doc)* — `mockReturnValue`, `mockResolvedValue` ve `mockRejectedValue` davranışı.
 2. [Vitest: Mocking Modules](https://vitest.dev/guide/mocking/modules) *(doc)* — `vi.mock` hoisting'i, otomatik mock kuralları ve `import()` biçimi.
 3. [Vitest: clearMocks](https://vitest.dev/config/clearmocks) *(doc)* — Her testten önce `vi.clearAllMocks()` çağrısı ve varsayılan değer.

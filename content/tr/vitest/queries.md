@@ -199,11 +199,13 @@ HTML'iniz için en uygun sorguyu bu araç önerir. Aşağıdaki örnek bu derste
 - `within` ile kartın içindeki **Stokta yok** yazısının görünür olduğunu test edin.
 - **Mekanik Klavye** kartında **Stokta yok** yazısının bulunmadığını `queryByText` ile test edin.
 
-[^1]: [Kent C. Dodds: Making your UI tests resilient to change](https://kentcdodds.com/blog/making-your-ui-tests-resilient-to-change) *(article)* — Uygulama ayrıntılarına bağlı kırılgan testler ve kullanıcının bulduğu gibi sorgulama.
-[^2]: [Testing Library: Sorgular](https://testing-library.com/docs/queries/about) *(doc)* — Sorgu önceliği, `getBy`/`queryBy`/`findBy` farkı ve `exact` varsayılanı.
-[^3]: [Testing Library: ByPlaceholderText](https://testing-library.com/docs/queries/byplaceholdertext) *(doc)* — Placeholder, label'ın yerini tutmaz; genelde `getByLabelText` tercih edilir.
-[^4]: [MDN: title attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Global_attributes/title) *(doc)* — `title` kullanımının yardımcı teknoloji kullananlar için sorunları.
-[^5]: [Testing Library: ByRole](https://testing-library.com/docs/queries/byrole) *(doc)* — Örtük roller, `name`, `level` ve `hidden` seçenekleri.
-[^6]: [Matan Borenkraout: Testing Library, everybody uses it, but nobody understands it](https://gitnation.com/contents/testing-library-everybody-uses-it-but-nobody-understands-it) *(video)* — `getByRole`'ün erişilebilirlik ağacı ve örtük rollerle çalışması.
-[^7]: [Testing Library: ByText](https://testing-library.com/docs/queries/bytext) *(doc)* — Metin eşleştirme, regex kullanımı ve `ignore` seçeneği.
-[^8]: [Testing Library: within](https://testing-library.com/docs/dom-testing-library/api-within) *(doc)* — Sorguyu tek bir elemanın içine daraltma.
+## Kaynaklar
+
+1. [Kent C. Dodds: Making your UI tests resilient to change](https://kentcdodds.com/blog/making-your-ui-tests-resilient-to-change) *(article)* — Uygulama ayrıntılarına bağlı kırılgan testler ve kullanıcının bulduğu gibi sorgulama.
+2. [Testing Library: Sorgular](https://testing-library.com/docs/queries/about) *(doc)* — Sorgu önceliği, `getBy`/`queryBy`/`findBy` farkı ve `exact` varsayılanı.
+3. [Testing Library: ByPlaceholderText](https://testing-library.com/docs/queries/byplaceholdertext) *(doc)* — Placeholder, label'ın yerini tutmaz; genelde `getByLabelText` tercih edilir.
+4. [MDN: title attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Global_attributes/title) *(doc)* — `title` kullanımının yardımcı teknoloji kullananlar için sorunları.
+5. [Testing Library: ByRole](https://testing-library.com/docs/queries/byrole) *(doc)* — Örtük roller, `name`, `level` ve `hidden` seçenekleri.
+6. [Matan Borenkraout: Testing Library, everybody uses it, but nobody understands it](https://gitnation.com/contents/testing-library-everybody-uses-it-but-nobody-understands-it) *(video)* — `getByRole`'ün erişilebilirlik ağacı ve örtük rollerle çalışması.
+7. [Testing Library: ByText](https://testing-library.com/docs/queries/bytext) *(doc)* — Metin eşleştirme, regex kullanımı ve `ignore` seçeneği.
+8. [Testing Library: within](https://testing-library.com/docs/dom-testing-library/api-within) *(doc)* — Sorguyu tek bir elemanın içine daraltma.

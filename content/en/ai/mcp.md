@@ -95,7 +95,7 @@ Next.js 16 ve sonrasında dev sunucusu `/_next/mcp` adresinde kendi MCP uç nokt
 2. Figma eklentisini kurun, bir bileşen çerçevesinin bağlantısını verip *"`src/components/ui` bileşenleriyle uygula"* deyin. Sonra aynı işi bağlantısız, açıklamayla isteyip farkı karşılaştırın.
 3. [!playwright] sunucusuyla uygulamanızı dar ekranda açtırıp formu doldurtun. Sonra `/mcp` ([!claudeCode]) veya Customize ([!cursor]) üzerinden hangi sunucuları gerçekten kullandığınıza bakıp kullanmadığınızı kapatın.
 
-## Ek kaynaklar
+## Kaynaklar
 
 1. [Model Context Protocol: What is MCP?](https://modelcontextprotocol.io/docs/getting-started/intro) *(article)* — MCP'nin tanımı ve ekosistemi.
 2. [Claude Code: Connect Claude Code to tools via MCP](https://code.claude.com/docs/en/mcp) *(article)* — Sunucu ekleme komutları, kapsamlar, `.mcp.json`, onay ve araç ertelemesi.

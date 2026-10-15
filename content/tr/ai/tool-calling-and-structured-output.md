@@ -418,7 +418,7 @@ Model seçerken araç çağırma doğruluğunu Berkeley Function Calling Leaderb
 3. `execute` içinden bir hata fırlatın ve arayüzde neyin göründüğüne bakın. Sonra hatayı loglayıp genel mesajla yeniden fırlatın.
 4. Serbest metinden form alanlarını çıkaran bir `Output.object` yazın. Şemaya uymayan bir çıktıyı bilerek üretip `NoObjectGeneratedError`'ı yakalayın ve `error.text`'i loglayın.
 
-## Ek kaynaklar
+## Kaynaklar
 
 1. [AI SDK: Tool Calling](https://ai-sdk.dev/docs/ai-sdk-core/tools-and-tool-calling) *(article)* — `tool()`, `inputSchema`, `stopWhen`, hata davranışı ve `toolApproval`.
 2. [AI SDK: Chatbot Tool Usage](https://ai-sdk.dev/docs/ai-sdk-ui/chatbot-tool-usage) *(article)* — `useChat`'te araç parçaları ve durumları, `addToolOutput`, onay arayüzü ve `sendAutomaticallyWhen`.

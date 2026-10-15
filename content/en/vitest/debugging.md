@@ -179,6 +179,8 @@ test("ürünü sepete ekler", async () => {
 - Hata mesajındaki rol listesine bakın.
 - Önce yüklenmeyi bekleyin. Sonra **Mekanik Klavye** kartında `within` ile butonu bulun.
 
+## Kaynaklar
+
 1. [Testing Library: Debugging](https://testing-library.com/docs/dom-testing-library/api-debugging) *(Doküman)* — Otomatik DOM çıktısı, `screen.debug`, `logRoles`, `logTestingPlaygroundURL` ve `DEBUG_PRINT_LIMIT`.
 2. [Kent C. Dodds: Common mistakes with React Testing Library](https://kentcdodds.com/blog/common-mistakes-with-react-testing-library) *(Makale)* — "Accessible roles" çıktısı ve yanlış sorgu kalıpları. İlkeler geçerli, `userEvent` örnekleri `setup()` öncesi sürümden.
 3. [React Testing Library: API](https://testing-library.com/docs/react-testing-library/api) *(Doküman)* — DOM Testing Library'nin tamamı yeniden dışa aktarılır.

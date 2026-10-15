@@ -277,8 +277,10 @@ test("Provider dışında kullanılırsa hata fırlatır", () => {
 - **Mekanik Klavye** için **Çıkar** butonuna tıklayın.
 - Rozetin **Sepet (1)** olduğunu doğrulayın.
 
-[^1]: [React Testing Library: Kurulum (wrapper)](https://testing-library.com/docs/react-testing-library/setup) *(doc)* — Provider'ları `wrapper` ile saran özel `render` fonksiyonu.
-[^2]: [Kent C. Dodds: How to test custom React hooks](https://kentcdodds.com/blog/how-to-test-custom-react-hooks) *(article)* — Hook'u örnek bir component üzerinden test etme önerisi ve `renderHook` için uygun durumlar.
-[^3]: [React Testing Library: API](https://testing-library.com/docs/react-testing-library/api) *(doc)* — `renderHook`, `wrapper` seçeneği, `result.current` ve `act`.
-[^4]: [React Router: Testing](https://reactrouter.com/start/framework/testing) *(doc)* — Router bağlamı gerektiren component'leri `createRoutesStub` ile test etme.
-[^5]: [TkDodo: Testing React Query](https://tkdodo.eu/blog/testing-react-query) *(article)* — Her test için yeni `QueryClient` ve `retry: false` ayarı.
+## Kaynaklar
+
+1. [React Testing Library: Kurulum (wrapper)](https://testing-library.com/docs/react-testing-library/setup) *(doc)* — Provider'ları `wrapper` ile saran özel `render` fonksiyonu.
+2. [Kent C. Dodds: How to test custom React hooks](https://kentcdodds.com/blog/how-to-test-custom-react-hooks) *(article)* — Hook'u örnek bir component üzerinden test etme önerisi ve `renderHook` için uygun durumlar.
+3. [React Testing Library: API](https://testing-library.com/docs/react-testing-library/api) *(doc)* — `renderHook`, `wrapper` seçeneği, `result.current` ve `act`.
+4. [React Router: Testing](https://reactrouter.com/start/framework/testing) *(doc)* — Router bağlamı gerektiren component'leri `createRoutesStub` ile test etme.
+5. [TkDodo: Testing React Query](https://tkdodo.eu/blog/testing-react-query) *(article)* — Her test için yeni `QueryClient` ve `retry: false` ayarı.

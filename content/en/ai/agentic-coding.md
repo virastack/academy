@@ -119,7 +119,7 @@ Dosyalara yazma, bulduklarını dosya ve satır numarasıyla raporla.
 2. Aynı özellik için önce testleri yazdırın, başarısız olduklarını görün, sonra geçene kadar kod yazdırın. Kaç tur sürdüğünü not edin.
 3. Bir subagent'a *"bu değişiklikte erişilebilirlik sorunu var mı, yalnızca raporla"* dedirtin. [!claudeCode]'daysanız `/context` ile ana konuşmanın bağlamının ne kadar değiştiğine bakın.
 
-## Ek kaynaklar
+## Kaynaklar
 
 1. [Claude Code: How Claude Code works](https://code.claude.com/docs/en/how-claude-code-works) *(article)* — Ajan döngüsü, araçlar, izin modları ve checkpoint'ler.
 2. [Claude Code: Best practices](https://code.claude.com/docs/en/best-practices) *(article)* — Keşfet-planla-uygula-commit akışı, doğrulama ve yazar/inceleyici düzeni.
