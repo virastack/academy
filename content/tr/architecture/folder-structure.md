@@ -7,8 +7,6 @@ translationKey: "architecture/folder-structure"
 
 Klasör yapısının işi basit: bir şeyi değiştireceğiniz zaman ilgili dosyaları tek yerde bulmak. Dosyaları türüne göre (`components/`, `hooks/`, `utils/`) değil, ait oldukları özelliğe göre (sepet, ürün listesi, ödeme) gruplarsanız bir özelliği değiştirmek tek klasörde biter. İlke Kent C. Dodds'ın colocation yazısındaki gibi: kodu ilgili olduğu yere olabildiğince yakın koyun.[^1]
 
-Bu rehber, Next.js ve TanStack Start'ta aynı şekilde çalışan feature-based yapıyı, isimlendirme ve import kurallarını anlatıyor.
-
 ## Tür mü, özellik mi?
 
 |  | Türe göre | Özelliğe göre |
