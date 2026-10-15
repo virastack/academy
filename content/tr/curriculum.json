@@ -1332,26 +1332,6 @@
                   "kind": "project"
                 }
               ]
-            },
-            {
-              "id": "araclar-ve-kaynaklar",
-              "title": "Araçlar ve Kaynaklar",
-              "lessons": [
-                {
-                  "slug": "recommended-tools",
-                  "title": "Önerilen Araçlar ve Eklentiler",
-                  "description": "Günlük işte işine yarayan eklentiler, MCP sunucuları ve skill setleri; her biri ne işe yarar.",
-                  "status": "coming_soon",
-                  "kind": "reference"
-                },
-                {
-                  "slug": "reading-list",
-                  "title": "Okuma ve İzleme Listesi",
-                  "description": "Derslerde geçmeyen makale, video ve araştırmalar; türüne göre ayrılmış.",
-                  "status": "coming_soon",
-                  "kind": "reference"
-                }
-              ]
             }
           ]
         }
