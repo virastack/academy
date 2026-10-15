@@ -1114,7 +1114,7 @@
                   "slug": "monorepo",
                   "title": "Monorepo",
                   "description": "pnpm workspace ve Turborepo ile paylaşılan paketler ve ortak UI kütüphanesi.",
-                  "status": "coming_soon",
+                  "status": "published",
                   "kind": "lesson"
                 },
                 {
