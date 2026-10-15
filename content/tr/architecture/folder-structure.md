@@ -19,9 +19,11 @@ Bu rehber, Next.js ve TanStack Start'ta aynı şekilde çalışan feature-based 
 
 Türe göre dizilim Next.js ve Nuxt gibi framework'lerde başlaması kolay olduğu için yaygın. Ama proje büyüdükçe bir özelliği değiştirmek birçok büyük klasöre dokunmak demek oluyor.[^2]
 
+Özellik bazlı dizilimi birbirinden bağımsız kaynaklar öneriyor. bulletproof-react kodun büyük kısmını `features/` altında toplamayı, özellik koduyla ortak bileşenlerin karışmasını önlemek için öneriyor.[^3] Feature-Sliced Design aynı fikri daha katı bir metodolojiye çeviriyor: kod katmanlara, katmanlar da yüksek uyumlu dilimlere ayrılıyor.[^4]
+
 ## Üst düzey yapı
 
-ViraStack AI şablonundaki yapının sadeleştirilmiş hali:[^3]
+ViraStack da bu yapıyı kullanıyor. Şablonunun sadeleştirilmiş hali:[^5]
 
 ```text
 src/
@@ -41,17 +43,17 @@ src/
 └── env.ts
 ```
 
-Listede olmayan klasör açmayın. Yeni bir klasöre ihtiyaç duyduğunuzda önce mevcutlardan birine uyup uymadığına bakın.[^3]
+Yeni bir klasör açmadan önce mevcutlardan birine uyup uymadığına bakın.[^5]
 
 Asıl karar, proje kodunun yönlendirme klasörünün **dışında** durması:
 
 |  | Next.js | TanStack Start |
 | --- | --- | --- |
 | Yönlendirme klasörü | `app/` | `src/routes/` |
-| Framework'ün sunduğu seçenekler | Proje kodu `app` dışında, `app` içinde ya da rotaya göre bölünmüş olabilir[^4] | `-` önekli dosya ve klasörler rota ağacına girmez, rota klasörlerinde kod barındırmak için kullanılır[^5] |
-| Framework'e ait özel adlar | `page`, `layout`, `route`, `_klasör`, `(grup)`, `[param]`[^4] | `__root`, `$param`, `_` öneki (pathless layout), `-` öneki[^5] |
+| Framework'ün sunduğu seçenekler | Proje kodu `app` dışında, `app` içinde ya da rotaya göre bölünmüş olabilir[^6] | `-` önekli dosya ve klasörler rota ağacına girmez, rota klasörlerinde kod barındırmak için kullanılır[^7] |
+| Framework'e ait özel adlar | `page`, `layout`, `route`, `_klasör`, `(grup)`, `[param]`[^6] | `__root`, `$param`, `_` öneki (pathless layout), `-` öneki[^7] |
 
-Next.js yapı konusunda görüş bildirmiyor, seçtiğiniz stratejide tutarlı kalmanızı istiyor.[^4] ViraStack şablonunda `features/`, `components/` gibi klasörler `app/` ve `routes/` ile aynı seviyede duruyor, yani "proje kodunu `app` dışında tut" stratejisi uygulanıyor.[^3] `src/` klasörü Next.js'te isteğe bağlı, uygulama kodunu kök dizindeki yapılandırma dosyalarından ayırıyor.[^4]
+Next.js yapı konusunda görüş bildirmiyor, seçtiğiniz stratejide tutarlı kalmanızı istiyor.[^6] Bu yapıda `features/`, `components/` gibi klasörler `app/` ve `routes/` ile aynı seviyede duruyor, yani "proje kodunu `app` dışında tut" stratejisi uygulanıyor.[^5] `src/` klasörü Next.js'te isteğe bağlı, uygulama kodunu kök dizindeki yapılandırma dosyalarından ayırıyor.[^6]
 
 ## Feature klasörünün içi
 
@@ -66,7 +68,7 @@ features/cart/
 └── index.ts
 ```
 
-ViraStack yapısında bunların yanında `constants/`, `data/` ve `helpers/` de olabilir.[^3] Her özellikte hepsi gerekmez, yalnızca ihtiyaç duyduğunuz klasörü açın.[^6]
+Bunların yanında `constants/`, `data/` ve `helpers/` de olabilir.[^5] Her özellikte hepsi gerekmez, yalnızca ihtiyaç duyduğunuz klasörü açın.[^3]
 
 Test dosyası, test ettiği dosyanın yanında durur (`cart-summary.test.tsx`). Uçtan uca testler ise `src/` yapısına bağlı olmadığı için proje kökünde kalır.[^1]
 
@@ -78,7 +80,7 @@ Test dosyası, test ettiği dosyanın yanında durur (`cart-summary.test.tsx`). 
 
 Her şey `features/[özellik]/` içinde başlar. İkinci bir özellik aynı koda ihtiyaç duyunca kod global `src/` katmanına (`components/`, `lib/`, `hooks/`) taşınır.
 
-Neden taşınır? Çünkü özellikler birbirinden import etmez. Özellikleri birleştirmek sayfa (uygulama) katmanının işidir, böylece her özellik bağımsız kalır.[^6] Feature-Sliced Design de aynı katmandaki dilimlerin birbirini kullanmasını yasaklıyor.[^7] Akış tek yönlüdür: ortak kod → özellikler → uygulama.[^6]
+Neden taşınır? Çünkü özellikler birbirinden import etmez. Özellikleri birleştirmek sayfa (uygulama) katmanının işidir, böylece her özellik bağımsız kalır.[^3] Feature-Sliced Design de aynı katmandaki dilimlerin birbirini kullanmasını yasaklıyor.[^4] Akış tek yönlüdür: ortak kod → özellikler → uygulama.[^3]
 
 | Feature içinde kalır | Global katmana çıkar |
 | --- | --- |
@@ -86,11 +88,11 @@ Neden taşınır? Çünkü özellikler birbirinden import etmez. Özellikleri bi
 | Sepet toplamını hesaplayan fonksiyon | Para birimi formatlayan fonksiyon (`helpers/`) |
 | Sepet API hook'ları | Paylaşılan API istemcisi (`lib/api.ts`) |
 
-`helpers/` paket import'u içermeyen saf fonksiyonlara, paket kullanan yapılandırılmış örnekler ise `lib/` altına gider.[^3]
+`helpers/` paket import'u içermeyen saf fonksiyonlara, paket kullanan yapılandırılmış örnekler ise `lib/` altına gider.[^5]
 
 > [!TIP]
 >
-> **Neden ikinci kullanımda, üçüncüde değil?** Bilinen "Rule of Three" kuralı şöyle işler: ilk seferde yazarsınız, ikincide tekrarı fark edip yine de kopyalarsınız, üçüncüde ortak koda çıkarırsınız.[^8] ViraStack burada daha sıkı: iki özellik aynı koda ihtiyaç duyuyorsa kod global katmana taşınır, çünkü özellikler birbirini import edemez.[^3]
+> **Neden ikinci kullanımda, üçüncüde değil?** Bilinen "Rule of Three" kuralı şöyle işler: ilk seferde yazarsınız, ikincide tekrarı fark edip yine de kopyalarsınız, üçüncüde ortak koda çıkarırsınız.[^8] Bu yapıda kural daha sıkı: iki özellik aynı koda ihtiyaç duyuyorsa kod global katmana taşınır, çünkü özellikler birbirini import edemez.[^5]
 
 > [!WARNING]
 >
@@ -126,11 +128,11 @@ import { AddToCartButton } from '@/features/cart/components/add-to-cart-button'
 
 ### 3. `index.ts`: giriş kapısı mı, yük mü?
 
-ViraStack şablonunda her özelliğin kökünde bir `index.ts` var. Bu konuda iki görüş var:
+Feature-based yapılarda her özelliğin köküne genellikle bir `index.ts` konur. Bu konuda iki görüş var:
 
 |  | Tek giriş (public API) | Doğrudan import |
 | --- | --- | --- |
-| Savunanlar | Feature-Sliced Design: index dosyası özelliğin dışa açık sözleşmesi[^14] | bulletproof-react: Vite'ta tree shaking ve performans sorunları nedeniyle doğrudan import[^6]. Marvin Hagemeister: barrel her yere yayıldıysa hepsini silin[^15]. TkDodo: uygulama kodunda barrel'ı bırakın[^16] |
+| Savunanlar | Feature-Sliced Design: index dosyası özelliğin dışa açık sözleşmesi[^14] | bulletproof-react: Vite'ta tree shaking ve performans sorunları nedeniyle doğrudan import[^3]. Marvin Hagemeister: barrel her yere yayıldıysa hepsini silin[^15]. TkDodo: uygulama kodunda barrel'ı bırakın[^16] |
 | Kazancı | Özelliğin iç yapısı değişince dışarıdaki import'lar bozulmaz[^14] | Daha hızlı araçlar, net bağımlılıklar[^17] |
 | Maliyeti | Döngüsel import riski ve büyük projelerde yavaşlama[^14][^16] | Dosya taşımak her import'u etkiler, kapsülleme azalır[^17] |
 
@@ -138,7 +140,7 @@ ViraStack şablonunda her özelliğin kökünde bir `index.ts` var. Bu konuda ik
 
 > [!TIP]
 >
-> **ViraStack için pratik kural:**
+> **Orta yol:**
 >
 > - Özellik kökünde tek ve ince bir `index.ts`: yalnızca adlandırılmış re-export, `export *` yok.[^14]
 > - Özelliğin içindeki alt klasörlerde (`components/index.ts` gibi) ayrı barrel yok.[^14]
@@ -150,13 +152,13 @@ ViraStack şablonunda her özelliğin kökünde bir `index.ts` var. Bu konuda ik
 
 - **Dosya ve klasörler `kebab-case`:** `cart-summary.tsx`, `use-cart.ts`. macOS ve Windows büyük/küçük harfi ayırmaz, Linux (CI, canlı sunucu) ayırır. Yerelde çalışan bir import canlıda "Module not found" hatası verebilir.[^18] Tek bir yazım seçin ve lint ile zorlayın (`unicorn/filename-case`).[^16]
 - **Bileşen adı `PascalCase`, dosya adı `kebab-case`:** `tab-list.tsx` dosyası `TabList` export eder.[^16]
-- **Framework'ün dayattığı adlara dokunmayın:** `page.tsx`, `layout.tsx`, `__root.tsx`, `$postId.tsx` gibi adlar yönlendirmenin parçası.[^4][^5]
+- **Framework'ün dayattığı adlara dokunmayın:** `page.tsx`, `layout.tsx`, `__root.tsx`, `$postId.tsx` gibi adlar yönlendirmenin parçası.[^6][^7]
 - **Genel adlardan kaçının:** `utils.ts`, `types.ts`, `helpers.ts` yerine alanı anlatan ad verin.[^2]
 - **Test dosyası kaynağın yanında:** `cart-summary.test.tsx`.[^1]
 
 > [!TIP]
 >
-> Bu yapıyı ajana her seferinde anlatmayın, kural dosyasına yazın. `create-next-app` kodlama ajanları için `AGENTS.md` dosyasını kendisi ekliyor.[^11] ViraStack AI şablonu da mimariyi `.cursor/rules` altındaki kurallara bağlıyor.[^3] `../` yasağı gibi lint kuralları ajan için de bir kontrol işlevi görür, bunu [Agentic Kodlama](/academy/ai/agentic-coding) rehberinde anlatmıştık.
+> Bu yapıyı ajana her seferinde anlatmayın, kural dosyasına yazın. `create-next-app` kodlama ajanları için `AGENTS.md` dosyasını kendisi ekliyor.[^11] `../` yasağı gibi lint kuralları ajan için de bir kontrol işlevi görür, bunu [Agentic Kodlama](/academy/ai/agentic-coding) rehberinde anlatmıştık.
 
 ## Kendin dene
 
@@ -169,11 +171,11 @@ ViraStack şablonunda her özelliğin kökünde bir `index.ts` var. Bu konuda ik
 
 1. [Kent C. Dodds: Colocation](https://kentcdodds.com/blog/colocation) *(article)* — Kodu ilgili olduğu yere yakın koyma ilkesi, testler ve yardımcı dosyalar. 17 Haziran 2019.
 2. [Feature-Sliced Design: Desegmentation](https://feature-sliced.design/docs/guides/issues/desegmented) *(article)* — Türe göre dizilimin sorunları ve genel klasör/dosya adlarından kaçınma.
-3. [ViraStack AI: architecture-guide.md](https://github.com/virastack/ai/blob/main/templates/core/docs/architecture-guide.md) *(repo)* — Bu rehberdeki dizin yapısının ve kuralların ajan kural dosyası olarak uygulanmış hali.
-4. [Next.js: Project structure and organization](https://nextjs.org/docs/app/getting-started/project-structure) *(article)* — Dosya kuralları, `src` klasörü, private folder'lar ve proje organizasyon stratejileri.
-5. [TanStack Router: File Naming Conventions](https://tanstack.com/router/latest/docs/routing/file-naming-conventions) *(article)* — `__root`, `$`, `_` ve `-` önekleri, rota ağacından dosya hariç tutma.
-6. [bulletproof-react: Project Structure](https://github.com/alan2207/bulletproof-react/blob/master/docs/project-structure.md) *(repo)* — Feature klasörü yapısı, özellikler arası import yasağı, tek yönlü akış ve barrel notu.
-7. [Feature-Sliced Design: Layers](https://feature-sliced.design/docs/reference/layers) *(article)* — Dilimler arası import kuralı.
+3. [bulletproof-react: Project Structure](https://github.com/alan2207/bulletproof-react/blob/master/docs/project-structure.md) *(repo)* — Feature klasörü yapısı, özellikler arası import yasağı, tek yönlü akış ve barrel notu.
+4. [Feature-Sliced Design: Layers](https://feature-sliced.design/docs/reference/layers) *(article)* — Katman, dilim ve dilimler arası import kuralı.
+5. [ViraStack AI: architecture-guide.md](https://github.com/virastack/ai/blob/main/templates/core/docs/architecture-guide.md) *(repo)* — Bu rehberdeki dizin yapısının ve kuralların ajan kural dosyası olarak uygulanmış hali.
+6. [Next.js: Project structure and organization](https://nextjs.org/docs/app/getting-started/project-structure) *(article)* — Dosya kuralları, `src` klasörü, private folder'lar ve proje organizasyon stratejileri.
+7. [TanStack Router: File Naming Conventions](https://tanstack.com/router/latest/docs/routing/file-naming-conventions) *(article)* — `__root`, `$`, `_` ve `-` önekleri, rota ağacından dosya hariç tutma.
 8. [Justin Weiss: I Dry-ed Up My Code and Now It's Hard to Work With](https://www.justinweiss.com/articles/i-dry-ed-up-my-code-and-now-its-hard-to-work-with-what-happened/) *(article)* — "Üç vuruş" kuralı, gerekli ve tesadüfi tekrar ayrımı.
 9. [Sandi Metz: The Wrong Abstraction](https://sandimetz.com/blog/2016/1/20/the-wrong-abstraction) *(article)* — Yanlış soyutlamanın nasıl oluştuğu ve geri dönüş yolu. 20 Ocak 2016.
 10. [Sandi Metz: All the Little Things (RailsConf 2014)](https://youtu.be/8bZh5LMaSmE) *(video)* — Tekrarın yanlış soyutlamadan ucuz olduğu iddiasının çıktığı konuşma.
