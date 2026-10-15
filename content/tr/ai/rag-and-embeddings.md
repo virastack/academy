@@ -83,7 +83,7 @@ LIMIT 4;
 
 ## Küçük bir RAG ve retrieval eval'i
 
-Aşağıdaki kod dört parçalı bir iade, kargo, garanti ve ödeme metnini indeksler, soru sorar ve aramayı ölçer. Ölçüm [AI ile Test, Eval ve Code Review](/academy/ai/testing-evals-and-code-review) rehberindeki eval fikrinin aynısı: sabit sorular, beklenen parça ve geçme oranı.
+Aşağıdaki kod dört parçalı bir iade, kargo, garanti ve ödeme metnini indeksler, soru sorar ve aramayı ölçer. Ölçüm [Test, Eval ve Code Review](/academy/ai/testing-evals-and-code-review) rehberindeki eval fikrinin aynısı: sabit sorular, beklenen parça ve geçme oranı.
 
 ```ts
 // rag.ts

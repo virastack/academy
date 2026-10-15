@@ -1,5 +1,5 @@
 ---
-title: "AI ile Test, Eval ve Code Review"
+title: "Test, Eval ve Code Review"
 description: "Test yazdırma, Playwright MCP ile kontrol, model çıktısını ölçme (eval) ve AI kodunu gözden geçirme."
 lastVerified: "2026-10-15"
 translationKey: "ai/testing-evals-and-code-review"
