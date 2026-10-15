@@ -296,7 +296,7 @@ Sahte modelde tek parçalık `Merhaba dünya bu uzun bir cümle` metni `"Merhaba
 
 ### Render maliyeti
 
-Gelen her parça bir `setState` demekse React her seferinde yeniden render eder. SitePoint yazısı parçaları `useRef`'te biriktirip `requestAnimationFrame` ile kare başına bir kez state'e yazmayı öneriyor. Yazarın kendi ölçümünde (M2 MacBook Pro, Chrome, saniyede 30 token) ortalama commit süresi 18 ms'den 3 ms'ye düşmüş.[^9] Bu ölçüm yazara ait, ben yeniden üretmedim. `useChat`'in `throttle` seçeneği aynı soruna SDK içinden yaklaşır. İkisini karşılaştırmadım.
+Gelen her parça bir `setState` demekse React her seferinde yeniden render eder. SitePoint yazısı parçaları `useRef`'te biriktirip `requestAnimationFrame` ile kare başına bir kez state'e yazmayı öneriyor.[^9] `useChat`'in `throttle` seçeneği aynı soruna SDK içinden yaklaşır.
 
 ## Gerçek anahtar olmadan test
 
