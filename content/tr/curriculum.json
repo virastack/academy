@@ -1080,25 +1080,25 @@
           "status": "published",
           "lessonGroups": [
             {
-              "id": "proje-yapisi",
+              "id": "project-structure",
               "title": "Proje Yapısı",
               "lessons": [
                 {
-                  "slug": "klasor-yapisi-ve-isimlendirme",
+                  "slug": "folder-structure",
                   "title": "Klasör Yapısı ve İsimlendirme",
                   "description": "Feature-based yapı, dosya isimlendirme ve import kuralları.",
-                  "status": "coming_soon",
+                  "status": "published",
                   "kind": "lesson"
                 },
                 {
-                  "slug": "component-ve-kod-organizasyonu",
+                  "slug": "component-organization",
                   "title": "Component ve Kod Organizasyonu",
                   "description": "Component'leri bölme, ortak kodu ayırma ve sınırları koruma.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
-                  "slug": "proje-yapisini-duzenleme",
+                  "slug": "restructure-project",
                   "title": "Proje Yapısını Düzenleme",
                   "description": "Dağınık bir e-ticaret projesini feature-based yapıya taşıma.",
                   "status": "coming_soon",
@@ -1107,7 +1107,7 @@
               ]
             },
             {
-              "id": "buyuk-olcek",
+              "id": "scale",
               "title": "Büyük Ölçek",
               "lessons": [
                 {
@@ -1120,12 +1120,12 @@
                 {
                   "slug": "micro-frontend",
                   "title": "Micro Frontend",
-                  "description": "Ne zaman gerekir, ne zaman gerekmez? Module Federation ile temel kurulum.",
+                  "description": "Ne zaman gerekir, ne zaman gerekmez? Vite ve Module Federation ile temel kurulum.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
-                  "slug": "coklu-paket-projesi",
+                  "slug": "multi-package-project",
                   "title": "Çoklu Paket Projesi",
                   "description": "Monorepo içinde ortak UI paketi ve iki uygulama kurma.",
                   "status": "coming_soon",
@@ -1134,22 +1134,29 @@
               ]
             },
             {
-              "id": "kalite-ve-urun",
-              "title": "Kalite ve Ürün",
+              "id": "team-and-product",
+              "title": "Ekip ve Ürün",
               "lessons": [
                 {
-                  "slug": "coklu-dil",
+                  "slug": "code-quality",
+                  "title": "Kod Kalitesi ve Ekip Standartları",
+                  "description": "ESLint, Prettier, commit kuralları ve CI ile otomatik kontrol.",
+                  "status": "coming_soon",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "i18n",
                   "title": "Çoklu Dil (i18n)",
                   "description": "next-intl ile çeviri, dil yönlendirmesi ve tarih/para birimi formatı.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
-                  "slug": "kod-kalitesi-ve-ekip-standartlari",
-                  "title": "Kod Kalitesi ve Ekip Standartları",
-                  "description": "ESLint, Prettier, commit kuralları ve CI ile otomatik kontrol.",
+                  "slug": "multilingual-ci-project",
+                  "title": "Çok Dilli Sayfa ve CI Hattı",
+                  "description": "Mevcut bir sayfayı iki dile çevirip lint, tip ve test kontrollerini CI'a bağlama.",
                   "status": "coming_soon",
-                  "kind": "lesson"
+                  "kind": "project"
                 }
               ]
             }
