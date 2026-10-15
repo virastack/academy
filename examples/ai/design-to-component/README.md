@@ -12,4 +12,4 @@ npx playwright install chromium
 npm test        # başlangıçta 3 test kırmızı: kart yok
 ```
 
-Tasarım: [Modern Profile Card UI](https://www.figma.com/community/file/1625904675991451970/modern-profile-card-ui-free-figma-template), TASARIMCI_ADI, [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+Tasarım: [Modern Profile Card UI](https://www.figma.com/community/file/1625904675991451970/modern-profile-card-ui-free-figma-template), [@saifullah_nakih](https://www.figma.com/@saifullah_nakih), [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
