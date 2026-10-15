@@ -5,13 +5,15 @@ lastVerified: "2026-10-15"
 translationKey: "ai/shopping-assistant"
 ---
 
-Bu projede ürün arayan ve onayınızla sepete ekleyen bir sohbet asistanı kuracaksınız. Araçları, onay adımını, güvenlik sınırlarını ve maliyet ölçümünü siz yazarsınız. Hazır testler "bitti" demenizi sağlar. Dosyalar GitHub'da hazır: [shopping-assistant](https://github.com/virastack/academy/tree/main/examples/ai/shopping-assistant). Önceki rehberlerdeki konular ([AI SDK ve Streaming Sohbet](/academy/ai/ai-sdk-and-streaming-chat), [Tool Calling ve Structured Output](/academy/ai/tool-calling-and-structured-output)) burada birleşiyor.
+Bu projede ürün arayan ve onayınızla sepete ekleyen bir sohbet asistanı kuracaksınız. Araçları, onay adımını, güvenlik sınırlarını ve maliyet ölçümünü siz yazarsınız. Hazır testler "bitti" demenizi sağlar.
+
+Dosyalar GitHub'da hazır: [shopping-assistant](https://github.com/virastack/academy/tree/main/examples/ai/shopping-assistant).
 
 > [!NOTE]
 >
 > Proje varsayılan olarak **sahte bir modelle** çalışır (`src/lib/fake-model.ts`). Gerçek modeller ücretli olduğu için bu tercih edildi. Anahtar gerekmez ve testler her seferinde aynı sonucu verir. Sahte model yalnızca önceden yazılmış senaryoları oynatır, gerçek bir model gibi akıl yürütmez.
 >
-> Maliyeti sorun etmiyorsanız proje köküne `.env.local` ekleyin: `AI_MODEL` için AI Gateway'deki bir model adını, `AI_GATEWAY_API_KEY` için kendi anahtarınızı yazın.[^1] Bu yol test edilmedi. Hazır testler sahte modele göre yazıldı.
+> Maliyeti sorun etmiyorsanız proje köküne `.env.local` ekleyin: `AI_MODEL` için AI Gateway'deki bir model adını, `AI_GATEWAY_API_KEY` için kendi anahtarınızı yazın.[^1]
 
 Proje `next@16.4`, `ai@7.0`, `@ai-sdk/react@4.0`, `zod@4`, `vitest@5`, `@playwright/test@1.64` ve `@axe-core/playwright@4.14` ile Node 22'de çalıştırıldı. Örnek çözümde 14 birim ve 6 uçtan uca test geçti.
 
