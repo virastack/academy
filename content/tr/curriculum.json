@@ -1325,10 +1325,10 @@
                   "kind": "lesson"
                 },
                 {
-                  "slug": "ai-shopping-assistant",
+                  "slug": "shopping-assistant",
                   "title": "AI Alışveriş Asistanı",
-                  "description": "Ürün arama ve sepete ekleme tool'larıyla çalışan sohbet asistanı.",
-                  "status": "coming_soon",
+                  "description": "Araç çağırma, kullanıcı onayı, prompt injection koruması, rate limit ve maliyet ölçümüyle çalışan bir alışveriş asistanı kurun.",
+                  "status": "published",
                   "kind": "project"
                 }
               ]
