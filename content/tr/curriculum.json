@@ -1284,10 +1284,10 @@
                   "kind": "lesson"
                 },
                 {
-                  "slug": "design-to-page",
-                  "title": "Tasarımdan Sayfaya",
-                  "description": "Agent, skill ve MCP ile bir tasarımı çalışan, test edilmiş bir sayfaya çevirme.",
-                  "status": "coming_soon",
+                  "slug": "design-to-component",
+                  "title": "Tasarımdan Bileşene",
+                  "description": "Agent, skill ve MCP ile bir Figma kart tasarımını çalışan, test edilmiş bir React bileşenine çevirme.",
+                  "status": "published",
                   "kind": "project"
                 }
               ]
