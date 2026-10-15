@@ -241,4 +241,7 @@ Listeye fiyat sıralaması ekleyin ve test edin:
 ## Kaynaklar
 
 1. [React: You Might Not Need an Effect](https://react.dev/learn/you-might-not-need-an-effect) *(doc)* — Veri çekerken yarış durumu ve eski cevapları yok sayan `ignore` bayrağı.
-2. [MDN: String.prototype.toLocaleLowerCase()](https:
+2. [MDN: String.prototype.toLocaleLowerCase()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/toLocaleLowerCase) *(doc)* — Türkçe gibi dillerde yerel büyük-küçük harf eşlemesi.
+3. [Testing Library: About Queries](https://testing-library.com/docs/queries/about) *(doc)* — `getBy`, `queryBy` ve `findBy` farkı; yokluk ve bekleme için hangisi kullanılır.
+4. [Testing Library: within](https://testing-library.com/docs/dom-testing-library/api-within) *(doc)* — Sorguyu tek bir elemanın içine daraltma.
+5. [Testing Library: Async API'leri](https://testing-library.com/docs/dom-testing-library/api-async) *(doc)* — `findBy` ile `waitFor` ilişkisi, 1000 ms zaman aşımı ve yeniden denemenin hata fırlatmaya bağlı olması.
