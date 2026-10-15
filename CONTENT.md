@@ -1,9 +1,11 @@
 # Academy content guide
 
-Lessons live as Markdown under `content/<locale>/<track>/<lesson>.md`.
-Each locale has its own curriculum tree (including `coming_soon` lessons
-without a body) at `content/<locale>/curriculum.json`. Titles and descriptions
-are plain strings in that locale's file.
+Lessons live as Markdown under `content/tr/<track>/<lesson>.md`.
+The curriculum tree (including `coming_soon` lessons without a body) is
+`content/tr/curriculum.json`. Titles and descriptions are plain Turkish strings.
+
+Do not add Markdown or `curriculum.json` under `content/en`. English copies are
+not maintained yet.
 
 ## Frontmatter
 
@@ -16,8 +18,7 @@ translationKey: "vitest/introduction"
 ---
 ```
 
-- `translationKey` is `<track>/<lesson>` and pairs locales later.
-- English files go under `content/en/...` with the same key.
+- `translationKey` is `<track>/<lesson>`.
 
 ## Callouts
 
@@ -107,4 +108,4 @@ npm install vitest
 
 Published pages link to:
 
-`https://github.com/virastack/academy/edit/main/content/<locale>/<track>/<lesson>.md`
+`https://github.com/virastack/academy/edit/main/content/tr/<track>/<lesson>.md`
