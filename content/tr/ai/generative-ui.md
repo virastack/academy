@@ -5,15 +5,15 @@ lastVerified: "2026-10-15"
 translationKey: "ai/generative-ui"
 ---
 
-Generative UI'da model arayüz kodu üretmez. Bir aracı çağırır, aracın döndürdüğü düz veri de sizin React bileşeninize prop olarak geçer.[^1] Model "ne gösterilecek"e karar verir, "nasıl görüneceği" sizin tasarım sisteminizde kalır. Sonuç düz veri olduğu için kaydedilebilir ve sonra aynı bileşenle yeniden çizilebilir.
+Generative UI'da model arayüz kodu üretmez. Bir aracı çağırır, aracın döndürdüğü düz veri de sizin React bileşeninize prop olarak geçer.[^1] Model "ne gösterilecek"e karar verir, "nasıl görüneceği" sizin tasarım sisteminizde kalır. Builder.io yazısı da aynı yönü savunuyor: araç çağrıları hazır bileşenlere eşlenmeli, her istekte sıfırdan kod üretmek yavaş ve kırılgan.[^2] Sonuç düz veri olduğu için kaydedilebilir ve sonra aynı bileşenle yeniden çizilebilir.
 
 > [!NOTE]
 >
-> Bu rehberdeki kodlar `ai@7.0.140` ve `@ai-sdk/react@4.0.143` ile çalıştırıldı; bileşenler jsdom'da React 19.3 ile render edildi. Araç tanımı, `stopWhen` ve onay akışı için [Tool Calling ve Structured Output](/academy/ai/tool-calling-and-structured-output), `useChat` ve route kurulumu için [AI SDK ve Streaming Sohbet](/academy/ai/ai-sdk-and-streaming-chat) rehberine bakın. Eski öğreticilerdeki `streamUI` ve `createStreamableUI` AI SDK RSC paketine aittir. Doküman o paketi deneysel olarak işaretliyor ve production için AI SDK UI'yı öneriyor.[^2]
+> Bu rehberdeki kodlar `ai@7.0.140` ve `@ai-sdk/react@4.0.143` ile çalıştırıldı; bileşenler jsdom'da React 19.3 ile render edildi. Araç tanımı, `stopWhen` ve onay akışı için [Tool Calling ve Structured Output](/academy/ai/tool-calling-and-structured-output), `useChat` ve route kurulumu için [AI SDK ve Streaming Sohbet](/academy/ai/ai-sdk-and-streaming-chat) rehberine bakın. Eski öğreticilerdeki `streamUI` ve `createStreamableUI` AI SDK RSC paketine aittir. Doküman o paketi deneysel olarak işaretliyor ve production için AI SDK UI'yı öneriyor.[^3]
 
 ## Bir aracın arayüze yolculuğu
 
-Bir araç çağrısı, `message.parts` içindeki tek bir parça olarak gelir. Parça ilerledikçe `state` alanı değişir:[^3]
+Bir araç çağrısı, `message.parts` içindeki tek bir parça olarak gelir. Parça ilerledikçe `state` alanı değişir:[^4]
 
 | Adım | `state` | Arayüzde |
 | --- | --- | --- |
@@ -23,7 +23,7 @@ Bir araç çağrısı, `message.parts` içindeki tek bir parça olarak gelir. Pa
 | Araç bitti | `output-available` | Bileşen |
 | Araç hata verdi | `output-error` | Hata kartı |
 
-AI SDK 5.0'dan beri araç çağrısı akışı varsayılan olarak açık. Bu yüzden girdi tamamlanmadan `input-streaming` parçalarında görünür.[^3]
+AI SDK 5.0'dan beri araç çağrısı akışı varsayılan olarak açık. Bu yüzden girdi tamamlanmadan `input-streaming` parçalarında görünür.[^4]
 
 ## Araç ve bileşen
 
@@ -170,9 +170,11 @@ export function MessageParts({ message, live }: { message: GenMessage; live: boo
 
 ## Yükleme durumları
 
+Yükleme göstergesi tasarımı için Cloudscape Design System kılavuzu işe yarar. İçerik (liste, tablo, kod bloğu) akarken içeriğin geleceği yerde yükleme çubuğu ve yanında yükleme metni göstermeyi, 1 saniyeden kısa beklemelerde yükleme durumu göstermemeyi (titreme yapar) ve göstergeyi görünür bir metinle eşlemeyi öneriyor.[^5] Bu rehberdeki iskelet de "Sipariş sorgulanıyor…" metniyle gelir.
+
 ### Ara sonuçlar
 
-`execute`'u async generator yaparsanız her `yield` bir ara sonuç olur ve son `yield` kesin sonuç sayılır.[^4]
+`execute`'u async generator yaparsanız her `yield` bir ara sonuç olur ve son `yield` kesin sonuç sayılır.[^6]
 
 ```ts
 trackShipment: tool({
@@ -238,7 +240,7 @@ return messages.map((message, index) => (
 | Tanınmayan araç | İstemci bu aracı bilmiyor | `default` koldaki yedek kart |
 | Akış yarıda kesildi | `stop()` | `live` bayrağı |
 
-- **`output-error`:** Doküman `part.errorText`'i gösteriyor.[^1] `toUIMessageStream`'e `onError` vermezseniz bu metin `An error occurred.` olur, verirseniz sizin metniniz gelir.[^3] Şemaya uymayan girdide `part.input` modelin ham, geçersiz girdisidir ve tipine güvenilmemelidir. Bileşene vermeyin.
+- **`output-error`:** Doküman `part.errorText`'i gösteriyor.[^1] `toUIMessageStream`'e `onError` vermezseniz bu metin `An error occurred.` olur, verirseniz sizin metniniz gelir.[^4] Şemaya uymayan girdide `part.input` modelin ham, geçersiz girdisidir ve tipine güvenilmemelidir. Bileşene vermeyin.
 - **Bileşen çökmesi:** Kayıtlı çıktı bileşenin beklediği şekilde değilse (ör. `status` enum'unda artık olmayan bir değer) `STATUS[status].toUpperCase()` hata fırlatır. `ToolBoundary` olmadan bu hata tüm sohbeti düşürür. Sınır varsa yalnızca o kart "Bu sonuç gösterilemiyor." olur ve mesajın metni görünmeye devam eder.
 
 > [!DONT]
@@ -251,9 +253,9 @@ return messages.map((message, index) => (
 
 ## Kaydedilen mesajlar
 
-Araç parçaları düz veri olduğu için mesajları kaydedip sonra `useChat`'in `messages` seçeneğiyle geri yükleyebilirsiniz. Kaydederken `useChat` biçimini (`UIMessage`) saklayın, `ModelMessage` değil, çünkü arayüzün ihtiyaç duyduğu alanları korur.[^5]
+Araç parçaları düz veri olduğu için mesajları kaydedip sonra `useChat`'in `messages` seçeneğiyle geri yükleyebilirsiniz. Kaydederken `useChat` biçimini (`UIMessage`) saklayın, `ModelMessage` değil, çünkü arayüzün ihtiyaç duyduğu alanları korur.[^7]
 
-Bileşenler ve şemalar zamanla değişir, eski kayıtlar yeni şemalara uymayabilir. Yüklerken `validateUIMessages` ile geçmişi güncel araç şemalarına göre doğrulayın. Uymayan mesajlarda `TypeValidationError` fırlatılır:[^5]
+Bileşenler ve şemalar zamanla değişir, eski kayıtlar yeni şemalara uymayabilir. Yüklerken `validateUIMessages` ile geçmişi güncel araç şemalarına göre doğrulayın. Uymayan mesajlarda `TypeValidationError` fırlatılır:[^7]
 
 ```ts
 // app/genui/load-chat.ts
@@ -286,7 +288,9 @@ export async function loadValidated(stored: unknown[]): Promise<GenMessage[]> {
 ## Ek kaynaklar
 
 1. [AI SDK: Generative User Interfaces](https://ai-sdk.dev/docs/ai-sdk-ui/generative-user-interfaces) *(article)* — Araç sonucunun bileşene prop olarak geçmesi ve `tool-<ad>` parçalarının render edilmesi.
-2. [AI SDK: RSC Overview](https://ai-sdk.dev/docs/ai-sdk-rsc/overview) *(article)* — AI SDK RSC'nin deneysel durumu ve AI SDK UI önerisi.
-3. [AI SDK: Chatbot Tool Usage](https://ai-sdk.dev/docs/ai-sdk-ui/chatbot-tool-usage) *(article)* — Araç parçası durumları, kısmi girdi akışı ve hata mesajı maskeleme.
-4. [AI SDK: Tool Calling](https://ai-sdk.dev/docs/ai-sdk-core/tools-and-tool-calling) *(article)* — Ara sonuçlar için async generator `execute`.
-5. [AI SDK: Chatbot Message Persistence](https://ai-sdk.dev/docs/ai-sdk-ui/chatbot-message-persistence) *(article)* — Mesajları kaydetme, `messages` seçeneği ve `validateUIMessages`.
+2. [Builder.io: Designing generative UI in an agent-native world](https://www.builder.io/blog/designing-generative-ui-in-an-agent-native-world) *(article)* — Araç çağrılarını hazır bileşenlere eşleme ve her istekte kod üretmenin maliyeti (26 Mayıs 2026).
+3. [AI SDK: RSC Overview](https://ai-sdk.dev/docs/ai-sdk-rsc/overview) *(article)* — AI SDK RSC'nin deneysel durumu ve AI SDK UI önerisi.
+4. [AI SDK: Chatbot Tool Usage](https://ai-sdk.dev/docs/ai-sdk-ui/chatbot-tool-usage) *(article)* — Araç parçası durumları, kısmi girdi akışı ve hata mesajı maskeleme.
+5. [Cloudscape Design System: Generative AI loading states](https://cloudscape.design/patterns/genai/genai-loading-states/) *(article)* — İşleme ve akış aşamaları, yükleme göstergesi, 1 saniyeden kısa beklemeler ve erişilebilirlik.
+6. [AI SDK: Tool Calling](https://ai-sdk.dev/docs/ai-sdk-core/tools-and-tool-calling) *(article)* — Ara sonuçlar için async generator `execute`.
+7. [AI SDK: Chatbot Message Persistence](https://ai-sdk.dev/docs/ai-sdk-ui/chatbot-message-persistence) *(article)* — Mesajları kaydetme, `messages` seçeneği ve `validateUIMessages`.
