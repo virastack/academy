@@ -1318,6 +1318,13 @@
                   "kind": "lesson"
                 },
                 {
+                  "slug": "rag-and-embeddings",
+                  "title": "RAG ve Embedding",
+                  "description": "Kendi verinizi embedding ile arayıp modele bağlam olarak verme, parçalama, arama kalitesini ölçme ve güvenlik.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
                   "slug": "security-and-cost",
                   "title": "Güvenlik ve Maliyet",
                   "description": "Prompt injection, API anahtarı koruma, rate limit ve token maliyeti.",
