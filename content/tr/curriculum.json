@@ -1321,7 +1321,7 @@
                   "slug": "security-and-cost",
                   "title": "Güvenlik ve Maliyet",
                   "description": "Prompt injection, API anahtarı koruma, rate limit ve token maliyeti.",
-                  "status": "coming_soon",
+                  "status": "published",
                   "kind": "lesson"
                 },
                 {
