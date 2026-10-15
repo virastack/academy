@@ -48,7 +48,7 @@ description: Projeye yeni React bileşeni ekler. Kullanıcı "yeni bileşen" vey
 
 > [!TIP]
 >
-> **Kimin tetikleyeceğini seçin.** Varsayılan olarak hem siz `/skill-adı` yazarak hem ajan uygun görünce skill'i çalıştırır. `deploy` ve `commit` gibi yan etkisi olan işlerde `disable-model-invocation: true` yazın, böylece yalnızca siz tetiklersiniz. Yalnızca ajanın bilmesi gereken arka plan bilgisi için `user-invocable: false` kullanın.[^1] Skill'in yalnızca belirli dosyalarla çalışırken öne çıkması için `paths: "**/*.tsx"` yazabilirsiniz.[^1], [^3]
+> **Kimin tetikleyeceğini seçin.** Varsayılan olarak hem siz `/skill-adı` yazarak hem ajan uygun görünce skill'i çalıştırır. `deploy` ve `commit` gibi yan etkisi olan işlerde `disable-model-invocation: true` yazın, böylece yalnızca siz tetiklersiniz. Yalnızca ajanın bilmesi gereken arka plan bilgisi için `user-invocable: false` kullanın.[^1] Skill'in yalnızca belirli dosyalarla çalışırken öne çıkması için `paths: "**/*.tsx"` yazabilirsiniz.[^1][^3]
 
 ## Nereye konur?
 
@@ -57,7 +57,7 @@ description: Projeye yeni React bileşeni ekler. Kullanıcı "yeni bileşen" vey
 | [!claudeCode] | `.claude/skills/<ad>/SKILL.md` | `~/.claude/skills/<ad>/SKILL.md` |
 | [!cursor] | `.cursor/skills/` veya `.agents/skills/` | `~/.cursor/skills/` veya `~/.agents/skills/` |
 
-[!cursor] `.claude/skills/` klasörünü de okur, yani iki aracı birlikte kullanıyorsanız skill'i `.claude/skills/` altına koymak yeter.[^3] Proje skill'ini commit edin, ekip de kullanır.[^1] [!cursor]'da `name` alanı klasör adıyla aynı olmalı (küçük harf, rakam, tire).[^3] Eskiden `.claude/commands/` içine yazdığınız özel komutlar da artık skill ile aynı şeydir.[^1] İskeleti elle kurmak zorunda değilsiniz: [!cursor]'da `/create-skill`, [!claudeCode]'da `skill-creator` eklentisi var.[^1], [^3]
+[!cursor] `.claude/skills/` klasörünü de okur, yani iki aracı birlikte kullanıyorsanız skill'i `.claude/skills/` altına koymak yeter.[^3] Proje skill'ini commit edin, ekip de kullanır.[^1] [!cursor]'da `name` alanı klasör adıyla aynı olmalı (küçük harf, rakam, tire).[^3] Eskiden `.claude/commands/` içine yazdığınız özel komutlar da artık skill ile aynı şeydir.[^1] İskeleti elle kurmak zorunda değilsiniz: [!cursor]'da `/create-skill`, [!claudeCode]'da `skill-creator` eklentisi var.[^1][^3]
 
 > [!WARNING]
 >
@@ -81,20 +81,9 @@ Emil Kowalski aynı sorunu animasyon tarafında çözüyor: ajanlar "iyi hissett
 
 > [!TIP]
 >
-> Hepsini kurmayın. Her skill'in açıklaması her konuşmada bağlamda durur. Çok skill olunca [!claudeCode] bazı açıklamaları kırpar, `/skill-doctor` hiç kullanmadığınız skill'leri gösterir.[^1] Önerim: mimari, klasörleme ve isimlendirme için ViraStack AI (skill değil, kural kiti), arayüz için `emil-design-eng` ve `make-interfaces-feel-better` ile başlamanız.
+> Hepsini kurmayın. Her skill'in açıklaması her konuşmada bağlamda durur. Çok skill olunca [!claudeCode] bazı açıklamaları kırpar, `/skill-doctor` hiç kullanmadığınız skill'leri gösterir.[^1]
 
-<details>
-<summary>Skill işe yarıyor mu?</summary>
-
-<ul>
-<li>Tek denemeyle karar vermeyin. Anthropic'e göre önce ajanın skill'siz nerede takıldığını görün, skill'i yalnızca o boşluğu kapatacak kadar yazın.[^2] Sonra aynı isteği yeni bir konuşmada skill'li ve skill'siz çalıştırıp karşılaştırın.[^1] [!claudeCode]'daki `skill-creator` eklentisi bu karşılaştırmayı otomatikleştiriyor.[^1]</li>
-</ul>
-
-</details>
-
-> [!TIP]
->
-> [!claudeCode]'u geliştiren ekibin konuşmasını ve Anthropic'in skill yazılarını okuyarak daha fazla örnek görebilirsiniz.
+**Skill işe yarıyor mu?** Tek denemeyle karar vermeyin. Anthropic'e göre önce ajanın skill'siz nerede takıldığını görün, skill'i yalnızca o boşluğu kapatacak kadar yazın.[^2] Sonra aynı isteği yeni bir konuşmada skill'li ve skill'siz çalıştırıp karşılaştırın.[^1] [!claudeCode]'daki `skill-creator` eklentisi bu karşılaştırmayı otomatikleştiriyor.[^1]
 
 ## Kendin dene
 
