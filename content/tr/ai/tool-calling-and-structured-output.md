@@ -51,7 +51,7 @@ export const tools = {
 ```
 
 - **`description`:** Model aracı ne zaman çağıracağına buna bakarak karar verir.[^1] "Geri alınamaz" gibi uyarıları buraya yazın. Matt Pocock'un eğitiminde de bu alan, modele aracı ne için kullanacağını söyleyen alan olarak anlatılıyor.[^3]
-- **`inputSchema`:** Zod şemasıdır. Model şemayı görür, SDK gelen girdiyi bu şemaya göre doğrular.[^1] Alanlara `.describe()` ile ipucu ekleyebilirsiniz. Sahte modelle denedim: açıklama modele giden şemada `description` olarak yer alıyor.
+- **`inputSchema`:** Zod şemasıdır. Model şemayı görür, SDK gelen girdiyi bu şemaya göre doğrular.[^1] Alanlara `.describe()` ile ipucu ekleyebilirsiniz. Açıklama modele giden şemada `description` olarak yer alır.
 - **`execute`:** Doğrulanmış girdiyle çağrılır. Döndürdüğünüz değer modele geri verilir.
 - **`steps`:** `generateText` sonucunda her adımın `toolCalls` ve `toolResults` alanları bulunur. Pocock bunu hata ayıklama için öneriyor.[^3] İki adımlı sahte bir akışta `result.steps[0].toolCalls` çağrının adını ve girdisini, `toolResults` de `execute`'un döndürdüğü değeri verdi.
 
@@ -377,11 +377,11 @@ export async function streamRecipe() {
 
 ### Şema açıklamaları ve sınırları
 
-Zod alanlarına yazdığınız `.describe()` metni modele giden JSON şemasında `description` olarak yer alır. Sahte modelin aldığı `responseFormat` içinde `Kişinin adı` açıklaması göründü. Matt Pocock bu ipucunun özellikle alan adları açıklayıcı olmadığında işe yaradığını söylüyor. Örneği `generateObject` ile yazılmış ve sayfa Ocak 2025'te güncellenmiş. Kavram `Output.object` için de geçerli, API ise eski.[^5]
+Zod alanlarına yazdığınız `.describe()` metni modele giden JSON şemasında `description` olarak yer alır. Matt Pocock bu ipucunun özellikle alan adları açıklayıcı olmadığında işe yaradığını söylüyor. Örneği `generateObject` ile yazılmış ve sayfa Ocak 2025'te güncellenmiş. Kavram `Output.object` için de geçerli, API ise eski.[^5]
 
-Sağlayıcı şemanın tamamını desteklemeyebilir. JSONSchemaBench 10.000 gerçek JSON şeması üzerinde altı çerçeveyi karşılaştırıyor. OpenAI ve Gemini için kapsama en düşük, uyum oranı çok yüksek çıkmış. Yazarlar bunu "daha muhafazakâr" bir strateji olarak, yani şema özelliklerinin yalnızca bir alt kümesinin desteklenmesi olarak yorumluyor. Örneğin OpenAI için GitHub Easy veri kümesinde "empirical coverage" 0,29, "compliance rate" 0,97.[^6] Çalışma Ocak 2025'te yayımlandı ve o günkü sağlayıcı davranışını ölçtü. Sağlayıcıların bugün de aynı olduğunu doğrulamadım.
+Sağlayıcı şemanın tamamını desteklemeyebilir. JSONSchemaBench'in (Ocak 2025) 10.000 gerçek JSON şemasıyla yaptığı karşılaştırmada OpenAI ve Gemini'nin şema kapsaması en düşük çıktı. Yazarlar bunu "daha muhafazakâr" bir stratejiye, yani şema özelliklerinin yalnızca bir alt kümesinin desteklenmesine bağlıyor.[^6]
 
-Format kısıtı akıl yürütmeyi de etkileyebilir. Tam ve arkadaşlarının çalışması, JSON gibi format kısıtlarının LLM'lerin akıl yürütme performansını anlamlı biçimde düşürdüğünü, kısıt sıkılaştıkça düşüşün büyüdüğünü bildiriyor (Ağustos 2024).[^7] Bu tek bir çalışma. Yeniden üretmedim ve karşı görüşleri doğrulayamadım.
+Format kısıtı akıl yürütmeyi de etkileyebilir. Tam ve arkadaşlarının çalışması, JSON gibi format kısıtlarının LLM'lerin akıl yürütme performansını anlamlı biçimde düşürdüğünü, kısıt sıkılaştıkça düşüşün büyüdüğünü bildiriyor (Ağustos 2024).[^7] Bu tek bir çalışma.
 
 > [!TIP]
 >
@@ -397,11 +397,7 @@ Format kısıtı akıl yürütmeyi de etkileyebilir. Tam ve arkadaşlarının ç
 | Cevap bir şemaya uyan veri olsun (sınıflandırma, form doldurma) | `Output.object` |
 | Cevap önceden belli seçeneklerden biri olsun | `Output.choice` |
 
-Model seçerken araç çağırma doğruluğunu Berkeley Function Calling Leaderboard'da karşılaştırabilirsiniz. Sayfaya göre V3 çok turlu etkileşimleri ekledi, V4 "holistic agentic evaluation" olarak tanımlanıyor ve sayfa 12 Nisan 2026'da güncellenmiş.[^8] Sayfa araç hatalarının hangi türlerinin sık olduğuna dair bir bulgu vermiyor. Sıralamadaki sayıları rehbere almadım.
-
-> [!NOTE]
->
-> Aynı işleri yapan başka kütüphaneler de var. PodRocket'in TanStack AI bölümünün açıklamasına göre Jack Herrington tip güvenli araç çağrılarını ve tek seferde TypeScript çalıştıran "code mode"u anlatıyor (18 Haziran 2026).[^9] Yalnızca bölüm açıklamasını okudum, AI SDK ile karşılaştırması hakkında bir şey söyleyemem.
+Model seçerken araç çağırma doğruluğunu Berkeley Function Calling Leaderboard'da karşılaştırabilirsiniz. Sayfaya göre V3 çok turlu etkileşimleri ekledi, V4 "holistic agentic evaluation" olarak tanımlanıyor ve sayfa 12 Nisan 2026'da güncellenmiş.[^8]
 
 ## Eski öğreticilerle karşılaştırma
 
@@ -432,4 +428,3 @@ Model seçerken araç çağırma doğruluğunu Berkeley Function Calling Leaderb
 6. [Geng ve ark.: JSONSchemaBench](https://arxiv.org/abs/2501.10868) *(research)* — 10.000 gerçek JSON şemasında kısıtlı çözümleme çerçevelerinin ve sağlayıcıların kapsaması.
 7. [Tam ve ark.: Let Me Speak Freely?](https://arxiv.org/abs/2408.02442) *(research)* — Format kısıtlarının LLM akıl yürütme performansına etkisi.
 8. [Berkeley Function Calling Leaderboard](https://gorilla.cs.berkeley.edu/leaderboard.html) *(research)* — Araç çağırma doğruluğunu ölçen sıralama, V4.
-9. [PodRocket: TanStack AI with Jack Herrington](https://podrocket.logrocket.com/tanstack-ai-with-jack-herrington) *(article)* — Bölüm açıklaması: tip güvenli araç çağrıları ve "code mode".
