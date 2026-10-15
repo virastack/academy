@@ -5,7 +5,9 @@ lastVerified: "2026-10-15"
 translationKey: "ai/design-to-component"
 ---
 
-Bu projede bir profil kartı tasarımını React bileşenine çevireceksiniz. Figma MCP tasarımı okur, skill görünümü yönlendirir, Playwright MCP sonucu tarayıcıda kontrol eder, hazır testler de "bitti" demenizi sağlar. Dosyalar GitHub'da hazır: [design-to-component](https://github.com/virastack/academy/tree/main/examples/ai/design-to-component). Siz yalnızca istemleri yazıp sonucu denetlersiniz.
+Bu projede bir profil kartı tasarımını React bileşenine çevireceksiniz. Figma MCP tasarımı okur, skill görünümü yönlendirir, Playwright MCP sonucu tarayıcıda kontrol eder, hazır testler de "bitti" demenizi sağlar.
+
+Dosyalar GitHub'da hazır: [design-to-component](https://github.com/virastack/academy/tree/main/examples/ai/design-to-component).
 
 > [!NOTE]
 >
