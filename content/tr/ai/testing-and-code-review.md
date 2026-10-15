@@ -13,7 +13,7 @@ AI test yazmakta hızlıdır. Ama geçen test, işe yarayan test demek değildir
 
 ## Önce testleri çalıştırın
 
-Simon Willison, mevcut bir projede oturumu şu cümleyle açmayı öneriyor: "First run the tests". Ajan testlerin nasıl çalıştığını öğrenir, değişiklikten sonra tekrar çalıştırma ihtimali artar ve test yazma moduna girer.[^2] Willison'a göre ajanlarla çalışırken otomatik test artık isteğe bağlı değil. Ajan testi hızlıca yazabildiği için eski "zaman alıyor" itirazı kalmadı.[^2]
+Simon Willison, mevcut bir projede oturumu şu cümleyle açmayı öneriyor: *"First run the tests"*. Ajan testlerin nasıl çalıştığını öğrenir, değişiklikten sonra tekrar çalıştırma ihtimali artar ve test yazma moduna girer.[^2] Willison'a göre ajanlarla çalışırken otomatik test artık isteğe bağlı değil. Ajan testi hızlıca yazabildiği için eski *"zaman alıyor"* itirazı kalmadı.[^2]
 
 Claude Code dokümanındaki test tarifi dört adımdan oluşuyor.[^3] Aynı sırayı `CartItem` için şöyle yazabilirsiniz:
 
@@ -28,7 +28,7 @@ Doküman iki şey daha söylüyor. Claude mevcut test dosyalarına bakıp aynı 
 
 > [!TIP]
 >
-> "Test yaz" demeyin. "Stok bitince Artır butonu kapanmalı" deyin. Davranışı siz söylerseniz AI, bileşenin iç yapısını test etmeye kaymaz.
+> *"Test yaz"* demeyin. *"Stok bitince Artır butonu kapanmalı"* deyin. Davranışı siz söylerseniz AI, bileşenin iç yapısını test etmeye kaymaz.
 
 ## İyi test neye benzer
 
@@ -108,7 +108,7 @@ export default defineConfig({
 >
 > Vitest'te `globals` açık değilse Testing Library testler arasında temizlik yapmaz. Çünkü otomatik temizlik, global `afterEach` varsa devreye girer.[^7] Belirti: testler tek tek geçer ama birlikte çalışınca "Found multiple elements with the role..." hatası çıkar. Bu kurulumda aynı hata oluştu. Çözüm iki yoldan biri: `globals: true` açmak ya da yukarıdaki gibi `afterEach(() => cleanup())` yazmak.[^7]
 
-Şimdi iki test dosyası. İlki, "bu bileşene test yaz" dendiğinde yüzeyde yeterli görünen türden:
+Şimdi iki test dosyası. İlki, *"bu bileşene test yaz"* dendiğinde yüzeyde yeterli görünen türden:
 
 ```tsx
 // src/weak.test.tsx
@@ -180,9 +180,9 @@ Zayıf test iki hatayı da kaçırdı. Stok aşılabiliyor ve tutar yanlış, am
 
 > [!DONT]
 >
-> Yalnızca "tüm testler geçti" çıktısına bakıp ilerlemeyin. Yukarıdaki zayıf test iki hatayı da kaçırdı.
+> Yalnızca *"tüm testler geçti"* çıktısına bakıp ilerlemeyin. Yukarıdaki zayıf test iki hatayı da kaçırdı.
 
-Bu fikir ciddi bir ölçekte de kullanılıyor. Meta'nın ACH sistemi önce bilerek hatalı kod sürümleri (mutant) üretiyor, sonra bunları yakalayan testleri bir LLM'e yazdırıyor. Messenger ve WhatsApp'taki test-a-thon'larda mühendisler üretilen testlerin %73'ünü kabul etmiş.[^8] Çalışma Android Kotlin sınıfları üzerinde yapıldı. Frontend için doğrudan karşılığı yok, ama "önce hatayı üret, testin yakaladığını göster" mantığı aynı.
+Bu fikir ciddi bir ölçekte de kullanılıyor. Meta'nın ACH sistemi önce bilerek hatalı kod sürümleri (mutant) üretiyor, sonra bunları yakalayan testleri bir LLM'e yazdırıyor. Messenger ve WhatsApp'taki test-a-thon'larda mühendisler üretilen testlerin %73'ünü kabul etmiş.[^8] Çalışma Android Kotlin sınıfları üzerinde yapıldı. Frontend için doğrudan karşılığı yok, ama *"önce hatayı üret, testin yakaladığını göster"* mantığı aynı.
 
 Simon Willison da aynı şeyi şöyle söylüyor: her değişiklik, uygulama geri alınınca kırılan bir test içermeli.[^9]
 
@@ -380,7 +380,7 @@ Komut `.claude/agents/` altına üç ajan tanımını, bir `.mcp.json` dosyasın
 
 ## AI çıktısını gözden geçirme
 
-Willison'a göre sizin işiniz "çalıştığını kanıtladığınız kod teslim etmek". Büyük ve test edilmemiş bir PR göndermek, asıl işi gözden geçirene yüklemek demek. Kanıt olarak PR'a komut ve çıktısını yapıştırabilir, zor gösterilen değişiklikte ekran kaydı ekleyebilirsiniz. AI kullanmanız sorumluluğu değiştirmiyor, teslim edilen işten yine siz sorumlusunuz.[^9]
+Willison'a göre sizin işiniz *"çalıştığını kanıtladığınız kod teslim etmek"*. Büyük ve test edilmemiş bir PR göndermek, asıl işi gözden geçirene yüklemek demek. Kanıt olarak PR'a komut ve çıktısını yapıştırabilir, zor gösterilen değişiklikte ekran kaydı ekleyebilirsiniz. AI kullanmanız sorumluluğu değiştirmiyor, teslim edilen işten yine siz sorumlusunuz.[^9]
 
 Addy Osmani, AI kodunda sık gördüğü kalıpları sıralıyor. Bunlar yazarın gözlemi, ölçülmüş veri değil:[^12]
 
@@ -417,7 +417,7 @@ Bu diff'i incele. Yanlış varsayım, gereksiz soyutlama, ölü kod ve kullanıc
 
 1. `CartItem` ve iki test dosyasını kurun. Önce `afterEach(() => cleanup())` satırını silip "Found multiple elements" hatasını görün, sonra geri ekleyin.
 2. `qty >= stock` satırını `qty > stock` yapın. Hangi testin kırıldığına, hangisinin geçtiğine bakın. Sonra geri alın.
-3. Kendi bir bileşeniniz için AI'a "test yaz" dedirtin. Çıktıdaki testleri bilerek bozduğunuz kodla deneyin. Kaçırdığı bir hata var mı?
+3. Kendi bir bileşeniniz için AI'a *"test yaz"* dedirtin. Çıktıdaki testleri bilerek bozduğunuz kodla deneyin. Kaçırdığı bir hata var mı?
 4. Demo sayfayı Playwright MCP ile gezdirin, akışı `e2e/cart.spec.ts` olarak yazdırın ve çalıştırın.
 5. Son değişikliğiniz için yukarıdaki inceleme istemini yeni bir oturumda çalıştırın. Bulduklarını kendiniz doğrulayın.
 
