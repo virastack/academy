@@ -1121,7 +1121,7 @@
                   "slug": "micro-frontend",
                   "title": "Micro Frontend",
                   "description": "Ne zaman gerekir, ne zaman gerekmez? Vite ve Module Federation ile temel kurulum.",
-                  "status": "coming_soon",
+                  "status": "published",
                   "kind": "lesson"
                 },
                 {
