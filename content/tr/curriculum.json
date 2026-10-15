@@ -1141,14 +1141,14 @@
                   "slug": "code-quality",
                   "title": "Kod Kalitesi ve Ekip Standartları",
                   "description": "ESLint, Prettier, commit kuralları ve CI ile otomatik kontrol.",
-                  "status": "coming_soon",
+                  "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "i18n",
                   "title": "Çoklu Dil (i18n)",
                   "description": "next-intl ile çeviri, dil yönlendirmesi ve tarih/para birimi formatı.",
-                  "status": "coming_soon",
+                  "status": "published",
                   "kind": "lesson"
                 },
                 {
