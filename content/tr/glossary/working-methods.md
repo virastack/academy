@@ -11,7 +11,7 @@ Agile; yazılımı tek seferde büyük bir teslimle değil, kısa aralıklarla k
 
 ## Scrum
 
-Scrum; işi sprint adı verilen sabit sürelere bölen bir çalışma çerçevesidir. Takımda üç sorumluluk bulunur: neyin yapılacağına ve önceliğine karar veren **Product Owner**, takımın Scrum'ı doğru uygulamasına yardım eden **Scrum Master** ve işi geliştiren **Developers**. Sprintte yapılacak işler sprint başında belirlenir ve takım sprint bitene kadar bu işlere odaklanır.
+Scrum; işi sprint adı verilen sabit sürelere bölen bir çalışma çerçevesidir. Takımda üç sorumluluk bulunur: neyin yapılacağına ve önceliğine karar veren **Product Owner** (Ürün Sahibi), takımın Scrum'ı doğru uygulamasına yardım eden **Scrum Master** (Scrum Yöneticisi) ve işi geliştiren **Developers** (Geliştiriciler). Sprintte yapılacak işler sprint başında belirlenir ve takım sprint bitene kadar bu işlere odaklanır.
 
 ## Sprint
 
@@ -19,7 +19,7 @@ Sprint; takımın belirli bir sürede ne kadar iş bitirebileceğini öngörerek
 
 ## Kanban
 
-Kanban; işlerin sabit sürelere bölünmeden, bir pano üzerinde sürekli aktığı bir çalışma yöntemidir. Panoda işin aşamalarını gösteren sütunlar bulunur, örneğin *To Do*, *In Progress* ve *Done*. Bir iş bittiğinde *To Do* sütunundan sıradaki iş çekilir. Aynı anda devam eden iş sayısı sınırlandırılır (**WIP limiti**), böylece yarım kalan işler birikmez.
+Kanban; işlerin sabit sürelere bölünmeden, bir pano üzerinde sürekli aktığı bir çalışma yöntemidir. Panoda işin aşamalarını gösteren sütunlar bulunur, örneğin *To Do* (Yapılacak), *In Progress* (Devam Ediyor) ve *Done* (Tamamlandı). Bir iş bittiğinde *To Do* sütunundan sıradaki iş çekilir. Aynı anda devam eden iş sayısı sınırlandırılır (**WIP limiti**, yani devam eden iş limiti), böylece yarım kalan işler birikmez.
 
 ## Takımlar hangisini neden seçer?
 
