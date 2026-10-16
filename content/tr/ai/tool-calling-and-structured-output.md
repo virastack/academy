@@ -420,10 +420,10 @@ Model seçerken araç çağırma doğruluğunu Berkeley Function Calling Leaderb
 
 ## Kaynaklar
 
-1. [AI SDK: Tool Calling](https://ai-sdk.dev/docs/ai-sdk-core/tools-and-tool-calling) *(article)* — `tool()`, `inputSchema`, `stopWhen`, hata davranışı ve `toolApproval`.
-2. [AI SDK: Chatbot Tool Usage](https://ai-sdk.dev/docs/ai-sdk-ui/chatbot-tool-usage) *(article)* — `useChat`'te araç parçaları ve durumları, `addToolOutput`, onay arayüzü ve `sendAutomaticallyWhen`.
+1. [AI SDK: Tool Calling](https://ai-sdk.dev/docs/ai-sdk-core/tools-and-tool-calling) *(doc)* — `tool()`, `inputSchema`, `stopWhen`, hata davranışı ve `toolApproval`.
+2. [AI SDK: Chatbot Tool Usage](https://ai-sdk.dev/docs/ai-sdk-ui/chatbot-tool-usage) *(doc)* — `useChat`'te araç parçaları ve durumları, `addToolOutput`, onay arayüzü ve `sendAutomaticallyWhen`.
 3. [Matt Pocock (AI Hero): Tool Calls with Vercel AI SDK](https://www.aihero.dev/tool-calls-with-vercel-ai-sdk) *(article)* — `tool()`, `description` ve `steps` ile hata ayıklama. Sayfa 7 Ocak 2025'te güncellenmiş.
-4. [AI SDK: Generating Structured Data](https://ai-sdk.dev/docs/ai-sdk-core/generating-structured-data) *(article)* — `Output.object`, `Output.array`, `Output.choice`, akış ve hata türleri.
+4. [AI SDK: Generating Structured Data](https://ai-sdk.dev/docs/ai-sdk-core/generating-structured-data) *(doc)* — `Output.object`, `Output.array`, `Output.choice`, akış ve hata türleri.
 5. [Matt Pocock (AI Hero): Structured Outputs with Vercel AI SDK](https://www.aihero.dev/structured-outputs-with-vercel-ai-sdk) *(article)* — Zod şeması ve `describe` ile alan ipuçları. Sayfa 5 Ocak 2025'te güncellenmiş.
 6. [Geng ve ark.: JSONSchemaBench](https://arxiv.org/abs/2501.10868) *(research)* — 10.000 gerçek JSON şemasında kısıtlı çözümleme çerçevelerinin ve sağlayıcıların kapsaması.
 7. [Tam ve ark.: Let Me Speak Freely?](https://arxiv.org/abs/2408.02442) *(research)* — Format kısıtlarının LLM akıl yürütme performansına etkisi.

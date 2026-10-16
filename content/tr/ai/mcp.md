@@ -97,11 +97,11 @@ Next.js 16 ve sonrasında dev sunucusu `/_next/mcp` adresinde kendi MCP uç nokt
 
 ## Kaynaklar
 
-1. [Model Context Protocol: What is MCP?](https://modelcontextprotocol.io/docs/getting-started/intro) *(article)* — MCP'nin tanımı ve ekosistemi.
-2. [Claude Code: Connect Claude Code to tools via MCP](https://code.claude.com/docs/en/mcp) *(article)* — Sunucu ekleme komutları, kapsamlar, `.mcp.json`, onay ve araç ertelemesi.
-3. [Cursor: Model Context Protocol (MCP)](https://cursor.com/docs/mcp) *(article)* — `mcp.json` yapılandırması, araç onayı ve güvenlik notları.
-4. [Figma: Set up the remote server](https://developers.figma.com/docs/figma-mcp-server/remote-server-installation/) *(article)* — Uzak sunucu kurulumu, eklenti ve OAuth girişi.
-5. [Figma: Tools and prompts](https://developers.figma.com/docs/figma-mcp-server/tools-and-prompts/) *(article)* — Tasarımdan kod araçları, değişkenler ve Code Connect.
+1. [Model Context Protocol: What is MCP?](https://modelcontextprotocol.io/docs/getting-started/intro) *(doc)* — MCP'nin tanımı ve ekosistemi.
+2. [Claude Code: Connect Claude Code to tools via MCP](https://code.claude.com/docs/en/mcp) *(doc)* — Sunucu ekleme komutları, kapsamlar, `.mcp.json`, onay ve araç ertelemesi.
+3. [Cursor: Model Context Protocol (MCP)](https://cursor.com/docs/mcp) *(doc)* — `mcp.json` yapılandırması, araç onayı ve güvenlik notları.
+4. [Figma: Set up the remote server](https://developers.figma.com/docs/figma-mcp-server/remote-server-installation/) *(doc)* — Uzak sunucu kurulumu, eklenti ve OAuth girişi.
+5. [Figma: Tools and prompts](https://developers.figma.com/docs/figma-mcp-server/tools-and-prompts/) *(doc)* — Tasarımdan kod araçları, değişkenler ve Code Connect.
 6. [microsoft/playwright-mcp](https://github.com/microsoft/playwright-mcp) *(repo)* — Erişilebilirlik snapshot'ı, araçlar, profil modları ve CLI ile karşılaştırma.
-7. [Next.js: Connecting coding agents to the Next.js MCP server](https://nextjs.org/docs/app/guides/mcp) *(article)* — `/_next/mcp` uç noktası ve `next-devtools-mcp` araçları.
+7. [Next.js: Connecting coding agents to the Next.js MCP server](https://nextjs.org/docs/app/guides/mcp) *(doc)* — `/_next/mcp` uç noktası ve `next-devtools-mcp` araçları.
 8. [Simon Willison: The lethal trifecta for AI agents](https://simonwillison.net/2025/Jun/16/the-lethal-trifecta/) *(article)* — Özel veri, güvenilmeyen içerik ve dış iletişim üçlüsü. Haziran 2025.

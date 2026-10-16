@@ -254,17 +254,17 @@ Elinizde büyük bir monolit varsa Mezzalira'nın önerdiği yol *strangler* yak
 ## Kaynaklar
 
 1. [Martin Fowler: Micro Frontends](https://martinfowler.com/articles/micro-frontends.html) *(article)* — Tanım, faydalar, entegrasyon yaklaşımları, bağımlılık tekrarı ve iletişim maliyeti. Yazar Cam Jackson, 2019.
-2. [Nx: Micro Frontend Architecture](https://nx.dev/concepts/module-federation/micro-frontend-architecture) *(article)* — Ne zaman mantıklı olduğu, sürüm kayması ve paylaşılan bağımlılık riskleri.
+2. [Nx: Micro Frontend Architecture](https://nx.dev/concepts/module-federation/micro-frontend-architecture) *(doc)* — Ne zaman mantıklı olduğu, sürüm kayması ve paylaşılan bağımlılık riskleri.
 3. [heise: Why many teams are better off with monoliths than with micro front ends](https://www.heise.de/en/background/Why-many-teams-are-better-off-with-monoliths-than-with-micro-front-ends-10639162.html) *(article)* — Modüler monolit, dağıtık monolit ve kullanım istatistikleri.
 4. [Ruben Casas: Micro Frontends, the Evolution of Frontend Architecture (QCon London 2023)](https://www.infoq.com/presentations/evolution-micro-frontend) *(video)* — Monolitten micro frontend'e uzanan yelpaze, karar ölçütleri ve 70 micro frontend'li dağıtık monolit örneği. 43 dk.
 5. [Syntax #860: Module Federation Microfrontends with ByteDance's Zack Jackson](https://beta.syntax.fm/show/860/module-federation-microfrontends-with-bytedance-s-zack-jackson/transcript) *(podcast)* — Module Federation'ın yaratıcısından ne zaman değer kattığı, monorepo ile başlama ve tip güvenliği.
-6. [Moraes et al.: Micro Frontend-Based Development (ICEIS 2024)](https://scitepress.org/PublishedPapers/2024/126273) *(paper)* — 16 çalışmanın sistematik taraması ve üç yaklaşımın bir vaka çalışmasında karşılaştırılması.
-7. [Module Federation: Quick Start](https://module-federation.io/guide/start/quick-start.html) *(article)* — Provider/consumer rolleri, `remotes`, `shared` ve manifest.
-8. [Module Federation: Vite entegrasyonu](https://module-federation.io/integrations/build-tool/vite) *(article)* — Kurulum, `exposes`, `shared` örnekleri ve tarayıcı hedefi notu.
+6. [Moraes et al.: Micro Frontend-Based Development (ICEIS 2024)](https://scitepress.org/PublishedPapers/2024/126273) *(research)* — 16 çalışmanın sistematik taraması ve üç yaklaşımın bir vaka çalışmasında karşılaştırılması.
+7. [Module Federation: Quick Start](https://module-federation.io/guide/start/quick-start.html) *(doc)* — Provider/consumer rolleri, `remotes`, `shared` ve manifest.
+8. [Module Federation: Vite entegrasyonu](https://module-federation.io/integrations/build-tool/vite) *(doc)* — Kurulum, `exposes`, `shared` örnekleri ve tarayıcı hedefi notu.
 9. [module-federation/vite](https://github.com/module-federation/vite) *(repo)* — Host ve remote yapılandırması, `server.origin`, `type: 'module'`, manifest ve chunk kısıtları.
 10. [freeCodeCamp: How to Build Micro Frontends in React with Vite and Module Federation](https://www.freecodecamp.org/news/how-to-build-micro-frontends-in-react-with-vite-and-module-federation/) *(article)* — `React.lazy` ve `Suspense` deseni. `@originjs/vite-plugin-federation` kullandığı için yapılandırması bu rehberden farklı.
-11. [Module Federation: Type Prompt](https://module-federation.io/guide/basic/type-prompt.html) *(article)* — Uzak tiplerin otomatik üretimi, `paths` ayarı ve sorun giderme.
-12. [Module Federation: shared](https://module-federation.io/configure/shared.html) *(article)* — `singleton`, `requiredVersion` ve `eager` seçenekleri.
+11. [Module Federation: Type Prompt](https://module-federation.io/guide/basic/type-prompt.html) *(doc)* — Uzak tiplerin otomatik üretimi, `paths` ayarı ve sorun giderme.
+12. [Module Federation: shared](https://module-federation.io/configure/shared.html) *(doc)* — `singleton`, `requiredVersion` ve `eager` seçenekleri.
 13. [Luca Mezzalira: The Dark Side of Micro-Frontends (React Advanced 2025)](https://gitnation.com/contents/building-micro-frontends) *(video)* — Kaba başlama, ince kabuk, global state, keşif şeması ve governance. 29 dk.
 14. [Luca Mezzalira: Why Your Micro-Frontends are a Distributed Monolith](https://www.youtube.com/watch?v=CpBP4FInj0g) *(video)* — Kaba başlama, ilk seviye URL yönlendirmesi, keşif şeması ile canary ve geri alma, global state'ten kaçınma ve fitness function'larla yönetişim.
 15. [Micro-Frontends Author Luca Mezzalira on What Most Teams Get Wrong](https://www.youtube.com/watch?v=PbSYWBx-gVw) *(video)* — Organizasyon ve kültürün mimariyle birlikte ele alınması, sade uygulama kabuğu, CSS izolasyonu ve otomatik yönetişim.

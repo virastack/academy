@@ -255,25 +255,25 @@ turbo prune web --docker
 
 1. [The New Stack: The Case for (and Against) Monorepos on the Frontend](https://thenewstack.io/the-case-for-and-against-monorepos-on-the-frontend/) *(article)* — Monorepo'nun frontend'de iş birliği maliyetine etkisi ve geçişin organizasyonel yönü.
 2. [Graphite: When to use a monorepo](https://graphite.com/guides/when-to-use-monorepo) *(article)* — Monorepo'nun uygun ve uygun olmadığı durumlar.
-3. [Rachel Potvin ve Josh Levenberg: Why Google Stores Billions of Lines of Code in a Single Repository](https://research.google/pubs/why-google-stores-billions-of-lines-of-code-in-a-single-repository/) *(paper)* — Google'ın tek repo modelinin gerekçeleri, avantajları ve ödünleşimleri. Communications of the ACM, 2016.
+3. [Rachel Potvin ve Josh Levenberg: Why Google Stores Billions of Lines of Code in a Single Repository](https://research.google/pubs/why-google-stores-billions-of-lines-of-code-in-a-single-repository/) *(research)* — Google'ın tek repo modelinin gerekçeleri, avantajları ve ödünleşimleri. Communications of the ACM, 2016.
 4. [Fireship: Monorepos, How the Pros Scale Huge Software Projects // Turborepo vs Nx](https://www.youtube.com/watch?v=9iU_IE6vnJ8) *(video)* — Monorepo'nun faydası ve boyut maliyeti, Nx ile Turborepo karşılaştırması ve `create-turbo` demosu. 9 dk, 2021.
 5. [techinterview.org: Frontend Monorepos, Turborepo, Nx, and the State of 2026](https://www.techinterview.org/post/3233475107/frontend-monorepos-turborepo-nx-2026/) *(article)* — Ne zaman benimsenir, Turborepo ile Nx farkı ve 2026 pratikleri. Haziran 2026 güncellemesi, yazar belirtilmemiş.
-6. [pnpm: Workspace](https://pnpm.io/workspaces) *(article)* — `pnpm-workspace.yaml`, `workspace:` protokolü ve tek lockfile.
-7. [Turborepo: Configuring tasks](https://turborepo.dev/docs/crafting-your-repository/configuring-tasks) *(article)* — `tasks`, `dependsOn`, `^`, `outputs` ve paralel çalıştırma.
-8. [Turborepo: Caching](https://turborepo.dev/docs/crafting-your-repository/caching) *(article)* — Parmak izi tabanlı önbellek, Remote Cache ve global hash girdileri.
-9. [Turborepo: Structuring a repository](https://turborepo.dev/docs/crafting-your-repository/structuring-a-repository) *(article)* — `apps/` ve `packages/` yapısı, paket anatomisi, `exports` ve `@repo` öneki.
-10. [Turborepo: Managing dependencies](https://turborepo.dev/docs/crafting-your-repository/managing-dependencies) *(article)* — Bağımlılığı kullanıldığı pakete kurma, kök dizinde az bağımlılık ve sürümleri eşitleme.
-11. [Nx: Enforce module boundaries](https://nx.dev/docs/features/enforce-module-boundaries.md) *(article)* — Nx'in mimari sınırları zorlama mekanizmaları.
+6. [pnpm: Workspace](https://pnpm.io/workspaces) *(doc)* — `pnpm-workspace.yaml`, `workspace:` protokolü ve tek lockfile.
+7. [Turborepo: Configuring tasks](https://turborepo.dev/docs/crafting-your-repository/configuring-tasks) *(doc)* — `tasks`, `dependsOn`, `^`, `outputs` ve paralel çalıştırma.
+8. [Turborepo: Caching](https://turborepo.dev/docs/crafting-your-repository/caching) *(doc)* — Parmak izi tabanlı önbellek, Remote Cache ve global hash girdileri.
+9. [Turborepo: Structuring a repository](https://turborepo.dev/docs/crafting-your-repository/structuring-a-repository) *(doc)* — `apps/` ve `packages/` yapısı, paket anatomisi, `exports` ve `@repo` öneki.
+10. [Turborepo: Managing dependencies](https://turborepo.dev/docs/crafting-your-repository/managing-dependencies) *(doc)* — Bağımlılığı kullanıldığı pakete kurma, kök dizinde az bağımlılık ve sürümleri eşitleme.
+11. [Nx: Enforce module boundaries](https://nx.dev/docs/features/enforce-module-boundaries.md) *(doc)* — Nx'in mimari sınırları zorlama mekanizmaları.
 12. [Anthony Shew: How to structure a JS/TS monorepo, From Zero to Turbo](https://www.youtube.com/watch?v=TeOSuGRHq7k) *(video)* — Workspace'ler, `apps` ve `packages` yapısı, `exports`, paket adıyla erişim, Turborepo görevleri ve Remote Cache.
 13. [Tally Barak: 1001 Packages, Strategies for Managing Monorepos (DevOps.js Conf 2022)](https://gitnation.com/contents/1001-packages-strategies-for-managing-monorepos) *(video)* — Paket kurulumu, bağlama, build stratejileri, hoisting uyarısı ve sürümleme. 24 dk.
-14. [Turborepo: Internal Packages](https://turborepo.dev/docs/core-concepts/internal-packages) *(article)* — `workspace:*` ile kullanım, Just-in-Time ve Compiled paket stratejileri.
-15. [pnpm: Catalogs](https://pnpm.io/catalogs) *(article)* — Sürümleri `catalog:` protokolüyle tek yerde tutma.
-16. [Turborepo: Creating an Internal Package](https://turborepo.dev/docs/crafting-your-repository/creating-an-internal-package) *(article)* — Paket oluşturma adımları, tek amaçlı paketler ve uygulamalarda paylaşılan kod barındırmama.
-17. [Turborepo: TypeScript](https://turborepo.dev/docs/guides/tools/typescript) *(article)* — Paylaşılan `tsconfig` paketi, Node.js subpath imports ve kök `tsconfig`'e ihtiyaç duyulmaması.
-18. [shadcn/ui: Monorepo](https://ui.shadcn.com/docs/monorepo) *(article)* — `init --monorepo`, `packages/ui` yapısı ve `components.json` gereksinimleri.
-19. [Turborepo: Running tasks](https://turborepo.dev/docs/crafting-your-repository/running-tasks) *(article)* — `turbo run`, `--filter` kalıpları ve kök script'lerde kullanım.
+14. [Turborepo: Internal Packages](https://turborepo.dev/docs/core-concepts/internal-packages) *(doc)* — `workspace:*` ile kullanım, Just-in-Time ve Compiled paket stratejileri.
+15. [pnpm: Catalogs](https://pnpm.io/catalogs) *(doc)* — Sürümleri `catalog:` protokolüyle tek yerde tutma.
+16. [Turborepo: Creating an Internal Package](https://turborepo.dev/docs/crafting-your-repository/creating-an-internal-package) *(doc)* — Paket oluşturma adımları, tek amaçlı paketler ve uygulamalarda paylaşılan kod barındırmama.
+17. [Turborepo: TypeScript](https://turborepo.dev/docs/guides/tools/typescript) *(doc)* — Paylaşılan `tsconfig` paketi, Node.js subpath imports ve kök `tsconfig`'e ihtiyaç duyulmaması.
+18. [shadcn/ui: Monorepo](https://ui.shadcn.com/docs/monorepo) *(doc)* — `init --monorepo`, `packages/ui` yapısı ve `components.json` gereksinimleri.
+19. [Turborepo: Running tasks](https://turborepo.dev/docs/crafting-your-repository/running-tasks) *(doc)* — `turbo run`, `--filter` kalıpları ve kök script'lerde kullanım.
 20. [Michael Guay: Learn Turborepo By Example, Code Sharing, Distributed Cache, & More!](https://www.youtube.com/watch?v=nx-cj3dqWNE) *(video)* — Next.js ve NestJS'i tek workspace'te kurma, paylaşılan paketler, GitHub Actions ve Vercel Remote Cache, `turbo prune` ile Docker.
-21. [Turborepo: Docker](https://turborepo.dev/docs/guides/tools/docker) *(article)* — Monorepo'da Docker build'inin neden bozulduğu, `turbo prune --docker`, çok aşamalı Dockerfile ve Remote Cache argümanları.
-22. [Turborepo: prune](https://turborepo.dev/docs/reference/prune) *(article)* — `turbo prune` sözdizimi, `--docker` çıktısı (`json/`, `full/`, budanmış kilit dosyası) ve seçenekler.
+21. [Turborepo: Docker](https://turborepo.dev/docs/guides/tools/docker) *(doc)* — Monorepo'da Docker build'inin neden bozulduğu, `turbo prune --docker`, çok aşamalı Dockerfile ve Remote Cache argümanları.
+22. [Turborepo: prune](https://turborepo.dev/docs/reference/prune) *(doc)* — `turbo prune` sözdizimi, `--docker` çıktısı (`json/`, `full/`, budanmış kilit dosyası) ve seçenekler.
 23. [Syntax #426: Monorepos! Workspaces, pnpm, turborepo + more!](https://syntax.fm/show/426/monorepos-workspaces-pnpm-turborepo-more) *(podcast)* — Wes Bos ve Scott Tolinski'den monorepo deneyimi, paylaşılan bağımlılıklar ve araçlar. Ocak 2022.
 24. [Code with tkssharma: PNPM Workspaces Deep Dive, Fast Monorepo Setup](https://www.youtube.com/watch?v=2cW7aQ7CQcA) *(video)* — `pnpm-workspace.yaml` kurulumu, alt paket oluşturma ve `workspace:` ile yerel bağımlılık ekleme.

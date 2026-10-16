@@ -108,10 +108,10 @@ Bu katman mantığını ve model tercihlerini, bir e-ticaret sitesinin sepet ve 
 ## Kaynaklar
 
 1. [Addy Osmani: AI Coding Agent](https://addyosmani.com/agentic-engineering/ai-coding-agent/) *(article)* — Kodu yalnızca öneren sohbet ile kodu yazıp çalıştıran ve düzelten kodlama ajanı arasındaki fark.
-2. [Arena: Code Arena | WebDev](https://arena.ai/leaderboard/code/webdev) *(article)* — Şirket ve model sıralamalarının alındığı frontend kodlama sıralaması.
+2. [Arena: Code Arena | WebDev](https://arena.ai/leaderboard/code/webdev) *(research)* — Şirket ve model sıralamalarının alındığı frontend kodlama sıralaması.
 3. [Anthropic: Claude Sonnet 5.5](https://www.anthropic.com/claude-sonnet-5-5) *(article)* — Sonnet 5.5'in Opus 5.5 karşısındaki yeri: hız, maliyet ve günlük görevler.
-4. [OpenAI: Prompt engineering](https://developers.openai.com/api/docs/guides/prompt-engineering) *(article)* — Düşünen, büyük ve küçük modeller arasındaki ödünler ("Choosing a model" bölümü).
+4. [OpenAI: Prompt engineering](https://developers.openai.com/api/docs/guides/prompt-engineering) *(doc)* — Düşünen, büyük ve küçük modeller arasındaki ödünler ("Choosing a model" bölümü).
 5. [Addy Osmani: Tokens](https://addyosmani.com/agentic-engineering/tokens/) *(article)* — Girdi ve çıktı token'ı, fiyatlandırma ve maliyetle ilişkisi.
 6. [Anthropic: Choosing a Claude model and effort level in Claude Code](https://claude.com/blog/claude-model-and-effort-level-in-claude-code) *(article)* — Model ile effort'un neyi değiştirdiği, hangisine ne zaman dokunulacağı.
-7. [Google: Prompt design strategies](https://ai.google.dev/gemini-api/docs/prompting-strategies) *(article)* — Gemini 3'ün düşünme davranışı ("Enhancing reasoning and planning" bölümü).
-8. [Anthropic: Claude Code Overview](https://code.claude.com/docs/en/overview) *(article)* — Claude Code'un terminal, IDE, masaüstü ve web'de çalıştığı yerler.
+7. [Google: Prompt design strategies](https://ai.google.dev/gemini-api/docs/prompting-strategies) *(doc)* — Gemini 3'ün düşünme davranışı ("Enhancing reasoning and planning" bölümü).
+8. [Anthropic: Claude Code Overview](https://code.claude.com/docs/en/overview) *(doc)* — Claude Code'un terminal, IDE, masaüstü ve web'de çalıştığı yerler.

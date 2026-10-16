@@ -376,12 +376,12 @@ data: [DONE]
 
 ## Kaynaklar
 
-1. [AI SDK: Chatbot](https://ai-sdk.dev/docs/ai-sdk-ui/chatbot) *(article)* — `useChat`, `status`, transport, hata, durdurma, yeniden üretme, metadata ve reasoning.
+1. [AI SDK: Chatbot](https://ai-sdk.dev/docs/ai-sdk-ui/chatbot) *(doc)* — `useChat`, `status`, transport, hata, durdurma, yeniden üretme, metadata ve reasoning.
 2. [npm: ai](https://www.npmjs.com/package/ai) *(article)* — Güncel sürüm ve dist-tag'ler.
-3. [Cloudscape Design System: Generative AI loading states](https://cloudscape.design/patterns/genai/genai-loading-states/) *(article)* — İşleme ve akış aşamaları, yükleme göstergesi, 1 saniyeden kısa beklemeler ve erişilebilirlik.
-4. [AI SDK: Providers and Models](https://ai-sdk.dev/docs/foundations/providers-and-models) *(article)* — Sağlayıcı mimarisi, sağlayıcı paketleri ve model yetenekleri tablosu.
-5. [Vercel: AI Gateway](https://vercel.com/docs/ai-gateway) *(article)* — Gateway ile düz dize model kullanımı, API anahtarı ve OIDC.
-6. [AI SDK: Anthropic provider](https://ai-sdk.dev/providers/ai-sdk-providers/anthropic) *(article)* — Kurulum, `ANTHROPIC_API_KEY` ve model kimlikleri.
-7. [AI SDK: Provider & Model Management](https://ai-sdk.dev/docs/ai-sdk-core/provider-management) *(article)* — Global sağlayıcı ve `AI_SDK_DEFAULT_PROVIDER`.
+3. [Cloudscape Design System: Generative AI loading states](https://cloudscape.design/patterns/genai/genai-loading-states/) *(doc)* — İşleme ve akış aşamaları, yükleme göstergesi, 1 saniyeden kısa beklemeler ve erişilebilirlik.
+4. [AI SDK: Providers and Models](https://ai-sdk.dev/docs/foundations/providers-and-models) *(doc)* — Sağlayıcı mimarisi, sağlayıcı paketleri ve model yetenekleri tablosu.
+5. [Vercel: AI Gateway](https://vercel.com/docs/ai-gateway) *(doc)* — Gateway ile düz dize model kullanımı, API anahtarı ve OIDC.
+6. [AI SDK: Anthropic provider](https://ai-sdk.dev/providers/ai-sdk-providers/anthropic) *(doc)* — Kurulum, `ANTHROPIC_API_KEY` ve model kimlikleri.
+7. [AI SDK: Provider & Model Management](https://ai-sdk.dev/docs/ai-sdk-core/provider-management) *(doc)* — Global sağlayıcı ve `AI_SDK_DEFAULT_PROVIDER`.
 8. [Upstash: Smooth Text Streaming in AI SDK v5](https://upstash.com/blog/smooth-streaming) *(article)* — Ağ ve ekran zamanlamasını ayırma, `smoothStream` ve özel hook yaklaşımı.
 9. [SitePoint: Streaming Backends & React: Controlling the Re-render Chaos](https://www.sitepoint.com/streaming-backends-react-controlling-re-render-chaos/) *(article)* — Akışta yeniden render maliyeti, `useRef` ve `requestAnimationFrame` ile biriktirme.

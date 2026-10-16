@@ -121,10 +121,10 @@ Dosyalara yazma, bulduklarını dosya ve satır numarasıyla raporla.
 
 ## Kaynaklar
 
-1. [Claude Code: How Claude Code works](https://code.claude.com/docs/en/how-claude-code-works) *(article)* — Ajan döngüsü, araçlar, izin modları ve checkpoint'ler.
-2. [Claude Code: Best practices](https://code.claude.com/docs/en/best-practices) *(article)* — Keşfet-planla-uygula-commit akışı, doğrulama ve yazar/inceleyici düzeni.
+1. [Claude Code: How Claude Code works](https://code.claude.com/docs/en/how-claude-code-works) *(doc)* — Ajan döngüsü, araçlar, izin modları ve checkpoint'ler.
+2. [Claude Code: Best practices](https://code.claude.com/docs/en/best-practices) *(doc)* — Keşfet-planla-uygula-commit akışı, doğrulama ve yazar/inceleyici düzeni.
 3. [Cursor: Best practices for coding with agents](https://cursor.com/blog/agent-best-practices) *(article)* — Plan modu, TDD akışı, paralel ajanlar ve Debug Mode. Lee Robinson, 9 Ocak 2026.
 4. [Addy Osmani: My LLM coding workflow going into 2026](https://addyosmani.com/blog/ai-coding-workflow/) *(article)* — Sık commit, açıklayamadığın kodu commit etmeme ve ajanı denetimli kullanma.
-5. [Claude Code: Subagents](https://code.claude.com/docs/en/sub-agents) *(article)* — Subagent nedir, ne zaman kullanılır, nasıl yazılır.
-6. [Cursor: Subagents](https://cursor.com/docs/subagents) *(article)* — Cursor'da subagent'lar, paralel çalışma ve maliyet.
+5. [Claude Code: Subagents](https://code.claude.com/docs/en/sub-agents) *(doc)* — Subagent nedir, ne zaman kullanılır, nasıl yazılır.
+6. [Cursor: Subagents](https://cursor.com/docs/subagents) *(doc)* — Cursor'da subagent'lar, paralel çalışma ve maliyet.
 7. [Every: How to Use Claude Code Like the People Who Built It](https://every.to/podcast/how-to-use-claude-code-like-the-people-who-built-it) *(video)* — Claude Code'un geliştiricilerinin plan modu, subagent ve kod incelemesi kullanımı.

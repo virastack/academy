@@ -287,10 +287,10 @@ export async function loadValidated(stored: unknown[]): Promise<GenMessage[]> {
 
 ## Kaynaklar
 
-1. [AI SDK: Generative User Interfaces](https://ai-sdk.dev/docs/ai-sdk-ui/generative-user-interfaces) *(article)* — Araç sonucunun bileşene prop olarak geçmesi ve `tool-<ad>` parçalarının render edilmesi.
+1. [AI SDK: Generative User Interfaces](https://ai-sdk.dev/docs/ai-sdk-ui/generative-user-interfaces) *(doc)* — Araç sonucunun bileşene prop olarak geçmesi ve `tool-<ad>` parçalarının render edilmesi.
 2. [Builder.io: Designing generative UI in an agent-native world](https://www.builder.io/blog/designing-generative-ui-in-an-agent-native-world) *(article)* — Araç çağrılarını hazır bileşenlere eşleme ve her istekte kod üretmenin maliyeti (26 Mayıs 2026).
-3. [AI SDK: RSC Overview](https://ai-sdk.dev/docs/ai-sdk-rsc/overview) *(article)* — AI SDK RSC'nin deneysel durumu ve AI SDK UI önerisi.
-4. [AI SDK: Chatbot Tool Usage](https://ai-sdk.dev/docs/ai-sdk-ui/chatbot-tool-usage) *(article)* — Araç parçası durumları, kısmi girdi akışı ve hata mesajı maskeleme.
-5. [Cloudscape Design System: Generative AI loading states](https://cloudscape.design/patterns/genai/genai-loading-states/) *(article)* — İşleme ve akış aşamaları, yükleme göstergesi, 1 saniyeden kısa beklemeler ve erişilebilirlik.
-6. [AI SDK: Tool Calling](https://ai-sdk.dev/docs/ai-sdk-core/tools-and-tool-calling) *(article)* — Ara sonuçlar için async generator `execute`.
-7. [AI SDK: Chatbot Message Persistence](https://ai-sdk.dev/docs/ai-sdk-ui/chatbot-message-persistence) *(article)* — Mesajları kaydetme, `messages` seçeneği ve `validateUIMessages`.
+3. [AI SDK: RSC Overview](https://ai-sdk.dev/docs/ai-sdk-rsc/overview) *(doc)* — AI SDK RSC'nin deneysel durumu ve AI SDK UI önerisi.
+4. [AI SDK: Chatbot Tool Usage](https://ai-sdk.dev/docs/ai-sdk-ui/chatbot-tool-usage) *(doc)* — Araç parçası durumları, kısmi girdi akışı ve hata mesajı maskeleme.
+5. [Cloudscape Design System: Generative AI loading states](https://cloudscape.design/patterns/genai/genai-loading-states/) *(doc)* — İşleme ve akış aşamaları, yükleme göstergesi, 1 saniyeden kısa beklemeler ve erişilebilirlik.
+6. [AI SDK: Tool Calling](https://ai-sdk.dev/docs/ai-sdk-core/tools-and-tool-calling) *(doc)* — Ara sonuçlar için async generator `execute`.
+7. [AI SDK: Chatbot Message Persistence](https://ai-sdk.dev/docs/ai-sdk-ui/chatbot-message-persistence) *(doc)* — Mesajları kaydetme, `messages` seçeneği ve `validateUIMessages`.

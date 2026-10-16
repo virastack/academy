@@ -231,13 +231,13 @@ Kullanıcının gördüğü sonucu kontrol edin.[^10]
 
 ## Kaynaklar
 
-1. [user-event: Introduction](https://testing-library.com/docs/user-event/intro) *(Doküman)* — `fireEvent` ile farkı, `userEvent.setup()` ve `render` sırası.
-2. [user-event: Setup](https://testing-library.com/docs/user-event/setup) *(Doküman)* — `setup()` ile oluşturulan örnek ve doğrudan API'lerle farkı.
-3. [user-event: Convenience APIs](https://testing-library.com/docs/user-event/convenience) *(Doküman)* — `click`, `dblClick`, `hover`, `unhover` ve `tab`.
-4. [user-event: Utility APIs](https://testing-library.com/docs/user-event/utility) *(Doküman)* — `type`, `clear`, `selectOptions` ve `upload`.
-5. [user-event: Keyboard](https://testing-library.com/docs/user-event/keyboard) *(Doküman)* — `keyboard` ve tuş sözdizimi.
-6. [user-event: Clipboard](https://testing-library.com/docs/user-event/clipboard) *(Doküman)* — `paste`.
-7. [W3C: Understanding SC 2.1.1 Keyboard](https://www.w3.org/WAI/WCAG22/Understanding/keyboard.html) *(Doküman)* — Tüm işlevlerin klavyeyle yapılabilmesi ve bunun kimlere fayda sağladığı.
-8. [HTML Standard: Implicit submission](https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#implicit-submission) *(Doküman)* — `Enter` ile örtük form gönderimi kuralları.
-9. [jest-dom](https://github.com/testing-library/jest-dom) *(Repo)* — `toBeInvalid`, `toHaveTextContent`, `toHaveValue` ve `toBeDisabled`.
-10. [Kent C. Dodds: Testing Implementation Details](https://kentcdodds.com/blog/testing-implementation-details) *(Makale)* — Kullanıcının görmediği iç state'i test etmenin sorunları.
+1. [user-event: Introduction](https://testing-library.com/docs/user-event/intro) *(doc)* — `fireEvent` ile farkı, `userEvent.setup()` ve `render` sırası.
+2. [user-event: Setup](https://testing-library.com/docs/user-event/setup) *(doc)* — `setup()` ile oluşturulan örnek ve doğrudan API'lerle farkı.
+3. [user-event: Convenience APIs](https://testing-library.com/docs/user-event/convenience) *(doc)* — `click`, `dblClick`, `hover`, `unhover` ve `tab`.
+4. [user-event: Utility APIs](https://testing-library.com/docs/user-event/utility) *(doc)* — `type`, `clear`, `selectOptions` ve `upload`.
+5. [user-event: Keyboard](https://testing-library.com/docs/user-event/keyboard) *(doc)* — `keyboard` ve tuş sözdizimi.
+6. [user-event: Clipboard](https://testing-library.com/docs/user-event/clipboard) *(doc)* — `paste`.
+7. [W3C: Understanding SC 2.1.1 Keyboard](https://www.w3.org/WAI/WCAG22/Understanding/keyboard.html) *(doc)* — Tüm işlevlerin klavyeyle yapılabilmesi ve bunun kimlere fayda sağladığı.
+8. [HTML Standard: Implicit submission](https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#implicit-submission) *(doc)* — `Enter` ile örtük form gönderimi kuralları.
+9. [jest-dom](https://github.com/testing-library/jest-dom) *(repo)* — `toBeInvalid`, `toHaveTextContent`, `toHaveValue` ve `toBeDisabled`.
+10. [Kent C. Dodds: Testing Implementation Details](https://kentcdodds.com/blog/testing-implementation-details) *(article)* — Kullanıcının görmediği iç state'i test etmenin sorunları.

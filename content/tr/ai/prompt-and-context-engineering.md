@@ -152,13 +152,13 @@ Model her oturuma projeniz hakkında hiçbir şey bilmeden başlar: hangi paket 
 
 ## Kaynaklar
 
-1. [Anthropic: Prompting best practices](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices) *(article)* — Netlik, örnek, uzun veride sıra ve frontend talimatı için güncel referans.
-2. [OpenAI: Prompt engineering](https://developers.openai.com/api/docs/guides/prompt-engineering) *(article)* — Mesaj bölümleri ve düşünen modelle küçük modelin farklı yönlendirilmesi.
+1. [Anthropic: Prompting best practices](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices) *(doc)* — Netlik, örnek, uzun veride sıra ve frontend talimatı için güncel referans.
+2. [OpenAI: Prompt engineering](https://developers.openai.com/api/docs/guides/prompt-engineering) *(doc)* — Mesaj bölümleri ve düşünen modelle küçük modelin farklı yönlendirilmesi.
 3. [Anthropic: Effective context engineering for AI agents](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents) *(article)* — Context'in tanımı, context rot ve kısa başlayıp hata gördükçe talimat ekleme.
-4. [Claude Code: Best practices](https://code.claude.com/docs/en/best-practices) *(article)* — Doğrulama yolu, kapsam, bağlam yönetimi ve kural dosyası yazımı.
-5. [Claude Code: How Claude remembers your project](https://code.claude.com/docs/en/memory) *(article)* — CLAUDE.md konumları, AGENTS.md okuma kuralları ve `.claude/rules/`.
-6. [AGENTS.md](https://agents.md) *(article)* — Açık format, desteklenen araçlar ve iç içe dosyalar.
-7. [Cursor: Rules](https://cursor.com/docs/rules) *(article)* — `.mdc` kural türleri, `globs` ve yazım önerileri.
+4. [Claude Code: Best practices](https://code.claude.com/docs/en/best-practices) *(doc)* — Doğrulama yolu, kapsam, bağlam yönetimi ve kural dosyası yazımı.
+5. [Claude Code: How Claude remembers your project](https://code.claude.com/docs/en/memory) *(doc)* — CLAUDE.md konumları, AGENTS.md okuma kuralları ve `.claude/rules/`.
+6. [AGENTS.md](https://agents.md) *(doc)* — Açık format, desteklenen araçlar ve iç içe dosyalar.
+7. [Cursor: Rules](https://cursor.com/docs/rules) *(doc)* — `.mdc` kural türleri, `globs` ve yazım önerileri.
 8. [ETH Zürih: Evaluating AGENTS.md](https://arxiv.org/abs/2602.11988) *(research)* — Bağlam dosyalarının başarı ve maliyete etkisi.
 9. [Addy Osmani: Stop Using /init for AGENTS.md](https://addyosmani.com/blog/agents-md/) *(article)* — Üretilen dosyaların neden zarar verebileceği ve iki çalışmanın özeti.
 10. [GitHub: How to write a great agents.md](https://github.blog/ai-and-ml/github-copilot/how-to-write-a-great-agents-md-lessons-from-over-2500-repositories/) *(article)* — 2.500+ repodan çıkan altı alan ve üç kademeli sınırlar.

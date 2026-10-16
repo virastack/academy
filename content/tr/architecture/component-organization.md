@@ -161,18 +161,18 @@ Zone listesi yetmemeye başlarsa **eslint-plugin-boundaries** mimariyi tek yerde
 ## Kaynaklar
 
 1. [Kent C. Dodds: When to break up a component into multiple components](https://kentcdodds.com/blog/when-to-break-up-a-component-into-multiple-components) *(article)* — Component'i bölmeyi gerektiren sorunlar ve erken soyutlamanın maliyeti. 19 Temmuz 2019.
-2. [React: Thinking in React](https://react.dev/learn/thinking-in-react) *(article)* — UI'ı component hiyerarşisine bölme ölçütleri ve state'in en yakın ortak ebeveyne konması.
+2. [React: Thinking in React](https://react.dev/learn/thinking-in-react) *(doc)* — UI'ı component hiyerarşisine bölme ölçütleri ve state'in en yakın ortak ebeveyne konması.
 3. [components.build: Composition](https://www.components.build/composition) *(article)* — Çok proplu component yerine composition ve compound component kalıbı.
 4. [Patterns.dev: Compound Pattern](https://www.patterns.dev/react/compound-pattern/) *(article)* — Compound component'in Context ve `React.Children.map` ile iki uygulaması, ödünleşimleri ve React 18+ önerisi.
-5. [React: Passing Props to a Component](https://react.dev/learn/passing-props-to-a-component) *(article)* — `children` prop'u ve spread kullanımı için uyarı.
+5. [React: Passing Props to a Component](https://react.dev/learn/passing-props-to-a-component) *(doc)* — `children` prop'u ve spread kullanımı için uyarı.
 6. [Fernando Rojo: Composition Is All You Need (React Universe Conf 2025)](https://www.youtube.com/watch?v=4KvbVq3Eg5w) *(video)* — Boolean prop'lardan kaçınma, Slack mesaj kutusu örneği, compound component ve context ile state'i yukarı taşıma. Callstack kanalı, 22 dk, 8 Eylül 2025.
 7. [Kent C. Dodds: State Colocation will make your React app faster](https://kentcdodds.com/blog/state-colocation-will-make-your-react-app-faster) *(article)* — State'i yakın tutmanın hız ve bakım etkisi, karar ağacı. 23 Eylül 2019.
-8. [React: Reusing Logic with Custom Hooks](https://react.dev/learn/reusing-logic-with-custom-hooks) *(article)* — Hook'ların mantığı paylaşması, adlandırma ve ne zaman yazılacağı.
-9. [Next.js: Server and Client Components](https://nextjs.org/docs/app/getting-started/server-and-client-components) *(article)* — `'use client'` sınırı, `children` ile iç içe geçirme, provider'lar ve `server-only`.
+8. [React: Reusing Logic with Custom Hooks](https://react.dev/learn/reusing-logic-with-custom-hooks) *(doc)* — Hook'ların mantığı paylaşması, adlandırma ve ne zaman yazılacağı.
+9. [Next.js: Server and Client Components](https://nextjs.org/docs/app/getting-started/server-and-client-components) *(doc)* — `'use client'` sınırı, `children` ile iç içe geçirme, provider'lar ve `server-only`.
 10. [bulletproof-react: Project Structure](https://github.com/alan2207/bulletproof-react/blob/master/docs/project-structure.md) *(repo)* — Özellikler arası import yasağı, tek yönlü akış ve ESLint zone'ları.
 11. [Dan Abramov: The Wet Codebase (Deconstruct)](https://www.deconstructconf.com/2019/dan-abramov-the-wet-codebase) *(video)* — Erken soyutlamanın bedeli, satır içine alma ve tek yönlü component ağacı. Konferans sayfası 2019 altında listeliyor, sayfadaki etkinlik tarihi Nisan 2020.
-12. [Alexander Morgunov: Getting to Grips with Feature-Sliced Design (HolyJS 2024 Autumn)](https://holyjs.ru/en/archive/2024%20Autumn/talks/20005543/) *(talk)* — Feature-Sliced Design'ın kavramları ve çapraz import dahil sık görülen sorunları.
+12. [Alexander Morgunov: Getting to Grips with Feature-Sliced Design (HolyJS 2024 Autumn)](https://holyjs.ru/en/archive/2024%20Autumn/talks/20005543/) *(video)* — Feature-Sliced Design'ın kavramları ve çapraz import dahil sık görülen sorunları.
 13. [eslint-plugin-import: no-restricted-paths](https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/no-restricted-paths.md) *(repo)* — `target`, `from` ve `except` ile klasörler arası import yasağı.
-14. [ESLint: no-restricted-imports](https://eslint.org/docs/latest/rules/no-restricted-imports) *(article)* — `patterns` ve `group` ile import yolu kısıtlama.
+14. [ESLint: no-restricted-imports](https://eslint.org/docs/latest/rules/no-restricted-imports) *(doc)* — `patterns` ve `group` ile import yolu kısıtlama.
 15. [eslint-plugin-import: no-cycle](https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/no-cycle.md) *(repo)* — Döngüsel import tespiti, `maxDepth` ve performans notu.
 16. [eslint-plugin-boundaries](https://github.com/javierbrea/eslint-plugin-boundaries) *(repo)* — Eleman tipleri ve bağımlılık politikalarıyla mimari sınırları zorlama.

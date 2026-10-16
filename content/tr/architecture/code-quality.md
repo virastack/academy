@@ -251,23 +251,23 @@ Otomasyon biçimi çözdükten sonra insan incelemesi tasarıma bakar. Google'ı
 
 ## Kaynaklar
 
-1. [Google Engineering Practices: The Standard of Code Review](https://google.github.io/eng-practices/review/reviewer/standard.html) *(article)* — Kod sağlığı ilkesi, `Nit:` önekleri, stil ile tasarım ayrımı ve anlaşmazlık çözümü.
+1. [Google Engineering Practices: The Standard of Code Review](https://google.github.io/eng-practices/review/reviewer/standard.html) *(doc)* — Kod sağlığı ilkesi, `Nit:` önekleri, stil ile tasarım ayrımı ve anlaşmazlık çözümü.
 2. [Lint Like a Senior Developer w/ eslint + husky + lint staged + github actions](https://www.youtube.com/watch?v=Kr4VxMbF3LY) *(video)* — Anthony Fu'nun ESLint ayarıyla React/Vite projesinde lint on save, Husky ile pre-commit, lint-staged ve GitHub Actions'ta PR başına lint. Mart 2025.
-3. [GitHub: About protected branches](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches) *(article)* — Zorunlu durum kontrolleri, sıkı mod ve benzersiz iş adı uyarısı.
-4. [Prettier: Integrating with Linters](https://prettier.io/docs/integrating-with-linters) *(article)* — `eslint-config-prettier` önerisi ve `eslint-plugin-prettier` uyarısı.
-5. [Biome: Getting Started](https://biomejs.dev/guides/getting-started/) *(article)* — Kurulum, `biome init`, `biome check` ve `--write`.
-6. [Biome: Migrate from ESLint and Prettier](https://biomejs.dev/guides/migrate-eslint-prettier/) *(article)* — `biome migrate` komutları, kapsam ve sınırlamalar.
-7. [Oxc: Linter](https://oxc.rs/docs/guide/usage/linter.html) *(article)* — Oxlint'in hız iddiası, kural sayısı, tip bilgili lint ve JS eklentileri.
-8. [Prettier: Rationale](https://prettier.io/docs/rationale) *(article)* — Prettier'ın yalnızca kodu yazdırması ve davranışı koruma önceliği.
+3. [GitHub: About protected branches](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches) *(doc)* — Zorunlu durum kontrolleri, sıkı mod ve benzersiz iş adı uyarısı.
+4. [Prettier: Integrating with Linters](https://prettier.io/docs/integrating-with-linters) *(doc)* — `eslint-config-prettier` önerisi ve `eslint-plugin-prettier` uyarısı.
+5. [Biome: Getting Started](https://biomejs.dev/guides/getting-started/) *(doc)* — Kurulum, `biome init`, `biome check` ve `--write`.
+6. [Biome: Migrate from ESLint and Prettier](https://biomejs.dev/guides/migrate-eslint-prettier/) *(doc)* — `biome migrate` komutları, kapsam ve sınırlamalar.
+7. [Oxc: Linter](https://oxc.rs/docs/guide/usage/linter.html) *(doc)* — Oxlint'in hız iddiası, kural sayısı, tip bilgili lint ve JS eklentileri.
+8. [Prettier: Rationale](https://prettier.io/docs/rationale) *(doc)* — Prettier'ın yalnızca kodu yazdırması ve davranışı koruma önceliği.
 9. [I Will Never Use Prettier or ESLint Again](https://www.youtube.com/watch?v=x5kwmIaPty8) *(video)* — Web Dev Simplified'dan ESLint + Prettier yerine Biome. Ekim 2025.
 10. [ESLint vs Biome vs Oxlint 2026](https://www.youtube.com/watch?v=vx1MK52weHo) *(video)* — Elite Dev News'ten ESLint, Biome ve Oxlint'in hız ve kullanım senaryosu karşılaştırması. Eylül 2026.
-11. [typescript-eslint: Dependency Versions](https://typescript-eslint.io/users/dependency-versions) *(article)* — Desteklenen TypeScript aralığı ve destek politikası.
-12. [ESLint: Configuration Files](https://eslint.org/docs/latest/use/configure/configuration-files) *(article)* — Flat config dosya adları, `defineConfig`, `globalIgnores` ve "sonraki nesne kazanır" kuralı.
-13. [typescript-eslint: Getting Started](https://typescript-eslint.io/getting-started/) *(article)* — Kurulum, `recommended` ayarı ve Typed Linting yönlendirmesi.
+11. [typescript-eslint: Dependency Versions](https://typescript-eslint.io/users/dependency-versions) *(doc)* — Desteklenen TypeScript aralığı ve destek politikası.
+12. [ESLint: Configuration Files](https://eslint.org/docs/latest/use/configure/configuration-files) *(doc)* — Flat config dosya adları, `defineConfig`, `globalIgnores` ve "sonraki nesne kazanır" kuralı.
+13. [typescript-eslint: Getting Started](https://typescript-eslint.io/getting-started/) *(doc)* — Kurulum, `recommended` ayarı ve Typed Linting yönlendirmesi.
 14. [lint-staged](https://github.com/lint-staged/lint-staged) *(repo)* — Yapılandırma, staged dosyaların komuta eklenmesi ve `tsc` uyarısı.
-15. [Husky: Get started](https://typicode.github.io/husky/get-started.html) *(article)* — `husky init`, `.husky/pre-commit` ve `prepare` script'i.
-16. [Conventional Commits 1.0.0](https://www.conventionalcommits.org/en/v1.0.0/) *(article)* — Mesaj yapısı, `feat` ve `fix`, `BREAKING CHANGE` ve SemVer eşleşmesi.
-17. [commitlint: Local setup](https://commitlint.js.org/guides/local-setup.html) *(article)* — Husky v9 ile `commit-msg` hook'u.
+15. [Husky: Get started](https://typicode.github.io/husky/get-started.html) *(doc)* — `husky init`, `.husky/pre-commit` ve `prepare` script'i.
+16. [Conventional Commits 1.0.0](https://www.conventionalcommits.org/en/v1.0.0/) *(doc)* — Mesaj yapısı, `feat` ve `fix`, `BREAKING CHANGE` ve SemVer eşleşmesi.
+17. [commitlint: Local setup](https://commitlint.js.org/guides/local-setup.html) *(doc)* — Husky v9 ile `commit-msg` hook'u.
 18. [Conventional Commits with Husky & Commitlint](https://www.youtube.com/watch?v=vOh4mDo47Vg) *(video)* — How Dev You'dan commitlint kurulumu, `commit-msg` hook'u ve kurala uymayan mesajların reddi. Ağustos 2024.
-19. [pnpm: Continuous Integration](https://pnpm.io/continuous-integration) *(article)* — `pnpm/setup` ile GitHub Actions, önbellek ve `packageManager` alanı.
-20. [Turborepo: Constructing CI](https://turborepo.dev/docs/crafting-your-repository/constructing-ci) *(article)* — CI'da `turbo run`, `--affected`, geçmiş gereksinimi ve Remote Cache değişkenleri.
+19. [pnpm: Continuous Integration](https://pnpm.io/continuous-integration) *(doc)* — `pnpm/setup` ile GitHub Actions, önbellek ve `packageManager` alanı.
+20. [Turborepo: Constructing CI](https://turborepo.dev/docs/crafting-your-repository/constructing-ci) *(doc)* — CI'da `turbo run`, `--affected`, geçmiş gereksinimi ve Remote Cache değişkenleri.

@@ -181,20 +181,20 @@ test("ürünü sepete ekler", async () => {
 
 ## Kaynaklar
 
-1. [Testing Library: Debugging](https://testing-library.com/docs/dom-testing-library/api-debugging) *(Doküman)* — Otomatik DOM çıktısı, `screen.debug`, `logRoles`, `logTestingPlaygroundURL` ve `DEBUG_PRINT_LIMIT`.
-2. [Kent C. Dodds: Common mistakes with React Testing Library](https://kentcdodds.com/blog/common-mistakes-with-react-testing-library) *(Makale)* — "Accessible roles" çıktısı ve yanlış sorgu kalıpları. İlkeler geçerli, `userEvent` örnekleri `setup()` öncesi sürümden.
-3. [React Testing Library: API](https://testing-library.com/docs/react-testing-library/api) *(Doküman)* — DOM Testing Library'nin tamamı yeniden dışa aktarılır.
-4. [Testing Library: About Queries](https://testing-library.com/docs/queries/about) *(Doküman)* — `getBy`, `queryBy` ve `findBy` farkı, `TextMatch`.
-5. [Testing Library: Querying Within Elements](https://testing-library.com/docs/dom-testing-library/api-within) *(Doküman)* — `within` ile sorguyu bir elemana daraltma.
-6. [Testing Library: ByRole](https://testing-library.com/docs/queries/byrole) *(Doküman)* — `name` seçeneği.
-7. [Testing Library: Async Methods](https://testing-library.com/docs/dom-testing-library/api-async) *(Doküman)* — `findBy` sorguları.
-8. [Kent C. Dodds: Fix the "not wrapped in act(...)" warning](https://kentcdodds.com/blog/fix-the-not-wrapped-in-act-warning) *(Makale)* — Uyarının sebebi ve çözümleri. Örnekler Jest ile yazılmış.
-9. [user-event: Introduction](https://testing-library.com/docs/user-event/intro) *(Doküman)* — `userEvent.setup()` ve `await user.click(...)`.
-10. [dom-testing-library #1218: useFakeTimers ve findBy](https://github.com/testing-library/dom-testing-library/issues/1218) *(Repo)* — Vitest'te `findBy` timeout'a düşer.
-11. [Vitest: fakeTimers yapılandırması](https://vitest.dev/config/faketimers) *(Doküman)* — `shouldAdvanceTime` seçeneği.
-12. [The New Stack: When JSDOM and Fetch Collide](https://thenewstack.io/when-jsdom-and-fetch-collide-cross-environment-lessons/) *(Makale)* — Test ortamında göreli URL'lerin `Failed to parse URL` hatası verebilmesi.
-13. [MSW #1999: resolve relative fetch URLs in jsdom](https://github.com/mswjs/msw/pull/1999) *(Repo)* — Göreli `fetch` URL'lerinin jsdom'da çözülmesi MSW 2.1.5'te düzeltildi.
-14. [Kent C. Dodds: Test Isolation with React](https://kentcdodds.com/blog/test-isolation-with-react) *(Makale)* — Testler arasında paylaşılan durumun sorunları.
-15. [Vitest: Command Line Interface](https://vitest.dev/guide/cli) *(Doküman)* — `vitest run`, `-t` ve izleme modu.
-16. [Martin Fowler: Test Coverage](https://martinfowler.com/bliki/TestCoverage.html) *(Makale)* — Coverage hedef değil, test edilmeyen yerleri bulma aracıdır.
-17. [Vitest: Coverage](https://vitest.dev/guide/coverage) *(Doküman)* — Kurulum ve `coverage.include`.
+1. [Testing Library: Debugging](https://testing-library.com/docs/dom-testing-library/api-debugging) *(doc)* — Otomatik DOM çıktısı, `screen.debug`, `logRoles`, `logTestingPlaygroundURL` ve `DEBUG_PRINT_LIMIT`.
+2. [Kent C. Dodds: Common mistakes with React Testing Library](https://kentcdodds.com/blog/common-mistakes-with-react-testing-library) *(article)* — "Accessible roles" çıktısı ve yanlış sorgu kalıpları. İlkeler geçerli, `userEvent` örnekleri `setup()` öncesi sürümden.
+3. [React Testing Library: API](https://testing-library.com/docs/react-testing-library/api) *(doc)* — DOM Testing Library'nin tamamı yeniden dışa aktarılır.
+4. [Testing Library: About Queries](https://testing-library.com/docs/queries/about) *(doc)* — `getBy`, `queryBy` ve `findBy` farkı, `TextMatch`.
+5. [Testing Library: Querying Within Elements](https://testing-library.com/docs/dom-testing-library/api-within) *(doc)* — `within` ile sorguyu bir elemana daraltma.
+6. [Testing Library: ByRole](https://testing-library.com/docs/queries/byrole) *(doc)* — `name` seçeneği.
+7. [Testing Library: Async Methods](https://testing-library.com/docs/dom-testing-library/api-async) *(doc)* — `findBy` sorguları.
+8. [Kent C. Dodds: Fix the "not wrapped in act(...)" warning](https://kentcdodds.com/blog/fix-the-not-wrapped-in-act-warning) *(article)* — Uyarının sebebi ve çözümleri. Örnekler Jest ile yazılmış.
+9. [user-event: Introduction](https://testing-library.com/docs/user-event/intro) *(doc)* — `userEvent.setup()` ve `await user.click(...)`.
+10. [dom-testing-library #1218: useFakeTimers ve findBy](https://github.com/testing-library/dom-testing-library/issues/1218) *(repo)* — Vitest'te `findBy` timeout'a düşer.
+11. [Vitest: fakeTimers yapılandırması](https://vitest.dev/config/faketimers) *(doc)* — `shouldAdvanceTime` seçeneği.
+12. [The New Stack: When JSDOM and Fetch Collide](https://thenewstack.io/when-jsdom-and-fetch-collide-cross-environment-lessons/) *(article)* — Test ortamında göreli URL'lerin `Failed to parse URL` hatası verebilmesi.
+13. [MSW #1999: resolve relative fetch URLs in jsdom](https://github.com/mswjs/msw/pull/1999) *(repo)* — Göreli `fetch` URL'lerinin jsdom'da çözülmesi MSW 2.1.5'te düzeltildi.
+14. [Kent C. Dodds: Test Isolation with React](https://kentcdodds.com/blog/test-isolation-with-react) *(article)* — Testler arasında paylaşılan durumun sorunları.
+15. [Vitest: Command Line Interface](https://vitest.dev/guide/cli) *(doc)* — `vitest run`, `-t` ve izleme modu.
+16. [Martin Fowler: Test Coverage](https://martinfowler.com/bliki/TestCoverage.html) *(article)* — Coverage hedef değil, test edilmeyen yerleri bulma aracıdır.
+17. [Vitest: Coverage](https://vitest.dev/guide/coverage) *(doc)* — Kurulum ve `coverage.include`.

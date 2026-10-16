@@ -94,9 +94,9 @@ Neden gerekli? Anthropic'in frontend yazısı sorunu adlandırıyor: talimat ver
 
 ## Kaynaklar
 
-1. [Claude Code: Extend Claude with skills](https://code.claude.com/docs/en/skills) *(article)* — Skill ne zaman yazılır, `SKILL.md` alanları, konumlar, tetikleme kontrolü ve açıklama bütçesi.
-2. [Anthropic: Skill authoring best practices](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices) *(article)* — Kısalık, `description` yazımı, katılık düzeyi, kontrol döngüsü ve değerlendirme.
-3. [Cursor: Agent Skills](https://cursor.com/docs/skills) *(article)* — Cursor'daki skill klasörleri, `paths` alanı ve `/create-skill`.
+1. [Claude Code: Extend Claude with skills](https://code.claude.com/docs/en/skills) *(doc)* — Skill ne zaman yazılır, `SKILL.md` alanları, konumlar, tetikleme kontrolü ve açıklama bütçesi.
+2. [Anthropic: Skill authoring best practices](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices) *(doc)* — Kısalık, `description` yazımı, katılık düzeyi, kontrol döngüsü ve değerlendirme.
+3. [Cursor: Agent Skills](https://cursor.com/docs/skills) *(doc)* — Cursor'daki skill klasörleri, `paths` alanı ve `/create-skill`.
 4. [Anthropic: Improving frontend design through Skills](https://claude.com/blog/improving-frontend-design-through-skills) *(article)* — Jenerik arayüz estetiğinin nedeni ve frontend-design yönergesi. 12 Kasım 2025.
 5. [Emil Kowalski: Agents with Taste](https://emilkowal.ski/ui/agents-with-taste) *(article)* — Arayüz zevkini kurallara dökme yöntemi: neden, karar tabloları, katı kurallar.
 6. [emilkowalski/skills](https://github.com/emilkowalski/skills) *(repo)* — Animasyon, arayüz ince ayarı ve kütüphane seçimi skill'leri. MIT.

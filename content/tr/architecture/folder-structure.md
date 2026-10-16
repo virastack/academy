@@ -175,22 +175,22 @@ Feature-based yapılarda her özelliğin köküne genellikle bir `index.ts` konu
 ## Kaynaklar
 
 1. [Kent C. Dodds: Colocation](https://kentcdodds.com/blog/colocation) *(article)* — Kodu ilgili olduğu yere yakın koyma ilkesi, testler ve yardımcı dosyalar. 17 Haziran 2019.
-2. [Feature-Sliced Design: Desegmentation](https://feature-sliced.design/docs/guides/issues/desegmented) *(article)* — Türe göre dizilimin sorunları ve genel klasör/dosya adlarından kaçınma.
+2. [Feature-Sliced Design: Desegmentation](https://feature-sliced.design/docs/guides/issues/desegmented) *(doc)* — Türe göre dizilimin sorunları ve genel klasör/dosya adlarından kaçınma.
 3. [bulletproof-react: Project Structure](https://github.com/alan2207/bulletproof-react/blob/master/docs/project-structure.md) *(repo)* — Feature klasörü yapısı, özellikler arası import yasağı, tek yönlü akış ve barrel notu.
-4. [Feature-Sliced Design: Layers](https://feature-sliced.design/docs/reference/layers) *(article)* — Katman, dilim ve dilimler arası import kuralı.
+4. [Feature-Sliced Design: Layers](https://feature-sliced.design/docs/reference/layers) *(doc)* — Katman, dilim ve dilimler arası import kuralı.
 5. [Aleksandr Guzenko: Preventing architectural debt with Feature-Sliced Design (Conf42 JavaScript 2024)](https://conf42.com/JavaScript_2024_Aleksandr_Guzenko_3_architecturaldebt_featuresliceddesign_cleancode) *(video)* — Karışık bağımlılıkların mimari borca dönüşmesi ve Feature-Sliced Design ile bunu sınırlama. Slaytlar sayfada.
-6. [Alexander Morgunov: Getting to Grips with Feature-Sliced Design (HolyJS 2024 Autumn)](https://holyjs.ru/en/archive/2024%20Autumn/talks/20005543/) *(talk)* — Kavramlar, public API ve çapraz import, zayıf dokümantasyon gibi sık görülen sorunlar.
+6. [Alexander Morgunov: Getting to Grips with Feature-Sliced Design (HolyJS 2024 Autumn)](https://holyjs.ru/en/archive/2024%20Autumn/talks/20005543/) *(video)* — Kavramlar, public API ve çapraz import, zayıf dokümantasyon gibi sık görülen sorunlar.
 7. [ViraStack AI: architecture-guide.md](https://github.com/virastack/ai/blob/main/templates/core/docs/architecture-guide.md) *(repo)* — Bu rehberdeki dizin yapısının ve kuralların ajan kural dosyası olarak uygulanmış hali.
-8. [Next.js: Project structure and organization](https://nextjs.org/docs/app/getting-started/project-structure) *(article)* — Dosya kuralları, `src` klasörü, private folder'lar ve proje organizasyon stratejileri.
-9. [TanStack Router: File Naming Conventions](https://tanstack.com/router/latest/docs/routing/file-naming-conventions) *(article)* — `__root`, `$`, `_` ve `-` önekleri, rota ağacından dosya hariç tutma.
+8. [Next.js: Project structure and organization](https://nextjs.org/docs/app/getting-started/project-structure) *(doc)* — Dosya kuralları, `src` klasörü, private folder'lar ve proje organizasyon stratejileri.
+9. [TanStack Router: File Naming Conventions](https://tanstack.com/router/latest/docs/routing/file-naming-conventions) *(doc)* — `__root`, `$`, `_` ve `-` önekleri, rota ağacından dosya hariç tutma.
 10. [Justin Weiss: I Dry-ed Up My Code and Now It's Hard to Work With](https://www.justinweiss.com/articles/i-dry-ed-up-my-code-and-now-its-hard-to-work-with-what-happened/) *(article)* — "Üç vuruş" kuralı, gerekli ve tesadüfi tekrar ayrımı.
 11. [Sandi Metz: The Wrong Abstraction](https://sandimetz.com/blog/2016/1/20/the-wrong-abstraction) *(article)* — Yanlış soyutlamanın nasıl oluştuğu ve geri dönüş yolu. 20 Ocak 2016.
 12. [Sandi Metz: All the Little Things (RailsConf 2014)](https://youtu.be/8bZh5LMaSmE) *(video)* — Tekrarın yanlış soyutlamadan ucuz olduğu iddiasının çıktığı konuşma.
 13. [Dan Abramov: The Wet Codebase (Deconstruct)](https://www.deconstructconf.com/2019/dan-abramov-the-wet-codebase) *(video)* — Erken soyutlamanın bedeli ve kötü soyutlamayı satır içine alma. Konferans sayfası 2019 altında listeliyor, sayfadaki etkinlik tarihi Nisan 2020.
-14. [Next.js: Installation](https://nextjs.org/docs/app/getting-started/installation) *(article)* — `@/*` alias'ı, mutlak import örneği ve `AGENTS.md`.
-15. [TanStack Start: Path Aliases](https://tanstack.com/start/latest/docs/framework/react/guide/path-aliases) *(article)* — Start'ta alias varsayılan gelmez, Vite sürümüne göre kurulum.
+14. [Next.js: Installation](https://nextjs.org/docs/app/getting-started/installation) *(doc)* — `@/*` alias'ı, mutlak import örneği ve `AGENTS.md`.
+15. [TanStack Start: Path Aliases](https://tanstack.com/start/latest/docs/framework/react/guide/path-aliases) *(doc)* — Start'ta alias varsayılan gelmez, Vite sürümüne göre kurulum.
 16. [eslint-plugin-import: no-relative-parent-imports](https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/no-relative-parent-imports.md) *(repo)* — `../` import'larını yasaklayan kural.
-17. [Feature-Sliced Design: Public API](https://feature-sliced.design/docs/reference/public-api) *(article)* — Public API olarak index dosyası, `export *` sorunu ve index dosyalarının maliyetleri.
+17. [Feature-Sliced Design: Public API](https://feature-sliced.design/docs/reference/public-api) *(doc)* — Public API olarak index dosyası, `export *` sorunu ve index dosyalarının maliyetleri.
 18. [Marvin Hagemeister: The barrel file debacle](https://marvinh.dev/blog/speeding-up-javascript-ecosystem-part-7/) *(article)* — Barrel dosyalarının araç performansına etkisi. 8 Ekim 2023.
 19. [TkDodo: Please Stop Using Barrel Files](https://tkdodo.eu/blog/please-stop-using-barrel-files) *(article)* — Döngüsel import, modül sayısı ölçümü ve dosya adı tutarlılığı. 26 Temmuz 2024.
 20. [Atlassian: How We Achieved 75% Faster Builds by Removing Barrel Files](https://www.atlassian.com/blog/how-we-build/faster-builds-when-removing-barrel-files) *(article)* — Jira frontend'inde ölçülen sonuçlar ve ödünleşimler. Tim Sebastian, 26 Haziran 2025.
