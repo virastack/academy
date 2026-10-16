@@ -5,36 +5,22 @@ lastVerified: "2026-10-16"
 translationKey: "glossary/working-methods"
 ---
 
-İşe başladığın ilk hafta bu üç kelimeyi mutlaka duyacaksın. Hepsinin cevap verdiği soru aynı: *Bugün hangi işi yapacağım ve o iş ne zaman bitmiş sayılır?*
+## Agile
 
-## Kısaca
+Agile; yazılımı tek seferde büyük bir teslimle değil, kısa aralıklarla küçük ve çalışan parçalar hâlinde geliştirmeyi öneren bir yaklaşımdır. Her teslimden sonra alınan geri bildirime göre plan güncellenir. Agile bir araç ya da kurallar listesi değil, bir çalışma anlayışıdır. Takımlar bu anlayışı pratikte çoğunlukla Scrum ya da Kanban ile uygular.
 
-- **Agile:** Haritayı baştan ezberlemek yerine her kavşakta rotayı yeniden hesaplayan bir navigasyon gibi çalışmak. Küçük adımlarla ilerle, göster, geri bildirime göre yön değiştir.
-- **Scrum:** Dizinin her bölümü gibi. Her bölümün sonunda izlenebilir, kendi içinde tamamlanmış bir parça çıkar.
-- **Kanban:** Restoran mutfağındaki sipariş askısı gibi. Bir tabak çıkınca sıradaki fişi alırsın, ocakta aynı anda sınırlı sayıda tabak olur.
+## Scrum
 
-## Scrum'da günün nasıl geçer?
+Scrum; işi sprint adı verilen sabit sürelere bölen bir çalışma çerçevesidir. Takımda üç sorumluluk bulunur: neyin yapılacağına ve önceliğine karar veren **Product Owner**, takımın Scrum'ı doğru uygulamasına yardım eden **Scrum Master** ve işi geliştiren **Developers**. Sprintte yapılacak işler sprint başında belirlenir ve takım sprint bitene kadar bu işlere odaklanır.
 
-- İş, genellikle iki haftalık **sprint**'lere bölünür.
-- Sprint sadece takvimi bölmek değil. İki haftanın sonunda kullanıcının gerçekten kullanabileceği, çalışan bir parça teslim etme sözüdür. Örneğin "profil sayfası tamamlandı" sprint sonunda bitmiş bir iş. "Profil sayfasının yarısı yapıldı" değil.
-- Sprint başında hangi işleri alacağına takımla birlikte karar verirsin. Sprint boyunca o işlere odaklanırsın.
-- Araya giren yeni istekler genellikle bir sonraki sprinte kalır.
-- Senin için anlamı: Sprint başında aldığın işleri sprint sonuna kadar bitmiş, test edilmiş ve canlıya çıkmaya hazır hâle getirmen beklenir.
+## Sprint
 
-## Kanban'da günün nasıl geçer?
+Sprint; takımın belirli bir sürede ne kadar iş bitirebileceğini öngörerek planlama ve geliştirme yaptığı sabit zaman dilimidir. Genellikle 2 hafta sürer, en fazla bir ay olabilir. Amaç, sürenin sonunda kullanıcının doğrudan deneyimleyebileceği çalışan ve somut bir ürün parçası teslim etmektir. Örneğin hedef bir kullanıcı profil sayfasıysa, sayfanın kodlaması ve testleri sprint bitmeden tamamlanır ve sayfa kullanıma hazır hâle getirilir.
 
-- Sprint yoktur, zamana sıkışmazsın.
-- Panoda sütunlar vardır: *To Do*, *In Progress*, *Code Review*, *Done*.
-- Bir işi bitirince *To Do* sütunundan sıradakini çekersin. İş seri ve kesintisiz akar.
-- Aynı anda açık tutabileceğin iş sayısı sınırlıdır. Yenisine başlamadan önce elindekini bitirmen gerekir.
-- Senin için anlamı: Yarım bıraktığın iş biriktirmezsin. Her gün tek soru "elimdekini nasıl bitiririm?" olur.
+## Kanban
+
+Kanban; işlerin sabit sürelere bölünmeden, bir pano üzerinde sürekli aktığı bir çalışma yöntemidir. Panoda işin aşamalarını gösteren sütunlar bulunur, örneğin *To Do*, *In Progress* ve *Done*. Bir iş bittiğinde *To Do* sütunundan sıradaki iş çekilir. Aynı anda devam eden iş sayısı sınırlandırılır (**WIP limiti**), böylece yarım kalan işler birikmez.
 
 ## Takımlar hangisini neden seçer?
 
-- **Scrum:** Yeni bir ürün ya da özellik geliştiren takımlar seçer. Düzenli teslim ritmi ve "bu sprintte ne bitecek" sorusunun net cevabı işlerine yarar.
-- **Kanban:** Ne zaman geleceği belli olmayan işlerle uğraşan takımlar seçer: canlıdaki hatalar, destek talepleri, küçük düzeltmeler. İki hafta beklemek yerine işi geldiği anda alırlar.
-- **İkisi birden:** Birçok takım sprintlerle çalışır ama panoda aynı anda açık iş sayısını da sınırlar.
-
-> [!TIP]
->
-> Yeni bir takıma girdiğinde şunları sor: Sprint var mı, varsa ne kadar sürüyor? Panoya bakabilir miyim? Bir iş ne zaman "bitti" sayılıyor? Bu soruların cevabı takımın gerçekte nasıl çalıştığını anlatır.
+Scrum genellikle yeni bir ürün ya da özellik geliştiren ve düzenli aralıklarla teslim yapmak isteyen takımlarda tercih edilir. Kanban ise canlıdaki hatalar ve destek talepleri gibi ne zaman geleceği önceden bilinmeyen işlerle uğraşan takımlarda daha uygundur, çünkü yeni iş sprintin bitmesini beklemeden alınabilir. Birçok takım ikisini birlikte kullanır: sprintlerle çalışır ama panoda devam eden iş sayısını da sınırlar.
