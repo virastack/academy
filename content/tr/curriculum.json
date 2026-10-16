@@ -2,255 +2,57 @@
   "groups": [
     {
       "id": "temeller",
-      "title": "Temeller",
+      "title": "Başlamadan Önce",
       "tracks": [
         {
-          "slug": "html-css",
-          "title": "HTML ve CSS",
-          "description": "Anlamlı yapı, form, layout ve responsive tasarım.",
+          "slug": "web-fundamentals",
+          "title": "Web Temelleri",
+          "description": "HTML, CSS, Tailwind, shadcn/ui, JavaScript ve Git için kısa özetler.",
           "status": "published",
           "lessonGroups": [
             {
-              "id": "html",
-              "title": "HTML",
+              "id": "ozetler",
+              "title": "Kısa özetler",
               "lessons": [
                 {
-                  "slug": "semantik-html",
-                  "title": "Semantik HTML",
-                  "description": "Anlamlı etiketler, başlık hiyerarşisi ve erişilebilir sayfa yapısı.",
+                  "slug": "html",
+                  "title": "HTML",
+                  "description": "Anlamlı etiketler ve sayfa yapısı.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
-                  "slug": "formlar",
-                  "title": "Formlar",
-                  "description": "Input türleri, label, yerleşik doğrulama ve erişilebilir formlar.",
-                  "status": "coming_soon",
-                  "kind": "lesson"
-                }
-              ]
-            },
-            {
-              "id": "css",
-              "title": "CSS",
-              "lessons": [
-                {
-                  "slug": "css-temelleri",
-                  "title": "CSS Temelleri",
-                  "description": "Seçiciler, kutu modeli, cascade ve özgüllük.",
+                  "slug": "css",
+                  "title": "CSS",
+                  "description": "Seçiciler, kutu modeli ve sayfa düzeni.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
-                  "slug": "flexbox-ve-grid",
-                  "title": "Flexbox ve Grid",
-                  "description": "Modern layout kurma ve ne zaman hangisini seçeceğin.",
+                  "slug": "tailwind",
+                  "title": "Tailwind",
+                  "description": "Utility sınıflarıyla stil ve responsive düzen.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
-                  "slug": "responsive-tasarim",
-                  "title": "Responsive Tasarım",
-                  "description": "Media query, container query ve akışkan birimler.",
+                  "slug": "shadcn-ui",
+                  "title": "shadcn/ui",
+                  "description": "Hazır bileşenleri projeye ekleme ve özelleştirme.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
-                  "slug": "tailwind-css",
-                  "title": "Tailwind CSS",
-                  "description": "Utility-first yaklaşım, kurulum ve responsive stil yazımı.",
-                  "status": "coming_soon",
-                  "kind": "lesson"
-                }
-              ]
-            },
-            {
-              "id": "proje",
-              "title": "Proje",
-              "lessons": [
-                {
-                  "slug": "landing-page",
-                  "title": "Landing Page",
-                  "description": "Semantik, responsive ve erişilebilir bir sayfayı baştan sona kurma.",
-                  "status": "coming_soon",
-                  "kind": "project"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "slug": "javascript",
-          "title": "JavaScript",
-          "description": "Dilin temelleri ve asenkron akış.",
-          "status": "published",
-          "lessonGroups": [
-            {
-              "id": "baslangic",
-              "title": "Başlangıç",
-              "lessons": [
-                {
-                  "slug": "giris-ve-kurulum",
-                  "title": "Giriş ve Kurulum",
-                  "description": "JavaScript nedir? Tarayıcı konsolu, Node.js ve ilk script.",
+                  "slug": "javascript",
+                  "title": "JavaScript",
+                  "description": "Dilin temelleri, DOM ve asenkron akış.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
-                  "slug": "degisken-tip-ve-kosullar",
-                  "title": "Değişken, Tip ve Koşullar",
-                  "description": "let/const, temel veri tipleri, operatörler, if ve switch.",
-                  "status": "coming_soon",
-                  "kind": "lesson"
-                },
-                {
-                  "slug": "donguler-ve-fonksiyonlar",
-                  "title": "Döngüler ve Fonksiyonlar",
-                  "description": "for/while, fonksiyon, arrow function, scope ve closure.",
-                  "status": "coming_soon",
-                  "kind": "lesson"
-                }
-              ]
-            },
-            {
-              "id": "veri-yapilari",
-              "title": "Veri Yapıları",
-              "lessons": [
-                {
-                  "slug": "array-metotlari",
-                  "title": "Array Metotları",
-                  "description": "map, filter, find, reduce ve sort ile veri dönüştürme.",
-                  "status": "coming_soon",
-                  "kind": "lesson"
-                },
-                {
-                  "slug": "object-ve-modern-sozdizimi",
-                  "title": "Object ve Modern Sözdizimi",
-                  "description": "Destructuring, spread/rest, optional chaining ve ES modules.",
-                  "status": "coming_soon",
-                  "kind": "lesson"
-                },
-                {
-                  "slug": "sepet-hesaplayici",
-                  "title": "Sepet Hesaplayıcı",
-                  "description": "Array ve object ile toplam, filtreleme ve sıralama yapan küçük proje.",
-                  "status": "coming_soon",
-                  "kind": "project"
-                }
-              ]
-            },
-            {
-              "id": "tarayici",
-              "title": "Tarayıcı",
-              "lessons": [
-                {
-                  "slug": "dom-ve-event",
-                  "title": "DOM ve Event",
-                  "description": "Element seçme, olay dinleme ve sayfayı JavaScript ile güncelleme.",
-                  "status": "coming_soon",
-                  "kind": "lesson"
-                },
-                {
-                  "slug": "quiz-uygulamasi",
-                  "title": "Quiz Uygulaması",
-                  "description": "DOM ve event ile soru, cevap ve skor akışı.",
-                  "status": "coming_soon",
-                  "kind": "project"
-                }
-              ]
-            },
-            {
-              "id": "asenkron",
-              "title": "Asenkron",
-              "lessons": [
-                {
-                  "slug": "promise-ve-async-await",
-                  "title": "Promise ve async/await",
-                  "description": "Asenkron akış, event loop'a kısa bakış ve try/catch ile hata yönetimi.",
-                  "status": "coming_soon",
-                  "kind": "lesson"
-                },
-                {
-                  "slug": "fetch-ve-api",
-                  "title": "Fetch ve API",
-                  "description": "İstek atma, JSON ile çalışma ve yükleme/hata durumları.",
-                  "status": "coming_soon",
-                  "kind": "lesson"
-                },
-                {
-                  "slug": "urun-arama",
-                  "title": "Ürün Arama",
-                  "description": "Fetch ile API'den veri çekip listeleyen ve arama yapan proje.",
-                  "status": "coming_soon",
-                  "kind": "project"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "slug": "git",
-          "title": "Git",
-          "description": "Commit, branch ve uzak depo ile sürüm kontrolü.",
-          "status": "published",
-          "lessonGroups": [
-            {
-              "id": "git",
-              "title": "Git",
-              "lessons": [
-                {
-                  "slug": "git-temelleri",
-                  "title": "Git Temelleri",
-                  "description": "Repo oluşturma, commit, geçmiş ve .gitignore.",
-                  "status": "coming_soon",
-                  "kind": "lesson"
-                },
-                {
-                  "slug": "branch-ve-merge",
-                  "title": "Branch ve Merge",
-                  "description": "Dal açma, birleştirme, conflict çözme ve rebase.",
-                  "status": "coming_soon",
-                  "kind": "lesson"
-                },
-                {
-                  "slug": "github-ve-ortak-calisma",
-                  "title": "GitHub ve Ortak Çalışma",
-                  "description": "Remote, push/pull, pull request ve code review akışı.",
-                  "status": "coming_soon",
-                  "kind": "lesson"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "slug": "typescript",
-          "title": "TypeScript",
-          "description": "Tipler, generic'ler ve React ile tip güvenliği.",
-          "status": "published",
-          "lessonGroups": [
-            {
-              "id": "typescript",
-              "title": "TypeScript",
-              "lessons": [
-                {
-                  "slug": "tip-temelleri",
-                  "title": "Tip Temelleri",
-                  "description": "Temel tipler, type inference, union ve interface/type farkı.",
-                  "status": "coming_soon",
-                  "kind": "lesson"
-                },
-                {
-                  "slug": "generic-ve-yardimci-tipler",
-                  "title": "Generic ve Yardımcı Tipler",
-                  "description": "Generic fonksiyonlar, Partial, Pick, Omit ve Record.",
-                  "status": "coming_soon",
-                  "kind": "lesson"
-                },
-                {
-                  "slug": "react-ile-typescript",
-                  "title": "React ile TypeScript",
-                  "description": "Props, state, event ve hook tipleri.",
+                  "slug": "git",
+                  "title": "Git",
+                  "description": "Commit, branch ve uzak depo ile sürüm kontrolü.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 }
@@ -262,8 +64,78 @@
     },
     {
       "id": "react-ekosistemi",
-      "title": "React Ekosistemi",
+      "title": "React ile Geliştirme",
       "tracks": [
+        {
+          "slug": "typescript",
+          "title": "TypeScript",
+          "description": "Tipler, generic'ler ve React ile tip güvenliği.",
+          "status": "published",
+          "lessonGroups": [
+            {
+              "id": "dersler",
+              "title": "Dersler",
+              "lessons": [
+                {
+                  "slug": "basic-types-and-inference",
+                  "title": "Temel tipler ve çıkarım",
+                  "description": "string, number, boolean ve type inference.",
+                  "status": "coming_soon",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "interfaces-types-and-unions",
+                  "title": "Interface, type ve union",
+                  "description": "Nesne şekilleri, type alias ve birleşik tipler.",
+                  "status": "coming_soon",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "generics",
+                  "title": "Generic'ler",
+                  "description": "Tipe göre çalışan, yeniden kullanılabilir fonksiyon ve bileşenler.",
+                  "status": "coming_soon",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "utility-types",
+                  "title": "Utility types",
+                  "description": "Partial, Pick, Omit ve Record ile tip türetme.",
+                  "status": "coming_soon",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "narrowing-and-type-guards",
+                  "title": "Narrowing ve type guard",
+                  "description": "Union'ı daraltma ve güvenli tip kontrolü.",
+                  "status": "coming_soon",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "types-in-react",
+                  "title": "React'ta tipler",
+                  "description": "Props, event, children ve hook tipleri.",
+                  "status": "coming_soon",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "tsconfig-and-strict-mode",
+                  "title": "tsconfig ve strict mod",
+                  "description": "Derleyici ayarları ve strict bayrakları.",
+                  "status": "coming_soon",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "project",
+                  "title": "Proje",
+                  "description": "Tipli bir React arayüzü kur.",
+                  "status": "coming_soon",
+                  "kind": "project"
+                }
+              ]
+            }
+          ]
+        },
         {
           "slug": "react",
           "title": "React",
@@ -271,138 +143,71 @@
           "status": "published",
           "lessonGroups": [
             {
-              "id": "baslangic",
-              "title": "Başlangıç",
+              "id": "dersler",
+              "title": "Dersler",
               "lessons": [
                 {
-                  "slug": "giris-ve-kurulum",
-                  "title": "Giriş ve Kurulum",
-                  "description": "React nedir, neden kullanılır? Vite ile ilk proje.",
+                  "slug": "setup-with-vite",
+                  "title": "Vite ile kurulum",
+                  "description": "Vite ile ilk React projesini ayağa kaldır.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
-                  "slug": "component-ve-jsx",
+                  "slug": "components-and-jsx",
                   "title": "Component ve JSX",
-                  "description": "Component yazma, JSX kuralları ve component'leri birleştirme.",
+                  "description": "Component yazma ve JSX kuralları.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
-                  "slug": "props",
-                  "title": "Props",
-                  "description": "Veri aktarma, children ve component'leri yeniden kullanılabilir yapma.",
+                  "slug": "props-and-composition",
+                  "title": "Props ve composition",
+                  "description": "Veri aktarma, children ve bileşenleri birleştirme.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
-                  "slug": "profil-karti",
-                  "title": "Profil Kartı",
-                  "description": "Component ve props ile ilk arayüzünü kur.",
-                  "status": "coming_soon",
-                  "kind": "project"
-                }
-              ]
-            },
-            {
-              "id": "temel-konular",
-              "title": "Temel Konular",
-              "lessons": [
-                {
-                  "slug": "state-ve-event",
-                  "title": "State ve Event",
-                  "description": "useState, tıklama olayları ve state güncelleme kuralları.",
+                  "slug": "state",
+                  "title": "State",
+                  "description": "useState ve state güncelleme kuralları.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
-                  "slug": "liste-ve-kosullu-render",
-                  "title": "Liste ve Koşullu Render",
-                  "description": "map, key ve ekranda duruma göre içerik gösterme.",
+                  "slug": "effects",
+                  "title": "Effect ve ne zaman gerekmez",
+                  "description": "Yan etkiler, cleanup ve effect'siz çözümler.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
-                  "slug": "form-ve-input",
-                  "title": "Form ve Input",
-                  "description": "Controlled input, form gönderme ve basit doğrulama.",
+                  "slug": "refs-and-dom",
+                  "title": "Ref ve DOM",
+                  "description": "DOM erişimi ve render tetiklemeyen değerler.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
-                  "slug": "todo-uygulamasi",
-                  "title": "Todo Uygulaması",
-                  "description": "State, liste ve formu birleştirdiğin küçük proje.",
-                  "status": "coming_soon",
-                  "kind": "project"
-                }
-              ]
-            },
-            {
-              "id": "hooklar",
-              "title": "Hook'lar",
-              "lessons": [
-                {
-                  "slug": "use-effect",
-                  "title": "useEffect",
-                  "description": "Yan etkiler, veri çekme ve cleanup.",
+                  "slug": "context",
+                  "title": "Context",
+                  "description": "Prop drilling olmadan paylaşılan state.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
-                  "slug": "use-ref",
-                  "title": "useRef",
-                  "description": "DOM'a erişim, focus yönetimi ve render tetiklemeyen değerler.",
-                  "status": "coming_soon",
-                  "kind": "lesson"
-                },
-                {
-                  "slug": "context-ve-use-reducer",
-                  "title": "Context ve useReducer",
-                  "description": "Prop drilling'i çözme ve karmaşık state'i düzenleme.",
-                  "status": "coming_soon",
-                  "kind": "lesson"
-                },
-                {
-                  "slug": "custom-hook",
-                  "title": "Custom Hook",
+                  "slug": "custom-hooks",
+                  "title": "Custom hook",
                   "description": "Tekrar eden mantığı hook'a taşıma.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
-                  "slug": "urun-listesi-ve-sepet",
-                  "title": "Ürün Listesi ve Sepet",
-                  "description": "Hook'ları kullanarak arama, listeleme ve sepete ekleme akışı.",
+                  "slug": "project",
+                  "title": "Proje",
+                  "description": "Component, state ve hook'larla küçük bir arayüz.",
                   "status": "coming_soon",
                   "kind": "project"
-                }
-              ]
-            },
-            {
-              "id": "react-19",
-              "title": "React 19",
-              "lessons": [
-                {
-                  "slug": "actions-ve-form-hooklari",
-                  "title": "Actions ve Form Hook'ları",
-                  "description": "useActionState, useFormStatus ve useOptimistic ile modern form akışı.",
-                  "status": "coming_soon",
-                  "kind": "lesson"
-                },
-                {
-                  "slug": "use-ve-suspense",
-                  "title": "use ve Suspense",
-                  "description": "Asenkron veriyi render içinde okuma ve yükleme durumları.",
-                  "status": "coming_soon",
-                  "kind": "lesson"
-                },
-                {
-                  "slug": "performans-ve-react-compiler",
-                  "title": "Performans ve React Compiler",
-                  "description": "Gereksiz render'lar, memo ve Compiler'ın işi nasıl otomatikleştirdiği.",
-                  "status": "coming_soon",
-                  "kind": "lesson"
                 }
               ]
             }
@@ -415,104 +220,64 @@
           "status": "published",
           "lessonGroups": [
             {
-              "id": "baslangic",
-              "title": "Başlangıç",
+              "id": "dersler",
+              "title": "Dersler",
               "lessons": [
                 {
-                  "slug": "giris-ve-kurulum",
-                  "title": "Giriş ve Kurulum",
-                  "description": "Next.js nedir, neden kullanılır? create-next-app ve proje yapısı.",
+                  "slug": "setup-and-folder-structure",
+                  "title": "Kurulum ve klasör yapısı",
+                  "description": "App Router projesi ve klasörlerin rolü.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
-                  "slug": "routing-ve-layout",
-                  "title": "Routing ve Layout",
-                  "description": "App Router, dinamik route'lar, layout'lar ve Link ile gezinme.",
+                  "slug": "routing-and-layouts",
+                  "title": "Routing ve layout",
+                  "description": "Sayfa, layout ve iç içe rotalar.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
-                  "slug": "server-ve-client-component",
-                  "title": "Server ve Client Component",
-                  "description": "İkisi arasındaki fark, use client sınırı ve hangisini ne zaman seçeceğin.",
+                  "slug": "server-and-client-components",
+                  "title": "Server ve Client Components",
+                  "description": "Hangi kodun sunucuda, hangisinin tarayıcıda çalıştığı.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
-                  "slug": "blog-sitesi",
-                  "title": "Blog Sitesi",
-                  "description": "Routing, layout ve server component ile içerik odaklı bir site.",
-                  "status": "coming_soon",
-                  "kind": "project"
-                }
-              ]
-            },
-            {
-              "id": "veri-ve-render",
-              "title": "Veri ve Render",
-              "lessons": [
-                {
-                  "slug": "veri-cekme",
-                  "title": "Veri Çekme",
-                  "description": "Server Component'te fetch, loading.tsx, error.tsx ve Suspense.",
+                  "slug": "data-fetching-and-cache",
+                  "title": "Veri çekme ve cache",
+                  "description": "Sunucuda veri okuma ve cache davranışı.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
                   "slug": "server-actions",
                   "title": "Server Actions",
-                  "description": "Form gönderme, veri güncelleme ve ekranı yenileme.",
+                  "description": "Form ve mutation'ları sunucu fonksiyonuyla bağlama.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
-                  "slug": "caching-ve-render-stratejileri",
-                  "title": "Caching ve Render Stratejileri",
-                  "description": "Statik ve dinamik render, use cache ve Cache Components.",
+                  "slug": "rendering-strategies",
+                  "title": "Render stratejileri",
+                  "description": "Statik, dinamik ve akışlı render seçenekleri.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
-                  "slug": "urun-katalogu",
-                  "title": "Ürün Kataloğu",
-                  "description": "Veri çekme, arama ve Server Action ile tam bir akış.",
+                  "slug": "metadata-and-seo",
+                  "title": "Metadata ve SEO'ya giriş",
+                  "description": "Başlık, açıklama ve temel SEO alanları.",
+                  "status": "coming_soon",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "project",
+                  "title": "Proje",
+                  "description": "App Router ile sayfa, veri ve form akışı.",
                   "status": "coming_soon",
                   "kind": "project"
-                }
-              ]
-            },
-            {
-              "id": "yayina-hazirlik",
-              "title": "Yayına Hazırlık",
-              "lessons": [
-                {
-                  "slug": "metadata-ve-seo",
-                  "title": "Metadata ve SEO",
-                  "description": "Metadata API, Open Graph görselleri, sitemap ve robots.",
-                  "status": "coming_soon",
-                  "kind": "lesson"
-                },
-                {
-                  "slug": "optimizasyon",
-                  "title": "Optimizasyon",
-                  "description": "next/image, next/font ve Core Web Vitals ile ilişkisi.",
-                  "status": "coming_soon",
-                  "kind": "lesson"
-                },
-                {
-                  "slug": "proxy-ve-route-handlers",
-                  "title": "Proxy ve Route Handlers",
-                  "description": "proxy.ts ile yönlendirme, API endpoint'leri ve ortam değişkenleri.",
-                  "status": "coming_soon",
-                  "kind": "lesson"
-                },
-                {
-                  "slug": "yayina-alma",
-                  "title": "Yayına Alma",
-                  "description": "Vercel'e deploy ve production kontrolleri.",
-                  "status": "coming_soon",
-                  "kind": "lesson"
                 }
               ]
             }
@@ -531,90 +296,64 @@
           "status": "published",
           "lessonGroups": [
             {
-              "id": "baslangic",
-              "title": "Başlangıç",
+              "id": "dersler",
+              "title": "Dersler",
               "lessons": [
                 {
-                  "slug": "giris-ve-kurulum",
-                  "title": "Giriş ve Kurulum",
-                  "description": "Sunucu state'i nedir? QueryClient, Provider ve Devtools kurulumu.",
+                  "slug": "what-is-server-state",
+                  "title": "Server state nedir",
+                  "description": "Sunucu verisi ile client state arasındaki fark.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
-                  "slug": "use-query",
-                  "title": "useQuery",
-                  "description": "Veri çekme, queryKey, yükleme ve hata durumları.",
+                  "slug": "use-query-and-query-keys",
+                  "title": "useQuery ve query key",
+                  "description": "Sorgu yazma ve cache anahtarını kurma.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
-                  "slug": "cache-ve-guncel-tutma",
-                  "title": "Cache ve Güncel Tutma",
-                  "description": "staleTime, gcTime, refetch davranışı ve invalidation.",
+                  "slug": "cache-and-stale-time",
+                  "title": "Cache ve stale time",
+                  "description": "Verinin ne zaman taze, ne zaman eski sayıldığı.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
-                  "slug": "urun-listesi",
-                  "title": "Ürün Listesi",
-                  "description": "Arama, filtreleme ve cache ile çalışan bir liste.",
+                  "slug": "mutations-and-invalidation",
+                  "title": "Mutation ve invalidation",
+                  "description": "Yazma işleminden sonra cache'i güncelleme.",
+                  "status": "coming_soon",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "optimistic-updates",
+                  "title": "Optimistic update",
+                  "description": "Sunucu cevabını beklemeden arayüzü güncelleme.",
+                  "status": "coming_soon",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "pagination-and-infinite-lists",
+                  "title": "Sayfalama ve sonsuz liste",
+                  "description": "Sayfa sayfa ve infinite query ile listeleme.",
+                  "status": "coming_soon",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "prefetch-with-nextjs",
+                  "title": "Next.js ile prefetch",
+                  "description": "Sunucuda sorguyu önceden doldurma.",
+                  "status": "coming_soon",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "project",
+                  "title": "Proje",
+                  "description": "Liste, mutation ve cache'i bir araya getir.",
                   "status": "coming_soon",
                   "kind": "project"
-                }
-              ]
-            },
-            {
-              "id": "veri-guncelleme",
-              "title": "Veri Güncelleme",
-              "lessons": [
-                {
-                  "slug": "use-mutation",
-                  "title": "useMutation",
-                  "description": "Ekleme, güncelleme, silme ve ardından veriyi yenileme.",
-                  "status": "coming_soon",
-                  "kind": "lesson"
-                },
-                {
-                  "slug": "optimistic-update",
-                  "title": "Optimistic Update",
-                  "description": "Arayüzü anında güncelleme ve hata olursa geri alma.",
-                  "status": "coming_soon",
-                  "kind": "lesson"
-                },
-                {
-                  "slug": "sepet-yonetimi",
-                  "title": "Sepet Yönetimi",
-                  "description": "Mutation ve optimistic update ile sepete ekleme/çıkarma akışı.",
-                  "status": "coming_soon",
-                  "kind": "project"
-                }
-              ]
-            },
-            {
-              "id": "ileri-seviye",
-              "title": "İleri Seviye",
-              "lessons": [
-                {
-                  "slug": "sayfalama-ve-sonsuz-scroll",
-                  "title": "Sayfalama ve Sonsuz Scroll",
-                  "description": "useInfiniteQuery, sayfalama ve yeni sayfa yüklenirken eski veriyi gösterme.",
-                  "status": "coming_soon",
-                  "kind": "lesson"
-                },
-                {
-                  "slug": "suspense-ve-nextjs",
-                  "title": "Suspense ve Next.js ile Kullanım",
-                  "description": "useSuspenseQuery, sunucuda prefetch ve hydration.",
-                  "status": "coming_soon",
-                  "kind": "lesson"
-                },
-                {
-                  "slug": "test",
-                  "title": "Test",
-                  "description": "Query hook'larını ve component'leri MSW ile test etme.",
-                  "status": "coming_soon",
-                  "kind": "lesson"
                 }
               ]
             }
@@ -627,158 +366,125 @@
           "status": "published",
           "lessonGroups": [
             {
-              "id": "zustand",
-              "title": "Zustand",
+              "id": "dersler",
+              "title": "Dersler",
               "lessons": [
                 {
-                  "slug": "store-kurulumu",
-                  "title": "Store Kurulumu",
-                  "description": "create, state, action'lar ve component içinde kullanım.",
+                  "slug": "when-you-need-a-store",
+                  "title": "Ne zaman store gerekir",
+                  "description": "Local state yettiğinde store açmama.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
-                  "slug": "selector-ve-performans",
-                  "title": "Selector ve Performans",
-                  "description": "Gereksiz render'ları önleme ve useShallow.",
+                  "slug": "first-store",
+                  "title": "İlk store",
+                  "description": "create ile küçük bir store kurma.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
-                  "slug": "middleware-ve-typescript",
-                  "title": "Middleware ve TypeScript",
-                  "description": "persist, devtools ve store'u tiplendirme.",
+                  "slug": "selectors-and-rerenders",
+                  "title": "Selector ve yeniden render",
+                  "description": "Yalnızca değişen parçayı okuyup render'ı sınırlama.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
-                  "slug": "sepet-store",
-                  "title": "Sepet Store'u",
-                  "description": "Sepet state'ini Zustand'da, ürün verisini TanStack Query'de tutarak ikisini birlikte kullanma.",
-                  "status": "coming_soon",
-                  "kind": "project"
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "form-ve-dogrulama",
-      "title": "Form ve Doğrulama",
-      "tracks": [
-        {
-          "slug": "react-hook-form",
-          "title": "React Hook Form",
-          "description": "Form state, doğrulama ve hata mesajları.",
-          "status": "published",
-          "lessonGroups": [
-            {
-              "id": "baslangic",
-              "title": "Başlangıç",
-              "lessons": [
-                {
-                  "slug": "kurulum-ve-register",
-                  "title": "Kurulum ve register",
-                  "description": "useForm, register, handleSubmit ve form değerlerini okuma.",
+                  "slug": "slice-pattern",
+                  "title": "Slice pattern",
+                  "description": "Store'u parçalara bölme.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
-                  "slug": "dogrulama-ve-hata-mesajlari",
-                  "title": "Doğrulama ve Hata Mesajları",
-                  "description": "Yerleşik kurallar, formState.errors, mode ve reset.",
+                  "slug": "persist-and-devtools",
+                  "title": "Persist ve devtools",
+                  "description": "Kalıcı state ve Redux DevTools bağlantısı.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
-                  "slug": "kayit-formu",
-                  "title": "Kayıt Formu",
-                  "description": "Ad, e-posta ve şifre alanlarıyla ilk formunu kur.",
-                  "status": "coming_soon",
-                  "kind": "project"
-                }
-              ]
-            },
-            {
-              "id": "gelismis-formlar",
-              "title": "Gelişmiş Formlar",
-              "lessons": [
-                {
-                  "slug": "controller-ve-ui-kutuphaneleri",
-                  "title": "Controller ve UI Kütüphaneleri",
-                  "description": "Select, checkbox ve shadcn/ui gibi kontrollü component'leri forma bağlama.",
+                  "slug": "with-tanstack-query",
+                  "title": "TanStack Query ile birlikte kullanım",
+                  "description": "Client state ile sunucu state'ini ayrı tutma.",
                   "status": "coming_soon",
                   "kind": "lesson"
-                },
-                {
-                  "slug": "dinamik-alanlar",
-                  "title": "Dinamik Alanlar",
-                  "description": "useFieldArray ile alan ekleme/çıkarma ve useWatch ile alanları izleme.",
-                  "status": "coming_soon",
-                  "kind": "lesson"
-                },
-                {
-                  "slug": "buyuk-formlari-bolme",
-                  "title": "Büyük Formları Bölme",
-                  "description": "FormProvider, useFormContext ve çok adımlı form.",
-                  "status": "coming_soon",
-                  "kind": "lesson"
-                },
-                {
-                  "slug": "siparis-formu",
-                  "title": "Sipariş Formu",
-                  "description": "Adres, ödeme ve çok adımlı akışı birleştiren proje.",
-                  "status": "coming_soon",
-                  "kind": "project"
                 }
               ]
             }
           ]
         },
         {
-          "slug": "zod",
-          "title": "Zod",
-          "description": "Şema ile tip ve çalışma zamanı doğrulaması.",
+          "slug": "forms",
+          "title": "Formlar",
+          "description": "React Hook Form, Zod ve maskeleme ile form ve doğrulama.",
           "status": "published",
           "lessonGroups": [
             {
-              "id": "zod",
-              "title": "Zod",
+              "id": "dersler",
+              "title": "Dersler",
               "lessons": [
                 {
-                  "slug": "sema-ve-tip-cikarimi",
-                  "title": "Şema ve Tip Çıkarımı",
-                  "description": "z.object, temel tipler, parse/safeParse ve z.infer ile TypeScript tipi üretme.",
+                  "slug": "controlled-and-uncontrolled-forms",
+                  "title": "Controlled ve uncontrolled formlar",
+                  "description": "Input değerini formun mu, alanın mı tuttuğu.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
-                  "slug": "dogrulama-kurallari",
-                  "title": "Doğrulama Kuralları",
-                  "description": "min/max, email, refine, özel hata mesajları ve şemaları birleştirme.",
+                  "slug": "react-hook-form-basics",
+                  "title": "React Hook Form temelleri",
+                  "description": "register, handleSubmit ve form state.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
-                  "slug": "react-hook-form-ile-kullanim",
-                  "title": "React Hook Form ile Kullanım",
-                  "description": "zodResolver, form şeması ve hata mesajlarını arayüze bağlama.",
+                  "slug": "zod-schema-and-validation",
+                  "title": "Zod ile şema ve doğrulama",
+                  "description": "Şema ile tip ve çalışma zamanı doğrulaması.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
-                  "slug": "api-ve-ortam-verisini-dogrulama",
-                  "title": "API ve Ortam Verisini Doğrulama",
-                  "description": "Server Action girdisi, API yanıtı ve environment variable doğrulama.",
+                  "slug": "react-hook-form-with-zod",
+                  "title": "React Hook Form ile Zod",
+                  "description": "Resolver ile şemayı forma bağlama.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
-                  "slug": "kayit-ve-siparis-formu",
-                  "title": "Kayıt ve Sipariş Formu",
-                  "description": "React Hook Form kursundaki formlara Zod şemasını bağlayan proje.",
+                  "slug": "errors-and-accessibility",
+                  "title": "Hata gösterimi ve erişilebilirlik",
+                  "description": "Hata mesajını alana bağlama.",
+                  "status": "coming_soon",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "masking-and-regex",
+                  "title": "Maskeleme ve regex",
+                  "description": "Girdi maskesi ve desenle alan kısıtlama.",
+                  "status": "coming_soon",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "dynamic-and-multi-step-forms",
+                  "title": "Dinamik alanlar ve çok adımlı formlar",
+                  "description": "Eklenen alanlar ve adım adım form.",
+                  "status": "coming_soon",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "forms-with-server-actions",
+                  "title": "Server Actions ile form",
+                  "description": "Formu Next.js server action'a gönderme.",
+                  "status": "coming_soon",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "project",
+                  "title": "Proje",
+                  "description": "Doğrulama, maske ve sunucu action'lı form.",
                   "status": "coming_soon",
                   "kind": "project"
                 }
@@ -790,7 +496,7 @@
     },
     {
       "id": "test-ve-kalite",
-      "title": "Test ve Kalite",
+      "title": "Test, Kalite ve Yayın",
       "tracks": [
         {
           "slug": "vitest",
@@ -905,85 +611,66 @@
         {
           "slug": "playwright",
           "title": "Playwright",
-          "description": "Gerçek tarayıcıda uçtan uca testler ve kullanıcı akışları.",
+          "description": "Uçtan uca testler ve gerçek tarayıcıda doğrulama.",
           "status": "published",
           "lessonGroups": [
             {
-              "id": "baslangic",
-              "title": "Başlangıç",
+              "id": "dersler",
+              "title": "Dersler",
               "lessons": [
                 {
-                  "slug": "giris-ve-kurulum",
-                  "title": "Giriş ve Kurulum",
-                  "description": "E2E testi nedir, component testinden farkı ne? Kurulum ve ilk test.",
+                  "slug": "setup",
+                  "title": "Kurulum",
+                  "description": "Playwright'i projeye ekleme ve ilk yapılandırma.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
-                  "slug": "locator-ve-assertion",
-                  "title": "Locator ve Assertion",
-                  "description": "getByRole, getByText, auto-waiting ve expect ile doğrulama.",
+                  "slug": "first-test-and-locators",
+                  "title": "İlk test ve locator'lar",
+                  "description": "Sayfayı açma ve elementi güvenilir seçme.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
-                  "slug": "kullanici-etkilesimi",
-                  "title": "Kullanıcı Etkileşimi",
-                  "description": "Tıklama, form doldurma, sayfa geçişleri ve dosya yükleme.",
+                  "slug": "assertions-and-waiting",
+                  "title": "Assertion ve bekleme",
+                  "description": "Beklenen durumu doğrulama ve otomatik bekleme.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
-                  "slug": "arama-ve-giris-akisi",
-                  "title": "Arama ve Giriş Akışı",
-                  "description": "Ürün arama ve giriş yapma senaryolarını baştan sona test etme.",
-                  "status": "coming_soon",
-                  "kind": "project"
-                }
-              ]
-            },
-            {
-              "id": "gercekci-senaryolar",
-              "title": "Gerçekçi Senaryolar",
-              "lessons": [
-                {
-                  "slug": "test-duzeni",
-                  "title": "Test Düzeni",
-                  "description": "Fixture'lar, beforeEach, Page Object Model ve giriş durumunu saklama (storageState).",
+                  "slug": "page-objects",
+                  "title": "Page Object",
+                  "description": "Akışı sayfa nesnelerine bölme.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
-                  "slug": "ag-ve-api-mock",
-                  "title": "Ağ ve API Mock",
-                  "description": "İstekleri yakalama, sahte yanıt dönme ve hata durumlarını test etme.",
+                  "slug": "auth-and-fixtures",
+                  "title": "Auth ve fixture",
+                  "description": "Oturumlu test ve paylaşılan hazırlık.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
-                  "slug": "siparis-akisi",
-                  "title": "Sipariş Akışı",
-                  "description": "Ürün seçmeden ödemeye kadar tam e-ticaret akışı.",
-                  "status": "coming_soon",
-                  "kind": "project"
-                }
-              ]
-            },
-            {
-              "id": "hata-ayiklama-ve-ci",
-              "title": "Hata Ayıklama ve CI",
-              "lessons": [
-                {
-                  "slug": "debug-ve-trace-viewer",
-                  "title": "Debug ve Trace Viewer",
-                  "description": "UI Mode, codegen, trace viewer, screenshot ve video.",
+                  "slug": "api-mocking",
+                  "title": "API mock",
+                  "description": "Ağ isteklerini test içinde taklit etme.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
-                  "slug": "ci-ve-coklu-tarayici",
-                  "title": "CI ve Çoklu Tarayıcı",
-                  "description": "GitHub Actions, paralel çalıştırma, Chromium/Firefox/WebKit ve mobil görünüm.",
+                  "slug": "running-in-ci",
+                  "title": "CI'da çalıştırma",
+                  "description": "GitHub Actions üzerinde uçtan uca test.",
+                  "status": "coming_soon",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "debugging-with-trace",
+                  "title": "Trace ile hata ayıklama",
+                  "description": "Başarısız testi trace viewer ile inceleme.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 }
@@ -994,74 +681,131 @@
         {
           "slug": "performance-accessibility",
           "title": "Performans ve Erişilebilirlik",
-          "description": "Core Web Vitals, semantik HTML ve klavye erişimi.",
+          "description": "Hızlı ve herkes için kullanılabilir arayüzler.",
           "status": "published",
           "lessonGroups": [
             {
-              "id": "performans",
-              "title": "Performans",
+              "id": "dersler",
+              "title": "Dersler",
               "lessons": [
                 {
                   "slug": "core-web-vitals",
                   "title": "Core Web Vitals",
-                  "description": "LCP, INP, CLS nedir? Lighthouse ve PageSpeed ile ölçüm.",
+                  "description": "LCP, INP ve CLS'nin ne anlama geldiği.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
-                  "slug": "yukleme-performansi",
-                  "title": "Yükleme Performansı",
-                  "description": "Görsel, font ve JavaScript boyutunu küçültme, lazy loading ve code splitting.",
+                  "slug": "measuring",
+                  "title": "Ölçüm (Lighthouse, DevTools)",
+                  "description": "Skoru nereden okuyup neye bakacağın.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
-                  "slug": "react-ve-render-performansi",
-                  "title": "React ve Render Performansı",
-                  "description": "Gereksiz render'ları bulma, React DevTools Profiler ve büyük listeleri yönetme.",
+                  "slug": "render-performance",
+                  "title": "Render performansı",
+                  "description": "Gereksiz render ve pahalı güncellemeler.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
-                  "slug": "performans-iyilestirme",
-                  "title": "Performans İyileştirme",
-                  "description": "Yavaş bir e-ticaret sayfasını ölçüp adım adım hızlandırma.",
+                  "slug": "images-and-fonts",
+                  "title": "Görsel ve font",
+                  "description": "Görsel boyutu, format ve font yükleme.",
                   "status": "coming_soon",
-                  "kind": "project"
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "bundle-size",
+                  "title": "Bundle boyutu",
+                  "description": "Paketi küçültme ve neyin yüklendiğini görme.",
+                  "status": "coming_soon",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "semantic-html-and-aria",
+                  "title": "Semantik HTML ve ARIA",
+                  "description": "Anlamlı etiketler ve gerektiğinde ARIA.",
+                  "status": "coming_soon",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "keyboard-and-focus",
+                  "title": "Klavye ve odak yönetimi",
+                  "description": "Klavye ile gezinme ve görünür odak.",
+                  "status": "coming_soon",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "automated-accessibility-testing",
+                  "title": "Otomatik erişilebilirlik testi",
+                  "description": "Test koşusunda erişilebilirlik kontrolü.",
+                  "status": "coming_soon",
+                  "kind": "lesson"
                 }
               ]
-            },
+            }
+          ]
+        },
+        {
+          "slug": "production",
+          "title": "Production'a Hazırlık",
+          "description": "Deploy, CI/CD ve canlı ortamda izleme.",
+          "status": "published",
+          "lessonGroups": [
             {
-              "id": "erisilebilirlik",
-              "title": "Erişilebilirlik",
+              "id": "dersler",
+              "title": "Dersler",
               "lessons": [
                 {
-                  "slug": "semantik-yapi-ve-aria",
-                  "title": "Semantik Yapı ve ARIA",
-                  "description": "Doğru HTML, landmark'lar, alt metin ve ARIA'yı ne zaman kullanacağın.",
+                  "slug": "environment-variables",
+                  "title": "Ortam değişkenleri",
+                  "description": "Geliştirme, önizleme ve canlı ortam ayrımı.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
-                  "slug": "klavye-ve-odak-yonetimi",
-                  "title": "Klavye ve Odak Yönetimi",
-                  "description": "Tab sırası, focus görünürlüğü, modal ve menülerde odak kontrolü.",
+                  "slug": "deployment-options",
+                  "title": "Deploy seçenekleri",
+                  "description": "Uygulamayı nereye ve nasıl yayınlayacağın.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
-                  "slug": "renk-kontrast-ve-test",
-                  "title": "Renk, Kontrast ve Test",
-                  "description": "WCAG kontrast kuralları, ekran okuyucu ile deneme ve axe ile otomatik test.",
+                  "slug": "cicd",
+                  "title": "CI/CD (GitHub Actions)",
+                  "description": "Test ve yayını otomatikleştiren hat.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
-                  "slug": "erisilebilirlik-iyilestirme",
-                  "title": "Erişilebilirlik İyileştirme",
-                  "description": "Formlu ve modallı bir sayfayı erişilebilir hale getirme.",
+                  "slug": "error-monitoring",
+                  "title": "Hata izleme",
+                  "description": "Canlıdaki hataları yakalama ve gruplama.",
                   "status": "coming_soon",
-                  "kind": "project"
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "logging",
+                  "title": "Loglama",
+                  "description": "Ne loglanır, ne loglanmaz.",
+                  "status": "coming_soon",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "feature-flags-and-release-strategy",
+                  "title": "Feature flag ve yayın stratejisi",
+                  "description": "Özelliği kademeli açma.",
+                  "status": "coming_soon",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "pre-release-checklist",
+                  "title": "Yayın öncesi kontrol listesi",
+                  "description": "Canlıya çıkmadan önce bakılacaklar.",
+                  "status": "coming_soon",
+                  "kind": "lesson"
                 }
               ]
             }
@@ -1165,74 +909,61 @@
         {
           "slug": "auth-security",
           "title": "Auth ve Güvenlik",
-          "description": "Kimlik doğrulama, oturum yönetimi ve XSS/CSRF önlemleri.",
+          "description": "Kimlik doğrulama, yetkilendirme ve yaygın zafiyetler.",
           "status": "published",
           "lessonGroups": [
             {
-              "id": "kimlik-dogrulama",
-              "title": "Kimlik Doğrulama",
+              "id": "dersler",
+              "title": "Dersler",
               "lessons": [
                 {
-                  "slug": "auth-temelleri",
-                  "title": "Auth Temelleri",
-                  "description": "Authentication ile authorization farkı, session ve token mantığı, cookie türleri.",
+                  "slug": "sessions-cookies-and-jwt",
+                  "title": "Oturum, cookie ve JWT",
+                  "description": "Oturumun nerede tutulduğu ve cookie ile JWT farkı.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
-                  "slug": "better-auth-ile-giris-sistemi",
-                  "title": "Better Auth ile Giriş Sistemi",
-                  "description": "E-posta/şifre ile kayıt, giriş ve çıkış akışı.",
+                  "slug": "oauth-and-oidc",
+                  "title": "OAuth ve OIDC akışları",
+                  "description": "Yetkilendirme kodu, token ve kimlik sağlayıcı.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
-                  "slug": "oauth-ve-sosyal-giris",
-                  "title": "OAuth ve Sosyal Giriş",
-                  "description": "Google ve GitHub ile giriş, OAuth/OIDC akışının mantığı.",
+                  "slug": "auth-in-nextjs",
+                  "title": "Next.js'te auth",
+                  "description": "App Router'da giriş ve oturum okuma.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
-                  "slug": "rota-ve-rol-koruma",
-                  "title": "Rota ve Rol Koruma",
-                  "description": "proxy.ts ve Server Component'te giriş kontrolü, rol bazlı erişim.",
+                  "slug": "authorization-and-roles",
+                  "title": "Yetkilendirme ve roller",
+                  "description": "Kim neyi görebilir; rota ve işlem koruması.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
-                  "slug": "giris-sistemi-kurma",
-                  "title": "Giriş Sistemi Kurma",
-                  "description": "Kayıt, giriş, sosyal giriş ve korumalı sayfaları içeren proje.",
+                  "slug": "xss-and-csrf",
+                  "title": "XSS ve CSRF",
+                  "description": "Yaygın zafiyetler ve temel önlemler.",
+                  "status": "coming_soon",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "secrets-and-secure-config",
+                  "title": "Secret ve güvenli yapılandırma",
+                  "description": "Gizli anahtarlar ve ortam ayrımı.",
+                  "status": "coming_soon",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "project",
+                  "title": "Proje",
+                  "description": "Giriş, rol ve temel güvenlik önlemleriyle küçük bir akış.",
                   "status": "coming_soon",
                   "kind": "project"
-                }
-              ]
-            },
-            {
-              "id": "guvenlik",
-              "title": "Güvenlik",
-              "lessons": [
-                {
-                  "slug": "xss-ve-csrf",
-                  "title": "XSS ve CSRF",
-                  "description": "Saldırı türleri, React'in sağladığı koruma ve token/SameSite ile savunma.",
-                  "status": "coming_soon",
-                  "kind": "lesson"
-                },
-                {
-                  "slug": "guvenlik-basliklari",
-                  "title": "Güvenlik Başlıkları",
-                  "description": "CSP, HSTS ve diğer header'ları Next.js'te ayarlama.",
-                  "status": "coming_soon",
-                  "kind": "lesson"
-                },
-                {
-                  "slug": "guvenli-gelistirme-aliskanliklari",
-                  "title": "Güvenli Geliştirme Alışkanlıkları",
-                  "description": "Girdi doğrulama, secret yönetimi, bağımlılık güvenliği ve rate limiting.",
-                  "status": "coming_soon",
-                  "kind": "lesson"
                 }
               ]
             }
@@ -1344,6 +1075,54 @@
                   "description": "Araç çağırma, kullanıcı onayı, prompt injection koruması, rate limit ve maliyet ölçümüyle çalışan bir alışveriş asistanı kurun.",
                   "status": "published",
                   "kind": "project"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takim-ve-sektor",
+      "title": "Takım ve Sektör",
+      "tracks": [
+        {
+          "slug": "glossary",
+          "title": "Sektör Sözlüğü",
+          "description": "Agile'dan tech debt'e takımda sık duyulan kavramlar.",
+          "status": "published",
+          "lessonGroups": [
+            {
+              "id": "dersler",
+              "title": "Dersler",
+              "lessons": [
+                {
+                  "slug": "working-methods",
+                  "title": "Çalışma Yöntemleri",
+                  "description": "Agile, Scrum ve Kanban nedir, takımlar hangisini neden seçer.",
+                  "status": "coming_soon",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "sprints-and-rituals",
+                  "title": "Sprint ve Ritüeller",
+                  "description": "Sprint, daily, planning ve retro toplantıları ne işe yarar.",
+                  "status": "coming_soon",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "work-tracking",
+                  "title": "İş Takibi",
+                  "description": "Jira, ticket yazma, backlog, önceliklendirme ve estimation.",
+                  "status": "coming_soon",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "code-and-team",
+                  "title": "Kod ve Takım",
+                  "description": "PR ve code review kültürü, tech debt, release ve versiyonlama.",
+                  "status": "coming_soon",
+                  "kind": "lesson"
                 }
               ]
             }
