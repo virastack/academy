@@ -82,7 +82,7 @@ Next.js 16 ve sonrasında dev sunucusu `/_next/mcp` adresinde kendi MCP uç nokt
 
 > [!WARNING]
 >
-> **Her sunucu bir güven kararıdır.** Simon Willison'ın *"ölümcül üçlü"sü*: ajan aynı anda (1) özel verinize erişebiliyor, (2) güvenilmeyen içerik görebiliyor ve (3) dışarıyla iletişim kurabiliyorsa, bir saldırgan onu veri sızdırmaya ikna edebilir. MCP farklı kaynaklardan araçları karıştırmayı kolaylaştırdığı için bu üçlüyü kazara kurmak çok kolay.[^8] Korumalık ürünleri bunu %100 engelleyemez, tek güvenli yol üçlüyü kurmamak.[^8]
+> **Her sunucu bir güven kararıdır.** [Simon Willison](https://simonwillison.net)'ın *"ölümcül üçlü"sü*: ajan aynı anda (1) özel verinize erişebiliyor, (2) güvenilmeyen içerik görebiliyor ve (3) dışarıyla iletişim kurabiliyorsa, bir saldırgan onu veri sızdırmaya ikna edebilir. MCP farklı kaynaklardan araçları karıştırmayı kolaylaştırdığı için bu üçlüyü kazara kurmak çok kolay.[^8] Korumalık ürünleri bunu %100 engelleyemez, tek güvenli yol üçlüyü kurmamak.[^8]
 
 - Oturum açılmış kalıcı profille [!playwright]'a rastgele siteler gezdirmek bu üçlüye yaklaşır. Gezintiyi `localhost`'la sınırlayın, gerekirse `--isolated` kullanın. README, `--allowed-origins`'in güvenlik sınırı olmadığını söylüyor.[^6]
 - Yalnızca güvendiğiniz kaynaklardan kurun. Sunucuya mümkün olan en dar yetkiyi verin. [!claudeCode] dokümanı örnek olarak veritabanı sunucusuna salt okunur kullanıcı vermeyi öneriyor.[^2], [^3]

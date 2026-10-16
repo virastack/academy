@@ -72,7 +72,7 @@ packages:
 
 - `apps/*` ve `packages/*` altında `package.json` olan her klasör bir pakettir. İç içe paketler (`apps/a` ve `apps/a/b`) desteklenmez.[^9]
 - Lockfile şart. Turborepo iç paketler arasındaki bağımlılıkları buradan anlıyor.[^9]
-- Kök dizine yalnızca depo yönetim araçları konur (`turbo`, `husky`, `lint-staged`). Uygulama bağımlılıkları, onları kullanan pakete yazılır.[^10] Tally Barak'ın DevOps.js konuşmasındaki uyarıya göre kökte toplanan (hoisted) bağımlılıklar eksik bildirimleri gizleyebilir ve hata ancak deploy'da ortaya çıkar.[^13]
+- Kök dizine yalnızca depo yönetim araçları konur (`turbo`, `husky`, `lint-staged`). Uygulama bağımlılıkları, onları kullanan pakete yazılır.[^10] [Tally Barak](https://tallybarak.com)'ın DevOps.js konuşmasındaki uyarıya göre kökte toplanan (hoisted) bağımlılıklar eksik bildirimleri gizleyebilir ve hata ancak deploy'da ortaya çıkar.[^13]
 
 ## Paylaşılan paketler
 
@@ -247,8 +247,8 @@ turbo prune web --docker
 2. `turbo run build` komutunu iki kez çalıştırın. İkincisinde önbellekten dönen sonucu görün.
 3. `packages/ui` içinde bir bileşeni değiştirin ve `turbo run build --filter=...ui` çalıştırın. Hangi paketlerin yeniden derlendiğine bakın.
 4. `turbo.json`'dan `outputs`'u silip tekrar deneyin. Önbellekten dönen build'in dosyaları geri getirmediğini görün.
-5. Fireship'in [Monorepos: Turborepo vs Nx](https://www.youtube.com/watch?v=9iU_IE6vnJ8) videosunu (9 dk) izleyin. Ardından Tally Barak'ın *1001 Packages* konuşmasından (24 dk) sürümleme ve bağımlılık kurulumu bölümlerine bakın.[^13] Daha sohbet havasında bir giriş için Syntax'ın monorepo bölümü de iyi: workspace'ler, pnpm, Turborepo, Nx, Lerna ve Rush üzerine.[^23]
-6. Sıfırdan başlamak için Anthony Shew'nun [How to structure a JS/TS monorepo](https://www.youtube.com/watch?v=TeOSuGRHq7k) videosu, yalnızca pnpm tarafını görmek için de Code with tkssharma'nın [PNPM Workspaces Deep Dive](https://www.youtube.com/watch?v=2cW7aQ7CQcA) videosu var. İkincisinde `pnpm-workspace.yaml` ile `api` ve `utils` paketi kurulup `workspace:` ile bağlanıyor.[^24]
+5. Fireship'in [Monorepos: Turborepo vs Nx](https://www.youtube.com/watch?v=9iU_IE6vnJ8) videosunu (9 dk) izleyin. Ardından [Tally Barak](https://tallybarak.com)'ın *1001 Packages* konuşmasından (24 dk) sürümleme ve bağımlılık kurulumu bölümlerine bakın.[^13] Daha sohbet havasında bir giriş için Syntax'ın monorepo bölümü de iyi: workspace'ler, pnpm, Turborepo, Nx, Lerna ve Rush üzerine.[^23]
+6. Sıfırdan başlamak için [Anthony Shew](https://www.shew.dev)'nun [How to structure a JS/TS monorepo](https://www.youtube.com/watch?v=TeOSuGRHq7k) videosu, yalnızca pnpm tarafını görmek için de Code with tkssharma'nın [PNPM Workspaces Deep Dive](https://www.youtube.com/watch?v=2cW7aQ7CQcA) videosu var. İkincisinde `pnpm-workspace.yaml` ile `api` ve `utils` paketi kurulup `workspace:` ile bağlanıyor.[^24]
 7. Bir uygulamanız varsa `turbo prune <uygulama> --docker` çalıştırın ve `out/json` ile `out/full` klasörlerine bakın.[^22]
 
 ## Kaynaklar

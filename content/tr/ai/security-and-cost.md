@@ -21,13 +21,13 @@ Yani hedef "saldırıyı engellemek" olmamalı. Hedef, saldırı işe yarasa bil
 
 ### Ölümcül üçlü
 
-Simon Willison, ajan sistemlerinde tehlikeyi üç özelliğin birleşimi olarak tarif ediyor:[^4]
+[Simon Willison](https://simonwillison.net), ajan sistemlerinde tehlikeyi üç özelliğin birleşimi olarak tarif ediyor:[^4]
 
 1. Özel verilere erişim
 2. Güvenilmeyen içeriğe maruz kalma
 3. Dışarıyla iletişim kurabilme (veri sızdırma yolu)
 
-Üçü aynı ajandaysa saldırgan, okuduğu içeriğe yazdığı talimatla özel veriyi dışarı yollatabilir. Willison'ın önerisi bu üçlüyü bir arada vermemek. "Saldırıyı yakalarız" diyen guardrail ürünlerine de güvenmiyor.[^4]
+Üçü aynı ajandaysa saldırgan, okuduğu içeriğe yazdığı talimatla özel veriyi dışarı yollatabilir. [Willison](https://simonwillison.net)'ın önerisi bu üçlüyü bir arada vermemek. "Saldırıyı yakalarız" diyen guardrail ürünlerine de güvenmiyor.[^4]
 
 Meta'nın "Agents Rule of Two" kuralı aynı fikri şöyle söylüyor. Bir ajan oturumunda şu üç özellikten en fazla ikisi olsun:[^5]
 
@@ -69,7 +69,7 @@ Model `orderId` olarak başkasının sipariş numarasını yollayabilir. Aracın
 
 OWASP'ın "Improper Output Handling" maddesi modeli diğer kullanıcılar gibi görmenizi söylüyor. Çıktısı başka bir sisteme gitmeden önce doğrulayın ve kodlayın. Üretilen JavaScript ya da Markdown, tarayıcıda XSS'e yol açabilir. Önlem olarak bağlama uygun kodlama ve sıkı bir CSP öneriliyor.[^6]
 
-Frontend'de en sık gözden kaçan yol Markdown görselleri. Model, özel veriyi bir görsel adresinin sorgu parametresine koyabilir. Sohbet arayüzü görseli yüklemeye çalıştığında veri saldırganın sunucusuna gider. Johann Rehberger'in Google NotebookLM'de bulduğu açık tam olarak buydu. Willison'ın önerisi, Markdown görseli ve dış bağlantı gibi sızdırma yollarını kapatmak.[^7]
+Frontend'de en sık gözden kaçan yol Markdown görselleri. Model, özel veriyi bir görsel adresinin sorgu parametresine koyabilir. Sohbet arayüzü görseli yüklemeye çalıştığında veri saldırganın sunucusuna gider. [Johann Rehberger](https://embracethered.com)'in Google NotebookLM'de bulduğu açık tam olarak buydu. [Willison](https://simonwillison.net)'ın önerisi, Markdown görseli ve dış bağlantı gibi sızdırma yollarını kapatmak.[^7]
 
 `react-markdown` ile şu deneme çalıştırıldı:
 

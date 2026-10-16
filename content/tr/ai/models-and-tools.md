@@ -24,7 +24,7 @@ Arena AI verileri geliştirici şirket bazında incelendiğinde *(8 Ekim 2026, 1
 
 | Sıra | Şirket | En iyi modeli | Model skoru |
 | --- | --- | --- | ---: |
-| 1. | [!anthropic] Anthropic | [!claude] **Opus 5.5** | 1.863 |
+| 1. | [!anthropic] Anthropic | **Claude Opus 5.5** | 1.863 |
 | 2. | [!openai] OpenAI | **GPT-6 Astra** | 1.811 |
 | 3. | [!google] Google | **Gemini 4 Argon** | 1.687 |
 | 4. | [!qwen] Alibaba | **Qwen 3.8** | 1.686 |

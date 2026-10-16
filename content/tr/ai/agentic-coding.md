@@ -47,13 +47,13 @@ Frontend'de bu, [Vitest ile Component Testi](/academy/vitest) rehberinde yazdı�
 
 ### 4. Commit et
 
-Küçük ve sık commit atın. Her commit, ajanın bir sonraki hatasında geri dönebileceğiniz bir kayıt noktasıdır. Addy Osmani'nin kuralı net: açıklayamadığınız kodu commit etmeyin.[^4]
+Küçük ve sık commit atın. Her commit, ajanın bir sonraki hatasında geri dönebileceğiniz bir kayıt noktasıdır. [Addy Osmani](https://addyosmani.com)'nin kuralı net: açıklayamadığınız kodu commit etmeyin.[^4]
 
 [!claudeCode]'un checkpoint'leri git'in yerini tutmaz. Yalnızca ajanın dosya düzenleme araçlarıyla yaptığı değişiklikleri kapsar, terminal komutlarıyla yapılanları ve uzak sistemlerdeki işlemleri (deploy, veritabanı) kapsamaz.[^1][^2]
 
 > [!TIP]
 >
-> Ajan hızlandıkça incelemeniz daha önemli hale gelir.[^3] Diff'i okuyun, yanlış yöne gidiyorsa durdurun. Ajanı gözetimsiz bırakıp kusursuz sonuç beklemeyin. Addy Osmani da ajanı denetimli kullandığını, her adımı izleyip gerektiğinde müdahale ettiğini yazıyor.[^4]
+> Ajan hızlandıkça incelemeniz daha önemli hale gelir.[^3] Diff'i okuyun, yanlış yöne gidiyorsa durdurun. Ajanı gözetimsiz bırakıp kusursuz sonuç beklemeyin. [Addy Osmani](https://addyosmani.com) da ajanı denetimli kullandığını, her adımı izleyip gerektiğinde müdahale ettiğini yazıyor.[^4]
 
 ## Subagent'lar
 
@@ -111,7 +111,7 @@ Dosyalara yazma, bulduklarını dosya ve satır numarasıyla raporla.
 
 > [!TIP]
 >
-> [!claudeCode]'u geliştiren Cat Wu ve Boris Cherny'nin plan modunu ve subagent'ları kendi iş akışlarında nasıl kullandığını anlattığı sohbeti izleyebilirsiniz.[^7]
+> [!claudeCode]'u geliştiren Cat Wu ve [Boris Cherny](https://borischerny.com)'nin plan modunu ve subagent'ları kendi iş akışlarında nasıl kullandığını anlattığı sohbeti izleyebilirsiniz.[^7]
 
 ## Kendin dene
 

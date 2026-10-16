@@ -20,7 +20,7 @@ Micro frontend bir kod organizasyonu aracı değil, bir **dağıtım** kararıd�
 
 Sadece build süresini kısaltmak istiyorsanız çalışma zamanında birleştirme yanlış araç. Nx bu iş için başka yolları öneriyor.[^2]
 
-Konferans sahnesinde de aynı uyarı var. QCon'da Ruben Casas, karara önce *sorunun gerçekten var olup olmadığını* sorarak başlamayı öneriyor. Yoksa dağıtık bir mimariye ihtiyacınız yok. Sorun varsa belirtiler genellikle şunlar: kırılgan uygulama, hata izolasyonunun olmaması, yavaş CI/CD ve deploy, ekip sahipliğinin belirsizliği ve zor onboarding.[^4] Micro frontend'in asıl kazancı ekip özerkliği ve pazara çıkış hızı. Performans kazancı değil, dikkatsiz kurulursa performansı kötüleştirebilir.[^4]
+Konferans sahnesinde de aynı uyarı var. QCon'da [Ruben Casas](https://infoxicator.com), karara önce *sorunun gerçekten var olup olmadığını* sorarak başlamayı öneriyor. Yoksa dağıtık bir mimariye ihtiyacınız yok. Sorun varsa belirtiler genellikle şunlar: kırılgan uygulama, hata izolasyonunun olmaması, yavaş CI/CD ve deploy, ekip sahipliğinin belirsizliği ve zor onboarding.[^4] Micro frontend'in asıl kazancı ekip özerkliği ve pazara çıkış hızı. Performans kazancı değil, dikkatsiz kurulursa performansı kötüleştirebilir.[^4]
 
 Bedeli de bilmek gerekiyor:
 
@@ -240,7 +240,7 @@ Elinizde büyük bir monolit varsa Mezzalira'nın önerdiği yol *strangler* yak
 
 > [!NOTE]
 >
-> Aynı fikir mobilde de çalışıyor. Jack Herrington'ın React Native videosunda bir sepet özelliği Module Federation ile iki uygulama arasında çalışma zamanında paylaşılıyor ve App Store güncellemesi gerekmiyor. Kurulum Re.Pack ve Rspack ile yapılıyor.[^17] Bu rehber web ve Vite odaklı olduğu için mobile girmiyoruz.
+> Aynı fikir mobilde de çalışıyor. [Jack Herrington](https://jackherrington.com)'ın React Native videosunda bir sepet özelliği Module Federation ile iki uygulama arasında çalışma zamanında paylaşılıyor ve App Store güncellemesi gerekmiyor. Kurulum Re.Pack ve Rspack ile yapılıyor.[^17] Bu rehber web ve Vite odaklı olduğu için mobile girmiyoruz.
 
 ## Kendin dene
 

@@ -50,7 +50,7 @@ export const tools = {
 };
 ```
 
-- **`description`:** Model aracı ne zaman çağıracağına buna bakarak karar verir.[^1] "Geri alınamaz" gibi uyarıları buraya yazın. Matt Pocock'un eğitiminde de bu alan, modele aracı ne için kullanacağını söyleyen alan olarak anlatılıyor.[^3]
+- **`description`:** Model aracı ne zaman çağıracağına buna bakarak karar verir.[^1] "Geri alınamaz" gibi uyarıları buraya yazın. [Matt Pocock](https://www.mattpocock.com)'un eğitiminde de bu alan, modele aracı ne için kullanacağını söyleyen alan olarak anlatılıyor.[^3]
 - **`inputSchema`:** Zod şemasıdır. Model şemayı görür, SDK gelen girdiyi bu şemaya göre doğrular.[^1] Alanlara `.describe()` ile ipucu ekleyebilirsiniz. Açıklama modele giden şemada `description` olarak yer alır.
 - **`execute`:** Doğrulanmış girdiyle çağrılır. Döndürdüğünüz değer modele geri verilir.
 - **`steps`:** `generateText` sonucunda her adımın `toolCalls` ve `toolResults` alanları bulunur. Pocock bunu hata ayıklama için öneriyor.[^3] İki adımlı sahte bir akışta `result.steps[0].toolCalls` çağrının adını ve girdisini, `toolResults` de `execute`'un döndürdüğü değeri verdi.
@@ -377,7 +377,7 @@ export async function streamRecipe() {
 
 ### Şema açıklamaları ve sınırları
 
-Zod alanlarına yazdığınız `.describe()` metni modele giden JSON şemasında `description` olarak yer alır. Matt Pocock bu ipucunun özellikle alan adları açıklayıcı olmadığında işe yaradığını söylüyor. Örneği `generateObject` ile yazılmış ve sayfa Ocak 2025'te güncellenmiş. Kavram `Output.object` için de geçerli, API ise eski.[^5]
+Zod alanlarına yazdığınız `.describe()` metni modele giden JSON şemasında `description` olarak yer alır. [Matt Pocock](https://www.mattpocock.com) bu ipucunun özellikle alan adları açıklayıcı olmadığında işe yaradığını söylüyor. Örneği `generateObject` ile yazılmış ve sayfa Ocak 2025'te güncellenmiş. Kavram `Output.object` için de geçerli, API ise eski.[^5]
 
 Sağlayıcı şemanın tamamını desteklemeyebilir. JSONSchemaBench'in (Ocak 2025) 10.000 gerçek JSON şemasıyla yaptığı karşılaştırmada OpenAI ve Gemini'nin şema kapsaması en düşük çıktı. Yazarlar bunu "daha muhafazakâr" bir stratejiye, yani şema özelliklerinin yalnızca bir alt kümesinin desteklenmesine bağlıyor.[^6]
 

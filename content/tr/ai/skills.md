@@ -67,7 +67,7 @@ description: Projeye yeni React bileşeni ekler. Kullanıcı "yeni bileşen" vey
 
 Neden gerekli? Anthropic'in frontend yazısı sorunu adlandırıyor: talimat vermezseniz model, eğitim verisinin ortasındaki güvenli seçimlere (Inter yazı tipi, beyaz üstüne mor gradyan, az animasyon) yaslanır. Bunu sistem prompt'una yazarsanız her konuşma, alakasız işlerde bile tasarım talimatı taşır. Skill ise yalnızca arayüz işinde yüklenir.[^4]
 
-Emil Kowalski aynı sorunu animasyon tarafında çözüyor: ajanlar "iyi hissettiren"in ne olduğunu bilmiyor, o yüzden arayüzün her yönü için bir skill dosyası yazıyor.[^5] Yöntemi kendi skill'iniz için de işe yarar: *"güzel animasyon yap"* yerine karar kuralları yazın. Örneğin giren eleman `ease-out` kullanır, UI animasyonları 300 ms altında kalır, bir eleman `scale(0)` yerine `scale(0.95)`'ten başlar. Her kuralın nedenini yazın, karar noktalarını tablo ya da akış şemasına çevirin ki ajan tahmin etmesin.[^5]
+[Emil Kowalski](https://emilkowal.ski) aynı sorunu animasyon tarafında çözüyor: ajanlar "iyi hissettiren"in ne olduğunu bilmiyor, o yüzden arayüzün her yönü için bir skill dosyası yazıyor.[^5] Yöntemi kendi skill'iniz için de işe yarar: *"güzel animasyon yap"* yerine karar kuralları yazın. Örneğin giren eleman `ease-out` kullanır, UI animasyonları 300 ms altında kalır, bir eleman `scale(0)` yerine `scale(0.95)`'ten başlar. Her kuralın nedenini yazın, karar noktalarını tablo ya da akış şemasına çevirin ki ajan tahmin etmesin.[^5]
 
 | Skill | Ne işe yarar? |
 | --- | --- |
@@ -77,7 +77,7 @@ Emil Kowalski aynı sorunu animasyon tarafında çözüyor: ajanlar "iyi hissett
 | [**vercel-labs/agent-skills**](https://github.com/vercel-labs/agent-skills) | `react-best-practices`: React ve Next.js performansı için 40'tan fazla kural, etkisine göre sıralı (önce asenkron waterfall'lar ve bundle boyutu, en sonda mikro iyileştirmeler). Her kuralda yanlış ve doğru kod örneği var.[^8] Aynı repoda `web-design-guidelines` ile 100'den fazla erişilebilirlik, performans ve UX kuralıyla [arayüz denetleyebilirsiniz](https://github.com/vercel-labs/agent-skills). |
 | [**mattpocock/skills**](https://github.com/mattpocock/skills) | Dört ajan hatasının etrafında kurulu: istenmeyeni yapmak, gereksiz uzun konuşmak, çalışmayan kod, dağılan mimari. `grill-me` planın her dalı netleşene kadar sizi sorguya çeker, `tdd` kırmızı-yeşil-refactor döngüsüyle ilerler, `code-review` farkı hem proje standartlarına hem spec'e göre ayrı ajanlarla inceler.[^9] |
 
-`npx skills add` komutu [!claudeCode], [!cursor] ve diğer araçlara kurulum yapar.[^8] Matt Pocock skill'lerin küçük, uyarlanabilir ve birleştirilebilir olmasını savunuyor, yani süreci sahiplenen büyük çerçeveler yerine kendi hâlinize getirmenizi istiyor.[^9]
+`npx skills add` komutu [!claudeCode], [!cursor] ve diğer araçlara kurulum yapar.[^8] [Matt Pocock](https://www.mattpocock.com) skill'lerin küçük, uyarlanabilir ve birleştirilebilir olmasını savunuyor, yani süreci sahiplenen büyük çerçeveler yerine kendi hâlinize getirmenizi istiyor.[^9]
 
 > [!TIP]
 >

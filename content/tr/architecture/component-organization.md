@@ -39,7 +39,7 @@ Bu kalıba **compound component** deniyor: kök component ortak state ve context
 
 Kalıbın iki uygulama yolu var ve ödünleşimleri farklı. `React.Children.map` ile kök, çocuklarına `cloneElement` üzerinden prop geçirir. Bu basit ama yalnızca doğrudan çocuklar prop alır, araya bir sarmalayıcı koyarsanız kırılır, ayrıca aynı adlı prop'lar sessizce ezilebilir. Context tabanlı yol çocukları herhangi bir derinliğe yerleştirmenize izin verir ve React 18 sonrasında önerilen yol bu. Context değerini memoize etmek veya bölmek gereksiz render'ı önler.[^4] React'in `children` prop'u bu işin temeli. Component'e doldurulabilir bir *"boşluk"* bırakır ve içine ne konduğunu bilmek zorunda kalmaz.[^5]
 
-Bu kalıbın neden boolean prop'lardan iyi olduğunu [Fernando Rojo](https://fernandorojo.co) React Universe Conf 2025'te Slack'in mesaj kutusu üzerinden anlatıyor. Kanal mesajı, DM, ileti yönlendirme ve düzenleme gibi senaryoları tek component'te `isDMThread`, `isEditingMessage` gibi boolean'larla yönetmek koşulları yığıyor ve component'i bakımı zor bir monolite çeviriyor. Çözümü, component'i `Header`, `Input`, `Footer` gibi parçalara bölmek ve her ekranda yalnızca gereken parçaları JSX'e yazmak. Ortak veri ve aksiyonlar bir `ComposerProvider` context'inde duruyor. Gizlenecekleri boolean'la değil görünecekleri JSX'le söylüyorsunuz. Rojo, boolean yığınının hem geliştiriciler hem de yapay zekâ araçları için hata riskini artırdığını da belirtiyor.[^6]
+Bu kalıbın neden boolean prop'lardan iyi olduğunu [Fernando Rojo](https://fernandorojo.co) React Universe Conf 2025'te Slack'in mesaj kutusu üzerinden anlatıyor. Kanal mesajı, DM, ileti yönlendirme ve düzenleme gibi senaryoları tek component'te `isDMThread`, `isEditingMessage` gibi boolean'larla yönetmek koşulları yığıyor ve component'i bakımı zor bir monolite çeviriyor. Çözümü, component'i `Header`, `Input`, `Footer` gibi parçalara bölmek ve her ekranda yalnızca gereken parçaları JSX'e yazmak. Ortak veri ve aksiyonlar bir `ComposerProvider` context'inde duruyor. Gizlenecekleri boolean'la değil görünecekleri JSX'le söylüyorsunuz. [Rojo](https://fernandorojo.co), boolean yığınının hem geliştiriciler hem de yapay zekâ araçları için hata riskini artırdığını da belirtiyor.[^6]
 
 > [!WARNING]
 >
@@ -57,9 +57,9 @@ Global state, yavaş React uygulamalarının en yaygın nedenlerinden biri, öze
 | Prop drilling sorunu var | Çocuk ebeveyni olmadan çalışabiliyorsa Context provider, çalışamıyorsa composition |
 | Gerçekten uygulama geneli | Global store |
 
-Kent C. Dodds'ın karar ağacı bu.[^7] Örneğin ürün listesindeki arama kutusunun metni, kutuyu ve listeyi saran en yakın component'te durur, global bir store'a gitmez. Global store'a yalnızca gerçekten uygulama geneli olan veri girer.[^7]
+[Kent C. Dodds](https://kentcdodds.com)'ın karar ağacı bu.[^7] Örneğin ürün listesindeki arama kutusunun metni, kutuyu ve listeyi saran en yakın component'te durur, global bir store'a gitmez. Global store'a yalnızca gerçekten uygulama geneli olan veri girer.[^7]
 
-Rojo'nun konuşmasındaki vurgu bununla çelişmiyor, tamamlıyor: state'i *yakın* tutmak, onu kullananların ortak ebeveynine koymak demek. Rojo, birçok sorunu state'i ağaçta yukarı taşıyarak çözdüğünü söylüyor. Böylece sayfanın başka yerindeki bir "Yönlendir" butonu gibi kutunun dışındaki öğeler, prop drilling olmadan aynı state'e ve aksiyonlara erişiyor.[^6] Ölçüt aynı: state'i kullananların en yakın ortak noktasında tutun, daha aşağıda değil.
+[Rojo](https://fernandorojo.co)'nun konuşmasındaki vurgu bununla çelişmiyor, tamamlıyor: state'i *yakın* tutmak, onu kullananların ortak ebeveynine koymak demek. [Rojo](https://fernandorojo.co), birçok sorunu state'i ağaçta yukarı taşıyarak çözdüğünü söylüyor. Böylece sayfanın başka yerindeki bir "Yönlendir" butonu gibi kutunun dışındaki öğeler, prop drilling olmadan aynı state'e ve aksiyonlara erişiyor.[^6] Ölçüt aynı: state'i kullananların en yakın ortak noktasında tutun, daha aşağıda değil.
 
 ## Mantığı hook'a ayırın
 
@@ -151,12 +151,12 @@ Zone listesi yetmemeye başlarsa **eslint-plugin-boundaries** mimariyi tek yerde
 
 ## Kendin dene
 
-1. Projenizdeki en büyük component'i açın. Kent C. Dodds'ın saydığı sorunlardan birini yaşıyor musunuz? Yaşamıyorsanız bölmeyin.
+1. Projenizdeki en büyük component'i açın. [Kent C. Dodds](https://kentcdodds.com)'ın saydığı sorunlardan birini yaşıyor musunuz? Yaşamıyorsanız bölmeyin.
 2. Global bir store'da duran ama yalnızca bir component'in kullandığı bir state bulun ve o component'e taşıyın.
 3. Elinizdeki bir `useEffect`'i amacına uygun adlı bir hook'a sarın (örneğin `useData`).
 4. `import/no-restricted-paths` zone'larını ekleyin, sonra kasıtlı olarak `features/products` içinden `features/cart` import edip hatayı görün.
-5. Dan Abramov'un [The Wet Codebase](https://www.deconstructconf.com/2019/dan-abramov-the-wet-codebase) konuşmasını izleyin. Ardından kendi kodunuzda bir soyutlamayı satır içine geri alıp ne olduğuna bakın.[^11]
-6. Fernando Rojo'nun [Composition Is All You Need](https://www.youtube.com/watch?v=4KvbVq3Eg5w) konuşmasını (22 dk) izleyin. Ardından boolean prop'larla büyümüş bir component'inizi `Root` ve alt parçalara bölmeyi deneyin.[^6]
+5. [Dan Abramov](https://overreacted.io)'un [The Wet Codebase](https://www.deconstructconf.com/2019/dan-abramov-the-wet-codebase) konuşmasını izleyin. Ardından kendi kodunuzda bir soyutlamayı satır içine geri alıp ne olduğuna bakın.[^11]
+6. [Fernando Rojo](https://fernandorojo.co)'nun [Composition Is All You Need](https://www.youtube.com/watch?v=4KvbVq3Eg5w) konuşmasını (22 dk) izleyin. Ardından boolean prop'larla büyümüş bir component'inizi `Root` ve alt parçalara bölmeyi deneyin.[^6]
 
 ## Kaynaklar
 

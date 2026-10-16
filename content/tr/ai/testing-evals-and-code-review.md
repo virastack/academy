@@ -13,7 +13,7 @@ AI test yazmakta hızlıdır. Ama geçen test, işe yarayan test demek değildir
 
 ## Önce testleri çalıştırın
 
-Simon Willison, mevcut bir projede oturumu şu cümleyle açmayı öneriyor: *"First run the tests"*. Ajan testlerin nasıl çalıştığını öğrenir, değişiklikten sonra tekrar çalıştırma ihtimali artar ve test yazma moduna girer.[^2]
+[Simon Willison](https://simonwillison.net), mevcut bir projede oturumu şu cümleyle açmayı öneriyor: *"First run the tests"*. Ajan testlerin nasıl çalıştığını öğrenir, değişiklikten sonra tekrar çalıştırma ihtimali artar ve test yazma moduna girer.[^2]
 
 Claude Code dokümanındaki test tarifi dört adımdan oluşuyor.[^3] Aynı sırayı `CartItem` için şöyle yazabilirsiniz:
 
@@ -32,7 +32,7 @@ Doküman, Claude'un mevcut test dosyalarındaki çatıyı ve assertion stilini k
 
 ## İyi test neye benzer
 
-Kent C. Dodds'a göre iç ayrıntıları test eden testler iki şekilde yanıltır. İç yapıyı yeniden düzenleyince uygulama çalıştığı hâlde test kırılır. Uygulama bozulunca da test geçebilir.[^4] Çözüm, bileşeni kullanıcı gibi test etmek.
+[Kent C. Dodds](https://kentcdodds.com)'a göre iç ayrıntıları test eden testler iki şekilde yanıltır. İç yapıyı yeniden düzenleyince uygulama çalıştığı hâlde test kırılır. Uygulama bozulunca da test geçebilir.[^4] Çözüm, bileşeni kullanıcı gibi test etmek.
 
 Testing Library bunun için bir sorgu sırası öneriyor:[^5]
 
@@ -166,7 +166,7 @@ Zayıf test iki hatayı da kaçırdı. Stok aşılabiliyor ve tutar yanlış, am
 
 > [!DO]
 >
-> AI testi yazdıktan sonra kodu bilerek bozun. Test kırılmıyorsa o test sizi korumuyor. Willison da aynısını söylüyor: her değişiklik, uygulama geri alınınca kırılan bir test içermeli.[^7]
+> AI testi yazdıktan sonra kodu bilerek bozun. Test kırılmıyorsa o test sizi korumuyor. [Willison](https://simonwillison.net) da aynısını söylüyor: her değişiklik, uygulama geri alınınca kırılan bir test içermeli.[^7]
 
 > [!DONT]
 >
@@ -294,7 +294,7 @@ Demo sayfada `browser_navigate` ve `browser_snapshot` çağrılınca şu çıkt�
 
 Anlık görüntüdeki rol ve isimler (`button "Artır"`), testte kullandığınız `getByRole('button', { name: 'Artır' })` ile eşleşiyor. `browser_click` ayrıca çalıştırdığı Playwright kodunu da döndürüyor, bu satırı doğrudan teste taşıyabilirsiniz.
 
-Willison'ın önerdiği akış şu: önce değişikliği çalışırken görün, sonra geri alınınca kırılan bir otomatik test yazın.[^7] Playwright MCP ile bu kısalıyor:
+[Willison](https://simonwillison.net)'ın önerdiği akış şu: önce değişikliği çalışırken görün, sonra geri alınınca kırılan bir otomatik test yazın.[^7] Playwright MCP ile bu kısalıyor:
 
 ```text
 Tarayıcıda http://localhost:4173 sayfasını aç.
@@ -347,7 +347,7 @@ Testler kodunuzu sınar. Eval ise modelin cevabının işe yarayıp yaramadığ�
 | Modelle (LLM-as-judge) | Esnek ve ölçeklenir | Önce insan etiketleriyle doğrulanmalı |
 | İnsan | En kaliteli | Yavaş ve pahalı |
 
-Model ile notlandırırken cevabı üreten modelden farklı bir model kullanmak ve net bir rubrik vermek öneriliyor.[^11] Hamel Husain da modelin verdiği notu insan etiketleriyle karşılaştırıp hizalamayı öneriyor.[^12]
+Model ile notlandırırken cevabı üreten modelden farklı bir model kullanmak ve net bir rubrik vermek öneriliyor.[^11] [Hamel Husain](https://hamel.dev) da modelin verdiği notu insan etiketleriyle karşılaştırıp hizalamayı öneriyor.[^12]
 
 Aşağıdaki örnek, kullanıcı cümlesinden en yüksek fiyatı çıkaran bir göreve eval kuruyor. Gerçekte `v1` ve `v2` iki farklı prompt ya da model sürümü olur. Burada çevrimdışı çalışsın diye iki fonksiyon kullandık:
 
@@ -398,9 +398,9 @@ Gerçek modelde aynı döngüyü model çağrısıyla kurun. Cevap her seferinde
 
 ## AI çıktısını gözden geçirme
 
-Willison'a göre sizin işiniz *"çalıştığını kanıtladığınız kod teslim etmek"*. Büyük ve test edilmemiş bir PR göndermek, asıl işi gözden geçirene yüklemek demek. Kanıt olarak PR'a komut ve çıktısını yapıştırabilir, zor gösterilen değişiklikte ekran kaydı ekleyebilirsiniz.[^7]
+[Willison](https://simonwillison.net)'a göre sizin işiniz *"çalıştığını kanıtladığınız kod teslim etmek"*. Büyük ve test edilmemiş bir PR göndermek, asıl işi gözden geçirene yüklemek demek. Kanıt olarak PR'a komut ve çıktısını yapıştırabilir, zor gösterilen değişiklikte ekran kaydı ekleyebilirsiniz.[^7]
 
-Addy Osmani, AI kodunda sık gördüğü kalıpları sıralıyor. Bunlar yazarın gözlemi, ölçülmüş veri değil:[^13]
+[Addy Osmani](https://addyosmani.com), AI kodunda sık gördüğü kalıpları sıralıyor. Bunlar yazarın gözlemi, ölçülmüş veri değil:[^13]
 
 - **Yanlış varsayım:** Model baştaki bir yanlış anlamanın üstüne kurar. Birkaç PR sonra ortaya çıkabilir.
 - **Gereksiz soyutlama:** İş için gerekenden çok daha fazla yapı ekler.

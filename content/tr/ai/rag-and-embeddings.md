@@ -5,7 +5,7 @@ lastVerified: "2026-10-15"
 translationKey: "ai/rag-and-embeddings"
 ---
 
-Model sizin verinizi bilmez: ürün kataloğunuzu, iade politikanızı, iç dokümanlarınızı. RAG (retrieval-augmented generation) bunu şöyle çözer: soruya uygun parçaları bulur ve modele soruyla birlikte verir.[^1] Willison'ın tespitiyle işin zor kısmı, isteme girecek en iyi parçaları bulmak.[^2]
+Model sizin verinizi bilmez: ürün kataloğunuzu, iade politikanızı, iç dokümanlarınızı. RAG (retrieval-augmented generation) bunu şöyle çözer: soruya uygun parçaları bulur ve modele soruyla birlikte verir.[^1] [Willison](https://simonwillison.net)'ın tespitiyle işin zor kısmı, isteme girecek en iyi parçaları bulmak.[^2]
 
 Önce şunu sorun: bilgi tabanınız küçük mü? Anthropic, 200.000 token'ın altındaki bir bilgi tabanında RAG kurmadan hepsini isteme koymayı öneriyor. Önbellekleme bunu hızlı ve ucuz yapıyor.[^3] Bu sınırı aşıyorsanız okumaya devam edin.
 
@@ -59,7 +59,7 @@ Doküman bütün hâliyle vektöre çevrilmez, parçalara bölünür. En iyi yö
 
 ## Aramayı iyileştirme
 
-- **Hibrit arama.** Anahtar kelime araması isim, kısaltma ve kodları iyi bulur. Embedding eş anlamlıları bulur. Eugene Yan deneyimine göre ikisi birlikte tek başlarına olduklarından iyi çalışıyor.[^8]
+- **Hibrit arama.** Anahtar kelime araması isim, kısaltma ve kodları iyi bulur. Embedding eş anlamlıları bulur. [Eugene Yan](https://eugeneyan.com) deneyimine göre ikisi birlikte tek başlarına olduklarından iyi çalışıyor.[^8]
 - **Yeniden sıralama (rerank).** Önce çok aday alın, sonra bir sıralayıcıyla en iyi birkaçını modele verin.[^3]
 - **Az ama doğru parça verin.** Uzun bağlamda model, ilgili bilgi ortadayken başı ve sonu kadar iyi kullanamıyor.[^9] Eşik ve `k` değerini ölçerek ayarlayın.
 

@@ -145,7 +145,7 @@ Model her oturuma projeniz hakkında hiçbir şey bilmeden başlar: hangi paket 
 <summary>`/init` ile üretilen dosya</summary>
 
 <ul>
-<li>[!claudeCode] dokümanı `/init`'i başlangıç noktası olarak öneriyor ve üretileni zamanla sadeleştirmenizi söylüyor[^5]. Addy Osmani ise üretilen dosyayı olduğu gibi bırakmamayı öneriyor, çünkü içeriği çoğunlukla modelin zaten bulabileceği şeylerden oluşuyor[^9]. İkisinin ortak noktası: her satırı sorgulayın.</li>
+<li>[!claudeCode] dokümanı `/init`'i başlangıç noktası olarak öneriyor ve üretileni zamanla sadeleştirmenizi söylüyor[^5]. [Addy Osmani](https://addyosmani.com) ise üretilen dosyayı olduğu gibi bırakmamayı öneriyor, çünkü içeriği çoğunlukla modelin zaten bulabileceği şeylerden oluşuyor[^9]. İkisinin ortak noktası: her satırı sorgulayın.</li>
 </ul>
 
 </details>

@@ -208,7 +208,7 @@ jobs:
 - pnpm sürümü `package.json`'daki `packageManager` alanından okunur, workflow'u güncellemeniz gerekmez.[^19]
 - Pinlenmiş `pnpm/setup` satırı ve diğer sürümler pnpm dokümanındaki örnekten alındı.[^19] Siz de eylemleri bir commit SHA'sına sabitleyebilirsiniz.
 
-Kontrolün gerçekten kapı olması için GitHub'da *required status checks* açın. Zorunlu kontroller `successful`, `skipped` veya `neutral` olmadan birleştirme yapılamaz. İş adları tüm workflow'larda benzersiz olmalı, yoksa kontrol sonuçları belirsizleşir ve PR'lar bloke olabilir.[^3] Anthony Fu'nun videosu bu hattı PR başına çalışan bir `lint.yml` olarak kuruyor, yerelde denemek için de Docker tabanlı `act` aracını gösteriyor.[^2]
+Kontrolün gerçekten kapı olması için GitHub'da *required status checks* açın. Zorunlu kontroller `successful`, `skipped` veya `neutral` olmadan birleştirme yapılamaz. İş adları tüm workflow'larda benzersiz olmalı, yoksa kontrol sonuçları belirsizleşir ve PR'lar bloke olabilir.[^3] [Anthony Fu](https://antfu.me)'nun videosu bu hattı PR başına çalışan bir `lint.yml` olarak kuruyor, yerelde denemek için de Docker tabanlı `act` aracını gösteriyor.[^2]
 
 ### Monorepo'da CI
 
@@ -247,7 +247,7 @@ Otomasyon biçimi çözdükten sonra insan incelemesi tasarıma bakar. Google'ı
 3. commitlint'i ekleyin. `git commit -m "added stuff"` komutunun reddedildiğini, `feat(cart): add item` komutunun geçtiğini doğrulayın.
 4. CI workflow'unu ekleyin, hatalı bir PR açın ve kontrolün kırmızıya düştüğünü görün. Sonra branch protection'da kontrolü zorunlu yapın.
 5. Aynı projeyi `biome migrate` ile Biome'a taşıyıp hız ve çıktı farkına bakın.
-6. Anthony Fu'nun [Lint Like a Senior Developer](https://www.youtube.com/watch?v=Kr4VxMbF3LY) videosunu ve How Dev You'nun commitlint videosunu izleyin.[^2][^18]
+6. [Anthony Fu](https://antfu.me)'nun [Lint Like a Senior Developer](https://www.youtube.com/watch?v=Kr4VxMbF3LY) videosunu ve How Dev You'nun commitlint videosunu izleyin.[^2][^18]
 
 ## Kaynaklar
 

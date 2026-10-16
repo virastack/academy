@@ -21,7 +21,7 @@ Türe göre dizilim [!nextjs] ve [!nuxt] gibi framework'lerde başlaması kolay 
 
 Özellik bazlı dizilimi birbirinden bağımsız kaynaklar öneriyor. **bulletproof-react** kodun büyük kısmını `features/` altında toplamayı, özellik koduyla ortak bileşenlerin karışmasını önlemek için öneriyor.[^3] **Feature-Sliced Design** aynı fikri daha katı bir metodolojiye çeviriyor: kod katmanlara, katmanlar da yüksek uyumlu dilimlere ayrılıyor.[^4]
 
-Konferans sahnesinde de konuşuluyor. Conf42'de Aleksandr Guzenko, bağımlılıkları sınırlayarak mimari borcun birikmesinin nasıl önlenebileceğini bu metodolojiyle anlatıyor.[^5] HolyJS'te Alexander Morgunov ise yöntemin kavramlarını (modülerlik, public API, altyapı ile iş mantığını ayırma) ve zayıf yanlarını (modüller arası çapraz import, yetersiz dokümantasyon, katmanlara dağılan kod) birlikte ele alıyor.[^6] Yani yaklaşım tartışmasız bir reçete değil, ödünleşimleri olan bir tercih.
+Konferans sahnesinde de konuşuluyor. Conf42'de Aleksandr Guzenko, bağımlılıkları sınırlayarak mimari borcun birikmesinin nasıl önlenebileceğini bu metodolojiyle anlatıyor.[^5] HolyJS'te [Alexander Morgunov](https://amorgunov.com) ise yöntemin kavramlarını (modülerlik, public API, altyapı ile iş mantığını ayırma) ve zayıf yanlarını (modüller arası çapraz import, yetersiz dokümantasyon, katmanlara dağılan kod) birlikte ele alıyor.[^6] Yani yaklaşım tartışmasız bir reçete değil, ödünleşimleri olan bir tercih.
 
 ## Üst düzey yapı
 
@@ -98,7 +98,7 @@ Neden taşınır? Çünkü özellikler birbirinden import etmez. Özellikleri bi
 
 > [!WARNING]
 >
-> **Benzeyen her kod aynı kod değildir.** [Sandi Metz](https://sandimetz.com)'in tarif ettiği döngü: biri tekrarı ortak fonksiyona çıkarır, sonra gelen yeni ihtiyaç için fonksiyona parametre ve koşul eklenir, ortak kod anlaşılmaz hale gelir.[^11] Metz'e göre tekrar, yanlış soyutlamadan çok daha ucuz.[^12] [Dan Abramov](https://overreacted.io)'un *The Wet Codebase* konuşması aynı tuzağı bir hikâye olarak anlatıyor: kopyalamayı önlemek için çıkarılan ortak soyutlama özel durumlar biriktirip genelleşiyor. Önerisi, kötü soyutlamayı satır içine almaktan çekinmemek.[^13] Taşımadan önce sorun: iki kullanım aynı kuralı mı paylaşıyor, yoksa tesadüfen mi benziyor? Tesadüfi tekrarı fazla erken temizlemek kodu kırılganlaştırır.[^10]
+> **Benzeyen her kod aynı kod değildir.** [Sandi Metz](https://sandimetz.com)'in tarif ettiği döngü: biri tekrarı ortak fonksiyona çıkarır, sonra gelen yeni ihtiyaç için fonksiyona parametre ve koşul eklenir, ortak kod anlaşılmaz hale gelir.[^11] [Metz](https://sandimetz.com)'e göre tekrar, yanlış soyutlamadan çok daha ucuz.[^12] [Dan Abramov](https://overreacted.io)'un *The Wet Codebase* konuşması aynı tuzağı bir hikâye olarak anlatıyor: kopyalamayı önlemek için çıkarılan ortak soyutlama özel durumlar biriktirip genelleşiyor. Önerisi, kötü soyutlamayı satır içine almaktan çekinmemek.[^13] Taşımadan önce sorun: iki kullanım aynı kuralı mı paylaşıyor, yoksa tesadüfen mi benziyor? Tesadüfi tekrarı fazla erken temizlemek kodu kırılganlaştırır.[^10]
 
 ## Import kuralları
 
@@ -140,7 +140,7 @@ Feature-based yapılarda her özelliğin köküne genellikle bir `index.ts` konu
 | Kazancı | Özelliğin iç yapısı değişince dışarıdaki import'lar bozulmaz[^17] | Daha hızlı araçlar, net bağımlılıklar[^20] |
 | Maliyeti | Döngüsel import riski ve büyük projelerde yavaşlama[^17][^19] | Dosya taşımak her import'u etkiler, kapsülleme azalır[^20] |
 
-Ölçümler büyük projelerde net. Marvin Hagemeister, barrel'ın her klasöre yayıldığı projelerde hepsini silmenin birçok işi %60-80 hızlandırabileceğini yazıyor. Birkaç barrel'ın ise genelde sorun olmadığını da ekliyor.[^18] TkDodo kendi Next.js projesinde bir sayfanın yüklediği modül sayısını yaklaşık 11 binden 3,5 bine indirdi (%68).[^19] Atlassian, Jira frontend'inde commit başına build dakikalarında %75 düşüş ölçtü, karşılığında paketlerin public API'sini kaybettiklerini de not ediyor.[^20]
+Ölçümler büyük projelerde net. [Marvin Hagemeister](https://marvinh.dev), barrel'ın her klasöre yayıldığı projelerde hepsini silmenin birçok işi %60-80 hızlandırabileceğini yazıyor. Birkaç barrel'ın ise genelde sorun olmadığını da ekliyor.[^18] [TkDodo](https://tkdodo.eu) kendi Next.js projesinde bir sayfanın yüklediği modül sayısını yaklaşık 11 binden 3,5 bine indirdi (%68).[^19] Atlassian, Jira frontend'inde commit başına build dakikalarında %75 düşüş ölçtü, karşılığında paketlerin public API'sini kaybettiklerini de not ediyor.[^20]
 
 > [!TIP]
 >
