@@ -7,23 +7,23 @@ translationKey: "glossary/code-and-team"
 
 ## Pull Request ve Code Review
 
-Pull request (PR), yazdığınız kod değişikliğini ana koda eklemeden önce takıma sunduğunuz değişiklik teklifidir. Code review (kod incelemesi) ise takım arkadaşlarınızın bu değişikliği okuyup yorum yaptığı ve onayladığı süreçtir. Amaç hataları erkenden yakalamak, kodun okunabilir kalmasını sağlamak ve bilgiyi takım içinde yaymaktır.
+**Pull request (PR)**, yazdığınız kod değişikliğini ana koda eklemeden önce takıma sunduğunuz değişiklik teklifidir. **Code review** (kod incelemesi) ise takım arkadaşlarınızın bu değişikliği okuyup yorum yaptığı ve onayladığı süreçtir. Amaç hataları erkenden yakalamak, kodun okunabilir kalmasını sağlamak ve bilgiyi takım içinde yaymaktır.
 
 Sağlıklı bir review kültüründe PR'lar küçük tutulur, çünkü büyük bir değişikliği dikkatle incelemek zordur. Yorumlar kişiye değil koda yöneliktir ve neden önerildiğini açıklar. Review beklemek işi yavaşlattığı için takımlar genellikle review'lara hızlı dönmeyi bir alışkanlık hâline getirir.
 
 ## Tech Debt (Teknik Borç)
 
-Tech debt, bugün işi hızlı bitirmek için seçilen kısa yolların ileride ek iş çıkarması durumudur. Eski bir kütüphaneyi güncellememek, testsiz kod yazmak ya da geçici bir çözümü kalıcı bırakmak buna örnektir. Finansal borca benzer: ödemezseniz faizi büyür, yani sonraki her değişiklik daha yavaş ve riskli hâle gelir.
+**Tech debt**, bugün işi hızlı bitirmek için seçilen kısa yolların ileride ek iş çıkarması durumudur. Eski bir kütüphaneyi güncellememek, testsiz kod yazmak ya da geçici bir çözümü kalıcı bırakmak buna örnektir. Finansal borca benzer: ödemezseniz faizi büyür, yani sonraki her değişiklik daha yavaş ve riskli hâle gelir.
 
-Her teknik borç kötü değildir. Takımlar bilinçli olarak borç alabilir, önemli olan bunu görünür kılmaktır. Genellikle borç için ticket açılır ve sprint içinde belirli bir pay ayrılarak ödenir.
+Her teknik borç kötü değildir. Takımlar bilinçli olarak borç alabilir, önemli olan **bunu görünür kılmaktır**. Genellikle borç için ticket açılır ve sprint içinde belirli bir pay ayrılarak ödenir.
 
 ## Release (Sürüm Çıkarma)
 
-Release, kodun kullanıcıya ulaşması için canlıya alınmasıdır. Bazı takımlar belirli aralıklarla toplu release yapar, bazıları değişiklikler hazır oldukça günde birkaç kez canlıya çıkar. Sık ve küçük release'ler, bir sorun çıktığında nedenini bulmayı ve geri almayı kolaylaştırır.
+**Release**, kodun kullanıcıya ulaşması için canlıya alınmasıdır. Bazı takımlar belirli aralıklarla toplu release yapar, bazıları değişiklikler hazır oldukça günde birkaç kez canlıya çıkar. **Sık ve küçük release'ler**, bir sorun çıktığında nedenini bulmayı ve geri almayı kolaylaştırır.
 
 ## Versiyonlama
 
-Versiyonlama, her release'e bir numara vermektir. En yaygın yöntem Semantic Versioning'dir (Anlamsal Versiyonlama) ve numara `MAJOR.MINOR.PATCH` biçimindedir.
+Versiyonlama, her release'e bir numara vermektir. En yaygın yöntem **Semantic Versioning**'dir (Anlamsal Versiyonlama) ve numara `MAJOR.MINOR.PATCH` biçimindedir.
 
 `MAJOR` sürüm, eski kullanımı bozan uyumsuz bir değişiklik yapıldığında artar. `MINOR` sürüm, geriye dönük uyumlu yeni bir özellik eklendiğinde, `PATCH` sürüm ise geriye dönük uyumlu bir hata düzeltmesi yapıldığında artar.[^1]
 
