@@ -5,9 +5,11 @@ lastVerified: "2026-10-17"
 translationKey: "web-fundamentals/terminal-and-npm"
 ---
 
-## Terminal Nedir
+## Terminal Nedir?
 
 **Terminal**, programları yazı yazarak çalıştırdığınız metin tabanlı arayüzdür. Teknik olarak terminal, bir **shell** başlatıp ona bağlanan programdır; komutları yorumlayan shell'dir. Günlük kullanımda iki kelime aynı anlamda kullanılır.[^1]
+
+![macOS Terminal penceresi: zsh shell'i açık, ev klasöründe (~) komut bekleyen boş bir satır](https://raw.githubusercontent.com/virastack/academy/main/assets/web-fundamentals/terminal-and-npm/terminal-macos.png)
 
 Frontend geliştirirken terminali her gün açarsınız: paket kurmak, geliştirme sunucusunu başlatmak, build almak ve Git için.[^2]
 
@@ -71,7 +73,7 @@ Her projenin kökünde bir `package.json` bulunur. Projenin adını, script'leri
 
 ```json
 {
-  "name": "benim-uygulamam",
+  "name": "virastack",
   "private": true,
   "type": "module",
   "scripts": {
@@ -137,7 +139,7 @@ Paket sürümleri `MAJOR.MINOR.PATCH` biçimindedir. `package.json`'daki işaret
 
 **pnpm**, npm ile aynı `package.json`'u ve aynı registry'yi kullanan alternatif bir paket yöneticisidir.[^8] Farkı paketleri saklama biçimidir: her paket sürümünü diskte tek bir yerde tutar ve projelere **hard link** ile bağlar. On projede aynı React sürümü varsa diskte bir kopyası olur. Ayrıca projenin yalnızca `package.json`'da yazan paketleri `import` etmesine izin verir; npm'de ise yazmadığınız bir alt bağımlılığı yanlışlıkla kullanabilirsiniz.[^14][^15]
 
-ViraStack projeleri pnpm kullanır. pnpm 12 kendi başına çalışan bir programdır; npm ile kurmak için:[^16]
+ViraStack projeleri pnpm kullanır. Node kuruluysa pnpm'i şu komutla kurabilirsiniz:[^16]
 
 ```bash
 npx get-pnpm
@@ -169,7 +171,7 @@ npm create vite@latest
 Ardından proje klasörüne girip paketleri kurun ve geliştirme sunucusunu başlatın:
 
 ```bash
-cd benim-uygulamam
+cd virastack
 pnpm install
 pnpm dev
 ```
@@ -189,11 +191,11 @@ Paket kurmak, başkasının yazdığı kodu bilgisayarınızda çalıştırmak d
 
 ## Detaylı Öğrenmek İçin
 
-- **Terminal, frontend gözüyle:** Josh W. Comeau'nun React geliştiricileri için yazdığı terminal rehberi.[^2]
+- **Terminal, frontend gözüyle:** [Josh W. Comeau](https://www.joshwcomeau.com/)'nun React geliştiricileri için yazdığı terminal rehberi.[^2]
 - **Shell'i baştan sona:** MIT'nin Missing Semester dersinin shell bölümü; yolları, `$PATH`'i, pipe'ları ve yönlendirmeyi anlatır, videosuyla birlikte.[^3]
 - **Paket yönetimi:** MDN'in npm ile sıfırdan bir proje kurduğu rehberi.[^8]
-- **Konuşma:** Tally Barak'ın `node_modules`'un neden böyle olduğunu ve lockfile'ları anlattığı Node Congress 2022 konuşması (9 dk).[^22]
-- **Konuşma:** pnpm'in yazarı Zoltan Kochan'ın pnpm'in nasıl çalıştığını anlattığı DevOps.js Conf 2022 konuşması (31 dk).[^15]
+- **Konuşma:** [Tally Barak](https://tallybarak.com/)'ın `node_modules`'un neden böyle olduğunu ve lockfile'ları anlattığı Node Congress 2022 konuşması (9 dk).[^22]
+- **Konuşma:** pnpm'in yazarı [Zoltan Kochan](https://www.kochan.io/)'ın pnpm'in nasıl çalıştığını anlattığı DevOps.js Conf 2022 konuşması (31 dk).[^15]
 
 ## Kaynaklar
 
@@ -212,7 +214,7 @@ Paket kurmak, başkasının yazdığı kodu bilgisayarınızda çalıştırmak d
 13. [npm Docs: npm ci](https://docs.npmjs.com/cli/v12/commands/npm-ci) *(doc)* — `npm install`'dan farkları: lockfile zorunlu, uyuşmazlıkta hata, dosyaları değiştirmez.
 14. [pnpm: Motivation](https://pnpm.io/motivation) *(doc)* — Tek depo ve hard link ile disk tasarrufu, katı `node_modules` yapısı, hız.
 15. [Zoltan Kochan: pnpm, a Fast, Disk Space Efficient Package Manager (DevOps.js Conf 2022)](https://gitnation.com/contents/pnpm-a-fast-disk-space-efficient-package-manager-for-javascript) *(video)* — 31 dakika. pnpm'in bağımlılıkları nasıl izole ettiği, hard link'ler ve monorepo desteği.
-16. [pnpm: Installation](https://pnpm.io/installation) *(doc)* — pnpm 12'nin Node gerektirmeyen bir program olması, kurulum yolları ve Node uyumluluk tablosu.
+16. [pnpm: Installation](https://pnpm.io/installation) *(doc)* — Kurulum yolları ve Node uyumluluk tablosu.
 17. [pnpm: pnpm add](https://pnpm.io/cli/add) *(doc)* — `pnpm add` ve `-D`, `-g` gibi seçenekler.
 18. [pnpm: pnpm run](https://pnpm.io/cli/run) *(doc)* — Script'lerin `pnpm <script>` olarak kısaltılması.
 19. [Vite: Getting Started](https://vite.dev/guide/) *(doc)* — `npm create vite@latest`, React şablonları, Node sürüm gereksinimi ve `localhost:5173`.
