@@ -37,7 +37,7 @@ Takımlar genellikle kendi eşik değerini belirler, örneğin 13 ya da 21 puan.
 
 **Puanlama:** Takım bir ürün listeleme sayfasını puanlarken ekrandaki bileşenleri ve test işini birlikte değerlendirir. Puanlama genellikle oylamayla yapılır, bu yönteme **Planning Poker** denir. Bir geliştirici 5, diğeri 13 puan verdiyse aradaki fark, gizli kalmış risk ve belirsizlikleri konuşmak için fırsattır. Tartışmanın sonunda takım örneğin 8 puanda anlaşır.
 
-**Kapasite:** Takımın bir sprintte tamamladığı ortalama story point sayısına **velocity** (hız) denir. Velocity 35 puansa, backlog'dan toplamı 35 puanı geçmeyecek işler sprinte alınır. Örneğin 1, 3, 5, 5, 8 ve 13 puanlık altı görev toplam 35 puan eder. Velocity de Scrum Guide'da geçmez.
+**Kapasite:** Takımın bir sprintte tamamladığı ortalama story point sayısına **velocity** (hız) denir. Velocity 35 puansa, backlog'dan toplamı 35 puanı geçmeyecek işler sprinte alınır. Örneğin 1, 3, 5, 5, 8 ve 13 puanlık altı görev toplam 35 puan eder.
 
 **Bölme:** "Tüm özellikleri içeren Ürün Listeleme Sayfası" tek başına 55 puan çıktıysa, 35 puanlık kapasitenin çok üzerinde olduğu için sprinte bu hâliyle girmez. İş Ürün Listeleme, Sepete Ekleme, Filtreleme ve Arama gibi daha küçük parçalara bölünür (story splitting), her parça ayrıca puanlanır ve sprinte bu şekilde alınır.
 
