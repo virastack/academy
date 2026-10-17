@@ -711,7 +711,7 @@
                 },
                 {
                   "slug": "render-performance",
-                  "title": "Render performansı",
+                  "title": "React'te render performansı",
                   "description": "Gereksiz render ve pahalı güncellemeler.",
                   "status": "coming_soon",
                   "kind": "lesson"
@@ -731,9 +731,9 @@
                   "kind": "lesson"
                 },
                 {
-                  "slug": "semantic-html-and-aria",
-                  "title": "Semantik HTML ve ARIA",
-                  "description": "Anlamlı etiketler ve gerektiğinde ARIA.",
+                  "slug": "wcag-and-aria",
+                  "title": "WCAG ve ARIA",
+                  "description": "Hedeflenen kurallar ve HTML'in yetmediği yerde ARIA.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
@@ -745,9 +745,16 @@
                   "kind": "lesson"
                 },
                 {
-                  "slug": "automated-accessibility-testing",
-                  "title": "Otomatik erişilebilirlik testi",
-                  "description": "Test koşusunda erişilebilirlik kontrolü.",
+                  "slug": "color-contrast-and-motion",
+                  "title": "Renk, kontrast ve hareket",
+                  "description": "Okunabilir renkler, yakınlaştırma ve azaltılmış hareket.",
+                  "status": "coming_soon",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "accessibility-testing",
+                  "title": "Erişilebilirlik testi",
+                  "description": "Otomatik tarama ve ekran okuyucuyla elle kontrol.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 }
