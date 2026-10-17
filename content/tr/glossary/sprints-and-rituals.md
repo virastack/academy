@@ -17,11 +17,11 @@ Daily, geliştirme ekibinin her gün aynı saatte yaptığı 15 dakikalık topla
 
 ## Sprint Review (Sprint Gözden Geçirme)
 
-Sprint Review, sprintin sonunda yapılır. Takım bu sprintte ortaya çıkan çalışan ürün parçasını paydaşlara gösterir, geri bildirim alır ve sonraki adımları birlikte konuşur.[^1] Süresi bir aylık sprint için en fazla 4 saattir.[^1] Burada konuşulan şey kodun nasıl yazıldığı değil, ortaya çıkan ürünün ne olduğudur.
+Sprint Review, sprintin sonunda yapılır. Takım bu sprintte ortaya çıkan çalışan ürün parçasını paydaşlara gösterir, geri bildirim alır ve sonraki adımları birlikte konuşur.[^1] Scrum Guide bir aylık sprint için en fazla 4 saat der ve kısa sprintlerde bunun daha kısa olmasını bekler. Buna göre 2 haftalık bir sprint için Sprint Review toplantısı en fazla yaklaşık 2 saat sürer.[^1] Burada konuşulan şey kodun nasıl yazıldığı değil, ortaya çıkan ürünün ne olduğudur.
 
 ## Sprint Retrospective (Retro)
 
-Retro, sprintin en son olayıdır ve Review'dan sonra yapılır. Amacı ürünü değil, takımın çalışma şeklini iyileştirmektir.[^1] Takım sprintte neyin iyi gittiğini, neyin aksadığını ve bir sonraki sprintte neyi değiştireceğini konuşur. Süresi bir aylık sprint için en fazla 3 saattir.[^1] İyi bir retro sonunda uygulanabilir bir veya iki karar çıkar.
+Retro, sprintin en son olayıdır ve Review'dan sonra yapılır. Amacı ürünü değil, takımın çalışma şeklini iyileştirmektir.[^1] Takım sprintte neyin iyi gittiğini, neyin aksadığını ve bir sonraki sprintte neyi değiştireceğini konuşur. Scrum Guide bir aylık sprint için en fazla 3 saat der ve kısa sprintlerde bunun daha kısa olmasını bekler. Buna göre 2 haftalık bir sprint için Retro en fazla yaklaşık 1,5 saat sürer.[^1] İyi bir retro sonunda uygulanabilir bir veya iki karar çıkar.
 
 ## Backlog Refinement (Backlog Düzenleme)
 
