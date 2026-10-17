@@ -9,7 +9,7 @@ Scrum'da sprint boyunca tekrar eden dört toplantı vardır. Scrum Guide bunlar�
 
 ## Sprint Planning (Sprint Planlama)
 
-Sprint Planning, sprintin başında yapılır ve o sprintte hangi işlerin yapılacağını belirler. Takım üç soruya cevap arar: Bu sprint neden değerli, bu sprintte neler tamamlanabilir ve seçilen işler nasıl yapılacak.[^1] Sprint başına bir hedef (Sprint Goal) belirlenir. Süresi bir aylık sprint için en fazla 8 saattir, kısa sprintlerde buna orantılı olarak daha azdır.[^1]
+Sprint Planning, sprintin başında yapılır ve o sprintte hangi işlerin yapılacağını belirler. Takım üç soruya cevap arar: Bu sprint neden değerli, bu sprintte neler tamamlanabilir ve seçilen işler nasıl yapılacak.[^1] Sprint başına bir hedef (Sprint Goal) belirlenir. Scrum Guide bir aylık sprint için en fazla 8 saat der ve kısa sprintlerde bunun daha kısa olmasını bekler. Buna göre 2 haftalık bir sprint için Sprint Planlama toplantısı en fazla yaklaşık 4 saat sürer.[^1]
 
 ## Daily Scrum (Günlük Toplantı)
 
