@@ -7,7 +7,7 @@ translationKey: "web-fundamentals/css"
 
 ## CSS Nedir
 
-**CSS**, HTML ile kurulan yapının nasıl görüneceğini anlatan dildir. Her kural bir **seçici** ve süslü parantez içinde `özellik: değer;` çiftlerinden oluşur. Seçici hangi elementlerin stilleneceğini, özellikler de neyin değişeceğini söyler.
+**CSS**, HTML ile kurulan yapının nasıl görüneceğini anlatan dildir. Her kural bir **seçici** ve süslü parantez içinde `property: value;` çiftlerinden oluşur. Seçici hangi elementlerin stilleneceğini, özellikler de neyin değişeceğini söyler.
 
 ```css
 .card {
@@ -68,6 +68,8 @@ Bazı özellikler ebeveynden çocuğa **miras** geçer, bazıları geçmez. `col
 
 Tarayıcı her elementi bir kutu olarak çizer. Kutu içten dışa dört katmandan oluşur: **content** (içerik), **padding** (iç boşluk), **border** (kenarlık) ve **margin** (dış boşluk).[^9]
 
+![CSS kutu modeli: içte content, onu saran padding, onun dışında border ve en dışta margin katmanı](https://raw.githubusercontent.com/virastack/academy/main/assets/web-fundamentals/css/box-model.png)
+
 Varsayılan modelde `width` yalnızca içeriğe uygulanır, padding ve border üstüne eklenir. `width: 200px` ve `padding: 20px` verilen bir kutu ekranda 240px yer kaplar. `box-sizing: border-box` ile `width` border dahil tüm kutuyu kapsar, hesap tahmin edilebilir olur.[^10]
 
 ```css
@@ -103,7 +105,7 @@ Modern sayfa düzeni iki araçla kurulur. **Flexbox** tek boyutlu düzen içindi
 
 ### Flexbox
 
-Flex container'ın bir **ana ekseni** (öğelerin dizildiği yön) ve ona dik bir **çapraz ekseni** vardır. `justify-content` ana eksende, `align-items` çapraz eksende hizalar.[^14] Flexbox'ta her şey ana eksene göre düşünülür; `flex-direction: column` dendiğinde `justify-content` artık dikeyde çalışır.[^15]
+Flex container'ın bir **ana ekseni** (öğelerin dizildiği yön) ve ona dik bir **çapraz ekseni** vardır. `justify-content` ana eksende, `align-items` çapraz eksende hizalar.[^14] Varsayılan `flex-direction: row`'da ana eksen yatay, çapraz eksen dikeydir; bu yüzden `align-items` öğeleri dikeyde hizalar. `flex-direction: column` dendiğinde eksenler yer değiştirir: `justify-content` dikeyde, `align-items` yatayda çalışır.[^15]
 
 ```css
 .toolbar {
@@ -186,9 +188,9 @@ Bu yaklaşıma **mobile-first** denir: önce dar ekran için tek sütun yazılı
 - **Baştan sona kurs:** web.dev'in ücretsiz Learn CSS kursu; nesting, container queries ve anchor positioning gibi yeni konular da var.[^23]
 - **Responsive tasarım:** web.dev'in Learn Responsive Design kursu.[^24]
 - **Alıştırmalı yol:** MDN'in CSS styling basics modülü, ardından CSS layout modülü.[^25]
-- **Sağlam düzen alışkanlıkları:** Ahmad Shadeed'in Defensive CSS ipuçları; uzun metin, bozulan görsel gibi beklenmedik içerikte kırılmayan düzen.[^26]
-- **Konuşma:** Miriam Suzanne'ın cascade ve cascade layers konuşması (JSHeroes 2025).[^27]
-- **Konuşma:** Jen Simmons'ın web'de sayfa düzeninin nasıl değiştiğini anlattığı konuşma (View Source 2018).[^28]
+- **Sağlam düzen alışkanlıkları:** [Ahmad Shadeed](https://ishadeed.com/)'in Defensive CSS ipuçları; uzun metin, bozulan görsel gibi beklenmedik içerikte kırılmayan düzen.[^26]
+- **Konuşma:** [Miriam Suzanne](https://www.miriamsuzanne.com/)'ın cascade ve cascade layers konuşması (JSHeroes 2025).[^27]
+- **Konuşma:** [Jen Simmons](https://jensimmons.com/)'ın web'de sayfa düzeninin nasıl değiştiğini anlattığı konuşma (View Source 2018).[^28]
 
 ## Kaynaklar
 
@@ -206,8 +208,8 @@ Bu yaklaşıma **mobile-first** denir: önce dar ekran için tek sütun yazılı
 12. [MDN: Values and units](https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Values_and_units) *(doc)* — Uzunluk birimleri, yüzde, renk yazımları ve `calc()`.
 13. [web.dev Learn CSS: Layout](https://web.dev/learn/css/layout) *(doc)* — Flexbox tek boyut, grid iki boyut; block ve inline davranışı.
 14. [MDN: Flexbox](https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/CSS_layout/Flexbox) *(doc)* — Ana ve çapraz eksen, `flex` kısayolu ve hizalama.
-15. [Josh W. Comeau: An Interactive Guide to Flexbox](https://www.joshwcomeau.com/css/interactive-guide-to-flexbox/) *(article)* — Etkileşimli örneklerle ana eksen, `flex-basis`, `flex-grow`, `flex-shrink`.
-16. [Josh W. Comeau: An Interactive Guide to CSS Grid](https://www.joshwcomeau.com/css/interactive-guide-to-grid/) *(article)* — Track, `fr` ve template areas etkileşimli örneklerle.
+15. [Josh W. Comeau](https://www.joshwcomeau.com/): [An Interactive Guide to Flexbox](https://www.joshwcomeau.com/css/interactive-guide-to-flexbox/) *(article)* — Etkileşimli örneklerle ana eksen, `flex-basis`, `flex-grow`, `flex-shrink`.
+16. [Josh W. Comeau](https://www.joshwcomeau.com/): [An Interactive Guide to CSS Grid](https://www.joshwcomeau.com/css/interactive-guide-to-grid/) *(article)* — Track, `fr` ve template areas etkileşimli örneklerle.
 17. [MDN: CSS grid layout](https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/CSS_layout/Grids) *(doc)* — `fr`, `repeat()`, `minmax()`, `gap` ve `grid-template-areas`.
 18. [Web Almanac 2022: CSS](https://almanac.httparchive.org/en/2022/css) *(research)* — Flexbox, grid ve custom property kullanım oranları.
 19. [MDN: Responsive web design](https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/CSS_layout/Responsive_Design) *(doc)* — Responsive tasarımın tanımı, esnek düzen, media query ve mobile-first.
@@ -217,6 +219,6 @@ Bu yaklaşıma **mobile-first** denir: önce dar ekran için tek sütun yazılı
 23. [web.dev: Learn CSS](https://web.dev/learn/css) *(doc)* — Baştan sona ücretsiz CSS kursu.
 24. [web.dev: Learn Responsive Design](https://web.dev/learn/design) *(doc)* — Düzen, tipografi, responsive görsel ve tema üzerine ücretsiz kurs.
 25. [MDN: CSS styling basics](https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics) *(doc)* — Seçicilerden hata ayıklamaya alıştırmalı modül.
-26. [Ahmad Shadeed: Defensive CSS](https://defensivecss.dev/) *(article)* — Beklenmedik içerikte bozulmayan düzen için kısa ipuçları.
-27. [Miriam Suzanne: Cascading Layers of !mportance (JSHeroes 2025)](https://www.youtube.com/watch?v=4PkhzoFLJ0Q) *(video)* — Cascade neden böyle çalışır ve cascade layers.
-28. [Jen Simmons: Everything You Know About Web Design Just Changed (View Source 2018)](https://talks.jensimmons.com/videos/h0XWcf) *(video)* — Web'de sayfa düzeni anlayışının değişimi.
+26. [Ahmad Shadeed](https://ishadeed.com/): [Defensive CSS](https://defensivecss.dev/) *(article)* — Beklenmedik içerikte bozulmayan düzen için kısa ipuçları.
+27. [Miriam Suzanne](https://www.miriamsuzanne.com/): [Cascading Layers of !mportance (JSHeroes 2025)](https://www.youtube.com/watch?v=4PkhzoFLJ0Q) *(video)* — Cascade neden böyle çalışır ve cascade layers.
+28. [Jen Simmons](https://jensimmons.com/): [Everything You Know About Web Design Just Changed (View Source 2018)](https://talks.jensimmons.com/videos/h0XWcf) *(video)* — Web'de sayfa düzeni anlayışının değişimi.
