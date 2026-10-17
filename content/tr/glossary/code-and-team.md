@@ -27,7 +27,7 @@ Versiyonlama, her release'e bir numara vermektir. En yaygın yöntem Semantic Ve
 
 `MAJOR` sürüm, eski kullanımı bozan uyumsuz bir değişiklik yapıldığında artar. `MINOR` sürüm, geriye dönük uyumlu yeni bir özellik eklendiğinde, `PATCH` sürüm ise geriye dönük uyumlu bir hata düzeltmesi yapıldığında artar.[^1]
 
-Örneğin `2.4.1` sürümüne bir hata düzeltmesi gelirse `2.4.2`, yeni bir özellik gelirse `2.5.0`, uyumsuz bir değişiklik gelirse `3.0.0` olur. `0.y.z` sürümleri ilk geliştirme aşamasındadır ve her şey değişebilir.[^1] [!npm] npm paketlerinde sürüm numarası bu yönteme göre okunur, bu yüzden bir paketin `MAJOR` sürümünü yükseltirken değişiklik notlarını okumak gerekir.
+Örneğin `2.4.1` sürümüne bir hata düzeltmesi gelirse `2.4.2`, yeni bir özellik gelirse `2.5.0`, uyumsuz bir değişiklik gelirse `3.0.0` olur. `0.y.z` sürümleri ilk geliştirme aşamasındadır ve her şey değişebilir.[^1] [!npm] paketlerinde sürüm numarası bu yönteme göre okunur, bu yüzden bir paketin `MAJOR` sürümünü yükseltirken değişiklik notlarını okumak gerekir.
 
 ## Kaynaklar
 
