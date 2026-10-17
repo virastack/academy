@@ -699,63 +699,63 @@
                   "slug": "core-web-vitals",
                   "title": "Core Web Vitals",
                   "description": "LCP, INP ve CLS'nin ne anlama geldiği.",
-                  "status": "coming_soon",
+                  "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "measuring",
                   "title": "Ölçüm (Lighthouse, DevTools)",
                   "description": "Skoru nereden okuyup neye bakacağın.",
-                  "status": "coming_soon",
+                  "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "render-performance",
                   "title": "React'te render performansı",
                   "description": "Gereksiz render ve pahalı güncellemeler.",
-                  "status": "coming_soon",
+                  "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "images-and-fonts",
                   "title": "Görsel ve font",
                   "description": "Görsel boyutu, format ve font yükleme.",
-                  "status": "coming_soon",
+                  "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "bundle-size",
                   "title": "Bundle boyutu",
                   "description": "Paketi küçültme ve neyin yüklendiğini görme.",
-                  "status": "coming_soon",
+                  "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "wcag-and-aria",
                   "title": "WCAG ve ARIA",
                   "description": "Hedeflenen kurallar ve HTML'in yetmediği yerde ARIA.",
-                  "status": "coming_soon",
+                  "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "keyboard-and-focus",
                   "title": "Klavye ve odak yönetimi",
                   "description": "Klavye ile gezinme ve görünür odak.",
-                  "status": "coming_soon",
+                  "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "color-contrast-and-motion",
                   "title": "Renk, kontrast ve hareket",
                   "description": "Okunabilir renkler, yakınlaştırma ve azaltılmış hareket.",
-                  "status": "coming_soon",
+                  "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "accessibility-testing",
                   "title": "Erişilebilirlik testi",
                   "description": "Otomatik tarama ve ekran okuyucuyla elle kontrol.",
-                  "status": "coming_soon",
+                  "status": "published",
                   "kind": "lesson"
                 }
               ]
