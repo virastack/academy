@@ -23,6 +23,18 @@ Sprint Review, sprintin sonunda yapılır. Takım bu sprintte ortaya çıkan ça
 
 Retro, sprintin en son olayıdır ve Review'dan sonra yapılır. Amacı ürünü değil, takımın çalışma şeklini iyileştirmektir.[^1] Takım sprintte neyin iyi gittiğini, neyin aksadığını ve bir sonraki sprintte neyi değiştireceğini konuşur. Scrum Guide bir aylık sprint için en fazla 3 saat der ve kısa sprintlerde bunun daha kısa olmasını bekler. Buna göre 2 haftalık bir sprint için Retro en fazla yaklaşık 1,5 saat sürer.[^1] İyi bir retro sonunda uygulanabilir bir veya iki karar çıkar.
 
+### Örnek: Retro senaryosu
+
+Aşağıdaki senaryo örnek amaçlıdır. Retronun nasıl işlediğini göstermek için kurgulanmıştır.
+
+**Sorun.** Bir sprintte Frontend geliştirici profil sayfasını bitirmeyi planlamıştır. Ancak sayfanın kullanacağı Backend API'leri sprintin son günlerinde teslim edilmiştir. Frontend geliştirici gerçek veriyle çalışamadığı için işi sprint sonuna yetiştirememiştir.
+
+**Dile getirme.** Retroda Frontend geliştirici bunu açıkça söyler: Backend API'leri geç geldiği için işini zamanında bitiremedi. Bu bir kişiyi suçlama değil, süreçte aksayan bir noktanın tespitidir. Retro tam olarak bu tür aksaklıkları görünür kılmak için yapılır.
+
+**Seçenekler.** Takım sorunu çözmek için iki yol değerlendirir. Birincisi, Backend'in bir sprint önden gitmesidir: Backend bir sprintte API'leri hazırlar, Frontend bir sonraki sprintte bunları kullanır. İkincisi, Frontend ve Backend'in sprint başında API sözleşmesi (API contract) üzerinde anlaşıp paralel çalışmasıdır: Frontend, Backend hazır olana kadar sözleşmeye uygun sahte veriyle (mock) geliştirme yapar.
+
+**Karar.** Takım ikinci yolu seçer, çünkü bu yol Frontend'i beklemeden çalıştırır ve işlerin aynı sprintte bitmesini sağlar. Karar somut bir eyleme dönüştürülür: sonraki sprintlerde her API için sprint planlamasında sözleşme yazılacaktır. Bir sonraki retroda bu kararın işe yarayıp yaramadığı kontrol edilir.
+
 ## Backlog Refinement (Backlog Düzenleme)
 
 Refinement, resmi bir Scrum olayı değildir ama çoğu takım düzenli olarak yapar. Product Backlog'daki işler, sprint planlamasına gelmeden önce netleştirilir, bölünür ve büyüklükleri tahmin edilir.[^1] Backlog'u [İş Takibi](/academy/glossary/work-tracking) dersinde anlatıyoruz.
