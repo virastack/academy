@@ -23,6 +23,8 @@ Backlog (iş listesi), yapılması planlanan tüm işlerin sıralı listesidir. 
 
 Önceliklendirme, backlog'daki işlerin hangisinin önce yapılacağına karar vermektir. Scrum'da bu karar Product Owner'a (Ürün Sahibi) aittir.[^2] Genel ölçüt, bir işin kullanıcıya ya da işe sağlayacağı değer ile onu yapmanın maliyetini birlikte değerlendirmektir. Canlıdaki bir hata genellikle yeni bir özellikten önce gelir.
 
+Bir iş de önceliğe göre aşamalara (faz) bölünebilir. Örneğin bir ödeme özelliğinde kredi kartıyla ödeme ilk fazda yapılır, Masterpass ile ödeme ise 2. faza bırakılır. Böylece kullanıcıya değer katan kısım daha erken teslim edilir. Faz bölümüne karar verirken Product Owner gerekirse müşteriyle ya da paydaşlarla görüşür, ama kararı önceliklere göre kendisi verir.[^2] Faz, Scrum'a ait bir terim değil, planlamada yaygın kullanılan bir yöntemdir.
+
 ## Estimation (Tahmin)
 
 Estimation, bir işin ne kadar büyük olduğunu önceden tahmin etmektir. Amaç tam süre vermek değil, sprinte ne kadar işin sığacağını öngörmektir. Takımlar çoğunlukla saat yerine **story point** gibi göreli bir birim kullanır: iş, daha önce yapılmış başka bir işle kıyaslanarak küçük, orta ya da büyük diye puanlanır. Story point Scrum Guide'da geçmez ama çok yaygın bir pratiktir. Scrum Guide yalnızca işin büyüklüğünü o işi yapacak geliştiricilerin belirlemesi gerektiğini söyler.[^2]
