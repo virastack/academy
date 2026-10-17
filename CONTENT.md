@@ -4,6 +4,13 @@ Lessons live as Markdown under `content/tr/<track>/<lesson>.md`.
 The curriculum tree (including `coming_soon` lessons without a body) is
 `content/tr/curriculum.json`. Titles and descriptions are plain Turkish strings.
 
+You don't need to flip `status` by hand. On every push to `main`, the deploy
+workflow runs `node scripts/sync-curriculum.mjs`, which marks a lesson
+`published` once its Markdown has at least 300 characters of body text
+(headings, comments and blank lines don't count) and commits the change. Add
+`draft: true` to the frontmatter to keep a written lesson unpublished. Run the
+script locally to see the result before pushing.
+
 Do not add Markdown or `curriculum.json` under `content/en`. English copies are
 not maintained yet.
 
