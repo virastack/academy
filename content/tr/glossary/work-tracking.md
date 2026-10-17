@@ -7,7 +7,7 @@ translationKey: "glossary/work-tracking"
 
 ## Jira ve ticket
 
-Jira, takımların işlerini planlayıp takip ettiği bir proje yönetim aracıdır.[^1] Aracın içindeki her iş kaydına ticket (ya da issue, iş kaydı) denir. Bir ticket bir hata düzeltmesi, yeni bir özellik ya da küçük bir görev olabilir. Aynı işi yapan başka araçlar da vardır, örneğin Linear ve Azure DevOps, ama kavramlar büyük ölçüde aynıdır.
+[!jira] Jira, takımların işlerini planlayıp takip ettiği bir proje yönetim aracıdır.[^1] Aracın içindeki her iş kaydına ticket (ya da issue, iş kaydı) denir. Bir ticket bir hata düzeltmesi, yeni bir özellik ya da küçük bir görev olabilir. Aynı işi yapan başka araçlar da vardır, örneğin [!linear] Linear ve [!azuredevops] Azure DevOps, ama kavramlar büyük ölçüde aynıdır.
 
 Ticket'lar genellikle şu türlere ayrılır: büyük bir hedefi temsil eden **epic**, kullanıcıya görünen bir özelliği anlatan **story**, teknik bir iş olan **task** ve yanlış çalışan bir şeyi bildiren **bug**.
 
