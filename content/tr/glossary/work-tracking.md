@@ -7,13 +7,13 @@ translationKey: "glossary/work-tracking"
 
 ## Jira ve ticket
 
-[!jira], takımların işlerini planlayıp takip ettiği bir proje yönetim aracıdır.[^1] Aracın içindeki her iş kaydına **ticket** (ya da issue, iş kaydı) denir. Bir ticket bir hata düzeltmesi, yeni bir özellik ya da küçük bir görev olabilir. Aynı işi yapan başka araçlar da vardır, örneğin [!linear] ve [!azuredevops], ama kavramlar büyük ölçüde aynıdır.
+[!jira], takımların işlerini planlayıp takip ettiği bir proje yönetim aracıdır.[^1] Aracın içindeki her iş kaydına **ticket** (ya da issue, iş kaydı) denir. Jira bunlara artık work item diyor.[^3] Bir ticket bir hata düzeltmesi, yeni bir özellik ya da küçük bir görev olabilir. Aynı işi yapan başka araçlar da vardır, örneğin [!linear] ve [!azuredevops], ama kavramlar büyük ölçüde aynıdır.
 
-Ticket'lar genellikle şu türlere ayrılır: büyük bir hedefi temsil eden **epic**, kullanıcıya görünen bir özelliği anlatan **story**, teknik bir iş olan **task** ve yanlış çalışan bir şeyi bildiren **bug**.
+Ticket'lar genellikle şu türlere ayrılır: büyük bir iş grubunu temsil eden **epic**, kullanıcı gözünden yazılmış bir gereksinim olan **story**, yapılması gereken genel bir iş olan **task** ve düzeltilmesi gereken bir sorunu bildiren **bug**.[^3]
 
 ## Ticket yazma
 
-İyi bir ticket, onu hiç görmemiş biri açtığında ne yapılacağını anlayabilmesini sağlar. Genellikle şunları içerir: kısa ve net bir başlık, işin neden gerekli olduğu, **kabul kriterleri** (işin ne zaman bitmiş sayılacağı) ve bir hataysa nasıl yeniden üretileceği. Kabul kriterleri belirsiz bir ticket, geliştirici ile istek sahibi arasında "bitti mi, bitmedi mi" tartışmasına yol açar.
+İyi bir ticket, onu hiç görmemiş biri açtığında ne yapılacağını anlayabilmesini sağlar. Genellikle şunları içerir: kısa ve net bir başlık, işin neden gerekli olduğu, **kabul kriterleri** (işin ne zaman bitmiş sayılacağı) ve bir hataysa nasıl yeniden üretileceği.[^8] Kabul kriterleri belirsiz bir ticket, geliştirici ile istek sahibi arasında "bitti mi, bitmedi mi" tartışmasına yol açar.
 
 ## Backlog
 
@@ -27,21 +27,27 @@ Bir iş de önceliğe göre aşamalara (**faz**) bölünebilir. Örneğin bir ö
 
 ## Estimation (Tahmin)
 
-**Estimation**, bir işin ne kadar süreceğini ya da ne kadar büyük, karmaşık ve riskli olduğunu önceden tahmin etmektir. Amaç tam süre vermek değil, sprinte ne kadar işin sığacağını öngörmektir. İşin büyüklüğünü, işi yapacak geliştiriciler belirler. Product Owner onlara öncelikleri ve ödünleşimleri (trade-off) anlatarak etkileyebilir ama puanı kendisi vermez.[^2]
+**Estimation**, bir işin ne kadar süreceğini ya da ne kadar büyük, karmaşık ve riskli olduğunu önceden tahmin etmektir.[^4] Amaç tam süre vermek değil, sprinte ne kadar işin sığacağını öngörmektir. İşin büyüklüğünü, işi yapacak geliştiriciler belirler. Product Owner onlara öncelikleri ve ödünleşimleri (trade-off) anlatarak etkileyebilir ama puanı kendisi vermez.[^2]
 
-Takımlar iki temel yaklaşım kullanır. **Adam/gün** (a/g), işin kaç iş gününde kodlanıp test edilerek yayına hazır hâle geleceğini söyler, örneğin 3 a/g. **Story point** ise zamandan bağımsız olarak işin büyüklüğünü göreli ölçer ve takımlar çoğunlukla bunu tercih eder. Puanlar genellikle Fibonacci dizisine dayanır: 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144. Sayılar büyüdükçe aralarındaki fark açılır. Bu, iş büyüdükçe belirsizliğin de arttığını gösterir ve büyük işler için *"13 mü 14 mü"* diye tartışmanın anlamsız olduğunu hatırlatır. Story point ve Fibonacci Scrum Guide'da geçmez, ama Agile takımlarda çok yaygın bir pratiktir.
+Takımlar iki temel yaklaşım kullanır. **Adam/gün** (a/g), işin kaç iş gününde kodlanıp test edilerek yayına hazır hâle geleceğini söyler, örneğin 3 a/g. **Story point** ise zamandan bağımsız olarak işin büyüklüğünü göreli ölçer ve birçok takım bunu kullanır.[^4] Puanlar genellikle Fibonacci dizisine dayanır: 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144. Mike Cohn'un Planning Poker destesinde ise 13'ten sonra 20, 40 ve 100 gelir.[^5] Sayılar büyüdükçe aralarındaki fark açılır. Bu, iş büyüdükçe belirsizliğin de arttığını gösterir ve büyük işler için *"13 mü 14 mü"* diye tartışmanın anlamsız olduğunu hatırlatır. Story point ve Fibonacci Scrum Guide'da geçmez, ama Agile takımlarda yaygın kullanılan bir pratiktir.
 
 Takımlar genellikle kendi eşik değerini belirler, örneğin 13 ya da 21 puan. Bu puanın üzerinde çıkan işin tek sprintte bitmesi riskli görüldüğü için daha küçük parçalara bölünür ve sprinte bu şekilde alınır. Eşik bir **kural değil, takımın kendi kararıdır**. Scrum Guide ise bir sprintte bitirilebilecek işlerin sprint planlamasında seçilmeye hazır sayıldığını söyler.[^2]
 
 ### Örnek: Puanlama akışı
 
-**Puanlama:** Takım bir ürün listeleme sayfasını puanlarken ekrandaki bileşenleri ve test işini birlikte değerlendirir. Puanlama genellikle oylamayla yapılır, bu yönteme **Planning Poker** denir. Bir geliştirici 5, diğeri 13 puan verdiyse aradaki fark, gizli kalmış risk ve belirsizlikleri konuşmak için fırsattır. Tartışmanın sonunda takım örneğin 8 puanda anlaşır.
+**Puanlama:** Takım bir ürün listeleme sayfasını puanlarken ekrandaki bileşenleri ve test işini birlikte değerlendirir. Puanlama genellikle oylamayla yapılır, bu yönteme **Planning Poker** denir.[^5] Bir geliştirici 5, diğeri 13 puan verdiyse aradaki fark, gizli kalmış risk ve belirsizlikleri konuşmak için fırsattır.[^5] Tartışmanın sonunda takım örneğin 8 puanda anlaşır.
 
-**Kapasite:** Takımın bir sprintte tamamladığı ortalama story point sayısına **velocity** (hız) denir. Velocity 35 puansa, backlog'dan toplamı 35 puanı geçmeyecek işler sprinte alınır. Örneğin 1, 3, 5, 5, 8 ve 13 puanlık altı görev toplam 35 puan eder.
+**Kapasite:** Takımın bir sprintte tamamladığı story point toplamına **velocity** (hız) denir.[^6] Velocity 35 puansa, backlog'dan toplamı 35 puanı geçmeyecek işler sprinte alınır. Örneğin 1, 3, 5, 5, 8 ve 13 puanlık altı görev toplam 35 puan eder.
 
-**Bölme:** "Tüm özellikleri içeren Ürün Listeleme Sayfası" tek başına 55 puan çıktıysa, 35 puanlık kapasitenin çok üzerinde olduğu için sprinte bu hâliyle girmez. İş Ürün Listeleme, Sepete Ekleme, Filtreleme ve Arama gibi daha küçük parçalara bölünür (story splitting), her parça ayrıca puanlanır ve sprinte bu şekilde alınır.
+**Bölme:** "Tüm özellikleri içeren Ürün Listeleme Sayfası" tek başına 55 puan çıktıysa, 35 puanlık kapasitenin çok üzerinde olduğu için sprinte bu hâliyle girmez. İş Ürün Listeleme, Sepete Ekleme, Filtreleme ve Arama gibi daha küçük parçalara bölünür (story splitting), her parça ayrıca puanlanır ve sprinte bu şekilde alınır.[^7]
 
 ## Kaynaklar
 
 1. [Atlassian: Jira Basics](https://www.atlassian.com/software/jira/guides/getting-started/basics) *(doc)* — Jira'nın ne olduğu ve iş kayıtlarının takipte nasıl kullanıldığı.
 2. [The Scrum Guide (2020)](https://scrumguides.org/scrum-guide.html) *(doc)* — Resmi Scrum tanımı: sorumluluklar, sprint, olaylar, süreler ve backlog. Ken Schwaber ve Jeff Sutherland, 2020.
+3. [Atlassian: Jira work items overview](https://www.atlassian.com/software/jira/guides/issues/overview) *(doc)* — Issue'ların artık work item adını taşıdığı ve varsayılan türler: epic, story, task, bug, sub-task.
+4. [Mountain Goat Software: What Are Agile Story Points?](https://www.mountaingoatsoftware.com/blog/what-are-story-points) *(article)* — Story point'in efor, karmaşıklık, risk ve belirsizliği birlikte ölçtüğü, önemli olanın oranlar olduğu. Mike Cohn.
+5. [Mountain Goat Software: Planning Poker](https://www.mountaingoatsoftware.com/agile/planning-poker) *(article)* — Gizli oylama, en yüksek ve en düşük tahmini verenlerin gerekçesini anlatması ve 0, 1, 2, 3, 5, 8, 13, 20, 40, 100 destesi.
+6. [Agile Alliance: Velocity](https://www.agilealliance.org/glossary/velocity/) *(article)* — Velocity'nin bir iterasyonda tamamlanan story'lerin toplam tahmini olması.
+7. [Mountain Goat Software: Five Simple but Powerful Ways to Split User Stories](https://www.mountaingoatsoftware.com/blog/five-simple-but-powerful-ways-to-split-user-stories) *(article)* — SPIDR: Spike, Path, Interfaces, Data, Rules ile story bölme teknikleri.
+8. [Bugzilla: Bug Writing Guidelines](https://bugzilla.mozilla.org/page.cgi?id=bug-writing.html) *(doc)* — Yeniden üretme adımlarının hata kaydının en önemli parçası olması, beklenen ve gerçekleşen sonucun ayrı yazılması, kısa ve tekil başlık.
