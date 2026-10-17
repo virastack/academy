@@ -27,5 +27,7 @@ Backlog (iş listesi), yapılması planlanan tüm işlerin sıralı listesidir. 
 
 Estimation, bir işin ne kadar büyük olduğunu önceden tahmin etmektir. Amaç tam süre vermek değil, sprinte ne kadar işin sığacağını öngörmektir. Takımlar çoğunlukla saat yerine **story point** gibi göreli bir birim kullanır: iş, daha önce yapılmış başka bir işle kıyaslanarak küçük, orta ya da büyük diye puanlanır. Story point Scrum Guide'da geçmez ama çok yaygın bir pratiktir. Scrum Guide yalnızca işin büyüklüğünü o işi yapacak geliştiricilerin belirlemesi gerektiğini söyler.[^2]
 
-[^1]: [Atlassian: Jira Basics](https://www.atlassian.com/software/jira/guides/getting-started/basics)
-[^2]: [The Scrum Guide (2020)](https://scrumguides.org/scrum-guide.html)
+## Kaynaklar
+
+1. [Atlassian: Jira Basics](https://www.atlassian.com/software/jira/guides/getting-started/basics) *(doc)* — Jira'nın ne olduğu ve iş kayıtlarının takipte nasıl kullanıldığı.
+2. [The Scrum Guide (2020)](https://scrumguides.org/scrum-guide.html) *(doc)* — Resmi Scrum tanımı: sorumluluklar, sprint, olaylar, süreler ve backlog. Ken Schwaber ve Jeff Sutherland, 2020.

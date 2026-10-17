@@ -27,4 +27,6 @@ Retro, sprintin en son olayıdır ve Review'dan sonra yapılır. Amacı ürünü
 
 Refinement, resmi bir Scrum olayı değildir ama çoğu takım düzenli olarak yapar. Product Backlog'daki işler, sprint planlamasına gelmeden önce netleştirilir, bölünür ve büyüklükleri tahmin edilir.[^1] Backlog'u [İş Takibi](/academy/glossary/work-tracking) dersinde anlatıyoruz.
 
-[^1]: [The Scrum Guide (2020)](https://scrumguides.org/scrum-guide.html)
+## Kaynaklar
+
+1. [The Scrum Guide (2020)](https://scrumguides.org/scrum-guide.html) *(doc)* — Resmi Scrum tanımı: sorumluluklar, sprint, olaylar, süreler ve backlog. Ken Schwaber ve Jeff Sutherland, 2020.

@@ -29,4 +29,6 @@ Versiyonlama, her release'e bir numara vermektir. En yaygın yöntem Semantic Ve
 
 Örneğin `2.4.1` sürümüne bir hata düzeltmesi gelirse `2.4.2`, yeni bir özellik gelirse `2.5.0`, uyumsuz bir değişiklik gelirse `3.0.0` olur. `0.y.z` sürümleri ilk geliştirme aşamasındadır ve her şey değişebilir.[^1] npm paketlerinde sürüm numarası bu yönteme göre okunur, bu yüzden bir paketin `MAJOR` sürümünü yükseltirken değişiklik notlarını okumak gerekir.
 
-[^1]: [Semantic Versioning 2.0.0](https://semver.org/)
+## Kaynaklar
+
+1. [Semantic Versioning 2.0.0](https://semver.org/) *(doc)* — Anlamsal sürümleme kuralları: MAJOR, MINOR, PATCH ve 0.y.z sürümleri.
