@@ -1100,28 +1100,28 @@
                   "slug": "working-methods",
                   "title": "Çalışma Yöntemleri",
                   "description": "Agile, Scrum ve Kanban nedir, takımlar hangisini neden seçer.",
-                  "status": "coming_soon",
+                  "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "sprints-and-rituals",
                   "title": "Sprint ve Ritüeller",
                   "description": "Sprint, daily, planning ve retro toplantıları ne işe yarar.",
-                  "status": "coming_soon",
+                  "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "work-tracking",
                   "title": "İş Takibi",
                   "description": "Jira, ticket yazma, backlog, önceliklendirme ve estimation.",
-                  "status": "coming_soon",
+                  "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "code-and-team",
                   "title": "Kod ve Takım",
                   "description": "PR ve code review kültürü, tech debt, release ve versiyonlama.",
-                  "status": "coming_soon",
+                  "status": "published",
                   "kind": "lesson"
                 }
               ]
