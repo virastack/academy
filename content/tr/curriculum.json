@@ -84,59 +84,66 @@
               "title": "Dersler",
               "lessons": [
                 {
+                  "slug": "introduction-and-setup",
+                  "title": "Giriş ve kurulum",
+                  "description": "TypeScript nedir, neden kullanılır ve ilk projede tip kontrolü.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
                   "slug": "basic-types-and-inference",
                   "title": "Temel tipler ve çıkarım",
-                  "description": "string, number, boolean ve type inference.",
-                  "status": "coming_soon",
+                  "description": "Primitive tipler, array, fonksiyon tipleri, any ve unknown ile type inference.",
+                  "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "interfaces-types-and-unions",
                   "title": "Interface, type ve union",
-                  "description": "Nesne şekilleri, type alias ve birleşik tipler.",
-                  "status": "coming_soon",
-                  "kind": "lesson"
-                },
-                {
-                  "slug": "generics",
-                  "title": "Generic'ler",
-                  "description": "Tipe göre çalışan, yeniden kullanılabilir fonksiyon ve bileşenler.",
-                  "status": "coming_soon",
-                  "kind": "lesson"
-                },
-                {
-                  "slug": "utility-types",
-                  "title": "Utility types",
-                  "description": "Partial, Pick, Omit ve Record ile tip türetme.",
-                  "status": "coming_soon",
+                  "description": "Nesne şekilleri, type alias, union ve literal tipler.",
+                  "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "narrowing-and-type-guards",
                   "title": "Narrowing ve type guard",
-                  "description": "Union'ı daraltma ve güvenli tip kontrolü.",
-                  "status": "coming_soon",
+                  "description": "Union'ı daraltma, discriminated union ve güvenli tip kontrolü.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "generics",
+                  "title": "Generic'ler",
+                  "description": "Tipe göre çalışan, yeniden kullanılabilir fonksiyon ve tipler.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "utility-types",
+                  "title": "Utility types",
+                  "description": "keyof, typeof, Partial, Pick, Omit ve Record ile tip türetme.",
+                  "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "types-in-react",
-                  "title": "React'ta tipler",
-                  "description": "Props, event, children ve hook tipleri.",
-                  "status": "coming_soon",
+                  "title": "React'te tipler",
+                  "description": "Props, children, event, hook ve context tipleri.",
+                  "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "tsconfig-and-strict-mode",
                   "title": "tsconfig ve strict mod",
-                  "description": "Derleyici ayarları ve strict bayrakları.",
-                  "status": "coming_soon",
+                  "description": "Derleyici ayarları, strict bayrakları ve CI'da tip kontrolü.",
+                  "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "project",
-                  "title": "Proje",
-                  "description": "Tipli bir React arayüzü kur.",
-                  "status": "coming_soon",
+                  "title": "Tipli ürün kataloğu",
+                  "description": "Ürün listesi, filtre ve sepeti uçtan uca tiplerle kur.",
+                  "status": "published",
                   "kind": "project"
                 }
               ]
