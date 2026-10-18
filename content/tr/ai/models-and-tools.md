@@ -44,7 +44,7 @@ Aynı değerlendirmenin model bazlı sıralaması *(16 Ekim 2026, 145 model gene
 | 8. | [!gemini] **Gemini 4 Argon**<br>Google | 1.688 | $2 / $10 |
 | 10. | [!qwen] **Qwen 3.8**<br>Alibaba | 1.686 | $2 / $6 |
 | 13. | **Muse Spark 1.3**<br>Meta | 1.673 | $1.25 / $4.25 |
-| 29. | [!claude] **Claude Haiku 5.5**<br>Anthropic | 1.603 | $0.10 / $0.50 *(100K token üstünde $0.50 / $2.50)* |
+| 29. | [!claude] **Claude Haiku 5.5**<br>Anthropic | 1.603 | $0.10 / $0.50 |
 
 Tabloyu okurken üç şeye dikkat edin:
 
