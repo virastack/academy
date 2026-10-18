@@ -179,7 +179,7 @@ OWASP düşük riskli uygulamalar için 15–30 dakikalık işlemsizlik süresin
 6. [JWT.io: Introduction to JSON Web Tokens](https://www.jwt.io/introduction) *(doc)* — Header, payload ve imza yapısı; imzalı token'ın şifreli olmaması.
 7. [RFC 7519: JSON Web Token](https://www.rfc-editor.org/rfc/rfc7519) *(doc)* — JWT tanımı ve `iss`, `sub`, `aud`, `exp`, `iat` gibi kayıtlı claim'ler.
 8. [RFC 8725: JWT Best Current Practices](https://www.rfc-editor.org/rfc/rfc8725) *(doc)* — Algoritma listesi verme, `none` algoritması, tüm doğrulamaların geçmesi ve `iss`/`aud` kontrolü.
-9. [Randall Degges](https://www.rdegges.com/): [JWTs Suck](https://speakerdeck.com/rdegges/jwts-suck) *(talk)* — JWT ile oturum cookie'sinin kolaylık, güvenlik, iptal ve ölçeklenme açısından karşılaştırması.
+9. [Randall Degges](https://www.rdegges.com/): [JWTs Suck](https://speakerdeck.com/rdegges/jwts-suck) *(article)* — JWT ile oturum cookie'sinin kolaylık, güvenlik, iptal ve ölçeklenme açısından karşılaştırması.
 10. [Pilcrow](https://pilcrowonpaper.com/): [Browser client-side storage](https://auth.pilcrowonpaper.com/browser-client-side-storage) *(article)* — Cookie ve Web Storage, `HttpOnly`'nin neyi engelleyip neyi engellemediği.
 11. [OWASP: HTML5 Security Cheat Sheet — Local Storage](https://cheatsheetseries.owasp.org/cheatsheets/HTML5_Security_Cheat_Sheet.html#local-storage) *(doc)* — Oturum kimliğini local storage'da tutmama önerisi.
 12. [Philippe De Ryck](https://pragmaticwebsecurity.com/about): [The truth about cookies, tokens and APIs](https://www.youtube.com/watch?v=-zD11ubPsFM) *(video)* — LocoMocoSec 2019; cookie ve token tabanlı oturumun CSRF ve XSS açısından ödünleşimleri.

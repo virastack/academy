@@ -166,7 +166,7 @@ Gerekçe basit: sayfada çalışan kötü niyetli bir script, uygulamanın kendi
 
 ## Kaynaklar
 
-1. [Aaron Parecki](https://aaronparecki.com/): [Why Do We Really Need OAuth?](https://www.youtube.com/watch?v=wlUCF4Y9T6k) *(talk)* — OWASP NZ 2022; parola paylaşımı sorunu ve OAuth'un ortaya çıkışı.
+1. [Aaron Parecki](https://aaronparecki.com/): [Why Do We Really Need OAuth?](https://www.youtube.com/watch?v=wlUCF4Y9T6k) *(video)* — OWASP NZ 2022; parola paylaşımı sorunu ve OAuth'un ortaya çıkışı.
 2. [David Neal](https://reverentgeek.com/): [An Illustrated Guide to OAuth and OpenID Connect](https://developer.okta.com/blog/2019/10/21/illustrated-guide-to-oauth-and-oidc) *(article)* — Rollerin ve authorization code akışının adım adım anlatımı, `openid` scope'u ve ID token; [video sürümü](https://www.youtube.com/watch?v=t18YB3xDfXI).
 3. [RFC 9700: Best Current Practice for OAuth 2.0 Security](https://www.rfc-editor.org/rfc/rfc9700) *(doc)* — PKCE zorunluluğu, implicit ve password grant'in bırakılması, tam eşleşen `redirect_uri`, `state` ve audience kısıtlaması.
 4. [oauth.net: PKCE](https://oauth.net/2/pkce/) *(doc)* — `code_verifier` ve `code_challenge`, PKCE'nin engellediği saldırılar.
