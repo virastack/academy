@@ -969,7 +969,7 @@
                   "slug": "authorization-and-roles",
                   "title": "Yetkilendirme ve roller",
                   "description": "Rol ve izin kontrolü; sayfa, API ve Server Action koruması.",
-                  "status": "coming_soon",
+                  "status": "published",
                   "kind": "lesson"
                 },
                 {
