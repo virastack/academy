@@ -46,9 +46,8 @@ Aynı değerlendirmenin model bazlı sıralaması *(16 Ekim 2026, 145 model gene
 | 13. | **Muse Spark 1.3**<br>Meta | 1.673 | $1.25 / $4.25 |
 | 29. | [!claude] **Claude Haiku 5.5**<br>Anthropic | 1.603 | $0.10 / $0.50 |
 
-Tabloyu okurken üç şeye dikkat edin:
+Tabloyu okurken iki şeye dikkat edin:
 
-- 2. ve 3. modelin skorları birbirine yakın. Sıradaki küçük farkı kesin üstünlük saymayın.
 - Skorlar çoğunlukla modellerin en yüksek effort ayarıyla *(max veya xhigh)* ölçülmüş sonuçlardır. Günlük kullanımda daha düşük ayarla skor düşebilir[^2].
 - Aynı modelin genel WebDev sıralamasındaki veya React filtresindeki sırası farklı olabilir.
 
