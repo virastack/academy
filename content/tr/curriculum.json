@@ -955,7 +955,7 @@
                   "slug": "oauth-and-oidc",
                   "title": "OAuth ve OIDC akışları",
                   "description": "Authorization code ve PKCE, access ve ID token; \"Google ile giriş\" nasıl çalışır.",
-                  "status": "coming_soon",
+                  "status": "published",
                   "kind": "lesson"
                 },
                 {
