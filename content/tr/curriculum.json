@@ -940,49 +940,63 @@
                 {
                   "slug": "sessions-cookies-and-jwt",
                   "title": "Oturum, cookie ve JWT",
-                  "description": "Oturumun nerede tutulduğu ve cookie ile JWT farkı.",
+                  "description": "Sunucu oturumu ile JWT farkı, cookie bayrakları ve token'ın nerede saklanacağı.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "passwords-passkeys-and-mfa",
+                  "title": "Parola, passkey ve 2FA",
+                  "description": "Giriş formu, parolanın sunucuda saklanması, passkey ve iki adımlı doğrulama.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
                   "slug": "oauth-and-oidc",
                   "title": "OAuth ve OIDC akışları",
-                  "description": "Yetkilendirme kodu, token ve kimlik sağlayıcı.",
+                  "description": "Authorization code ve PKCE, access ve ID token; \"Google ile giriş\" nasıl çalışır.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
                   "slug": "auth-in-nextjs",
                   "title": "Next.js'te auth",
-                  "description": "App Router'da giriş ve oturum okuma.",
+                  "description": "Auth kütüphanesi seçimi, giriş, oturum okuma ve proxy ile yönlendirme.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
                   "slug": "authorization-and-roles",
                   "title": "Yetkilendirme ve roller",
-                  "description": "Kim neyi görebilir; rota ve işlem koruması.",
+                  "description": "Rol ve izin kontrolü; sayfa, API ve Server Action koruması.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
-                  "slug": "xss-and-csrf",
-                  "title": "XSS ve CSRF",
-                  "description": "Yaygın zafiyetler ve temel önlemler.",
+                  "slug": "xss-and-csp",
+                  "title": "XSS ve CSP",
+                  "description": "dangerouslySetInnerHTML, güvenli olmayan URL'ler ve Content Security Policy.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
-                  "slug": "secrets-and-secure-config",
-                  "title": "Secret ve güvenli yapılandırma",
-                  "description": "Gizli anahtarlar ve ortam ayrımı.",
+                  "slug": "csrf-cors-and-headers",
+                  "title": "CSRF, CORS ve güvenlik başlıkları",
+                  "description": "SameSite ile CSRF önlemi, CORS'un ne yaptığı ve temel HTTP güvenlik başlıkları.",
+                  "status": "coming_soon",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "secrets-and-dependencies",
+                  "title": "Secret ve bağımlılık güvenliği",
+                  "description": "Anahtarı istemciden uzak tutma, .env ve npm tedarik zinciri saldırıları.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
                   "slug": "project",
-                  "title": "Proje",
-                  "description": "Giriş, rol ve temel güvenlik önlemleriyle küçük bir akış.",
+                  "title": "Korumalı yönetim paneli",
+                  "description": "Giriş, rol kontrolü ve güvenlik başlıklarıyla küçük bir panel kur.",
                   "status": "coming_soon",
                   "kind": "project"
                 }
