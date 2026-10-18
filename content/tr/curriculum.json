@@ -948,7 +948,7 @@
                   "slug": "passwords-passkeys-and-mfa",
                   "title": "Parola, passkey ve 2FA",
                   "description": "Giriş formu, parolanın sunucuda saklanması, passkey ve iki adımlı doğrulama.",
-                  "status": "coming_soon",
+                  "status": "published",
                   "kind": "lesson"
                 },
                 {
