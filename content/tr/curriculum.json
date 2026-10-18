@@ -962,7 +962,7 @@
                   "slug": "auth-in-nextjs",
                   "title": "Next.js'te auth",
                   "description": "Auth kütüphanesi seçimi, giriş, oturum okuma ve proxy ile yönlendirme.",
-                  "status": "coming_soon",
+                  "status": "published",
                   "kind": "lesson"
                 },
                 {
