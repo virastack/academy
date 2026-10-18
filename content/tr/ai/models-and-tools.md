@@ -1,7 +1,7 @@
 ---
 title: "Modeller ve Araçlar"
-description: "Model türleri, güçlü ve zayıf yönleri; sohbet, editör ve terminal tabanlı araçlar[^1]."
-lastVerified: "2026-10-14"
+description: "Model türleri, güçlü ve zayıf yönleri; sohbet, editör ve terminal tabanlı araçlar."
+lastVerified: "2026-10-18"
 translationKey: "ai/models-and-tools"
 ---
 
@@ -16,41 +16,41 @@ Araç tarafındaki asıl ayrım sohbet ile ajan arasındadır. `useCart` hook'un
 
 ## Yapay zeka şirketleri ve model sıralaması
 
-Aşağıdaki sıralama tabloları, Arena AI sitesinden 8 Ekim 2026 tarihindeki veriler alınarak hazırlanmıştır[^2]. Arena, kullanıcıların iki modelin yaptığı arayüzü karşılaştırıp oy verdiği bir frontend kodlama sıralamasıdır. Yeni testler ve oylamalarla sıralama günlük değişebilir; en güncel sonuçlar için siteyi kontrol edin.
+Aşağıdaki sıralama tabloları, Arena AI sitesinin WebDev sıralamasındaki Frontend filtresinden 16 Ekim 2026 tarihindeki veriler alınarak hazırlanmıştır[^2]. Arena, kullanıcıların iki modelin yaptığı arayüzü karşılaştırıp oy verdiği bir kodlama sıralamasıdır. Yeni testler ve oylamalarla sıralama günlük değişebilir; en güncel sonuçlar için siteyi kontrol edin.
 
 ### Şirketler sıralaması
 
-Arena AI verileri geliştirici şirket bazında incelendiğinde *(8 Ekim 2026, 142 model genelinde 752.673 oy)* tablo şu şekildedir:
+Arena AI verileri geliştirici şirket bazında incelendiğinde *(16 Ekim 2026, 145 model genelinde 782.515 oy)* tablo şu şekildedir:
 
 | Sıra | Şirket | En iyi modeli | Model skoru |
 | --- | --- | --- | ---: |
-| 1. | [!anthropic] Anthropic | **Claude Opus 5.5** | 1.863 |
-| 2. | [!openai] OpenAI | **GPT-6 Astra** | 1.811 |
-| 3. | [!google] Google | **Gemini 4 Argon** | 1.687 |
+| 1. | [!anthropic] Anthropic | **Claude Opus 5.5** | 1.850 |
+| 2. | [!openai] OpenAI | **GPT-6 Astra** | 1.799 |
+| 3. | [!google] Google | **Gemini 4 Argon** | 1.688 |
 | 4. | [!qwen] Alibaba | **Qwen 3.8** | 1.686 |
-| 5. | [!meta] Meta | **Muse Spark 1.3** | 1.672 |
+| 5. | [!meta] Meta | **Muse Spark 1.3** | 1.673 |
 
 ### Model sıralaması
 
-Aynı değerlendirmenin model bazlı sıralaması *(8 Ekim 2026, 126 model genelinde 565.389 oy)* ise şu şekildedir:
+Aynı değerlendirmenin model bazlı sıralaması *(16 Ekim 2026, 145 model genelinde 782.515 oy)* ise şu şekildedir:
 
 | Sıra | Model | Skor | Fiyat *(girdi / çıktı, $ / 1M token)* |
 | --- | --- | --- | ---: |
-| 1. | [!claude] **Claude Opus 5.5**<br>Anthropic | 1.863 | $4 / $20 |
-| 2. | [!claude] **Claude Sonnet 5.5**<br>Anthropic | 1.824 | $2 / $10 |
-| 3. | [!openai] **GPT-6 Astra**<br>OpenAI | 1.811 | $10 / $50 |
-| 4. | [!claude] **Claude Fable 5.1**<br>Anthropic | 1.793 | $10 / $50 |
-| 5. | [!openai] **GPT-6.1 Sol**<br>OpenAI | 1.758 | $2 / $10 |
+| 1. | [!claude] **Claude Opus 5.5**<br>Anthropic | 1.850 | $4 / $20 |
+| 2. | [!claude] **Claude Sonnet 5.5**<br>Anthropic | 1.807 | $2 / $10 |
+| 3. | [!openai] **GPT-6 Astra**<br>OpenAI | 1.799 | $10 / $50 |
+| 4. | [!claude] **Claude Fable 5.1**<br>Anthropic | 1.775 | $10 / $50 |
+| 5. | [!openai] **GPT-6.1 Sol**<br>OpenAI | 1.769 | $2 / $10 |
+| 8. | [!gemini] **Gemini 4 Argon**<br>Google | 1.688 | $2 / $10 |
 | 10. | [!qwen] **Qwen 3.8**<br>Alibaba | 1.686 | $2 / $6 |
-| 13. | **Muse Spark 1.3**<br>Meta | 1.672 | $1.25 / $4.25 |
-| 15. | [!gemini] **Gemini 4 Argon**<br>Google | 1.687 | $2 / $10 |
-| 20. | [!claude] **Claude Haiku 5.5**<br>Anthropic | 1.609 | $0.10 / $0.50 |
+| 13. | **Muse Spark 1.3**<br>Meta | 1.673 | $1.25 / $4.25 |
+| 29. | [!claude] **Claude Haiku 5.5**<br>Anthropic | 1.603 | $0.10 / $0.50 *(100K token üstünde $0.50 / $2.50)* |
 
 Tabloyu okurken üç şeye dikkat edin:
 
-- İlk üç modelin skorları birbirine yakın. Sıradaki küçük farkı kesin üstünlük saymayın.
-- Skorlar modellerin en yüksek effort ayarıyla *(max veya xhigh)* ölçülmüş sonuçlardır. Günlük kullanımda daha düşük ayarla skor düşebilir[^2].
-- Aynı modelin Frontend veya React filtresindeki sırası farklı olabilir.
+- 2. ve 3. modelin skorları birbirine yakın. Sıradaki küçük farkı kesin üstünlük saymayın.
+- Skorlar çoğunlukla modellerin en yüksek effort ayarıyla *(max veya xhigh)* ölçülmüş sonuçlardır. Günlük kullanımda daha düşük ayarla skor düşebilir[^2].
+- Aynı modelin genel WebDev sıralamasındaki veya React filtresindeki sırası farklı olabilir.
 
 Frontend geliştirmede [!claude] modelleri sıralamanın üstünde duruyor. Bu ailede [!claude] **Sonnet 5.5**, fiyat ve performans dengesini kuruyor.
 
@@ -108,7 +108,7 @@ Bu katman mantığını ve model tercihlerini, bir e-ticaret sitesinin sepet ve 
 ## Kaynaklar
 
 1. [Addy Osmani: AI Coding Agent](https://addyosmani.com/agentic-engineering/ai-coding-agent/) *(article)* — Kodu yalnızca öneren sohbet ile kodu yazıp çalıştıran ve düzelten kodlama ajanı arasındaki fark.
-2. [Arena: Code Arena | WebDev](https://arena.ai/leaderboard/code/webdev) *(research)* — Şirket ve model sıralamalarının alındığı frontend kodlama sıralaması.
+2. [Arena: Code Arena | WebDev, Frontend](https://arena.ai/leaderboard/code/webdev/frontend) *(research)* — Şirket ve model sıralamalarının alındığı frontend kodlama sıralaması.
 3. [Anthropic: Claude Sonnet 5.5](https://www.anthropic.com/claude-sonnet-5-5) *(article)* — Sonnet 5.5'in Opus 5.5 karşısındaki yeri: hız, maliyet ve günlük görevler.
 4. [OpenAI: Prompt engineering](https://developers.openai.com/api/docs/guides/prompt-engineering) *(doc)* — Düşünen, büyük ve küçük modeller arasındaki ödünler ("Choosing a model" bölümü).
 5. [Addy Osmani: Tokens](https://addyosmani.com/agentic-engineering/tokens/) *(article)* — Girdi ve çıktı token'ı, fiyatlandırma ve maliyetle ilişkisi.
