@@ -471,54 +471,81 @@
         {
           "slug": "zustand",
           "title": "Zustand",
-          "description": "Küçük ve hızlı client state yönetimi.",
+          "description": "Küçük ve hızlı client state: selector, slice, persist, Context ile store ve TanStack Query ile birlikte kullanım; güncel Zustand v5.",
           "status": "published",
           "lessonGroups": [
             {
-              "id": "dersler",
-              "title": "Dersler",
+              "id": "temeller",
+              "title": "Temeller",
               "lessons": [
                 {
                   "slug": "when-you-need-a-store",
                   "title": "Ne zaman store gerekir",
-                  "description": "Local state yettiğinde store açmama.",
-                  "status": "coming_soon",
+                  "description": "State türleri, local state ve Context'in yetmediği yer.",
+                  "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "first-store",
                   "title": "İlk store",
-                  "description": "create ile küçük bir store kurma.",
-                  "status": "coming_soon",
+                  "description": "create, set, get ve store'a React dışından erişmek.",
+                  "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "selectors-and-rerenders",
                   "title": "Selector ve yeniden render",
-                  "description": "Yalnızca değişen parçayı okuyup render'ı sınırlama.",
-                  "status": "coming_soon",
+                  "description": "Atomik selector, useShallow ve custom hook.",
+                  "status": "published",
                   "kind": "lesson"
                 },
                 {
+                  "slug": "actions-and-updates",
+                  "title": "Action ve güncelleme",
+                  "description": "Olay gibi action'lar, immer ve store'u sıfırlamak.",
+                  "status": "published",
+                  "kind": "lesson"
+                }
+              ]
+            },
+            {
+              "id": "ileri-kullanim",
+              "title": "İleri Kullanım",
+              "lessons": [
+                {
                   "slug": "slice-pattern",
                   "title": "Slice pattern",
-                  "description": "Store'u parçalara bölme.",
-                  "status": "coming_soon",
+                  "description": "Store'u küçük store'lara ya da slice'lara bölmek.",
+                  "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "persist-and-devtools",
                   "title": "Persist ve devtools",
-                  "description": "Kalıcı state ve Redux DevTools bağlantısı.",
-                  "status": "coming_soon",
+                  "description": "Kalıcı state, migration, hydration ve Redux DevTools.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "store-with-context",
+                  "title": "Context ile store",
+                  "description": "Props'tan başlatma, yeniden kullanım, test ve Next.js.",
+                  "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "with-tanstack-query",
                   "title": "TanStack Query ile birlikte kullanım",
-                  "description": "Client state ile sunucu state'ini ayrı tutma.",
-                  "status": "coming_soon",
+                  "description": "Filtreyle sorguyu sürmek ve state'i türetmek.",
+                  "status": "published",
                   "kind": "lesson"
+                },
+                {
+                  "slug": "project",
+                  "title": "Ürün kataloğu ve sepet",
+                  "description": "Filtre store'u, slice'lı kalıcı sepet ve türetilen stok uyarısı.",
+                  "status": "published",
+                  "kind": "project"
                 }
               ]
             }
