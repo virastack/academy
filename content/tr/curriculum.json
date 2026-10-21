@@ -257,66 +257,100 @@
         {
           "slug": "nextjs",
           "title": "Next.js",
-          "description": "App Router, render stratejileri ve veri akışı.",
+          "description": "App Router, Server Components, Cache Components ve Server Actions ile güncel Next.js.",
           "status": "published",
           "lessonGroups": [
             {
-              "id": "dersler",
-              "title": "Dersler",
+              "id": "temeller",
+              "title": "Temeller",
               "lessons": [
                 {
                   "slug": "setup-and-folder-structure",
-                  "title": "Kurulum ve klasör yapısı",
-                  "description": "App Router projesi ve klasörlerin rolü.",
+                  "title": "Kurulum ve proje yapısı",
+                  "description": "create-next-app varsayılanları, app klasörü, özel dosyalar ve kodu nereye koyacağın.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
                   "slug": "routing-and-layouts",
                   "title": "Routing ve layout",
-                  "description": "Sayfa, layout ve iç içe rotalar.",
+                  "description": "Sayfa, layout, dinamik segment, route group ve Link ile gezinme.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
                   "slug": "server-and-client-components",
                   "title": "Server ve Client Components",
-                  "description": "Hangi kodun sunucuda, hangisinin tarayıcıda çalıştığı.",
+                  "description": "'use client' sınırı, composition, serileştirme ve server-only.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
-                  "slug": "data-fetching-and-cache",
-                  "title": "Veri çekme ve cache",
-                  "description": "Sunucuda veri okuma ve cache davranışı.",
+                  "slug": "data-fetching-and-streaming",
+                  "title": "Veri çekme ve streaming",
+                  "description": "Sunucuda veri okuma, Suspense ile akış, şelaleyi önleme ve istemcide veri.",
+                  "status": "coming_soon",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "caching-and-rendering",
+                  "title": "Cache ve render modeli",
+                  "description": "Cache Components, use cache, cacheLife, cacheTag ve statik kabuk.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
                   "slug": "server-actions",
                   "title": "Server Actions",
-                  "description": "Form ve mutation'ları sunucu fonksiyonuyla bağlama.",
+                  "description": "Form ve mutation, useActionState, cache'i güncelleme ve güvenlik.",
+                  "status": "coming_soon",
+                  "kind": "lesson"
+                }
+              ]
+            },
+            {
+              "id": "uygulamayi-tamamlamak",
+              "title": "Uygulamayı Tamamlamak",
+              "lessons": [
+                {
+                  "slug": "navigation-and-prefetching",
+                  "title": "Navigasyon ve prefetch",
+                  "description": "Partial Prefetching, anında navigasyon, korunan state ve useLinkStatus.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
-                  "slug": "rendering-strategies",
-                  "title": "Render stratejileri",
-                  "description": "Statik, dinamik ve akışlı render seçenekleri.",
+                  "slug": "error-handling",
+                  "title": "Hata yönetimi",
+                  "description": "Beklenen hatalar, error.tsx ve retry, catchError ve notFound.",
+                  "status": "coming_soon",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "route-handlers-and-proxy",
+                  "title": "Route Handler ve proxy",
+                  "description": "API uç noktası, webhook, proxy.ts ve hangisini ne zaman kullanacağın.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
                   "slug": "metadata-and-seo",
-                  "title": "Metadata ve SEO'ya giriş",
-                  "description": "Başlık, açıklama ve temel SEO alanları.",
+                  "title": "Metadata ve SEO",
+                  "description": "metadata, generateMetadata, OG görseli, sitemap, robots ve JSON-LD.",
+                  "status": "coming_soon",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "ai-agents",
+                  "title": "AI agent'larla Next.js",
+                  "description": "Paketle gelen doküman, AGENTS.md, MCP, hata prompt'ları ve Next.js skill'leri.",
                   "status": "coming_soon",
                   "kind": "lesson"
                 },
                 {
                   "slug": "project",
-                  "title": "Proje",
-                  "description": "App Router ile sayfa, veri ve form akışı.",
+                  "title": "Ürün kataloğu",
+                  "description": "Cache, streaming, Server Action ve metadata ile ürün listesi, detay sayfası ve sepet.",
                   "status": "coming_soon",
                   "kind": "project"
                 }

@@ -135,7 +135,7 @@ Yukarıdaki `FavoriteButton`, prop'unu `onClick` değil **`action`** diye adland
 
 ## Bu Ders ve Formlar Rehberi
 
-Bu derste React'in kendi araçlarını gördünüz. Alan bazlı doğrulama, Zod şeması, maskeleme ve çok adımlı formlar [Formlar](/academy/forms) rehberinde; Action'ın sunucuda çalışan hâli *(Server Functions)* [Next.js](/academy/nextjs) rehberinde.
+Bu derste React'in kendi araçlarını gördünüz. Alan bazlı doğrulama, Zod şeması, maskeleme ve çok adımlı formlar [Formlar](/academy/forms) rehberinde; Action'ın sunucuda çalışan hâli *(Server Functions)* Next.js rehberinin [Server Actions](/academy/nextjs/server-actions) dersinde.
 
 ## Kendin Dene
 
