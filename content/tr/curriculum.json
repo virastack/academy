@@ -268,42 +268,42 @@
                   "slug": "setup-and-folder-structure",
                   "title": "Kurulum ve proje yapısı",
                   "description": "create-next-app varsayılanları, app klasörü, özel dosyalar ve kodu nereye koyacağın.",
-                  "status": "coming_soon",
+                  "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "routing-and-layouts",
                   "title": "Routing ve layout",
                   "description": "Sayfa, layout, dinamik segment, route group ve Link ile gezinme.",
-                  "status": "coming_soon",
+                  "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "server-and-client-components",
                   "title": "Server ve Client Components",
                   "description": "'use client' sınırı, composition, serileştirme ve server-only.",
-                  "status": "coming_soon",
+                  "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "data-fetching-and-streaming",
                   "title": "Veri çekme ve streaming",
                   "description": "Sunucuda veri okuma, Suspense ile akış, şelaleyi önleme ve istemcide veri.",
-                  "status": "coming_soon",
+                  "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "caching-and-rendering",
                   "title": "Cache ve render modeli",
                   "description": "Cache Components, use cache, cacheLife, cacheTag ve statik kabuk.",
-                  "status": "coming_soon",
+                  "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "server-actions",
                   "title": "Server Actions",
                   "description": "Form ve mutation, useActionState, cache'i güncelleme ve güvenlik.",
-                  "status": "coming_soon",
+                  "status": "published",
                   "kind": "lesson"
                 }
               ]
@@ -316,42 +316,42 @@
                   "slug": "navigation-and-prefetching",
                   "title": "Navigasyon ve prefetch",
                   "description": "Partial Prefetching, anında navigasyon, korunan state ve useLinkStatus.",
-                  "status": "coming_soon",
+                  "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "error-handling",
                   "title": "Hata yönetimi",
                   "description": "Beklenen hatalar, error.tsx ve retry, catchError ve notFound.",
-                  "status": "coming_soon",
+                  "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "route-handlers-and-proxy",
                   "title": "Route Handler ve proxy",
                   "description": "API uç noktası, webhook, proxy.ts ve hangisini ne zaman kullanacağın.",
-                  "status": "coming_soon",
+                  "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "metadata-and-seo",
                   "title": "Metadata ve SEO",
                   "description": "metadata, generateMetadata, OG görseli, sitemap, robots ve JSON-LD.",
-                  "status": "coming_soon",
+                  "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "ai-agents",
                   "title": "AI agent'larla Next.js",
                   "description": "Paketle gelen doküman, AGENTS.md, MCP, hata prompt'ları ve Next.js skill'leri.",
-                  "status": "coming_soon",
+                  "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "project",
                   "title": "Ürün kataloğu",
                   "description": "Cache, streaming, Server Action ve metadata ile ürün listesi, detay sayfası ve sepet.",
-                  "status": "coming_soon",
+                  "status": "published",
                   "kind": "project"
                 }
               ]
