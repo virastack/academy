@@ -367,67 +367,101 @@
         {
           "slug": "tanstack-query",
           "title": "TanStack Query",
-          "description": "Sunucu state'i, cache ve mutation yönetimi.",
+          "description": "Server state, cache, mutation, optimistic update ve Next.js ile prefetch; güncel TanStack Query v5.",
           "status": "published",
           "lessonGroups": [
             {
-              "id": "dersler",
-              "title": "Dersler",
+              "id": "temeller",
+              "title": "Temeller",
               "lessons": [
                 {
                   "slug": "what-is-server-state",
                   "title": "Server state nedir",
-                  "description": "Sunucu verisi ile client state arasındaki fark.",
-                  "status": "coming_soon",
+                  "description": "Client state farkı, useEffect ile veri çekmenin hataları ve ne zaman gerekmediği.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "setup-and-devtools",
+                  "title": "Kurulum ve devtools",
+                  "description": "QueryClient, şaşırtan varsayılanlar, Devtools ve ESLint eklentisi.",
+                  "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "use-query-and-query-keys",
                   "title": "useQuery ve query key",
-                  "description": "Sorgu yazma ve cache anahtarını kurma.",
-                  "status": "coming_soon",
+                  "description": "status ile fetchStatus, anahtarı bağımlılık dizisi gibi kurmak ve iptal.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "query-options-and-select",
+                  "title": "queryOptions ve select",
+                  "description": "Query factory, tipli cache okuma ve veriyi seçerek render'ı azaltmak.",
+                  "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "cache-and-stale-time",
                   "title": "Cache ve stale time",
-                  "description": "Verinin ne zaman taze, ne zaman eski sayıldığı.",
-                  "status": "coming_soon",
+                  "description": "staleTime ile gcTime, yenileme anları, polling ve initialData.",
+                  "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "mutations-and-invalidation",
                   "title": "Mutation ve invalidation",
-                  "description": "Yazma işleminden sonra cache'i güncelleme.",
-                  "status": "coming_soon",
+                  "description": "useMutation, invalidation, cevapla güncelleme ve callback'lerin yeri.",
+                  "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "optimistic-updates",
                   "title": "Optimistic update",
-                  "description": "Sunucu cevabını beklemeden arayüzü güncelleme.",
-                  "status": "coming_soon",
+                  "description": "variables ve cache ile iyimser güncelleme, geri alma ve eşzamanlılık.",
+                  "status": "published",
+                  "kind": "lesson"
+                }
+              ]
+            },
+            {
+              "id": "ileri-kullanim",
+              "title": "İleri Kullanım",
+              "lessons": [
+                {
+                  "slug": "dependent-and-parallel-queries",
+                  "title": "Bağımlı ve paralel sorgular",
+                  "description": "useQueries, enabled ve skipToken, istek şelalesi ve hover'da prefetch.",
+                  "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "pagination-and-infinite-lists",
                   "title": "Sayfalama ve sonsuz liste",
-                  "description": "Sayfa sayfa ve infinite query ile listeleme.",
-                  "status": "coming_soon",
+                  "description": "keepPreviousData, sonraki sayfayı hazırlamak ve useInfiniteQuery.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "suspense-and-error-handling",
+                  "title": "Suspense ve hata yönetimi",
+                  "description": "Global toast, throwOnError, useSuspenseQuery ve hata sonrası yeniden deneme.",
+                  "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "prefetch-with-nextjs",
                   "title": "Next.js ile prefetch",
-                  "description": "Sunucuda sorguyu önceden doldurma.",
-                  "status": "coming_soon",
+                  "description": "Server Component'te başlatıp akıtmak, HydrationBoundary ve veri sahipliği.",
+                  "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "project",
-                  "title": "Proje",
-                  "description": "Liste, mutation ve cache'i bir araya getir.",
-                  "status": "coming_soon",
+                  "title": "Ürün yönetim paneli",
+                  "description": "Sayfalama, prefetch, Suspense, mutation ve optimistic update ile bir panel.",
+                  "status": "published",
                   "kind": "project"
                 }
               ]

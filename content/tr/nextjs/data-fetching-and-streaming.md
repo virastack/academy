@@ -150,4 +150,4 @@ TanStack Query'nin maintainer'ı [Dominik Dorfmeister](https://tkdodo.eu/) da Se
 5. [Next.js: Streaming](https://nextjs.org/docs/app/guides/streaming) *(doc)* — Kardeş ve iç içe Suspense sınırları, botlar, HTTP durum kodları ve Web Vitals.
 6. [React: use](https://react.dev/reference/react/use) *(doc)* — Promise'i istemcide okumak ve sunucuda mı istemcide mi çözüleceği.
 7. [Next.js: Client-side data fetching](https://nextjs.org/docs/app/guides/client-side-data-fetching) *(doc)* — Kütüphane ne zaman gerekir, sunucudan ilk veri ve cache katmanlarını koordine etmek.
-8. [Dominik Dorfmeister](https://tkdodo.eu/): [You Might Not Need React Query](https://tkdodo.eu/you-might-not-need-react-query) *(article)* — 2023. Server Component'ler ve React Query'nin yeri.
+8. [Dominik Dorfmeister](https://tkdodo.eu/): [You Might Not Need React Query](https://tkdodo.eu/blog/you-might-not-need-react-query) *(article)* — 2023. Server Component'ler ve React Query'nin yeri.
