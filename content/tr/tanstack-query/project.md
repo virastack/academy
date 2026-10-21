@@ -32,6 +32,8 @@ Amaç tasarım değil, derslerdeki parçaların birlikte çalışmasıdır. Her 
 | Cache ile optimistic update, `isMutating` | `FavoriteButton.tsx` | Optimistic update |
 | `useInfiniteQuery`, `variables` ile optimistic update | `Reviews.tsx` | Sayfalama ve sonsuz liste, Optimistic update |
 
+Projenin çalışan hali GitHub'da: [examples/tanstack-query/project](https://github.com/virastack/academy/tree/main/examples/tanstack-query/project). Akışları tarayıcıda deneyen Playwright testleri de orada; takıldığınızda karşılaştırın.
+
 ## Adım 1: Projeyi Kurun
 
 [Kurulum ve devtools](/academy/tanstack-query/setup-and-devtools) dersindeki gibi bir [!vite] projesi açın ve paketleri ekleyin:[^1]
