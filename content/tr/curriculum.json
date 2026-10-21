@@ -164,56 +164,56 @@
                   "slug": "setup-and-tooling",
                   "title": "Kurulum ve araçlar",
                   "description": "Framework mü Vite mi, Strict Mode, lint kuralları ve AI ile React yazmak.",
-                  "status": "coming_soon",
+                  "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "components-and-jsx",
                   "title": "Component ve JSX",
                   "description": "Arayüzü bölme, JSX kuralları, liste ve key, saf component.",
-                  "status": "coming_soon",
+                  "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "props-and-composition",
                   "title": "Props ve composition",
                   "description": "Veri aktarma, children ve slot'lar, props'u state'e kopyalamama.",
-                  "status": "coming_soon",
+                  "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "state",
                   "title": "State",
                   "description": "Snapshot ve updater, immutable güncelleme, state'i doğru kurmak.",
-                  "status": "coming_soon",
+                  "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "effects",
                   "title": "Effect ve ne zaman gerekmez",
                   "description": "Dış sistemle senkronlama, cleanup, useEffectEvent ve Effect'siz çözümler.",
-                  "status": "coming_soon",
+                  "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "refs-and-dom",
                   "title": "Ref ve DOM",
                   "description": "DOM erişimi, ref prop'u, ref callback cleanup ve Fragment ref'leri.",
-                  "status": "coming_soon",
+                  "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "context",
                   "title": "Context",
                   "description": "Prop drilling olmadan paylaşım, reducer ile birlikte kullanım ve sınırları.",
-                  "status": "coming_soon",
+                  "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "custom-hooks",
                   "title": "Custom hook",
                   "description": "Hook kuralları, mantığı hook'a taşıma ve useSyncExternalStore.",
-                  "status": "coming_soon",
+                  "status": "published",
                   "kind": "lesson"
                 }
               ]
@@ -226,28 +226,28 @@
                   "slug": "suspense-and-error-boundaries",
                   "title": "Suspense ve hata sınırları",
                   "description": "Yükleme durumu, use ile Promise okuma ve Error Boundary.",
-                  "status": "coming_soon",
+                  "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "actions",
                   "title": "Actions ve async güncellemeler",
                   "description": "Form action'ı, useActionState, useFormStatus ve useOptimistic.",
-                  "status": "coming_soon",
+                  "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "view-transitions-and-activity",
                   "title": "View Transition ve Activity",
                   "description": "Geçişleri canlandırma ve gizlenen ekranın state'ini koruma.",
-                  "status": "coming_soon",
+                  "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "project",
                   "title": "Ürün sayfası",
                   "description": "Suspense, Context, Actions, Activity ve ViewTransition ile ürün detay sayfası.",
-                  "status": "coming_soon",
+                  "status": "published",
                   "kind": "project"
                 }
               ]
