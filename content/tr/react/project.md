@@ -27,6 +27,8 @@ Amaç tasarım değil, derslerdeki parçaların birlikte çalışmasıdır. Her 
 | `<ViewTransition>` ile çekmece | `CartDrawer.tsx`, `styles.css` | View Transition ve Activity |
 | `key` ile state sıfırlama, `initial` öneki | `ProductPage.tsx` | Props ve composition |
 
+Projenin çalışan hali GitHub'da: [examples/react/project](https://github.com/virastack/academy/tree/main/examples/react/project). Takıldığınızda karşılaştırın.
+
 ## Adım 1: Projeyi Kurun
 
 [Kurulum ve araçlar](/academy/react/setup-and-tooling) dersindeki gibi bir [!vite] projesi açın ve hata sınırı paketini ekleyin:[^1]
@@ -39,7 +41,7 @@ npm create vite@latest product-page -- --template react-ts
 npm install react-error-boundary
 ```
 
-`src/App.tsx`, `src/App.css` ve `src/index.css` dosyalarını silin. Tüm dosyaları `src/project/` altına yazacaksınız. `eslint-plugin-react-hooks`'u da kurun; Adım 5'te bir hatayı yakalayacak.
+`src/App.tsx`, `src/App.css` ve `src/index.css` dosyalarını silin. Tüm dosyaları `src/project/` altına yazacaksınız. `eslint-plugin-react-hooks`'u [Kurulum ve araçlar](/academy/react/setup-and-tooling) dersindeki gibi ESLint'e ekleyin ve `package.json`'daki `lint` betiğini `oxlint && eslint .` yapın; Adım 5'te bir hatayı yakalayacak.
 
 ## Adım 2: Sahte API ve Promise Cache
 
@@ -290,7 +292,7 @@ function SubmitButton() {
 
 > [!WARNING]
 >
-> İlk denemede `addOptimisticReview`'u doğrudan `useActionState`'in fonksiyonu içinde çağırmak isteyebilirsiniz. `eslint-plugin-react-hooks` bunu *"Cannot access variable before it is declared"* hatasıyla yakalar: fonksiyon, `useOptimistic`'ten önce tanımlanıyor. Çözüm yukarıdaki gibi formun `action`'ında önce iyimser değeri ekleyip sonra `dispatchReview`'u çağırmak.
+> İlk denemede `addOptimisticReview`'u doğrudan `useActionState`'in fonksiyonu içinde çağırmak isteyebilirsiniz. `eslint-plugin-react-hooks` bunu *"Cannot access variable before it is declared"* hatasıyla yakalar: fonksiyon, `useOptimistic`'ten önce tanımlanıyor. Şablondaki Oxlint de aynı satırı `react(immutability)` uyarısıyla işaretler. Çözüm yukarıdaki gibi formun `action`'ında önce iyimser değeri ekleyip sonra `dispatchReview`'u çağırmak.
 
 Form action'ı başarılı olunca React `textarea`'yı kendiliğinden temizler.[^9]
 

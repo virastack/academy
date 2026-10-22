@@ -25,6 +25,8 @@ Amaç tasarım değil, tiplerin uçtan uca akmasıdır: JSON'dan gelen `unknown`
 | Props, `ChangeEvent`, context, `useReducer` | `components/*.tsx`, `cart-context.ts`, `CartProvider.tsx` | React'te tipler |
 | `strict`, `noUncheckedIndexedAccess`, `tsc -b` | `tsconfig.app.json` | tsconfig ve strict mod |
 
+Projenin çalışan hali GitHub'da: [examples/typescript/project](https://github.com/virastack/academy/tree/main/examples/typescript/project). Takıldığınızda karşılaştırın.
+
 ## Adım 1: Projeyi Kurun
 
 [!vite]'in `react-ts` şablonuyla yeni bir proje açın.[^1] Vite, Node.js 20.19+ ya da 22.12+ ister.

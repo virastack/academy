@@ -1,0 +1,19 @@
+@keyframes slide-from-right {
+  from { transform: translateX(100%); }
+}
+@keyframes slide-to-right {
+  to { transform: translateX(100%); }
+}
+::view-transition-new(.slide-in) {
+  animation: 250ms ease-out both slide-from-right;
+}
+::view-transition-old(.slide-out) {
+  animation: 200ms ease-in both slide-to-right;
+}
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+}

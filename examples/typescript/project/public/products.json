@@ -1,0 +1,6 @@
+[
+  { "id": 1, "name": "Kablosuz Kulaklık", "price": 1299, "category": "audio", "inStock": true },
+  { "id": 2, "name": "Bluetooth Hoparlör", "price": 899, "category": "audio", "inStock": false },
+  { "id": 3, "name": "Dizüstü Bilgisayar", "price": 32999, "category": "computer", "inStock": true },
+  { "id": 4, "name": "USB-C Kablo", "price": 149, "category": "accessory", "inStock": true }
+]
