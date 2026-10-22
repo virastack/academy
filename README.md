@@ -43,13 +43,13 @@
 
 | Path | Description |
 | :--- | :--- |
-| `content/tr/curriculum.json` | Track and lesson tree |
-| `content/tr/<track>/<lesson>.md` | Lesson bodies (Turkish) |
+| `content/<locale>/curriculum.json` | Track and lesson tree (`tr`, `en`) |
+| `content/<locale>/<track>/<lesson>.md` | Lesson bodies, one folder per language |
 | `examples/` | Source code for project lessons |
 | `assets/` | Images used in lessons |
 | `CONTENT.md` | Authoring syntax |
 
-Lessons are written in Turkish. English copies are not maintained yet.
+Lessons are available in Turkish (`tr`) and English (`en`).
 
 [virastack.com](https://virastack.com) clones this repository at build time. Every push to `main` redeploys the site.
 
