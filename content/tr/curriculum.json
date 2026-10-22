@@ -924,57 +924,70 @@
           "status": "published",
           "lessonGroups": [
             {
-              "id": "dersler",
-              "title": "Dersler",
+              "id": "temeller",
+              "title": "Temeller",
               "lessons": [
                 {
                   "slug": "environment-variables",
                   "title": "Ortam değişkenleri",
-                  "description": "Geliştirme, önizleme ve canlı ortam ayrımı.",
-                  "status": "coming_soon",
+                  "description": "Yapılandırmayı koddan ayırmak, NEXT_PUBLIC_ ve Zod ile doğrulama.",
+                  "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "deployment-options",
                   "title": "Deploy seçenekleri",
-                  "description": "Uygulamayı nereye ve nasıl yayınlayacağın.",
-                  "status": "coming_soon",
+                  "description": "Node.js sunucusu, Docker, statik çıktı ve platform adaptörleri.",
+                  "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "cicd",
                   "title": "CI/CD (GitHub Actions)",
-                  "description": "Test ve yayını otomatikleştiren hat.",
-                  "status": "coming_soon",
+                  "description": "Lint, test ve Docker işleriyle deploy hattı, secret'lar ve ortamlar.",
+                  "status": "published",
                   "kind": "lesson"
-                },
+                }
+              ]
+            },
+            {
+              "id": "canli-ortam",
+              "title": "Canlı Ortam",
+              "lessons": [
                 {
                   "slug": "error-monitoring",
                   "title": "Hata izleme",
-                  "description": "Canlıdaki hataları yakalama ve gruplama.",
-                  "status": "coming_soon",
+                  "description": "onRequestError, hata kodu, Sentry ve işe yarar uyarılar.",
+                  "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "logging",
                   "title": "Loglama",
-                  "description": "Ne loglanır, ne loglanmaz.",
-                  "status": "coming_soon",
+                  "description": "Yapılandırılmış log, ne loglanır, ne loglanmaz.",
+                  "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "feature-flags-and-release-strategy",
                   "title": "Feature flag ve yayın stratejisi",
-                  "description": "Özelliği kademeli açma.",
-                  "status": "coming_soon",
+                  "description": "Flags SDK, yüzdeli açılış, canary ve blue-green.",
+                  "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "pre-release-checklist",
                   "title": "Yayın öncesi kontrol listesi",
-                  "description": "Canlıya çıkmadan önce bakılacaklar.",
-                  "status": "coming_soon",
+                  "description": "Canlıya çıkmadan önce bakılacaklar ve yayın günü planı.",
+                  "status": "published",
                   "kind": "lesson"
+                },
+                {
+                  "slug": "project",
+                  "title": "Sipariş panelini yayına hazırla",
+                  "description": "Ortam doğrulama, log, hata ekranları, feature flag, Docker ve CI ile bir paneli canlıya hazırlamak.",
+                  "status": "published",
+                  "kind": "project"
                 }
               ]
             }

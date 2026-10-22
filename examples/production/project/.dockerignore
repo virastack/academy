@@ -1,0 +1,17 @@
+node_modules
+.next
+.git
+.github
+.env*
+!.env.example
+Dockerfile
+.dockerignore
+npm-debug.log*
+
+# testler imaja girmez
+tests
+playwright
+playwright.config.ts
+playwright-report
+test-results
+blob-report
