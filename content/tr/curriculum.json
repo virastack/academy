@@ -1081,7 +1081,7 @@
                   "slug": "multilingual-ci-project",
                   "title": "Çok Dilli Sayfa ve CI Hattı",
                   "description": "Mevcut bir sayfayı iki dile çevirip lint, tip ve test kontrollerini CI'a bağlama.",
-                  "status": "coming_soon",
+                  "status": "published",
                   "kind": "project"
                 }
               ]

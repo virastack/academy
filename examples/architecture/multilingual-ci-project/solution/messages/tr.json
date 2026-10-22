@@ -1,0 +1,15 @@
+{
+  "Metadata": {
+    "title": "Mağaza",
+    "description": "Klavye ve aksesuarlar"
+  },
+  "ProductPage": {
+    "price": "Fiyat: {price, number, ::currency/TRY}",
+    "stock": "{count, plural, =0 {Stokta yok} other {Son # ürün}}",
+    "updated": "Güncelleme tarihi: {date, date, long}",
+    "addToCart": "Sepete ekle"
+  },
+  "LocaleSwitcher": {
+    "label": "Dil"
+  }
+}
