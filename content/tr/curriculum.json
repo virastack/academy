@@ -554,74 +554,80 @@
         {
           "slug": "forms",
           "title": "Formlar",
-          "description": "React Hook Form, Zod ve maskeleme ile form ve doğrulama.",
+          "description": "React Hook Form, Zod ve maskeleme ile doğrulanan, erişilebilir ve sunucuda da güvenli formlar; güncel React Hook Form 7, Zod 4 ve Server Actions.",
           "status": "published",
           "lessonGroups": [
             {
-              "id": "dersler",
-              "title": "Dersler",
+              "id": "temeller",
+              "title": "Temeller",
               "lessons": [
                 {
                   "slug": "controlled-and-uncontrolled-forms",
                   "title": "Controlled ve uncontrolled formlar",
-                  "description": "Input değerini formun mu, alanın mı tuttuğu.",
-                  "status": "coming_soon",
+                  "description": "Değeri kimin tuttuğu, FormData ve yaygın hatalar.",
+                  "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "react-hook-form-basics",
                   "title": "React Hook Form temelleri",
-                  "description": "register, handleSubmit ve form state.",
-                  "status": "coming_soon",
+                  "description": "register, handleSubmit, formState ve doğrulama modu.",
+                  "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "zod-schema-and-validation",
                   "title": "Zod ile şema ve doğrulama",
-                  "description": "Şema ile tip ve çalışma zamanı doğrulaması.",
-                  "status": "coming_soon",
+                  "description": "Şema, tip çıkarımı, hata mesajları ve dönüşüm.",
+                  "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "react-hook-form-with-zod",
                   "title": "React Hook Form ile Zod",
-                  "description": "Resolver ile şemayı forma bağlama.",
-                  "status": "coming_soon",
+                  "description": "Resolver, input ve output tipleri, alanlar arası kural.",
+                  "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "errors-and-accessibility",
                   "title": "Hata gösterimi ve erişilebilirlik",
-                  "description": "Hata mesajını alana bağlama.",
-                  "status": "coming_soon",
+                  "description": "Hatayı alana bağlamak, odak ve zamanlama.",
+                  "status": "published",
                   "kind": "lesson"
-                },
+                }
+              ]
+            },
+            {
+              "id": "ileri-kullanim",
+              "title": "İleri Kullanım",
+              "lessons": [
                 {
                   "slug": "masking-and-regex",
                   "title": "Maskeleme ve regex",
-                  "description": "Girdi maskesi ve desenle alan kısıtlama.",
-                  "status": "coming_soon",
+                  "description": "Görünen değer, ham değer ve @virastack/mask.",
+                  "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "dynamic-and-multi-step-forms",
                   "title": "Dinamik alanlar ve çok adımlı formlar",
-                  "description": "Eklenen alanlar ve adım adım form.",
-                  "status": "coming_soon",
+                  "description": "useFieldArray, Controller ve adım adım doğrulama.",
+                  "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "forms-with-server-actions",
                   "title": "Server Actions ile form",
-                  "description": "Formu Next.js server action'a gönderme.",
-                  "status": "coming_soon",
+                  "description": "useActionState, sunucuda Zod ve sunucu hatası.",
+                  "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "project",
-                  "title": "Proje",
-                  "description": "Doğrulama, maske ve sunucu action'lı form.",
-                  "status": "coming_soon",
+                  "title": "Satıcı başvuru formu",
+                  "description": "Çok adımlı, maskeli ve sunucuda doğrulanan form.",
+                  "status": "published",
                   "kind": "project"
                 }
               ]
