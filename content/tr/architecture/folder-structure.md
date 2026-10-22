@@ -1,7 +1,7 @@
 ---
 title: "Klasör Yapısı ve İsimlendirme"
 description: "Feature-based yapı, dosya isimlendirme ve import kuralları."
-lastVerified: "2026-10-15"
+lastVerified: "2026-10-22"
 translationKey: "architecture/folder-structure"
 ---
 
@@ -114,7 +114,7 @@ import { Button } from '@/components/ui/button'
 
 - **[!nextjs]:** `create-next-app` varsayılan olarak `@/*` alias'ını kurar.[^14]
 - **[!tanstack-start]:** Alias varsayılan gelmez. Dokümandaki örnek `~/*` kullanıyor. Vite 8 ve sonrasında tsconfig yollarını okuyan yerleşik destek var (varsayılan kapalı), Vite 7 ve öncesi için `vite-tsconfig-paths` eklentisi gerekiyor.[^15]
-- **Zorlamak için:** `import/no-relative-parent-imports` ESLint kuralı `../` ile başlayan import'ları yasaklar. Kardeş (`./b`) ve alt klasör (`./lib/a`) import'ları serbesttir.[^16]
+- **Zorlamak için:** ESLint'in yerleşik `no-restricted-imports` kuralına `{ patterns: [{ regex: "^\\.\\./" }] }` verin. Yalnızca `../` ile başlayan import'lar yasaklanır, kardeş (`./b`) ve alt klasör (`./lib/a`) import'ları serbest kalır.[^16] `import/no-relative-parent-imports` kuralı bu iş için uygun değil: çözümlenen dosya yoluna baktığı için `@/` ile yazılmış import'ları da hata sayıyor. Denemede `@/components/ui/button` import'u bu yüzden hata verdi.
 
 ### 2. Özellikler arası import yok
 
@@ -168,7 +168,7 @@ Feature-based yapılarda her özelliğin köküne genellikle bir `index.ts` konu
 
 1. Projenizden bir özellik seçin (örneğin sepet) ve dosyalarını `features/cart/` altına taşıyın. Yalnızca ihtiyaç duyduğunuz alt klasörleri açın.
 2. İki özelliğin kullandığı bir fonksiyon bulun (örneğin fiyat formatlama). Aynı kuralı mı paylaşıyorlar, yoksa tesadüfen mi benziyorlar? Aynıysa `helpers/` altına taşıyın.
-3. `import/no-relative-parent-imports` kuralını açın ve `../` içeren import'ları alias'a çevirin.
+3. `no-restricted-imports` ile `../` yasağını açın ve `../` içeren import'ları alias'a çevirin.
 4. Projenizdeki `index.ts` dosyalarını sayın. Özellik kökündekiler dışındakileri doğrudan import'a çevirin.
 5. Aleksandr Guzenko'nun [Preventing architectural debt with Feature-Sliced Design](https://conf42.com/JavaScript_2024_Aleksandr_Guzenko_3_architecturaldebt_featuresliceddesign_cleancode) konuşmasını izleyin ve anlattığı bağımlılık sorunlarından hangilerinin projenizde olduğuna bakın.[^5]
 
@@ -189,7 +189,7 @@ Feature-based yapılarda her özelliğin köküne genellikle bir `index.ts` konu
 13. [Dan Abramov: The Wet Codebase (Deconstruct)](https://www.deconstructconf.com/2019/dan-abramov-the-wet-codebase) *(video)* — Erken soyutlamanın bedeli ve kötü soyutlamayı satır içine alma. Konferans sayfası 2019 altında listeliyor, sayfadaki etkinlik tarihi Nisan 2020.
 14. [Next.js: Installation](https://nextjs.org/docs/app/getting-started/installation) *(doc)* — `@/*` alias'ı, mutlak import örneği ve `AGENTS.md`.
 15. [TanStack Start: Path Aliases](https://tanstack.com/start/latest/docs/framework/react/guide/path-aliases) *(doc)* — Start'ta alias varsayılan gelmez, Vite sürümüne göre kurulum.
-16. [eslint-plugin-import: no-relative-parent-imports](https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/no-relative-parent-imports.md) *(repo)* — `../` import'larını yasaklayan kural.
+16. [ESLint: no-restricted-imports](https://eslint.org/docs/latest/rules/no-restricted-imports) *(doc)* — `patterns` içinde `regex` ile import yolu kısıtlama.
 17. [Feature-Sliced Design: Public API](https://feature-sliced.design/docs/reference/public-api) *(doc)* — Public API olarak index dosyası, `export *` sorunu ve index dosyalarının maliyetleri.
 18. [Marvin Hagemeister: The barrel file debacle](https://marvinh.dev/blog/speeding-up-javascript-ecosystem-part-7/) *(article)* — Barrel dosyalarının araç performansına etkisi. 8 Ekim 2023.
 19. [TkDodo: Please Stop Using Barrel Files](https://tkdodo.eu/blog/please-stop-using-barrel-files) *(article)* — Döngüsel import, modül sayısı ölçümü ve dosya adı tutarlılığı. 26 Temmuz 2024.
