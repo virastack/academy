@@ -757,64 +757,84 @@
           "status": "published",
           "lessonGroups": [
             {
-              "id": "dersler",
-              "title": "Dersler",
+              "id": "temeller",
+              "title": "Temeller",
               "lessons": [
                 {
                   "slug": "setup",
                   "title": "Kurulum",
-                  "description": "Playwright'i projeye ekleme ve ilk yapılandırma.",
-                  "status": "coming_soon",
+                  "description": "Playwright'ı eklemek, yapılandırma ve webServer.",
+                  "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "first-test-and-locators",
                   "title": "İlk test ve locator'lar",
-                  "description": "Sayfayı açma ve elementi güvenilir seçme.",
-                  "status": "coming_soon",
+                  "description": "getByRole, strict mod, filtreleme ve within().",
+                  "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "assertions-and-waiting",
                   "title": "Assertion ve bekleme",
-                  "description": "Beklenen durumu doğrulama ve otomatik bekleme.",
-                  "status": "coming_soon",
-                  "kind": "lesson"
-                },
-                {
-                  "slug": "page-objects",
-                  "title": "Page Object",
-                  "description": "Akışı sayfa nesnelerine bölme.",
-                  "status": "coming_soon",
-                  "kind": "lesson"
-                },
-                {
-                  "slug": "auth-and-fixtures",
-                  "title": "Auth ve fixture",
-                  "description": "Oturumlu test ve paylaşılan hazırlık.",
-                  "status": "coming_soon",
-                  "kind": "lesson"
-                },
-                {
-                  "slug": "api-mocking",
-                  "title": "API mock",
-                  "description": "Ağ isteklerini test içinde taklit etme.",
-                  "status": "coming_soon",
-                  "kind": "lesson"
-                },
-                {
-                  "slug": "running-in-ci",
-                  "title": "CI'da çalıştırma",
-                  "description": "GitHub Actions üzerinde uçtan uca test.",
-                  "status": "coming_soon",
+                  "description": "Otomatik bekleme, web-first assertion ve hidrasyon.",
+                  "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "debugging-with-trace",
                   "title": "Trace ile hata ayıklama",
-                  "description": "Başarısız testi trace viewer ile inceleme.",
-                  "status": "coming_soon",
+                  "description": "UI Mode, Inspector, trace ve kırılgan testler.",
+                  "status": "published",
                   "kind": "lesson"
+                }
+              ]
+            },
+            {
+              "id": "ileri-kullanim",
+              "title": "İleri Kullanım",
+              "lessons": [
+                {
+                  "slug": "page-objects",
+                  "title": "Page Object",
+                  "description": "Locator'ları ve akışları sayfa nesnelerinde toplamak.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "auth-and-fixtures",
+                  "title": "Auth ve fixture",
+                  "description": "Fixture yazmak, storageState, roller ve izolasyon.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "api-mocking",
+                  "title": "API mock",
+                  "description": "page.route, yanıt değiştirme ve request fixture'ı.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "accessibility-and-visual-tests",
+                  "title": "Erişilebilirlik ve görsel testler",
+                  "description": "axe, klavye, aria snapshot ve ekran görüntüsü.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "running-in-ci",
+                  "title": "CI'da çalıştırma",
+                  "description": "GitHub Actions, sharding ve kırılgan testler.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "project",
+                  "title": "Sipariş paneli testleri",
+                  "description": "Oturumlu ve rollere ayrılmış bir paneli uçtan uca test etmek.",
+                  "status": "published",
+                  "kind": "project"
                 }
               ]
             }
