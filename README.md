@@ -8,7 +8,7 @@
   </picture>
 </a>
 
-*An up-to-date roadmap for becoming a frontend developer with React — curated sources, no unnecessary detail.*
+*Up-to-date React frontend roadmap: curated sources, no unnecessary detail*
 
 [![ViraStack Academy](https://img.shields.io/badge/ViraStack-Academy-%2300c950)](https://virastack.com/academy)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/virastack/academy/blob/main/LICENSE)
@@ -20,7 +20,7 @@
 
 ### [Start the roadmap →](https://virastack.com/academy)
 
-## Why ViraStack Academy?
+## Features
 
 - **Clear Order:** Shows which tools to learn, and in what order, from web fundamentals to AI-native frontend.
 - **Short and Focused:** Each lesson covers the essentials and points to the best sources for going deeper.
@@ -57,16 +57,10 @@ Lessons are written in Turkish. English copies are not maintained yet.
 
 To suggest a source, report an error, or request a new topic, open an [issue](https://github.com/virastack/academy/issues) or send a pull request. See [`CONTENT.md`](CONTENT.md) for the lesson format.
 
-## Explore the ViraStack Ecosystem
+## Ecosystem
 
-Discover all ViraStack tools, libraries, and boilerplates at [**virastack.com**](https://virastack.com).
+Part of the [ViraStack](https://virastack.com) ecosystem.
 
 ## License
 
-Licensed under the [MIT License](https://github.com/virastack/academy/blob/main/LICENSE).
-
-## Maintainer
-
-A project by [**Ömer Gülçiçek**](https://omergulcicek.com)
-
-[![Follow Ömer Gülçiçek](https://img.shields.io/github/followers/omergulcicek?label=Follow&style=social)](https://github.com/omergulcicek)
+[MIT](LICENSE) © [Ömer Gülçiçek](https://omergulcicek.com)
