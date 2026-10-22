@@ -1,0 +1,7 @@
+{
+  "extends": "@repo/typescript-config/base.json",
+  "compilerOptions": {
+    "types": ["vite/client"]
+  },
+  "include": ["src", "vite.config.ts"]
+}

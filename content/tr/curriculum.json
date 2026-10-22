@@ -1054,7 +1054,7 @@
                   "slug": "multi-package-project",
                   "title": "Çoklu Paket Projesi",
                   "description": "Monorepo içinde ortak UI paketi ve iki uygulama kurma.",
-                  "status": "coming_soon",
+                  "status": "published",
                   "kind": "project"
                 }
               ]
