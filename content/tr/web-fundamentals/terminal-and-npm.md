@@ -182,7 +182,7 @@ Sayfa `http://localhost:5173` adresinde açılır.[^19] Dosyayı kaydettiğinizd
 
 Paket kurmak, başkasının yazdığı kodu bilgisayarınızda çalıştırmak demektir. Bazı paketler kurulurken kendi script'lerini de çalıştırır. Bu yüzden iki paket yöneticisi de varsayılanlarını sıkılaştırdı:
 
-- **npm 12** (Temmuz 2026), bağımlılıkların `preinstall`, `install` ve `postinstall` script'lerini artık izin vermediğiniz sürece çalıştırmıyor. Güvendiğiniz paketleri `npm approve-scripts` ile onaylayıp `package.json`'a yazarsınız.[^20]
+- **npm 12** (Temmuz 2026), bağımlılıkların `preinstall`, `install` ve `postinstall` script'lerini artık izin vermediğiniz sürece çalıştırmıyor. Güvendiğiniz paketleri `npm install-scripts approve <paket>` ile onaylarsınız; onay `package.json`'daki `allowScripts` alanına yazılır.[^20]
 - **pnpm**, bağımlılıkların kurulum script'lerini v10'dan beri çalıştırmıyor; izin verilecek paketler `allowBuilds` ile listelenir. Ayrıca bir günden yeni yayınlanmış sürümleri varsayılan olarak kurmuyor (`minimumReleaseAge`).[^21]
 
 > [!TIP]

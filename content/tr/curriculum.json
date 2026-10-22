@@ -1151,7 +1151,7 @@
                   "slug": "secrets-and-dependencies",
                   "title": "Secret ve bağımlılık güvenliği",
                   "description": "Anahtarı istemciden uzak tutma, .env ve npm tedarik zinciri saldırıları.",
-                  "status": "coming_soon",
+                  "status": "published",
                   "kind": "lesson"
                 },
                 {
