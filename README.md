@@ -59,7 +59,7 @@ To suggest a source, report an error, or request a new topic, open an [issue](ht
 
 ## Ecosystem
 
-Part of the [ViraStack](https://virastack.com) ecosystem: [Start](https://virastack.com/start) · [AI](https://virastack.com/ai) · [Mask](https://virastack.com/mask) · [Password](https://virastack.com/password) · [Guide](https://virastack.com/guide)
+Part of the [ViraStack](https://virastack.com) ecosystem: [Start](https://github.com/virastack/start) · [AI](https://github.com/virastack/ai) · [Mask](https://github.com/virastack/mask) · [Password](https://github.com/virastack/password) · [Guide](https://github.com/virastack/guide)
 
 ## License
 
