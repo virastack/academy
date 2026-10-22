@@ -15,6 +15,8 @@ Mağaza ana sayfası ürünleri bir API'den yükler. Liste şunları yapar:
 - Eşleşme yoksa **Ürün bulunamadı.** mesajı gösterir.
 - Her ürün için **Sepete ekle** butonu sunar.
 
+Projenin çalışan hali GitHub'da: [examples/vitest/project](https://github.com/virastack/academy/tree/main/examples/vitest/project). Takıldığınızda karşılaştırın.
+
 ## Component
 
 `loadProducts` fonksiyonu dışarıdan verilir. Testte gerçek API yerine kendi fonksiyonunuzu verirsiniz.

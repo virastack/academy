@@ -14,6 +14,8 @@ Mağaza sayfasında her ürün bir kartta görünür. Kart şunları yapar:
 - Ürün stokta yoksa **Stokta yok** yazar ve butonu devre dışı bırakır.
 - Ürün indirimliyse eski fiyatı üstü çizili gösterir.
 
+Projenin çalışan hali GitHub'da: [examples/vitest/project](https://github.com/virastack/academy/tree/main/examples/vitest/project). Takıldığınızda karşılaştırın.
+
 ## Component
 
 Bu proje boyunca kullanacağınız son `ProductCard` sürümü. Önceki sürüme `oldPrice` ve `aria-labelledby` eklendi.[^1] Bu iki ekleme sonraki derslerde işe yarar.

@@ -17,6 +17,8 @@ Bu adımda önceki tüm parçaları birleştirirsiniz. Kullanıcı mağaza sayfa
 | `CartSummary` | Ürünleri ve toplamı gösterir. | Provider ve Hook |
 | MSW | API yanıtını taklit eder. | Mock |
 
+Projenin çalışan hali GitHub'da: [examples/vitest/project](https://github.com/virastack/academy/tree/main/examples/vitest/project). Takıldığınızda karşılaştırın.
+
 ## Sayfa
 
 ```tsx
