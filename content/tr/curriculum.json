@@ -1144,7 +1144,7 @@
                   "slug": "csrf-cors-and-headers",
                   "title": "CSRF, CORS ve güvenlik başlıkları",
                   "description": "SameSite ile CSRF önlemi, CORS'un ne yaptığı ve temel HTTP güvenlik başlıkları.",
-                  "status": "coming_soon",
+                  "status": "published",
                   "kind": "lesson"
                 },
                 {

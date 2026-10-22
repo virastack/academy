@@ -158,7 +158,7 @@ CSP'yi canlıya doğrudan koymak bir analitik script'ini ya da üçüncü parti 
 
 > [!TIP]
 >
-> Chromium tabanlı tarayıcılarda `require-trusted-types-for 'script'` direktifi, `innerHTML` gibi noktalara düz metin atanmasını tamamen engeller. OWASP bunu DOM XSS'i sınıf olarak ortadan kaldıran az sayıdaki önlemden biri sayar.[^2] [Philippe De Ryck](https://pragmaticwebsecurity.com/) React'te DOMPurify ile birlikte nasıl kullanılacağını anlatır.[^4]
+> Chromium tabanlı tarayıcılarda `require-trusted-types-for 'script'` direktifi, `innerHTML` gibi noktalara düz metin atanmasını tamamen engeller. OWASP bunu DOM XSS'i sınıf olarak ortadan kaldıran az sayıdaki önlemden biri sayar.[^2] [Philippe De Ryck](https://pragmaticwebsecurity.com/about) React'te DOMPurify ile birlikte nasıl kullanılacağını anlatır.[^4]
 
 ## Kendin Dene
 
@@ -178,7 +178,7 @@ CSP'yi canlıya doğrudan koymak bir analitik script'ini ya da üçüncü parti 
 1. [MDN: Cross-site scripting (XSS)](https://developer.mozilla.org/en-US/docs/Web/Security/Attacks/XSS) *(doc)* — XSS türleri, output encoding, tehlikeli DOM API'leri, CSP'nin ikinci savunma olması ve strict CSP'nin engelledikleri.
 2. [OWASP: Cross Site Scripting Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html) *(doc)* — Framework açıkları, React 19'un `javascript:` engeli ve sınırı, DOMPurify önerisi ve güncel tutma, Trusted Types.
 3. [React: Dangerously setting the inner HTML](https://react.dev/reference/react-dom/components/common#dangerously-setting-the-inner-html) *(doc)* — Prop'un riski ve `{ __html }` nesnesini HTML'in üretildiği yerde oluşturma önerisi.
-4. [Philippe De Ryck](https://pragmaticwebsecurity.com/): [Securing SPAs with Trusted Types](https://auth0.com/blog/securing-spa-with-trusted-types/) *(article)* — 15 Haziran 2021. React'in içeriği temizlememesi, DOMPurify ve Trusted Types politikaları.
+4. [Philippe De Ryck](https://pragmaticwebsecurity.com/about): [Securing SPAs with Trusted Types](https://auth0.com/blog/securing-spa-with-trusted-types/) *(article)* — 15 Haziran 2021. React'in içeriği temizlememesi, DOMPurify ve Trusted Types politikaları.
 5. [DOMPurify](https://github.com/cure53/DOMPurify) *(repo)* — Kullanım, sunucuda DOM gereksinimi ve jsdom'u güncel tutma uyarısı.
 6. [isomorphic-dompurify](https://github.com/kkomelin/isomorphic-dompurify) *(repo)* — DOMPurify'ı sunucuda ve istemcide aynı şekilde kullanma; Next.js örneği.
 7. [Weichselbaum, Spagnuolo, Lekies, Janc: CSP Is Dead, Long Live CSP!](https://research.google.com/pubs/pub45542.html) *(research)* — ACM CCS 2016. 26.011 politikanın %94,72'sinin atlatılabilmesi ve nonce tabanlı yaklaşım.
