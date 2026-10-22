@@ -146,9 +146,10 @@ export function proxy(request: NextRequest) {
 
 Next.js başlıktaki nonce'u okur ve kendi script'lerine otomatik ekler. Testte sayfadaki 9 script'in hepsi nonce taşıdı.[^9] Aynı sayfada `dangerouslySetInnerHTML` ile temizlenmeden basılan `<img onerror>` çalışmadı; konsolda "Refused to execute inline event handler" hatası çıktı.
 
-Bilmeniz gereken üç şey:[^9]
+Bilmeniz gereken dört şey:[^9]
 
 - Nonce her istekte değişir. Bu yüzden CSP'li sayfalar **statik üretilemez**, dinamik render edilir. Gerekirse sayfada `await connection()` çağırın.
+- Aynı sebeple nonce, **Partial Prerendering** ile *(`cacheComponents: true`)* uyumsuzdur: önceden üretilen kabuktaki script'ler nonce'u alamaz.
 - Geliştirme ortamında React hata ayıklama için `eval` kullanır; `'unsafe-eval'` yalnızca orada eklenir.
 - `frame-ancestors 'none'` sayfanızın başka bir sitede `iframe` içine alınmasını engeller. Bir sonraki derste güvenlik başlıklarıyla birlikte ele alınıyor.
 
