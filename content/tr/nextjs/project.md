@@ -32,6 +32,8 @@ Amaç tasarım değil, derslerdeki parçaların birlikte çalışmasıdır. Her 
 | `generateMetadata`, OG görseli, sitemap, JSON-LD | `app/products/[slug]/`, `app/sitemap.ts`, `app/robots.ts` | Metadata ve SEO |
 | `instant()` testi | `e2e/product.spec.ts` | Navigasyon ve prefetch |
 
+Projenin çalışan hali GitHub'da: [examples/nextjs/project](https://github.com/virastack/academy/tree/main/examples/nextjs/project). Takıldığınızda karşılaştırın.
+
 ## Adım 1: Projeyi Kurun
 
 [Kurulum ve proje yapısı](/academy/nextjs/setup-and-folder-structure) dersindeki gibi varsayılanlarla bir proje açın:[^1]
