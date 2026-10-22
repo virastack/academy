@@ -1137,7 +1137,7 @@
                   "slug": "xss-and-csp",
                   "title": "XSS ve CSP",
                   "description": "dangerouslySetInnerHTML, güvenli olmayan URL'ler ve Content Security Policy.",
-                  "status": "coming_soon",
+                  "status": "published",
                   "kind": "lesson"
                 },
                 {
