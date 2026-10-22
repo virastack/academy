@@ -5,7 +5,6 @@ export default defineConfig({
   use: {
     baseURL: "http://localhost:3000",
     ...devices["Desktop Chrome"],
-    launchOptions: { executablePath: process.env.CHROMIUM_PATH },
   },
   webServer: {
     command: "npm run build && npm run start -- --port 3000",

@@ -23,7 +23,9 @@ async function fillContactStep(page: Page, email = "ada@example.com") {
 
 test.beforeEach(async ({ page }) => {
   await page.goto("/");
-  // Buttons only work after React hydrates the page.
+  // The step buttons only work after React hydrates the page. There is no client-only
+  // element to wait for, so this uses the last-resort option from the Playwright guide
+  // (virastack.com/academy/playwright/assertions-and-waiting).
   await page.waitForLoadState("networkidle");
 });
 

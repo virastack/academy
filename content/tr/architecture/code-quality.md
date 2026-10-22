@@ -193,7 +193,7 @@ jobs:
   quality:
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - name: Install pnpm and Node.js
         uses: pnpm/setup@c9883cc79df532ad1a7b81bf9ab944ceb090d65c # v2.0.0
         with:
@@ -215,7 +215,7 @@ Kontrolün gerçekten kapı olması için GitHub'da *required status checks* aç
 [Monorepo](/academy/architecture/monorepo) kullanıyorsanız her PR'da her şeyi çalıştırmanız gerekmez:
 
 ```yaml
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
       # ... pnpm/setup adımı

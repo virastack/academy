@@ -586,7 +586,6 @@ export default defineConfig({
   use: {
     baseURL: "http://localhost:3000",
     trace: "on-first-retry",
-    launchOptions: { executablePath: process.env.CHROMIUM_PATH },
   },
   projects: [
     { name: "setup", testMatch: /.*\.setup\.ts/ },
@@ -612,10 +611,6 @@ export default defineConfig({
   },
 });
 ```
-
-> [!NOTE]
->
-> `launchOptions.executablePath` örnek projenin bulut ortamında hazır kurulu Chromium'u kullanması içindir. `CHROMIUM_PATH` tanımlı değilse Playwright kendi indirdiği tarayıcıyı kullanır; kendi projenizde bu satırı silebilirsiniz.
 
 Fixture'lardaki `use(...)` çağrısını React hook'u sanan ESLint kuralını test klasöründe kapatın:
 
@@ -1084,8 +1079,8 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
-      - uses: actions/checkout@v6
-      - uses: actions/setup-node@v6
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
         with:
           node-version: lts/*
           cache: npm
@@ -1095,7 +1090,7 @@ jobs:
         run: npx playwright install --with-deps chromium
       - name: Run Playwright tests
         run: npm test
-      - uses: actions/upload-artifact@v5
+      - uses: actions/upload-artifact@v7
         if: ${{ !cancelled() }}
         with:
           name: playwright-report

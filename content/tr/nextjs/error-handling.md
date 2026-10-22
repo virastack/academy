@@ -102,7 +102,7 @@ export default function ProductsError({
 Üç ayrıntı:[^4]
 
 - `retry()`, segmentin verisini **yeniden çekip** tekrar render eder. 16.3'te kararlı hâle geldi. Eski örneklerdeki `reset()` yalnızca hata durumunu temizler, veriyi tekrar çekmez.
-- `error` tipi `unknown`'dır. `message` okumadan önce `instanceof Error` ile daraltın.
+- `error` tipi `unknown`'dır. `message` ya da `digest` okumadan önce daraltın. Doküman `instanceof Error` örneğini verir, ama Suspense içinde fırlatılan bir sunucu hatası bu kontrolden geçmeyebilir; `"digest" in error` gibi alanın kendisini kontrol etmek daha güvenlidir *(bkz. [Hata izleme](/academy/production/error-monitoring))*.
 - Production'da Server Component hataları genel bir mesajla gelir; ayrıntı sızmasın diye. `error.digest`, sunucu loglarındaki kaydı bulmanızı sağlar.
 
 Kök layout'taki hataları yakalamak için `app/global-error.tsx` var. Kök layout'un yerini aldığı için kendi `<html>` ve `<body>` etiketlerini yazar.[^1]
