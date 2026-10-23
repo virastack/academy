@@ -1092,7 +1092,7 @@
           "slug": "principles",
           "title": "Yazılım Prensipleri",
           "description": "Clean Code, SOLID, composition, refactoring ve TDD: frontend'de kod yazarken işe yarayan prensipler.",
-          "status": "coming_soon",
+          "status": "published",
           "lessonGroups": [
             {
               "id": "dersler",
@@ -1102,14 +1102,14 @@
                   "slug": "clean-code",
                   "title": "Clean Code ve Temel Prensipler",
                   "description": "DRY, KISS ve YAGNI: ne zaman işe yarar, ne zaman abartılır.",
-                  "status": "coming_soon",
+                  "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "solid-and-srp",
                   "title": "SOLID ve SRP",
                   "description": "Sorumlulukların ayrılması ve bağımlılık yönetimi, React örnekleriyle.",
-                  "status": "coming_soon",
+                  "status": "published",
                   "kind": "lesson"
                 },
                 {
