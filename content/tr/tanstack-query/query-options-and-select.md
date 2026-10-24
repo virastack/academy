@@ -1,6 +1,6 @@
 ---
 title: "queryOptions ve select"
-description: "Sorgu ayarlarını queryOptions ile paylaşmak, query factory, tipli cache okuma ve select ile veriyi seçmek."
+description: "Query factory, tipli cache okuma ve veriyi seçerek render'ı azaltmak."
 lastVerified: "2026-10-21"
 translationKey: "tanstack-query/query-options-and-select"
 ---

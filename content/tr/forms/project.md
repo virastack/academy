@@ -1,6 +1,6 @@
 ---
 title: "Satıcı başvuru formu"
-description: "React Hook Form, Zod, @virastack/mask ve Server Action ile çok adımlı, dinamik ürün listeli, maskeli, erişilebilir ve sunucuda tekrar doğrulanan bir satıcı başvuru formu."
+description: "Çok adımlı, maskeli ve sunucuda doğrulanan form."
 lastVerified: "2026-10-22"
 translationKey: "forms/project"
 ---

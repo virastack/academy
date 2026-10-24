@@ -1,6 +1,6 @@
 ---
 title: "Component ve JSX"
-description: "Arayüzü component'lere bölme, JSX kuralları, koşullu render, liste ve key, saf component."
+description: "Arayüzü bölme, JSX kuralları, liste ve key, saf component."
 lastVerified: "2026-10-21"
 translationKey: "react/components-and-jsx"
 ---

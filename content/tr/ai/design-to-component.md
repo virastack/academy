@@ -1,5 +1,5 @@
 ---
-title: "Tasarımdan Bileşene"
+title: "Tasarımdan bileşene"
 description: "Agent, skill ve MCP ile bir Figma kart tasarımını çalışan, test edilmiş bir React bileşenine çevirme."
 lastVerified: "2026-10-15"
 translationKey: "ai/design-to-component"

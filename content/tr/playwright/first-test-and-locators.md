@@ -1,6 +1,6 @@
 ---
 title: "İlk test ve locator'lar"
-description: "Test dosyasının yapısı, page fixture'ı, getByRole ve diğer kullanıcı odaklı locator'lar, strict mod, filtreleme, Locator.within() ve codegen ile locator seçmek."
+description: "getByRole, strict mod, filtreleme ve within()."
 lastVerified: "2026-10-22"
 translationKey: "playwright/first-test-and-locators"
 ---

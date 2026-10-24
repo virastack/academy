@@ -1,6 +1,6 @@
 ---
 title: "Suspense ve hata sınırları"
-description: "Yükleme durumunu Suspense ile tanımlamak, use ile Promise okumak, boundary yerleşimi ve Error Boundary."
+description: "Yükleme durumu, use ile Promise okuma ve Error Boundary."
 lastVerified: "2026-10-21"
 translationKey: "react/suspense-and-error-boundaries"
 ---

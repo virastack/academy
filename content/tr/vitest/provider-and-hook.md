@@ -1,5 +1,5 @@
 ---
-title: "Provider ve Hook"
+title: "Provider ve hook"
 description: "Sepet Provider'ı, renderWithProviders ve renderHook."
 lastVerified: "2026-10-14"
 translationKey: "vitest/provider-and-hook"

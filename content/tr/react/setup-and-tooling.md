@@ -1,6 +1,6 @@
 ---
 title: "Kurulum ve araçlar"
-description: "Framework mü Vite mi, ilk proje, Strict Mode, lint kuralları ve AI ile React yazarken dikkat edilecekler."
+description: "Framework mü Vite mi, Strict Mode, lint kuralları ve AI ile React yazmak."
 lastVerified: "2026-10-21"
 translationKey: "react/setup-and-tooling"
 ---

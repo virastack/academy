@@ -1,6 +1,6 @@
 ---
 title: "Feature flag ve yayın stratejisi"
-description: "Deploy ile yayını ayırmak, flag türleri ve taşıma maliyeti, Flags SDK ile sunucuda değerlendirilen bir flag, kullanıcıyı sabit kovaya yerleştirerek yüzdeli açılış, canary ve blue-green yayın, geri alma ve flag'leri test etmek."
+description: "Flags SDK, yüzdeli açılış, canary ve blue-green."
 lastVerified: "2026-10-22"
 translationKey: "production/feature-flags-and-release-strategy"
 ---

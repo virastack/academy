@@ -1,6 +1,6 @@
 ---
 title: "Optimistic update"
-description: "Sunucuyu beklemeden arayüzü güncellemek: variables ile, cache ile, geri alma ve eşzamanlı mutation'lar."
+description: "variables ve cache ile iyimser güncelleme, geri alma ve eşzamanlılık."
 lastVerified: "2026-10-21"
 translationKey: "tanstack-query/optimistic-updates"
 ---

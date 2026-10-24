@@ -1,6 +1,6 @@
 ---
 title: "Auth ve fixture"
-description: "Hazır fixture'lar, test.extend ile kendi fixture'ınızı yazmak, Page Object'leri fixture olarak vermek, setup projesi ve storageState ile bir kez giriş yapmak, birden fazla rol, oturumsuz testler, veriyi değiştiren testleri izole etmek ve test kilitleri."
+description: "Fixture yazmak, storageState, roller ve izolasyon."
 lastVerified: "2026-10-22"
 translationKey: "playwright/auth-and-fixtures"
 ---

@@ -1,5 +1,5 @@
 ---
-title: "AI SDK ve Streaming Sohbet"
+title: "AI SDK ve streaming sohbet"
 description: "useChat, streamText, model sağlayıcısı seçimi ve akan yanıtı arayüze yansıtma."
 lastVerified: "2026-10-15"
 translationKey: "ai/ai-sdk-and-streaming-chat"

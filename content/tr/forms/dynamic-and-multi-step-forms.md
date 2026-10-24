@@ -1,6 +1,6 @@
 ---
 title: "Dinamik alanlar ve çok adımlı formlar"
-description: "useFieldArray ile eklenip çıkarılan satırlar, dizi düzeyindeki hata, Controller ile controlled bileşenler, FormProvider, adım adım doğrulama, geri dönünce değerleri korumak ve Next.js'teki Suspense notu."
+description: "useFieldArray, Controller ve adım adım doğrulama."
 lastVerified: "2026-10-22"
 translationKey: "forms/dynamic-and-multi-step-forms"
 ---

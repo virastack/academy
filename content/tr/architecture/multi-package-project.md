@@ -1,5 +1,5 @@
 ---
-title: "Çoklu Paket Projesi"
+title: "Çoklu paket projesi"
 description: "Monorepo içinde ortak UI paketi ve iki uygulama kurma."
 lastVerified: "2026-10-22"
 translationKey: "architecture/multi-package-project"

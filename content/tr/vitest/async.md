@@ -1,5 +1,5 @@
 ---
-title: "Asenkron Testler"
+title: "Asenkron testler"
 description: "findBy, waitFor ve fake timers."
 lastVerified: "2026-10-14"
 translationKey: "vitest/async"

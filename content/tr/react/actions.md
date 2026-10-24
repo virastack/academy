@@ -1,6 +1,6 @@
 ---
 title: "Actions ve async güncellemeler"
-description: "Async transition'lar, form action'ı, useActionState, useFormStatus ve useOptimistic ile bekleme durumları."
+description: "Form action'ı, useActionState, useFormStatus ve useOptimistic."
 lastVerified: "2026-10-21"
 translationKey: "react/actions"
 ---

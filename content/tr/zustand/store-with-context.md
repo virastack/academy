@@ -1,6 +1,6 @@
 ---
 title: "Context ile store"
-description: "Global store'un sınırları, createStore ile store'u Context'te paylaşmak, props'tan başlatmak, yeniden kullanılabilir component, test ve Next.js."
+description: "Props'tan başlatma, yeniden kullanım, test ve Next.js."
 lastVerified: "2026-10-21"
 translationKey: "zustand/store-with-context"
 ---

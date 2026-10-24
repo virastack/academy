@@ -1,6 +1,6 @@
 ---
 title: "React Hook Form ile Zod"
-description: "zodResolver ile şemayı forma bağlamak, kurulumdaki npm uyarısı, tiplerin şemadan çıkması, transform ile input ve output tipleri, alanlar arası kuralda deps ve şemayı sunucuyla paylaşmak."
+description: "Resolver, input ve output tipleri, alanlar arası kural."
 lastVerified: "2026-10-22"
 translationKey: "forms/react-hook-form-with-zod"
 ---

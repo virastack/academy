@@ -1,6 +1,6 @@
 ---
 title: "Ürün kataloğu ve sepet"
-description: "Filtreleri store'da tutan, sorguyu filtreyle süren, slice'lardan oluşan kalıcı bir sepet ve sunucu verisinden türetilen stok uyarısı."
+description: "Filtre store'u, slice'lı kalıcı sepet ve türetilen stok uyarısı."
 lastVerified: "2026-10-21"
 translationKey: "zustand/project"
 ---

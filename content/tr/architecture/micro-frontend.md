@@ -1,5 +1,5 @@
 ---
-title: "Micro Frontend"
+title: "Micro frontend"
 description: "Ne zaman gerekir, ne zaman gerekmez? Vite ve Module Federation ile temel kurulum."
 lastVerified: "2026-10-15"
 translationKey: "architecture/micro-frontend"

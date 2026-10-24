@@ -1,6 +1,6 @@
 ---
 title: "Slice pattern"
-description: "Büyüyen store'u bölmek: birden fazla küçük store ya da slice'lardan oluşan tek store, TypeScript'te StateCreator ve middleware'in yeri."
+description: "Store'u küçük store'lara ya da slice'lara bölmek."
 lastVerified: "2026-10-21"
 translationKey: "zustand/slice-pattern"
 ---

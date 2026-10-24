@@ -1,6 +1,6 @@
 ---
 title: "Suspense ve hata yönetimi"
-description: "Hatayı göstermenin üç yolu, global toast, throwOnError ile Error Boundary, useSuspenseQuery ve hata sonrası yeniden deneme."
+description: "Global toast, throwOnError, useSuspenseQuery ve hata sonrası yeniden deneme."
 lastVerified: "2026-10-21"
 translationKey: "tanstack-query/suspense-and-error-handling"
 ---

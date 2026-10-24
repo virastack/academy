@@ -1,6 +1,6 @@
 ---
 title: "Effect ve ne zaman gerekmez"
-description: "Effect'i dış sistemle senkronlama olarak düşünmek, cleanup, bağımlılıklar, useEffectEvent ve Effect'siz çözümler."
+description: "Dış sistemle senkronlama, cleanup, useEffectEvent ve Effect'siz çözümler."
 lastVerified: "2026-10-21"
 translationKey: "react/effects"
 ---

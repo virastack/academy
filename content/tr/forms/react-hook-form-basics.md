@@ -1,6 +1,6 @@
 ---
 title: "React Hook Form temelleri"
-description: "useForm ve defaultValues, register ve yerleşik kurallar, handleSubmit, formState ve Proxy kuralı, doğrulama modları, değer okuma yolları ve React Compiler notu."
+description: "register, handleSubmit, formState ve doğrulama modu."
 lastVerified: "2026-10-22"
 translationKey: "forms/react-hook-form-basics"
 ---

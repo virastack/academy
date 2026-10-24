@@ -1,5 +1,5 @@
 ---
-title: "Web Nasıl Çalışır"
+title: "Web nasıl çalışır"
 description: "Tarayıcı, HTTP istek/yanıt ve DevTools."
 lastVerified: "2026-10-17"
 translationKey: "web-fundamentals/how-the-web-works"

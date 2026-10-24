@@ -1,6 +1,6 @@
 ---
 title: "Ölçüm (Lighthouse, DevTools)"
-description: "Skoru nereden okuyup neye bakacağın."
+description: "Lighthouse skorunu okumak ve DevTools'ta nelere bakılacağı."
 lastVerified: "2026-10-17"
 translationKey: "performance-accessibility/measuring"
 ---

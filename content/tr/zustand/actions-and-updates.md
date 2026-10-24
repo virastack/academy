@@ -1,6 +1,6 @@
 ---
 title: "Action ve güncelleme"
-description: "Action'ları ayrı bir nesnede toplamak, setter yerine olay gibi adlandırmak, immer ile iç içe güncelleme, store'u sıfırlamak ve store dışındaki action'lar."
+description: "Olay gibi action'lar, immer ve store'u sıfırlamak."
 lastVerified: "2026-10-21"
 translationKey: "zustand/actions-and-updates"
 ---

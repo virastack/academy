@@ -1,5 +1,5 @@
 ---
-title: "Hata Ayıklama"
+title: "Hata ayıklama"
 description: "screen.debug, sık hatalar ve coverage."
 lastVerified: "2026-10-14"
 translationKey: "vitest/debugging"

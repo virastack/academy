@@ -1,6 +1,6 @@
 ---
 title: "Persist ve devtools"
-description: "persist ile state'i tarayıcıda saklamak, partialize, version ve migrate, hydration ve Next.js, devtools ile Redux DevTools'ta izlemek."
+description: "Kalıcı state, migration, hydration ve Redux DevTools."
 lastVerified: "2026-10-21"
 translationKey: "zustand/persist-and-devtools"
 ---

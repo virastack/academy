@@ -1,6 +1,6 @@
 ---
 title: "Kurulum"
-description: "Uçtan uca testin yeri, Playwright'ı bir Next.js projesine eklemek, playwright.config.ts alanları, webServer ile production build'i test etmek ve testleri çalıştırmak."
+description: "Playwright'ı eklemek, yapılandırma ve webServer."
 lastVerified: "2026-10-22"
 translationKey: "playwright/setup"
 ---

@@ -1,5 +1,5 @@
 ---
-title: "Ürün Listesi"
+title: "Ürün listesi"
 description: "Yükleme, arama ve sepete ekleme akışı."
 lastVerified: "2026-10-14"
 translationKey: "vitest/project-product-list"

@@ -1,6 +1,6 @@
 ---
 title: "Erişilebilirlik ve görsel testler"
-description: "axe ile sayfa taraması, klavye ile gezinmeyi test etmek, aria snapshot ile yapıyı doğrulamak, toHaveScreenshot ile görsel karşılaştırma, platforma göre referans görüntüler ve görsel testleri ayrı bir projede tutmak."
+description: "axe, klavye, aria snapshot ve ekran görüntüsü."
 lastVerified: "2026-10-22"
 translationKey: "playwright/accessibility-and-visual-tests"
 ---

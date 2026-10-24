@@ -1,6 +1,6 @@
 ---
 title: "Kurulum ve proje yapısı"
-description: "create-next-app varsayılanları, app klasörü, özel dosyalar ve kodu nereye koyacağın."
+description: "create-next-app varsayılanları, app klasörü, özel dosyalar ve kodun yeri."
 lastVerified: "2026-10-21"
 translationKey: "nextjs/setup-and-folder-structure"
 ---

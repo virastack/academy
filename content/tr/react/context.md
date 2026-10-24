@@ -1,6 +1,6 @@
 ---
 title: "Context"
-description: "Prop drilling olmadan veri paylaşmak, use ile context okumak, reducer ile birlikte kullanmak ve sınırları."
+description: "Prop drilling olmadan paylaşım, reducer ile birlikte kullanım ve sınırları."
 lastVerified: "2026-10-21"
 translationKey: "react/context"
 ---

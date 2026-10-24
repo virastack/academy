@@ -1,6 +1,6 @@
 ---
 title: "Ortam değişkenleri"
-description: "Yapılandırmayı koddan ayırmak, Next.js'in .env dosyalarını yükleme sırası, NEXT_PUBLIC_ değişkenlerinin build sırasında gömülmesi, çalışma zamanında okumak, Zod ile doğrulayıp açılışta hata vermek ve secret'ları istemciden uzak tutmak."
+description: "Yapılandırmayı koddan ayırmak, NEXT_PUBLIC_ ve Zod ile doğrulama."
 lastVerified: "2026-10-22"
 translationKey: "production/environment-variables"
 ---

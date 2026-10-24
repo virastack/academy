@@ -1,6 +1,6 @@
 ---
 title: "Hata izleme"
-description: "Canlıdaki hataları kullanıcı bildirmeden yakalamak; Next.js'in error.tsx, global-error ve onRequestError kancaları, digest ile log eşleştirmek, Sentry kurulumu, source map'ler, örnekleme, kişisel veri ve işe yarar uyarılar."
+description: "onRequestError, hata kodu, Sentry ve işe yarar uyarılar."
 lastVerified: "2026-10-22"
 translationKey: "production/error-monitoring"
 ---

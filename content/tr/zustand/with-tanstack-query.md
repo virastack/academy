@@ -1,6 +1,6 @@
 ---
 title: "TanStack Query ile birlikte kullanım"
-description: "Sunucu verisini TanStack Query'de, client state'i Zustand'da tutmak, store'daki filtreyle sorguyu sürmek ve state'i senkronlamak yerine türetmek."
+description: "Filtreyle sorguyu sürmek ve state'i türetmek."
 lastVerified: "2026-10-21"
 translationKey: "zustand/with-tanstack-query"
 ---

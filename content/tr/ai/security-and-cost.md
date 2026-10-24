@@ -1,5 +1,5 @@
 ---
-title: "Güvenlik ve Maliyet"
+title: "Güvenlik ve maliyet"
 description: "Prompt injection, API anahtarı koruma, rate limit ve token maliyeti."
 lastVerified: "2026-10-15"
 translationKey: "ai/security-and-cost"

@@ -1,6 +1,6 @@
 ---
 title: "Hata gösterimi ve erişilebilirlik"
-description: "Hata mesajını alana aria-invalid ve aria-describedby ile bağlamak, yeniden kullanılabilir Field component'i, odak, hata özeti, doğrulama zamanlaması, kaymayan düzen ve iyi hata mesajı yazmak."
+description: "Hatayı alana bağlamak, odak ve zamanlama."
 lastVerified: "2026-10-22"
 translationKey: "forms/errors-and-accessibility"
 ---

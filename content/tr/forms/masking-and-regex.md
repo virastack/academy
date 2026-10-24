@@ -1,6 +1,6 @@
 ---
 title: "Maskeleme ve regex"
-description: "Görünen değer ile ham değeri ayırmak, regex ile biçim doğrulamak, type number yerine inputMode, @virastack/mask ile telefon, IBAN ve kart alanları, Zod ile ham değeri doğrulamak ve T.C. kimlik numarası sağlaması."
+description: "Görünen değer, ham değer ve @virastack/mask."
 lastVerified: "2026-10-22"
 translationKey: "forms/masking-and-regex"
 ---

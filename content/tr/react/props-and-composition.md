@@ -1,6 +1,6 @@
 ---
 title: "Props ve composition"
-description: "Veri aktarma, children ve slot'lar, props'u state'e kopyalamama ve prop drilling'e ilk çözüm."
+description: "Veri aktarma, children ve slot'lar, props'u state'e kopyalamama."
 lastVerified: "2026-10-21"
 translationKey: "react/props-and-composition"
 ---

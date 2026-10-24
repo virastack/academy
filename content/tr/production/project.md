@@ -1,6 +1,6 @@
 ---
 title: "Sipariş panelini yayına hazırla"
-description: "Playwright rehberindeki sipariş panelini canlıya hazırlamak: Zod ile ortam değişkenleri, açılışta doğrulama, pino ile yapılandırılmış log, onRequestError, hata ekranları, sağlık kontrolü, yüzdeli açılan bir feature flag, güvenlik başlıkları, standalone Docker imajı ve CI hattı."
+description: "Ortam doğrulama, log, hata ekranları, feature flag, Docker ve CI ile bir paneli canlıya hazırlamak."
 lastVerified: "2026-10-22"
 translationKey: "production/project"
 ---

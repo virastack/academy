@@ -1,6 +1,6 @@
 ---
 title: "Controlled ve uncontrolled formlar"
-description: "Input değerini DOM'un mu React state'inin mi tuttuğu, FormData ile okumak, value ve defaultValue, yaygın uyarılar ve form kütüphanesinin neden gerektiği."
+description: "Değeri kimin tuttuğu, FormData ve yaygın hatalar."
 lastVerified: "2026-10-22"
 translationKey: "forms/controlled-and-uncontrolled-forms"
 ---

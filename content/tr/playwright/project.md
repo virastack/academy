@@ -1,6 +1,6 @@
 ---
 title: "Sipariş paneli testleri"
-description: "Oturumlu, rollere ayrılmış ve TanStack Query ile veri yükleyen bir Next.js sipariş panelini Playwright ile uçtan uca test etmek: setup projesi, Page Object, fixture, API mock, aria snapshot, erişilebilirlik, görsel test ve CI."
+description: "Oturumlu ve rollere ayrılmış bir paneli uçtan uca test etmek."
 lastVerified: "2026-10-22"
 translationKey: "playwright/project"
 ---

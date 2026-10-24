@@ -1,6 +1,6 @@
 ---
 title: "State"
-description: "useState, snapshot ve updater, immutable güncelleme, state'i doğru kurmak ve state türleri."
+description: "Snapshot ve updater, immutable güncelleme, state'i doğru kurmak."
 lastVerified: "2026-10-21"
 translationKey: "react/state"
 ---

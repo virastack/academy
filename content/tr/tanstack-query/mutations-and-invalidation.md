@@ -1,6 +1,6 @@
 ---
 title: "Mutation ve invalidation"
-description: "useMutation, yazma işleminden sonra cache'i geçersiz kılmak ya da cevapla güncellemek, callback'lerin yeri ve global invalidation."
+description: "useMutation, invalidation, cevapla güncelleme ve callback'lerin yeri."
 lastVerified: "2026-10-21"
 translationKey: "tanstack-query/mutations-and-invalidation"
 ---

@@ -1,5 +1,5 @@
 ---
-title: "Component ve Kod Organizasyonu"
+title: "Component ve kod organizasyonu"
 description: "Component'leri bölme, ortak kodu ayırma ve sınırları koruma."
 lastVerified: "2026-10-15"
 translationKey: "architecture/component-organization"

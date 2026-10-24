@@ -1,6 +1,6 @@
 ---
 title: "İlk store"
-description: "create ile store kurmak, TypeScript'te curried yazım, set ile birleştirme, get, async action ve store'a React dışından erişmek."
+description: "create, set, get ve store'a React dışından erişmek."
 lastVerified: "2026-10-21"
 translationKey: "zustand/first-store"
 ---

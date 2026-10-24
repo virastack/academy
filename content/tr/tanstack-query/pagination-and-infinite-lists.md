@@ -1,6 +1,6 @@
 ---
 title: "Sayfalama ve sonsuz liste"
-description: "Sayfa numarasını anahtara koymak, keepPreviousData, sonraki sayfayı önceden yüklemek ve useInfiniteQuery ile 'daha fazla yükle'."
+description: "keepPreviousData, sonraki sayfayı hazırlamak ve useInfiniteQuery."
 lastVerified: "2026-10-21"
 translationKey: "tanstack-query/pagination-and-infinite-lists"
 ---
@@ -74,11 +74,11 @@ useEffect(() => {
 }, [data, isPlaceholderData, page, queryClient]);
 ```
 
-Sayfa numarasını `useState` yerine URL'de *(`?page=2`)* tutarsanız sayfa paylaşılabilir olur ve tarayıcının geri butonu çalışır. Anahtar aynı kalır; değişen yalnızca değerin nereden okunduğudur.[^3]
+Sayfa numarasını `useState` yerine URL'de *(`?page=2`)* tutarsanız sayfa paylaşılabilir olur ve tarayıcının geri butonu çalışır. Anahtar aynı kalır; değişen yalnızca değerin nereden okunduğudur.[^3] Next.js, React Router ya da TanStack Router'da bunu `useState`'e benzer, tipli bir API ile yapmak için [nuqs](https://nuqs.dev) var.[^4]
 
 ## Sonsuz Liste
 
-"Daha fazla yükle" butonu ya da kaydırınca yüklenen listeler için `useInfiniteQuery` var. Tek farkı, verinin sayfalardan oluşan bir yapı olmasıdır:[^4]
+"Daha fazla yükle" butonu ya da kaydırınca yüklenen listeler için `useInfiniteQuery` var. Tek farkı, verinin sayfalardan oluşan bir yapı olmasıdır:[^5]
 
 ```ts
 import { infiniteQueryOptions } from "@tanstack/react-query";
@@ -127,13 +127,13 @@ function Reviews({ productId }: { productId: number }) {
 }
 ```
 
-Butonu `isFetching` sürerken kapatmak önemlidir. Bir sonsuz listede aynı anda tek bir istek olabilir; tüm sayfalar tek cache girdisini paylaşır. Arka plan yenilemesi sürerken `fetchNextPage` çağırmak veriyi ezebilir.[^4] Kaydırınca yüklemek için butonu bir `IntersectionObserver` ile tetiklerken de aynı kontrolü yapın: `hasNextPage && !isFetching && fetchNextPage()`.[^4]
+Butonu `isFetching` sürerken kapatmak önemlidir. Bir sonsuz listede aynı anda tek bir istek olabilir; tüm sayfalar tek cache girdisini paylaşır. Arka plan yenilemesi sürerken `fetchNextPage` çağırmak veriyi ezebilir.[^5] Kaydırınca yüklemek için butonu bir `IntersectionObserver` ile tetiklerken de aynı kontrolü yapın: `hasNextPage && !isFetching && fetchNextPage()`.[^5]
 
 ## Sonsuz Liste Nasıl Yenilenir
 
-Sonsuz liste cache'te **tek bir sorgudur**; sayfalar birbirine bağlı bir liste gibi durur. Her sayfa bir öncekinden aldığı parametreyle getirilir.[^5] Bu yüzden liste eskiyip yenilendiğinde sayfalar **ilk sayfadan başlayarak sırayla** yeniden çekilir. Böylece arada eklenen ya da silinen kayıtlar yüzünden eski cursor'larla tekrar eden ya da atlanan kayıt oluşmaz.[^4][^5]
+Sonsuz liste cache'te **tek bir sorgudur**; sayfalar birbirine bağlı bir liste gibi durur. Her sayfa bir öncekinden aldığı parametreyle getirilir.[^6] Bu yüzden liste eskiyip yenilendiğinde sayfalar **ilk sayfadan başlayarak sırayla** yeniden çekilir. Böylece arada eklenen ya da silinen kayıtlar yüzünden eski cursor'larla tekrar eden ya da atlanan kayıt oluşmaz.[^5][^6]
 
-Bunun bedeli var: kullanıcı yirmi sayfa yüklediyse yenileme yirmi istek demektir. `maxPages` cache'te tutulan sayfa sayısını sınırlar. Bunu kullanırsanız iki yönde de gezinebilmek için `getPreviousPageParam` da vermeniz gerekir:[^4]
+Bunun bedeli var: kullanıcı yirmi sayfa yüklediyse yenileme yirmi istek demektir. `maxPages` cache'te tutulan sayfa sayısını sınırlar. Bunu kullanırsanız iki yönde de gezinebilmek için `getPreviousPageParam` da vermeniz gerekir:[^5]
 
 ```ts
 infiniteQueryOptions({
@@ -143,7 +143,7 @@ infiniteQueryOptions({
 });
 ```
 
-API cursor döndürmüyorsa `getNextPageParam` üçüncü argüman olarak son sayfanın parametresini alır; `lastPageParam + 1` ile sayfa numarasını kendiniz hesaplarsınız.[^4]
+API cursor döndürmüyorsa `getNextPageParam` üçüncü argüman olarak son sayfanın parametresini alır; `lastPageParam + 1` ile sayfa numarasını kendiniz hesaplarsınız.[^5]
 
 ## Hangisi
 
@@ -164,8 +164,8 @@ Binlerce satırı DOM'da tutmak sorgudan bağımsız bir sorundur; sanallaştır
 
 ## Detaylı Öğrenmek İçin
 
-- **Resmi doküman:** "Infinite Queries"; iki yönlü liste, sayfaları elle güncelleme ve `maxPages`.[^4]
-- **Yazı:** [TkDodo](https://tkdodo.eu/), "How Infinite Queries work"; sonsuz sorgunun cache'teki yapısı ve yenileme davranışı.[^5]
+- **Resmi doküman:** "Infinite Queries"; iki yönlü liste, sayfaları elle güncelleme ve `maxPages`.[^5]
+- **Yazı:** [TkDodo](https://tkdodo.eu/), "How Infinite Queries work"; sonsuz sorgunun cache'teki yapısı ve yenileme davranışı.[^6]
 - **Resmi doküman:** "Paginated / Lagged Queries"; `placeholderData` ve `isPlaceholderData`.[^1]
 
 ## Kaynaklar
@@ -173,5 +173,6 @@ Binlerce satırı DOM'da tutmak sorgudan bağımsız bir sorundur; sanallaştır
 1. [TanStack Query: Paginated / Lagged Queries](https://tanstack.com/query/latest/docs/framework/react/guides/paginated-queries) *(doc)* — Sayfayı anahtara koymak, `keepPreviousData` ve `isPlaceholderData`.
 2. [TanStack Query: Prefetching & Router Integration](https://tanstack.com/query/latest/docs/framework/react/guides/prefetching) *(doc)* — `queryClient.query` ile önceden yükleme.
 3. [TkDodo](https://tkdodo.eu/): [React Query - The Bad Parts](https://tkdodo.eu/blog/react-query-the-bad-parts) *(video)* — React Day Berlin, Aralık 2024. Filtreyi URL'de tutup anahtara bağlamak.
-4. [TanStack Query: Infinite Queries](https://tanstack.com/query/latest/docs/framework/react/guides/infinite-queries) *(doc)* — `useInfiniteQuery`, sıralı yenileme, eşzamanlı istek uyarısı ve `maxPages`.
-5. [TkDodo](https://tkdodo.eu/): [How Infinite Queries work](https://tkdodo.eu/blog/how-infinite-queries-work) *(article)* — 14 Eylül 2024. Sonsuz sorgunun tek cache girdisi olarak yapısı ve `QueryBehavior`.
+4. [nuqs: Type-safe search params state manager for React](https://nuqs.dev/) *(doc)* — `useState` benzeri API ile URL senkronu, tipli parser'lar, geçmiş yönetimi ve desteklenen framework'ler.
+5. [TanStack Query: Infinite Queries](https://tanstack.com/query/latest/docs/framework/react/guides/infinite-queries) *(doc)* — `useInfiniteQuery`, sıralı yenileme, eşzamanlı istek uyarısı ve `maxPages`.
+6. [TkDodo](https://tkdodo.eu/): [How Infinite Queries work](https://tkdodo.eu/blog/how-infinite-queries-work) *(article)* — 14 Eylül 2024. Sonsuz sorgunun tek cache girdisi olarak yapısı ve `QueryBehavior`.

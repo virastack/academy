@@ -1,6 +1,6 @@
 ---
 title: "Bağımlı ve paralel sorgular"
-description: "Birlikte çalışan sorgular, useQueries, enabled ve skipToken ile koşullu sorgu, istek şelalesi ve event handler'da prefetch."
+description: "useQueries, enabled ve skipToken, istek şelalesi ve hover'da prefetch."
 lastVerified: "2026-10-21"
 translationKey: "tanstack-query/dependent-and-parallel-queries"
 ---

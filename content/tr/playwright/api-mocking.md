@@ -1,6 +1,6 @@
 ---
 title: "API mock"
-description: "page.route ile istekleri yakalamak, sahte yanıt vermek, gerçek yanıtı değiştirmek, hata ve yükleniyor durumlarını test etmek, glob kalıpları, yanıt beklemek, request fixture'ı ile API testi, HAR dosyaları ve Next.js'te sunucu isteklerinin sınırı."
+description: "page.route, yanıt değiştirme ve request fixture'ı."
 lastVerified: "2026-10-22"
 translationKey: "playwright/api-mocking"
 ---

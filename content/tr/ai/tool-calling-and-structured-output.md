@@ -1,5 +1,5 @@
 ---
-title: "Tool Calling ve Structured Output"
+title: "Tool calling ve structured output"
 description: "Modelin fonksiyon çağırması, Zod şemasıyla yapılandırılmış çıktı ve kullanıcı onayı."
 lastVerified: "2026-10-15"
 translationKey: "ai/tool-calling-and-structured-output"

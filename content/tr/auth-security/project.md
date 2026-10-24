@@ -1,6 +1,6 @@
 ---
 title: "Korumalı yönetim paneli"
-description: "Giriş, rol kontrolü ve güvenlik başlıklarıyla küçük bir panel kur."
+description: "Giriş, rol kontrolü ve güvenlik başlıklarıyla küçük bir panel."
 lastVerified: "2026-10-22"
 translationKey: "auth-security/project"
 ---

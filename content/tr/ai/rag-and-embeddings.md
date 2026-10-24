@@ -1,5 +1,5 @@
 ---
-title: "RAG ve Embedding"
+title: "RAG ve embedding"
 description: "Kendi verinizi embedding ile arayıp modele bağlam olarak verme, parçalama, arama kalitesini ölçme ve güvenlik."
 lastVerified: "2026-10-15"
 translationKey: "ai/rag-and-embeddings"

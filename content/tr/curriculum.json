@@ -12,11 +12,11 @@
           "lessonGroups": [
             {
               "id": "ozetler",
-              "title": "Kısa özetler",
+              "title": "Kısa Özetler",
               "lessons": [
                 {
                   "slug": "how-the-web-works",
-                  "title": "Web Nasıl Çalışır",
+                  "title": "Web nasıl çalışır",
                   "description": "Tarayıcı, HTTP istek/yanıt ve DevTools.",
                   "status": "published",
                   "kind": "lesson"
@@ -142,7 +142,7 @@
                 {
                   "slug": "project",
                   "title": "Tipli ürün kataloğu",
-                  "description": "Ürün listesi, filtre ve sepeti uçtan uca tiplerle kur.",
+                  "description": "Ürün listesi, filtre ve sepeti uçtan uca tiplerle kurma.",
                   "status": "published",
                   "kind": "project"
                 }
@@ -267,7 +267,7 @@
                 {
                   "slug": "setup-and-folder-structure",
                   "title": "Kurulum ve proje yapısı",
-                  "description": "create-next-app varsayılanları, app klasörü, özel dosyalar ve kodu nereye koyacağın.",
+                  "description": "create-next-app varsayılanları, app klasörü, özel dosyalar ve kodun yeri.",
                   "status": "published",
                   "kind": "lesson"
                 },
@@ -329,7 +329,7 @@
                 {
                   "slug": "route-handlers-and-proxy",
                   "title": "Route Handler ve proxy",
-                  "description": "API uç noktası, webhook, proxy.ts ve hangisini ne zaman kullanacağın.",
+                  "description": "API uç noktası, webhook, proxy.ts ve hangisinin ne zaman kullanılacağı.",
                   "status": "published",
                   "kind": "lesson"
                 },
@@ -367,7 +367,7 @@
         {
           "slug": "tanstack-query",
           "title": "TanStack Query",
-          "description": "Server state, cache, mutation, optimistic update ve Next.js ile prefetch; güncel TanStack Query v5.",
+          "description": "Server state, cache, mutation, optimistic update ve Next.js ile prefetch.",
           "status": "published",
           "lessonGroups": [
             {
@@ -471,7 +471,7 @@
         {
           "slug": "zustand",
           "title": "Zustand",
-          "description": "Küçük ve hızlı client state: selector, slice, persist, Context ile store ve TanStack Query ile birlikte kullanım; güncel Zustand v5.",
+          "description": "Küçük ve hızlı client state: selector, slice, persist ve TanStack Query ile birlikte kullanım.",
           "status": "published",
           "lessonGroups": [
             {
@@ -554,7 +554,7 @@
         {
           "slug": "forms",
           "title": "Formlar",
-          "description": "React Hook Form, Zod ve maskeleme ile doğrulanan, erişilebilir ve sunucuda da güvenli formlar; güncel React Hook Form 7, Zod 4 ve Server Actions.",
+          "description": "React Hook Form, Zod ve maskeleme ile doğrulanan, erişilebilir ve sunucuda da güvenli formlar.",
           "status": "published",
           "lessonGroups": [
             {
@@ -673,7 +673,7 @@
                 },
                 {
                   "slug": "project-product-card",
-                  "title": "Ürün Kartı",
+                  "title": "Ürün kartı",
                   "description": "E-ticaret ürün kartı için adım adım test.",
                   "status": "published",
                   "kind": "project"
@@ -693,21 +693,21 @@
                 },
                 {
                   "slug": "user-interaction",
-                  "title": "Kullanıcı Etkileşimi",
+                  "title": "Kullanıcı etkileşimi",
                   "description": "userEvent, arama kutusu ve kupon formu.",
                   "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "async",
-                  "title": "Asenkron Testler",
+                  "title": "Asenkron testler",
                   "description": "findBy, waitFor ve fake timers.",
                   "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "project-product-list",
-                  "title": "Ürün Listesi",
+                  "title": "Ürün listesi",
                   "description": "Yükleme, arama ve sepete ekleme akışı.",
                   "status": "published",
                   "kind": "project"
@@ -716,7 +716,7 @@
             },
             {
               "id": "ileri-seviye",
-              "title": "İleri Seviye",
+              "title": "İleri Kullanım",
               "lessons": [
                 {
                   "slug": "mock",
@@ -727,21 +727,21 @@
                 },
                 {
                   "slug": "provider-and-hook",
-                  "title": "Provider ve Hook",
+                  "title": "Provider ve hook",
                   "description": "Sepet Provider'ı, renderWithProviders ve renderHook.",
                   "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "debugging",
-                  "title": "Hata Ayıklama",
+                  "title": "Hata ayıklama",
                   "description": "screen.debug, sık hatalar ve coverage.",
                   "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "project-cart-flow",
-                  "title": "Sepet Akışı",
+                  "title": "Sepet akışı",
                   "description": "Ürün listesinden sepete tam akış testi.",
                   "status": "published",
                   "kind": "project"
@@ -843,7 +843,7 @@
         {
           "slug": "performance-accessibility",
           "title": "Performans ve Erişilebilirlik",
-          "description": "Hızlı ve herkes için kullanılabilir arayüzler.",
+          "description": "Core Web Vitals, bundle, WCAG ve ARIA ile hızlı ve herkes için kullanılabilir arayüzler.",
           "status": "published",
           "lessonGroups": [
             {
@@ -860,7 +860,7 @@
                 {
                   "slug": "measuring",
                   "title": "Ölçüm (Lighthouse, DevTools)",
-                  "description": "Skoru nereden okuyup neye bakacağın.",
+                  "description": "Lighthouse skorunu okumak ve DevTools'ta nelere bakılacağı.",
                   "status": "published",
                   "kind": "lesson"
                 },
@@ -1011,21 +1011,21 @@
               "lessons": [
                 {
                   "slug": "folder-structure",
-                  "title": "Klasör Yapısı ve İsimlendirme",
+                  "title": "Klasör yapısı ve isimlendirme",
                   "description": "Feature-based yapı, dosya isimlendirme ve import kuralları.",
                   "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "component-organization",
-                  "title": "Component ve Kod Organizasyonu",
+                  "title": "Component ve kod organizasyonu",
                   "description": "Component'leri bölme, ortak kodu ayırma ve sınırları koruma.",
                   "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "restructure-project",
-                  "title": "Proje Yapısını Düzenleme",
+                  "title": "Proje yapısını düzenleme",
                   "description": "Dağınık bir e-ticaret projesini feature-based yapıya taşıma.",
                   "status": "published",
                   "kind": "project"
@@ -1045,14 +1045,14 @@
                 },
                 {
                   "slug": "micro-frontend",
-                  "title": "Micro Frontend",
+                  "title": "Micro frontend",
                   "description": "Ne zaman gerekir, ne zaman gerekmez? Vite ve Module Federation ile temel kurulum.",
                   "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "multi-package-project",
-                  "title": "Çoklu Paket Projesi",
+                  "title": "Çoklu paket projesi",
                   "description": "Monorepo içinde ortak UI paketi ve iki uygulama kurma.",
                   "status": "published",
                   "kind": "project"
@@ -1065,21 +1065,21 @@
               "lessons": [
                 {
                   "slug": "code-quality",
-                  "title": "Kod Kalitesi ve Ekip Standartları",
+                  "title": "Kod kalitesi ve ekip standartları",
                   "description": "ESLint, Prettier, commit kuralları ve CI ile otomatik kontrol.",
                   "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "i18n",
-                  "title": "Çoklu Dil (i18n)",
+                  "title": "Çoklu dil (i18n)",
                   "description": "next-intl ile çeviri, dil yönlendirmesi ve tarih/para birimi formatı.",
                   "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "multilingual-ci-project",
-                  "title": "Çok Dilli Sayfa ve CI Hattı",
+                  "title": "Çok dilli sayfa ve CI hattı",
                   "description": "Mevcut bir sayfayı iki dile çevirip lint, tip ve test kontrollerini CI'a bağlama.",
                   "status": "published",
                   "kind": "project"
@@ -1100,7 +1100,7 @@
               "lessons": [
                 {
                   "slug": "clean-code",
-                  "title": "Clean Code ve Temel Prensipler",
+                  "title": "Clean Code ve temel prensipler",
                   "description": "DRY, KISS ve YAGNI: ne zaman işe yarar, ne zaman abartılır.",
                   "status": "published",
                   "kind": "lesson"
@@ -1128,7 +1128,7 @@
                 },
                 {
                   "slug": "tdd-and-testing",
-                  "title": "TDD ve Test Yaklaşımları",
+                  "title": "TDD ve test yaklaşımları",
                   "description": "Red-Green-Refactor döngüsü ve Testing Trophy.",
                   "status": "published",
                   "kind": "lesson"
@@ -1206,7 +1206,7 @@
                 {
                   "slug": "project",
                   "title": "Korumalı yönetim paneli",
-                  "description": "Giriş, rol kontrolü ve güvenlik başlıklarıyla küçük bir panel kur.",
+                  "description": "Giriş, rol kontrolü ve güvenlik başlıklarıyla küçük bir panel.",
                   "status": "published",
                   "kind": "project"
                 }
@@ -1216,7 +1216,7 @@
         },
         {
           "slug": "ai",
-          "title": "Yapay Zeka ile Frontend",
+          "title": "Yapay Zekâ ile Frontend",
           "description": "Sohbet arayüzleri, agent'lar, MCP ve AI destekli geliştirme akışı.",
           "status": "published",
           "lessonGroups": [
@@ -1226,21 +1226,21 @@
               "lessons": [
                 {
                   "slug": "models-and-tools",
-                  "title": "Modeller ve Araçlar",
+                  "title": "Modeller ve araçlar",
                   "description": "Model türleri, güçlü ve zayıf yönleri; sohbet, editör ve terminal tabanlı araçlar.",
                   "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "prompt-and-context-engineering",
-                  "title": "Prompt ve Context Engineering",
+                  "title": "Prompt ve context engineering",
                   "description": "İyi istek yazma, doğru bağlam verme, CLAUDE.md/AGENTS.md ve proje kural dosyaları.",
                   "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "agentic-coding",
-                  "title": "Agentic Kodlama",
+                  "title": "Agentic kodlama",
                   "description": "Claude Code ve Cursor gibi araçlarla planla, kodla, test et döngüsü ve subagent'lar.",
                   "status": "published",
                   "kind": "lesson"
@@ -1261,14 +1261,14 @@
                 },
                 {
                   "slug": "testing-evals-and-code-review",
-                  "title": "Test, Eval ve Code Review",
+                  "title": "Test, eval ve code review",
                   "description": "Test yazdırma, Playwright MCP ile kontrol, model çıktısını ölçme (eval) ve AI kodunu gözden geçirme.",
                   "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "design-to-component",
-                  "title": "Tasarımdan Bileşene",
+                  "title": "Tasarımdan bileşene",
                   "description": "Agent, skill ve MCP ile bir Figma kart tasarımını çalışan, test edilmiş bir React bileşenine çevirme.",
                   "status": "published",
                   "kind": "project"
@@ -1281,14 +1281,14 @@
               "lessons": [
                 {
                   "slug": "ai-sdk-and-streaming-chat",
-                  "title": "AI SDK ve Streaming Sohbet",
+                  "title": "AI SDK ve streaming sohbet",
                   "description": "useChat, streamText, model sağlayıcısı seçimi ve akan yanıtı arayüze yansıtma.",
                   "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "tool-calling-and-structured-output",
-                  "title": "Tool Calling ve Structured Output",
+                  "title": "Tool calling ve structured output",
                   "description": "Modelin fonksiyon çağırması, Zod şemasıyla yapılandırılmış çıktı ve kullanıcı onayı.",
                   "status": "published",
                   "kind": "lesson"
@@ -1302,22 +1302,22 @@
                 },
                 {
                   "slug": "rag-and-embeddings",
-                  "title": "RAG ve Embedding",
+                  "title": "RAG ve embedding",
                   "description": "Kendi verinizi embedding ile arayıp modele bağlam olarak verme, parçalama, arama kalitesini ölçme ve güvenlik.",
                   "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "security-and-cost",
-                  "title": "Güvenlik ve Maliyet",
+                  "title": "Güvenlik ve maliyet",
                   "description": "Prompt injection, API anahtarı koruma, rate limit ve token maliyeti.",
                   "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "shopping-assistant",
-                  "title": "AI Alışveriş Asistanı",
-                  "description": "Araç çağırma, kullanıcı onayı, prompt injection koruması, rate limit ve maliyet ölçümüyle çalışan bir alışveriş asistanı kurun.",
+                  "title": "AI alışveriş asistanı",
+                  "description": "Araç çağırma, kullanıcı onayı, prompt injection koruması ve rate limit ile çalışan bir alışveriş asistanı.",
                   "status": "published",
                   "kind": "project"
                 }
@@ -1343,28 +1343,28 @@
               "lessons": [
                 {
                   "slug": "working-methods",
-                  "title": "Çalışma Yöntemleri",
+                  "title": "Çalışma yöntemleri",
                   "description": "Agile, Scrum ve Kanban nedir, takımlar hangisini neden seçer.",
                   "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "sprints-and-rituals",
-                  "title": "Sprint ve Ritüeller",
+                  "title": "Sprint ve ritüeller",
                   "description": "Sprint, daily, planning ve retro toplantıları ne işe yarar.",
                   "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "work-tracking",
-                  "title": "İş Takibi",
+                  "title": "İş takibi",
                   "description": "Jira, ticket yazma, backlog, önceliklendirme ve estimation.",
                   "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "code-and-team",
-                  "title": "Kod ve Takım",
+                  "title": "Kod ve takım",
                   "description": "PR ve code review kültürü, tech debt, release ve versiyonlama.",
                   "status": "published",
                   "kind": "lesson"

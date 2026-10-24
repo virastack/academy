@@ -1,6 +1,6 @@
 ---
 title: "Assertion ve bekleme"
-description: "Otomatik bekleme ve eyleme hazır olma kontrolleri, web-first assertion'lar, zaman aşımları, soft assertion, expect.poll ve toPass, sabit beklemenin neden yanlış olduğu ve hidrasyon tuzağı."
+description: "Otomatik bekleme, web-first assertion ve hidrasyon."
 lastVerified: "2026-10-22"
 translationKey: "playwright/assertions-and-waiting"
 ---

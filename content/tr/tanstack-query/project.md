@@ -1,6 +1,6 @@
 ---
 title: "Ürün yönetim paneli"
-description: "Sayfalama, arama, prefetch, Suspense, mutation, optimistic update ve sonsuz yorum listesiyle bir ürün paneli."
+description: "Sayfalama, prefetch, Suspense, mutation ve optimistic update ile bir panel."
 lastVerified: "2026-10-21"
 translationKey: "tanstack-query/project"
 ---

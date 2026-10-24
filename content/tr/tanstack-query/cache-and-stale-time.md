@@ -1,6 +1,6 @@
 ---
 title: "Cache ve stale time"
-description: "Stale-while-revalidate, staleTime ile gcTime farkı, yenileme tetikleyicileri, polling, initialData ve placeholderData."
+description: "staleTime ile gcTime, yenileme anları, polling ve initialData."
 lastVerified: "2026-10-21"
 translationKey: "tanstack-query/cache-and-stale-time"
 ---

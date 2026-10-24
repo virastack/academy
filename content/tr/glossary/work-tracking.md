@@ -1,5 +1,5 @@
 ---
-title: "İş Takibi"
+title: "İş takibi"
 description: "Jira, ticket yazma, backlog, önceliklendirme ve estimation."
 lastVerified: "2026-10-16"
 translationKey: "glossary/work-tracking"

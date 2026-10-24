@@ -1,6 +1,6 @@
 ---
 title: "CI'da çalıştırma"
-description: "GitHub Actions iş akışı, CI için yapılandırma ayarları, raporu ve trace'i artifact olarak saklamak, tarayıcı önbelleği, sharding ile birleştirilmiş rapor ve kırılgan testlerle başa çıkmak."
+description: "GitHub Actions, sharding ve kırılgan testler."
 lastVerified: "2026-10-22"
 translationKey: "playwright/running-in-ci"
 ---

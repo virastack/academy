@@ -1,6 +1,6 @@
 ---
 title: "Ref ve DOM"
-description: "Render tetiklemeyen değerler, DOM erişimi, ref prop'u, ref callback cleanup ve Fragment ref'leri."
+description: "DOM erişimi, ref prop'u, ref callback cleanup ve Fragment ref'leri."
 lastVerified: "2026-10-21"
 translationKey: "react/refs-and-dom"
 ---

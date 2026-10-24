@@ -1,5 +1,5 @@
 ---
-title: "Proje Yapısını Düzenleme"
+title: "Proje yapısını düzenleme"
 description: "Dağınık bir e-ticaret projesini feature-based yapıya taşıma."
 lastVerified: "2026-10-22"
 translationKey: "architecture/restructure-project"

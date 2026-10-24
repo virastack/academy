@@ -1,6 +1,6 @@
 ---
 title: "Selector ve yeniden render"
-description: "Selector'ın nasıl karşılaştırıldığı, atomik selector, useShallow, v5'teki sonsuz döngü hatası, türetilmiş değer ve yalnızca custom hook export etmek."
+description: "Atomik selector, useShallow ve custom hook."
 lastVerified: "2026-10-21"
 translationKey: "zustand/selectors-and-rerenders"
 ---

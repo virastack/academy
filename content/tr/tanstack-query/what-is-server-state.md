@@ -1,6 +1,6 @@
 ---
 title: "Server state nedir"
-description: "Sunucu verisi ile client state farkı, useEffect ile veri çekmenin hataları ve TanStack Query'nin ne zaman gerekmediği."
+description: "Client state farkı, useEffect ile veri çekmenin hataları ve ne zaman gerekmediği."
 lastVerified: "2026-10-21"
 translationKey: "tanstack-query/what-is-server-state"
 ---
@@ -96,22 +96,22 @@ TanStack Query bir **server state** kütüphanesidir. Redux ya da [!zustand] gib
 | Server state | Ürün listesi, sipariş, kullanıcı profili | TanStack Query |
 | Paylaşılan client state | Tema, sepet çekmecesi açık mı | Context ya da [Zustand](/academy/zustand) |
 | Yerel UI state | Input değeri, açık menü | `useState` |
-| URL state | Arama metni, sayfa numarası | Router'ın search params'ı |
+| URL state | Filtre, sıralama, sayfa, sekme | Router'ın search params'ı ya da [nuqs](https://nuqs.dev)[^6] |
 
-TkDodo'nun kuralı: sunucudan gelen veriyi client state'e kopyalamayın. Kopyaladığınız an arka plandaki güncellemeleri kaçırırsınız ve iki gerçeği senkron tutmaya çalışırsınız.[^6] TanStack'in yaratıcısı [Tanner Linsley](https://github.com/tannerlinsley) da React Summit 2020 konuşmasında aynı noktadan başlar: global store'ların büyük kısmı aslında sunucu verisinin cache'idir.[^7]
+TkDodo'nun kuralı: sunucudan gelen veriyi client state'e kopyalamayın. Kopyaladığınız an arka plandaki güncellemeleri kaçırırsınız ve iki gerçeği senkron tutmaya çalışırsınız.[^7] TanStack'in yaratıcısı [Tanner Linsley](https://github.com/tannerlinsley) da React Summit 2020 konuşmasında aynı noktadan başlar: global store'ların büyük kısmı aslında sunucu verisinin cache'idir.[^8]
 
 ## Ne Zaman Gerekmez
 
-Next.js App Router gibi Server Component destekli bir framework'te veri çoğunlukla sunucuda okunur. TkDodo bu durumda açık konuşur: veri çekme ve mutation için olgun bir çözümü olan bir framework'le yeni başlıyorsanız muhtemelen TanStack Query'ye ihtiyacınız yok.[^8] Doküman da aynı öneriyi yapar: framework'ün sunduğuyla başlayın, ihtiyaç doğana kadar eklemeyin.[^9]
+Next.js App Router gibi Server Component destekli bir framework'te veri çoğunlukla sunucuda okunur. TkDodo bu durumda açık konuşur: veri çekme ve mutation için olgun bir çözümü olan bir framework'le yeni başlıyorsanız muhtemelen TanStack Query'ye ihtiyacınız yok.[^9] Doküman da aynı öneriyi yapar: framework'ün sunduğuyla başlayın, ihtiyaç doğana kadar eklemeyin.[^10]
 
-Kütüphane şu durumlarda hâlâ değerlidir:[^8]
+Kütüphane şu durumlarda hâlâ değerlidir:[^9]
 
 - Yalnızca tarayıcıda çalışan bir SPA *(panel, iç araç)*.
 - İlk sayfası sunucuda, sonraki sayfaları istemcide yüklenen sonsuz listeler.
 - Polling, odaklanınca yenileme, offline çalışma gibi sürekli güncel veri isteyen ekranlar.
 - React Native ya da Server Component kullanmayan projeler.
 
-Boyut endişesi için TkDodo'nun ölçümü: `QueryClient`, `QueryClientProvider`, `useQuery` ve `useMutation` ile 10 kB'ın altında *(minify + gzip)*. npm sayfasında gördüğünüz boyut kaynak kodu ve source map'leri de içerir, tarayıcıya gitmez.[^10]
+Boyut endişesi için TkDodo'nun ölçümü: `QueryClient`, `QueryClientProvider`, `useQuery` ve `useMutation` ile 10 kB'ın altında *(minify + gzip)*. npm sayfasında gördüğünüz boyut kaynak kodu ve source map'leri de içerir, tarayıcıya gitmez.[^11]
 
 ## Kendin Dene
 
@@ -122,9 +122,9 @@ Boyut endişesi için TkDodo'nun ölçümü: `QueryClient`, `QueryClientProvider
 ## Detaylı Öğrenmek İçin
 
 - **Yazı:** [TkDodo](https://tkdodo.eu/), "Why You Want React Query"; `useEffect` ile veri çekmenin beş hatası ve TanStack Query karşılığı.[^3]
-- **Video:** [Tanner Linsley](https://github.com/tannerlinsley), "React Query: It's Time to Break up with your Global State!"; kütüphaneyi tanıtan React Summit 2020 konuşması.[^7]
-- **Video:** [TkDodo](https://tkdodo.eu/), "React Query - The Bad Parts"; boyut, normalized cache eksikliği ve öğrenme eğrisi üzerine dürüst bir değerlendirme.[^10]
-- **Yazı:** [TkDodo](https://tkdodo.eu/), "You Might Not Need React Query"; Server Component'lerden sonra kütüphanenin yeri.[^8]
+- **Video:** [Tanner Linsley](https://github.com/tannerlinsley), "React Query: It's Time to Break up with your Global State!"; kütüphaneyi tanıtan React Summit 2020 konuşması.[^8]
+- **Video:** [TkDodo](https://tkdodo.eu/), "React Query - The Bad Parts"; boyut, normalized cache eksikliği ve öğrenme eğrisi üzerine dürüst bir değerlendirme.[^11]
+- **Yazı:** [TkDodo](https://tkdodo.eu/), "You Might Not Need React Query"; Server Component'lerden sonra kütüphanenin yeri.[^9]
 
 ## Kaynaklar
 
@@ -133,8 +133,9 @@ Boyut endişesi için TkDodo'nun ölçümü: `QueryClient`, `QueryClientProvider
 3. [TkDodo](https://tkdodo.eu/): [Why You Want React Query](https://tkdodo.eu/blog/why-you-want-react-query) *(article)* — 7 Kasım 2023. `useEffect` ile veri çekmenin beş hatası ve "async state manager" tanımı.
 4. [React: useEffect](https://react.dev/reference/react/useEffect#fetching-data-with-effects) *(doc)* — Effect içinde veri çekme, yarış durumu ve framework ya da kütüphane önerisi.
 5. [TanStack Query: Does TanStack Query replace Redux, MobX or other global state managers?](https://tanstack.com/query/latest/docs/framework/react/guides/does-this-replace-client-state) *(doc)* — Server state taşındıktan sonra global store'da kalanlar.
-6. [TkDodo](https://tkdodo.eu/): [Practical React Query](https://tkdodo.eu/blog/practical-react-query) *(article)* — 16 Kasım 2020. Client state ile server state'i ayrı tutmak ve varsayılanlar.
-7. [Tanner Linsley](https://github.com/tannerlinsley): [React Query: It's Time to Break up with your Global State!](https://gitnation.com/contents/react-query-its-time-to-break-up-with-your-global-state) *(video)* — React Summit Remote Edition, Nisan 2020.
-8. [TkDodo](https://tkdodo.eu/): [You Might Not Need React Query](https://tkdodo.eu/blog/you-might-not-need-react-query) *(article)* — 20 Mayıs 2023. Server Component'ler ve hibrit kullanım.
-9. [TanStack Query: Advanced Server Rendering](https://tanstack.com/query/latest/docs/framework/react/guides/advanced-ssr) *(doc)* — Server Component'li yeni projelerde önce framework'ün araçlarıyla başlama önerisi.
-10. [TkDodo](https://tkdodo.eu/): [React Query - The Bad Parts](https://tkdodo.eu/blog/react-query-the-bad-parts) *(video)* — React Day Berlin, Aralık 2024. Boyut, normalized cache ve öğrenme eğrisi.
+6. [nuqs: Type-safe search params state manager for React](https://nuqs.dev/) *(doc)* — `useState` benzeri API ile URL senkronu, tipli parser'lar, geçmiş yönetimi ve desteklenen framework'ler.
+7. [TkDodo](https://tkdodo.eu/): [Practical React Query](https://tkdodo.eu/blog/practical-react-query) *(article)* — 16 Kasım 2020. Client state ile server state'i ayrı tutmak ve varsayılanlar.
+8. [Tanner Linsley](https://github.com/tannerlinsley): [React Query: It's Time to Break up with your Global State!](https://gitnation.com/contents/react-query-its-time-to-break-up-with-your-global-state) *(video)* — React Summit Remote Edition, Nisan 2020.
+9. [TkDodo](https://tkdodo.eu/): [You Might Not Need React Query](https://tkdodo.eu/blog/you-might-not-need-react-query) *(article)* — 20 Mayıs 2023. Server Component'ler ve hibrit kullanım.
+10. [TanStack Query: Advanced Server Rendering](https://tanstack.com/query/latest/docs/framework/react/guides/advanced-ssr) *(doc)* — Server Component'li yeni projelerde önce framework'ün araçlarıyla başlama önerisi.
+11. [TkDodo](https://tkdodo.eu/): [React Query - The Bad Parts](https://tkdodo.eu/blog/react-query-the-bad-parts) *(video)* — React Day Berlin, Aralık 2024. Boyut, normalized cache ve öğrenme eğrisi.

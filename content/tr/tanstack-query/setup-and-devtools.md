@@ -1,6 +1,6 @@
 ---
 title: "Kurulum ve devtools"
-description: "QueryClient ve Provider, şaşırtan varsayılanlar, Devtools paneli ve ESLint eklentisi."
+description: "QueryClient, şaşırtan varsayılanlar, Devtools ve ESLint eklentisi."
 lastVerified: "2026-10-21"
 translationKey: "tanstack-query/setup-and-devtools"
 ---

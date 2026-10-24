@@ -1,6 +1,6 @@
 ---
 title: "Zod ile şema ve doğrulama"
-description: "Zod 4 ile şema yazmak, parse ve safeParse, tip çıkarımı, hata mesajlarını özelleştirmek, alanlar arası kural, dönüşüm, boş alan tuzakları, hata biçimlendirme ve Türkçe mesajlar."
+description: "Şema, tip çıkarımı, hata mesajları ve dönüşüm."
 lastVerified: "2026-10-22"
 translationKey: "forms/zod-schema-and-validation"
 ---

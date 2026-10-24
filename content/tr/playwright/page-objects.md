@@ -1,6 +1,6 @@
 ---
 title: "Page Object"
-description: "Locator'ları ve akışları sayfa nesnelerinde toplamak, Page Object'e ne konur ne konmaz, assertion tartışması, bileşen nesneleri ve aşırı soyutlamadan kaçınmak."
+description: "Locator'ları ve akışları sayfa nesnelerinde toplamak."
 lastVerified: "2026-10-22"
 translationKey: "playwright/page-objects"
 ---

@@ -1,6 +1,6 @@
 ---
 title: "Ürün sayfası"
-description: "Suspense, Error Boundary, Context, Actions, useOptimistic, Activity ve ViewTransition ile çalışan bir ürün detay sayfası."
+description: "Suspense, Context, Actions, Activity ve ViewTransition ile ürün detay sayfası."
 lastVerified: "2026-10-21"
 translationKey: "react/project"
 ---

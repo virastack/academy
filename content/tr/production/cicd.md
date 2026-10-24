@@ -1,6 +1,6 @@
 ---
 title: "CI/CD (GitHub Actions)"
-description: "Sürekli entegrasyon, sürekli teslim ve sürekli deploy farkı; deploy hattını aşamalara bölmek, GitHub Actions ile lint, tip kontrolü, test ve Docker işleri, önbellek, eşzamanlılık, izinler, secret'lar ve ortamlarla korunan deploy."
+description: "Lint, test ve Docker işleriyle deploy hattı, secret'lar ve ortamlar."
 lastVerified: "2026-10-22"
 translationKey: "production/cicd"
 ---

@@ -1,6 +1,6 @@
 ---
 title: "Deploy seçenekleri"
-description: "Next.js'i Node.js sunucusu, Docker konteyneri, statik çıktı ya da bir platform adaptörüyle yayınlamak; standalone çıktı, çok aşamalı Dockerfile, sağlık kontrolü, sinyaller ve kendi sunucunuzda dikkat edilecekler."
+description: "Node.js sunucusu, Docker, statik çıktı ve platform adaptörleri."
 lastVerified: "2026-10-22"
 translationKey: "production/deployment-options"
 ---

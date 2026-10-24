@@ -1,6 +1,6 @@
 ---
 title: "Server Actions ile form"
-description: "Formu Next.js Server Action'a göndermek, useActionState ile hata ve bekleme durumu, sunucuda Zod, otomatik sıfırlamaya karşı değerleri korumak, React Hook Form ile birlikte kullanmak ve sunucu hatasını alana yazmak."
+description: "useActionState, sunucuda Zod ve sunucu hatası."
 lastVerified: "2026-10-22"
 translationKey: "forms/forms-with-server-actions"
 ---

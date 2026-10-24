@@ -1,5 +1,5 @@
 ---
-title: "Çalışma Yöntemleri"
+title: "Çalışma yöntemleri"
 description: "Agile, Scrum ve Kanban nedir, takımlar hangisini neden seçer."
 lastVerified: "2026-10-16"
 translationKey: "glossary/working-methods"

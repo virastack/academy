@@ -1,6 +1,6 @@
 ---
 title: "useQuery ve query key"
-description: "Sorgu yazma, status ile fetchStatus farkı, query key'i bağımlılık dizisi gibi kurma ve isteği iptal etme."
+description: "status ile fetchStatus, anahtarı bağımlılık dizisi gibi kurmak ve iptal."
 lastVerified: "2026-10-21"
 translationKey: "tanstack-query/use-query-and-query-keys"
 ---

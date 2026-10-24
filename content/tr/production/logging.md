@@ -1,6 +1,6 @@
 ---
 title: "Loglama"
-description: "Logları olay akışı olarak düşünmek, stdout'a yapılandırılmış JSON yazmak, pino ile seviyeler ve alt logger'lar, neyin loglanıp neyin loglanmayacağı, hassas alanları gizlemek, hata kodu ile kayıtları eşleştirmek ve OpenTelemetry'ye giriş."
+description: "Yapılandırılmış log, ne loglanır, ne loglanmaz."
 lastVerified: "2026-10-22"
 translationKey: "production/logging"
 ---

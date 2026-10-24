@@ -1,6 +1,6 @@
 ---
 title: "Trace ile hata ayıklama"
-description: "Başarısız testi okumak, UI Mode, Inspector ve --debug, trace kaydetme modları, Trace Viewer'ın sekmeleri, error-context dosyası ve kırılgan testi yakalamak için --repeat-each ve --shuffle."
+description: "UI Mode, Inspector, trace ve kırılgan testler."
 lastVerified: "2026-10-22"
 translationKey: "playwright/debugging-with-trace"
 ---

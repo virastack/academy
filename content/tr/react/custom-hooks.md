@@ -1,6 +1,6 @@
 ---
 title: "Custom hook"
-description: "Hook kuralları, tekrar eden mantığı hook'a taşımak, iyi bir hook API'si ve useSyncExternalStore."
+description: "Hook kuralları, mantığı hook'a taşıma ve useSyncExternalStore."
 lastVerified: "2026-10-21"
 translationKey: "react/custom-hooks"
 ---

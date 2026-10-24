@@ -1,6 +1,6 @@
 ---
 title: "Yayın öncesi kontrol listesi"
-description: "Canlıya çıkmadan önce kod ve build, yapılandırma, güvenlik başlıkları, hata ve log, performans ve erişilebilirlik, SEO ve operasyon başlıklarında bakılacaklar; yayın günü ve sonrası için kısa bir plan."
+description: "Canlıya çıkmadan önce bakılacaklar ve yayın günü planı."
 lastVerified: "2026-10-22"
 translationKey: "production/pre-release-checklist"
 ---

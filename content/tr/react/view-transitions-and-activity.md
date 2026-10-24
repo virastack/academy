@@ -1,6 +1,6 @@
 ---
 title: "View Transition ve Activity"
-description: "React 19.3'te kararlı hâle gelen ViewTransition ile animasyon ve Activity ile gizlenen ekranın state'ini korumak."
+description: "Geçişleri canlandırma ve gizlenen ekranın state'ini koruma."
 lastVerified: "2026-10-21"
 translationKey: "react/view-transitions-and-activity"
 ---
