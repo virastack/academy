@@ -60,7 +60,7 @@ Bilmeniz gereken iki sınır var. axe-core'un JSDOM desteği sınırlıdır ve `
 
 ## Playwright ile sayfa taraması
 
-Gerçek tarayıcıda tüm sayfayı taramak için `@axe-core/playwright` paketindeki `AxeBuilder` kullanılır.[^8] Playwright kurulumu [Playwright track'inde](/academy/playwright) anlatılıyor.
+Gerçek tarayıcıda tüm sayfayı taramak için `@axe-core/playwright` paketindeki `AxeBuilder` kullanılır.[^8] Playwright kurulumu [Playwright track'inde](/academy/playwright) anlatılıyor. Klavye gezinmesi, aria snapshot ve görsel testlerle birlikte CI'da çalıştırma [Erişilebilirlik ve görsel testler](/academy/playwright/accessibility-and-visual-tests) dersinde.
 
 ```command
 npm install -D @axe-core/playwright

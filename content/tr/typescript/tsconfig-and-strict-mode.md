@@ -230,31 +230,14 @@ Bundler tip kontrolü yapmadığı için, hatalı kodun ana dala girmemesini gar
 }
 ```
 
-Next.js ya da tek tsconfig'li bir projede değer `tsc --noEmit` olur. Ardından [!github] Actions iş akışı:[^22]
+Next.js ya da tek tsconfig'li bir projede değer `tsc --noEmit` olur. [!github] Actions iş akışında bu betiği bir adım olarak çalıştırmanız yeter:[^22]
 
 ```yaml
-# .github/workflows/ci.yml
-name: CI
-
-on:
-  pull_request:
-  push:
-    branches: [main]
-
-jobs:
-  typecheck:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v7
-      - uses: actions/setup-node@v7
-        with:
-          node-version: 24
-          cache: npm
       - run: npm ci
       - run: npm run typecheck
 ```
 
-Pull request'te tip hatası varsa bu adım kırmızıya döner. Lint ve test adımlarını aynı job'a ekleyebilirsiniz.
+Pull request'te tip hatası varsa bu adım kırmızıya döner. Workflow'un tamamı *(tetikleyiciler, önbellek, izinler)* [CI/CD (GitHub Actions)](/academy/production/cicd) dersinde.
 
 ## Kendin dene
 

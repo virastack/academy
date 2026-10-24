@@ -68,11 +68,11 @@ jobs:
       - run: npm run typecheck
 ```
 
-`typecheck` betiği `next typegen && tsc --noEmit`'tir. `next typegen` sayfa ve route tiplerini üretir; `tsc` bunlarla birlikte tüm projeyi kontrol eder *(bkz. [tsconfig ve strict mod](/academy/typescript/tsconfig-and-strict-mode))*.
+`typecheck` betiği `next typegen && tsc --noEmit`'tir. `next typegen` sayfa ve route tiplerini üretir; `tsc` bunlarla birlikte tüm projeyi kontrol eder *(bkz. [tsconfig ve strict mod](/academy/typescript/tsconfig-and-strict-mode))*. Aynı kontrollerin editör ve commit aşamalarındaki karşılığı [Kod kalitesi ve ekip standartları](/academy/architecture/code-quality) dersinde.
 
 > [!NOTE]
 >
-> Bu rehber yazılırken `actions/checkout` ve `actions/setup-node`'un güncel ana sürümü v7, `actions/upload-artifact` v7, `actions/cache` v6'dır. Bazı dokümanlardaki örnekler hâlâ eski sürümleri gösterir. Sürümü kopyalamadan önce eylemin sürüm sayfasına bakın.
+> Bu rehber yazılırken `actions/checkout` ve `actions/setup-node`'un güncel ana sürümü v7, `actions/cache` v6'dır. Bazı dokümanlardaki örnekler hâlâ eski sürümleri gösterir. Sürümü kopyalamadan önce eylemin sürüm sayfasına bakın.
 
 ## Uçtan uca testler ve önbellek
 
@@ -96,12 +96,6 @@ jobs:
             ${{ runner.os }}-nextjs-${{ hashFiles('package-lock.json') }}-
       - run: npx playwright install --with-deps chromium
       - run: npm test
-      - uses: actions/upload-artifact@v7
-        if: ${{ !cancelled() }}
-        with:
-          name: playwright-report
-          path: playwright-report/
-          retention-days: 14
 ```
 
 İki farklı önbellek var:
@@ -155,6 +149,8 @@ API anahtarları gibi değerler depoda değil, GitHub'da **secret** olarak sakla
         env:
           DEPLOY_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
 ```
+
+Secret'ların nereden sızdığı ve nasıl korunacağı [Secret ve bağımlılık güvenliği](/academy/auth-security/secrets-and-dependencies) dersinde.
 
 > [!WARNING]
 >

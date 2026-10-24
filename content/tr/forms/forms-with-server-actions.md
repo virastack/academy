@@ -7,11 +7,11 @@ translationKey: "forms/forms-with-server-actions"
 
 ## Server Action nedir?
 
-Server Action, sunucuda çalışan ve tarayıcıdan çağrılabilen bir async fonksiyondur. Dosyanın başına `"use server"` yazarsınız; [!nextjs] fonksiyonu bir uç noktaya çevirir ve çağrıyı sizin yerinize yapar. `<form action>`'a verildiğinde fonksiyon `FormData`'yı doğrudan alır.[^1][^2]
+Server Action, sunucuda çalışan ve tarayıcıdan çağrılabilen bir async fonksiyondur; `<form action>`'a verildiğinde `FormData`'yı doğrudan alır.[^1][^2] Tanımı, `"use server"` sınırı ve cache'i yenileme [Server Actions](/academy/nextjs/server-actions) dersinde. Bu derste formun kendisine odaklanıyoruz: doğrulama, hata gösterimi ve React Hook Form ile birlikte kullanım.
 
 > [!CAUTION]
 >
-> Server Action herkese açık bir uç noktadır. Formu yalnızca giriş yapmış kullanıcıya göstermeniz, action'ın yalnızca onlardan çağrılacağı anlamına gelmez. Her action'da oturumu ve yetkiyi **action'ın içinde** kontrol edin, girdiyi her zaman doğrulayın.[^1]
+> Server Action herkese açık bir uç noktadır: oturumu, yetkiyi ve girdiyi **action'ın içinde** kontrol edin. Ayrıntısı [Server Actions](/academy/nextjs/server-actions) ve [Yetkilendirme ve roller](/academy/auth-security/authorization-and-roles) derslerinde.[^1]
 
 ## Doğal form ve useActionState
 

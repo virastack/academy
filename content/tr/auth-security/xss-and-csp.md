@@ -63,6 +63,8 @@ Testte `<b>Merhaba</b><img src=x onerror="...">` girdisi `<b>Merhaba</b><img src
 >
 > DOMPurify'ı ve sunucudaki jsdom'u güncel tutun. Tarayıcılar değiştikçe yeni atlatma yolları bulunur.[^2][^5]
 
+Model çıktısını arayüze basarken de aynı kural geçerli: [Güvenlik ve maliyet](/academy/ai/security-and-cost) dersinde.
+
 ## Güvenli olmayan URL'ler
 
 Kullanıcının girdiği bir web sitesi adresini link yapmak masum görünür. Ama adres `javascript:` ile başlarsa tıklanınca kod çalışır.

@@ -100,6 +100,8 @@ Model her oturuma projeniz hakkında hiçbir şey bilmeden başlar: hangi paket 
 >
 > Kural dosyası zorunlu değildir. Modele bağlam olarak gider, uyum garantisi yoktur[^5]. Mutlaka olması gereken şey için hook, linter veya CI kullanın[^4].
 
+Next.js'e özel kurulum *(paketle gelen doküman, `AGENTS.md` içeriği)* [AI agent'larla Next.js](/academy/nextjs/ai-agents) dersinde.
+
 ### İyi bir kural dosyası nasıl yazılır?
 
 - **Kısa tutun.** [!claudeCode] 200, [!cursor] 500 satırın altını öneriyor[^5], [^7]. Her satır için sorun: "Bunu silersem model hata yapar mı?" Yapmazsa silin[^4].

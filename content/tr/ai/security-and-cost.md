@@ -111,7 +111,7 @@ Kodda bir şeyi unutursanız tarayıcı yakalasın. Aynı sayfa, `img-src` kıs�
 | CSP yok | 1 |
 | `default-src 'self'; img-src 'self'` | 0 |
 
-CSP varken tarayıcı görseli hiç istemedi, yani sorgudaki veri dışarı çıkmadı. Başlığı sunucunuzdan ya da barındırma ayarından ekleyebilirsiniz. Sunduğunuz görselleri ayrı bir alan adından veriyorsanız `img-src` listesine onu da ekleyin.
+CSP varken tarayıcı görseli hiç istemedi, yani sorgudaki veri dışarı çıkmadı. Başlığı sunucunuzdan ya da barındırma ayarından ekleyebilirsiniz. Sunduğunuz görselleri ayrı bir alan adından veriyorsanız `img-src` listesine onu da ekleyin. CSP'nin nasıl yazılacağı ve nonce kullanımı [XSS ve CSP](/academy/auth-security/xss-and-csp) dersinde.
 
 > [!DONT]
 >

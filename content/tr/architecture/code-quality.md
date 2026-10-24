@@ -208,6 +208,8 @@ jobs:
 - pnpm sürümü `package.json`'daki `packageManager` alanından okunur, workflow'u güncellemeniz gerekmez.[^19]
 - Pinlenmiş `pnpm/setup` satırı ve diğer sürümler pnpm dokümanındaki örnekten alındı.[^19] Siz de eylemleri bir commit SHA'sına sabitleyebilirsiniz.
 
+Lint ve tip kontrolünün ötesinde test, imaj ve deploy aşamalarını içeren tam hat [CI/CD (GitHub Actions)](/academy/production/cicd) dersinde.
+
 Kontrolün gerçekten kapı olması için GitHub'da *required status checks* açın. Zorunlu kontroller `successful`, `skipped` veya `neutral` olmadan birleştirme yapılamaz. İş adları tüm workflow'larda benzersiz olmalı, yoksa kontrol sonuçları belirsizleşir ve PR'lar bloke olabilir.[^3] [Anthony Fu](https://antfu.me)'nun videosu bu hattı PR başına çalışan bir `lint.yml` olarak kuruyor, yerelde denemek için de Docker tabanlı `act` aracını gösteriyor.[^2]
 
 ### Monorepo'da CI
