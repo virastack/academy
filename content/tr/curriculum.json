@@ -1002,7 +1002,7 @@
         {
           "slug": "architecture",
           "title": "Mimari ve Ölçeklenebilirlik",
-          "description": "Feature sınırları, klasör yapısı ve büyüyen kod tabanı.",
+          "description": "Feature sınırları, klasör yapısı, mimari desenler ve büyüyen kod tabanı.",
           "status": "published",
           "lessonGroups": [
             {
@@ -1029,6 +1029,40 @@
                   "description": "Dağınık bir e-ticaret projesini feature-based yapıya taşıma.",
                   "status": "published",
                   "kind": "project"
+                }
+              ]
+            },
+            {
+              "id": "patterns",
+              "title": "Mimari Desenler",
+              "lessons": [
+                {
+                  "slug": "feature-sliced-design",
+                  "title": "Feature-Sliced Design",
+                  "description": "Katmanlar, dilimler ve tek yönlü import kuralıyla frontend mimarisi.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "domain-driven-frontend",
+                  "title": "Domain odaklı frontend",
+                  "description": "DDD'den frontend'e ne alınır: ortak dil ve bağlam sınırları.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "component-driven-and-atomic-design",
+                  "title": "Component-driven ve Atomic Design",
+                  "description": "Arayüzü alttan yukarı kurmak ve ortak UI parçalarını sınıflandırmak.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "choosing-a-pattern",
+                  "title": "Desen seçimi",
+                  "description": "FSD, DDD, component-driven ve Atomic Design: hangisi hangi soruya cevap verir.",
+                  "status": "published",
+                  "kind": "lesson"
                 }
               ]
             },
