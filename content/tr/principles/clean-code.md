@@ -34,7 +34,7 @@ Tersi de var: iki kod parçası bugün aynı görünüyor ama farklı sebeplerle
 
 ## KISS: Sade tutun
 
-İşi gören en basit çözümü seçin. [Martin Fowler](https://martinfowler.com)'ın aktardığı Kent Beck'in basit tasarım kurallarının sonuncusu bunu söylüyor: ilk üç kurala hizmet etmeyen her şeyi çıkarın.[^4] *The Pragmatic Programmer* da aynı yönde: sade kodda hata saklanacak yer azalır.[^2]
+İşi gören en basit çözümü seçin. [Martin Fowler](https://martinfowler.com)'ın aktardığı [Kent Beck](https://newsletter.kentbeck.com)'in basit tasarım kurallarının sonuncusu bunu söylüyor: ilk üç kurala hizmet etmeyen her şeyi çıkarın.[^4] *The Pragmatic Programmer* da aynı yönde: sade kodda hata saklanacak yer azalır.[^2]
 
 Frontend'de en sık görülen karmaşıklık, gereksiz state ve Effect:
 
@@ -67,7 +67,7 @@ Genel bileşeni ikinci tablo gerçekten gelince çıkarırsınız. O zaman neyin
 
 YAGNI "kodu değiştirmeyi kolaylaştırma" demek değil. Fowler açıkça belirtiyor: bu prensip yalnızca henüz gerekmeyen özellik için eklenen yetenekleri kapsıyor, refactoring buna aykırı değil.[^3]
 
-## Ne zaman uygulamayın?
+## Ne zaman gerekmez?
 
 > [!CAUTION]
 >

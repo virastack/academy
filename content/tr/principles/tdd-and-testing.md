@@ -9,7 +9,7 @@ translationKey: "principles/tdd-and-testing"
 
 ## Red-Green-Refactor
 
-Martin Fowler'ın anlatımıyla TDD üç adımdan oluşur:[^1]
+[Martin Fowler](https://martinfowler.com)'ın anlatımıyla TDD üç adımdan oluşur:[^1]
 
 1. **Red:** Henüz var olmayan işlev için başarısız bir test yazın.
 2. **Green:** Testi geçirecek kadar kod yazın.
@@ -21,7 +21,7 @@ Refactoring'in kendisi [Refactoring](/academy/principles/refactoring) rehberinde
 
 ## Canon TDD
 
-Kent Beck, TDD'nin adımlarını *Canon TDD* yazısında beş adımda topladı:[^2]
+[Kent Beck](https://newsletter.kentbeck.com), TDD'nin adımlarını *Canon TDD* yazısında beş adımda topladı:[^2]
 
 | Adım | Ne yapılır? |
 | --- | --- |
@@ -77,7 +77,7 @@ npx vitest run
 
 ## Hangi testi yazmalı?
 
-TDD'nin "nasıl" sorusunu cevapladık. "Hangi test" sorusu için Kent C. Dodds'ın **Testing Trophy** modeli var: statik, unit, entegrasyon ve uçtan uca (E2E) katmanları. Testlerden beklenen *güven*, harcanan zamana karşılık getirdiği değerdir.[^3] Dodds'a göre yatırımın büyük bölümü entegrasyon testlerine gitmeli, çünkü güven, hız ve maliyet dengesi orada en iyi.[^4]
+TDD'nin "nasıl" sorusunu cevapladık. "Hangi test" sorusu için [Kent C. Dodds](https://kentcdodds.com)'ın **Testing Trophy** modeli var: statik, unit, entegrasyon ve uçtan uca (E2E) katmanları. Testlerden beklenen *güven*, harcanan zamana karşılık getirdiği değerdir.[^3] Dodds'a göre yatırımın büyük bölümü entegrasyon testlerine gitmeli, çünkü güven, hız ve maliyet dengesi orada en iyi.[^4]
 
 İlkesi şu: testleriniz yazılımın kullanılma biçimine ne kadar benzerse o kadar güven verir.[^3] Testing Library de aynı fikre dayanıyor: DOM düğümleriyle çalışır, component örneklerinin iç yapısına girmez.[^5] Testing Trophy'nin ayrıntısı [Vitest](/academy/vitest/introduction) rehberinde.
 

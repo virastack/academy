@@ -54,7 +54,7 @@ const charge = isSummer(date, plan)
 
 **Koku gördüğünüzde.** Fowler'a göre *code smell*, kodun yüzeyindeki bir işaret: genellikle daha derindeki bir soruna karşılık gelir. Ama koku tek başına kötü değildir. Bazı uzun metotlar sorunsuzdur.[^3] Yani "bu component uzun" demek tek başına refactor için yeterli sebep değil. Neden sorun olduğuna bakın.
 
-**Yeni özellikten önce.** Kent Beck'in sözüyle: önce değişikliği kolaylaştırın, sonra kolay değişikliği yapın. Fowler bunu *preparatory refactoring* diye anlatıyor: mevcut yapı yeni özelliği eklemeyi zorlaştırıyorsa önce yapıyı hazırlarsınız.[^4]
+**Yeni özellikten önce.** [Kent Beck](https://newsletter.kentbeck.com)'in sözüyle: önce değişikliği kolaylaştırın, sonra kolay değişikliği yapın. Fowler bunu *preparatory refactoring* diye anlatıyor: mevcut yapı yeni özelliği eklemeyi zorlaştırıyorsa önce yapıyı hazırlarsınız.[^4]
 
 ```tsx
 // Hedef: ProductCard'a indirim rozeti eklemek.

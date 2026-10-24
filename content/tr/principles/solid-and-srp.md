@@ -80,7 +80,7 @@ Schuchert'in örneğinde veri, domain diliyle konuşan bir *repository* arkasın
 >
 > Test yazarken fark edeceksiniz: component bir hook'a bağlıysa, testte yalnızca o hook'u değiştirmeniz yeter.
 
-## Ne zaman uygulamayın?
+## Ne zaman gerekmez?
 
 > [!CAUTION]
 >
