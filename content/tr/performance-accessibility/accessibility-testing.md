@@ -56,11 +56,11 @@ Bilmeniz gereken iki sınır var. axe-core'un JSDOM desteği sınırlıdır ve `
 
 > [!TIP]
 >
-> `toHaveNoViolations()` gibi bir matcher isterseniz `vitest-axe`, jest-axe'in Vitest için çatallanmış (fork) halidir ve aynı API'yi kullanır.[^7] Ancak paketin son sürümü 2022'de yayımlandı; eklemeden önce bakım durumuna bakın.[^8]
+> `toHaveNoViolations()` gibi bir matcher isterseniz `vitest-axe`, jest-axe'in Vitest için çatallanmış (fork) halidir ve aynı API'yi kullanır.[^7] Ancak paketin son sürümü 2022'de yayımlandı; eklemeden önce bakım durumuna bakın.[^7]
 
 ## Playwright ile Sayfa Taraması
 
-Gerçek tarayıcıda tüm sayfayı taramak için `@axe-core/playwright` paketindeki `AxeBuilder` kullanılır.[^9] Playwright kurulumu [Playwright track'inde](/academy/playwright) anlatılıyor.
+Gerçek tarayıcıda tüm sayfayı taramak için `@axe-core/playwright` paketindeki `AxeBuilder` kullanılır.[^8] Playwright kurulumu [Playwright track'inde](/academy/playwright) anlatılıyor.
 
 ```command
 npm install -D @axe-core/playwright
@@ -79,7 +79,7 @@ test('ana sayfada otomatik bulunabilen a11y hatası yok', async ({ page }) => {
 })
 ```
 
-`withTags` taramayı belirli WCAG seviyeleriyle sınırlar; bazı axe kuralları WCAG'de karşılığı olmayan "best practice" kurallarıdır.[^9] Sayfanın bir bölümünü taramak için `.include('#menu')`, bilinen bir sorunu geçici olarak dışarıda bırakmak için `.exclude()` ya da `.disableRules(['duplicate-id'])` kullanılır. Açılır menü gibi etkileşimle görünen bir bölümü taramadan önce o bölümün görünmesini bekleyin.[^9]
+`withTags` taramayı belirli WCAG seviyeleriyle sınırlar; bazı axe kuralları WCAG'de karşılığı olmayan "best practice" kurallarıdır.[^8] Sayfanın bir bölümünü taramak için `.include('#menu')`, bilinen bir sorunu geçici olarak dışarıda bırakmak için `.exclude()` ya da `.disableRules(['duplicate-id'])` kullanılır. Açılır menü gibi etkileşimle görünen bir bölümü taramadan önce o bölümün görünmesini bekleyin.[^8]
 
 > [!DO]
 >
@@ -87,11 +87,11 @@ test('ana sayfada otomatik bulunabilen a11y hatası yok', async ({ page }) => {
 
 > [!DONT]
 >
-> - `exclude` ile sorunları kalıcı olarak gizlemeyin; seçilen elemanın tüm alt elemanları da taranmaz.[^9]
+> - `exclude` ile sorunları kalıcı olarak gizlemeyin; seçilen elemanın tüm alt elemanları da taranmaz.[^8]
 
 ## eslint-plugin-jsx-a11y
 
-**eslint-plugin-jsx-a11y**, JSX'i kod çalışmadan statik olarak inceler ve hataları editörde, yazarken gösterir. Yalnızca statik koda baktığı için çalışan DOM'u test eden bir araçla ve yardımcı teknolojiyle test edilerek tamamlanmalıdır.[^10]
+**eslint-plugin-jsx-a11y**, JSX'i kod çalışmadan statik olarak inceler ve hataları editörde, yazarken gösterir. Yalnızca statik koda baktığı için çalışan DOM'u test eden bir araçla ve yardımcı teknolojiyle test edilerek tamamlanmalıdır.[^9]
 
 ```js
 // eslint.config.js
@@ -103,40 +103,40 @@ export default [
 ]
 ```
 
-Paylaşılan config `files` ya da globals ayarlamaz, bunları kendiniz eklersiniz.[^10] Next.js'in `eslint-config-next` paketi React, React Hooks ve Next.js kural setlerini getirir; zaten `jsx-a11y` gibi bir plugin kurduysanız çakışmayı önlemek için `@next/eslint-plugin-next`'i doğrudan kullanmanız önerilir.[^11]
+Paylaşılan config `files` ya da globals ayarlamaz, bunları kendiniz eklersiniz.[^9] Next.js'in `eslint-config-next` paketi React, React Hooks ve Next.js kural setlerini getirir; zaten `jsx-a11y` gibi bir plugin kurduysanız çakışmayı önlemek için `@next/eslint-plugin-next`'i doğrudan kullanmanız önerilir.[^10]
 
 ## Lighthouse Skorunun Sınırı
 
-Lighthouse erişilebilirlik skoru, otomatik denetimlerin ağırlıklı ortalamasıdır. Ağırlıklar axe'in kullanıcı etkisi değerlendirmesine göre verilir, her denetim ya geçer ya kalır. Elle yapılması gereken denetimler skora hiç girmez.[^12] Lighthouse'u çalıştırmayı [Ölçüm dersinde](/academy/performance-accessibility/measuring) gördünüz.
+Lighthouse erişilebilirlik skoru, otomatik denetimlerin ağırlıklı ortalamasıdır. Ağırlıklar axe'in kullanıcı etkisi değerlendirmesine göre verilir, her denetim ya geçer ya kalır. Elle yapılması gereken denetimler skora hiç girmez.[^11] Lighthouse'u çalıştırmayı [Ölçüm dersinde](/academy/performance-accessibility/measuring) gördünüz.
 
-Manuel Matuzović, içeriği ekran okuyucudan gizleyen, odak çerçevesini kaldıran ve fareyi devre dışı bırakan, buna rağmen Lighthouse'tan 100 alan bir sayfa yaptı. Vardığı sonuç: otomatik test yalnızca ilk adımdır.[^13]
+Manuel Matuzović, içeriği ekran okuyucudan gizleyen, odak çerçevesini kaldıran ve fareyi devre dışı bırakan, buna rağmen Lighthouse'tan 100 alan bir sayfa yaptı. Vardığı sonuç: otomatik test yalnızca ilk adımdır.[^12]
 
 ## Elle Kontrol: Klavyeyle Tur
 
-Fareyi bir kenara bırakın ve sayfayı yalnızca klavyeyle kullanın:[^14]
+Fareyi bir kenara bırakın ve sayfayı yalnızca klavyeyle kullanın:[^13]
 
 - `Tab` ile ileri, `Shift+Tab` ile geri gidin. Link, buton, form alanı ve medya kontrollerinin hepsine ulaşabiliyor musunuz?
 - Girdiğiniz her elemandan `Tab` ile çıkabiliyor musunuz (klavye tuzağı yok mu)?
 - Odak mantıklı okuma sırasıyla mı ilerliyor?
 - Odaklanan eleman her zaman net görünüyor mu?
 
-macOS'ta önce sistem ayarlarından klavyeyle tüm kontrollere gezinmeyi açmanız gerekebilir.[^14] Bu kontrollerin nasıl düzeltileceği [Klavye ve odak yönetimi](/academy/performance-accessibility/keyboard-and-focus) dersinde.
+macOS'ta önce sistem ayarlarından klavyeyle tüm kontrollere gezinmeyi açmanız gerekebilir.[^13] Bu kontrollerin nasıl düzeltileceği [Klavye ve odak yönetimi](/academy/performance-accessibility/keyboard-and-focus) dersinde.
 
 ## DevTools Accessibility Tree
 
-Ekran okuyucunun okuduğu şey DOM değil, tarayıcının ürettiği erişilebilirlik ağacıdır (HTML dersinden hatırlayın). Chrome DevTools'ta görmek için:[^15]
+Ekran okuyucunun okuduğu şey DOM değil, tarayıcının ürettiği erişilebilirlik ağacıdır (HTML dersinden hatırlayın). Chrome DevTools'ta görmek için:[^14]
 
 1. **Elements** panelinde bir eleman seçin.
 2. **Accessibility** sekmesini açın (görünmüyorsa "More Tabs" altında).
 3. "Show accessibility tree" seçeneğini açın; DOM ağacı tüm sayfanın erişilebilirlik ağacıyla yer değiştirir.
 
-Bir düğümü seçince tarayıcının hesapladığı özellikler **Computed Properties** altında görünür. Aynı sekmedeki **Source Order Viewer**, elemanların kaynak sırasını numaralarla gösterir.[^15]
+Bir düğümü seçince tarayıcının hesapladığı özellikler **Computed Properties** altında görünür. Aynı sekmedeki **Source Order Viewer**, elemanların kaynak sırasını numaralarla gösterir.[^14]
 
 ## Ekran Okuyucuya İlk Adım
 
 Ekran okuyucu bir yetenek gibi pratikle gelişir. Başlamak için birkaç kısayol yeterlidir.
 
-**VoiceOver** (macOS'ta yerleşik, en iyi Safari ile çalışır):[^16]
+**VoiceOver** (macOS'ta yerleşik, en iyi Safari ile çalışır):[^15]
 
 | İşlem | Kısayol |
 | :-- | :-- |
@@ -147,7 +147,7 @@ Ekran okuyucu bir yetenek gibi pratikle gelişir. Başlamak için birkaç kısay
 | Sonraki başlık | `VO+Cmd+H` |
 | Konuşmayı durdur | `Control` |
 
-**NVDA** (Windows için ücretsiz):[^17]
+**NVDA** (Windows için ücretsiz):[^16]
 
 | İşlem | Kısayol |
 | :-- | :-- |
@@ -158,7 +158,7 @@ Ekran okuyucu bir yetenek gibi pratikle gelişir. Başlamak için birkaç kısay
 | Element listesi | `NVDA+F7` |
 | Browse ve focus modu arasında geç | `NVDA+Space` |
 
-NVDA tuşu olarak kurulumda Caps Lock'u seçebilirsiniz.[^17]
+NVDA tuşu olarak kurulumda Caps Lock'u seçebilirsiniz.[^16]
 
 > [!TIP]
 >
@@ -166,10 +166,10 @@ NVDA tuşu olarak kurulumda Caps Lock'u seçebilirsiniz.[^17]
 
 ## Detaylı Öğrenmek İçin
 
-- **Konuşma:** Manuel Matuzović, "Building the most inaccessible site possible with a perfect Lighthouse score" (Access All Areas 21).[^18]
-- **Elle ilk inceleme:** W3C'nin Easy Checks rehberi, araç gerektirmeyen kontroller.[^14]
+- **Konuşma:** Manuel Matuzović, "Building the most inaccessible site possible with a perfect Lighthouse score" (Access All Areas 21).[^17]
+- **Elle ilk inceleme:** W3C'nin Easy Checks rehberi, araç gerektirmeyen kontroller.[^13]
 - **Araç karşılaştırması:** Adrian Roselli'nin elle inceleme ile dört ücretsiz aracı karşılaştırdığı yazı.[^3]
-- **Ekran okuyucu rehberi:** WebAIM'in VoiceOver makalesi, iOS dahil daha fazla kısayol.[^16]
+- **Ekran okuyucu rehberi:** WebAIM'in VoiceOver makalesi, iOS dahil daha fazla kısayol.[^15]
 
 ## Kaynaklar
 
@@ -179,15 +179,14 @@ NVDA tuşu olarak kurulumda Caps Lock'u seçebilirsiniz.[^17]
 4. [WebAIM Million 2026](https://webaim.org/projects/million/) *(research)* — Bir milyon ana sayfadaki otomatik tespit edilen hatalar ve otomatik aracın sınırı.
 5. [dequelabs/axe-core](https://github.com/dequelabs/axe-core) *(repo)* — axe-core'un kapsadığı WCAG sürümleri, `axe.run` kullanımı ve JSDOM sınırları.
 6. [jest-axe README](https://cdn.jsdelivr.net/npm/jest-axe@10.0.0/README.md) *(repo)* — React Testing Library ile axe kullanımı, JSDOM'da kontrast ve portal notu.
-7. [npm: vitest-axe](https://www.npmjs.com/package/vitest-axe) *(doc)* — jest-axe'in Vitest için fork'u ve matcher kurulumu.
-8. [DepScope: vitest-axe](https://depscope.dev/pkg/npm/vitest-axe) *(doc)* — vitest-axe paketinin sürüm geçmişi ve bakım durumu.
-9. [Playwright: Accessibility testing](https://playwright.dev/docs/accessibility-testing) *(doc)* — `AxeBuilder`, `withTags`, `include`/`exclude` ve otomatik testin sınırları.
-10. [jsx-eslint/eslint-plugin-jsx-a11y](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y) *(repo)* — JSX'i statik inceleyen kurallar ve flat config kullanımı.
-11. [Next.js: ESLint Plugin](https://nextjs.org/docs/app/api-reference/config/eslint) *(doc)* — `eslint-config-next` içeriği ve başka plugin'lerle çakışmayı önleme.
-12. [Chrome for Developers: Lighthouse accessibility score](https://developer.chrome.com/docs/lighthouse/accessibility/scoring) *(doc)* — Erişilebilirlik skorunun ağırlıklı ortalamayla hesaplanması.
-13. [Manuel Matuzović: Building the most inaccessible site possible with a perfect Lighthouse score](https://www.matuzo.at/blog/building-the-most-inaccessible-site-possible-with-a-perfect-lighthouse-score/) *(article)* — 100 puan alan ama kullanılamayan bir sayfa ve kullanılan hileler.
-14. [W3C WAI: Easy Checks, A First Review of Web Accessibility](https://w3c.github.io/wai-website/test-evaluate/preliminary/) *(doc)* — Klavye erişimi ve görünür odak dahil araçsız ilk kontroller.
-15. [Chrome for Developers: Accessibility features reference](https://developer.chrome.com/docs/devtools/accessibility/reference?hl=en) *(doc)* — Accessibility sekmesi, tam sayfa erişilebilirlik ağacı ve Source Order Viewer.
-16. [WebAIM: Using VoiceOver to Evaluate Web Accessibility](https://webaim.org/articles/voiceover/) *(article)* — VoiceOver'ı açma, VO tuşları, rotor ve temel gezinme kısayolları.
-17. [WebAIM: Using NVDA to Evaluate Web Accessibility](https://webaim.org/articles/nvda/) *(article)* — NVDA kurulumu, browse/focus modu ve temel kısayollar.
-18. [Manuel Matuzović: Building the most inaccessible site possible with a perfect Lighthouse score (Access All Areas 21)](https://conffab.com/presentation/building-the-most-inaccessible-site-possible-with-a-perfect-lighthouse-score/) *(video)* — Mükemmel otomatik skorun neden yeterli olmadığını gösteren konuşma.
+7. [npm: vitest-axe](https://www.npmjs.com/package/vitest-axe) *(doc)* — jest-axe'in Vitest için fork'u, matcher kurulumu ve sürüm geçmişi.
+8. [Playwright: Accessibility testing](https://playwright.dev/docs/accessibility-testing) *(doc)* — `AxeBuilder`, `withTags`, `include`/`exclude` ve otomatik testin sınırları.
+9. [jsx-eslint/eslint-plugin-jsx-a11y](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y) *(repo)* — JSX'i statik inceleyen kurallar ve flat config kullanımı.
+10. [Next.js: ESLint Plugin](https://nextjs.org/docs/app/api-reference/config/eslint) *(doc)* — `eslint-config-next` içeriği ve başka plugin'lerle çakışmayı önleme.
+11. [Chrome for Developers: Lighthouse accessibility score](https://developer.chrome.com/docs/lighthouse/accessibility/scoring) *(doc)* — Erişilebilirlik skorunun ağırlıklı ortalamayla hesaplanması.
+12. [Manuel Matuzović: Building the most inaccessible site possible with a perfect Lighthouse score](https://www.matuzo.at/blog/building-the-most-inaccessible-site-possible-with-a-perfect-lighthouse-score/) *(article)* — 100 puan alan ama kullanılamayan bir sayfa ve kullanılan hileler.
+13. [W3C WAI: Easy Checks, A First Review of Web Accessibility](https://w3c.github.io/wai-website/test-evaluate/preliminary/) *(doc)* — Klavye erişimi ve görünür odak dahil araçsız ilk kontroller.
+14. [Chrome for Developers: Accessibility features reference](https://developer.chrome.com/docs/devtools/accessibility/reference?hl=en) *(doc)* — Accessibility sekmesi, tam sayfa erişilebilirlik ağacı ve Source Order Viewer.
+15. [WebAIM: Using VoiceOver to Evaluate Web Accessibility](https://webaim.org/articles/voiceover/) *(article)* — VoiceOver'ı açma, VO tuşları, rotor ve temel gezinme kısayolları.
+16. [WebAIM: Using NVDA to Evaluate Web Accessibility](https://webaim.org/articles/nvda/) *(article)* — NVDA kurulumu, browse/focus modu ve temel kısayollar.
+17. [Manuel Matuzović: Building the most inaccessible site possible with a perfect Lighthouse score (Access All Areas 21)](https://conffab.com/presentation/building-the-most-inaccessible-site-possible-with-a-perfect-lighthouse-score/) *(video)* — Mükemmel otomatik skorun neden yeterli olmadığını gösteren konuşma.

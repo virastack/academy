@@ -243,7 +243,7 @@ if (fields.length > 0) {
 1. [Next.js: How to create forms with Server Actions](https://nextjs.org/docs/app/guides/forms) *(doc)* — `FormData`, sunucuda Zod, `useActionState`, `useFormStatus`, `$ACTION_` alanları ve her action'da yetki kontrolü.
 2. [React: Server Functions](https://react.dev/reference/rsc/server-functions) *(doc)* — `"use server"` ve sunucu fonksiyonlarını istemciden çağırmak.
 3. [React: useActionState](https://react.dev/reference/react/useActionState) *(doc)* — Dönen değerler, transition içinde çağırmak ve progressive enhancement.
-4. [React: Issue #29034](https://github.com/facebook/react/issues/29034) *(repo)* — Form action sonrası otomatik sıfırlama ve değerleri `defaultValue` ile korumak.
+4. [React: Issue #29034](https://github.com/react/react/issues/29034) *(repo)* — Form action sonrası otomatik sıfırlama ve değerleri `defaultValue` ile korumak.
 5. [GOV.UK Design System: Validation](https://design-system.service.gov.uk/patterns/validation/) *(doc)* — Sunucuda her zaman doğrulamak ve hata sonrası değerleri korumak.
 6. [Zod: Migration guide](https://zod.dev/v4/changelog) *(doc)* — Zod 3'ten 4'e değişen hata API'leri.
 7. [React Hook Form: Advanced Usage](https://react-hook-form.com/advanced-usage#ServerActionsuseActionState) *(doc)* — `handleSubmit` içinden action çağırmak ve sunucu hatasını `setError` ile yazmak.

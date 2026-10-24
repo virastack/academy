@@ -130,7 +130,7 @@ Josh W. Comeau select için de aynı kuralı hatırlatır: başlangıç değeri 
 2. [Josh W. Comeau](https://www.joshwcomeau.com/): [Data Binding in React](https://www.joshwcomeau.com/react/data-binding/) *(article)* — 9 Ocak 2023, güncelleme Aralık 2025. Controlled alan, iki yönlü bağlama ve select başlangıç değeri.
 3. [React: `<form>`](https://react.dev/reference/react-dom/components/form) *(doc)* — `action` prop'una fonksiyon vermek ve `FormData`.
 4. [MDN: FormData](https://developer.mozilla.org/en-US/docs/Web/API/FormData) *(doc)* — Form alanlarını adıyla okumak ve `get`'in dönüş tipi.
-5. [React: Issue #29034](https://github.com/facebook/react/issues/29034) *(repo)* — Form action sonrası otomatik sıfırlama, tarayıcı davranışıyla uyumu ve önerilen çözümler.
+5. [React: Issue #29034](https://github.com/react/react/issues/29034) *(repo)* — Form action sonrası otomatik sıfırlama, tarayıcı davranışıyla uyumu ve önerilen çözümler.
 6. [Adrian Roselli](https://adrianroselli.com/): [Avoid Default Field Validation](https://adrianroselli.com/2019/02/avoid-default-field-validation.html) *(article)* — Şubat 2019, güncelleme Ağustos 2023. Tarayıcı doğrulamasının ekran okuyucudaki sorunları.
 7. [GOV.UK Design System: Validation](https://design-system.service.gov.uk/patterns/validation/) *(doc)* — `novalidate`, sunucuda doğrulama ve hata mesajı yerleşimi.
 8. [React Hook Form: Get Started](https://react-hook-form.com/get-started) *(doc)* — Uncontrolled alanlarla kayıt ve izole render tasarımı.

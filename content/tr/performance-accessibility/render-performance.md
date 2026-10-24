@@ -198,7 +198,7 @@ Bu iki API tek bir component'in kendisi pahalıysa yardımcı olmaz ve ek CPU i�
 3. [Josh W. Comeau: Why React Re-Renders](https://joshwcomeau.com/react/why-react-re-renders) *(article)* — Re-render'ın state ile başlaması, props miti, `memo` ve Profiler ayarları.
 4. [Nadia Makarevich: React re-renders guide: everything, all at once](https://www.developerway.com/posts/react-re-renders-guide) *(article)* — Re-render'ın dört nedeni, composition kalıpları ve anti-pattern'ler.
 5. [React Blog, Brian Vaughn: Introducing the React Profiler](https://legacy.reactjs.org/blog/2018/09/10/introducing-the-react-profiler.html) *(doc)* — Profiler'da kayıt, commit'ler, flame chart renkleri ve ranked chart.
-6. [facebook/react: Issue #17935](https://github.com/facebook/react/issues/17935) *(repo)* — DevTools'taki "Highlight updates when components render" ayarına dair hata raporu.
+6. [react/react: Issue #17935](https://github.com/react/react/issues/17935) *(repo)* — DevTools'taki "Highlight updates when components render" ayarına dair hata raporu.
 7. [React: useMemo](https://react.dev/reference/react/useMemo) *(doc)* — Hesaplamayı saklamak, pahalılığı ölçmek ve CPU throttling önerisi.
 8. [React Blog: React 19.2](https://react.dev/blog/2025/10/01/react-19-2) *(doc)* — Performance Tracks ve Activity'nin duyurusu.
 9. [React: React Performance tracks](https://react.dev/reference/dev-tools/react-performance-tracks) *(doc)* — Scheduler ve Components izleri, build türlerine göre kullanımı.

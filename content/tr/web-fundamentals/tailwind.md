@@ -203,7 +203,7 @@ cn("px-2 py-1", isLarge && "px-4"); // isLarge true ise "py-1 px-4"
 
 - **Resmi doküman:** Tailwind dokümanının "Core concepts" bölümü bu dersin her başlığını derinlemesine anlatır; sınıf referans sayfalarına ihtiyaç oldukça bakılır.[^1]
 - **v3'ten gelen kod:** Eski bir projeyle ya da eğitimle karşılaşırsanız upgrade guide.[^9]
-- **Konuşma:** [Sarah Dayan](https://frontstuff.io/)'ın utility-first yaklaşımın neden ortaya çıktığını anlattığı 18 dakikalık konuşma (dotCSS 2019).[^25]
+- **Konuşma:** [Sarah Dayan](https://sarahdayan.dev)'ın utility-first yaklaşımın neden ortaya çıktığını anlattığı 18 dakikalık konuşma (dotCSS 2019).[^25]
 - **Konuşma:** Sarah Dayan'ın utility sınıflarının neden inline style olmadığını anlattığı konuşma (CSS Day 2024).[^26]
 - **Yazı:** Sarah Dayan'ın utility-first savunusu; dezavantajları da dürüstçe sayar.[^27]
 
@@ -233,6 +233,6 @@ cn("px-2 py-1", isLarge && "px-4"); // isLarge true ise "py-1 px-4"
 22. [Tailwind: Editor setup](https://tailwindcss.com/docs/editor-setup) *(doc)* — IntelliSense eklentisi ve Prettier ile sınıf sıralama.
 23. [Chris Coyier](https://chriscoyier.net/): [If we're gonna criticize utility-class frameworks, let's be fair about it](https://css-tricks.com/if-were-gonna-criticize-utility-class-frameworks-lets-be-fair-about-it/) *(article)* — Utility framework'lerine yönelik eleştirilerin hangilerinin adil olduğu.
 24. [Colton Voege](https://colton.dev/): [Tailwind is the Worst of All Worlds](https://colton.dev/blog/tailwind-is-the-worst-of-all-worlds/) *(article)* — Tailwind'e sert bir eleştiri ve kabul ettiği artıları.
-25. [Sarah Dayan](https://frontstuff.io/): [In Defense of Utility-First CSS (dotCSS 2019)](https://www.youtube.com/watch?v=R50q4NES6Iw) *(video)* — Büyüyen projelerde CSS'in bozulması ve utility-first yaklaşım.
-26. [Sarah Dayan](https://frontstuff.io/): [Utility First CSS Isn't Inline Styles (CSS Day 2024)](https://www.youtube.com/watch?v=g6wtyg3O4Fo) *(video)* — Utility sınıfları ile inline style arasındaki fark.
-27. [Sarah Dayan](https://frontstuff.io/): [In Defense of Utility-First CSS](https://www.freecodecamp.org/news/in-defense-of-utility-first-css-4f406acee6fb) *(article)* — Composition, BEM karşılaştırması ve utility-first'in dezavantajları.
+25. [Sarah Dayan](https://sarahdayan.dev): [In Defense of Utility-First CSS (dotCSS 2019)](https://www.youtube.com/watch?v=R50q4NES6Iw) *(video)* — Büyüyen projelerde CSS'in bozulması ve utility-first yaklaşım.
+26. [Sarah Dayan](https://sarahdayan.dev): [Utility First CSS Isn't Inline Styles (CSS Day 2024)](https://www.youtube.com/watch?v=g6wtyg3O4Fo) *(video)* — Utility sınıfları ile inline style arasındaki fark.
+27. [Sarah Dayan](https://sarahdayan.dev): [In Defense of Utility-First CSS](https://www.freecodecamp.org/news/in-defense-of-utility-first-css-4f406acee6fb) *(article)* — Composition, BEM karşılaştırması ve utility-first'in dezavantajları.
