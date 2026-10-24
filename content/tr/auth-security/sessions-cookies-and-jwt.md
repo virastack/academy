@@ -5,7 +5,7 @@ lastVerified: "2026-10-18"
 translationKey: "auth-security/sessions-cookies-and-jwt"
 ---
 
-## Oturum Neden Gerekir
+## Oturum neden gerekir
 
 HTTP her isteği birbirinden bağımsız işler. Kullanıcı giriş yaptıktan sonra sunucunun bir sonraki istekte onu tanıması için tarayıcının her istekte "ben buyum" diyen bir değer göndermesi gerekir. Bu değeri üretip doğrulama işine **oturum yönetimi** *(session management)* denir.[^1]
 
@@ -19,7 +19,7 @@ Next.js dokümantasyonu işi üç parçaya ayırır:[^2]
 
 Bu ders ortadaki parçayla ilgili. Oturumu tutmanın iki yaygın yolu var: **sunucu oturumu** ve **JWT**.
 
-## Sunucu Oturumu
+## Sunucu oturumu
 
 Kullanıcı giriş yapınca sunucu rastgele bir oturum kimliği *(session ID)* üretir, bunu veritabanına kaydeder ve tarayıcıya bir cookie ile gönderir. Tarayıcı sonraki her istekte bu cookie'yi geri yollar, sunucu da kimliği veritabanında arar.[^3]
 
@@ -76,7 +76,7 @@ const { payload: session } = await jwtVerify(token, secret, {
 
 Payload'daki `role` değerini `admin` yapıp token'ı tekrar gönderirseniz `jwtVerify` `signature verification failed` hatası verir. Header'a `"alg": "none"` yazıp imzayı silmek de işe yaramaz, çünkü `algorithms` listesi yalnızca `HS256`'yı kabul eder. JWT için güvenlik önerilerini toplayan RFC 8725 tam olarak bunu ister: kütüphane hangi algoritmaların kabul edileceğini sizden almalı ve doğrulamalardan biri bile başarısız olursa token'ın tamamını reddetmelidir.[^8]
 
-## Hangisini Seçmeli
+## Hangisini seçmeli
 
 | | Sunucu oturumu | JWT |
 | :-- | :-- | :-- |
@@ -94,7 +94,7 @@ Auth.js dokümantasyonu farkı açıkça yazar: süresi dolmadan bir JWT'yi geç
 >
 > Kendi sunucunuz olan bir React ya da Next.js uygulamasında varsayılan seçim: oturum kimliği ya da şifreli oturum verisi, `HttpOnly` bir cookie içinde. JWT'yi elle yönetmeye ancak gerçekten ihtiyaç olduğunda geçin.
 
-## Cookie Bayrakları
+## Cookie bayrakları
 
 Hangi yolu seçerseniz seçin, değer büyük ihtimalle bir cookie içinde gider. Cookie'nin güvenliğini `Set-Cookie` başlığındaki bayraklar belirler:[^1]
 
@@ -132,7 +132,7 @@ cookieStore.set("session", session, {
 });
 ```
 
-## Token'ı Nerede Saklamalı
+## Token'ı nerede saklamalı
 
 En çok tartışılan soru bu. OWASP'ın yanıtı net: oturum kimliğini ya da token'ı `localStorage` veya `sessionStorage`'a koymayın, çünkü sayfada çalışan her JavaScript bunlara erişebilir.[^4][^11]
 
@@ -145,7 +145,7 @@ En çok tartışılan soru bu. OWASP'ın yanıtı net: oturum kimliğini ya da t
 
 Tarayıcıda çalışan ve başka bir API'ye token gönderen uygulamalar için güncel öneri **Backend for Frontend** *(BFF)* desenidir: token'lar sunucuda kalır, tarayıcı yalnızca `HttpOnly` bir oturum cookie'si taşır.[^4] [Philippe De Ryck](https://pragmaticwebsecurity.com/about)'in LocoMocoSec konuşması cookie ile token seçiminin bu ödünleşimlerini anlatır.[^12]
 
-## Oturumun Yaşam Döngüsü
+## Oturumun yaşam döngüsü
 
 | An | Ne yapılır |
 | :-- | :-- |
@@ -155,13 +155,13 @@ Tarayıcıda çalışan ve başka bir API'ye token gönderen uygulamalar için g
 
 OWASP düşük riskli uygulamalar için 15–30 dakikalık işlemsizlik süresini makul bulur.[^4] Uzun süre açık kalan uygulamalarda oturum kullanıldıkça uzatılır; parola değiştirmek gibi hassas işlemler için kullanıcıdan kimliğini yeniden doğrulaması istenir.[^13]
 
-## Kendin Dene
+## Kendin dene
 
 - Giriş yaptığınız bir sitede DevTools > **Application** > **Cookies** sekmesini açın. Oturum cookie'sinin `HttpOnly`, `Secure` ve `SameSite` sütunlarına bakın.
 - Aynı sayfanın konsolunda `document.cookie` yazın; `HttpOnly` cookie'nin listede olmadığını görün.
 - [jwt.io](https://www.jwt.io/)'daki örnek token'ın payload'ını değiştirin ve imzanın geçersiz olduğunu görün.
 
-## Detaylı Öğrenmek İçin
+## Detaylı öğrenmek için
 
 - **Rehber:** [Pilcrow](https://pilcrowonpaper.com/)'un auth kitabı; oturum, cookie ve tarayıcı depolaması için kısa ve net sayfalar.[^3][^10]
 - **Resmi doküman:** OWASP Session Management Cheat Sheet; kimlik uzunluğu, cookie bayrakları ve süre önerileri.[^4]

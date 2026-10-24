@@ -5,7 +5,7 @@ lastVerified: "2026-10-17"
 translationKey: "typescript/interfaces-types-and-unions"
 ---
 
-## Object Tiplerine İsim Vermek
+## Object tiplerine isim vermek
 
 Önceki derste object tipini parametrenin yanına doğrudan yazdınız: `product: { name: string; price: number }`. Aynı şekil ürün listesinde, sepette ve sipariş özetinde tekrar tekrar gerekir. Her seferinde yeniden yazmak yerine şekle bir isim verirsiniz. [!typescript]'te bunun iki yolu vardır: `type` ve `interface`.[^1]
 
@@ -51,7 +51,7 @@ headset.description.toUpperCase();
 >
 > `readonly` yalnızca o özelliğin kendisini korur, içindeki object'i değil. Ayrıca sadece tip kontrolünde çalışır; çalışma anında object'i dondurmaz.[^2]
 
-## İç İçe Object ve Array
+## İç içe object ve array
 
 Tipler birbirinin içinde kullanılabilir. Sipariş, kalemlerinden oluşan bir array ve bir adres taşır.[^2]
 
@@ -73,7 +73,7 @@ type Order = {
 
 Sadece bir yerde kullanılan `shippingAddress` gibi bir şekli içeride bırakabilirsiniz. Başka yerde de gerekiyorsa ona da isim verin.
 
-## Union Tipler
+## Union tipler
 
 **Union**, bir değerin birkaç tipten **biri** olabileceğini söyler ve `|` ile yazılır.[^1] Ürün kimliği bazı yerlerde sayı, bazı yerlerde stok kodu olabilir:
 
@@ -123,7 +123,7 @@ enum OrderStatus {
 
 `erasableSyntaxOnly` ayarı, silinerek JavaScript'e dönüşemeyen `enum` gibi yapıları hata yapar.[^5] Bu ayar TypeScript 5.8'le geldi ve [!vite]'ın React şablonunda açık gelir.[^6] [Matt Pocock](https://www.mattpocock.com/) da yeni bir projeye `enum` eklemeyeceğini söyler.[^7] Kısacası sabit seçenekler için literal union yazın.
 
-## Intersection Tipler
+## Intersection tipler
 
 **Intersection**, birden fazla tipi `&` ile birleştirir; sonuçta hepsinin özellikleri bulunur.[^2] Sepet kalemini `Product`'a adet ekleyerek tanımlayabilirsiniz. Interface'te aynı işi `extends` yapar.[^2]
 
@@ -170,7 +170,7 @@ Kütüphane tiplerini genişletirken işe yarar ama farkında olmadan da olabili
 
 Bu yol haritasında, [!react] component prop'ları dahil, `type` kullanıyoruz. Önemli olan proje içinde tutarlı olmaktır.
 
-## Fazla Özellik Kontrolü
+## Fazla özellik kontrolü
 
 Bir object literal'ı doğrudan tipli bir değişkene atadığınızda ya da fonksiyona verdiğinizde, TypeScript tipte olmayan özellikleri hata sayar. Buna **excess property check** denir ve çoğunlukla yazım hatalarını yakalar.[^2]
 
@@ -188,7 +188,7 @@ const product: Product = {
 >
 > Bu kontrol yalnızca **taze** object literal'larda çalışır. Aynı object önce başka bir değişkene atanıp sonra `Product`'a verilirse fazla özellik hata vermez; tipler şekle göre karşılaştırılır.[^2]
 
-## Tipleri Dosyalar Arasında Paylaşmak
+## Tipleri dosyalar arasında paylaşmak
 
 Tipler değerler gibi `export` ve `import` edilir. Yalnızca tip içeren import'ları `import type` ile, karışık olanlarda tipin önüne `type` yazarak işaretleyin. Böylece Vite gibi araçlar bu import'ları güvenle silebilir.[^11]
 
@@ -209,7 +209,7 @@ import type { OrderStatus } from "./types";
 
 Vite şablonunda açık gelen `verbatimModuleSyntax` ayarı, tipi `type` olmadan import ederseniz hata verir: `'Product' is a type and must be imported using a type-only import when 'verbatimModuleSyntax' is enabled.`[^12][^6]
 
-## Kendin Dene
+## Kendin dene
 
 TypeScript Playground'da:
 
@@ -218,7 +218,7 @@ TypeScript Playground'da:
 - `OrderStatus`'a `"cancelled"` ekleyin ve `updateStatus` çağrısındaki hatanın kaybolduğunu görün.
 - `type A = { name: string }` ile `type B = { name: number }` tiplerini `&` ile birleştirin; `name`'in tipinin `never` olduğunu görün.
 
-## Detaylı Öğrenmek İçin
+## Detaylı öğrenmek için
 
 - **Resmi doküman:** TypeScript Handbook'un Object Types sayfası; opsiyonel, `readonly`, excess property check, `extends` ve intersection.[^2]
 - **Kitap:** [Matt Pocock](https://www.mattpocock.com/)'un çevrimiçi okunabilen *Total TypeScript Essentials* kitabının "Objects" bölümü; intersection ile `interface extends` karşılaştırması.[^10]

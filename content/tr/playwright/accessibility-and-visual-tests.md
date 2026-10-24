@@ -5,7 +5,7 @@ lastVerified: "2026-10-22"
 translationKey: "playwright/accessibility-and-visual-tests"
 ---
 
-## Üç Farklı Soru
+## Üç farklı soru
 
 Bu derste üç tür test var ve her biri farklı bir soruya cevap verir:
 
@@ -15,7 +15,7 @@ Bu derste üç tür test var ve her biri farklı bir soruya cevap verir:
 | Aria snapshot | Sayfanın yapısı *(roller, adlar, sıra)* beklenen gibi mi? | `toMatchAriaSnapshot` |
 | Görsel karşılaştırma | Sayfa piksel olarak öncekiyle aynı mı görünüyor? | `toHaveScreenshot` |
 
-## axe ile Tarama
+## axe ile tarama
 
 axe-core motoru ve `AxeBuilder` [Erişilebilirlik testi](/academy/performance-accessibility/accessibility-testing) dersinde ayrıntılı anlatılıyor. Playwright tarafında kalıp kısadır:[^1]
 
@@ -41,7 +41,7 @@ Taramadan önce sayfanın **hazır** olduğunu bekleyin. Liste yüklenmeden tara
 
 JSDOM'da çalışmayan renk kontrastı kuralı gerçek tarayıcıda çalışır; uçtan uca taramanın en büyük kazancı budur. Yine de Playwright dokümanının uyarısı nettir: otomatik testler yalnızca bazı yaygın sorunları bulur, birçok sorun ancak elle ve gerçek kullanıcılarla test edilerek ortaya çıkar.[^1]
 
-## Klavye ile Gezinme
+## Klavye ile gezinme
 
 axe'ın göremediği şeylerden biri akıştır: klavyeyle formu doldurup gönderebiliyor musunuz, odak doğru yere gidiyor mu? Bunu kullanıcı gibi test edin:
 
@@ -62,7 +62,7 @@ test("giriş formu klavyeyle kullanılabilir", async ({ page, loginPage }) => {
 
 `toBeFocused` ve `keyboard.press` ile hata sonrası odağın ilk hatalı alana gittiğini de doğrulayabilirsiniz *(bkz. [Hata gösterimi ve erişilebilirlik](/academy/forms/errors-and-accessibility))*.
 
-## Aria Snapshot
+## Aria snapshot
 
 Aria snapshot, bir elementin erişilebilirlik ağacının YAML ile yazılmış halidir: roller, erişilebilir adlar, durumlar ve hiyerarşi. Ekran okuyucunun sayfayı nasıl gördüğünü tek bakışta gösterir.[^2]
 
@@ -110,7 +110,7 @@ npx playwright test --update-snapshots
 
 Aria snapshot ve assertion birbirinin yerine geçmez. Doküman ikisini birlikte önerir: yapı için snapshot, belirli bir değer ya da davranış için assertion.[^2]
 
-## Görsel Karşılaştırma
+## Görsel karşılaştırma
 
 `toHaveScreenshot` sayfanın ya da bir elementin ekran görüntüsünü alır ve kayıtlı referans görüntüyle piksel piksel karşılaştırır:[^3]
 
@@ -147,7 +147,7 @@ await expect(page).toHaveScreenshot({
 });
 ```
 
-## Görsel Testleri Ayrı Projede Tutmak
+## Görsel testleri ayrı projede tutmak
 
 Görsel testler yavaştır ve platforma bağlıdır. Her `npm test`'te çalışmaları gerekmez. Playwright 1.64'teki `default: false` ile onları ayrı bir projede tutun:[^4]
 
@@ -181,7 +181,7 @@ npx playwright test --project=visual
 
 Görsel test dosyalarının `.visual.ts` ile bitmesi, onları normal projeden `testIgnore` ile ayırmayı kolaylaştırır.
 
-## Hangisini Ne Zaman?
+## Hangisini ne zaman?
 
 | Durum | Öneri |
 | :-- | :-- |
@@ -191,14 +191,14 @@ Görsel test dosyalarının `.visual.ts` ile bitmesi, onları normal projeden `t
 | Tasarım sisteminin görünümü, kritik sayfaların düzeni | Görsel karşılaştırma, ayrı projede |
 | Hesaplanan bir değer, bir davranış | Normal assertion |
 
-## Kendin Dene
+## Kendin dene
 
 - Projenizdeki her sayfa için bir axe testi yazın. Bir butonun adını silip testin ne raporladığına bakın.
 - Bir tabloya boş bir `toMatchAriaSnapshot("")` ekleyin ve Playwright'ın ürettiği şablonu okuyun. Bir hücreyi düzenli ifadeye çevirin.
 - Görsel test için ayrı bir proje kurun, referansı `--update-snapshots=missing` ile oluşturun. Bir rengi değiştirip farkı HTML raporunda inceleyin.
 - Giriş formunu yalnızca klavyeyle dolduran bir test yazın.
 
-## Detaylı Öğrenmek İçin
+## Detaylı öğrenmek için
 
 - **Resmi doküman:** Playwright, "Snapshot testing"; aria snapshot söz dizimi, kısmi ve tam eşleşme, güncelleme modları.[^2]
 - **Resmi doküman:** Playwright, "Visual comparisons"; referans görüntüler, platform adlandırması ve seçenekler.[^3]

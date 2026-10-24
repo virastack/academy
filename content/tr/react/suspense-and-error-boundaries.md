@@ -5,7 +5,7 @@ lastVerified: "2026-10-21"
 translationKey: "react/suspense-and-error-boundaries"
 ---
 
-## Yükleme Durumunu Ağaçta Tanımlamak
+## Yükleme durumunu ağaçta tanımlamak
 
 Her component'te `isLoading` state'i tutup spinner göstermek yerine React'e *"bu bölüm hazır olana kadar şunu göster"* dersiniz. Bu sınıra **Suspense boundary** denir:[^1]
 
@@ -25,7 +25,7 @@ Her component'te `isLoading` state'i tutup spinner göstermek yerine React'e *"b
 >
 > Suspense, Effect içinde çekilen veriyi **algılamaz**. `useEffect` + `setState` ile veri çekiyorsanız boundary hiçbir şey beklemez.[^1]
 
-## use ile Promise Okumak
+## use ile promise okumak
 
 `use`, bir Promise'in değerini render sırasında okur. Promise bekliyorsa component *askıya alınır* ve Suspense devreye girer; reddedilirse en yakın Error Boundary'ye gider.[^2]
 
@@ -53,7 +53,7 @@ En önemli kural: Promise **cache'lenmeli**. Render içinde `use(fetch(...))` ya
 
 Yukarıdaki `Map`, kuralı göstermek için yeterli ama gerçek bir cache değildir: hatalı isteği tekrar denemez, veriyi tazelemez, hiçbir şeyi silmez. React dokümanı da Promise'leri framework'ün ya da Suspense destekli bir kütüphanenin yönetmesini önerir.[^2][^1] Pratikte `use`'u çoğunlukla Next.js'te Server Component'in client component'e geçirdiği Promise'i okurken ya da bir kütüphanenin içinde görürsünüz.
 
-## Boundary'ler Nereye Konur
+## Boundary'ler nereye konur
 
 Boundary'ler bir tasarım kararıdır. React dokümanının önerisi: her component'i ayrı ayrı sarmayın; kullanıcının görmesini beklediği yükleme sırasını tasarlayın ve boundary'leri ona göre yerleştirin.[^1]
 
@@ -73,7 +73,7 @@ Başlık ve galeri birlikte açılır; yorumlar daha yavaşsa sayfayı bekletmez
 
 **Zaten görünen içeriği gizlemeyin.** Kullanıcı bir sekmeye tıkladığında sayfanın yerini aniden iskelet alıyorsa güncellemeyi `startTransition` ile yapın; React eski içeriği gösterirken yenisini arka planda hazırlar. Router'lar navigasyonu zaten transition olarak yapar.[^1]
 
-## Kod Bölme: lazy
+## Kod bölme: lazy
 
 Bir component'i ancak gerektiğinde yüklemek için `lazy` kullanılır; yüklenirken en yakın Suspense'in fallback'i görünür:[^5]
 
@@ -125,18 +125,18 @@ Error Boundary her hatayı yakalamaz. Event handler'larda ve render bittikten so
 >
 > - JSX'i `try/catch` ile sarmak. Render hatası orada yakalanmaz; `eslint-plugin-react-hooks`'un `error-boundaries` kuralı bunu uyarır.[^10]
 
-## Yalnızca Tarayıcıda Render
+## Yalnızca tarayıcıda render
 
 Server rendering kullanan bir uygulamada bazı component'ler sunucuda anlamlı bir şey üretemez *(`localStorage`, kullanıcının saat dilimi)*. React 19.3 bunun için `use(browser())` ekledi: component sunucuda askıya alınır, HTML'e en yakın Suspense'in fallback'i girer, tarayıcıda normal render olur. Eskiden kullanılan `mounted` state'i + Effect kalıbının yerini alır.[^11] Vite ile yazılan bir SPA'da sunucu render'ı olmadığı için buna ihtiyacınız olmaz.
 
-## Kendin Dene
+## Kendin dene
 
 - `ProductDetails`'te `use(fetchProduct(id))` yerine `use(fetch(...).then(...))` yazın ve ne olduğunu izleyin.
 - Sahte API'ye 2 saniye gecikme ekleyin. Yorumları önce aynı boundary'de, sonra ayrı bir boundary'de deneyin.
 - API'nin hata döndürmesini sağlayın; Error Boundary olmadan ve varken sayfayı karşılaştırın.
 - "Tekrar dene" butonu neden hep aynı hatayı veriyor? *(İpucu: cache.)* Hatalı Promise'i cache'ten silen bir düzeltme yazın.
 
-## Detaylı Öğrenmek İçin
+## Detaylı öğrenmek için
 
 - **Resmi doküman:** `<Suspense>` referansı; boundary'leri birlikte ya da iç içe açmak, eski içeriği göstermek ve navigasyonda sıfırlamak.[^1]
 - **Yazı:** [TkDodo](https://tkdodo.eu/)'nun React 19'daki Suspense değişikliğini anlattığı "A Drama in 3 Acts" yazısı.[^3]

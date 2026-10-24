@@ -5,7 +5,7 @@ lastVerified: "2026-10-17"
 translationKey: "web-fundamentals/css"
 ---
 
-## CSS Nedir
+## CSS nedir
 
 **CSS**, HTML ile kurulan yapının nasıl görüneceğini anlatan dildir. Her kural bir **seçici** ve süslü parantez içinde `property: value;` çiftlerinden oluşur. Seçici hangi elementlerin stilleneceğini, özellikler de neyin değişeceğini söyler.
 
@@ -30,7 +30,7 @@ En sık kullanılan seçiciler şunlardır:[^1]
 
 Class bir sayfada istendiği kadar kullanılabilir, ID ise sayfada bir kez kullanılır.[^1] Seçiciler **combinator** ile birleştirilerek elementin HTML'deki konumuna göre seçim yapılır: `nav a` nav içindeki tüm linkleri, `ul > li` yalnızca doğrudan çocukları, `h2 + p` başlıktan hemen sonraki paragrafı seçer.[^2] `:hover` gibi **pseudo-class**'lar elementin durumunu, `::before` gibi **pseudo-element**'ler elementin bir parçasını seçer.[^2]
 
-## Hangi Kural Kazanır
+## Hangi kural kazanır
 
 Aynı elemente birden çok kural uyduğunda tarayıcı hangisinin uygulanacağına üç kavramla karar verir: **cascade**, **specificity** ve **inheritance**.[^3]
 
@@ -64,7 +64,7 @@ Büyük projelerde bu sorunu çözmek için **cascade layers** (`@layer`) vardı
 
 Bazı özellikler ebeveynden çocuğa **miras** geçer, bazıları geçmez. `color` ve font özellikleri miras alınır; `width`, `margin`, `border` alınmaz.[^3] Bu yüzden `body`'ye verilen `color` sayfanın tamamına yayılır.
 
-## Kutu Modeli
+## Kutu modeli
 
 Tarayıcı her elementi bir kutu olarak çizer. Kutu içten dışa dört katmandan oluşur: **content** (içerik), **padding** (iç boşluk), **border** (kenarlık) ve **margin** (dış boşluk).[^9]
 
@@ -99,7 +99,7 @@ Font boyutunu `px` ile vermek, kullanıcının tarayıcıda seçtiği yazı boyu
 
 Gerçek sitelerde `px` hâlâ her yerde: sitelerin %98,28'i `px`, %80,15'i `rem` kullanıyor.[^7]
 
-## Flexbox ve Grid
+## Flexbox ve grid
 
 Modern sayfa düzeni iki araçla kurulur. **Flexbox** tek boyutlu düzen içindir: öğeleri bir satır ya da sütun boyunca dizer. **Grid** iki boyutludur: satır ve sütunları birlikte kontrol eder.[^13]
 
@@ -138,7 +138,7 @@ Bu örnekte sütunlar en az 200px olur ve ekrana sığdığı kadar sütun açı
 
 2022 verisine göre flexbox mobil sayfaların %74'ünde, grid ise %12'sinde kullanılıyordu.[^18]
 
-## Responsive Tasarım
+## Responsive tasarım
 
 **Responsive tasarım**, sayfanın her ekran boyutunda düzgün görünmesi ve rahat kullanılmasıdır.[^19] Üç parçası vardır:
 
@@ -165,7 +165,7 @@ Bu örnekte sütunlar en az 200px olur ve ekrana sığdığı kadar sütun açı
 
 Bu yaklaşıma **mobile-first** denir: önce dar ekran için tek sütun yazılır, ekran genişledikçe sütun eklenir.[^19] Breakpoint'leri popüler cihaz boyutlarına göre değil, içeriğin bozulmaya başladığı genişliğe göre seçin.[^20]
 
-## Custom Property
+## Custom property
 
 **Custom property** (CSS değişkeni), bir değeri bir kez tanımlayıp her yerde kullanmayı sağlar. Adı iki tire ile başlar, `var()` ile okunur.[^21]
 
@@ -183,7 +183,7 @@ Bu yaklaşıma **mobile-first** denir: önce dar ekran için tek sütun yazılı
 
 `:root`'ta tanımlanan değer tüm sayfada geçerli olur ve miras yoluyla çocuklara iner; bir bileşende yeniden tanımlanarak yalnızca orada değiştirilebilir.[^21] `var()`'ın ikinci değeri, değişken tanımlı değilse kullanılan yedektir.[^22] Tema ve dark mode gibi işlerin temeli budur.
 
-## Detaylı Öğrenmek İçin
+## Detaylı öğrenmek için
 
 - **Baştan sona kurs:** web.dev'in ücretsiz Learn CSS kursu; nesting, container queries ve anchor positioning gibi yeni konular da var.[^23]
 - **Responsive tasarım:** web.dev'in Learn Responsive Design kursu.[^24]

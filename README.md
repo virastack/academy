@@ -36,20 +36,20 @@
 | **Building with React** | TypeScript, React, Next.js |
 | **State & Data** | TanStack Query, Zustand, Forms |
 | **Testing, Quality & Shipping** | Vitest, Playwright, Performance & Accessibility, Production |
-| **Advanced** | Architecture & Scalability, Auth & Security, AI for Frontend |
+| **Advanced** | Architecture & Scalability, Software Principles, Auth & Security, AI for Frontend |
 | **Team & Industry** | Industry Glossary |
 
 ## Repository Structure
 
 | Path | Description |
 | :--- | :--- |
-| `content/<locale>/curriculum.json` | Track and lesson tree (`tr`, `en`) |
+| `content/<locale>/curriculum.json` | Track and lesson tree (`tr` for now) |
 | `content/<locale>/<track>/<lesson>.md` | Lesson bodies, one folder per language |
 | `examples/` | Source code for project lessons |
 | `assets/` | Images used in lessons |
 | `CONTENT.md` | Authoring syntax |
 
-Lessons are available in Turkish (`tr`) and English (`en`).
+Lessons are currently written in Turkish (`tr`). The English (`en`) folder is reserved and has no lessons yet.
 
 [virastack.com](https://virastack.com) clones this repository at build time. Every push to `main` redeploys the site.
 

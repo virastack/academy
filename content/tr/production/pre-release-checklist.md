@@ -5,13 +5,13 @@ lastVerified: "2026-10-22"
 translationKey: "production/pre-release-checklist"
 ---
 
-## Neden Liste?
+## Neden liste?
 
 Yayın günü stresli bir gündür ve stres altında en bariz adım unutulur. Pilotlar her kalkıştan önce, binlerce kez uçtukları uçakta bile kontrol listesini okur. Liste bilgi vermez, **unutmayı** önler.
 
 Bu ders bir kontrol listesidir. Her madde bu rehberdeki bir derse ya da [!nextjs]'in kendi production kontrol listesine dayanır.[^1] Listeyi deponuza bir pull request şablonu ya da `RELEASE.md` olarak kopyalayın ve projenize göre düzenleyin.
 
-## Kod ve Build
+## Kod ve build
 
 - [ ] `next build` yerelde ve CI'da hatasız tamamlanıyor. Next.js dokümanı yayından önce yerelde build alıp `next start` ile production'a yakın bir ortamda denemenizi önerir.[^1]
 - [ ] Lint ve tip kontrolü CI'da zorunlu; `main`'e birleştirme bu kontrollerin geçmesine bağlı *(bkz. [CI/CD](/academy/production/cicd))*.
@@ -65,7 +65,7 @@ const nextConfig: NextConfig = {
 >
 > Başlıkları test edin. Bu rehberin projesinde bir Playwright testi `request.get("/login")` ile başlıkları okur ve `x-powered-by`'ın olmadığını doğrular. Bir yapılandırma değişikliği başlıkları sessizce kaldırırsa test düşer.
 
-## Hatalar ve Loglar
+## Hatalar ve loglar
 
 - [ ] `app/error.tsx` ve `app/global-error.tsx` var. Next.js'in kontrol listesi tüm uygulama için erişilebilir bir hata ekranı önerir.[^1]
 - [ ] Özel bir 404 sayfası var *(`not-found.tsx`)*.
@@ -76,7 +76,7 @@ const nextConfig: NextConfig = {
 - [ ] Parola, token, cookie ve kart bilgisi loglara yazılmıyor; `redact` ayarlı.
 - [ ] Uyarılar tanımlı ve her biri eyleme dönüştürülebilir.
 
-## Performans ve Erişilebilirlik
+## Performans ve erişilebilirlik
 
 - [ ] Lighthouse gizli pencerede çalıştırıldı. Next.js dokümanı bunun bir simülasyon olduğunu ve gerçek kullanıcı verisiyle *(Core Web Vitals)* birlikte okunması gerektiğini hatırlatır.[^1]
 - [ ] Core Web Vitals ölçülüyor; `useReportWebVitals` ya da platformun analitik aracı.
@@ -84,7 +84,7 @@ const nextConfig: NextConfig = {
 - [ ] Görseller `next/image`, yazı tipleri `next/font` ile.
 - [ ] Erişilebilirlik taraması ve klavye testi yapıldı *(bkz. [Erişilebilirlik ve görsel testler](/academy/playwright/accessibility-and-visual-tests))*.
 
-## SEO ve Paylaşım
+## SEO ve paylaşım
 
 - [ ] Her sayfanın başlığı ve açıklaması var; sosyal paylaşım görseli tanımlı *(bkz. [Metadata ve SEO](/academy/nextjs/metadata-and-seo))*.
 - [ ] `robots.txt` ve site haritası canlı adresi gösteriyor; önizleme ortamı arama motorlarına kapalı.
@@ -100,7 +100,7 @@ const nextConfig: NextConfig = {
 - [ ] Veritabanı değişiklikleri eski ve yeni sürümle aynı anda çalışabilir.
 - [ ] Alan adı, TLS sertifikası ve yönlendirmeler *(`www`'dan köke ya da tersi)* hazır.
 
-## Yayın Günü
+## Yayın günü
 
 1. Yayını ekibin çalıştığı bir saatte yapın; cuma akşamı değil.
 2. Deploy'dan sonra sağlık uç noktasıyla doğru sürümün çalıştığını doğrulayın.
@@ -108,19 +108,19 @@ const nextConfig: NextConfig = {
 4. İlk bir saat hata izleme panelini ve hata oranını izleyin. Yeni bir hata türü çıktıysa geri alma kararını erken verin.
 5. Riskli özellikleri flag ile kademeli açın.
 
-## Yayından Sonra
+## Yayından sonra
 
 - Hangi maddenin atlandığını ya da hangi sorunun listede olmadığını not edin ve listeyi güncelleyin. Liste yaşayan bir belgedir.
 - İşini bitiren yayın flag'lerini silmek için bir iş kaydı açın.
 - Bir sorun yaşandıysa suçlu aramadan bir değerlendirme yazın: ne oldu, nasıl fark edildi, neden olmuştu, bir daha olmaması için ne değişiyor?
 
-## Kendin Dene
+## Kendin dene
 
 - Bu listeyi projenizin `.github/pull_request_template.md` dosyasına kopyalayın ve uymayan maddeleri silin.
 - `curl -I` ile canlı sitenizin başlıklarına bakın. Hangi güvenlik başlıkları eksik?
 - Geri alma planınızı yazın ve bir önizleme ortamında deneyin. Ne kadar sürdü?
 
-## Detaylı Öğrenmek İçin
+## Detaylı öğrenmek için
 
 - **Resmi doküman:** Next.js, "Production Checklist"; otomatik optimizasyonlar ve yayından önce bakılacaklar.[^1]
 - **Resmi doküman:** Next.js, "headers"; güvenlik başlıkları ve örnek değerler.[^2]

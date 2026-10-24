@@ -5,7 +5,7 @@ lastVerified: "2026-10-21"
 translationKey: "tanstack-query/prefetch-with-nextjs"
 ---
 
-## Önce: Gerçekten Gerekiyor mu
+## Önce: Gerçekten gerekiyor mu
 
 [!nextjs] App Router'da veri çoğunlukla Server Component'te okunur ve TanStack Query'ye ihtiyaç kalmayabilir *(bkz. [Veri çekme ve streaming](/academy/nextjs/data-fetching-and-streaming))*. Doküman yeni bir Server Component uygulamasında önce framework'ün araçlarıyla başlamayı, TanStack Query'yi ihtiyaç doğduğunda eklemeyi önerir.[^1]
 
@@ -77,7 +77,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
 
 Burada `useState(() => new QueryClient())` yerine modül düzeyinde bir değişken kullanılıyor. Sebep: Provider ile onun altında askıya alan bir component arasında `<Suspense>` yoksa React ilk render'ı atar ve `useState` ile oluşturulan client kaybolur.[^1] `environmentManager.isServer()`, eski örneklerde gördüğünüz `isServer` sabitinin yerini aldı; sabit kodda kullanımdan kalkmış olarak işaretli.[^3]
 
-## Sunucuda Başlat, İstemcide Kullan
+## Sunucuda başlat, istemcide kullan
 
 Server Component sorguyu başlatır, cache'i `dehydrate` ile serileştirir ve `HydrationBoundary` ile istemciye verir:[^1]
 
@@ -135,9 +135,9 @@ Sorgu henüz bitmediği için `dehydrate` onu `pending` haliyle, içindeki Promi
 >
 > `useSuspenseQuery` yerine `useQuery` de Promise'i alır, ama Next.js bu durumda askıya almaz; component `pending` render edilir ve içerik sunucuda render edilmez.[^1]
 
-`connection()` satırı Cache Components açık projeler *(`create-next-app` varsayılanı)* için gereklidir. `QueryClient` her sorguya `Date.now()` ile zaman damgası yazar; Next.js build sırasında prerender edilen bir component'te bu değeri görürse build'i durdurur. `connection()` component'in istek anında çalışacağını söyler; başlık ve fallback statik kabukta kalır, liste istekte akar *(bkz. [Cache ve render modeli](/academy/nextjs/caching-and-rendering))*.[^5]
+`connection()` satırı Cache Components açık projeler *(`create-next-app` varsayılanı)* için gereklidir. `QueryClient` her sorguya `Date.now()` ile zaman damgası yazar; Next.js build sırasında prerender edilen bir component'te bu değeri görürse build'i durdurur. `connection()` component'in istek anında çalışacağını söyler; başlık ve fallback statik kabukta kalır, liste istekte akar *(bkz. [Cache ve render modeli](/academy/nextjs/caching-and-rendering))*.[^4]
 
-## queryFn İki Yerde Çalışır
+## queryFn iki yerde çalışır
 
 Aynı `queryOptions` hem sunucuda hem tarayıcıda çalışır. Sorgu eskidiğinde istemci `queryFn`'i kendisi çağırır. Bu yüzden `queryFn`:
 
@@ -157,7 +157,7 @@ useMutation({
 });
 ```
 
-## Veri Kimin
+## Veri kimin
 
 Sunucuda `await queryClient.query(...)` ile sonucu alıp Server Component'te göstermek caziptir. Doküman bunun bir tuzak olduğunu anlatır: istemci sorguyu yenilediğinde Client Component güncellenir, ama TanStack Query Server Component'i yenilemeyi bilmez. Ekranda aynı verinin iki farklı hali kalır.[^1]
 
@@ -167,15 +167,15 @@ const products = await queryClient.query(productQueries.list("all"));
 return <p>{products.length} ürün</p>;
 ```
 
-Kural: TanStack Query açısından Server Component yalnızca **prefetch** yeridir. Sonucunu sunucuda render etmeyin ya da başka bir component'e prop olarak geçmeyin.[^1] Ürün yoksa 404 vermek gibi kritik bir karar gerekiyorsa `await` edip `noop` olmadan hatayı ele alın; ama sonucu yine ekrana basmayın.[^4]
+Kural: TanStack Query açısından Server Component yalnızca **prefetch** yeridir. Sonucunu sunucuda render etmeyin ya da başka bir component'e prop olarak geçmeyin.[^1] Ürün yoksa 404 vermek gibi kritik bir karar gerekiyorsa `await` edip `noop` olmadan hatayı ele alın; ama sonucu yine ekrana basmayın.[^5]
 
-## Birden Fazla Sınır
+## Birden fazla sınır
 
 `HydrationBoundary` sayfada birden fazla yerde olabilir; her Server Component kendi `QueryClient`'ını oluşturup kendi sınırını verebilir. İç içe Server Component'ler sırayla `await` ederse sunucuda şelale oluşur. `layout.tsx` ve paralel route'larda yapılan prefetch'leri Next.js paralel çalıştırır.[^1]
 
 Tek bir istek kapsamında tek client isterseniz `React.cache(() => new QueryClient())` kullanabilirsiniz. Bedeli: her `dehydrate` çağrısı client'taki **tüm** sorguları yeniden serileştirir.[^1]
 
-## Kendin Dene
+## Kendin dene
 
 - Ürünler sayfasını yukarıdaki gibi kurun. Network sekmesinde ilk yüklemede tarayıcıdan ürün isteği gidiyor mu?
 - `staleTime`'ı `0` yapın ve tekrar bakın. İstemci veriyi neden hemen yeniden istiyor?
@@ -183,10 +183,10 @@ Tek bir istek kapsamında tek client isterseniz `React.cache(() => new QueryClie
 - `void` satırını silin. `ProductList` artık nereden veri getiriyor ve sayfa sunucuda neyi render ediyor?
 - `queryFn`'e `server-only` bir fonksiyon verin, sonra sekmeden çıkıp dönün. Hata nerede çıkıyor?
 
-## Detaylı Öğrenmek İçin
+## Detaylı öğrenmek için
 
 - **Resmi doküman:** "Advanced Server Rendering"; Server Component'ler, streaming, veri sahipliği ve serileştirme.[^1]
-- **Resmi doküman:** "Server Rendering & Hydration"; hydration API'lerinin temeli ve `await` ile `void` farkı.[^4]
+- **Resmi doküman:** "Server Rendering & Hydration"; hydration API'lerinin temeli ve `await` ile `void` farkı.[^5]
 - **Yazı:** [TkDodo](https://tkdodo.eu/), "You Might Not Need React Query"; Server Component'lerle hibrit kullanım.[^2]
 
 ## Kaynaklar
@@ -194,5 +194,5 @@ Tek bir istek kapsamında tek client isterseniz `React.cache(() => new QueryClie
 1. [TanStack Query: Advanced Server Rendering](https://tanstack.com/query/latest/docs/framework/react/guides/advanced-ssr) *(doc)* — Next.js kurulumu, `pending` sorguları akıtmak, Server Action uyarısı ve veri sahipliği.
 2. [TkDodo](https://tkdodo.eu/): [You Might Not Need React Query](https://tkdodo.eu/blog/you-might-not-need-react-query) *(article)* — 20 Mayıs 2023. Server Component'ler ve hibrit kullanım alanları.
 3. [TanStack Query: Advanced Server Rendering, Initial setup](https://tanstack.com/query/latest/docs/framework/react/guides/advanced-ssr#initial-setup) *(doc)* — `environmentManager.isServer()` ile sunucu ve tarayıcıda client oluşturmak.
-4. [TanStack Query: Server Rendering & Hydration](https://tanstack.com/query/latest/docs/framework/react/guides/ssr) *(doc)* — `dehydrate`, `HydrationBoundary`, kritik veri için `await` ve hata kodları.
-5. [Next.js: connection](https://nextjs.org/docs/app/api-reference/functions/connection) *(doc)* — Render'ı istek anına bırakmak ve prerender sırasında `Date.now()` gibi değişken değerler.
+4. [Next.js: connection](https://nextjs.org/docs/app/api-reference/functions/connection) *(doc)* — Render'ı istek anına bırakmak ve prerender sırasında `Date.now()` gibi değişken değerler.
+5. [TanStack Query: Server Rendering & Hydration](https://tanstack.com/query/latest/docs/framework/react/guides/ssr) *(doc)* — `dehydrate`, `HydrationBoundary`, kritik veri için `await` ve hata kodları.

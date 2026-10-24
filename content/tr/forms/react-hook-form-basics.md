@@ -5,7 +5,7 @@ lastVerified: "2026-10-22"
 translationKey: "forms/react-hook-form-basics"
 ---
 
-## Kurulum ve İlk Form
+## Kurulum ve ilk form
 
 [!react-hook-form] *(RHF)* bu dersin yazıldığı tarihte 7.90 sürümündedir. v8 beta aşamasında; derste fark eden yerler not edildi.[^1]
 
@@ -126,7 +126,7 @@ const onSubmit: SubmitHandler<ContactForm> = async (data) => {
 
 `root` ile başlayan hatalar bir alana ait değildir; formun genel hatasıdır ve bir sonraki gönderimde silinir.[^6]
 
-## formState ve Proxy Kuralı
+## formState ve proxy kuralı
 
 `formState` formun durumunu verir:[^7]
 
@@ -150,7 +150,7 @@ const { isDirty, isValid } = formState;
 return <button disabled={!isDirty || !isValid} />;
 ```
 
-## Doğrulama Modu
+## Doğrulama modu
 
 `mode` doğrulamanın ilk ne zaman çalışacağını, `reValidateMode` gönderimden sonra ne zaman tekrarlanacağını seçer:[^3]
 
@@ -164,7 +164,7 @@ return <button disabled={!isDirty || !isValid} />;
 
 Doküman emin değilseniz `onTouched`'ı önerir: hata kullanıcı alandan çıkınca görünür, sonra yazdıkça güncellenir; ilk kez yazarken kimse azarlanmaz.[^3] Bu zamanlamanın arkasındaki UX araştırması [Hata gösterimi ve erişilebilirlik](/academy/forms/errors-and-accessibility) dersinde.
 
-## Formu Sıfırlamak
+## Formu sıfırlamak
 
 Gönderimden sonra formu temizlemek için `reset`'i `onSubmit` içinde çağırmayın. `handleSubmit` gönderim durumunu `onSubmit` bittikten **sonra** günceller; `reset` değerleri temizler ama `isSubmitSuccessful` gibi alanlar eski kalır. Doküman `isSubmitSuccessful`'u bir effect'te izlemeyi önerir:[^8]
 
@@ -176,7 +176,7 @@ useEffect(() => {
 }, [isSubmitSuccessful, reset]);
 ```
 
-## Değeri Okumak
+## Değeri okumak
 
 Değer okumanın birkaç yolu var ve her biri farklı şeyi render eder:[^9]
 
@@ -198,18 +198,18 @@ function MessageCounter({ control }: { control: Control<ContactForm> }) {
 >
 > [React Compiler](https://react.dev/learn/react-compiler) kullanıyorsanız `watch` ve `getValues` render'da eski değer gösterebilir: ikisi her render'da aynı referansı döndürür ve compiler sonucu önbelleğe alır. Render için `useWatch`, yan etki için `subscribe` kullanın. v8 compiler desteği getiriyor.[^9][^10]
 
-## v8'e Hazırlık
+## v8'e hazırlık
 
 v8 hâlâ beta. Bu rehberdeki kodu etkileyen en görünür değişiklik: `useFieldArray`'deki `field.id`, v8'de `field.key` oluyor.[^10][^11] Geçiş zamanı gelince resmi migration rehberini takip edin.
 
-## Kendin Dene
+## Kendin dene
 
 - İletişim formunu kurun ve `mode`'u sırayla `onSubmit`, `onBlur`, `onTouched` yapın. Hata mesajları ne zaman görünüyor?
 - `formState.isDirty`'yi butonda kullanın; `defaultValues`'u silip tekrar deneyin.
 - `MessageCounter`'ı önce `watch` ile formun içinde, sonra `useWatch` ile ayrı component'te yazın. React DevTools'ta "Highlight updates" ile hangisinin daha az render ettiğine bakın.
 - `sendMessage`'ı her seferinde hata fırlatacak şekilde değiştirin ve `root.server` hatasını gösterin.
 
-## Detaylı Öğrenmek İçin
+## Detaylı öğrenmek için
 
 - **Resmi doküman:** "Get Started"; kayıt, doğrulama, controlled bileşenler ve tasarım felsefesi.[^1]
 - **Resmi doküman:** "useForm"; tüm seçenekler, `mode`, `values` ve async `defaultValues`.[^3]

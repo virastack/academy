@@ -5,7 +5,7 @@ lastVerified: "2026-10-21"
 translationKey: "nextjs/metadata-and-seo"
 ---
 
-## SEO'da Next.js'in Payı
+## SEO'da Next.js'in payı
 
 Google'ın başlangıç rehberine göre arama motorunun işi üç adımdır: sayfayı bulmak, taramak ve içeriği anlamak.[^1] Google JavaScript'i de çalıştırabilir ama bunu sonradan, ayrı bir sırada yapar; sunucuda render edilmiş HTML bu adımı kolaylaştırır.[^2] App Router sayfaları zaten sunucuda render eder ve botlara akış yerine tamamlanmış HTML gönderir.[^3]
 
@@ -34,7 +34,7 @@ export const metadata: Metadata = { title: "Ürünler" }; // → "Ürünler | Ma
 - `title.template` alt segmentlerdeki başlığa ek yapar. Template kullanıyorsanız `default` zorunludur.[^5]
 - `metadataBase` sayesinde OG görseli ve canonical gibi alanlara göreli adres yazabilirsiniz.[^5]
 
-## Veriye Bağlı metadata
+## Veriye bağlı metadata
 
 Ürün sayfasının başlığı üründen gelir. `generateMetadata` bunun için:[^4]
 
@@ -59,7 +59,7 @@ Sayfa ve `generateMetadata` aynı veriyi okuyor. `getProduct` `"use cache"` ile 
 
 Dinamik sayfalarda Next.js metadata'yı **akıtır**: görsel içerik önce gelir, `<head>` etiketleri hazır olunca eklenir. `<head>`'de görmeyi bekleyen botlar *(Twitterbot, Slackbot, Bingbot gibi)* user agent'larından tanınır ve tamamlanmış sayfayı alır.[^4]
 
-## Paylaşım Görseli, Sitemap ve robots
+## Paylaşım görseli, sitemap ve robots
 
 Bazı metadata dosya adıyla tanımlanır. Dosyayı ilgili klasöre koymanız yeter:[^6]
 
@@ -125,7 +125,7 @@ export default async function Image({ params }: { params: Promise<{ slug: string
 }
 ```
 
-## Yapılandırılmış Veri: JSON-LD
+## Yapılandırılmış veri: JSON-LD
 
 JSON-LD, sayfanın bir ürün, makale ya da etkinlik olduğunu makinenin anlayacağı şekilde anlatır. Google bunu zengin sonuçlar *(fiyat, puan)* için kullanır.[^7] Next.js'in önerisi sayfada bir `<script type="application/ld+json">` render etmektir:[^8]
 
@@ -150,14 +150,14 @@ const jsonLd = {
 
 Sonucu Google'ın Rich Results Test aracıyla kontrol edin.[^8] Sayfa hızı da sıralamayı etkiler; Core Web Vitals, görsel ve font [Performans ve Erişilebilirlik](/academy/performance-accessibility/core-web-vitals) rehberinde.
 
-## Kendin Dene
+## Kendin dene
 
 - Ürün sayfasını açıp DevTools'ta `<head>`'e bakın. `<title>` template'e göre mi oluşmuş?
 - `/sitemap.xml` ve `/robots.txt` adreslerini açın.
 - `opengraph-image.tsx`'i ekleyin ve `/products/canvas-sneaker/opengraph-image` adresinde görseli görün.
 - Ürün adını `<b>Test</b>` yapıp JSON-LD'yi `replace` olmadan ve onunla render edin; sayfa kaynağını karşılaştırın.
 
-## Detaylı Öğrenmek İçin
+## Detaylı öğrenmek için
 
 - **Resmi doküman:** Google Search Central "SEO Starter Guide"; bir sitenin aramada nasıl bulunduğunu temelden anlatır.[^1]
 - **Resmi doküman:** Google'ın "JavaScript SEO basics" sayfası; Googlebot'un JavaScript'i nasıl işlediği ve sunucuda render'ın yeri.[^2]

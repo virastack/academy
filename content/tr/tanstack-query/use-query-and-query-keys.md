@@ -5,7 +5,7 @@ lastVerified: "2026-10-21"
 translationKey: "tanstack-query/use-query-and-query-keys"
 ---
 
-## İlk Sorgu
+## İlk sorgu
 
 `useQuery` en az iki şey ister: veriyi tanımlayan bir **query key** ve veriyi getiren bir **query function**:[^1]
 
@@ -67,7 +67,7 @@ return <p>Yükleniyor...</p>;
 
 Hangi sıranın doğru olduğu ekrana bağlıdır. Önemli olan, `error`'un "veri yok" demek olmadığını bilmektir.
 
-## Query Key Bir Bağımlılık Dizisidir
+## Query key bir bağımlılık dizisidir
 
 Cache, query key'e göre tutulur. Anahtar bir dizidir ve `JSON.stringify` ile serileştirilebilen her şeyi içerebilir.[^5] Query function'ın kullandığı ve değişebilen her değişken anahtara girmelidir:[^5]
 
@@ -99,7 +99,7 @@ Anahtarlar deterministik olarak hash'lenir. Nesnelerin içindeki sıra önemsizd
 >
 > - `refetch`'e parametre vermeye çalışmak. `refetch` argüman almaz. Filtre değiştiğinde yapılacak şey, filtreyi bir state'e ya da URL'ye yazıp anahtara eklemektir. TkDodo'nun deyişiyle "butona basınca yeniden çek" düşüncesinden "bu state'e uyan veriyi istiyorum" düşüncesine geçersiniz.[^7]
 
-## Anahtarları Düzenlemek
+## Anahtarları düzenlemek
 
 Anahtarları **genelden özele** kurun. Böylece tek bir ön ekle ilgili tüm sorguları hedefleyebilirsiniz:[^8]
 
@@ -111,7 +111,7 @@ Anahtarları **genelden özele** kurun. Böylece tek bir ön ekle ilgili tüm so
 
 `invalidateQueries({ queryKey: ["products"] })` hepsini, `["products", "list"]` yalnızca listeleri hedefler. Anahtarı her yerde elle yazmak hataya açıktır; tek bir yerde üretmek için [queryOptions ve select](/academy/tanstack-query/query-options-and-select) dersine geçin.
 
-## İsteği İptal Etmek
+## İsteği iptal etmek
 
 Query function bir `signal` alır. Bunu `fetch`'e verirseniz anahtar değiştiğinde ya da component kaldırıldığında artık gerekmeyen istek iptal edilir:[^9][^10]
 
@@ -130,14 +130,14 @@ useQuery({
 
 Query function'a gelen bağlam nesnesi `signal`'ın yanında `queryKey`, `client` ve `meta`'yı da taşır.[^3]
 
-## Kendin Dene
+## Kendin dene
 
 - Bir kategori listesi ve ürün listesi kurun. Kategori değiştirip geri dönün; Devtools'ta kaç cache girdisi görüyorsunuz?
 - Anahtardan `category`'yi çıkarın. Ekranda ne değişiyor, lint kuralı ne diyor?
 - `queryFn`'e `signal` ekleyin ve Network sekmesinde kategoriyi hızlı değiştirin. İptal edilen istekleri görüyor musunuz?
 - `if (error)` kontrolünü `if (data)`'nın önüne alın, sonra API'yi ikinci istekte hata verecek şekilde değiştirip sekmeye geri dönün.
 
-## Detaylı Öğrenmek İçin
+## Detaylı öğrenmek için
 
 - **Resmi doküman:** "Queries", "Query Keys" ve "Query Functions" sayfaları; durumlar, anahtar kuralları ve bağlam nesnesi.[^1][^5][^3]
 - **Yazı:** [TkDodo](https://tkdodo.eu/), "Effective React Query Keys"; anahtar yapısı ve hiyerarşi.[^8]

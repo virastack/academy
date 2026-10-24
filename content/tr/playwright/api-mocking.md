@@ -5,13 +5,13 @@ lastVerified: "2026-10-22"
 translationKey: "playwright/api-mocking"
 ---
 
-## Neden Mock?
+## Neden mock?
 
 Gerçek sunucu çoğu zaman istediğiniz durumu vermez. Sunucu hatası, boş liste, çok uzun bir müşteri adı ya da yavaş bir yanıt için veritabanını bozmak istemezsiniz. Playwright tarayıcının yaptığı her isteği yakalayıp istediğiniz yanıtı verebilir.[^1]
 
 Playwright dokümanı kontrol etmediğiniz üçüncü parti servisleri test etmemeyi, onların yanıtlarını ağ API'siyle garanti altına almayı da önerir.[^2] [Martin Fowler](https://martinfowler.com/) da uzak servisleri kırılgan testlerin başlıca kaynaklarından sayar ve test dublörleriyle belirli yanıtlar almayı önerir.[^3]
 
-## page.route ile Sahte Yanıt
+## page.route ile sahte yanıt
 
 `page.route` bir URL kalıbı ve bir işleyici alır. `route.fulfill` isteği sunucuya hiç göndermeden yanıtlar:[^1]
 
@@ -34,7 +34,7 @@ await page.route("**/api/orders?*", (route) =>
 );
 ```
 
-## Hata ve Tekrar Deneme
+## Hata ve tekrar deneme
 
 Bu rehberin projesindeki sipariş listesi [!tanstack-query] ile yüklenir; hata olunca "Siparişler yüklenemedi." ve "Tekrar dene" butonu gösterir. Testte önce hatayı üretir, sonra kuralı kaldırıp butona basarsınız:
 
@@ -58,7 +58,7 @@ test("sunucu hatasında hata durumu ve tekrar deneme", async ({ page, ordersPage
 >
 > TanStack Query başarısız bir sorguyu varsayılan olarak 3 kez, artan aralıklarla tekrar dener. Hata ekranı birkaç saniye sonra görünür ve 5 saniyelik assertion süresini aşabilir. Projede `QueryClient` için `retry: 1` ayarlıdır *(bkz. [TanStack Query](/academy/tanstack-query))*. Testi geçirmek için uygulamadaki tekrar denemeyi kapatmayın; ayarın gerçek kullanıcıya uygun olup olmadığına bakın.
 
-## Gerçek Yanıtı Değiştirmek
+## Gerçek yanıtı değiştirmek
 
 Bazen yanıtın çoğu gerçek kalsın, tek bir alan değişsin istersiniz. `route.fetch` isteği gerçekten yapar; yanıtı değiştirip `fulfill` ile verirsiniz:[^1]
 
@@ -78,7 +78,7 @@ test("uzun müşteri adı tabloyu bozmaz", async ({ page, ordersPage }) => {
 
 `response`'u vermek durum kodunu ve başlıkları korur; yalnızca gövde değişir.
 
-## Yükleniyor Durumu
+## Yükleniyor durumu
 
 Yükleniyor ekranı çoğu zaman o kadar kısa sürer ki assertion yakalayamaz. `page.waitForTimeout` ile gecikme eklemek yerine yanıtı bir sözle *(Promise)* tutun ve testin kendisi bıraksın:
 
@@ -102,7 +102,7 @@ test("yükleniyor durumu görünür", async ({ page, ordersPage }) => {
 
 `route.continue()` isteği değiştirmeden sunucuya gönderir. Süre yerine olaya bağlı olduğu için test her makinede aynı davranır.
 
-## Diğer Eylemler
+## Diğer eylemler
 
 | Metod | Ne yapar |
 | :-- | :-- |
@@ -114,7 +114,7 @@ test("yükleniyor durumu görünür", async ({ page, ordersPage }) => {
 
 Görselleri engelleyerek testi hızlandırmak gibi kurallar da yazılabilir: `page.route("**/*.{png,jpg,jpeg}", (route) => route.abort())`.[^4]
 
-## URL Kalıpları
+## URL kalıpları
 
 Glob kalıbı URL'nin **tamamına** uymalıdır:[^4]
 
@@ -124,7 +124,7 @@ Glob kalıbı URL'nin **tamamına** uymalıdır:[^4]
 
 `"**/api/orders"` kalıbı `/api/orders?status=all` isteğine **uymaz**; sorgu dizesi de URL'nin parçasıdır. Projede bu yüzden `"**/api/orders?*"` kullanılır. Karmaşık durumlar için düzenli ifade verin: `page.route(/\/api\/orders(\?|$)/, …)`.
 
-## Yanıtı Beklemek ve Doğrulamak
+## Yanıtı beklemek ve doğrulamak
 
 Bir eylemin doğru isteği gönderdiğini doğrulamak için `waitForResponse` kullanın. Bekleyiciyi eylemden **önce** başlatın, sonra bekleyin:[^4]
 
@@ -137,7 +137,7 @@ expect(response.status()).toBe(200);
 
 Çoğu durumda bunu yapmanız gerekmez. Ekrandaki sonucu doğrulamak *(satır "İptal edildi" oldu mu)* hem kullanıcının gördüğünü test eder hem de yanıtı dolaylı olarak bekler.
 
-## Tarayıcısız API Testi
+## Tarayıcısız API testi
 
 `request` fixture'ı tarayıcı açmadan HTTP isteği atar. Yetki kurallarını hızlıca denemek ya da teste veri hazırlamak için idealdir.[^5]
 
@@ -150,7 +150,7 @@ test("oturumsuz istek 401 döner", async ({ request }) => {
 
 `page.request` ise sayfanın cookie'lerini paylaşır; oturum açmış kullanıcı adına istek atar *(bkz. [Auth ve fixture](/academy/playwright/auth-and-fixtures))*. Playwright 1.63 ile `request.get<User>(...)` gibi bir tip parametresi `json()`'ın dönüşünü tipler.[^6]
 
-## HAR Dosyaları
+## HAR dosyaları
 
 Çok sayıda isteği tek tek mock'lamak yerine gerçek trafiği bir HAR dosyasına kaydedip testlerde oradan oynatabilirsiniz. `update: true` kaydeder, olmadan oynatır:[^1]
 
@@ -163,7 +163,7 @@ await page.routeFromHAR("./hars/orders.har", {
 
 Kaydı bir kez alın, dosyayı depoya ekleyin, `update`'i kaldırın. Veri değiştiğinde kaydı yenilemeyi unutmayın.
 
-## Next.js'te Sınır: Sunucu İstekleri
+## Next.js'te sınır: Sunucu istekleri
 
 `page.route` yalnızca **tarayıcının** yaptığı istekleri görür. Bir Server Component'in ya da Server Action'ın sunucuda yaptığı `fetch` tarayıcıdan geçmez; Playwright onu yakalayamaz.
 
@@ -177,14 +177,14 @@ Bu rehberin projesinde sipariş listesi tarayıcıda, TanStack Query ile yüklen
 >
 > Uygulamanız Mock Service Worker *(MSW)* gibi bir Service Worker tabanlı mock aracı kullanıyorsa, o araç istekleri devralır ve `page.route` onları göremez. Playwright dokümanı bu durumda testlerde Playwright'ın kendi yönlendirmesini kullanmayı ya da Service Worker'ları `serviceWorkers: "block"` ile kapatmayı önerir.[^4]
 
-## Kendin Dene
+## Kendin dene
 
 - Sipariş listesine 500 döndürün ve hata mesajını doğrulayın. `retry` ayarını kaldırıp testin ne kadar sürdüğüne bakın.
 - `route.fetch` ile gerçek yanıtı alıp bir siparişin durumunu "Kargoda" yapın. Tablonun buna göre güncellendiğini doğrulayın.
 - `"**/api/orders"` kalıbının neden uymadığını görmek için bir test yazın, sonra `"**/api/orders?*"` ile düzeltin.
 - `request` fixture'ıyla oturumsuz ve izleyici rolüyle iptal isteği atıp durum kodlarını doğrulayın.
 
-## Detaylı Öğrenmek İçin
+## Detaylı öğrenmek için
 
 - **Resmi doküman:** Playwright, "Mock APIs"; sahte yanıt, yanıt değiştirme ve HAR.[^1]
 - **Resmi doküman:** Playwright, "Network"; istek olayları, URL kalıpları ve Service Worker notu.[^4]

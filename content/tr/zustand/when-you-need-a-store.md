@@ -5,7 +5,7 @@ lastVerified: "2026-10-21"
 translationKey: "zustand/when-you-need-a-store"
 ---
 
-## Önce State'i Sınıflandırın
+## Önce state'i sınıflandırın
 
 Global bir store açmadan önce verinin hangi türe girdiğine bakın. Çoğu veri bir store'a hiç ihtiyaç duymaz:[^1][^2]
 
@@ -20,7 +20,7 @@ Global bir store açmadan önce verinin hangi türe girdiğine bakın. Çoğu ve
 
 Paylaşılabilir olması ya da geri tuşuyla dönülebilmesi gereken durum URL'e aittir: link paylaşıldığında aynı görünüm açılır, yer imi ve tarayıcı geçmişi önceki duruma döner.[^5] Next.js'te `useSearchParams` URL'i yalnızca okur.[^6] `useState`'e benzer, tipli bir okuma ve yazma API'si için [nuqs](https://nuqs.dev) kullanılabilir.[^7] TanStack Router ise search params'ı doğrulanan ve tipli bir uygulama state'i sayar.[^8] Bedeli de vardır: uzun URL pratik olmaz ve tarayıcılar URL güncellemelerini sınırlar.[^5]
 
-## Local State Yeterken
+## Local state yeterken
 
 İki kardeş component aynı değere ihtiyaç duyuyorsa önce state'i **en yakın ortak ebeveyne** taşıyın *(bkz. [State](/academy/react/state))*.[^9] Değer birkaç seviye aşağı iniyorsa React dokümanı Context'ten önce iki şey önerir: props ile devam etmek ya da ara component'lere `children` vermek.[^10]
 
@@ -30,13 +30,13 @@ Store şu belirtiler varsa anlamlıdır:
 - Değer **sık değişiyor** ve onu okuyan component'lerin yalnızca bir kısmı her değişiklikte render olmalı.
 - State'i React dışından da okumak ya da değiştirmek istiyorsunuz *(bir WebSocket dinleyicisi, bir test)*.
 
-## Context Neden Her Zaman Yetmez
+## Context neden her zaman yetmez
 
 Context bir değeri taşır, state yönetmez. Provider'ın `value`'su değişince onu okuyan **tüm** component'ler render olur; bir component değerin yalnızca bir parçasıyla ilgileniyor olsa bile.[^11] Seyrek değişen tema ya da oturum bilgisi için bu sorun değildir. Her tıklamada değişen bir sepet ya da çok seçimli bir liste için yavaşlık yaratabilir.
 
 TkDodo, Context'i değerin kendisi için değil, store gibi **değişmeyen bir örneği** paylaşmak için kullanmayı önerir. Değer seçimini store'un selector'ları yapar.[^12] Bu kalıp [Context ile store](/academy/zustand/store-with-context) dersinde.
 
-## Zustand Nedir
+## Zustand nedir
 
 [!zustand] küçük, hook tabanlı bir client state kütüphanesidir. Store'unuz bir hook'tur; Provider gerekmez. Component, selector ile store'un yalnızca ihtiyaç duyduğu parçasını okur ve yalnızca o parça değiştiğinde render olur:[^13]
 
@@ -61,7 +61,7 @@ Kütüphane, Poimandres *(pmndrs)* topluluğunun bir projesidir. Bugünkü maint
 
 Güncel sürüm v5'tir. v5 yeni özellik getirmedi; v4'te kullanımdan kaldırılmış API'leri sildi, en az React 18 ve TypeScript 4.5 istedi ve React'in yerleşik `useSyncExternalStore`'una geçti.[^15][^16] Eski bir yazıda `import create from "zustand"` *(default export)* ya da selector'ın yanında `shallow` görürseniz v4 kodudur.
 
-## Diğer Kütüphanelerden Farkı
+## Diğer kütüphanelerden farkı
 
 Zustand dokümanı kendini benzer kütüphanelerle karşılaştırır. Fark iki eksende:[^17]
 
@@ -79,12 +79,12 @@ Zustand, Redux'a kavramsal olarak en yakın olandır; daha az kod ve Provider's�
 > - Sunucudan gelen listeyi Zustand store'a kopyalamak. Cache, yenileme ve hata durumlarını elle yazmak zorunda kalırsınız; bu iş [TanStack Query](/academy/tanstack-query)'nin.[^4]
 > - URL'de durması gereken filtreyi store'a koymak. Sayfa paylaşılamaz, geri butonu çalışmaz.
 
-## Kendin Dene
+## Kendin dene
 
 - Üzerinde çalıştığınız bir uygulamanın state'ini yukarıdaki dört türe ayırın. Paylaşılan client state'e kaç değer kalıyor?
 - Bir sepet sayacını önce ortak ebeveynde `useState` ile, sonra Context ile yazın. Sepete ürün eklerken hangi component'lerin render olduğunu React DevTools'un "Highlight updates" seçeneğiyle izleyin.
 
-## Detaylı Öğrenmek İçin
+## Detaylı öğrenmek için
 
 - **Yazı:** [TkDodo](https://tkdodo.eu/), "Working with Zustand"; Zustand'ı neden seçtiği ve store'u küçük tutma önerisi.[^3]
 - **Yazı:** [Daishi Kato](https://blog.axlight.com/), "How Zustand was born"; projenin geçmişi ve Context dışında global state fikri.[^14]

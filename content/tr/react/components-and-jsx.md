@@ -5,7 +5,7 @@ lastVerified: "2026-10-21"
 translationKey: "react/components-and-jsx"
 ---
 
-## Arayüzü Kutulara Bölün
+## Arayüzü kutulara bölün
 
 React'te arayüz, birbirinin içine yerleşen **component**'lerden oluşur. React dokümanının "Thinking in React" sayfası her işe aynı adımla başlar: tasarımdaki her parçanın etrafına bir kutu çizin ve her kutuya bir isim verin. Bir kutu birden fazla iş yapıyorsa onu daha küçük kutulara bölün.[^1]
 
@@ -32,7 +32,7 @@ export function ProductCard() {
 
 İsim küçük harfle başlarsa React onu `<productCard>` diye bir HTML etiketi sanar. Ne kadar bölüneceği bir tasarım kararıdır; ölçütler [Component ve Kod Organizasyonu](/academy/architecture/component-organization) rehberinde.
 
-## JSX Kuralları
+## JSX kuralları
 
 JSX, JavaScript içinde HTML'e benzeyen bir sözdizimidir; build sırasında fonksiyon çağrılarına çevrilir. HTML'den üç farkı vardır:[^3]
 
@@ -52,7 +52,7 @@ const product = { name: "Kulaklık", price: 1499, inStock: true };
 </p>;
 ```
 
-## Koşullu Render
+## Koşullu render
 
 Üç yol vardır: `if` ile erken `return`, ternary `? :` ve `&&`.[^4]
 
@@ -101,7 +101,7 @@ Diziyi `map` ile JSX'e çevirirsiniz. Her elemana bir `key` verilir:[^7]
 
 `key` yalnızca listeler için değildir. Bir component'e farklı bir key verdiğinizde React onu baştan oluşturur; bu, state'i sıfırlamanın en temiz yoludur. State dersinde tekrar göreceksiniz.
 
-## Component'ler Saf Olmalı
+## Component'ler saf olmalı
 
 React'in en önemli kuralı: bir component, aynı props, state ve context ile her seferinde aynı JSX'i döndürmelidir. Render sırasında dışarıdaki bir şeyi değiştirmemelidir.[^8][^9]
 
@@ -125,14 +125,14 @@ Yan etkiler *(istek atmak, `document.title`'ı değiştirmek, analytics)* render
 
 Aynı sebepten bir component'i başka bir component'in içinde tanımlamayın. Her render'da yeni bir component tipi oluşur, React alt ağacı sıfırdan kurar ve state kaybolur. `eslint-plugin-react-hooks`'un `static-components` kuralı bunu yakalar.[^10]
 
-## Kendin Dene
+## Kendin dene
 
 - Bir ürün sayfası tasarımı açın *(herhangi bir e-ticaret sitesi)*, kutuları çizin ve component ağacını yazın.
 - `products` dizisini boş verin ve `{products.length && <ProductList />}` ifadesinin ekrana ne bastığını görün; sonra düzeltin.
 - Ürün listesine her satırda bir `<input>` ekleyin, key'i `index` yapın ve listeyi ters çevirin. Input'taki metin nereye gitti?
 - Bir component'te `Math.random()` ile fiyat üretin. Strict Mode açıkken konsolda iki farklı sonuç görün.
 
-## Detaylı Öğrenmek İçin
+## Detaylı öğrenmek için
 
 - **Resmi doküman:** "Thinking in React"; bir arama tablosunu adım adım component'lere bölüp state'i yerleştirir.[^1]
 - **Yazı:** [Josh W. Comeau](https://www.joshwcomeau.com/)'nun yeni başlayanların React'te en sık yaptığı dokuz hata; `0` render'ı, key ve state mutasyonu dahil.[^5]

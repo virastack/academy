@@ -5,7 +5,7 @@ lastVerified: "2026-10-21"
 translationKey: "tanstack-query/dependent-and-parallel-queries"
 ---
 
-## Paralel Sorgular
+## Paralel sorgular
 
 Aynı component'te yan yana yazılan `useQuery`'ler kendiliğinden paralel çalışır; ek bir şey yapmanız gerekmez:[^1]
 
@@ -36,7 +36,7 @@ function CartSummary({ productIds }: { productIds: number[] }) {
 
 `combine` sonuç dizisini tek bir değere çevirir. Sonuç structural sharing ile korunur; değer değişmedikçe referansı da değişmez.[^2] `queryOptions` kullanırsanız `useQueries` içindeki tip çıkarımı da korunur.[^1]
 
-## Bağımlı Sorgular
+## Bağımlı sorgular
 
 İkinci sorgu birincinin sonucuna ihtiyaç duyuyorsa `enabled` ile bekletin:[^3]
 
@@ -68,7 +68,7 @@ const { data: orders } = useQuery({
 
 `enabled`'ı bir filtre formunda da kullanabilirsiniz: kullanıcı filtreyi uygulayana kadar sorgu çalışmaz, uyguladığı anda anahtar ve `enabled` birlikte değişir.[^4] TkDodo `enabled`'ı kütüphanenin en güçlü seçeneklerinden biri sayar.[^5]
 
-## İstek Şelalesi
+## İstek şelalesi
 
 Bir isteğin başlaması için başka bir isteğin bitmesini beklemek **şelale** *(request waterfall)* oluşturur. Doküman bunu, bileşen içinde veri çeken kütüphanelerdeki en büyük performans tuzağı olarak tanımlar.[^6] Üç tipik kaynak:[^6]
 
@@ -80,7 +80,7 @@ Bir isteğin başlaması için başka bir isteğin bitmesini beklemek **şelale*
 
 İç içe şelale sinsidir: alt component'in kendi sorgusu, üst component kendi verisini bekleyip alt component'i render ettiğinde başlar. `Comments` için gereken `id` zaten `Article`'da varsa iki sorgu aynı anda başlatılabilir.[^6] Hepsini düzeltmek zorunda değilsiniz; ara sıra Network sekmesine bakıp fark etmek yeter.[^6]
 
-## Event Handler'da Prefetch
+## Event handler'da prefetch
 
 Kullanıcı bir ürünün üzerine geldiğinde detayını önceden yükleyebilirsiniz. Tıkladığında veri cache'te hazırdır. v5.102 ile `prefetchQuery` ve `ensureQueryData` kullanımdan kaldırıldı; yerine `queryClient.query` var:[^7][^8]
 
@@ -108,14 +108,14 @@ function ProductLink({ id, children }: { id: number; children: React.ReactNode }
 >
 > Eski yazılarda ve kodlarda `queryClient.prefetchQuery(...)` görürsünüz. Hâlâ çalışır ama bir sonraki ana sürümde kaldırılacak. Yeni kodda `void queryClient.query(...).catch(noop)` yazın.[^7][^8]
 
-## Kendin Dene
+## Kendin dene
 
 - Ürün ve yorum sorgularını aynı component'te yazın, Network sekmesinde aynı anda başladıklarını görün. Yorumları bir alt component'e taşıyıp ürün yüklenince render edin; şelaleyi görüyor musunuz?
 - Sepetteki ürün id'lerinden `useQueries` ve `combine` ile toplam fiyat hesaplayın.
 - Bağımlı sorguyu önce `enabled` ile, sonra `skipToken` ile yazın. Tiplerdeki farka bakın.
 - Ürün linklerine hover prefetch ekleyin, `staleTime`'ı kaldırıp fareyi linklerde gezdirin.
 
-## Detaylı Öğrenmek İçin
+## Detaylı öğrenmek için
 
 - **Resmi doküman:** "Performance & Request Waterfalls"; şelale türleri, code splitting ve Server Component'lerin rolü.[^6]
 - **Resmi doküman:** "Prefetching & Router Integration"; event handler, component ve router düzeyinde prefetch.[^7]

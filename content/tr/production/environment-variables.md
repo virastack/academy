@@ -5,7 +5,7 @@ lastVerified: "2026-10-22"
 translationKey: "production/environment-variables"
 ---
 
-## Yapılandırma Koddan Ayrılır
+## Yapılandırma koddan ayrılır
 
 Uygulamanız yerelde, önizleme ortamında ve canlıda çalışır. Kod her yerde aynıdır; değişen şey veritabanı adresi, API anahtarı, log seviyesi gibi değerlerdir. Bunlara **yapılandırma** *(config)* denir.
 
@@ -13,7 +13,7 @@ Heroku'nun 2011'de yayımladığı Twelve-Factor App ilkeleri bu ayrımı net ko
 
 Ortam değişkeni her işletim sisteminde ve dilde aynı şekilde çalışır. Kodu değiştirmeden ortamdan ortama değişir ve bir yapılandırma dosyası gibi yanlışlıkla depoya girmez.[^1]
 
-## .env Dosyaları
+## .env dosyaları
 
 [!nextjs] `.env*` dosyalarını kendiliğinden `process.env`'e yükler:[^2]
 
@@ -54,7 +54,7 @@ DATABASE_URL=
 !.env.example
 ```
 
-## Tarayıcıya Giden Değişkenler: NEXT_PUBLIC_
+## Tarayıcıya giden değişkenler: NEXT_PUBLIC_
 
 Varsayılan olarak ortam değişkenleri **yalnızca sunucuda** okunur. Bir değişkeni tarayıcıda kullanmak için adına `NEXT_PUBLIC_` ön eki koyarsınız.[^2]
 
@@ -74,7 +74,7 @@ const value = process.env[name];
 1. **Secret'a asla `NEXT_PUBLIC_` vermeyin.** Değer, siteyi açan herkesin indirdiği dosyadadır.
 2. **Build'den sonra değişmez.** Aynı build'i önizlemeden canlıya taşırsanız ya da tek bir [!docker] imajını birden fazla ortamda çalıştırırsanız, `NEXT_PUBLIC_` değerleri build anındaki halinde donar.[^2]
 
-## Çalışma Zamanında Okumak
+## Çalışma zamanında okumak
 
 `NEXT_PUBLIC_` olmayan bir değişken sunucuda okunur ama **ne zaman** okunduğu önemlidir. Build sırasında önceden çizilen *(prerender)* bir sayfa değişkeni build anında okur ve sonucu saklar.
 
@@ -98,7 +98,7 @@ export async function GET() {
 | `X`, statik sayfada | `next build` sırasında | Yalnızca sunucu |
 | `X`, `connection()` sonrası | Her istekte | Yalnızca sunucu |
 
-## Doğrulamak: Açılışta Hata Ver
+## Doğrulamak: Açılışta hata ver
 
 `process.env.LOG_LEVEL` her zaman `string | undefined` tipindedir. Yazım hatası, eksik değer ya da `"150"` gibi geçersiz bir sayı ilk kullanıldığı ana kadar fark edilmez; o an da genellikle gece yarısı bir kullanıcının isteğidir.
 
@@ -180,7 +180,7 @@ Sunucu hiç trafik almadan kapanır. Bir konteyner platformu yeni sürümü sağ
 >
 > `process.exit` olmadan da Next.js `register`'daki hatayı yakalar ama sunucu açık kalır ve her isteğe 500 döner. Açıkça kapatmak, hatanın sessizce trafik almasını önler.
 
-## Ortam Başına Değerler
+## Ortam başına değerler
 
 `NODE_ENV` yalnızca `development`, `production` ya da `test` olabilir.[^2] Önizleme ortamı da `production` build'idir. "Hangi ortamdayım?" sorusu için `APP_ENV` gibi kendi değişkeninizi tanımlayın.
 
@@ -195,7 +195,7 @@ Değerleri nereden verirsiniz?
 | [!vercel] | Proje ayarlarında Development, Preview ve Production için ayrı ayrı |
 | Docker ya da sunucu | `docker run -e`, orkestrasyon aracının secret yöneticisi |
 
-## Secret'ları Korumak
+## Secret'ları korumak
 
 OWASP'ın secret yönetimi rehberi secret'ları merkezi bir yerde tutmayı ve her birini bir yaşam döngüsüyle yönetmeyi önerir: oluşturma, düzenli döndürme *(rotation)*, iptal ve süre dolumu. Elle yapılan döndürme hataya açık olduğu için mümkünse otomatikleştirilmelidir.[^7]
 
@@ -211,14 +211,14 @@ OWASP'ın secret yönetimi rehberi secret'ları merkezi bir yerde tutmayı ve he
 > - Secret'ı Dockerfile'da `ENV` ya da `ARG` ile imaja gömmeyin *(bkz. [Deploy seçenekleri](/academy/production/deployment-options))*.
 > - `process.env`'in tamamını loglamayın.
 
-## Kendin Dene
+## Kendin dene
 
 - Projenize `lib/env.ts` ekleyin. Bir değişkene geçersiz değer verip sunucunun açılışta kapandığını görün.
 - `NEXT_PUBLIC_` ile bir değer tanımlayın, `next build` alın ve `.next/static` içinde değeri arayın.
 - Statik bir sayfada `process.env` okuyun, build sonrası değeri değiştirip sunucuyu yeniden başlatın. Değer değişti mi? `connection()` ekleyip tekrar deneyin.
 - Bir `.env.example` yazın ve `.gitignore`'u yalnızca onu izleyecek şekilde düzenleyin.
 
-## Detaylı Öğrenmek İçin
+## Detaylı öğrenmek için
 
 - **Resmi doküman:** Next.js, "Environment Variables"; yükleme sırası, `NEXT_PUBLIC_` ve test ortamı.[^2]
 - **Yazı:** Heroku, "The Twelve-Factor App: Config"; yapılandırmayı koddan ayırmanın gerekçesi.[^1]

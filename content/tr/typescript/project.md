@@ -27,7 +27,7 @@ Amaç tasarım değil, tiplerin uçtan uca akmasıdır: JSON'dan gelen `unknown`
 
 Projenin çalışan hali GitHub'da: [examples/typescript/project](https://github.com/virastack/academy/tree/main/examples/typescript/project). Takıldığınızda karşılaştırın.
 
-## Adım 1: Projeyi Kurun
+## Adım 1: Projeyi kurun
 
 [!vite]'in `react-ts` şablonuyla yeni bir proje açın.[^1] Vite, Node.js 20.19+ ya da 22.12+ ister.
 
@@ -50,7 +50,7 @@ npm create vite@latest product-catalog -- --template react-ts
 
 `strict` TypeScript 6.0'dan beri zaten varsayılan olarak açık; açıkça yazmak, ayarı okuyan kişiye niyeti gösterir.[^2] `noUncheckedIndexedAccess` ise `strict`'in parçası değildir: dizi ve index signature erişimlerinin tipine `undefined` ekler.[^3] Adım 8'de işe yaradığını göreceksiniz.
 
-## Adım 2: Tipleri Tanımlayın
+## Adım 2: Tipleri tanımlayın
 
 Bütün tipler tek dosyada durur. `Category` elle yazılmaz, `CATEGORIES` dizisinden türetilir; yeni kategori eklemek için diziye bir eleman eklemek yeterlidir.
 
@@ -81,7 +81,7 @@ export type FetchState<T> =
 - `CartItem`, `Product`'ın üç alanını `Pick` ile alır ve `quantity` ekler. `Product`'ta `price`'ın tipi değişirse `CartItem` da değişir.
 - `FetchState<T>` her durum için ayrı bir şekil tanımlar: `data` yalnızca `success`'te, `message` yalnızca `error`'da vardır.
 
-## Adım 3: Ürün Verisi ve Type Guard
+## Adım 3: Ürün verisi ve type guard
 
 Ürünleri `public/products.json` dosyasına koyun. Vite bu klasördeki dosyaları olduğu gibi sunar.
 
@@ -248,7 +248,7 @@ export function CategoryFilter({ value, onChange }: CategoryFilterProps) {
 
 `LABELS` bir `Record<CategoryFilterValue, string>` olduğu için `CATEGORIES`'e yeni kategori eklediğinizde etiketini yazmayı unutamazsınız; TypeScript eksik anahtarı hata olarak gösterir.
 
-## Adım 6: Sepet Context'i
+## Adım 6: Sepet context'i
 
 Context ve onu okuyan hook bir dosyada, provider başka bir dosyada durur; şablondaki lint kuralı *(`react/only-export-components`)* component ile başka şeyleri aynı dosyadan export etmeyi uyarıyla işaretler.
 
@@ -326,7 +326,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
 React 19'da provider için `<CartContext.Provider>` yerine doğrudan `<CartContext>` yazılır.[^7] `addToCart`'ın `product` parametresine tip yazılmadı; tipi `CartContextValue`'dan çıkarılır.
 
-## Adım 7: Parçaları Birleştirin
+## Adım 7: Parçaları birleştirin
 
 `App`, `state.status`'a göre dallanır. Her dalda `state` daralır: `state.message` yalnızca `error` dalında, `state.data` yalnızca `success` dalında erişilebilir.
 
@@ -404,7 +404,7 @@ createRoot(document.getElementById("root")!).render(
 
 `npm run dev` ile sayfayı açın; filtreyi değiştirip birkaç ürünü sepete ekleyin.
 
-## Adım 8: tsc Hatayı Yakalasın
+## Adım 8: tsc hatayı yakalasın
 
 Vite `.ts` dosyalarını yalnızca JavaScript'e çevirir, tip kontrolü yapmaz; bu işi editörünüze ve build adımına bırakır.[^8] Kontrolü `tsc` yapar. Önce iki hata yapın:
 
@@ -432,7 +432,7 @@ src/components/CategoryFilter.tsx(23,14): error TS2345: Argument of type 'string
 
 Hataları düzeltip `npm run build` ile projenin derlendiğini doğrulayın.
 
-## Kendin Dene
+## Kendin dene
 
 - Sepete **Sepetten çıkar** butonu ekleyin: `CartContextValue`'ya `removeFromCart: (id: number) => void` ekleyin ve reducer'daki `remove` action'ını kullanın.
 - `products.json`'da bir ürünün `price` değerini `"1299"` yapın; sayfanın hata durumunu gösterdiğini görün.

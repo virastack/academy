@@ -5,7 +5,7 @@ lastVerified: "2026-10-21"
 translationKey: "tanstack-query/optimistic-updates"
 ---
 
-## Ne Zaman Gerekir
+## Ne zaman gerekir
 
 **Optimistic update**, mutation'ın başarılı olacağını varsayıp sonucu sunucudan cevap gelmeden göstermektir. Cevap gelince gerçek veriyle değiştirirsiniz; hata olursa geri alırsınız.[^1]
 
@@ -18,7 +18,7 @@ Kapanan bir dialog ya da başka sayfaya yönlendiren bir form iyimser yapılırs
 
 Doküman iki yol önerir: arayüz üzerinden ve cache üzerinden.[^1]
 
-## Arayüz Üzerinden: variables
+## Arayüz üzerinden: variables
 
 En basit yol cache'e hiç dokunmamaktır. Mutation sürerken `variables` hâlâ elinizdedir; geçici bir satır olarak gösterirsiniz:[^1]
 
@@ -61,7 +61,7 @@ const pendingReviews = useMutationState({
 
 `useMutationState` bir dizi döndürür; aynı anda birden fazla yorum gönderiliyor olabilir.[^1]
 
-## Cache Üzerinden: onMutate
+## Cache üzerinden: onMutate
 
 İyimser değer ekranın birden fazla yerinde görünecekse *(liste, sayaç, detay)* cache'i doğrudan güncelleyin. Kalıp dört adımdır:[^1]
 
@@ -98,7 +98,7 @@ useMutation({
 
 `onMutate`'in döndürdüğü nesne diğer callback'lere `onMutateResult` olarak gelir. `context.client` aynı `QueryClient`'tır; component içinde `useQueryClient()` çağırmanıza gerek kalmaz.[^1][^3] `queryOptions`'tan gelen anahtarı kullandığınız için `getQueryData` ve `setQueryData`'nın tipi de doğru çıkar.
 
-## İki Yolun Karşılaştırması
+## İki yolun karşılaştırması
 
 | | `variables` ile | Cache ile |
 | :-- | :-- | :-- |
@@ -109,7 +109,7 @@ useMutation({
 
 Doküman da aynı sonuca varır: tek bir yer için `variables`, birden fazla yer için cache.[^1]
 
-## Eşzamanlı Mutation'lar
+## Eşzamanlı mutation'lar
 
 Kullanıcı favori butonuna art arda üç kez basarsa üç mutation aynı anda çalışır. TkDodo burada bir **tutarsızlık penceresi** tarif eder: ilk mutation bitip invalidation başlattığında, ikinci mutation henüz bitmemişse ve yenileme ondan hızlı gelirse arayüz bir anlığına eski değere döner.[^4]
 
@@ -134,17 +134,17 @@ useMutation({
 
 Bu kontrolü `useIsMutating` hook'u ile değil, `isMutating` ile o anda yapın; hook'un değeri callback'te eski kalabilir.[^4]
 
-## React'in useOptimistic'i ile Farkı
+## React'in useOptimistic'i ile farkı
 
 React 19'un `useOptimistic`'i bir Action süresince React state'ine geçici değer yazar *(bkz. [Actions ve async güncellemeler](/academy/react/actions))*. Server state'iniz TanStack Query cache'indeyse iyimser değeri de orada tutun; aynı verinin iki ayrı iyimser kopyası senkron dışı kalabilir.
 
-## Kendin Dene
+## Kendin dene
 
 - Favori butonunu önce iyimser olmadan yazın ve API'ye 1 saniye gecikme ekleyin. Butona basınca ne hissediyorsunuz?
 - `variables` yolunu bir yorum listesine uygulayın. API'yi her üçüncü istekte hata verecek şekilde değiştirin ve "Tekrar dene"yi deneyin.
 - Cache yolunu kurun, `cancelQueries` satırını silin. Sekmeye dönüp hemen butona basarak titremeyi yakalamaya çalışın.
 
-## Detaylı Öğrenmek İçin
+## Detaylı öğrenmek için
 
 - **Resmi doküman:** "Optimistic Updates"; `variables`, `useMutationState` ve cache ile geri alma örnekleri.[^1]
 - **Yazı:** [TkDodo](https://tkdodo.eu/), "Concurrent Optimistic Updates in React Query"; tutarsızlık penceresi, iptal ve sınırlı invalidation.[^4]

@@ -5,13 +5,13 @@ lastVerified: "2026-10-17"
 translationKey: "performance-accessibility/color-contrast-and-motion"
 ---
 
-## Kontrast Nedir
+## Kontrast nedir
 
 **Kontrast oranı**, metnin (ya da bir arayüz parçasının) rengi ile arkasındaki renk arasındaki parlaklık farkını tek bir sayıyla ifade eder: `4.5:1` gibi. Oran yükseldikçe metin düşük görme keskinliği olan, renk algısı farklı olan ya da güneş altında telefona bakan herkes için daha kolay okunur.
 
 Bu, webdeki en yaygın erişilebilirlik hatasıdır: 2026'da bir milyon ana sayfanın %83,9'unda düşük kontrastlı metin bulundu, sayfa başına ortalama 34 farklı örnekle.[^1]
 
-## Metin Kontrastı (1.4.3)
+## Metin kontrastı (1.4.3)
 
 WCAG 2.2'nin **1.4.3 Contrast (Minimum)** kriteri (AA) iki eşik koyar:[^2]
 
@@ -24,7 +24,7 @@ WCAG 2.2'nin **1.4.3 Contrast (Minimum)** kriteri (AA) iki eşik koyar:[^2]
 - **İstisnalar:** Devre dışı (inactive) bir bileşenin metni, saf süs olan metin ve logo içindeki yazı bu kurala tabi değildir.[^2]
 - **Neden 4.5:** Standart metin için önerilen 3:1, yaşla ve hafif görme kaybıyla azalan kontrast duyarlılığını telafi edecek şekilde 4.5:1'e çıkarılmıştır.[^2]
 
-## Metin Dışı Kontrast (1.4.11)
+## Metin dışı kontrast (1.4.11)
 
 **1.4.11 Non-text Contrast** (AA), metin olmayan ama anlam taşıyan görsellerin bitişik renge karşı en az **3:1** olmasını ister:[^3]
 
@@ -34,7 +34,7 @@ WCAG 2.2'nin **1.4.3 Contrast (Minimum)** kriteri (AA) iki eşik koyar:[^2]
 
 Beyaz zemin üzerinde `#9D9D9D` gri kenarlıklı bir checkbox 2.7:1 ile bu kriteri geçemez. Devre dışı bileşenler ve tarayıcının değiştirilmemiş varsayılan görünümü istisnadır.[^3] Odak göstergesinin ayrıntıları Klavye ve Odak dersinde.
 
-## DevTools'ta Kontrol Etmek
+## DevTools'ta kontrol etmek
 
 Chrome DevTools kontrastı birkaç yerden gösterir:[^4]
 
@@ -48,7 +48,7 @@ Chrome DevTools kontrastı birkaç yerden gösterir:[^4]
 
 Rendering sekmesindeki **görme bozukluğu emülasyonu** sayfayı bulanık görme ya da farklı renk algısıyla görmenizi sağlar.[^6] Otomatik tarama araçları Erişilebilirlik Testi dersinde.
 
-## Bilgiyi Yalnızca Renkle Vermeyin (1.4.1)
+## Bilgiyi yalnızca renkle vermeyin (1.4.1)
 
 **1.4.1 Use of Color** (A), rengin bilgiyi iletmenin **tek** görsel yolu olmamasını ister. Kırmızı ile yeşili ayırt edemeyen biri için "kırmızı alanlar zorunludur" bir anlam taşımaz.[^7]
 
@@ -73,11 +73,11 @@ Metin içindeki linkler için de aynı kural geçerlidir: link rengi çevredeki 
 >
 > - Renge ek olarak metin, ikon, desen ya da alt çizgi kullanın.[^7]
 
-## APCA Hakkında
+## APCA hakkında
 
 Kontrastı daha gerçekçi ölçmeyi hedefleyen **APCA** algoritması bir dönem WCAG 3 taslağındaydı ama 2023'te çıkarıldı; WCAG 3'ün hangi algoritmayı kullanacağı hâlâ belirsiz ve standart en erken 2030'da bekleniyor, bu yüzden bugün geçerli olan WCAG 2 oranlarıdır.[^8]
 
-## Metin Büyütme ve Reflow
+## Metin büyütme ve reflow
 
 Kullanıcılar metni büyütür ya da sayfayı yakınlaştırır. İki kriter bunun bozulmadan çalışmasını ister:
 
@@ -86,7 +86,7 @@ Kullanıcılar metni büyütür ya da sayfayı yakınlaştırır. İki kriter bu
 
 Pratikte: yazı boyutlarını CSS dersinde gördüğünüz gibi `rem` ile verin, sabit `height` ile metin kutusunu kilitlemeyin, düzeni responsive kurun. Test için tarayıcıda %400'e yakınlaştırın ya da DevTools'ta genişliği 320px'e indirin.
 
-## Hedef Boyutu (2.5.8)
+## Hedef boyutu (2.5.8)
 
 WCAG 2.2 ile gelen **2.5.8 Target Size (Minimum)** (AA), tıklanan ya da dokunulan hedeflerin en az **24x24 CSS px** olmasını ister.[^11][^12]
 
@@ -99,7 +99,7 @@ WCAG 2.2 ile gelen **2.5.8 Target Size (Minimum)** (AA), tıklanan ya da dokunul
 
 Hedef daha küçükse, merkezine 24px çapında bir daire çizildiğinde komşu hedeflere değmeyecek kadar boşluk bırakmak da yeterlidir. Cümle içindeki linkler, aynı işi yapan yeterli boyutta bir alternatif ve tarayıcının değiştirilmemiş kontrolleri istisnadır. Önemli butonlar için daha sıkı olan 2.5.5 Target Size (Enhanced) hedeflenebilir.[^11]
 
-## Azaltılmış Hareket
+## Azaltılmış hareket
 
 Büyük yakınlaştırmalar, dönen öğeler ve özellikle **parallax**, vestibüler bozukluğu olan kişilerde baş dönmesi ve mide bulantısı tetikleyebilir.[^13][^14] İşletim sistemleri bunun için bir "hareketi azalt" ayarı sunar (Windows'ta Animation Effects, macOS ve iOS'ta Reduce Motion, Android'de Remove animations). Tarayıcı bu tercihi **`prefers-reduced-motion`** media query'siyle sayfaya iletir; tüm tarayıcılarda 2020'den beri desteklenir.[^13]
 
@@ -156,11 +156,11 @@ export function usePrefersReducedMotion() {
 
 Ayarı değiştirmeden test etmek için DevTools'ta Command Palette'i açıp `prefers-reduced-motion: reduce` emülasyonunu seçebilirsiniz.[^15] Çok hareketli sayfalarda kullanıcıya sayfa içinde bir "animasyonları durdur" düğmesi sunmak da önerilir.[^14]
 
-## Forced Colors
+## Forced colors
 
 Windows'taki yüksek kontrast temaları gibi **forced colors** modunda tarayıcı sizin renklerinizi kullanıcının seçtiği sınırlı bir paletle değiştirir ve `box-shadow`'u kaldırır. Yalnızca gölgeyle belirginleşen bir buton bu modda görünmez olabilir; `@media (forced-colors: active)` içinde `ButtonText` gibi bir sistem rengiyle kenarlık eklemek yeterlidir. Bu modu ayrı bir tasarıma dönüştürmeyin, yalnızca bozulan yerleri düzeltin.[^19] Tailwind'de karşılığı `forced-colors:` variant'ıdır.[^17]
 
-## Detaylı Öğrenmek İçin
+## Detaylı öğrenmek için
 
 - **Konuşma:** Val Head'in hareket hassasiyeti için güvenli animasyon tasarlamayı anlattığı konuşma (Web Directions Code 2020, Conffab'da ücretsiz hesapla izlenir).[^20]
 - **Yazı:** Val Head'in hangi hareketin tetikleyici olduğunu ve yerine ne konacağını örneklerle anlattığı Smashing yazısı.[^14]

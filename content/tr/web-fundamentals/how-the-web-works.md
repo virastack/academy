@@ -5,13 +5,13 @@ lastVerified: "2026-10-17"
 translationKey: "web-fundamentals/how-the-web-works"
 ---
 
-## Client ve Server
+## Client ve server
 
 Web, iki tarafın konuşmasıdır. **Client** (*istemci*) sizin cihazınız ve üzerindeki tarayıcıdır. **Server** (*sunucu*) sayfaları ve uygulamaları barındıran bilgisayardır. Bir sayfayı açtığınızda sayfanın kodunun bir kopyası server'dan tarayıcınıza iner, tarayıcı da onu ekrana çizer.[^1]
 
 Bir web sitesi tek bir dosya değildir. **Kod** dosyaları (*HTML, CSS, JavaScript*) ve **asset**'ler (*görsel, video, font, PDF*) ayrı ayrı indirilir ve tarayıcıda birleştirilir.[^1]
 
-## Bir Adresi Açtığınızda Neler Olur
+## Bir adresi açtığınızda neler olur
 
 `https://example.com` yazıp Enter'a bastığınızda kabaca şu olur:[^1][^2]
 
@@ -24,7 +24,7 @@ Bir web sitesi tek bir dosya değildir. **Kod** dosyaları (*HTML, CSS, JavaScri
 
 Aşağıdaki bölümler bu adımları tek tek açar.
 
-## URL'nin Parçaları
+## URL'nin parçaları
 
 Örnek: `https://www.example.com:443/urunler/kitap?renk=mavi&sayfa=2#yorumlar`[^3]
 
@@ -45,7 +45,7 @@ Tarayıcı cevabı önce kendi önbelleğinde, sonra işletim sisteminde arar. O
 
 Her kaydın bir **TTL**'i (*time to live*) vardır ve önbellekler cevabı bu süre boyunca saklar. DNS kaydını değiştirdiğinizde herkesin hemen yeni adresi görmemesi bundandır. "Böyle bir alan adı yok" cevabı da önbelleğe alınır.[^5]
 
-## HTTP İstek ve Yanıt
+## HTTP istek ve yanıt
 
 **HTTP**, client ile server'ın konuştuğu dildir. İsteği her zaman client başlatır.[^6] Her mesajın bir başlangıç satırı, **header**'ları, boş bir satırı ve isteğe bağlı bir **body**'si vardır.[^7]
 
@@ -85,7 +85,7 @@ Mesajların anlamı sürümler arasında aynı kalır; değişen, verinin taşı
 
 Kamera, mikrofon ve service worker gibi birçok tarayıcı özelliği yalnızca **secure context**'te, yani HTTPS'te çalışır. `http://localhost` bu kurala dahildir, bu yüzden geliştirirken sertifikaya ihtiyacınız olmaz.[^12]
 
-## Tarayıcı Sayfayı Nasıl Çizer
+## Tarayıcı sayfayı nasıl çizer
 
 HTML gelince tarayıcı onu okuyup bir ağaç yapısına, **DOM**'a (*Document Object Model*) çevirir; her element, attribute ve metin bir **node** olur.[^13] Okurken karşılaştığı `<link>`, `<script>` ve `<img>` için yeni istekler atar.[^13]
 
@@ -119,7 +119,7 @@ Network panelinde bir isteğe tıklayınca **Headers** sekmesinde istek ve yanı
 > - Yönlendirmelerde istekler kaybolmasın diye **Preserve log**'u açın.[^17]
 > - Yavaş bağlantıyı denemek için throttling menüsünden 3G seçin.[^16]
 
-## Detaylı Öğrenmek İçin
+## Detaylı öğrenmek için
 
 - **Sayfa yüklemenin tamamı:** MDN'in DNS'ten paint'e kadar her adımı performans açısından anlatan rehberi.[^18]
 - **Tarayıcının içi:** [Mariko Kosaka](https://kosamari.com/)'nın Chrome'un mimarisini çizimlerle anlatan dört bölümlük yazı dizisi.[^14][^2]

@@ -102,7 +102,7 @@ Neden taşınır? Çünkü özellikler birbirinden import etmez. Özellikleri bi
 
 ## Import kuralları
 
-### 1. Alias kullanın, `../` kullanmayın
+### 1. alias kullanın, `../` kullanmayın
 
 ```ts
 // ❌ Hangi klasördeyseniz ona göre değişir
@@ -116,7 +116,7 @@ import { Button } from '@/components/ui/button'
 - **[!tanstack-start]:** Alias varsayılan gelmez. Dokümandaki örnek `~/*` kullanıyor. Vite 8 ve sonrasında tsconfig yollarını okuyan yerleşik destek var (varsayılan kapalı), Vite 7 ve öncesi için `vite-tsconfig-paths` eklentisi gerekiyor.[^15]
 - **Zorlamak için:** ESLint'in yerleşik `no-restricted-imports` kuralına `{ patterns: [{ regex: "^\\.\\./" }] }` verin. Yalnızca `../` ile başlayan import'lar yasaklanır, kardeş (`./b`) ve alt klasör (`./lib/a`) import'ları serbest kalır.[^16] `import/no-relative-parent-imports` kuralı bu iş için uygun değil: çözümlenen dosya yoluna baktığı için `@/` ile yazılmış import'ları da hata sayıyor. Denemede `@/components/ui/button` import'u bu yüzden hata verdi.
 
-### 2. Özellikler arası import yok
+### 2. özellikler arası import yok
 
 Özellikleri sayfada birleştirin:
 

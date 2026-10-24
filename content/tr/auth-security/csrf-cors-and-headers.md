@@ -19,7 +19,7 @@ Tarayıcı bir siteye istek atarken o sitenin cookie'lerini kendiliğinden ekler
 >
 > Bu dersteki kodlar `next@16.4.2` ile Chromium'da test edildi. Saldırgan sayfa `127.0.0.1:4000`'de, uygulama `localhost:3123`'te çalıştı; tarayıcı bu ikisini farklı site sayar.
 
-## SameSite: İlk Savunma
+## SameSite: İlk savunma
 
 [Oturum, cookie ve JWT](/academy/auth-security/sessions-cookies-and-jwt) dersinde oturum cookie'sine `SameSite=Lax` verdik. `Lax`, başka bir siteden gelen `POST` isteğine cookie eklenmesini engeller.[^1]
 
@@ -35,7 +35,7 @@ Testte saldırgan sayfa yukarıdaki formu gönderdi. İstek sunucuya ulaştı am
 >
 > - Silme, satın alma ya da ayar değiştirme işlerini `GET` isteğiyle yapmayın. OWASP bunu açıkça yasaklar.[^2]
 
-## Server Action'lar Kendini Korur
+## Server Action'lar kendini korur
 
 [!nextjs] Server Action'lar yalnızca `POST` ile çağrılır. Next.js ayrıca isteğin `Origin` başlığını sitenin `Host` başlığıyla karşılaştırır. Eşleşmezse işlemi durdurur.[^3]
 
@@ -47,7 +47,7 @@ Uygulamanız bir ters vekil sunucu *(reverse proxy)* arkasındaysa ve adres çub
 >
 > `Origin` başlığı hiç gelmeyen istek reddedilmez, yalnızca uyarı yazılır.[^4] Modern tarayıcılar `POST`'ta bu başlığı gönderir; ama bu kontrolü tek savunmanız saymayın.
 
-## Route Handler'ı Korumak
+## Route Handler'ı korumak
 
 Route Handler'da bu kontrol **yoktur**. Testte saldırgan sayfanın formu `/api/transfer`'e ulaştı ve `200` döndü. Cookie `SameSite` yüzünden gelmediği için zarar olmadı, ama `SameSite=None` kullanan bir cookie ya da aynı sitedeki bir alt alan adı bu kapıyı açar.
 
@@ -83,7 +83,7 @@ export async function POST(request: Request) {
 
 Testte aynı saldırı bu kontrolle `403` aldı. OWASP, `Sec-Fetch-Site` gelmeyen eski tarayıcılar için `Origin` kontrolüne düşmeyi zorunlu sayar.[^2]
 
-## CORS Ne Yapar, Ne Yapmaz
+## CORS ne yapar, ne yapmaz
 
 Tarayıcı varsayılan olarak bir sayfanın başka bir origin'den gelen yanıtı **okumasına** izin vermez. Buna *same-origin policy* denir. **CORS** *(Cross-Origin Resource Sharing)*, sunucunun "bu origin yanıtımı okuyabilir" demesini sağlar.[^5][^6]
 
@@ -127,7 +127,7 @@ Testte izinli origin'deki sayfa listeyi okudu. İzinsiz origin'deki sayfa `Faile
 > - Gelen `Origin` değerini kontrol etmeden aynen geri yazmayın. Cookie ile birlikte kullanılırsa her site kullanıcının verisini okuyabilir.[^6][^7]
 > - `Vary: Origin` başlığını unutmayın. Unutursanız CDN bir origin'e verilen yanıtı başka birine de verebilir.[^6]
 
-## Güvenlik Başlıkları
+## Güvenlik başlıkları
 
 Birkaç HTTP başlığı tarayıcının bilinen saldırılara karşı davranışını sıkılaştırır. OWASP'ın önerdikleri:[^7]
 
@@ -173,13 +173,13 @@ export default nextConfig;
 >
 > OWASP, başlıkları kontrol etmek için [Mozilla Observatory](https://observatory.mozilla.org/)'yi önerir.[^7]
 
-## Kendin Dene
+## Kendin dene
 
 - İki farklı adreste *(`localhost` ve `127.0.0.1`)* iki sunucu açın. Birinden diğerine form gönderin ve DevTools > **Network**'te `Sec-Fetch-Site` değerini okuyun.
 - Oturum cookie'nizi `SameSite=None; Secure` yapıp aynı saldırıyı tekrarlayın. Route Handler'daki kontrolü silip sonucu karşılaştırın.
 - `curl -I` ile kendi sitenizin başlıklarını listeleyin ve tablodakilerle karşılaştırın.
 
-## Detaylı Öğrenmek İçin
+## Detaylı öğrenmek için
 
 - **Resmi doküman:** OWASP CSRF Prevention Cheat Sheet; Fetch Metadata, `Origin` kontrolü, token ve `SameSite`.[^2]
 - **Makale:** Jake Archibald, "How to win at CORS"; CORS'un tarihçesi, cookie'li istekler, preflight ve etkileşimli bir CORS oyun alanı.[^6]

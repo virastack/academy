@@ -28,7 +28,7 @@ Bir sorgunun hayatı, doküman örneğinin kısaltılmış haliyle:[^3]
 4. 5 dakika dolmadan component tekrar açılırsa veri cache'ten gelir, arka planda yenilenir.
 5. 5 dakika içinde kimse kullanmazsa veri silinir. Sonraki açılış yükleme ekranıyla başlar.
 
-## staleTime Seçmek
+## staleTime seçmek
 
 `staleTime: 0` varsayılanı veriyi güncel tutmaya göre seçilmiştir, istek sayısına göre değil. İlk kez kullanan herkesin sorduğu soru budur: *"Veriyi iki saniye önce çektim, neden yine istek gidiyor?"*[^1] Cevap koşullu açılan ikinci bir component'tir; kütüphane onu yeni bir mount olarak görür ve eski veriyi yeniler.
 
@@ -59,7 +59,7 @@ Kaba bir rehber:
 
 `Infinity` ile `'static'` arasında bir fark var: `Infinity` olan bir sorgu `invalidateQueries` ile yine yenilenir; `'static'` olan yenilenmez.[^4]
 
-## Yenileme Ne Zaman Olur
+## Yenileme ne zaman olur
 
 Eski bir sorgu üç anda arka planda yenilenir:[^4]
 
@@ -113,14 +113,14 @@ useQuery({
 
 `initialDataUpdatedAt`, başlangıç verisinin ne zaman çekildiğini söyler. Liste `staleTime`'dan eskiyse detay arka planda yenilenir; yoksa istek atılmaz.[^6] `placeholderData`'nın sayfalamadaki kullanımı [Sayfalama ve sonsuz liste](/academy/tanstack-query/pagination-and-infinite-lists) dersinde.
 
-## Kendin Dene
+## Kendin dene
 
 - `staleTime: 0` ile bir listeyi açın, başka bir sayfaya gidip geri dönün. Devtools'ta sorgu hangi durumlardan geçiyor?
 - Aynı denemeyi `staleTime: 60 * 1000` ile tekrarlayın. Network sekmesinde fark ne?
 - Bir component'i kapatın ve Devtools'ta sorgunun `inactive` olduğunu görün. `gcTime: 5000` verip 5 saniye sonra ne olduğuna bakın.
 - Bir sipariş durumu ekranına `refetchInterval` ekleyin. Sahte API üçüncü istekte `delivered` dönsün; polling duruyor mu?
 
-## Detaylı Öğrenmek İçin
+## Detaylı öğrenmek için
 
 - **Yazı:** [TkDodo](https://tkdodo.eu/), "React Query as a State Manager"; stale-while-revalidate, akıllı yenilemeler ve `staleTime` ayarlamak.[^1]
 - **Resmi doküman:** "Caching Examples"; bir sorgunun mount, inactive ve garbage collection adımları.[^3]

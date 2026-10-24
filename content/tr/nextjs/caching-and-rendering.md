@@ -5,7 +5,7 @@ lastVerified: "2026-10-21"
 translationKey: "nextjs/caching-and-rendering"
 ---
 
-## Varsayılan: Her Şey Dinamik
+## Varsayılan: Her şey dinamik
 
 Next.js'in cache modeli son üç sürümde değişti. Next.js 14'te `fetch` varsayılan olarak cache'liydi; 15'te bu varsayılan kaldırıldı.[^1] 16 ile gelen **Cache Components** ise kuralı tersine çevirdi: veri her istekte taze okunur, neyi cache'leyeceğinizi siz `"use cache"` ile söylersiniz.[^2] 16.4'ten beri yeni projelerde bu model açık gelir.[^3]
 
@@ -13,7 +13,7 @@ Next.js'in cache modeli son üç sürümde değişti. Next.js 14'te `fetch` vars
 >
 > AI araçları ve eski tutorial'lar hâlâ `export const dynamic = "force-static"`, `export const revalidate = 60` ya da `fetch(url, { next: { revalidate: 60 } })` önerir. Bunlar önceki modele aittir. Cache Components'te karşılıkları `"use cache"` ve `cacheLife`'tır.[^4]
 
-## Statik Kabuk
+## Statik kabuk
 
 Build sırasında Next.js her sayfayı render etmeyi dener. Tamamlanabilen her şey **statik kabuğa** *(static shell)* girer ve CDN'den anında sunulur. Tamamlanamayan kısımlar için `<Suspense>` fallback'i kabuğa konur, içerik istek anında akar. Bu modelin adı **Partial Prerendering** *(PPR)*.[^2]
 
@@ -58,7 +58,7 @@ Doküman her `"use cache"`'in yanına bir `cacheLife` yazmayı önerir; yazmazsa
 
 `"use cache"`'i bir component'e de yazabilirsiniz. Cache'li component'e `children` olarak verdiğiniz dinamik içerik cache kaydına girmez, olduğu gibi geçer.[^5]
 
-## Kullanıcıya Özel Veri
+## Kullanıcıya özel veri
 
 `cookies()`, `headers()` ve `searchParams` istek anında bilinir. Bunları okuyan component `<Suspense>` içinde olmalıdır.[^2]
 
@@ -100,7 +100,7 @@ async function getRecommendations(segment: string) {
 
 `Math.random()`, `Date.now()` ve `crypto.randomUUID()` de her çalışmada farklı değer üretir. Her istekte yeni değer istiyorsanız önce `await connection()` çağırın ve `<Suspense>` ile sarın; herkese aynı değer yetiyorsa `"use cache"` ile cache'leyin.[^2]
 
-## Cache'i Güncellemek
+## Cache'i güncellemek
 
 İki yol var: süreyle *(`cacheLife`)* ya da bir olaydan sonra elle.[^7]
 
@@ -112,7 +112,7 @@ async function getRecommendations(segment: string) {
 
 Doküman etiket tabanlı yenilemeyi tercih etmeyi önerir; daha nokta atışıdır.[^7] CMS gibi seyrek değişen içerik için uzun bir `cacheLife("max")` ve bir etiket verip, içerik değişince CMS'in webhook'uyla `revalidateTag` çağırmak gereksiz yenilemeyi önler.[^7] Webhook'u [Route Handler ve proxy](/academy/nextjs/route-handlers-and-proxy) dersinde yazacaksınız.
 
-## Cache Nerede Durur
+## Cache nerede durur
 
 | Katman | Varsayılan |
 | :-- | :-- |
@@ -122,14 +122,14 @@ Doküman etiket tabanlı yenilemeyi tercih etmeyi önerir; daha nokta atışıd�
 
 Sunucular arası paylaşılan, kalıcı bir cache gerekiyorsa `"use cache: remote"` var. Her istek bir ağ gidiş-dönüşü demek, bu yüzden yalnızca isabet oranı yüksekse kazandırır.[^2] Hiçbir cache yeni bir deploy'a taşınmaz; anahtar build kimliğini içerir.[^5]
 
-## Kendin Dene
+## Kendin dene
 
 - `getProduct`'tan `"use cache"`'i silin ve `next dev`'deki uyarıyı okuyun. Önerilen iki çözümü tek tek deneyin.
 - `next build` çıktısında sayfaların yanındaki `○`, `◐` ve `ƒ` işaretlerini karşılaştırın.
 - `"use cache"` içinde `cookies()` çağırın. Hata mesajı ne diyor?
 - `cacheLife("seconds")` verin ve build çıktısındaki değişikliğe bakın.
 
-## Detaylı Öğrenmek İçin
+## Detaylı öğrenmek için
 
 - **Yazı:** [Aurora Scharff](https://aurorascharff.no/), "Cache Components in Next.js"; tek bir mağaza sayfası üzerinden ilk cache'ten etiketle yenilemeye kadar modeli adım adım anlatır.[^8]
 - **Video:** Aurora Scharff'ın Next.js Conf 2025 konuşması "Composition, Caching, and Architecture in Modern Next.js".[^9]

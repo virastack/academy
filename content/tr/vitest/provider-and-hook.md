@@ -5,11 +5,11 @@ lastVerified: "2026-10-14"
 translationKey: "vitest/provider-and-hook"
 ---
 
-## Neden Provider gerekir?
+## Neden provider gerekir?
 
 Mağaza sepeti bir Context ile paylaşılır. Header'daki rozet, ürün listesi ve sepet özeti aynı sepeti okur. Bu component'ler `CartProvider` içinde çalışır. Provider olmadan render ederseniz hata alırsınız.
 
-## Sepet Context'i
+## Sepet context'i
 
 `initialItems` prop'una dikkat edin. Testte sepeti dolu başlatmanızı sağlar. Tıklamayla tek tek ürün eklemek gerekmez.
 

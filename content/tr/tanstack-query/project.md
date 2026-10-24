@@ -34,7 +34,7 @@ Amaç tasarım değil, derslerdeki parçaların birlikte çalışmasıdır. Her 
 
 Projenin çalışan hali GitHub'da: [examples/tanstack-query/project](https://github.com/virastack/academy/tree/main/examples/tanstack-query/project). Akışları tarayıcıda deneyen Playwright testleri de orada; takıldığınızda karşılaştırın.
 
-## Adım 1: Projeyi Kurun
+## Adım 1: Projeyi kurun
 
 [Kurulum ve devtools](/academy/tanstack-query/setup-and-devtools) dersindeki gibi bir [!vite] projesi açın ve paketleri ekleyin:[^1]
 
@@ -162,7 +162,7 @@ export async function addReview({ productId, text }: { productId: number; text: 
 
 `HttpError` durum kodunu taşır; [Suspense ve hata yönetimi](/academy/tanstack-query/suspense-and-error-handling) dersindeki `throwOnError` fonksiyonunda olduğu gibi hataları koda göre ayırmanızı sağlar.
 
-## Adım 3: Query Factory
+## Adım 3: Query factory
 
 Anahtar hiyerarşisini ve sorgu ayarlarını tek dosyada toplayın. Yalnızca anahtar dönen girişler *(`all`, `lists`, `details`)* invalidation için, `queryOptions` dönenler sorgu için:[^2]
 
@@ -201,7 +201,7 @@ export const reviewQueries = {
 
 Liste anahtarı `["products", "list", { page, search }]` olur. Arama ya da sayfa değişince yeni bir cache girdisi açılır; eski aramaya dönünce veri anında gelir.
 
-## Adım 4: QueryClient ve Toast
+## Adım 4: QueryClient ve toast
 
 Toast için küçük bir dış store yeter; `useSyncExternalStore` ile okunur *(bkz. [Custom hook](/academy/react/custom-hooks))*:
 
@@ -255,7 +255,7 @@ export const queryClient = new QueryClient({
 
 `staleTime: 30 * 1000` sayesinde 30 saniye içinde aynı sayfaya dönmek ya da hover'da prefetch edilen detayı açmak yeni istek atmaz.
 
-## Adım 5: Ürün Tablosu
+## Adım 5: Ürün tablosu
 
 ```tsx
 // src/project/ProductTable.tsx
@@ -350,7 +350,7 @@ export function ProductTable({ selectedId, onSelect }: ProductTableProps) {
 - `useEffect`, gösterilen sayfa gerçek veriyken bir sonrakini `queryClient.query` ile arka planda yükler. `void` ve `.catch(noop)` prefetch hatasını yutar; asıl sorgu hatayı zaten yeniden dener.
 - Arama formu kontrolsüzdür; değer yalnızca "Ara"ya basınca state'e, oradan anahtara geçer.
 
-## Adım 6: Stok Formu
+## Adım 6: Stok formu
 
 Sunucu güncellenmiş ürünü döndürüyor. Detay sorgusuna cevabı yazın, listeleri yeniden çekin:[^6]
 
@@ -399,7 +399,7 @@ export function StockForm({ product }: { product: Product }) {
 
 `onSuccess` invalidation'ın Promise'ini döndürüyor; buton liste yenilenene kadar "Kaydediliyor..." kalır. Toast `mutate`'in callback'inde: kullanıcı başka ürüne geçerse gösterilmez, ama invalidation yine çalışır.
 
-## Adım 7: Favori Butonu
+## Adım 7: Favori butonu
 
 Favori, ekranın birden fazla yerinde görünebilecek bir değer; iyimser güncellemeyi cache üzerinden yapın:[^7][^8]
 
@@ -517,7 +517,7 @@ export function Reviews({ productId }: { productId: number }) {
 
 `onSettled` `["reviews", productId]` ön ekini geçersiz kılar. Sonsuz liste ilk sayfadan başlayarak yeniden çekilir ve yeni yorum en üstte görünür; o ana kadar soluk satır yerinde durur.
 
-## Adım 9: Ürün Detayı
+## Adım 9: Ürün detayı
 
 ```tsx
 // src/project/ProductDetail.tsx
@@ -544,7 +544,7 @@ export function ProductDetail({ id }: { id: number }) {
 
 `useSuspenseQuery` ile `product` her zaman tanımlıdır. `StockForm`'a verilen `key`, başka ürüne geçince formun varsayılan değerini sıfırlar *(bkz. [State](/academy/react/state))*.
 
-## Adım 10: Parçaları Birleştirin
+## Adım 10: Parçaları birleştirin
 
 ```tsx
 // src/project/App.tsx
@@ -630,7 +630,7 @@ npm run lint
 npm run build
 ```
 
-## Kendin Dene
+## Kendin dene
 
 - `fetchProduct`'ı ilk çağrıda hata fırlatacak şekilde değiştirin. "Tekrar dene" çalışıyor mu? `onReset={reset}`'i silip tekrar deneyin.
 - `toggleFavorite`'teki olasılığı `1` yapın. Yıldız ne yapıyor, toast ne diyor?

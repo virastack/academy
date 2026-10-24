@@ -30,7 +30,7 @@ Sizin işiniz bunları tek tek eklemek. Her adım bu rehberdeki bir dersin uygul
 
 Projenin çalışan hali GitHub'da: [examples/production/project](https://github.com/virastack/academy/tree/main/examples/production/project). Takıldığınızda karşılaştırın.
 
-## Adım 1: Başlangıç Noktası
+## Adım 1: Başlangıç noktası
 
 Playwright projesini kopyalayın ya da [examples/playwright/project](https://github.com/virastack/academy/tree/main/examples/playwright/project) klasöründen başlayın. Üç paket ekleyin:
 
@@ -44,7 +44,7 @@ Testlerin şu an geçtiğinden emin olun; sonraki her adımdan sonra yeniden ça
 npm test
 ```
 
-## Adım 2: Ortam Değişkenleri
+## Adım 2: Ortam değişkenleri
 
 Uygulamanın okuduğu her değişkeni tek bir şemada toplayın. Değeri olmayanlar varsayılanını alır, geçersiz olanlar anlaşılır bir hata verir:[^1][^2]
 
@@ -109,7 +109,7 @@ ORDER_SUMMARY_ROLLOUT=0
 !.env.example
 ```
 
-## Adım 3: Logger ve Açılışta Doğrulama
+## Adım 3: Logger ve açılışta doğrulama
 
 Logger her satıra servis, ortam ve sürüm bilgisini ekler; parola ve cookie alanlarını yazmadan önce gizler:[^3]
 
@@ -186,7 +186,7 @@ export const onRequestError: Instrumentation.onRequestError = async (error, requ
 
 Deneyin: `npm run build` sonrası `ORDER_SUMMARY_ROLLOUT=150 npm start` çalıştırın. Sunucu hangi değişkenin neden geçersiz olduğunu yazıp kapanmalı.
 
-## Adım 4: Hata Ekranları
+## Adım 4: Hata ekranları
 
 Kök seviyedeki `error.tsx` bütün sayfaları sarar. Sunucu hatalarında Next.js mesajı gizler ve yalnızca bir `digest` gönderir; onu kullanıcıya hata kodu olarak gösterin:[^6]
 
@@ -279,7 +279,7 @@ async function FailingSection(): Promise<never> {
 
 `/debug`'ı açın. Ekrandaki hata kodu ile sunucu logundaki `digest` aynı olmalı.
 
-## Adım 5: Giriş Olaylarını Loglamak
+## Adım 5: Giriş olaylarını loglamak
 
 Başarısız girişler, kimlik bilgisi saldırılarının ilk işaretidir. OWASP bunların her zaman kaydedilmesini ister; parolanın ise asla:[^7]
 
@@ -327,7 +327,7 @@ export async function logout() {
 }
 ```
 
-## Adım 6: Sağlık Kontrolü
+## Adım 6: Sağlık kontrolü
 
 Konteyner platformu, yük dengeleyici ve CI'daki smoke test bu uç noktayı sorar. `connection()` yanıtın build sırasında üretilip saklanmasını önler; değişkenler her istekte okunur:[^1]
 
@@ -347,7 +347,7 @@ export async function GET() {
 }
 ```
 
-## Adım 7: Yüzdeli Açılan Özellik
+## Adım 7: Yüzdeli açılan özellik
 
 Yeni özellik: sipariş listesinin üstünde adet ve toplam tutar. Önce bir grup kullanıcıya açılacak.
 
@@ -478,7 +478,7 @@ function OrdersSummary({ orders }: { orders: Order[] }) {
 
 `.env.local` içinde `ORDER_SUMMARY_ROLLOUT=100` yapıp sunucuyu yeniden başlatın; özet görünmeli. `0` yapınca kaybolmalı.
 
-## Adım 8: Production Build ve Güvenlik Başlıkları
+## Adım 8: Production build ve güvenlik başlıkları
 
 `output: "standalone"` çalışmak için gereken dosyaları `.next/standalone`'a toplar. Aynı dosyada güvenlik başlıklarını ekleyin ve `X-Powered-By`'ı kapatın:[^9][^10]
 
@@ -669,7 +669,7 @@ test("yüzde artınca önceden dahil olan kimse dışarıda kalmaz", () => {
 });
 ```
 
-## Adım 10: Docker İmajı
+## Adım 10: Docker imajı
 
 Üç aşamalı imaj: bağımlılıklar, build, çalışma. Son imajda kaynak kod ve `node_modules`'ın tamamı yoktur ve süreç root olmayan `node` kullanıcısıyla çalışır:[^11][^12]
 
@@ -757,7 +757,7 @@ Yanıt `{"status":"ok","env":"preview","version":"1.0.0"}` olmalı. Aynı imajı
 docker run --rm -e ORDER_SUMMARY_ROLLOUT=150 order-panel
 ```
 
-## Adım 11: CI Hattı
+## Adım 11: CI hattı
 
 Üç iş: `quality` ve `e2e` paralel, ikisi geçerse `docker` imajı build alıp smoke test yapar:[^13][^14]
 
@@ -856,7 +856,7 @@ npm test
 
 Beklenen sonuç `27 passed` *(iki oturum açma adımı ve 25 test)*. Son olarak [yayın öncesi kontrol listesini](/academy/production/pre-release-checklist) projenin üzerinden geçirin; hangi maddeler hâlâ açık?
 
-## Kendin Dene
+## Kendin dene
 
 - Sentry'nin ücretsiz planıyla `onRequestError`'ı Sentry'ye de bağlayın ve `/debug`'daki hatanın panelde göründüğünü doğrulayın.
 - Sipariş iptalini `order_cancelled` olayıyla loglayın; izleyicinin reddedilen isteğini `authorization_failed` olarak yazın.

@@ -5,7 +5,7 @@ lastVerified: "2026-10-22"
 translationKey: "playwright/auth-and-fixtures"
 ---
 
-## Fixture Nedir?
+## Fixture nedir?
 
 İlk testten beri `async ({ page }) => …` yazıyorsunuz. `page` bir **fixture**'dır: test başlamadan hazırlanan, test bitince temizlenen bir araç. Test yalnızca adını yazar; Playwright hazırlar.[^1]
 
@@ -21,7 +21,7 @@ Hazır gelen fixture'lar:[^1]
 
 Fixture'lar `beforeEach`'ten iyidir çünkü yalnızca isteyen teste kurulur, hazırlık ve temizlik aynı yerde durur ve birbirine bağımlı olabilir.[^1]
 
-## Kendi Fixture'ınız
+## Kendi fixture'ınız
 
 `test.extend` yeni bir `test` fonksiyonu üretir. Her fixture bir fonksiyondur: hazırlar, `use` ile teste verir, `use` dönünce temizler.[^1]
 
@@ -85,7 +85,7 @@ tempOrder: async ({ request }, use) => {
 
 Bir fixture'ı bütün işçi süreci için bir kez kurmak isterseniz `{ scope: "worker" }` verin. Örneğin her işçiye ayrı bir test hesabı açmak için. Testin kendisi hiç istemese de çalışması gereken fixture'lar için `{ auto: true }` vardır.[^1]
 
-## Her Testte Giriş Yapmamak
+## Her testte giriş yapmamak
 
 Oturum gerektiren her test giriş formunu doldurursa test paketi yavaşlar ve giriş sayfasındaki bir hata tüm testleri düşürür. Playwright'ın önerdiği yol: bir **setup projesinde** bir kez giriş yapmak, tarayıcı durumunu *(cookie'ler ve `localStorage`)* bir dosyaya kaydetmek ve diğer testleri bu durumla başlatmak.[^2]
 
@@ -121,7 +121,7 @@ projects: [
 >
 > `playwright/.auth/` içindeki dosyalar gerçek oturum cookie'leri taşır. Dokümanın uyarısı açıktır: bu dosyaları özel ya da açık hiçbir depoya göndermeyin. Klasörü `.gitignore`'a ekleyin; `npm init playwright` bunu sizin için yapar.[^2]
 
-## Birden Fazla Rol
+## Birden fazla rol
 
 Uygulamanızda yönetici ve izleyici gibi roller varsa setup her biri için ayrı dosya yazar:[^2]
 
@@ -165,7 +165,7 @@ test("izleyici API ile de iptal edemez", async ({ page }) => {
 });
 ```
 
-## Oturumsuz Testler
+## Oturumsuz testler
 
 Giriş sayfasını test eden dosya oturumla başlamamalı. Boş bir durum verin:[^2]
 
@@ -175,7 +175,7 @@ test.use({ storageState: { cookies: [], origins: [] } });
 
 Bunu sık kullanacaksanız `fixtures.ts`'ten `signedOut` adıyla export edin.
 
-## Veriyi Değiştiren Testler
+## Veriyi değiştiren testler
 
 Setup projesi bütün testlere **aynı hesabı** verir. Doküman bu yolu, testlerin aynı anda aynı hesapla çalışıp birbirini etkilemediği durumlar için önerir.[^2] Bir test siparişi iptal ederken başka bir test aynı anda "hazırlanan siparişleri" sayıyorsa, sonuç hangisinin önce bittiğine bağlıdır.
 
@@ -200,7 +200,7 @@ test("yönetici hazırlanan siparişi iptal eder", async ({ loginPage, ordersPag
 });
 ```
 
-## Test Kilitleri
+## Test kilitleri
 
 Bazı kaynaklar gerçekten paylaşılır: tek bir dış servis, hesabın genel bir ayarı. Playwright 1.63 ile testlere adlandırılmış bir **kilit** verebilirsiniz. Aynı kilidi taşıyan testler dosya, işçi ve proje fark etmeksizin asla aynı anda çalışmaz; diğer testler paralel devam eder.[^5]
 
@@ -212,14 +212,14 @@ test("bildirim ayarını kapatır", { lock: "account-settings" }, async ({ page 
 
 Kilit, izolasyonun yerine geçmez. Önce testi bağımsız yapmayı deneyin; paylaşılan kaynak gerçekten tekse kilit kullanın.
 
-## Kendin Dene
+## Kendin dene
 
 - Page Object'lerinizi `test.extend` ile fixture'a çevirin. Testlerden `new` satırlarını silin.
 - Setup projesi ekleyip yönetici oturumunu kaydedin. `playwright/.auth/admin.json` dosyasını açıp içinde ne olduğuna bakın.
 - İkinci bir rol ekleyin ve o rolde yalnızca arayüzü değil API'yi de test edin.
 - Veriyi değiştiren bir testi paylaşılan oturumla bırakıp `--repeat-each=5` ile çalıştırın. Başka bir test düşüyor mu?
 
-## Detaylı Öğrenmek İçin
+## Detaylı öğrenmek için
 
 - **Resmi doküman:** Playwright, "Fixtures"; worker kapsamı, otomatik fixture, seçenek fixture'ları ve sıralama.[^1]
 - **Resmi doküman:** Playwright, "Authentication"; paylaşılan hesap, işçi başına hesap, API ile giriş ve birden fazla rol.[^2]

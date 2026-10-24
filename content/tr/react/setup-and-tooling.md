@@ -5,7 +5,7 @@ lastVerified: "2026-10-21"
 translationKey: "react/setup-and-tooling"
 ---
 
-## Bu Rehber Ne Anlatıyor
+## Bu rehber ne anlatıyor
 
 [!react] resmi dokümanı [tr.react.dev](https://tr.react.dev) Türkçe ve çok iyi. Bu rehber onu tekrar etmiyor. Her derste konuyu kısaca özetleyip deneyimli mühendislerin önerilerini ve yaygın hataları topluyor. Sürüm: React 19.3 *(Eylül 2026)*.[^1]
 
@@ -30,7 +30,7 @@ React'in temellerini öğrenmek ya da sunucu gerektirmeyen bir SPA yazmak için 
 
 Bu rehberdeki dersler Vite ile ilerler. Next.js'e özgü konular *(Server Components, Server Actions)* [Next.js](/academy/nextjs) rehberinde.
 
-## İlk Proje
+## İlk proje
 
 ```command
 npm create vite@latest my-shop -- --template react-ts
@@ -72,7 +72,7 @@ createRoot(document.getElementById("root")!).render(
 >
 > - "Effect'im iki kez çalışıyor" diye `StrictMode`'u kaldırmak. Çift çalışma bir hata değil, hatayı gösteren bir test. Çözüm cleanup yazmak; bunu Effect dersinde göreceksiniz.[^7]
 
-## Lint: React Kurallarını Makineye Bırakın
+## Lint: React kurallarını makineye bırakın
 
 React'in kuralları *(Rules of React)* çoğu zaman hata vermeden bozulur; uygulama çalışır ama yanlış davranır. Bu yüzden lint şarttır.
 
@@ -117,7 +117,7 @@ Compiler'ın ne yaptığını ve `memo`/`useMemo` ile ilişkisini [React'te rend
 
 **React Developer Tools** tarayıcı eklentisidir. **Components** sekmesinde ağacı, props'u ve state'i görür, değerleri canlı değiştirirsiniz. **Profiler** sekmesi render sürelerini ölçer.[^11]
 
-## AI ile React Yazarken
+## AI ile React yazarken
 
 Model'ler eski React kodunu çok gördüğü için eski kalıpları önerebilir. React ekibinin react.dev'i yazarken kullandığı agent skill'i bile modele *"kendi bilgine şüpheyle yaklaş; çoğu zaman eski ya da yanlış React kalıplarıyla eğitildin"* der.[^12] Sık görülen eski öneriler:
 
@@ -135,14 +135,14 @@ Model'ler eski React kodunu çok gördüğü için eski kalıpları önerebilir.
 - **Lint'i bekçi yapın.** Yukarıdaki kurallar AI'ın yazdığı kodu da denetler. Agent'a *"commit'ten önce `npm run lint` çalıştır"* deyin.
 - **Kurallarınızı skill'e yazın.** Proje kurallarını ve Vercel'in `react-best-practices` gibi hazır skill'lerini [Skills](/academy/ai/skills) dersi anlatıyor.
 
-## Kendin Dene
+## Kendin dene
 
 - `my-shop` projesini kurun, `App.tsx`'te bir metni değiştirin ve sayfanın yenilenmeden güncellendiğini görün.
 - `eslint-plugin-react-hooks`'u ekleyin. `App.tsx`'e bir component'in içinde ikinci bir component tanımlayın ve lint'in ne dediğini okuyun.
 - React DevTools'u kurun, Components sekmesinde `App`'i seçip state'ini değiştirin.
 - Bir AI aracına *"Vite ile React projesi kur"* deyin. Önerdiği komutu bu dersle karşılaştırın.
 
-## Detaylı Öğrenmek İçin
+## Detaylı öğrenmek için
 
 - **Resmi doküman:** React'in Türkçe dokümanı; "Hızlı Başlangıç" ve "React'te Düşünmek" sayfaları ilk okuma için en iyi yer.[^14]
 - **Resmi doküman:** "Creating a React App" ve "Build a React App from Scratch" sayfaları; framework ile Vite arasındaki farkı anlatır.[^3][^4]

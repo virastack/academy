@@ -74,7 +74,7 @@ export function Card({ title, children }: CardProps) {
 
 Yalnızca JSX elemanı kabul etmek istiyorsanız `React.ReactElement` kullanılır. TypeScript, `children`'ın belirli bir eleman *(örneğin yalnızca `<li>`)* olmasını ifade edemez.[^1]
 
-## HTML Elemanını Saran Component'ler
+## HTML elemanını saran component'ler
 
 Kendi `Button` component'iniz, gerçek `<button>`'ın tüm props'unu *(`type`, `disabled`, `onClick`, `aria-*`...)* kabul etmeli. Bunları tek tek yazmak yerine `React.ComponentProps` ile alırsınız.[^6]
 
@@ -207,7 +207,7 @@ export function useCart() {
 >
 > - `createContext<CartContextValue>(null!)` ya da `{} as CartContextValue` ile derleyiciyi susturmak. Provider unutulduğunda hata çalışma anına kayar.[^12]
 
-## Generic Component
+## Generic component
 
 Generic'ler dersindeki `<T>` component'lerde de çalışır. Aşağıdaki `List`, hangi tipte dizi verilirse `renderItem`'a o tipi geçirir.[^14]
 
@@ -238,14 +238,14 @@ export function List<T>({ items, getKey, renderItem }: ListProps<T>) {
 
 `T`, `items={products}`'tan `Product` olarak çıkarılır. `.tsx` dosyasında generic component'i `function` ile yazmak en sorunsuz yoldur; arrow function'da `<T>` JSX etiketiyle karışır.[^14]
 
-## Kendin Dene
+## Kendin dene
 
 - `ProductCard`'a isteğe bağlı `badge?: "new" | "sale"` prop'u ekleyin ve `"discount"` vermeyi deneyin.
 - `Button`'a `aria-label` ve `disabled` verin; ek tip yazmadan kabul edildiğini görün.
 - `cartReducer`'a `{ type: "clear" }` action'ı ekleyin; `case` yazmadan önce `Function lacks ending return statement...` hatasını okuyun.
 - `List`'i `CartItem[]` ile kullanın ve `renderItem` içinde `item.quantity`'nin otomatik tamamlandığını görün.
 
-## Detaylı Öğrenmek İçin
+## Detaylı öğrenmek için
 
 - **Resmi doküman:** react.dev'in "Using TypeScript" sayfası; props, hook ve event tipleri kısa örneklerle.[^1]
 - **Yazı:** Topluluğun hazırladığı React TypeScript Cheatsheet; props, event, hook ve context için ayrı sayfalar.[^2]

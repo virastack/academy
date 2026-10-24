@@ -11,7 +11,7 @@ Bir uygulama iki yoldan, kendi kodunuzda hiçbir hata yokken de ele geçirilebil
 >
 > `.env` dosyaları, `NEXT_PUBLIC_` öneki ve açılışta doğrulama [Ortam değişkenleri](/academy/production/environment-variables) dersinde anlatıldı. Burada yalnızca güvenlik tarafı var.
 
-## Secret Nereden Sızar
+## Secret nereden sızar
 
 **1. İstemci paketi.** `NEXT_PUBLIC_` önekli her değişken derleme anında JavaScript paketine yazılır ve herkes okuyabilir.[^1] Secret okuyan modülün başına `import "server-only"` ekleyin; bir Client Component onu import ederse derleme hata verir.[^1]
 
@@ -34,7 +34,7 @@ export async function getProfileDTO(id: string) {
 >
 > GitHub'ın **push protection** özelliği, bilinen anahtar biçimlerini push sırasında yakalayıp reddeder. Kişisel hesaplarda açık depolara push için varsayılan olarak açıktır. Depo düzeyinde ayrıca açılması gerekir.[^3]
 
-## Tedarik Zinciri
+## Tedarik zinciri
 
 Bir paket kurmak, onun ve onun bağımlılıklarının yazarlarına güvenmek demektir. [Liran Tal](https://lirantal.com/), ortalama bir npm paketiyle onlarca bakımcıya güvendiğinizi hatırlatır.[^4] Saldırgan bu bakımcılardan birinin hesabını ele geçirirse kötü kod sizin bilgisayarınıza ve CI'ınıza kadar gelir.
 
@@ -48,7 +48,7 @@ Saldırıların çoğu üç kapıdan girer:[^4][^6]
 | Typosquatting | `cross-env` yerine `crossenv` gibi benzer isimli sahte paket |
 | Slopsquatting | Yapay zekanın uydurduğu paket adıyla önceden yayınlanmış sahte paket |
 
-## Kurulumu Sıkılaştırmak
+## Kurulumu sıkılaştırmak
 
 ### Lockfile ile kurun
 
@@ -110,13 +110,13 @@ updates:
 > - npm ve GitHub hesabınızda kimlik avına dayanıklı iki adımlı doğrulama *(passkey ya da güvenlik anahtarı)* kullanın.[^5]
 > - Paket yayınlıyorsanız uzun ömürlü token yerine **trusted publishing** kullanın.[^6]
 
-## Kendin Dene
+## Kendin dene
 
 - Bir projede `npm install --min-release-age=7` çalıştırın ve `npm ls` ile hangi sürümlerin geldiğine bakın.
 - `.env.local`'e sahte bir anahtar yazıp yanlışlıkla commit'leyin. Sonra dosyayı silip `git log -p` ile anahtarın geçmişte hâlâ durduğunu görün.
 - `package.json`'daki `allowScripts` alanını okuyun. Hangi paketin neden kurulum script'i çalıştırdığını araştırın.
 
-## Detaylı Öğrenmek İçin
+## Detaylı öğrenmek için
 
 - **Resmi doküman:** OWASP NPM Security Cheat Sheet; lockfile, kurulum script'leri, typosquatting ve trusted publishing.[^6]
 - **Konuşma:** Liran Tal, "Security Controls in the JavaScript Supply Chain" *(JSNation 2022, 28 dk)*; lockfile'a gizlenen kod, kurulum script'leri ve gecikmeli güncelleme.[^4]

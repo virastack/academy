@@ -5,7 +5,7 @@ lastVerified: "2026-10-22"
 translationKey: "forms/errors-and-accessibility"
 ---
 
-## Hata Görünmek Yetmez
+## Hata görünmek yetmez
 
 Kırmızı bir metin gören kullanıcı hatayı anlar. Ekran okuyucu kullanan biri için o metin, alana bağlanmadıkça sayfada bir yerde duran bir paragraftır. WCAG iki şey ister: hatalı alan **tanımlanmalı** ve hata metinle açıklanmalı *(3.3.1)*; düzeltme yolu biliniyorsa önerilmeli *(3.3.3)*.[^1][^2]
 
@@ -18,7 +18,7 @@ Erişilebilir bir hata dört parçadan oluşur:[^3][^4]
 | Hatanın metni | `aria-describedby` ile alana bağlı mesaj |
 | Görsel ipucu | Yalnızca renk değil: metin, kenarlık, ikon |
 
-## Alana Bağlamak
+## Alana bağlamak
 
 [!react-hook-form] dokümanı `aria-invalid` ve mesajı birlikte kullanmayı önerir. Ekran okuyucu alanı şöyle okur: "Ad, düzenleme alanı, geçersiz giriş, Ad zorunlu."[^3]
 
@@ -41,7 +41,7 @@ Alanın bir açıklaması da varsa *(örnek biçim, kural)* `aria-describedby` b
 >
 > React Hook Form dokümanı mesajlara `role="alert"` de ekler. Bu, mesaj **göründüğü anda** okunmasını sağlar. Çok alanlı bir formda gönderimde on mesaj birden okunur. Alan mesajlarında `aria-describedby` yeterlidir; `role="alert"`'ü formun genel hatası gibi tek mesajlara bırakın.[^3][^4]
 
-## Field Component'i
+## Field component'i
 
 Her alanda bu bağlantıyı elle kurmak hata davetiyesidir. Bir `Field` component'i etiketi, açıklamayı ve hatayı tek yerde toplar. Hata durumunu `useFormState` ile okur; böylece yalnızca bu alanın hatası değişince render olur:[^5][^6]
 
@@ -107,7 +107,7 @@ export function Field({ name, label, description, children }: FieldProps) {
 
 **Neden yer ayrılıyor?** Hata mesajı alanın altına eklenince altındaki her şey aşağı kayar. Kullanıcı alandan çıkıp bir düğmeye tıklarken `blur` hatayı gösterir, düğme kayar ve tıklama boşa gider. Bu rehberin proje örneğinde Playwright testleri tam olarak bu yüzden takıldı. Mesaj için sabit bir yükseklik ayırmak sorunu çözer.
 
-## Doğrulama Zamanlaması
+## Doğrulama zamanlaması
 
 Hata ne zaman gösterilmeli? [Vitaly Friedman](https://www.smashingmagazine.com/author/vitaly-friedman/) yıllar içinde öğrenilenleri şöyle özetler:[^7]
 
@@ -120,7 +120,7 @@ React Hook Form'daki `mode: "onTouched"` bu öneriye yakındır: ilk kontrol ala
 
 GOV.UK Design System daha temkinlidir: alandan çıkınca değil, kullanıcı "Devam" ya da "Gönder"e bastığında doğrulamayı önerir. Gerekçesi, yazmayı bitirmemiş birine hata göstermenin daha çok sorun çıkarmasıdır.[^8] İki yaklaşım da savunulabilir. Ortak noktaları: kullanıcı **yazarken** hata göstermeyin.
 
-## Gönderimde Odak ve Hata Özeti
+## Gönderimde odak ve hata özeti
 
 Gönderim başarısız olunca kullanıcı hatayı bulmalıdır. React Hook Form varsayılan olarak ilk hatalı alana odaklanır *(`shouldFocusError: true`)*. Bunun çalışması için alanın `ref`'i input'a ulaşmalıdır; `register`'ın döndürdüğü nesneyi input'a yayıyorsanız sorun yok.[^5]
 
@@ -177,7 +177,7 @@ const { formState: { errors, submitCount } } = form;
 
 Özet kullanıyorsanız `useForm({ shouldFocusError: false })` ile ilk alana odaklanmayı kapatın; aynı anda iki odak hareketi olmasın. GOV.UK ayrıca sayfa başlığının başına "Hata:" eklemeyi önerir; ekran okuyucu sayfayı açar açmaz duyurur.[^9]
 
-## İyi Hata Mesajı
+## İyi hata mesajı
 
 GOV.UK Design System'in yazım kuralları formlarda en çok başvurulan kaynaklardan biridir:[^10]
 
@@ -191,13 +191,13 @@ GOV.UK Design System'in yazım kuralları formlarda en çok başvurulan kaynakla
 
 Kural başına ayrı mesaj yazın: boş, çok kısa, çok uzun ve yanlış biçim farklı sorunlardır. Hata gösterdiğinizde alanı **temizlemeyin**; kullanıcı yazdığını düzeltebilmelidir.[^10]
 
-## Etiket ve Otomatik Doldurma
+## Etiket ve otomatik doldurma
 
 - **Placeholder etiket değildir.** Yazmaya başlayınca kaybolur, kontrastı düşüktür. Örnek biçimi açıklama metninde verin.
 - **Zorunluluğu etikette belirtin.** `required` özelliği her kullanıcıya alanın zorunlu olduğunu söylemez; görünür etikette belirtin. Formun çoğu zorunluysa isteğe bağlı olanları "*(isteğe bağlı)*" ile işaretlemek daha az gürültü çıkarır.[^11]
 - **`autocomplete` verin.** Ad, e-posta, telefon ve adres alanlarında `autocomplete="name"`, `"email"`, `"tel-national"` gibi değerler hem otomatik doldurmayı hem WCAG 1.3.5'i *(girdi amacını tanımlamak)* sağlar.[^12]
 
-## Kendin Dene
+## Kendin dene
 
 - Bir alanın `aria-describedby`'ını silin ve VoiceOver ya da NVDA ile alana gelin. Hata okunuyor mu?
 - Field'daki `min-h-5`'i silin, bir alanı boş bırakıp doğrudan altındaki düğmeye tıklayın. Tıklama çalışıyor mu?
@@ -205,7 +205,7 @@ Kural başına ayrı mesaj yazın: boş, çok kısa, çok uzun ve yanlış biçi
 - `ErrorSummary`'yi forma ekleyin, linklere tıklayın ve odağın alana gittiğini kontrol edin.
 - Formunuzdaki her hata mesajını yukarıdaki tabloya göre yeniden yazın.
 
-## Detaylı Öğrenmek İçin
+## Detaylı öğrenmek için
 
 - **Resmi doküman:** W3C WAI, "User Notification"; hata özeti, satır içi mesaj, başlık ve canlı bölgeler.[^4]
 - **Resmi doküman:** GOV.UK Design System, "Error message" ve "Error summary"; yerleşim ve yazım kuralları.[^10][^9]

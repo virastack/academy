@@ -38,7 +38,7 @@ import { addReview } from "@/app/actions";
 
 Server Component'teki form JavaScript yüklenmeden de gönderilir *(progressive enhancement)*. Client Component'te ise JavaScript yüklenene kadar gönderim sıraya alınır.[^1]
 
-## Sonucu Göstermek: useActionState
+## Sonucu göstermek: useActionState
 
 Hata ya da başarı mesajı göstermek için Action'ı React'in `useActionState`'ine verin. Action bu durumda ilk argüman olarak önceki state'i alır.[^1][^2]
 
@@ -83,7 +83,7 @@ export function SubscribeForm() {
 
 Doküman beklenen hatalar için `throw` yerine **değer döndürmeyi** önerir. `throw` en yakın hata sınırına gider; doğrulama hatası için fazla sert.[^3] Alan bazlı doğrulama ve [!zod] şeması [Formlar](/academy/forms) rehberinde.
 
-## Mutation'dan Sonra Ne Yenilenmeli
+## Mutation'dan sonra ne yenilenmeli
 
 Next.js, Action'ı ve güncellenen sayfayı **tek istekte** döndürebilir. Hangisinin yenileneceğini Action'da çağırdığınız fonksiyon belirler:[^4]
 
@@ -98,7 +98,7 @@ Next.js, Action'ı ve güncellenen sayfayı **tek istekte** döndürebilir. Hang
 
 Kullanıcı kendi yaptığı değişikliği hemen görmeli ise *(sepete ekleme, yorum yazma)* `updateTag` doğru seçimdir. `redirect`'i her zaman yenileme çağrılarından **sonra** yazın.[^4]
 
-## Güvenlik: Her Action Açık Bir Uç Noktadır
+## Güvenlik: Her action açık bir uç noktadır
 
 `"use server"`, fonksiyonu bir POST uç noktasına çevirir. Sayfanızda form göstermeseniz bile herkes aynı isteği elle gönderebilir.[^4] [Sebastian Markbåge](https://github.com/sebmarkbage)'ın Next.js güvenlik yazısındaki kural: Server Action'ları dışarıya açık bir API gibi ele alın.[^5]
 
@@ -129,7 +129,7 @@ export async function deleteReview(reviewId: string) {
 
 Rol kontrolünü tek yerde toplamak [Yetkilendirme ve roller](/academy/auth-security/authorization-and-roles) dersinde.
 
-## Ne Zaman Action, Ne Zaman Başka Bir Şey
+## Ne zaman action, ne zaman başka bir şey
 
 Next.js bir istemcideki Action'ları **sırayla** çalıştırır; ikincisi birincinin bitmesini bekler. `Promise.all` ile Action'ları paralel çağırmak işe yaramaz.[^4]
 
@@ -143,14 +143,14 @@ Next.js bir istemcideki Action'ları **sırayla** çalıştırır; ikincisi biri
 >
 > Yeni bir deploy, Action kimliklerini değiştirir. Eski sayfayı açık tutan kullanıcı "Failed to find Server Action" hatası alabilir. Arayüzde bu hatayı yenileme öneren bir mesajla karşılayın.[^4]
 
-## Kendin Dene
+## Kendin dene
 
 - `addReview`'u bir Server Component'teki forma bağlayın. Tarayıcıda JavaScript'i kapatıp formu gönderin.
 - `SubscribeForm`'a `@` içermeyen bir adres girin; mesajın sayfa yenilenmeden geldiğini görün.
 - Aynı Action'da `updateTag` yerine `revalidateTag(..., "max")` kullanın. Yorum listesi hemen güncelleniyor mu?
 - DevTools'un **Network** sekmesinde Action isteğini bulun. Bu isteği `curl` ile tekrarlayabilir misiniz? `deleteReview`'daki sahiplik kontrolü neden şart?
 
-## Detaylı Öğrenmek İçin
+## Detaylı öğrenmek için
 
 - **Resmi doküman:** "Server Actions and Mutations" rehberi; tek istekte veri ve arayüz, sıralı çalıştırma, güvenlik ve deploy notları.[^4]
 - **Yazı:** [Sebastian Markbåge](https://github.com/sebmarkbage), "How to Think About Security in Next.js"; Server Component ve Action'larda güvenlik modeli.[^5]

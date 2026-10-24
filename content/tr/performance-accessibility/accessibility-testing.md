@@ -5,11 +5,11 @@ lastVerified: "2026-10-17"
 translationKey: "performance-accessibility/accessibility-testing"
 ---
 
-## Erişilebilirlik Testi Nedir
+## Erişilebilirlik testi nedir
 
 Erişilebilirlik testi, sayfanın klavye, ekran okuyucu ya da büyütme gibi farklı yollarla kullanılabildiğini kontrol etmektir. İki katmanı vardır: **otomatik tarama** (bir aracın kuralları DOM üzerinde çalıştırması) ve **elle kontrol** (sayfayı gerçekten klavyeyle ve ekran okuyucuyla kullanmak). İkisi birbirinin yerine geçmez, birbirini tamamlar.
 
-## Otomatik Araçlar Neyi Yakalar
+## Otomatik araçlar neyi yakalar
 
 Otomatik araçlar eksik `alt`, etiketsiz form alanı, düşük kontrast ya da geçersiz ARIA gibi kodda görülebilen sorunları hızlıca bulur. Ama "Bu `alt` metni görseli doğru anlatıyor mu?" ya da "Odak sırası mantıklı mı?" gibi bağlam isteyen soruları cevaplayamaz. Oranlar ölçüm yöntemine göre değişir:
 
@@ -31,7 +31,7 @@ WebAIM'in 2026 taramasında bir milyon ana sayfanın %95,9'unda otomatik olarak 
 
 Temel kullanım tek fonksiyondur: `axe.run()` bir Promise döner, sonuçtaki `violations` dizisi boşsa otomatik yakalanabilen bir hata bulunmamıştır.[^5]
 
-## Vitest ile Component Taraması
+## Vitest ile component taraması
 
 Component testlerinde render edilen DOM'u axe ile taramak için ek bir matcher paketine gerek yoktur; axe-core'u doğrudan çağırabilirsiniz. Vitest ve React Testing Library kurulumu [Vitest track'inde](/academy/vitest/setup) anlatılıyor.
 
@@ -58,7 +58,7 @@ Bilmeniz gereken iki sınır var. axe-core'un JSDOM desteği sınırlıdır ve `
 >
 > `toHaveNoViolations()` gibi bir matcher isterseniz `vitest-axe`, jest-axe'in Vitest için çatallanmış (fork) halidir ve aynı API'yi kullanır.[^7] Ancak paketin son sürümü 2022'de yayımlandı; eklemeden önce bakım durumuna bakın.[^7]
 
-## Playwright ile Sayfa Taraması
+## Playwright ile sayfa taraması
 
 Gerçek tarayıcıda tüm sayfayı taramak için `@axe-core/playwright` paketindeki `AxeBuilder` kullanılır.[^8] Playwright kurulumu [Playwright track'inde](/academy/playwright) anlatılıyor.
 
@@ -105,13 +105,13 @@ export default [
 
 Paylaşılan config `files` ya da globals ayarlamaz, bunları kendiniz eklersiniz.[^9] Next.js'in `eslint-config-next` paketi React, React Hooks ve Next.js kural setlerini getirir; zaten `jsx-a11y` gibi bir plugin kurduysanız çakışmayı önlemek için `@next/eslint-plugin-next`'i doğrudan kullanmanız önerilir.[^10]
 
-## Lighthouse Skorunun Sınırı
+## Lighthouse skorunun sınırı
 
 Lighthouse erişilebilirlik skoru, otomatik denetimlerin ağırlıklı ortalamasıdır. Ağırlıklar axe'in kullanıcı etkisi değerlendirmesine göre verilir, her denetim ya geçer ya kalır. Elle yapılması gereken denetimler skora hiç girmez.[^11] Lighthouse'u çalıştırmayı [Ölçüm dersinde](/academy/performance-accessibility/measuring) gördünüz.
 
 Manuel Matuzović, içeriği ekran okuyucudan gizleyen, odak çerçevesini kaldıran ve fareyi devre dışı bırakan, buna rağmen Lighthouse'tan 100 alan bir sayfa yaptı. Vardığı sonuç: otomatik test yalnızca ilk adımdır.[^12]
 
-## Elle Kontrol: Klavyeyle Tur
+## Elle kontrol: Klavyeyle tur
 
 Fareyi bir kenara bırakın ve sayfayı yalnızca klavyeyle kullanın:[^13]
 
@@ -122,7 +122,7 @@ Fareyi bir kenara bırakın ve sayfayı yalnızca klavyeyle kullanın:[^13]
 
 macOS'ta önce sistem ayarlarından klavyeyle tüm kontrollere gezinmeyi açmanız gerekebilir.[^13] Bu kontrollerin nasıl düzeltileceği [Klavye ve odak yönetimi](/academy/performance-accessibility/keyboard-and-focus) dersinde.
 
-## DevTools Accessibility Tree
+## DevTools accessibility tree
 
 Ekran okuyucunun okuduğu şey DOM değil, tarayıcının ürettiği erişilebilirlik ağacıdır (HTML dersinden hatırlayın). Chrome DevTools'ta görmek için:[^14]
 
@@ -132,7 +132,7 @@ Ekran okuyucunun okuduğu şey DOM değil, tarayıcının ürettiği erişilebil
 
 Bir düğümü seçince tarayıcının hesapladığı özellikler **Computed Properties** altında görünür. Aynı sekmedeki **Source Order Viewer**, elemanların kaynak sırasını numaralarla gösterir.[^14]
 
-## Ekran Okuyucuya İlk Adım
+## Ekran okuyucuya ilk adım
 
 Ekran okuyucu bir yetenek gibi pratikle gelişir. Başlamak için birkaç kısayol yeterlidir.
 
@@ -164,7 +164,7 @@ NVDA tuşu olarak kurulumda Caps Lock'u seçebilirsiniz.[^16]
 >
 > İlk turda yalnızca üç şeye bakın: sayfanın başlıkları rotor ya da `H` ile anlamlı bir liste oluşturuyor mu, butonlar ve linkler adlarıyla okunuyor mu, form alanları etiketleriyle duyuruluyor mu?
 
-## Detaylı Öğrenmek İçin
+## Detaylı öğrenmek için
 
 - **Konuşma:** Manuel Matuzović, "Building the most inaccessible site possible with a perfect Lighthouse score" (Access All Areas 21).[^17]
 - **Elle ilk inceleme:** W3C'nin Easy Checks rehberi, araç gerektirmeyen kontroller.[^13]

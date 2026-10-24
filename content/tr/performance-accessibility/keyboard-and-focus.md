@@ -5,13 +5,13 @@ lastVerified: "2026-10-17"
 translationKey: "performance-accessibility/keyboard-and-focus"
 ---
 
-## Klavye Erişilebilirliği Nedir
+## Klavye erişilebilirliği nedir
 
 Sayfanızı fare olmadan kullanan çok sayıda insan var: ekran okuyucu kullanıcıları, motor engeli olup klavyeyle, anahtar (switch) cihazıyla ya da ağız çubuğuyla gezinenler. Onlar için her işlemi kaç tuşa basarak yapabildikleri doğrudan bir engel meselesidir.[^1]
 
 Klavyede temel kural basittir: `Tab` ve `Shift + Tab` odağı bir bileşenden diğerine taşır, ok tuşları ise menü ya da radio grubu gibi bir bileşenin içinde gezinir.[^2] O an klavye girdisini alan elemana **odak** (focus) denir. HTML dersinde gördüğünüz gibi `<button>`, `<a href>` ve form alanları bu davranışı tarayıcıdan bedava alır; bu derste odağın sırasını, görünürlüğünü ve JavaScript ile nereye taşınacağını ele alıyoruz.
 
-## Tab Sırası ve DOM Sırası
+## Tab sırası ve DOM sırası
 
 Tab sırası varsayılan olarak elemanların **DOM'daki sırasıdır**. DOM sırası aynı zamanda ekran okuyucunun okuma sırası olduğu için ikisi uyumlu, mantıklı ve tahmin edilebilir kalmalıdır.[^2] Odak sırası sayfanın görsel sırasıyla da örtüşmelidir.[^3]
 
@@ -64,7 +64,7 @@ export function ErrorSummary({ errors }: { errors: string[] }) {
 }
 ```
 
-## Görünür Odak ve :focus-visible
+## Görünür odak ve :focus-visible
 
 `:focus` odaktaki elemanı her zaman seçer. `:focus-visible` ise yalnızca tarayıcı kullanıcının odağı görmesi gerektiğine karar verdiğinde eşleşir: fareyle tıklanan bir butonda genellikle çerçeve çıkmaz, klavyeyle gelindiğinde ya da bir metin kutusu odaklandığında çıkar.[^6] Böylece odak çerçevesinin **ne zaman** görüneceğini tarayıcıya bırakıp yalnızca **nasıl** görüneceğini değiştirirsiniz.[^6]
 
@@ -84,7 +84,7 @@ Göstergeyi `border` ya da arka plan rengiyle değil `outline` ile yapmanın iki
 
 Daha sıkı olan **2.4.13 Focus Appearance** AAA seviyesindedir: göstergenin alanı bileşenin etrafındaki 2 CSS piksellik bir çerçeve kadar olmalı ve odaklı ile odaksız hal arasında en az 3:1 kontrast farkı yaratmalıdır.[^9] Alan şartını karşılamanın en basit yolu düz 2px bir `outline`'dır.[^9] Göstergenin arka plana göre kontrastı "Renk, kontrast ve hareket" dersinin konusu.
 
-## Skip Link
+## Skip link
 
 Her sayfada tekrar eden menüyü klavyeyle tek tek geçmek yorucudur. **Skip link**, sayfanın ilk odaklanabilir öğesi olan ve doğrudan ana içeriğe atlayan bir bağlantıdır.[^1][^3] Genellikle odak gelene kadar gizlenir; ama `display: none` ya da `hidden` ile değil, ekran dışına alınarak, çünkü bu ikisi bağlantıyı klavyeden de kaldırır.[^1] Bağlantı metni gideceği yeri söylemelidir: "Ana içeriğe geç".[^3]
 
@@ -118,7 +118,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
 Bağlantının `href` değeri hedefin `id`'siyle eşleşmelidir.[^1] 2025 verilerine göre sayfaların yalnızca yaklaşık %24'ünde skip link vardı.[^5]
 
-## Modal'da Odak
+## Modal'da odak
 
 Modal açıldığında üç şey olmalı: odak modalın içine girmeli, arkadaki sayfa kullanılamaz olmalı ve modal kapanınca odak onu açan butona dönmeli.[^10][^11] Klavye kullanıcısı `Esc` ile kapatabilmeyi bekler.[^11]
 
@@ -158,7 +158,7 @@ Kendi overlay'inizi (yan menü, çekmece) yazıyorsanız arkadaki içeriğe `ine
 > - Modalı `<div>` ile yazıp arkadaki sayfayı odaklanabilir bırakmayın.
 > - Modal kapandığında odağı `<body>`'ye düşürmeyin; kullanıcı sayfada nerede olduğunu kaybeder.[^2]
 
-## SPA'da Sayfa Değişimi
+## SPA'da sayfa değişimi
 
 Sunucudan yüklenen her sayfada ekran okuyucu yeni sayfanın başlığını okur. `next/link` ile yapılan client-side geçişlerde ise sayfa yeniden yüklenmez; bu yüzden Next.js varsayılan olarak bir **route announcer** ekler. Duyurulacak adı önce `document.title`'dan, yoksa `<h1>`'den, o da yoksa URL'den alır; bu yüzden her sayfaya benzersiz ve açıklayıcı bir başlık verin.[^15]
 
@@ -169,7 +169,7 @@ export const metadata = { title: "Fiyatlar | ViraStack" };
 
 Duyuru yalnızca ekran okuyucuya yarar; ekranı büyüterek ya da sesle kullanan kullanıcılar sayfanın değiştiğini fark etmeyebilir.[^16] Marcy Sutton'ın 2019'da farklı yardımcı teknoloji kullanıcılarıyla yaptığı testlerde ekran okuyucu kullanıcıları için en iyi sonucu yeni sayfanın başlığına odak vermek verdi; odağı uygulamanın en başına sıfırlamak ise bunaltıcı bulundu.[^16] Testlerin ardından önerisi, sayfa değişince odağı küçük ve görünür bir skip link'e taşımak ve sayfa adını bir live region ile duyurmaktı.[^16] Live region'ın kendisi "WCAG ve ARIA" dersinde anlatılıyor.
 
-## Focus Not Obscured
+## Focus not obscured
 
 WCAG 2.2 ile gelen **2.4.11 Focus Not Obscured (Minimum)** (AA), klavye odağı alan bileşenin sizin eklediğiniz içerik tarafından **tamamen** gizlenmemesini ister.[^17] Tipik suçlular yapışkan (sticky) header ve footer'lar ve cookie banner'larıdır: Tab'a bastıkça odak sayfanın altına iner ve sabit bir footer'ın arkasında kaybolur.[^17]
 
@@ -188,7 +188,7 @@ AAA seviyesindeki **2.4.12 Focus Not Obscured (Enhanced)** odaklı bileşenin hi
 
 Toolbar, tab listesi ya da radio grubu gibi bileşenlerde her öğeyi Tab sırasına koymak yerine yalnızca biri `tabindex="0"` alır, diğerleri `-1` olur ve ok tuşlarıyla `0` öğeden öğeye taşınır; buna **roving tabindex** denir.[^2] Bu tür bileşenleri sıfırdan yazmak yerine APG'deki kalıplara ve "WCAG ve ARIA" dersindeki headless kütüphanelere bakın.
 
-## Detaylı Öğrenmek İçin
+## Detaylı öğrenmek için
 
 - **Klavye arayüzünün temeli:** W3C APG'nin "Developing a Keyboard Interface" rehberi; roving tabindex ve `aria-activedescendant` burada.[^2]
 - **Odak göstergesi tasarımı:** Sara Soueidan'ın WCAG'e uygun odak göstergeleri rehberi.[^8]

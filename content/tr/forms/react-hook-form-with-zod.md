@@ -5,7 +5,7 @@ lastVerified: "2026-10-22"
 translationKey: "forms/react-hook-form-with-zod"
 ---
 
-## Neden Birlikte?
+## Neden birlikte?
 
 [React Hook Form temelleri](/academy/forms/react-hook-form-basics) dersinde kuralları `register`'a yazdınız. Bu yaklaşımın iki sorunu var: kurallar JSX'in içine dağılır ve aynı kuralları sunucuda tekrar yazmanız gerekir. Çözüm kuralları bir [!zod] şemasına taşıyıp formu bu şemayla doğrulamaktır. Bağlantıyı **resolver** kurar.[^1][^2]
 
@@ -103,7 +103,7 @@ Resolver'la çalışırken üç kural:[^1]
 - **Form düzeyindeki `validate` çalışmaz.** RHF 7.72 ile gelen `useForm({ validate })` ve resolver birbirini dışlar; ikisi birden verilirse yalnızca resolver çalışır.
 - **Hata mesajı şemadan gelir.** Mesajları şemaya yazın; JSX yalnızca `errors.x.message`'ı gösterir.
 
-## Alanlar Arası Kural ve deps
+## Alanlar arası kural ve deps
 
 Şifre ve tekrarı eşleştiğinde hata yok. Kullanıcı sonra şifreyi değiştirirse "Şifreler eşleşmiyor." çıkmalı. Çıkmaz: RHF yalnızca değişen alanın hatasını günceller; refine `confirmPassword`'a yazıyor ama değişen alan `password`.
 
@@ -119,7 +119,7 @@ Yukarıdaki formda `deps` bu yüzden var. `trigger()` ile elle doğrulama yaptı
 >
 > Zod'da nesnenin `.refine`'ı, nesnenin herhangi bir alanında tip hatası varken çalışmaz. Seçilmemiş bir `z.enum` alanı şifre kontrolünü bekletebilir *(bkz. [Zod ile şema ve doğrulama](/academy/forms/zod-schema-and-validation))*.
 
-## Input ve Output Tipleri
+## Input ve output tipleri
 
 Şemada `.transform` varsa şemanın girdi ve çıktı tipi ayrılır. Form **girdi** tipini tutar *(input'taki metin)*, `handleSubmit` **çıktı** tipini verir *(dönüşmüş değer)*:[^3][^5]
 
@@ -152,7 +152,7 @@ export function ProductForm() {
 
 `useForm`'un üç generic'i sırasıyla form değerleri, context ve gönderilen değerlerdir. Ya hiç generic vermeyin ve tipi resolver'dan çıkarın, ya da üçünü birden verin. Tek generic `useForm<ProductOutput>` iki tipi aynıya sabitler ve `zodResolver` ile çakışır. Resolver dokümanı `.default()` için de aynı uyarıyı yapar: varsayılan değeri olan alan girdide isteğe bağlı, çıktıda zorunludur.[^3]
 
-## Şemayı Sunucuyla Paylaşmak
+## Şemayı sunucuyla paylaşmak
 
 Şemayı ayrı bir dosyada tutmanın asıl faydası sunucudadır. Tarayıcıdaki doğrulama kullanıcı deneyimi içindir; atlatılabilir. Sunucu aynı şemayla girdiyi tekrar doğrular:[^6][^7]
 
@@ -175,14 +175,14 @@ export async function createAccount(values: unknown) {
 >
 > Şemada `.transform` varsa dikkat: `handleSubmit` **dönüşmüş** değeri verir. Bunu aynı şemayla sunucuda tekrar doğrularsanız şema metin bekler ama sayı gelir ve doğrulama başarısız olur. İki yol var: sunucuya gidecek şemada dönüşüm yapmayın ve dönüşümü sunucuda yapın, ya da sunucuya ham `FormData` gönderin. Ayrıntılar [Server Actions ile form](/academy/forms/forms-with-server-actions) dersinde.
 
-## Kendin Dene
+## Kendin dene
 
 - Kayıt formunu kurun. Şifreleri eşleştirin, sonra şifreyi değiştirin. `deps`'i silip tekrar deneyin.
 - `register("name", { required: "Zorunlu" })` ekleyip şemadan `min(2)`'yi silin. Boş gönderince ne oluyor?
 - `ProductForm`'da generic'leri silin. `product.price`'ın tipi ne oluyor? Sonra yalnızca `useForm<ProductOutput>` yazın ve hatayı okuyun.
 - `createAccount`'ı formu kullanmadan, bir test butonundan `createAccount({ email: "x" })` ile çağırın. Sunucu ne döndürüyor?
 
-## Detaylı Öğrenmek İçin
+## Detaylı öğrenmek için
 
 - **Resmi doküman:** React Hook Form, "Schema Validation"; resolver ile şema doğrulaması.[^2]
 - **Repo:** `@hookform/resolvers` README; Zod örneği ve input/output tipleri.[^3]

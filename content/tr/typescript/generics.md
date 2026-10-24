@@ -5,7 +5,7 @@ lastVerified: "2026-10-17"
 translationKey: "typescript/generics"
 ---
 
-## Neden Generic
+## Neden generic
 
 Bir listenin ilk elemanını döndüren bir fonksiyon yazdığınızı düşünün. Ürünlerle de, sepet kalemleriyle de, string'lerle de çalışsın istiyorsunuz. İlk akla gelen `any` kullanmaktır:
 
@@ -22,7 +22,7 @@ Fonksiyon her tiple çalışır ama içeri giren tipin bilgisi kaybolur.[^1] Di�
 
 **Generic**'ler bu ikisinin arasındaki yoldur: fonksiyon her tiple çalışır, ama hangi tiple çağrıldığını hatırlar.
 
-## Generic Fonksiyon
+## Generic fonksiyon
 
 Fonksiyon adından sonra açılı parantez içine bir **tip parametresi** yazarsınız. `T`, çağrı anında gerçek bir tiple dolacak bir yer tutucudur:[^1]
 
@@ -70,7 +70,7 @@ const names = mapItems(products, (product) => product.name); // string[]
 
 Tek harfli `T` yaygın bir gelenektir. Birden fazla parametre olduğunda `TItem`, `TResult` gibi açıklayıcı isimler kodu okunur kılar.
 
-## Constraint ile Sınırlamak
+## Constraint ile sınırlamak
 
 `T` her şey olabildiği için fonksiyonun içinde ona özel bir alana erişemezsiniz:[^1]
 
@@ -115,7 +115,7 @@ pluck(products, "nmae");
 
 `keyof` ve `T[K]` sözdizimini Utility types dersinde ayrıntılı göreceksiniz.
 
-## Generic Tipler
+## Generic tipler
 
 Tip parametreleri yalnızca fonksiyonlarda değil, `type` ve `interface` tanımlarında da kullanılır. API'nin sayfalı yanıtı her kaynak için aynı şekle sahipse bir kez yazarsınız:[^4]
 
@@ -148,7 +148,7 @@ const page: Paginated = { items: [], page: 1, totalPages: 1 };
 
 Generic'leri farkında olmadan kullanıyorsunuz. `number[]`, `Array<number>`'ın kısa yazımıdır. `async` bir fonksiyon `Promise<Product>` döner, `new Map<number, number>()` anahtar ve değer tipini alır. React'te `useState<Product | null>(null)` de bir generic çağrısıdır; bunu ve generic component yazmayı React'te tipler dersinde göreceksiniz.
 
-## Tipli fetch Yardımcısı
+## Tipli fetch yardımcısı
 
 Her projede bir `fetchJson<T>` yardımcısı bulunur:
 
@@ -193,7 +193,7 @@ const product = await fetchJson("/api/products/1", isProduct); // Product
 
 Artık `T` iki yerde geçiyor ve argümandan çıkarılıyor; tip gerçek bir kontrole dayanıyor. Gerçek projelerde `isValid` yerine çoğunlukla bir [!zod] şeması verilir.
 
-## Gereğinden Fazla Generic Yazmayın
+## Gereğinden fazla generic yazmayın
 
 Generic yazmak keyiflidir ve abartmak kolaydır. TypeScript Handbook'taki ölçüt, [Dan Vanderkam](https://danvk.org/)'ın deyişiyle "generic'lerin altın kuralı", şudur:[^3][^5]
 
@@ -217,13 +217,13 @@ function printName(item: { name: string }): void {
 
 `getFirst<T>(items: T[]): T | undefined` kuralı geçer: `T` hem parametrede hem dönüşte geçer ve ikisini bağlar. Handbook ayrıca mümkün olduğunca az tip parametresi kullanmayı önerir.[^3] typescript-eslint'in `no-unnecessary-type-parameters` kuralı bu kuralı otomatik kontrol eder; `strict-type-checked` yapılandırmasında açıktır.[^6]
 
-## Kendin Dene
+## Kendin dene
 
 - TS Playground'da `getFirst([1, "iki"])` çağrısında `T`'nin ne olarak çıkarıldığına fareyle bakın.
 - `pluck(cartItems, "quantity")` sonucunun tipini fareyle kontrol edin.
 - `ApiResponse<TData, TError = string>` tipinden `ProductResponse` üretip `ok` alanıyla daraltın.
 
-## Detaylı Öğrenmek İçin
+## Detaylı öğrenmek için
 
 - **Resmi doküman:** TypeScript Handbook'un Generics sayfası; constraint, `keyof` ile constraint ve varsayılan tip parametreleri.[^1]
 - **Resmi doküman:** Handbook'taki "Guidelines for Writing Good Generic Functions" bölümü; üç kısa kural.[^3]

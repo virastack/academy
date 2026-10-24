@@ -5,7 +5,7 @@ lastVerified: "2026-10-21"
 translationKey: "react/context"
 ---
 
-## Context Ne Çözer
+## Context ne çözer
 
 **Context**, bir değeri aradaki component'lere prop olarak geçirmeden ağacın derinlerine ulaştırır. Bir component değeri **sağlar** *(provide)*, altındaki herhangi bir component **okur**.[^1]
 
@@ -15,7 +15,7 @@ Tipik kullanımlar: tema, oturum açmış kullanıcı, dil, sepet gibi uygulaman
 >
 > Context'e uzanmadan önce [Props ve composition](/academy/react/props-and-composition) dersindeki iki adımı deneyin: props ile devam edin ya da ara component'lere `children` verin. React dokümanı Context'i ancak bunlar yetmediğinde önerir.[^1]
 
-## Üç Adım
+## Üç adım
 
 ```tsx
 import { createContext, use, useState } from "react";
@@ -52,7 +52,7 @@ function PriceTag({ amount }: { amount: number }) {
 
 Okuyan component, ağaçta kendisine **en yakın** provider'ın değerini alır. Provider yoksa `createContext`'e verilen varsayılan değeri görür.[^1]
 
-## Provider'ı Custom Hook ile Sarmak
+## Provider'ı custom hook ile sarmak
 
 Context'in çoğu zaman anlamlı bir varsayılan değeri yoktur. [Kent C. Dodds](https://kentcdodds.com/)'un kalıbı: varsayılanı `null` yapın, context'i dışarı açmayın, okumak için provider yokken hata fırlatan bir hook export edin.[^4]
 
@@ -70,7 +70,7 @@ export function useCart() {
 
 Tip tarafı [React'te tipler](/academy/typescript/types-in-react) dersinde.
 
-## Reducer ile Birlikte
+## Reducer ile birlikte
 
 Context **taşır**, state **tutmaz**. Paylaşılan ve değişen bir veri için Context'i `useState` ya da `useReducer` ile birleştirirsiniz. React dokümanı state'i ve `dispatch`'i iki ayrı context'e koymayı önerir.[^5]
 
@@ -90,7 +90,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
 `dispatch` hiç değişmez. Yalnızca "Sepete ekle" butonu gibi `dispatch`'e ihtiyaç duyan component'ler sepet değiştiğinde render olmaz.[^5][^6]
 
-## Performans ve Sınırlar
+## Performans ve sınırlar
 
 Provider'ın `value`'su değiştiğinde onu okuyan **tüm** component'ler render olur. Bu yüzden:[^6][^7]
 
@@ -102,14 +102,14 @@ Context bir state yönetim kütüphanesi değildir. [TkDodo](https://tkdodo.eu/)
 
 [!nextjs] gibi Server Components kullanan bir framework'te Server Component Context **oluşturamaz** ama React 19.3'ten beri `'use client'` modülünden import ettiği Context'i doğrudan render edebilir; ayrı bir `Provider` sarmalayıcısı gerekmez.[^9]
 
-## Kendin Dene
+## Kendin dene
 
 - `ThemeContext`'i kurun ve provider'ı silin. `PriceTag` hangi temayı gösteriyor?
 - `useCart`'ı provider dışında çağırın ve hata mesajını görün.
 - Sepete ekleme butonuna `console.log("render")` koyun. Önce state ve `dispatch`'i tek context'te, sonra iki ayrı context'te tutun ve sepete ürün eklerken logları sayın.
 - Bir `if (!isOpen) return null;` satırından sonra `use(ThemeContext)` çağırın; aynısını `useContext` ile deneyip lint'in ne dediğine bakın.
 
-## Detaylı Öğrenmek İçin
+## Detaylı öğrenmek için
 
 - **Resmi doküman:** "Passing Data Deeply with Context" ve "Scaling Up with Reducer and Context"; ikincisi sepet benzeri bir görev listesini adım adım kurar.[^1][^5]
 - **Yazı:** [Kent C. Dodds](https://kentcdodds.com/)'un "How to use React Context effectively" yazısı.[^4]

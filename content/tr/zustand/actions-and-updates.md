@@ -5,7 +5,7 @@ lastVerified: "2026-10-21"
 translationKey: "zustand/actions-and-updates"
 ---
 
-## Action'ları Ayrı Bir Nesnede Toplayın
+## Action'ları ayrı bir nesnede toplayın
 
 Action'lar state'i değiştiren fonksiyonlardır ve **hiç değişmezler**. [TkDodo](https://tkdodo.eu/) onları store'un içinde ayrı bir `actions` nesnesine koymayı önerir. Böylece hepsini tek bir hook ile dışarı açarsınız:[^1]
 
@@ -45,7 +45,7 @@ Bu, [Selector ve yeniden render](/academy/zustand/selectors-and-rerenders) dersi
 >
 > `set` en üst seviyede birleştirdiği için `actions` nesnesi güncellemelerde korunur. Yalnızca `set(..., true)` ile state'i tamamen değiştirirseniz silinir.
 
-## Setter Değil, Olay
+## Setter değil, olay
 
 Action'a `setItems` gibi bir ad verip mantığı component'e yazmak kolaydır. TkDodo, Redux stil rehberinden aldığı kuralı önerir: action'ları **olay** gibi modelleyin.[^1][^2] Component ne olduğunu söyler, store ne yapılacağına karar verir.
 
@@ -76,7 +76,7 @@ addProduct: (product) =>
 
 İş kuralı *(aynı ürün eklenirse adedi artır)* tek bir yerde durur ve test etmesi kolaydır.
 
-## İç İçe Güncelleme ve immer
+## İç içe güncelleme ve immer
 
 Yukarıdaki `map` ve spread zinciri derinleştikçe okunması zorlaşır. [Immer](https://immerjs.github.io/immer/) ile state'i değiştiriyormuş gibi yazarsınız; Immer arka planda yeni bir nesne üretir.[^3] Zustand bunun için bir middleware verir; paketi ayrıca kurmanız gerekir:[^4]
 
@@ -110,7 +110,7 @@ const useCartStore = create<CartState>()(
 
 Ne zaman? State birkaç seviye iç içeyse immer kodu belirgin şekilde kısaltır. Düz bir state için spread yeterlidir; fazladan bir bağımlılık eklemeyin.
 
-## Store'u Sıfırlamak
+## Store'u sıfırlamak
 
 Çıkış yapınca ya da sipariş tamamlanınca store'u başlangıç haline döndürmek gerekir. `create`'e verdiğiniz fonksiyonun üçüncü parametresi store'un kendisidir; `getInitialState()` ilk state'i verir:[^5]
 
@@ -127,7 +127,7 @@ const useCartStore = create<CartState>()((set, _get, store) => ({
 
 Başlangıç değerlerini ayrı bir sabite kopyalamanıza gerek kalmaz.
 
-## Store Dışındaki Action'lar
+## Store dışındaki action'lar
 
 Doküman önerilen yolu açıkça söyler: action'ları state ile birlikte store'da tutun. Alternatif olarak action'ları modül düzeyinde, `setState` ile de yazabilirsiniz:[^6][^7]
 
@@ -143,13 +143,13 @@ export const resetFilters = () => useFilterStore.setState(useFilterStore.getInit
 
 Avantajı: action'ı çağırmak için hook gerekmez, herhangi bir dosyadan import edilir. Doküman bu yolun bir dezavantajı olmadığını, birlikte tutmanın ise kapsülleme sağladığını söyler.[^7] Projede birini seçin ve tutarlı kalın.
 
-## Kendin Dene
+## Kendin dene
 
 - `addProduct`'ı önce component'te `setItems` ile, sonra store'da olay olarak yazın. Aynı ürünü iki farklı component'ten eklemeniz gerekirse hangisi daha az kod?
 - Sepete `checkoutCompleted` ekleyin ve `getInitialState()` ile sıfırlayın.
 - `immer` middleware'ini kaldırın ama `state.items.push` satırını bırakın. Ekran güncelleniyor mu?
 
-## Detaylı Öğrenmek İçin
+## Detaylı öğrenmek için
 
 - **Yazı:** [TkDodo](https://tkdodo.eu/), "Working with Zustand"; action'ları ayırmak ve olay olarak modellemek.[^1]
 - **Resmi doküman:** "Flux inspired practice"; `set` ile güncelleme, action'ları birlikte tutmak ve reducer kalıbı.[^6]

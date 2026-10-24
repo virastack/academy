@@ -5,7 +5,7 @@ lastVerified: "2026-10-21"
 translationKey: "zustand/selectors-and-rerenders"
 ---
 
-## Selector Nasıl Karşılaştırılır
+## Selector nasıl karşılaştırılır
 
 Store her değiştiğinde Zustand, component'teki selector'ı yeniden çalıştırır ve sonucu bir öncekiyle `Object.is` ile karşılaştırır. Sonuç farklıysa component render olur, aynıysa olmaz.[^1][^2]
 
@@ -15,7 +15,7 @@ const count = useCartStore((state) => state.items.length);
 
 Burada sonuç bir sayıdır. Sepet kapanıp açılsa da sayı aynı kaldığı sürece component render olmaz. Selector'ın döndürdüğü değer ne kadar küçükse component o kadar az render olur.
 
-## Bütün Store'a Abone Olmak
+## Bütün store'a abone olmak
 
 Selector vermezseniz hook bütün state'i döndürür. Bu, store'daki **her** değişiklikte render demektir:[^3]
 
@@ -26,7 +26,7 @@ const { items } = useCartStore();
 
 [TkDodo](https://tkdodo.eu/) bu yüzden selector'ları zorunlu sayar: store'da tek bir değer olsa bile bir selector yazın.[^3]
 
-## Atomik Selector
+## Atomik selector
 
 Her değer için ayrı bir selector yazmak en basit ve en güvenli yoldur:[^3]
 
@@ -37,7 +37,7 @@ const isOpen = useCartStore((state) => state.isOpen);
 
 Her satır kendi değerine abone olur. TkDodo'nun tercihi budur: bir component iki değere ihtiyaç duyuyorsa iki selector kullanır.[^3]
 
-## Nesne Döndüren Selector
+## Nesne döndüren selector
 
 Birden fazla değeri tek seferde almak için nesne döndürmek caziptir. Ama selector her çalıştığında **yeni** bir nesne üretir; `Object.is` iki nesneyi hiçbir zaman eşit saymaz.[^1]
 
@@ -70,7 +70,7 @@ const [items, isOpen] = useCartStore(useShallow((state) => [state.items, state.i
 >
 > Varsayılan değeri selector içinde üretmek de aynı hatayı verir. `state.action ?? (() => {})` her seferinde yeni bir fonksiyon döndürür. Varsayılanı selector'ın dışında bir sabite koyun.[^4]
 
-## Türetilmiş Değer
+## Türetilmiş değer
 
 Hesaplanabilen bir değeri store'a ayrıca yazmayın; selector'da hesaplayın.[^5] Sonuç bir sayı ya da metinse ek bir şey gerekmez:
 
@@ -88,7 +88,7 @@ const ids = useCartStore(useShallow((state) => state.items.map((item) => item.id
 
 Bu kalıp listeler için kullanışlıdır. Liste component'i yalnızca `id`'leri okur; her satır kendi kaydını `id` ile seçer. Bir ürünün adedi değişince yalnızca o satır render olur.
 
-## Yalnızca Custom Hook Export Edin
+## Yalnızca custom hook export edin
 
 TkDodo'nun bir numaralı önerisi: store hook'unu dışarı açmayın, her değer için bir custom hook export edin.[^3]
 
@@ -106,13 +106,13 @@ export const useIsCartOpen = () => useCartStore((state) => state.isOpen);
 
 Kullanan component selector yazmak zorunda kalmaz, yanlışlıkla bütün store'a abone olamaz, store'un iç yapısı değişince yalnızca bu dosya değişir. Action'ları dışarı açmanın yolu [Action ve güncelleme](/academy/zustand/actions-and-updates) dersinde.
 
-## Kendin Dene
+## Kendin dene
 
 - Üç component yazın: biri bütün store'u, biri atomik selector'ı, biri `useShallow` ile nesne okusun. Her birine `console.log("render")` koyup store'da ilgisiz bir alanı değiştirin.
 - `useShallow`'u kaldırıp nesne döndüren selector'ı çalıştırın. Konsolda hangi uyarı ve hata çıkıyor?
 - Sepet listesini önce `items`'ı okuyarak, sonra yalnızca `id`'leri okuyup satırlara böldükten sonra render edin. Bir ürünün adedini değiştirince kaç satır render oluyor?
 
-## Detaylı Öğrenmek İçin
+## Detaylı öğrenmek için
 
 - **Yazı:** [TkDodo](https://tkdodo.eu/), "Working with Zustand"; custom hook export etmek, atomik selector ve action'ları ayırmak.[^3]
 - **Resmi doküman:** "Prevent rerenders with useShallow"; türetilmiş dizide `useShallow` örneği.[^1]

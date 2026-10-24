@@ -5,7 +5,7 @@ lastVerified: "2026-10-22"
 translationKey: "playwright/debugging-with-trace"
 ---
 
-## Önce Hata Mesajını Okuyun
+## Önce hata mesajını okuyun
 
 Başarısız bir testin çıktısı çoğu zaman sorunu söyler. Bu rehberin projesinde sipariş sayısını bilerek yanlış yazınca çıkan hata:
 
@@ -40,7 +40,7 @@ npx playwright test --ui
 - "Pick locator" ile sayfadaki bir elementin locator'ını alırsınız.
 - Konsol, ağ istekleri ve hata aynı ekrandadır.
 
-## Inspector ile Adım Adım
+## Inspector ile adım adım
 
 `--debug` testi görünür tarayıcıda başlatır ve Playwright Inspector'ı açar. Her eylemden önce durur; adım adım ilerler, locator'ı canlı düzenler ve hangi elementlere uyduğunu görürsünüz.[^2]
 
@@ -52,11 +52,11 @@ Dosya adından sonraki `:13` yalnızca o satırdaki testi çalıştırır. Testi
 
 Inspector'daki **actionability log** bir eylemin neden beklediğini söyler: "element is not visible", "element is not enabled", "another element would receive the click" gibi *(bkz. [Assertion ve bekleme](/academy/playwright/assertions-and-waiting))*.[^2]
 
-## Trace Nedir?
+## Trace nedir?
 
 Trace, bir test çalıştırmasının tam kaydıdır: her eylem, öncesi ve sonrasındaki DOM, ağ istekleri, konsol mesajları, kaynak kod satırı. CI'da düşen bir testi kendi makinenizde **yeniden çalıştırmadan** incelemenizi sağlar. Playwright dokümanı CI hataları için video ve ekran görüntüsü yerine trace önerir.[^3]
 
-## Trace Kaydetmek
+## Trace kaydetmek
 
 `use.trace` hangi çalıştırmada trace kaydedileceğini belirler:[^4]
 
@@ -87,7 +87,7 @@ npx playwright show-trace test-results/orders-duruma-göre-filtreler-chromium/tr
 
 [trace.playwright.dev](https://trace.playwright.dev) aynı görüntüleyicinin web sürümüdür. Dosyayı sürükleyip bırakırsınız; trace tamamen tarayıcınızda açılır, hiçbir yere gönderilmez.[^5]
 
-## Trace Viewer'da Neye Bakılır?
+## Trace viewer'da neye bakılır?
 
 | Sekme | Ne gösterir |
 | :-- | :-- |
@@ -112,7 +112,7 @@ use: {
 },
 ```
 
-## Kendi Adımlarınız
+## Kendi adımlarınız
 
 Uzun testlerde `test.step` raporu ve trace'i okunur kılar. Adımlar raporda ve Trace Viewer'da başlıklarıyla görünür.[^7]
 
@@ -129,7 +129,7 @@ test("yönetici siparişi iptal eder", async ({ loginPage, ordersPage }) => {
 });
 ```
 
-## Kırılgan Testi Yakalamak
+## Kırılgan testi yakalamak
 
 Bazen düşen, bazen geçen teste **kırılgan** *(flaky)* denir. Bir kez çalıştırarak yakalanmaz. İki seçenek işe yarar:[^8][^9]
 
@@ -151,14 +151,14 @@ Son düşen testleri tekrar çalıştırmak için:[^8]
 npx playwright test --last-failed
 ```
 
-## Kendin Dene
+## Kendin dene
 
 - Bir assertion'ı bilerek yanlış yazın. Call log'u okuyun, sonra `error-context.md` dosyasını açın.
 - `npx playwright test --trace on` ile çalıştırın, raporu açıp bir testin trace'ine girin. Network sekmesinde `/api/orders` isteğinin yanıtını bulun.
 - Bir teste `await page.pause()` ekleyip `--headed` ile çalıştırın. Inspector'da locator'ı değiştirip hangi elementlere uyduğuna bakın.
 - Test paketinizi `--shuffle --repeat-each=5` ile çalıştırın. Düşen test var mı?
 
-## Detaylı Öğrenmek İçin
+## Detaylı öğrenmek için
 
 - **Resmi doküman:** Playwright, "Trace viewer"; trace kaydetme, açma ve tüm sekmeler.[^5]
 - **Resmi doküman:** Playwright, "Debugging Tests"; Inspector, VS Code ve ayrıntılı API logları.[^2]

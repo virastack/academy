@@ -47,7 +47,7 @@ Argümansız çağrı tüm sayfayı, argümanlı çağrı yalnızca verdiğiniz 
 
 ## En sık görülen 4 hata
 
-### 1. Found multiple elements
+### 1. found multiple elements
 
 ```bash
 TestingLibraryElementError: Found multiple elements with the role "button" and name "Sepete ekle"
@@ -63,7 +63,7 @@ const card = screen.getByRole("article", { name: "Mekanik Klavye" });
 within(card).getByRole("button", { name: "Sepete ekle" });
 ```
 
-### 2. Unable to find an accessible element
+### 2. unable to find an accessible element
 
 ```bash
 TestingLibraryElementError: Unable to find an accessible element with the role "heading" and name "Klavye"
@@ -81,7 +81,7 @@ Here are the accessible roles:
 - `name` değerini kontrol edin. Tam eşleşme gerekir: `"Klavye"` değil `"Mekanik Klavye"`. Kısmi eşleşme için regex kullanın: `/klavye/i`.[^6], [^4]
 - Eleman sonradan geliyorsa `findBy` kullanın.[^4]
 
-### 3. Eleman henüz ekranda değil
+### 3. eleman henüz ekranda değil
 
 ```bash
 TestingLibraryElementError: Unable to find an accessible element with the role "article"

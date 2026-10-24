@@ -5,7 +5,7 @@ lastVerified: "2026-10-17"
 translationKey: "web-fundamentals/terminal-and-npm"
 ---
 
-## Terminal Nedir?
+## Terminal nedir?
 
 **Terminal**, programları yazı yazarak çalıştırdığınız metin tabanlı arayüzdür. Teknik olarak terminal, bir **shell** başlatıp ona bağlanan programdır; komutları yorumlayan shell'dir. Günlük kullanımda iki kelime aynı anlamda kullanılır.[^1]
 
@@ -21,7 +21,7 @@ Frontend geliştirirken terminali her gün açarsınız: paket kurmak, geliştir
 
 MDN, Windows'ta WSL kurmayı açıkça öneriyor.[^1] VS Code'un içindeki terminal de iyi bir başlangıçtır; editörden çıkmadan komut çalıştırırsınız.[^2]
 
-## Temel Komutlar
+## Temel komutlar
 
 | Komut | Ne yapar |
 | :-- | :-- |
@@ -48,7 +48,7 @@ MDN, Windows'ta WSL kurmayı açıkça öneriyor.[^1] VS Code'un içindeki termi
 >
 > `rm` ile silinen dosya çöp kutusuna gitmez, geri getirilemez. `rm -r` bir klasörü tamamen siler; çalıştırmadan önce hangi klasörde olduğunuzu `pwd` ile kontrol edin.[^1]
 
-## Node.js Kurulumu
+## Node.js kurulumu
 
 **Node.js**, JavaScript'i tarayıcı dışında çalıştıran bir ortamdır; Chrome'un V8 motorunu kullanır.[^4] React kodunuz tarayıcıda çalışsa da Vite, Next.js, ESLint ve test araçları Node üzerinde çalışır. Node'u kurduğunuzda **npm** ve **npx** de gelir.[^1]
 
@@ -160,7 +160,7 @@ pnpm'de `pnpm dev`, `pnpm run dev`'in kısaltmasıdır; script adı pnpm'in kend
 >
 > Bir projede tek paket yöneticisi kullanın. Projede `pnpm-lock.yaml` varsa `npm install` değil `pnpm install` çalıştırın.[^8]
 
-## İlk Projeyi Çalıştırmak
+## İlk projeyi çalıştırmak
 
 Yeni bir React projesi açmak için Vite'ın kurulum aracını çalıştırın. Proje adını ve framework olarak **React**'i sorar:[^19]
 
@@ -178,7 +178,7 @@ pnpm dev
 
 Sayfa `http://localhost:5173` adresinde açılır.[^19] Dosyayı kaydettiğinizde tarayıcı güncellenir. İşiniz bitince terminalde `Ctrl` + `C` ile sunucuyu durdurun.[^2]
 
-## Paketlere Güvenmek
+## Paketlere güvenmek
 
 Paket kurmak, başkasının yazdığı kodu bilgisayarınızda çalıştırmak demektir. Bazı paketler kurulurken kendi script'lerini de çalıştırır. Bu yüzden iki paket yöneticisi de varsayılanlarını sıkılaştırdı:
 
@@ -189,7 +189,7 @@ Paket kurmak, başkasının yazdığı kodu bilgisayarınızda çalıştırmak d
 >
 > Kurulumda bir paketin script'inin atlandığını söyleyen bir uyarı görürseniz, paketi tanıyorsanız onaylayın, tanımıyorsanız önce araştırın.
 
-## Detaylı Öğrenmek İçin
+## Detaylı öğrenmek için
 
 - **Terminal, frontend gözüyle:** [Josh W. Comeau](https://www.joshwcomeau.com/)'nun React geliştiricileri için yazdığı terminal rehberi.[^2]
 - **Shell'i baştan sona:** MIT'nin Missing Semester dersinin shell bölümü; yolları, `$PATH`'i, pipe'ları ve yönlendirmeyi anlatır, videosuyla birlikte.[^3]

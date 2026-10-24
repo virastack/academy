@@ -5,17 +5,17 @@ lastVerified: "2026-10-22"
 translationKey: "production/logging"
 ---
 
-## Log Neden Var?
+## Log neden var?
 
 Canlıda hata ayıklayıcı yok, `console.log`'u görecek bir terminal yok. Bir kullanıcı "dün öğleden sonra siparişim iptal olmadı" dediğinde elinizdeki tek kanıt loglardır. İyi bir log, sorulmadan önce cevabı kaydetmiş olandır: kim, ne zaman, ne yaptı, sonuç ne oldu.
 
-## Loglar Bir Akıştır
+## Loglar bir akıştır
 
 Twelve-Factor ilkeleri logu dosya olarak değil, **olay akışı** olarak tanımlar. Uygulama log dosyası açmaz, döndürmez, nereye gideceğini bilmez; her olayı tek satır olarak `stdout`'a yazar. Akışı toplamak, birleştirmek ve bir arama sistemine göndermek çalışma ortamının işidir.[^1]
 
 Bu, [!docker] ve bulut platformlarıyla birebir uyuşur: `docker logs` konteynerin `stdout`'unu okur, platformlar aynı akışı kendi log arayüzlerine taşır. Uygulamanızda dosyaya yazan bir logger ayarlamanıza gerek yoktur.
 
-## Yapılandırılmış Log
+## Yapılandırılmış log
 
 İnsan için yazılmış bir log satırı:
 
@@ -35,7 +35,7 @@ Aynı olay, makine için:
 >
 > Her olaya sabit bir `event` adı verin *(`login_failed`, `order_cancelled`)*. Mesaj metni zamanla değişir; olay adı değişmezse kayıtlı sorgular ve uyarılar bozulmaz.
 
-## pino ile Logger
+## pino ile logger
 
 pino, Node.js için hızlı bir JSON logger'dır. [!nextjs] onu sunucu paketlerinden ayrı tutulan *(bundle'lanmayan)* paketler listesinde varsayılan olarak tanır; ek ayar gerekmez.[^2]
 
@@ -84,7 +84,7 @@ logger.error({ event: "request_error", err: error, digest }, "İstek işlenirken
 
 Canlıda `debug` kapalı olmalıdır; hem gürültü hem maliyettir. `error` seviyesi uyarı kurallarının kaynağıdır, bu yüzden beklenen durumları *(geçersiz form gönderimi gibi)* `error` olarak yazmayın.
 
-## Bağlamı Taşımak: Alt Logger
+## Bağlamı taşımak: Alt logger
 
 Bir istek boyunca yazılan her satıra aynı alanları *(istek kimliği, kullanıcı)* eklemek için `child` kullanın:[^3]
 
@@ -97,7 +97,7 @@ requestLogger.info({ event: "order_cancelled", orderId }, "Sipariş iptal edildi
 
 İki satır da `requestId` ve `userId` taşır. Loglarda bir istek kimliğini aratınca o isteğin bütün hikâyesini sırayla görürsünüz.
 
-## Ne Loglanır?
+## Ne loglanır?
 
 OWASP'ın loglama rehberi güvenlik açısından mutlaka kaydedilmesi gereken olayları sıralar. Frontend ve Next.js uygulamasına düşenler:[^4]
 
@@ -121,7 +121,7 @@ if (!user) {
 logger.info({ event: "login_succeeded", userId: user.id }, "Giriş başarılı");
 ```
 
-## Ne Loglanmaz?
+## Ne loglanmaz?
 
 OWASP'a göre şunlar loglara doğrudan yazılmamalı; çıkarılmalı, maskelenmeli, özetlenmeli *(hash)* ya da şifrelenmelidir:[^4]
 
@@ -161,7 +161,7 @@ logger.info({ user: { email: "a@example.com", password: "x" }, headers: { cookie
 >
 > Next.js geliştirme modunda Server Function çağrılarını argümanlarıyla birlikte terminale yazar.[^6] Bu yalnızca `next dev`'de olur ve `logging.serverFunctions: false` ile kapatılabilir. `logging` ayarlarının hiçbiri production build'i etkilemez.
 
-## Hata Kodu ile Eşleştirmek
+## Hata kodu ile eşleştirmek
 
 [Hata izleme](/academy/production/error-monitoring) dersindeki `onRequestError` her sunucu hatasını `digest` alanıyla loglar. Kullanıcı ekranda gördüğü hata kodunu destek ekibine iletir, ekip loglarda `digest` ile arar:
 
@@ -171,7 +171,7 @@ logger.info({ user: { email: "a@example.com", password: "x" }, headers: { cookie
 
 Aynı fikir genelleşir: her log satırına bir istek kimliği, sürüm ve ortam eklerseniz, birbirinden bağımsız kayıtları birbirine bağlayabilirsiniz.
 
-## Geliştirmede Okunur Log
+## Geliştirmede okunur log
 
 JSON satırlarını terminalde okumak zordur. `pino-pretty` yalnızca okumak için bir dönüştürücüdür; uygulama yine JSON yazar:
 
@@ -179,7 +179,7 @@ JSON satırlarını terminalde okumak zordur. `pino-pretty` yalnızca okumak iç
 npm run dev | npx pino-pretty
 ```
 
-## Loglar, Metrikler ve İzler
+## Loglar, metrikler ve izler
 
 Loglar tek başına her soruyu cevaplamaz. Google'ın SRE kitabı kullanıcıya dönük bir sistemde izlenecek **dört altın sinyali** sayar: gecikme, trafik, hatalar ve doygunluk.[^7] Bunlar sayı olarak *(metrik)* tutulduğunda grafiğe dökülür ve uyarı kurulur; tek tek log satırlarından hesaplamak pahalıdır.
 
@@ -196,14 +196,14 @@ export function register() {
 
 Küçük bir proje için yapılandırılmış loglar ve bir hata izleme servisi çoğu zaman yeterlidir. Trafik büyüdükçe metrik ve iz ekleyin.
 
-## Kendin Dene
+## Kendin dene
 
 - Projenize pino ekleyin. `console.log` satırlarını `event` alanlı log çağrılarına çevirin.
 - Başarısız girişleri loglayın. Aynı e-postayla art arda beş başarısız deneme yapıp loglarda nasıl göründüğüne bakın.
 - `redact` olmadan bir isteğin başlıklarını loglayın ve cookie'nin açıkça yazıldığını görün. Sonra `redact` ekleyin.
 - Bir Route Handler'da `logger.child` ile istek kimliği ekleyin ve aynı isteğin satırlarını filtreleyin.
 
-## Detaylı Öğrenmek İçin
+## Detaylı öğrenmek için
 
 - **Rehber:** OWASP, "Logging Cheat Sheet"; hangi olaylar, hangi alanlar, ne loglanmaz.[^4]
 - **Yazı:** Heroku, "The Twelve-Factor App: Logs"; logları olay akışı olarak düşünmek.[^1]

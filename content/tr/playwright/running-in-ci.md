@@ -9,7 +9,7 @@ translationKey: "playwright/running-in-ci"
 
 Uçtan uca testler yerelde ara sıra çalıştırılırsa unutulur. Her push'ta ve her pull request'te otomatik çalışan testler, bozulan akışı birleştirmeden önce yakalar. Bu derste [!github] Actions kullanıyoruz; diğer CI servislerinde adımlar aynıdır.[^1]
 
-## İş Akışı
+## İş akışı
 
 `npm init playwright` sırasında GitHub Actions'ı seçtiyseniz dosya hazırdır. Bu rehberin projesindeki hali:[^1][^2]
 
@@ -53,7 +53,7 @@ Adım adım:
 - `if: ${{ !cancelled() }}` testler düşse de raporun yüklenmesini sağlar. Asıl ihtiyaç duyduğunuz an testlerin düştüğü andır.[^1]
 - `timeout-minutes` takılan bir işin dakikalarca çalışmasını önler.
 
-## CI İçin Yapılandırma
+## CI için yapılandırma
 
 Oluşturulan yapılandırma `process.env.CI` ile CI'da farklı davranır. GitHub Actions bu değişkeni kendisi tanımlar.[^3]
 
@@ -85,7 +85,7 @@ export default defineConfig({
 
 Tek işçi yavaş gelirse güçlü bir CI makinesinde işçi sayısını artırabilir ya da testleri birden fazla makineye bölebilirsiniz.[^3]
 
-## Raporu ve Trace'i İncelemek
+## Raporu ve trace'i incelemek
 
 Test düştüğünde Actions çalıştırmasının özet sayfasındaki **Artifacts** bölümünden `playwright-report`'u indirin, açın ve çalıştırın:[^1]
 
@@ -99,11 +99,11 @@ npx playwright show-report playwright-report
 >
 > Rapor indirmeden de bakabilirsiniz. Tek bir `trace.zip`'i [trace.playwright.dev](https://trace.playwright.dev) adresine sürükleyin; dosya tarayıcınızda açılır, hiçbir yere gönderilmez.
 
-## Tarayıcıyı Önbelleğe Almak?
+## Tarayıcıyı önbelleğe almak?
 
 Akla gelen ilk optimizasyon tarayıcıları önbelleğe almaktır. Playwright dokümanı bunu önermez: önbelleği geri yüklemek indirmek kadar sürer ve Linux'ta sistem bağımlılıkları zaten önbelleğe alınamaz.[^3] `actions/setup-node`'un `cache: npm` ayarı ise npm paketlerini önbelleğe alır ve işe yarar.
 
-## Sharding: Testleri Makinelere Bölmek
+## Sharding: Testleri makinelere bölmek
 
 Test paketi büyüyünce tek makine yetmez. `--shard` testleri parçalara böler; her parça ayrı bir işte çalışır:[^4]
 
@@ -139,7 +139,7 @@ npx playwright merge-reports --reporter html ./all-blob-reports
 
 Dokümandaki tam örnekte `merge-reports` işi `needs: [playwright-tests]` ile parçaları bekler, blob raporlarını `actions/download-artifact` ile tek klasöre indirir ve birleşik raporu yükler.[^4] `fail-fast: false` bir parça düşse de diğerlerinin bitmesini sağlar.
 
-## Birden Fazla Tarayıcı
+## Birden fazla tarayıcı
 
 Yerelde yalnızca Chromium, CI'da tüm tarayıcılar çalışsın istiyorsanız diğer projelere `default: false` verin ve CI'da hepsini seçin:[^5]
 
@@ -148,7 +148,7 @@ Yerelde yalnızca Chromium, CI'da tüm tarayıcılar çalışsın istiyorsanız 
 - run: npx playwright test --project="*"
 ```
 
-## Kırılgan Testler
+## Kırılgan testler
 
 Bir test bazen geçip bazen düşüyorsa kırılgandır. Google'ın test ekibi 2016'da paylaştığı verilerde test çalıştırmalarının yaklaşık yüzde 1,5'inin kırılgan sonuç verdiğini, testlerin yaklaşık yüzde 16'sında bir miktar kırılganlık olduğunu yazar. Gözlenen "geçiyordu, düştü" geçişlerinin yaklaşık yüzde 84'ü kırılgan bir testten kaynaklanır.[^6] Yani kırmızı bir CI'ın çoğu zaman gerçek bir hata olmaması, ekibin kırmızıya güvenmemeyi öğrenmesi demektir.
 
@@ -174,14 +174,14 @@ npx playwright test --grep-invert @quarantine
 >
 > Karantina bir park yeri değil, bekleme salonudur. Her karantinadaki test için bir iş kaydı açın ve süre koyun.
 
-## Kendin Dene
+## Kendin dene
 
 - Projenize iş akışını ekleyip bir pull request açın. Bir testi bilerek bozun ve `github` raporcusunun satıra yazdığı notu bulun.
 - Düşen çalıştırmanın raporunu indirip trace'ini açın.
 - Testleri `--shard=1/2` ve `--shard=2/2` ile yerelde iki parçada çalıştırın. Toplam test sayısı tutuyor mu?
 - Bir testi `@quarantine` ile etiketleyip `--grep-invert` ile hariç tutun.
 
-## Detaylı Öğrenmek İçin
+## Detaylı öğrenmek için
 
 - **Resmi doküman:** Playwright, "Setting up CI"; GitHub Actions iş akışı ve raporu incelemek.[^1]
 - **Resmi doküman:** Playwright, "Sharding"; parçalara bölmek ve raporları birleştirmek.[^4]

@@ -5,7 +5,7 @@ lastVerified: "2026-10-22"
 translationKey: "forms/zod-schema-and-validation"
 ---
 
-## Neden Şema?
+## Neden şema?
 
 TypeScript tipleri derlemeden sonra silinir. Formdan, URL'den ya da bir API'den gelen veri çalışma anında ne olduğunu bilmediğiniz bir değerdir. [!zod] bu değeri bir **şemaya** göre doğrular ve aynı şemadan TypeScript tipini çıkarır. Böylece kural ve tip tek bir yerde durur.[^1]
 
@@ -15,7 +15,7 @@ Bu ders Zod 4.6 ile yazıldı:[^2]
 npm install zod
 ```
 
-## İlk Şema
+## İlk şema
 
 ```ts
 import { z } from "zod";
@@ -54,7 +54,7 @@ if (signUpSchema.validate(input)) {
 }
 ```
 
-## Hata Mesajlarını Özelleştirmek
+## Hata mesajlarını özelleştirmek
 
 Zod 4'te mesaj, `error` parametresiyle ya da doğrudan metinle verilir:[^6]
 
@@ -80,7 +80,7 @@ z.string().min(2).safeParse("a").error?.issues[0].message;
 
 Bu mesajlar geneldir ve son kullanıcı için teknik kalır. Kullanıcının göreceği alanlarda kendi mesajınızı yazın; dil paketi unuttuğunuz yerler için güvenlik ağıdır.
 
-## Alanlar Arası Kural
+## Alanlar arası kural
 
 Bir kural birden fazla alana bakıyorsa nesneye `.refine` ekleyin. `path` hatanın hangi alana yazılacağını seçer:[^8]
 
@@ -125,7 +125,7 @@ const ibanSchema = z
 
 Girdi ve çıktı tipinin ayrılması formlarda önemlidir: form **girdi** tipini tutar, gönderim **çıktı** tipini alır *(bkz. [React Hook Form ile Zod](/academy/forms/react-hook-form-with-zod))*.
 
-## Boş Alan Tuzakları
+## Boş alan tuzakları
 
 Formdan gelen değer çoğu zaman metindir ve boş alan `""`'dır, `undefined` değil. Üç sık hata:
 
@@ -145,7 +145,7 @@ age: z.string().min(1, "Yaşınızı girin.").pipe(z.coerce.number<string>().int
 
 `z.coerce.number()`'ın girdi tipi `unknown`'dır; şemayı formla kullanırken bu tip `useForm`'a da yansır. `pipe` ile bağlarken girdi tipini generic ile verin: `z.coerce.number<string>()`.[^11]
 
-## Hatayı Biçimlendirmek
+## Hatayı biçimlendirmek
 
 `result.error.issues` ham listedir. Zod 4 üç yardımcı verir:[^12]
 
@@ -162,7 +162,7 @@ if (!result.success) {
 
 Düz formlarda `z.flattenError` yeterlidir; sunucudan alan hatası döndürmek için kullanacaksınız. Zod 3'teki `error.flatten()` ve `error.format()` kullanımdan kaldırıldı.[^12]
 
-## Yeni Biçimler
+## Yeni biçimler
 
 Zod 4.5 ve 4.6 formlarda işe yarayan iki biçim ekledi:[^5][^13]
 
@@ -173,7 +173,7 @@ z.iban(); // elektronik biçim: boşluksuz, büyük harf, mod-97 sağlaması
 
 Telefon için `z.e164()` *(`+905321234567`)* hazır gelir.[^3] Maskeli alanlarda bu biçimleri ham değer üzerinde nasıl kullanacağınız [Maskeleme ve regex](/academy/forms/masking-and-regex) dersinde.
 
-## Kendin Dene
+## Kendin dene
 
 - `signUpSchema`'yı yazıp `safeParse`'a `{ name: " a", email: "x@", age: "20" }` verin. Kaç hata çıkıyor? `age` neden hata veriyor?
 - `z.config(tr())` ekleyip aynı denemeyi yapın.
@@ -181,7 +181,7 @@ Telefon için `z.e164()` *(`+905321234567`)* hazır gelir.[^3] Maskeli alanlarda
 - `z.url().optional()`'a `""` verin, sonra `z.literal("")` ile birleştirin.
 - `priceSchema` için `z.input` ve `z.output` tiplerini editörde fareyle inceleyin.
 
-## Detaylı Öğrenmek İçin
+## Detaylı öğrenmek için
 
 - **Resmi doküman:** "Basic usage"; şema, parse ve tip çıkarımı.[^1]
 - **Resmi doküman:** "Customizing errors"; `error` parametresi, öncelik sırası ve dil paketleri.[^6]

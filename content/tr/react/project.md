@@ -29,7 +29,7 @@ Amaç tasarım değil, derslerdeki parçaların birlikte çalışmasıdır. Her 
 
 Projenin çalışan hali GitHub'da: [examples/react/project](https://github.com/virastack/academy/tree/main/examples/react/project). Takıldığınızda karşılaştırın.
 
-## Adım 1: Projeyi Kurun
+## Adım 1: Projeyi kurun
 
 [Kurulum ve araçlar](/academy/react/setup-and-tooling) dersindeki gibi bir [!vite] projesi açın ve hata sınırı paketini ekleyin:[^1]
 
@@ -43,7 +43,7 @@ npm install react-error-boundary
 
 `src/App.tsx`, `src/App.css` ve `src/index.css` dosyalarını silin. Tüm dosyaları `src/project/` altına yazacaksınız. `eslint-plugin-react-hooks`'u [Kurulum ve araçlar](/academy/react/setup-and-tooling) dersindeki gibi ESLint'e ekleyin ve `package.json`'daki `lint` betiğini `oxlint && eslint .` yapın; Adım 5'te bir hatayı yakalayacak.
 
-## Adım 2: Sahte API ve Promise Cache
+## Adım 2: Sahte API ve promise cache
 
 Gerçek bir sunucu yerine gecikmeli fonksiyonlar kullanın. Yorumların üründen daha yavaş gelmesi, Suspense boundary'lerinin farkını görmenizi sağlar.
 
@@ -135,7 +135,7 @@ export function clearProduct(id: string) {
 }
 ```
 
-## Adım 3: Sepet Context'i
+## Adım 3: Sepet context'i
 
 Sepet, sayfanın her yerinden okunan ve seyrek değişen bir veri; Context için iyi bir aday. State ve `dispatch` ayrı context'lerde duruyor, böylece yalnızca `dispatch` kullanan "Sepete ekle" butonu sepet değişince render olmuyor.[^3]
 
@@ -189,7 +189,7 @@ export function useCartDispatch() {
 }
 ```
 
-## Adım 4: Favori Butonu
+## Adım 4: Favori butonu
 
 `useOptimistic`, Action sürerken kalbi hemen doldurur. Action bitince değer gerçek state'e döner; istek hata verirse kalp kendiliğinden eski hâline gelir.[^4]
 
@@ -296,7 +296,7 @@ function SubmitButton() {
 
 Form action'ı başarılı olunca React `textarea`'yı kendiliğinden temizler.[^9]
 
-## Adım 6: Ürün Sayfası ve Sekmeler
+## Adım 6: Ürün sayfası ve sekmeler
 
 ```tsx
 // src/project/ProductPage.tsx
@@ -352,7 +352,7 @@ Sekmeler koşullu render yerine `<Activity>` ile yazıldı. Bunun iki sonucu var
 - Yorum formuna yazılan taslak, **Açıklama** sekmesine geçip dönünce kaybolmaz.
 - Yorumlar sekmesi gizliyken de düşük öncelikle render edilir. `Reviews` bileşeni gizliyken yorumları çekmeye başlar; kullanıcı sekmeye tıkladığında veri çoğu zaman hazırdır.
 
-## Adım 7: Kayan Sepet Çekmecesi
+## Adım 7: Kayan sepet çekmecesi
 
 ```tsx
 // src/project/CartDrawer.tsx
@@ -430,7 +430,7 @@ function CartDrawer() {
 
 Çekmece `startTransition` ile açıldığı için `<ViewTransition>` animasyonu çalışır; düz `setIsOpen` ile çalışmazdı.[^11] `prefers-reduced-motion` bloğu, hareketi azaltmak isteyen kullanıcılar için animasyonu kapatır.
 
-## Adım 8: Parçaları Birleştirin
+## Adım 8: Parçaları birleştirin
 
 ```tsx
 // src/project/App.tsx
@@ -487,7 +487,7 @@ npm run build
 >
 > React DevTools'un Profiler'ında sepete ürün eklerken hangi component'lerin render olduğuna bakın. `ProductPage`'in sepet değişince render olmadığını görmelisiniz; yalnızca `dispatch` okuyor.
 
-## Kendin Dene
+## Kendin dene
 
 - `api.ts`'te `getProduct`'ı ilk çağrıda hata fırlatacak şekilde değiştirin; "Tekrar dene"nin `clearProduct` sayesinde ikinci denemede çalıştığını görün. Sonra `onReset`'i silip tekrar deneyin.
 - `setFavorite`'i her seferinde hata fırlatacak şekilde değiştirin. Kalp ne yapıyor? Hatayı kullanıcıya göstermek için ne eklersiniz?

@@ -5,7 +5,7 @@ lastVerified: "2026-10-21"
 translationKey: "nextjs/setup-and-folder-structure"
 ---
 
-## Bu Rehber Ne Anlatıyor
+## Bu rehber ne anlatıyor
 
 [!nextjs] dokümanı güncel ve ayrıntılı. Bu rehber onu tekrar etmiyor. Her derste konuyu kısaca özetleyip Next.js ekibinin ve deneyimli mühendislerin önerilerini, yaygın hataları topluyor. Sürüm: Next.js 16.4 *(Ekim 2026)*, React 19.3.[^1]
 
@@ -15,13 +15,13 @@ translationKey: "nextjs/setup-and-folder-structure"
 >
 > Bu rehberdeki kodlar `create-next-app@16.4.2` ile açılan bir projede `tsc`, `eslint` ve `next build` ile kontrol edildi.
 
-## Next.js Ne Getirir
+## Next.js ne getirir
 
 React yalnızca arayüz kütüphanesidir. Routing, veri çekme ve sunucuda render için bir framework gerekir. React ekibi yeni uygulamalara Next.js App Router'ı önerdiği framework'ler arasında sayar.[^2]
 
 Next.js'in farkı render modelinde. Çoğu framework bir sayfayı ya tamamen statik ya tamamen dinamik sayar. Next.js bu sınırı **component** seviyesine indirir: aynı sayfada anında gelen statik bir kabuk *(shell)* ve sonradan akan dinamik parçalar olabilir.[^3] Rehberin geri kalanı bu fikrin üzerine kurulu.
 
-## İlk Proje
+## İlk proje
 
 ```command
 npx create-next-app@latest my-shop --yes
@@ -62,7 +62,7 @@ export default nextConfig;
 >
 > Next.js 16'dan beri `next build` lint çalıştırmaz ve `next lint` komutu yoktur. Lint'i `npm run lint` ile ayrıca çalıştırın.[^4] CI kurulumu [Kod Kalitesi](/academy/architecture/code-quality) dersinde.
 
-## Önemli Dosyalar
+## Önemli dosyalar
 
 | Dosya | Ne işe yarar |
 | :-- | :-- |
@@ -75,7 +75,7 @@ export default nextConfig;
 
 `AGENTS.md`'nin işi ilginç: agent'a eğitim verisine değil, `node_modules/next/dist/docs/` altındaki, kurulu sürümle eşleşen dokümana bakmasını söyler.[^6] Ayrıntısı [AI agent'larla Next.js](/academy/nextjs/ai-agents) dersinde.
 
-## app Klasörü ve Özel Dosyalar
+## app klasörü ve özel dosyalar
 
 App Router'da **klasörler** URL'yi, **özel dosyalar** o adreste ne gösterileceğini belirler. Bir klasör ancak içinde `page.tsx` ya da `route.ts` olduğunda erişilebilir olur.[^7]
 
@@ -90,7 +90,7 @@ App Router'da **klasörler** URL'yi, **özel dosyalar** o adreste ne gösterilec
 
 Next.js bu dosyaları sabit bir sırayla iç içe koyar: `layout` > `error` > `loading` > `not-found` > `page`.[^7] React rehberindeki Suspense ve Error Boundary'yi hatırlayın: `loading.tsx` bir `<Suspense>`, `error.tsx` bir Error Boundary'dir. Next.js onları dosya adından kurar.
 
-## Kodu Nereye Koymalı
+## Kodu nereye koymalı
 
 Next.js yapı konusunda görüş bildirmez, tutarlı olmanızı ister.[^7] İşe yarayan üç kural var:
 
@@ -104,7 +104,7 @@ Büyüyen projelerde `app/` klasörünü yalnızca routing için tutup kodu `fea
 >
 > Editörünüzde sekmeler `page.tsx`, `page.tsx`, `page.tsx` diye dolacak. Next.js dokümanı VS Code ve Cursor için `workbench.editor.customLabels.patterns` ayarıyla sekmeye klasör adını yazdırmayı önerir *(ör. `products/[slug] - page.tsx`)*.[^4]
 
-## Güncel Kalmak
+## Güncel kalmak
 
 Next.js sık sürüm çıkarır. Her sürüm güvenlik yaması da içerir. Küçük ve sık güncellemek, büyük ve seyrek güncellemekten kolaydır.[^4]
 
@@ -114,14 +114,14 @@ npx next upgrade
 
 Güncelleme, paketle gelen dokümanı da yeni sürüme taşır. Böylece agent'lar her zaman kurulu sürümün dokümanını okur.[^4]
 
-## Kendin Dene
+## Kendin dene
 
 - `my-shop` projesini kurun. `next.config.ts`'te `cacheComponents` ve `partialPrefetching`'in açık geldiğini görün.
 - `app/about/page.tsx` oluşturun ve `/about`'a gidin. Sonra dosyayı `app/(marketing)/about/page.tsx`'e taşıyın; adres değişti mi?
 - `app/about/_components/team.tsx` oluşturun. `/about/_components/team` adresine gidince ne oluyor?
 - `AGENTS.md`'yi açın ve agent'ı hangi klasöre yönlendirdiğini okuyun.
 
-## Detaylı Öğrenmek İçin
+## Detaylı öğrenmek için
 
 - **Resmi doküman:** Next.js Learn kursu; App Router ile adım adım bir panel uygulaması kurar.[^8]
 - **Resmi doküman:** "Rendering Philosophy" sayfası; statik ile dinamiği neden bir yelpaze olarak gördüklerini ve bunun hosting'e etkisini anlatır.[^3]

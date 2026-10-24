@@ -5,7 +5,7 @@ lastVerified: "2026-10-21"
 translationKey: "zustand/store-with-context"
 ---
 
-## Global Store'un Sınırları
+## Global store'un sınırları
 
 `create` ile kurulan store bir modül değişkenidir; uygulamanın her yerinden erişilir ve Provider gerekmez. [TkDodo](https://tkdodo.eu/), bu kolaylığın üç durumda sorun çıkardığını anlatır:[^1]
 
@@ -17,7 +17,7 @@ translationKey: "zustand/store-with-context"
 
 [!nextjs] gibi sunucuda render eden bir framework'te dördüncü bir sorun var: sunucu aynı anda birçok isteğe cevap verir. Modül düzeyindeki bir store **istekler arasında paylaşılır**; bir kullanıcının verisi diğerine sızabilir.[^2]
 
-## Değeri Değil, Store'u Paylaşın
+## Değeri değil, store'u paylaşın
 
 Çözüm React Context'tir; ama state yönetimi için değil. Context'e değer yerine **store örneğini** koyarsınız. Store örneği hiç değişmediği için Context gereksiz render'a yol açmaz; değer seçimini yine Zustand'ın selector'ları yapar.[^1]
 
@@ -86,7 +86,7 @@ export const useSelectionActions = () => useSelectionStore((state) => state.acti
 
 `useStore(store, selector)`, `create`'in döndürdüğü hook'un yaptığını yapar: store'a selector ile abone olur.[^5] Provider dışında hata fırlatan hook kalıbı ve `use` [Context](/academy/react/context) dersinden tanıdık.
 
-## Üç Sorun Nasıl Çözülür
+## Üç sorun nasıl çözülür
 
 - **Props.** `initialSelected` store oluşturulurken verilir; ilk render doğru değerle yapılır. Prop sonradan değişirse store'a yansımaz; bu bir **başlangıç** değeridir. Prop değişince store'u sıfırlamak istiyorsanız Provider'a `key` verin.[^1]
 - **Yeniden kullanım.** Her Provider kendi store'unu oluşturur. Aynı filtre grubunu sayfada iki kez kullanabilirsiniz:
@@ -104,7 +104,7 @@ export const useSelectionActions = () => useSelectionStore((state) => state.acti
 
 Global store'larla devam ediyorsanız Zustand dokümanı testler için bir `__mocks__/zustand.ts` dosyasıyla her testten sonra tüm store'ları `getInitialState()`'e döndürmeyi anlatır.[^6] TkDodo bu yolu karmaşık bulduğunu yazar.[^1]
 
-## Next.js'te Store
+## Next.js'te store
 
 Zustand dokümanı App Router için iki kural koyar:[^2]
 
@@ -126,7 +126,7 @@ export function CartStoreProvider({ children }: { children: ReactNode }) {
 
 Provider'ı `app/layout.tsx`'te `<body>`'nin içine koyarsanız store uygulama boyunca yaşar. Yalnızca bir route'ta gerekiyorsa o route'un `page.tsx`'ine koyun; route'tan çıkınca store da gider.[^2] Server Component'te okunan bir değeri başlangıç değeri olarak Provider'a prop ile geçebilirsiniz.
 
-## Ne Zaman Hangisi
+## Ne zaman hangisi
 
 | Durum | Öneri |
 | :-- | :-- |
@@ -138,14 +138,14 @@ Provider'ı `app/layout.tsx`'te `<body>`'nin içine koyarsanız store uygulama b
 
 TkDodo kendi deneyimini şöyle özetler: Context ile kurduğu store'ları, gerçekten global olanlardan daha sık kullanmıştır.[^1]
 
-## Kendin Dene
+## Kendin dene
 
 - Bir filtre grubunu global store ile yazın ve sayfada iki kez render edin. Birinde seçim yapınca diğerine ne oluyor?
 - Aynısını `SelectionProvider` ile yazın.
 - `initialSelected` prop'unu bir butonla değiştirin. Store güncelleniyor mu? Provider'a `key` verip tekrar deneyin.
 - `useSelectedCount`'u Provider'ın dışında çağırın ve hata mesajını görün.
 
-## Detaylı Öğrenmek İçin
+## Detaylı öğrenmek için
 
 - **Yazı:** [TkDodo](https://tkdodo.eu/), "Zustand and React Context"; global store'un üç sorunu ve Context ile çözümü.[^1]
 - **Resmi doküman:** "Setup with Next.js"; istek başına store, Provider ve route düzeyinde store.[^2]

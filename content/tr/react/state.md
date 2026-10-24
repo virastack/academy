@@ -5,7 +5,7 @@ lastVerified: "2026-10-21"
 translationKey: "react/state"
 ---
 
-## State Nedir
+## State nedir
 
 **State**, bir component'in render'lar arasında hatırladığı veridir. `useState` iki şey döndürür: o anki değer ve onu güncelleyen fonksiyon. Güncelleme fonksiyonu çağrıldığında React component'i yeniden render eder.[^1]
 
@@ -27,7 +27,7 @@ export function QuantityPicker() {
 
 Normal bir `let` değişkeni bu işi göremez: her render fonksiyonu baştan çalıştırır ve değişkeni sıfırlar, üstelik değişkeni değiştirmek render'ı tetiklemez.[^1]
 
-## State Bir Fotoğraftır
+## State bir fotoğraftır
 
 `setQuantity` değeri hemen değiştirmez; bir sonraki render için istek bırakır. O render'ın içindeki `quantity` sabit kalır.[^2]
 
@@ -50,7 +50,7 @@ setQuantity((q) => q + 1);
 
 [Josh W. Comeau](https://www.joshwcomeau.com/) bu "set ettim ama eski değeri görüyorum" durumunu yeni başlayanların en sık takıldığı hatalardan biri olarak sayar.[^3]
 
-## Değiştirmeyin, Yenisini Verin
+## Değiştirmeyin, yenisini verin
 
 Obje ya da dizi tutan state'i doğrudan değiştirmeyin. React değişikliği referans karşılaştırmasıyla anlar; aynı objeyi değiştirip geri verirseniz render olmayabilir.[^4]
 
@@ -69,7 +69,7 @@ setCart(cart.map((item) =>
 
 `push`, `splice`, `sort` ve `reverse` diziyi yerinde değiştirir; `toSorted` ve `toReversed` gibi kopya döndüren karşılıklarını ya da spread'i kullanın.[^4] `eslint-plugin-react-hooks`'un `immutability` kuralı props ve state mutasyonunu yakalar.[^5]
 
-## State'i Doğru Kurmak
+## State'i doğru kurmak
 
 Hataların çoğu state'in kendisinden değil, yanlış kurulmasından çıkar. React dokümanının beş ilkesi:[^6]
 
@@ -98,7 +98,7 @@ const inStock = products.filter((p) => p.stock > 0);
 
 Hesap pahalıysa bile önce ölçün; memoization'ı React Compiler ya da `useMemo` halleder.
 
-## State Nerede Durur, Ne Zaman Sıfırlanır
+## State nerede durur, ne zaman sıfırlanır
 
 State, onu kullanan **en yakın ortak ebeveyne** konur. İki kardeş aynı değere ihtiyaç duyuyorsa state ebeveyne çıkar ve props olarak iner.[^9] Karar tablosu ve *colocation* [Component ve Kod Organizasyonu](/academy/architecture/component-organization) rehberinde.
 
@@ -108,7 +108,7 @@ React state'i component'e değil, component'in **ağaçtaki yerine** bağlar. Ay
 
 Güncellemeler birçok yerden geliyor ve birbirine bağlıysa *(çok adımlı form, sepet)* `useReducer` mantığı tek bir saf fonksiyonda toplar ve test edilmesini kolaylaştırır.[^11] [TkDodo](https://tkdodo.eu/)'nun ölçütü: birbirinden bağımsız değişen değerler için ayrı `useState`, birlikte değişen ve birbirine bağlı parçalar için `useReducer`.[^12] Tipli bir `cartReducer` örneği [React'te tipler](/academy/typescript/types-in-react) dersinde.
 
-## Her Veri Aynı State Değil
+## Her veri aynı state değil
 
 [Kent C. Dodds](https://kentcdodds.com/), uygulama state'ini en az iki türe ayırmayı önerir: sunucudan gelen veri *(server cache)* ve yalnızca arayüzü yöneten veri *(UI state)*. İkisini aynı yerde tutmak en büyük karmaşa kaynağıdır.[^13]
 
@@ -120,14 +120,14 @@ Güncellemeler birçok yerden geliyor ve birbirine bağlıysa *(çok adımlı fo
 | Form state | Henüz gönderilmemiş girdiler | Form, [Formlar](/academy/forms) rehberi |
 | Paylaşılan client state | Tema, sepet | Context ya da [Zustand](/academy/zustand) |
 
-## Kendin Dene
+## Kendin dene
 
 - `QuantityPicker`'a "+3" butonu ekleyin. Önce `quantity + 1` ile, sonra updater ile yazın.
 - Sepetteki bir ürünün adedini `item.quantity++` ile artırmayı deneyin ve ekranın neden güncellenmediğini açıklayın.
 - `isLoading`, `isError` ve `data` tutan bir component'i tek bir `status` alanına çevirin.
 - Bir ürün listesinde `filteredProducts`'ı state'ten çıkarıp render sırasında hesaplayın.
 
-## Detaylı Öğrenmek İçin
+## Detaylı öğrenmek için
 
 - **Resmi doküman:** "Managing State" bölümü; state yapısı, state'i yukarı taşıma ve state'i koruma/sıfırlama.[^6][^10]
 - **Yazı:** [TkDodo](https://tkdodo.eu/)'nun "useState pitfalls" serisi; türetilmiş state ve props'u state'e koymak.[^7]

@@ -5,7 +5,7 @@ lastVerified: "2026-10-21"
 translationKey: "tanstack-query/pagination-and-infinite-lists"
 ---
 
-## Sayfa Sayfa Listelemek
+## Sayfa sayfa listelemek
 
 Sayfalama ek bir API gerektirmez: sayfa numarasını query key'e koyarsınız.[^1]
 
@@ -76,7 +76,7 @@ useEffect(() => {
 
 Sayfa numarasını `useState` yerine URL'de *(`?page=2`)* tutarsanız sayfa paylaşılabilir olur ve tarayıcının geri butonu çalışır. Anahtar aynı kalır; değişen yalnızca değerin nereden okunduğudur.[^3] Next.js, React Router ya da TanStack Router'da bunu `useState`'e benzer, tipli bir API ile yapmak için [nuqs](https://nuqs.dev) var.[^4]
 
-## Sonsuz Liste
+## Sonsuz liste
 
 "Daha fazla yükle" butonu ya da kaydırınca yüklenen listeler için `useInfiniteQuery` var. Tek farkı, verinin sayfalardan oluşan bir yapı olmasıdır:[^5]
 
@@ -129,7 +129,7 @@ function Reviews({ productId }: { productId: number }) {
 
 Butonu `isFetching` sürerken kapatmak önemlidir. Bir sonsuz listede aynı anda tek bir istek olabilir; tüm sayfalar tek cache girdisini paylaşır. Arka plan yenilemesi sürerken `fetchNextPage` çağırmak veriyi ezebilir.[^5] Kaydırınca yüklemek için butonu bir `IntersectionObserver` ile tetiklerken de aynı kontrolü yapın: `hasNextPage && !isFetching && fetchNextPage()`.[^5]
 
-## Sonsuz Liste Nasıl Yenilenir
+## Sonsuz liste nasıl yenilenir
 
 Sonsuz liste cache'te **tek bir sorgudur**; sayfalar birbirine bağlı bir liste gibi durur. Her sayfa bir öncekinden aldığı parametreyle getirilir.[^6] Bu yüzden liste eskiyip yenilendiğinde sayfalar **ilk sayfadan başlayarak sırayla** yeniden çekilir. Böylece arada eklenen ya da silinen kayıtlar yüzünden eski cursor'larla tekrar eden ya da atlanan kayıt oluşmaz.[^5][^6]
 
@@ -155,14 +155,14 @@ API cursor döndürmüyorsa `getNextPageParam` üçüncü argüman olarak son sa
 
 Binlerce satırı DOM'da tutmak sorgudan bağımsız bir sorundur; sanallaştırma için [Render performansı](/academy/performance-accessibility/render-performance) dersine bakın.
 
-## Kendin Dene
+## Kendin dene
 
 - Ürün tablosunu `keepPreviousData` olmadan yazın, sayfalar arasında geçin. Sonra ekleyin; farkı not edin.
 - Sonraki sayfayı önceden yükleyin ve Network sekmesinde ne zaman istek gittiğini izleyin.
 - Yorumlara sonsuz liste ekleyin. Üç sayfa yükleyin, sekmeden çıkıp dönün; kaç istek gidiyor ve hangi sırayla?
 - `maxPages: 2` verip tekrar deneyin.
 
-## Detaylı Öğrenmek İçin
+## Detaylı öğrenmek için
 
 - **Resmi doküman:** "Infinite Queries"; iki yönlü liste, sayfaları elle güncelleme ve `maxPages`.[^5]
 - **Yazı:** [TkDodo](https://tkdodo.eu/), "How Infinite Queries work"; sonsuz sorgunun cache'teki yapısı ve yenileme davranışı.[^6]

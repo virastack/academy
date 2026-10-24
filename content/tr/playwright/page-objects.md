@@ -5,7 +5,7 @@ lastVerified: "2026-10-22"
 translationKey: "playwright/page-objects"
 ---
 
-## Sorun: Tekrar Eden Locator'lar
+## Sorun: Tekrar eden locator'lar
 
 Giriş akışını test eden on test düşünün. Her biri e-posta alanını, parola alanını ve butonu kendisi bulur. Buton metni "Giriş yap"tan "Oturum aç"a değişince on dosyayı düzeltirsiniz.
 
@@ -67,7 +67,7 @@ test("hatalı parola hata mesajı gösterir ve e-postayı korur", async ({ page 
 });
 ```
 
-## Satıra ve Listeye Metod
+## Satıra ve listeye metod
 
 Tabloda belirli bir satır gibi parametreli elementler için locator döndüren bir metod yazın:
 
@@ -104,7 +104,7 @@ export class OrdersPage {
 await expect(ordersPage.row("SP-1001")).toContainText("İptal edildi");
 ```
 
-## Assertion Page Object'e Girer mi?
+## Assertion Page Object'e girer mi?
 
 İki görüş var.
 
@@ -119,7 +119,7 @@ Pratik bir ayrım:
 
 Testi okuyan kişi neyin doğrulandığını Page Object'e girmeden görebilmelidir. "Asıl iddia testte" kuralı bunu sağlar.
 
-## Sayfa Değil, Anlamlı Parça
+## Sayfa değil, anlamlı parça
 
 Adına rağmen Page Object sayfayla birebir eşleşmek zorunda değildir. [Martin Fowler](https://martinfowler.com/) sayfadaki **anlamlı parçalar** için nesne yazmayı önerir: bir albüm listesi sayfası birkaç albüm nesnesi, bir üst bilgi ve bir alt bilgi nesnesi içerebilir.[^2] Her sayfada tekrar eden bir gezinme menüsü ya da bir tarih seçici kendi nesnesini hak eder:
 
@@ -136,7 +136,7 @@ export class DatePicker {
 
 Kök bir `Locator` alan nesne sayfanın neresinde olursa olsun çalışır: `new DatePicker(page.getByRole("group", { name: "Teslim tarihi" }))`.
 
-## Aşırı Soyutlamadan Kaçının
+## Aşırı soyutlamadan kaçının
 
 Page Object bir araçtır, hedef değil. Sık görülen hatalar:
 
@@ -150,7 +150,7 @@ Playwright dokümanı da basit testlerde biraz tekrarın kabul edilebilir olduğ
 >
 > Playwright dokümanının Page Object örneği locator'ları `page.locator("a", { hasText: "Get started" })` ve CSS seçicilerle yazar. Kalıbı oradan öğrenin, locator'ları bu rehberdeki gibi `getByRole` ve `getByLabel` ile yazın.[^1]
 
-## Her Testte `new` Yazmamak
+## Her testte `new` yazmamak
 
 Her testin başında `new LoginPage(page)` yazmak da bir tekrardır. Bir sonraki derste Page Object'leri **fixture** olarak vereceğiz; test parametresinde hazır gelecekler:
 
@@ -160,14 +160,14 @@ test("hatalı parola", async ({ loginPage }) => {
 });
 ```
 
-## Kendin Dene
+## Kendin dene
 
 - Giriş testlerinizdeki locator'ları bir `LoginPage` sınıfına taşıyın. Buton metnini değiştirip kaç dosyayı düzeltmeniz gerektiğine bakın.
 - Bir tablo için `row(id)` metodu yazın ve hem bir eylemde hem bir assertion'da kullanın.
 - Sayfanızda tekrar eden bir parça bulun *(menü, arama kutusu)* ve kök `Locator` alan bir bileşen nesnesi yazın.
 - Page Object'lerinizdeki `Promise<boolean>` döndüren metodları bulun ve locator döndürecek şekilde değiştirin.
 
-## Detaylı Öğrenmek İçin
+## Detaylı öğrenmek için
 
 - **Resmi doküman:** Playwright, "Page object models"; Playwright'ta kalıbın uygulanışı.[^1]
 - **Yazı:** [Martin Fowler](https://martinfowler.com/), "Page Object"; kalıbın amacı, assertion tartışması ve parçalara bölmek.[^2]

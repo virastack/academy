@@ -5,7 +5,7 @@ lastVerified: "2026-10-17"
 translationKey: "performance-accessibility/measuring"
 ---
 
-## Ölçüm Nedir
+## Ölçüm nedir
 
 Core Web Vitals dersinde LCP, INP ve CLS'nin ne anlama geldiğini gördünüz. Bu derste bu sayıları nereden okuyacağınıza bakıyoruz. İki tür veri vardır: **lab verisi** tek bir cihaz, tek bir ağ ve genellikle boş bir önbellekle kontrollü ortamda üretilir; **field verisi** ise gerçek kullanıcıların farklı cihaz ve ağlardaki deneyimlerinin dağılımıdır ve 75. persentilden raporlanır.[^1]
 
@@ -60,7 +60,7 @@ Lighthouse her testte bir CPU ölçümü de yapar, bu yüzden hızlı bir bilgis
 
 Mobil test, orta seviye bir mobil cihazı mobil ağda simüle eder; masaüstü testi kablolu bağlantıda bir masaüstü emüle eder.[^10] Masaüstünün Lighthouse v6'dan beri kendi skor eğrisi vardır, bu yüzden iki skoru birbiriyle kıyaslamayın.[^6]
 
-## PageSpeed Insights ve CrUX
+## PageSpeed insights ve CrUX
 
 **Chrome User Experience Report (CrUX)**, Chrome kullanıcılarının popüler sitelerdeki gerçek deneyimini toplayan, Google'ın herkese açık veri setidir. Bir sayfanın ya da origin'in listede yer alması için herkese açık olması ve istatistiksel olarak anlamlı sayıda ziyaretçisi olması gerekir. Veriye PageSpeed Insights, CrUX API, BigQuery ve CrUX Vis ile ulaşılır.[^7]
 
@@ -71,7 +71,7 @@ Mobil test, orta seviye bir mobil cihazı mobil ağda simüle eder; masaüstü t
 
 Ölçek için bir fikir: 2025'te sitelerin mobilde %48'i, masaüstünde %56'sı iyi Core Web Vitals değerlerine sahipti.[^11]
 
-## DevTools Performance Paneli
+## DevTools performance paneli
 
 Performance paneli açıldığı anda, kayıt bile almadan sayfanın yerel **LCP** ve **CLS** değerlerini canlı gösterir; sayfayla etkileştikçe **INP** de eklenir. Değerin üstüne gelince metriğin parçalara ayrılmış hali görünür.[^12] Ayrıntılı performans incelemesi için Lighthouse yerine bu panel önerilir.[^3]
 
@@ -82,7 +82,7 @@ Performance paneli açıldığı anda, kayıt bile almadan sayfanın yerel **LCP
 
 Bir sorunun nedenini bulmak için **Record load performance** ile sayfa yüklemesini kaydedin.[^12] Kaydın yanındaki **Insights** kenar çubuğu Lighthouse tarzı öneriler verir. Örneğin **LCP by phase** LCP süresini dört alt parçaya böler, **LCP request discovery** ise LCP görselinin ne kadar erken yüklenebileceğini gösterir.[^14] Bu bulguların nasıl düzeltileceği Görsel ve Font ile Bundle Boyutu derslerinin konusudur.
 
-## Gerçek Kullanıcıdan Ölçüm
+## Gerçek kullanıcıdan ölçüm
 
 CrUX yalnızca Chrome kullanıcılarını ve yeterli trafiği olan siteleri kapsar, ayrıntılı kırılım da vermez. Kendi kullanıcılarınızdan veri toplamaya **Real User Monitoring (RUM)** denir.[^2]
 
@@ -153,7 +153,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
 Metrik nesnesinde `name`, `value`, `rating` (`good`, `needs-improvement`, `poor`), `id` ve `navigationType` gibi alanlar gelir. Google Analytics gibi bir araca gönderirken `id` alanı, dağılımı ve persentilleri kendiniz hesaplamanızı sağlar.[^16]
 
-## Detaylı Öğrenmek İçin
+## Detaylı öğrenmek için
 
 - **Konuşma:** Barry Pollard ve Ewa Gasperowicz'in JSNation 2025'te yeni Performance panelini, canlı metrikleri, throttling ayarını ve Insights'ı anlattığı konuşma (29 dk).[^17]
 - **Lab ve field farkı:** Philip Walton'ın LCP, CLS ve INP için iki verinin neden ayrıştığını tek tek anlattığı yazı.[^1]

@@ -180,7 +180,7 @@ test("klavye kartındaki butonu bulur", async () => {
 });
 ```
 
-## Testing Playground
+## Testing playground
 
 HTML'iniz için en uygun sorguyu bu araç önerir. Aşağıdaki örnek bu dersteki ürün kartıdır. Önizlemede bir elemana tıklayın. Önerilen sorguyu okuyun. Sorguyu değiştirip sonucu görün.
 

@@ -5,7 +5,7 @@ lastVerified: "2026-10-17"
 translationKey: "typescript/tsconfig-and-strict-mode"
 ---
 
-## tsconfig.json Nedir
+## tsconfig.json nedir
 
 Bir klasörde `tsconfig.json` bulunması, o klasörün bir TypeScript projesinin kökü olduğunu gösterir. Dosya hangi dosyaların kontrol edileceğini ve hangi kuralların uygulanacağını tanımlar. `tsc`'yi dosya adı vermeden çalıştırdığınızda derleyici bu dosyayı bulunduğunuz klasörden başlayıp yukarı doğru arar.[^1]
 
@@ -27,7 +27,7 @@ Bir klasörde `tsconfig.json` bulunması, o klasörün bir TypeScript projesinin
 | `extends` | Ayarları başka bir tsconfig dosyasından devralır[^2] |
 | `references` | Projeyi birbirine bağlı küçük parçalara böler *(Vite şablonu bunu kullanır)* |
 
-## strict Modu
+## strict modu
 
 TypeScript'in sıkılığı tek bir anahtardan çok bir **ayar düğmesi** gibidir: kontrolleri tek tek açıp kapatabilirsiniz. `"strict": true` hepsini birden açar.[^3]
 
@@ -59,7 +59,7 @@ try {
 
 TypeScript 6.0 ile `strict` **varsayılan olarak açık** hale geldi, TypeScript 7 de bu varsayılanı korudu.[^5][^6] Yine de dosyaya `"strict": true` yazmak niyetinizi açıkça gösterir. Eski bir projeyi taşırken bile `strict`'i tamamen kapatmak yerine bayrakları tek tek açın.
 
-## strict'e Ek Bayraklar
+## strict'e ek bayraklar
 
 ### noUncheckedIndexedAccess
 
@@ -90,7 +90,7 @@ if (first) {
 
 Matt Pocock ise `noUnusedLocals` gibi bayrakları "gürültülü" bulur ve yalnızca isteyenlerin eklemesini önerir.[^8] İkisi de geçerli bir seçim; ekip olarak birini seçin.
 
-## React Uygulaması İçin Ayarlar
+## React uygulaması için ayarlar
 
 Vite ya da Next.js kullanan bir uygulamada JavaScript'i TypeScript üretmez, bundler üretir. TypeScript yalnızca **tip denetleyicisi** olarak çalışır. Bu yüzden ayarlar buna göre seçilir:
 
@@ -114,7 +114,7 @@ import type { Product } from "./types";
 import { formatPrice, type CartItem } from "./cart";
 ```
 
-## Vite Şablonundaki Üç Dosya
+## Vite şablonundaki üç dosya
 
 `npm create vite@latest -- --template react-ts` *(create-vite 9.2)* üç dosya üretir:
 
@@ -162,7 +162,7 @@ Dosyada `strict` yok, çünkü şablonun kurduğu TypeScript 6.0'da zaten varsay
 
 `next build` tip hatası varsa build'i durdurur. `typescript.ignoreBuildErrors` bu kontrolü kapatır; dokümantasyon bunu ancak tip kontrolünü başka bir yerde çalıştırıyorsanız önerir.[^16]
 
-## Path Alias
+## Path alias
 
 `../../../components/ProductCard` gibi uzun göreli yollar yerine `@/components/ProductCard` yazmak için `paths` kullanılır:
 
@@ -182,7 +182,7 @@ Dosyada `strict` yok, çünkü şablonun kurduğu TypeScript 6.0'da zaten varsay
 >
 > Eski rehberlerde `paths` ile birlikte `"baseUrl": "."` görürsünüz. `baseUrl` TypeScript 6.0'da kullanımdan kaldırıldı, TypeScript 7'de ise tamamen silindi; `Option 'baseUrl' has been removed.` hatası verir.[^5][^6] Yolların başına `./` ekleyerek `baseUrl` olmadan yazın.
 
-## @types Paketleri ve .d.ts
+## @types paketleri ve .d.ts
 
 JavaScript ile yazılmış bir kütüphanenin tipleri **declaration** *(`.d.ts`)* dosyalarında durur. Birçok paket bu dosyaları kendisi getirir; getirmeyenler için topluluğun yazdığı tipler `@types/` önekiyle yayımlanır *(`@types/react`, `@types/node`)*.[^17] Bir paketi import ettiğinizde "Could not find a declaration file" hatası alıyorsanız önce `npm install -D @types/<paket-adı>` deneyin.
 
@@ -218,7 +218,7 @@ typescript-eslint, `strictTypeChecked`'i yalnızca ekibin önemli bir kısmı Ty
 >
 > typescript-eslint şu an `>=4.8.4 <6.1.0` aralığındaki TypeScript sürümlerini destekler.[^20] TypeScript 7 henüz bir API sunmadığı için TypeScript ekibi, linter gibi araçlar için 6.0'ı `@typescript/typescript6` paketiyle yanında tutmayı öneriyor.[^6] Güncel Vite şablonu ise ESLint yerine `oxlint` ile gelir.
 
-## CI'da Tip Kontrolü
+## CI'da tip kontrolü
 
 Bundler tip kontrolü yapmadığı için, hatalı kodun ana dala girmemesini garanti etmenin yolu CI'da `tsc` çalıştırmaktır.[^21] Önce `package.json`'a bir script ekleyin:
 
@@ -256,14 +256,14 @@ jobs:
 
 Pull request'te tip hatası varsa bu adım kırmızıya döner. Lint ve test adımlarını aynı job'a ekleyebilirsiniz.
 
-## Kendin Dene
+## Kendin dene
 
 - Vite şablonunun `tsconfig.app.json` dosyasına `"noUncheckedIndexedAccess": true` ekleyin ve `npx tsc -b` ile kaç yeni hata çıktığına bakın.
 - TS Playground'un **TS Config** menüsünden `strict`'i kapatıp açın; aynı kodda hangi hataların kaybolduğunu izleyin.
 - `@/*` alias'ını hem `paths` hem `resolve.tsconfigPaths` ile kurun; yalnızca birini açınca editörün ve `vite build`'in nasıl davrandığını karşılaştırın.
 - Bir dosyaya bilerek tip hatası koyup CI iş akışının kırmızıya döndüğünü görün.
 
-## Detaylı Öğrenmek İçin
+## Detaylı öğrenmek için
 
 - **Yazı:** [Matt Pocock](https://www.mattpocock.com/)'un TSConfig Cheat Sheet'i; bundler kullanan ve kullanmayan projeler için hazır bloklar.[^8]
 - **Kitap:** Matt Pocock'un Total TypeScript Essentials kitabının "Configuring TypeScript" bölümü; `extends`, `lib`, `jsx` ve project references.[^23]

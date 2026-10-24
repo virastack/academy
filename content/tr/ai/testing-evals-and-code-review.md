@@ -310,7 +310,7 @@ Ardından yukarıdaki gibi kodu bozup testin kırıldığını görün.
 >
 > Playwright MCP bir güvenlik sınırı değil. Proje bunu kendi README'sinde açıkça yazıyor. `browser_run_code_unsafe` aracı sunucu sürecinde rastgele JavaScript çalıştırıyor ve README bunu uzaktan kod çalıştırmaya eşdeğer sayıyor. `--allowed-origins` ve `--blocked-origins` da güvenlik sınırı değil.[^1] Güvenmediğiniz sitelerde kullanmayın ve ajanın araç iznini gözden geçirin.
 
-## Playwright Test Agents
+## Playwright test agents
 
 Playwright'ın kendi içinde üç hazır ajan var:[^9]
 

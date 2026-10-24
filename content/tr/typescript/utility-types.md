@@ -5,7 +5,7 @@ lastVerified: "2026-10-17"
 translationKey: "typescript/utility-types"
 ---
 
-## Neden Tip Türetmek
+## Neden tip türetmek
 
 Mağazada bir `Product` tipiniz var. Ürün güncelleme formu için "aynı alanlar ama hepsi opsiyonel", sepet için "ürünün birkaç alanı artı adet" gibi tiplere ihtiyacınız olacak. Bunları elle yeniden yazarsanız `Product`'a bir alan eklediğinizde diğerlerini güncellemeyi unutursunuz.
 
@@ -26,7 +26,7 @@ type Product = {
 
 İlk iki satırı aşağıda adım adım açıyoruz.
 
-## keyof, typeof ve Indexed Access
+## keyof, typeof ve indexed access
 
 ### keyof
 
@@ -76,7 +76,7 @@ type Category = (typeof categories)[number];
 
 Diziye yeni bir kategori eklediğinizde `Category` tipi kendiliğinden güncellenir; aynı dizi bir `<select>`'in seçeneklerini üretmek için çalışma zamanında da kullanılır.
 
-## Hazır Utility Tipler
+## Hazır utility tipler
 
 TypeScript'in global olarak sunduğu, en sık kullanılan utility tipler:[^1]
 
@@ -95,7 +95,7 @@ TypeScript'in global olarak sunduğu, en sık kullanılan utility tipler:[^1]
 | `Parameters<F>` | Parametre tiplerini tuple olarak verir | Fonksiyonu saran wrapper |
 | `Awaited<T>` | `Promise`'in içindeki tipi açar | `async` fonksiyonun sonucu |
 
-### Partial, Omit ve Pick
+### Partial, omit ve pick
 
 Utility tipler iç içe yazılabilir. Ürün güncellemesinde `id` değişmez, diğer alanların hepsi opsiyoneldir:
 
@@ -121,7 +121,7 @@ type CartItem = Pick<Product, "id" | "name" | "price"> & { quantity: number };
 >
 > `Pick`, verdiğiniz anahtarın gerçekten var olduğunu kontrol eder; `Omit` etmez. `Omit<Product, "nmae">` hata vermeden `Product`'ın aynısını döner. `Pick` ve `Omit` object tipleri, `Exclude` ve `Extract` ise union'lar içindir; birini diğerinin yerine kullanmak yaygın bir hatadır.[^2]
 
-### Record, Exclude ve Extract
+### Record, exclude ve extract
 
 `Record<Category, number>`, union'daki **her** anahtarın yazılmasını zorunlu kılar:[^1]
 
@@ -139,7 +139,7 @@ type OpenStatus = Exclude<OrderStatus, "delivered" | "cancelled">; // "pending" 
 type ClosedStatus = Extract<OrderStatus, "delivered" | "cancelled">; // "delivered" | "cancelled"
 ```
 
-### ReturnType, Parameters ve Awaited
+### ReturnType, parameters ve awaited
 
 Bu üçü bir fonksiyonun tipinden türetir. Fonksiyonun kendisi bir değer olduğu için önce `typeof` ile tipini almanız gerekir; `ReturnType<fetchProduct>` yazarsanız `'fetchProduct' refers to a value, but is being used as a type here. Did you mean 'typeof fetchProduct'?` hatası alırsınız.[^4]
 
@@ -219,13 +219,13 @@ Uygulama kodunda bunlara nadiren ihtiyaç duyarsınız; kütüphane yazarken ve 
 
 </details>
 
-## Kendin Dene
+## Kendin dene
 
 - TS Playground'da `categories` dizisine `"toys"` ekleyin ve `Record<Category, number>` olan `stock` değişkeninin ne hata verdiğine bakın.
 - `type NewProduct = Omit<Product, "id">` tanımlayın ve `id`'siz bir ürün object'i yazın.
 - `checkedRoutes`'taki bir rotadan `title`'ı silip hata mesajını okuyun. Sonra `keyof typeof routes` ile `keyof typeof checkedRoutes` tiplerini fareyle karşılaştırın.
 
-## Detaylı Öğrenmek İçin
+## Detaylı öğrenmek için
 
 - **Resmi doküman:** TypeScript Handbook'un Utility Types sayfası; her tipin açıklaması, örneği ve hangi sürümde geldiği.[^1]
 - **Kitap:** [Matt Pocock](https://www.mattpocock.com/)'un Total TypeScript Essentials kitabının "Deriving Types" bölümü; ne zaman türetmeli, ne zaman ayrı tip yazmalı.[^2]

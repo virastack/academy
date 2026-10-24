@@ -5,7 +5,7 @@ lastVerified: "2026-10-21"
 translationKey: "nextjs/server-and-client-components"
 ---
 
-## İki Ortam, Tek Ağaç
+## İki ortam, tek ağaç
 
 App Router'da layout ve sayfalar varsayılan olarak **Server Component**'tir. Sunucuda çalışır, veritabanına doğrudan erişebilir ve tarayıcıya JavaScript göndermez. Etkileşim gerektiğinde ağaca **Client Component** eklersiniz.[^1]
 
@@ -17,7 +17,7 @@ App Router'da layout ve sayfalar varsayılan olarak **Server Component**'tir. Su
 
 [Josh W. Comeau](https://www.joshwcomeau.com/)'nun zihinsel modeli işe yarar: Server Component'ler **yalnızca sunucuda ve bir kez** çalışır, yeniden render edilmez. Bu yüzden state ve Effect'leri yoktur. Client Component'ler ise bugüne kadar yazdığınız React'tir; sunucuda bir kez HTML için render edilir, sonra tarayıcıda yaşar.[^2]
 
-## 'use client' Bir Kapıdır
+## 'use client' bir kapıdır
 
 `"use client"`, bir component'i değil bir **modül sınırını** işaretler. Dosyanın en üstüne yazılır; o dosya, import ettiği her şey ve doğrudan render ettiği component'ler istemci paketine girer.[^1]
 
@@ -61,7 +61,7 @@ export default async function ProductPage({ params }: PageProps<"/products/[slug
 >
 > - Bir hook hatası aldınız diye `page.tsx`'in en üstüne `"use client"` yazmak. Tüm sayfa ve import ettikleri istemciye taşınır.
 
-## Composition: Server'ı Client'ın İçine Koymak
+## Composition: Server'ı client'ın içine koymak
 
 Bir Client Component, bir Server Component'i **import edemez**; import ettiği her şey istemci olur. Ama onu `children` ya da başka bir prop olarak **alabilir**. Server Component sunucuda render edilir, Client Component yalnızca hazır sonucu yerleştirir.[^1]
 
@@ -92,7 +92,7 @@ export function Drawer({ children }: { children: React.ReactNode }) {
 
 [Aurora Scharff](https://aurorascharff.no/) bunu tasarım kuralı olarak önerir: etkileşimi *(açma-kapama, animasyon, scroll)* küçük client sarmalayıcılara taşıyın, veriyi ve içeriği server tarafında bırakın. Sarmalayıcı yeniden kullanılabilir olur, veri çekme istemciye kaymaz.[^4]
 
-## Sınırdan Ne Geçer
+## Sınırdan ne geçer
 
 Server'dan Client'a giden prop'lar ağ üzerinden gider, bu yüzden **serileştirilebilir** olmalıdır.[^5]
 
@@ -106,7 +106,7 @@ Server'dan Client'a giden prop'lar ağ üzerinden gider, bu yüzden **serileşti
 
 Fonksiyon geçemediği için event handler'ları Client Component'in içinde yazarsınız. Sunucuda çalışacak bir işlem gerekiyorsa [Server Actions](/academy/nextjs/server-actions) kullanılır.
 
-## Context ve Üçüncü Parti Component'ler
+## Context ve üçüncü parti component'ler
 
 Server Component'te Context yoktur. Tema ya da sepet gibi paylaşılan state için provider'ı bir Client Component'e koyup layout'ta kullanın. Provider'ı ağaçta **olabildiğince derine** koymak, Next.js'in statik kısımları optimize etmesini kolaylaştırır.[^1]
 
@@ -125,7 +125,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 
 `useState` kullanan ama dosyasında `"use client"` olmayan bir kütüphane component'i Server Component'te hata verir. Çözüm, onu kendi dosyanızda `"use client"` ile yeniden export etmektir.[^1]
 
-## Sunucu Kodunu Sunucuda Tutmak
+## Sunucu kodunu sunucuda tutmak
 
 Aynı modül iki ortamda da import edilebilir. API anahtarı okuyan bir fonksiyonun yanlışlıkla istemciye girmemesi için dosyanın başına `server-only` yazın; bir Client Component import ederse build hata verir.[^1]
 
@@ -144,7 +144,7 @@ Ortam değişkenleri de aynı kuralla çalışır: yalnızca `NEXT_PUBLIC_` ile 
 >
 > Server Component'ten Client Component'e veritabanı satırının tamamını prop olarak vermeyin. Prop'lar sayfanın kaynağında görünür. Next.js'in güvenlik rehberi, istemciye yalnızca gereken alanları taşıyan küçük nesneler *(DTO)* döndürmeyi önerir.[^6]
 
-## Kendin Dene
+## Kendin dene
 
 - `LikeButton`'dan `"use client"`'ı silin. Hata mesajını okuyun.
 - `ProductPage`'den `LikeButton`'a `onLike={() => {}}` prop'u geçirin. Hangi hata çıkıyor?
@@ -152,7 +152,7 @@ Ortam değişkenleri de aynı kuralla çalışır: yalnızca `NEXT_PUBLIC_` ile 
 - `CartItems`'ı `Drawer`'ın dosyasında import edip kullanın, sonra `children` olarak verin. İlk durumda ne oluyor?
 - `lib/products.ts`'e `import "server-only"` ekleyip bir Client Component'ten import edin.
 
-## Detaylı Öğrenmek İçin
+## Detaylı öğrenmek için
 
 - **Yazı:** [Josh W. Comeau](https://www.joshwcomeau.com/), "Making Sense of React Server Components"; Server Component'lerin neden var olduğunu en sade anlatan yazılardan.[^2]
 - **Yazı:** [Dan Abramov](https://overreacted.io/), "What Does 'use client' Do?" ve "Impossible Components"; direktiflerin modül sistemiyle ilişkisi ve iki ortamı birleştiren component'ler.[^3][^7]

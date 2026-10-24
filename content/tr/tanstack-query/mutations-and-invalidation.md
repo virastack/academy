@@ -45,7 +45,7 @@ export function StockForm({ productId }: { productId: number }) {
 
 Bir mutation `idle`, `pending`, `error` ya da `success` durumundadır. `mutate` yalnızca **tek** değişken alır; birden fazla değer için bir nesne verin. Varsayılan olarak hata alan mutation tekrar denenmez.[^1][^2]
 
-## Mutation'dan Sonra Cache
+## Mutation'dan sonra cache
 
 Stok güncellendi ama ürün listesi hâlâ eski stoğu gösteriyor. Cache'i güncel hale getirmenin iki yolu var:[^2]
 
@@ -84,7 +84,7 @@ onSuccess: () => queryClient.invalidateQueries({ queryKey: productQueries.all() 
 
 Daha dar hedefleme için `exact: true` ya da `predicate` kullanın.[^4] Anahtarları genelden özele kurduysanız *(bkz. [useQuery ve query key](/academy/tanstack-query/use-query-and-query-keys))* çoğu zaman ön ek yeter.
 
-## Cevapla Güncellemek
+## Cevapla güncellemek
 
 Sunucu güncellenmiş ürünü döndürüyorsa onu doğrudan detay sorgusuna yazın:[^6]
 
@@ -108,7 +108,7 @@ queryClient.setQueryData(productQueries.detail(id).queryKey, (old) =>
 );
 ```
 
-## Callback'ler Nerede Durmalı
+## Callback'ler nerede durmalı
 
 Callback'leri hem `useMutation`'a hem `mutate`'e verebilirsiniz. Önce `useMutation`'dakiler çalışır. `mutate`'e verilenler ise component mutation bitmeden kaldırılırsa **hiç çalışmaz**.[^1][^2] TkDodo bu farkı bir kural olarak kullanır:[^2]
 
@@ -128,7 +128,7 @@ v5'te callback'ler son argüman olarak bir `context` nesnesi alır; içinde `cli
 
 `mutate` hiçbir şey döndürmez ve hatayı kendisi yakalar. `mutateAsync` bir Promise döndürür; hatayı siz yakalamazsanız *unhandled promise rejection* alırsınız. TkDodo'nun önerisi neredeyse her zaman `mutate`; `mutateAsync`'i yalnızca birden fazla mutation'ı aynı anda bekleyecekseniz kullanın.[^2]
 
-## Her Mutation'dan Sonra Invalidation
+## Her mutation'dan sonra invalidation
 
 Her `useMutation`'a ayrı invalidation yazmak yerine `MutationCache`'e tek bir global callback verebilirsiniz. `MutationCache` callback'leri `useMutation`'dakilerden önce çalışır:[^5]
 
@@ -155,14 +155,14 @@ export const updateStockOptions = () =>
   mutationOptions({ mutationKey: ["products", "update-stock"], mutationFn: updateStock });
 ```
 
-## Kendin Dene
+## Kendin dene
 
 - Stok formunu kurun ve kaydettikten sonra listenin güncellenmediğini görün. `invalidateQueries` ekleyin.
 - `onSuccess`'te Promise'i döndürmeyin ve butonun ne zaman tekrar aktif olduğuna bakın. Sonra döndürün.
 - Invalidation yerine `setQueryData` kullanın. Network sekmesinde kaç istek görüyorsunuz?
 - `mutate`'e bir `onSuccess` verin, mutation sürerken component'i kaldırın. Callback çalışıyor mu?
 
-## Detaylı Öğrenmek İçin
+## Detaylı öğrenmek için
 
 - **Yazı:** [TkDodo](https://tkdodo.eu/), "Mastering Mutations in React Query"; invalidation ve doğrudan güncelleme, callback'lerin yeri ve sık hatalar.[^2]
 - **Yazı:** [TkDodo](https://tkdodo.eu/), "Automatic Query Invalidation after Mutations"; global callback, `mutationKey` ve `meta` ile hedefleme.[^5]

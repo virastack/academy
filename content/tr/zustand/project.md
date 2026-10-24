@@ -31,7 +31,7 @@ Amaç tasarım değil, derslerdeki parçaların birlikte çalışmasıdır. Her 
 
 Projenin çalışan hali GitHub'da: [examples/zustand/project](https://github.com/virastack/academy/tree/main/examples/zustand/project). Akışları tarayıcıda deneyen Playwright testleri de orada; takıldığınızda karşılaştırın.
 
-## Adım 1: Projeyi Kurun
+## Adım 1: Projeyi kurun
 
 [İlk store](/academy/zustand/first-store) dersindeki gibi bir [!vite] projesi açın ve paketleri ekleyin:[^1][^2]
 
@@ -49,7 +49,7 @@ npm install -D @redux-devtools/extension
 
 `src/App.tsx`, `src/App.css` ve `src/index.css` dosyalarını silin. Tüm dosyaları `src/project/` altına yazacaksınız.
 
-## Adım 2: Sahte API ve Sorgu
+## Adım 2: Sahte API ve sorgu
 
 Gerçek bir sunucu yerine gecikmeli bir fonksiyon kullanın. Bir ürünün stoğu `0`; "Sepete ekle" butonunun kapandığını görmek için.
 
@@ -107,7 +107,7 @@ export const productQueries = {
 };
 ```
 
-## Adım 3: Filtre Store'u
+## Adım 3: Filtre store'u
 
 Filtreler küçük ve bağımsız bir store'dur. Store'un kendisi export edilmez; dışarıya yalnızca custom hook'lar açılır *(bkz. [Selector ve yeniden render](/academy/zustand/selectors-and-rerenders))*. Action'lar tek bir `actions` nesnesindedir ve `reset`, `getInitialState()` ile başlangıca döner *(bkz. [Action ve güncelleme](/academy/zustand/actions-and-updates))*.[^3]
 
@@ -152,7 +152,7 @@ export function useFilteredProducts() {
 }
 ```
 
-## Adım 4: Sepet Store'u
+## Adım 4: Sepet store'u
 
 Sepet ve çekmece birbirini etkiler: ürün ekleyince çekmece açılır. Bu yüzden [Slice pattern](/academy/zustand/slice-pattern) dersindeki gibi tek bir store'da, üç slice olarak duruyorlar.[^4]
 
@@ -294,7 +294,7 @@ export const useShopActions = () =>
 
 `useCartQuantity` sepette olmayan ürün için `0` döndürür. Bu sabit bir sayı olduğu için güvenlidir; `[]` ya da `{}` olsaydı yeni referans üretirdi.
 
-## Adım 5: Filtreler ve Ürünler
+## Adım 5: Filtreler ve ürünler
 
 Fiyatı biçimlendiren küçük bir yardımcı:
 
@@ -405,7 +405,7 @@ export function ProductGrid() {
 }
 ```
 
-## Adım 6: Sepet Butonu ve Çekmece
+## Adım 6: Sepet butonu ve çekmece
 
 Sepet butonu yalnızca toplam adedi okur:
 
@@ -509,7 +509,7 @@ export function CartDrawer() {
 }
 ```
 
-## Adım 7: Parçaları Birleştirin
+## Adım 7: Parçaları birleştirin
 
 ```ts
 // src/project/query-client.ts
@@ -570,7 +570,7 @@ createRoot(document.getElementById("root")!).render(
 5. Redux DevTools'u açın ve bir ürünün adedini değiştirin. Panelde `cart/setQuantity` görünüyor.
 6. DevTools'un Application sekmesinde `shop-cart` kaydındaki Denim Jacket adedini `4` yapın ve sayfayı yenileyin. Çekmecede stok uyarısı çıkıyor; adedi `2`'ye düşürünce kayboluyor.
 
-## Kendin Dene
+## Kendin dene
 
 - `useCartItemIds`'den `useShallow`'u kaldırın. Konsolda ne görüyorsunuz?
 - `partialize`'ı silin, çekmeceyi açıp sayfayı yenileyin.

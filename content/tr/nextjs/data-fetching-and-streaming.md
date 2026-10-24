@@ -5,7 +5,7 @@ lastVerified: "2026-10-21"
 translationKey: "nextjs/data-fetching-and-streaming"
 ---
 
-## Veriyi Component'te Okumak
+## Veriyi component'te okumak
 
 Server Component `async` olabilir. Veriyi `fetch` ile, bir ORM ile ya da doğrudan veritabanından okursunuz. Arada bir API katmanı gerekmez ve kimlik bilgileri istemciye gitmez.[^1]
 
@@ -43,7 +43,7 @@ export const getUser = cache(async (id: string) => {
 
 `React.cache` yalnızca **tek bir isteğin** içinde geçerlidir; istekler arasında veri saklamaz.[^1] İstekler arası cache [bir sonraki dersin](/academy/nextjs/caching-and-rendering) konusu.
 
-## Streaming: Hazır Olanı Önce Göndermek
+## Streaming: Hazır olanı önce göndermek
 
 Yavaş bir sorgu bütün sayfayı bekletir. **Streaming**, sayfayı parçalara bölüp hazır olanı hemen gönderir, yavaş kısmı sonradan akıtır. Bunun iki yolu var:[^1]
 
@@ -75,7 +75,7 @@ Dokümanın önerisi `<Suspense>`'i veriye yakın koymaktır. `loading.tsx` yaln
 >
 > Arama motoru botlarına sayfa akıtılmaz. Next.js veriyi bekleyip tamamlanmış HTML'i gönderir.[^5]
 
-## Şelaleyi Önlemek
+## Şelaleyi önlemek
 
 Bir component içinde art arda yazılan `await`'ler sırayla çalışır. Birbirine bağlı değillerse istekleri önce başlatıp sonra bekleyin:[^1]
 
@@ -92,7 +92,7 @@ Daha iyi bir yol çoğu zaman veriyi **ayrı component'lere bölmektir**. `<Prod
 
 İkinci istek birincinin sonucuna bağlıysa *(önce sanatçı, sonra albümleri)* şelale kaçınılmazdır. Bu durumda ilk isteğin hızlı olduğundan emin olun ya da sonucunu cache'leyin.[^1]
 
-## Promise'i İstemciye Akıtmak
+## Promise'i istemciye akıtmak
 
 Bir Client Component sunucu verisine ihtiyaç duyuyorsa Promise'i `await` etmeden prop olarak verin; istemcide React'in `use`'uyla okuyun:[^1][^6]
 
@@ -121,20 +121,20 @@ export function ReviewList({ reviews }: { reviews: Promise<Review[]> }) {
 }
 ```
 
-## İstemcide Veri: Kütüphane Ne Zaman Gerekir
+## İstemcide veri: Kütüphane ne zaman gerekir
 
 Çoğu sayfa için Server Component'ler yeter. Dokümana göre bir Client Component sunucu verisini bir kez okuyacaksa Promise + `use` yeterli; tarayıcıda paylaşılan bir cache gerektiğinde *(odaklanınca yenileme, polling, sonsuz liste, iyimser güncelleme)* SWR ya da [!tanstack-query] kullanılır.[^7]
 
 TanStack Query'nin maintainer'ı [Dominik Dorfmeister](https://tkdodo.eu/) da Server Component'lerle aynı sonuca varır: veri çoğunlukla sunucuda okunuyor ve etkileşim azsa kütüphaneye gerek kalmayabilir; ama istemcide sık değişen veri olan ekranlarda hâlâ değerlidir.[^8] Sunucuda sorguyu önceden doldurmak [TanStack Query](/academy/tanstack-query) rehberinde.
 
-## Kendin Dene
+## Kendin dene
 
 - `getProduct` ve `getReviews`'a 1'er saniye gecikme ekleyin. Art arda `await` ile `Promise.all`'ı karşılaştırın.
 - `Reviews`'ı `<Suspense>` dışına alın. Sayfa ne kadar geç açılıyor?
 - `app/products/loading.tsx` ekleyin ve ürünler arasında gezinirken iskeleti izleyin.
 - `ReviewList`'e Promise yerine `await` edilmiş diziyi verin. Farkı nerede görüyorsunuz?
 
-## Detaylı Öğrenmek İçin
+## Detaylı öğrenmek için
 
 - **Resmi doküman:** "Streaming" rehberi; HTML akışının nasıl çalıştığı, Core Web Vitals'a etkisi ve proxy, CDN gibi akışı bozan katmanlar.[^5]
 - **Yazı:** [Lee Robinson](https://leerob.com/), "Common mistakes with the Next.js App Router"; Route Handler'ı gereksiz çağırmaktan Suspense'i yanlış yere koymaya kadar on hata.[^2]

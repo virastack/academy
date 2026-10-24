@@ -5,7 +5,7 @@ lastVerified: "2026-10-17"
 translationKey: "performance-accessibility/wcag-and-aria"
 ---
 
-## Erişilebilirlik Nedir
+## Erişilebilirlik nedir
 
 **Erişilebilirlik** (accessibility, kısaca a11y), bir sitenin engeli olan ya da olmayan herkes tarafından algılanabilmesi, kullanılabilmesi ve anlaşılabilmesidir. Kitle küçük değil: Dünya Sağlık Örgütü'ne göre 1,3 milyardan fazla kişi, yani dünya nüfusunun yaklaşık %16'sı bir engelle yaşıyor ve nüfus yaşlandıkça bu sayı artıyor.[^1]
 
@@ -48,7 +48,7 @@ Her kriter üç seviyeden birindedir: **A** (en temel), **AA** ve **AAA** (en s�
 
 **WCAG 3** ise hâlâ taslaktır; birkaç yıl daha tamamlanması beklenmiyor ve tamamlandığında da WCAG 2'nin yerini hemen almayacak. W3C'nin bugün için önerisi WCAG 2.2'yi karşılamaktır.[^8]
 
-## ARIA: Ne Zaman Gerekir
+## ARIA: Ne zaman gerekir
 
 HTML dersindeki kuralı hatırlayın: anlamı ve davranışı veren yerel bir HTML elementi varsa ARIA değil o kullanılır. W3C'nin ARIA rehberi bunu daha sert söyler: "No ARIA is better than bad ARIA." Yanlış ARIA, ekran okuyucu kullanıcısına ekranda olmayan bir şeyi anlatır.[^9]
 
@@ -56,7 +56,7 @@ Sorun yaygın: 2026'da bir milyon ana sayfanın %82,7'si ARIA kullanıyor ve say
 
 **ARIA** (WAI-ARIA) üç şey ekler: **rol** (elementin ne olduğu), **özellik** (ek anlam, örneğin bağlı etiket) ve **durum** (açık mı, seçili mi gibi değişen bilgi).[^11] Yalnızca erişilebilirlik ağacını değiştirir; klavye davranışı, odak ya da tıklama eklemez, bunları JavaScript ile sizin yazmanız gerekir.[^11][^12]
 
-## Erişilebilir İsim
+## Erişilebilir isim
 
 Her etkileşimli elementin bir **erişilebilir isim**'i (accessible name) olmalıdır; ekran okuyucu elementi bu isimle duyurur. Çoğu zaman isim zaten HTML'den gelir: butonun metni, `<label>`. HTML'in yetmediği üç durum için üç attribute vardır.
 
@@ -104,7 +104,7 @@ Birden fazla kaynak varsa `aria-labelledby`, `aria-label`'ı ve `<label>`'ı eze
 >
 > - Görünür etiket varken üstüne `aria-label` yazmayın. Görünmez, otomatik çeviride güvenilir şekilde çevrilmez ve diğer yöntemleri ezer.[^17]
 
-## Durum Attribute'ları
+## Durum attribute'ları
 
 Ekranda renkle ya da ikonla gösterdiğiniz durum ekran okuyucuya kendiliğinden geçmez. React'te bu attribute'ları state'e bağlarsınız.
 
@@ -131,7 +131,7 @@ function Accordion({ title, children }: { title: string; children: React.ReactNo
 
 Tailwind kullanıyorsanız `aria-expanded:` variant'ı ile stili de aynı attribute'a bağlayabilirsiniz; durum ve görünüm tek yerden yönetilir.
 
-## Live Region
+## Live region
 
 Sayfa yenilenmeden değişen içerik (sepete eklendi, kaydedildi, 3 sonuç bulundu) ekran okuyucuya duyurulmaz. Bunun için **live region** kullanılır.[^11]
 
@@ -156,7 +156,7 @@ Sayfa yenilenmeden değişen içerik (sepete eklendi, kaydedildi, 3 sonuç bulun
 > - Odaklanabilir bir elemente ya da onu içeren bir kapsayıcıya `aria-hidden="true"` vermeyin; klavye kullanıcısı ekran okuyucunun göremediği bir yere odaklanır.[^23]
 > - `hidden` ya da `display: none` olan elemente ayrıca `aria-hidden` eklemeyin; zaten herkesten gizlidir.[^23]
 
-## Karmaşık Widget'lar
+## Karmaşık widget'lar
 
 Tab, combobox, menü, tree gibi HTML'de karşılığı olmayan bileşenler için başvuru kaynağı **WAI-ARIA Authoring Practices Guide (APG)**'dir. Otuzdan fazla kalıbın her biri için hangi rolün, durumun ve klavye davranışının gerektiğini anlatır ve örnek uygulama verir.[^24] APG örnekleri öğrenmek içindir; üretime almadan önce tarayıcı ve ekran okuyucularda test edilmeleri gerekir.[^9]
 
@@ -169,7 +169,7 @@ Bunları sıfırdan yazmak yerine çoğu projede **headless** (stilsiz) bir küt
 >
 > Headless kütüphane ARIA'yı doğru yazar, ama `aria-label` gibi içerik sizden gelir. Kütüphane kullanmak test etmeyi gereksiz kılmaz.[^25]
 
-## Detaylı Öğrenmek İçin
+## Detaylı öğrenmek için
 
 - **Standart:** W3C'nin WCAG 2 genel bakışı; sürümler, ilkeler ve seviyelerin resmi özeti.[^3]
 - **Widget kalıpları:** APG'de yapmak istediğiniz bileşenin sayfası, klavye tablosuyla birlikte.[^24]

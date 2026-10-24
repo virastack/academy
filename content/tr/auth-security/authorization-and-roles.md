@@ -23,7 +23,7 @@ Bu konu küçük görünür ama OWASP Top 10:2025'in **birinci** sırasında *Br
 
 MDN, kaynağın var olduğunu yetkisiz kullanıcıya göstermek istemiyorsanız 403 yerine 404 dönebileceğinizi yazar.[^2]
 
-## Rol ve İzin
+## Rol ve izin
 
 En yaygın model **RBAC**'tir *(role-based access control)*: her kullanıcının bir rolü, her rolün bir izin listesi vardır.[^3] Kodda rolü değil **izni** kontrol etmek, yeni bir rol eklendiğinde her `if` satırını değiştirmekten kurtarır:
 
@@ -48,7 +48,7 @@ export function hasPermission(role: Role, permission: Permission) {
 
 RBAC tek başına "bu sipariş bu kullanıcının mı?" sorusunu yanıtlayamaz. OWASP bu yüzden kaydın sahibi, takım ya da saat gibi niteliklere bakan **ABAC** *(attribute-based)* ve ilişkilere bakan **ReBAC** *(relationship-based)* modellerini daha esnek bulur.[^3] Pratikte çoğu uygulama ikisini birlikte kullanır: rol genel izni, sahiplik kontrolü de tek bir kaydı belirler.
 
-## Rolü Kim Belirler
+## Rolü kim belirler
 
 Rol, kullanıcının değiştirebileceği bir yerde durmamalı. Better Auth'ta role kullanıcı tablosuna `input: false` ile eklenir; böylece kayıt ya da güncelleme isteğiyle gönderilemez:[^4]
 
@@ -75,7 +75,7 @@ Testte kayıt isteğine `"role": "admin"` eklendi. İstek başarılı oldu ama v
 > - Rolü `localStorage`'da, URL'de *(`?isAdmin=true`)* ya da istemcinin gönderdiği bir alanda tutup ona güvenmeyin.[^5]
 > - Yalnızca butonu gizleyip işlemi korumasız bırakmayın.
 
-## Kontrolü Tek Yerde Toplamak
+## Kontrolü tek yerde toplamak
 
 Önceki dersteki Data Access Layer'a bir yardımcı daha eklenir. Rolü her istekte oturumdan, yani sunucudan okur:
 
@@ -110,7 +110,7 @@ export async function requirePermission(permission: Permission) {
 
 Bir sayfa ya da bileşen artık `await requirePermission("user:manage")` ile başlar. OWASP'ın iki temel kuralı bu yapıda kendiliğinden uygulanır: **varsayılan olarak reddet** ve **her istekte kontrol et**.[^3]
 
-## Server Action'ı Korumak
+## Server Action'ı korumak
 
 Next.js dokümantasyonu bunu açıkça yazar: Server Action'lar arayüzünüzden bağımsız olarak doğrudan bir POST isteğiyle çağrılabilir. Sayfadaki giriş kontrolü, sayfanın içindeki action'ı korumaz; her action kendi kontrolünü yapmalıdır.[^5]
 
@@ -158,7 +158,7 @@ Action ince kalır; giriş, sahiplik ve rol kontrolü Data Access Layer'dadır.[
 >
 > Rastgele ve tahmin edilemez kimlikler *(UUID)* IDOR'u zorlaştırır ama çözmez. OWASP her nesne için ayrı yetki kontrolü ister.[^6]
 
-## Route Handler'ı Korumak
+## Route Handler'ı korumak
 
 Route Handler da açık bir API uç noktasıdır. Önce oturum, sonra izin kontrol edilir:[^7]
 
@@ -182,7 +182,7 @@ export async function GET(_request: Request, { params }: { params: Promise<{ id:
 
 Testte giriş yapmamış istek `401`, müşteri `403`, yönetici `200` aldı.
 
-## Arayüzde Göstermek
+## Arayüzde göstermek
 
 Kullanıcının yapamayacağı bir butonu göstermemek iyi bir deneyimdir, ama **güvenlik değildir**. OWASP istemci tarafındaki erişim kontrolüne asla güvenilmemesini söyler.[^3] React Summit 2025'teki "Security meets Usability" konuşması da aynı ayrımı yapar: frontend'deki izin kontrolü kullanıcı deneyimi içindir, asıl kontrol backend'de olmalıdır.[^8]
 
@@ -200,13 +200,13 @@ async function OrderActions({ orderId }: { orderId: string }) {
 
 Bu bileşen butonu gizler. Asıl koruma `cancelOrder` içindeki kontroldür.
 
-## Kendin Dene
+## Kendin dene
 
 - Bir Server Action'daki sahiplik kontrolünü silin, ikinci bir kullanıcıyla giriş yapıp ilk kullanıcının kayıt kimliğini gönderin ve işlemin gerçekleştiğini görün.
 - DevTools > **Network** sekmesinde bir Server Action isteğini bulun, sağ tıklayıp **Copy as fetch** ile kopyalayın ve konsolda farklı bir kimlikle tekrar gönderin.
 - `permissions` nesnesine yeni bir rol ekleyin ve hangi dosyaları değiştirmeniz gerektiğini sayın.
 
-## Detaylı Öğrenmek İçin
+## Detaylı öğrenmek için
 
 - **Resmi doküman:** OWASP Authorization Cheat Sheet; varsayılan olarak reddetme, en az yetki ve RBAC, ABAC, ReBAC karşılaştırması.[^3]
 - **Resmi doküman:** Next.js Data Security rehberi; Server Action'ların doğrudan çağrılabilmesi, IDOR örneği ve denetim listesi.[^5]

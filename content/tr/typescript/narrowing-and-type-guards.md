@@ -5,7 +5,7 @@ lastVerified: "2026-10-17"
 translationKey: "typescript/narrowing-and-type-guards"
 ---
 
-## Narrowing Nedir
+## Narrowing nedir
 
 Union tipli bir değer birkaç şeyden biri olabilir. TypeScript size yalnızca **hepsinde ortak olan** işlemlere izin verir:
 
@@ -29,7 +29,7 @@ function formatPrice(price: number | string) {
 
 `return`'den sonra `string` ihtimali kalmadığı için TypeScript alttaki satırda `price`'ı `number` kabul eder. Buna **control flow analysis** denir.[^1] Ekstra bir sözdizimi yoktur; yazdığınız sıradan JavaScript kontrolleri tipi daraltır.
 
-## Yerleşik Kontroller
+## Yerleşik kontroller
 
 | Kontrol | Ne zaman |
 | :-- | :-- |
@@ -68,7 +68,7 @@ function shippingLabel(product: PhysicalProduct | DigitalProduct) {
 }
 ```
 
-## Discriminated Union
+## Discriminated union
 
 Gerçek projelerde en çok işinize yarayacak kalıp budur. Union'daki her üyeye aynı isimde, **literal tipli** bir alan verirsiniz *(genellikle `status`, `type` ya da `kind`)*. Bu ortak alana **discriminant** denir; onu kontrol etmek, union'ı tek bir üyeye daraltır.[^1][^2]
 
@@ -107,7 +107,7 @@ const exhaustiveCheck: never = state;
 // Hata: Type '{ status: "idle"; }' is not assignable to type 'never'.
 ```
 
-## Kendi Type Guard'ınız
+## Kendi type guard'ınız
 
 Kontrol uzun ya da tekrar eden bir hale gelince onu fonksiyona çıkarırsınız. Dönüş tipine `value is Product` yazarsanız fonksiyon bir **type predicate** olur: `true` dönerse TypeScript değeri `Product` kabul eder.[^1]
 
@@ -166,7 +166,7 @@ function getPrice(id: number) {
 
 `<T>` ve `NonNullable<T>` sözdizimini Generic'ler ve Utility types derslerinde göreceksiniz.
 
-## as ve ! ile Tipi Zorlamak
+## as ve ! ile tipi zorlamak
 
 **Type assertion** *(`as`)* TypeScript'e "bu değerin tipini ben senden iyi biliyorum" demektir. Hiçbir çalışma zamanı kontrolü yapmaz; yanılıyorsanız hata uygulama çalışırken çıkar.[^6] Postfix `!` *(non-null assertion)* ise değerin `null` ya da `undefined` olmadığını kontrol etmeden iddia eder.[^6]
 
@@ -182,7 +182,7 @@ TypeScript yalnızca birbiriyle örtüşen tipler arasında `as`'e izin verir. `
 
 Kural basit: önce gerçek bir kontrolle daraltın *(`if`, type guard, discriminated union)*; `as` ve `!`'i hata mesajını susturmak için değil, yalnızca TypeScript'in bilemeyeceği ama sizin kesin bildiğiniz durumlarda kullanın.
 
-## unknown'ı Daraltmak
+## unknown'ı daraltmak
 
 Dış dünyadan gelen veri, tipi bilinmeyen veridir. `response.json()` ve `JSON.parse` ise `any` döner ve kontrolü tamamen kapatır. Değeri `unknown` olarak alıp daraltmak daha güvenlidir: TypeScript, kontrol etmeden kullanmanıza izin vermez.[^2]
 
@@ -218,13 +218,13 @@ try {
 >
 > Gerçek projelerde API yanıtlarını elle yazılmış type guard'larla değil, [!zod] gibi bir şema kütüphanesiyle doğrularsınız. Şema hem çalışma zamanında veriyi kontrol eder hem de tipi kendisi üretir.[^10] Formlar yolundaki Zod dersi bunu ayrıntılı anlatır.
 
-## Kendin Dene
+## Kendin dene
 
 - TS Playground'da `ProductsState`'e `{ status: "empty" }` ekleyin ve `never` kontrolünün hangi satırda hata verdiğine bakın.
 - `isProduct`'tan `stock` kontrolünü silin. TypeScript hata veriyor mu? Neden vermediğini düşünün.
 - `[1, 0, undefined].filter((x) => x !== undefined)` ile `filter((x) => !!x)` sonuçlarının tiplerini fareyle üzerine gelerek karşılaştırın.
 
-## Detaylı Öğrenmek İçin
+## Detaylı öğrenmek için
 
 - **Resmi doküman:** TypeScript Handbook'un Narrowing sayfası; bu dersteki her kontrolün örnekli anlatımı.[^1]
 - **Kitap:** [Matt Pocock](https://www.mattpocock.com/)'un çevrimiçi okunabilen Total TypeScript Essentials kitabının "Unions, Literals, and Narrowing" bölümü.[^2]

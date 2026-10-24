@@ -15,7 +15,7 @@ npm install @tanstack/react-query
 
 Paket React 18 ve sonrasıyla çalışır. TypeScript tarafında son iki yılda çıkan sürümleri destekler; şu an TypeScript 5.7 ve sonrası.[^1][^2]
 
-## QueryClient ve Provider
+## QueryClient ve provider
 
 Cache, bir `QueryClient` örneğinin içinde yaşar. Bu örneği uygulamanın tepesinde `QueryClientProvider` ile verirsiniz; altındaki her component aynı cache'e erişir:[^1]
 
@@ -43,7 +43,7 @@ createRoot(document.getElementById("root")!).render(
 >
 > - Provider'ı Context gibi düşünüp her sayfaya ayrı bir `QueryClientProvider` koymak. Uygulamada tek bir `QueryClient` olur; cache'i tüm sayfalar paylaşır.[^3]
 
-## Şaşırtan Varsayılanlar
+## Şaşırtan varsayılanlar
 
 TanStack Query hiçbir ayar yapmadan çalışır ama varsayılanları **veriyi güncel tutmaya** göre seçilmiştir, istek sayısını azaltmaya göre değil.[^4][^5] İlk kullanımda şaşırtan davranışların çoğu bunlardan gelir:[^4]
 
@@ -94,7 +94,7 @@ Ekranın köşesine bir TanStack logosu gelir; tıklayınca panel açılır. Pan
 
 TkDodo Devtools'u öğrenmenin en hızlı yolu olarak önerir: bir sorgunun ne zaman `fresh`, ne zaman `stale`, ne zaman `inactive` olduğunu canlı görürsünüz.[^6] Panelden bir sorguyu elle yenileyebilir, geçersiz kılabilir ya da hata durumuna sokabilirsiniz.
 
-## ESLint Eklentisi
+## ESLint eklentisi
 
 Doküman kurulumla birlikte resmi lint eklentisini de önerir. Gözden kaçan hataların çoğunu yazarken yakalar:[^1][^8]
 
@@ -146,17 +146,17 @@ Vite şablonu ESLint yerine [Oxlint](https://oxc.rs) ve bir `.oxlintrc.json` ile
 
 `no-void-query-fn` tip bilgisine ihtiyaç duyar; Oxlint bunu JS eklentilerine henüz vermediği için listede yok.[^8]
 
-## Sürümü Sabitlemek
+## Sürümü sabitlemek
 
 Tip düzeltmeleri **patch** sürümlerinde çıkar; doküman bunları kırıcı değişiklik saymaz. Bu yüzden paketi belirli bir patch sürümüne sabitlemeyi ve güncellerken tiplerin değişebileceğini beklemeyi önerir.[^2] Lock dosyası *(`package-lock.json`, `pnpm-lock.yaml`)* commit'lenmişse bu zaten sağlanır.
 
-## Kendin Dene
+## Kendin dene
 
 - `QueryClient`'ı `App` component'inin içine taşıyın. ESLint ya da Oxlint hangi kuralla uyarıyor?
 - Bir sorgu yazın ve Devtools'u açın. Başka bir sekmeye geçip dönün; sorgunun durumu nasıl değişiyor?
 - `queryFn`'i her zaman hata fırlatan bir fonksiyona çevirin. Hata ekranı kaç saniye sonra geliyor? `retry: false` ile tekrar deneyin.
 
-## Detaylı Öğrenmek İçin
+## Detaylı öğrenmek için
 
 - **Resmi doküman:** "Important Defaults"; her varsayılanın nasıl değiştirileceği ve `staleTime: 'static'` ile `Infinity` farkı.[^4]
 - **Yazı:** [TkDodo](https://tkdodo.eu/), "Practical React Query"; varsayılanların açıklaması, Devtools ve custom hook önerisi.[^6]

@@ -5,7 +5,7 @@ lastVerified: "2026-10-17"
 translationKey: "typescript/basic-types-and-inference"
 ---
 
-## Tip Belirtmek
+## Tip belirtmek
 
 [!typescript]'te bir değişkenin, parametrenin ya da dönüş değerinin tipi, adından sonra iki nokta üst üste ile yazılır. Buna **type annotation** denir.[^1]
 
@@ -20,7 +20,7 @@ price = "1299";
 
 Üç temel *(primitive)* tip `string`, `number` ve `boolean`'dır. `number` tam sayı ve ondalık sayıyı ayırmaz; JavaScript'te ikisi de aynı tiptir. Tipleri her zaman küçük harfle yazın: `String`, `Number` ve `Boolean` başka şeylerdir.[^1] Daha seyrek kullanılan `bigint` ve `symbol` de vardır.
 
-## Tip Çıkarımı
+## Tip çıkarımı
 
 Yukarıdaki örnekte tipleri yazmaya gerek yoktu. TypeScript, değişkenin tipini ilk değerinden kendisi çıkarır. Buna **tip çıkarımı** *(type inference)* denir.[^1][^2] `let price = 1299.9;` yazdığınızda `price` yine `number` olur ve `price = "1299"` aynı hatayı verir. Editörde değişkenin üzerine geldiğinizde çıkarılan tipi görürsünüz. Resmi Handbook'un önerisi açıktır: "Yeni başlıyorsanız düşündüğünüzden daha az type annotation yazmayı deneyin."[^1]
 
@@ -52,7 +52,7 @@ let orderStatus = "pending"; // string, sonra "shipped" atanabilir
 const currency = "TRY"; // "TRY"
 ```
 
-## Array ve Tuple
+## Array ve tuple
 
 Array tipi, eleman tipinin sonuna `[]` eklenerek yazılır. `Array<number>` yazımı da aynı anlama gelir; bu `<>` yazımını Generic'ler dersinde göreceksiniz.[^1]
 
@@ -172,7 +172,7 @@ fromUnknown.price;
 
 **`never`** hiçbir zaman oluşmayan değerin tipidir; örneğin her zaman hata fırlatan `function fail(message: string): never` fonksiyonunun dönüş tipi.[^6]
 
-## Literal Tipler ve as const
+## Literal tipler ve as const
 
 Literal tipleri `|` ile birleştirerek bir değişkenin alabileceği değerleri sınırlayabilirsiniz: `let size: "S" | "M" | "L"` değişkenine `"XL"` atanamaz.[^1] Bunu bir sonraki derste ayrıntılı göreceksiniz.
 
@@ -188,7 +188,7 @@ constConfig.taxRate = 0.1;
 // Hata: Cannot assign to 'taxRate' because it is a read-only property.
 ```
 
-## Object Tipine İlk Bakış
+## Object tipine ilk bakış
 
 Object'in tipini, özelliklerini süslü parantez içinde sayarak doğrudan yazabilirsiniz. Eksik bir özellik hata verir.[^1]
 
@@ -203,7 +203,7 @@ printProduct({ name: "Kablosuz Kulaklık" });
 
 Bu yazım tek seferlik kullanımlar içindir. Aynı şekli birden çok yerde kullanmak için ona `type` ya da `interface` ile isim verirsiniz; bunu bir sonraki derste anlatıyoruz.
 
-## Kendin Dene
+## Kendin dene
 
 TypeScript Playground'u açın ve:
 
@@ -212,7 +212,7 @@ TypeScript Playground'u açın ve:
 - `getShippingCost`'tan `: number` dönüş tipini silin; hatanın kaybolduğunu ve dönüş tipinin `"49.90" | 0` olarak çıkarıldığını görün.
 - `JSON.parse` sonucunu `unknown` tipinde bir değişkene atayın ve `typeof` kontrolüyle `number` olduğunu doğrulayın.
 
-## Detaylı Öğrenmek İçin
+## Detaylı öğrenmek için
 
 - **Resmi doküman:** TypeScript Handbook'un Everyday Types sayfası; bu dersteki tüm konuların kaynağı.[^1]
 - **Kitap:** [Matt Pocock](https://www.mattpocock.com/)'un çevrimiçi okunabilen *Total TypeScript Essentials* kitabının "Essential Types and Annotations" bölümü.[^12]

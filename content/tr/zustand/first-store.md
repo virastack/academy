@@ -15,7 +15,7 @@ npm install zustand
 
 Paket React 18 ve sonrasıyla çalışır. Ek bir Provider ya da kurulum dosyası gerekmez.[^2]
 
-## create ile Store
+## create ile store
 
 Store'u `create` ile oluşturursunuz. Fonksiyon bir **hook** döndürür. İçine state'i ve onu değiştiren fonksiyonları *(action)* birlikte koyarsınız:[^1][^3]
 
@@ -47,7 +47,7 @@ TypeScript'te `create(...)` yerine `create<CartState>()(...)` yazılır. Fazlada
 
 Dosya adı ve yeri için genel kural: store'u kullanan özelliğin klasörüne koyun *(bkz. [Component ve Kod Organizasyonu](/academy/architecture/component-organization))*.
 
-## Component'te Kullanmak
+## Component'te kullanmak
 
 Hook'a bir **selector** verirsiniz. Component yalnızca selector'ın döndürdüğü değer değiştiğinde render olur:[^1]
 
@@ -69,7 +69,7 @@ function AddButton() {
 
 `AddButton` yalnızca `addItem`'ı okur. Action'lar hiç değişmediği için sepete ürün eklendiğinde bu buton render olmaz. Selector'ların ayrıntısı [Selector ve yeniden render](/academy/zustand/selectors-and-rerenders) dersinde.
 
-## set: Birleştirerek Günceller
+## set: Birleştirerek günceller
 
 `set`'e verdiğiniz nesne mevcut state ile **birleştirilir**; yalnızca verdiğiniz alanlar değişir. Önceki state'e göre güncellerken fonksiyon verin.[^3][^5]
 
@@ -97,7 +97,7 @@ State'i **değiştirmeyin**, yeni değer döndürün. `state.items.push(item)` y
 
 `set`'in ikinci argümanı `true` olursa state birleştirilmez, **değiştirilir**. v5'te bu durumda TypeScript tam bir state ister; eksik alan verirseniz derlenmez.[^2] Action'ları da sileceği için nadiren gerekir.
 
-## get ve Async Action
+## get ve async action
 
 `create`'e verdiğiniz fonksiyonun ikinci parametresi `get`'tir; action içinde güncel state'i okur. Action'lar `async` olabilir; Zustand için fark etmez, iş bitince `set` çağırırsınız:[^4]
 
@@ -123,7 +123,7 @@ const useCouponStore = create<CouponState>()((set, get) => ({
 >
 > Sunucudan veri çekip store'a yazmak bir kez için kolaydır. Yükleme durumu, hata, yeniden deneme ve cache gerektiğinde bu işi [TanStack Query](/academy/tanstack-query)'ye bırakın. Birlikte kullanım [TanStack Query ile birlikte kullanım](/academy/zustand/with-tanstack-query) dersinde.
 
-## React Dışından Erişmek
+## React dışından erişmek
 
 Hook aynı zamanda store'un kendisidir. Üzerindeki fonksiyonlarla state'i React dışından okuyup değiştirebilirsiniz:[^6]
 
@@ -147,7 +147,7 @@ const unsubscribe = useCartStore.subscribe((state, prevState) => {
 
 Component içinde `useCartStore.getState()` ile değer okumayın; abone olmadığınız için değer değişince component güncellenmez. Event handler içinde güncel değeri okumak için kullanabilirsiniz.
 
-## Tip Yazmadan: combine
+## Tip yazmadan: combine
 
 State tipini ayrıca yazmak istemiyorsanız `combine` middleware'i ilk state'ten tipi çıkarır. Bu durumda curried yazım gerekmez:[^4]
 
@@ -166,14 +166,14 @@ export type CounterState = ExtractState<typeof useCounterStore>;
 
 Bedeli küçük bir tip açığıdır: action'ların içindeki `get` ve `set` yalnızca ilk state'i bilir, action'ları görmez. Dokümanın notu: çoğu durumda sorun çıkarmaz, `set(..., true)` ile değiştirirken dikkat edin.[^4] `ExtractState`, store'un tam tipini testlerde ve yardımcı fonksiyonlarda kullanmak için verilir.[^7]
 
-## Kendin Dene
+## Kendin dene
 
 - Sepet store'unu kurun. `CartBadge` ve `AddButton`'a `console.log("render")` koyun; ürün eklerken hangisi loglanıyor?
 - `addItem`'ı `state.items.push(...)` ile yazın. Ekran güncelleniyor mu? `getState().items` ne diyor?
 - Tarayıcı konsolunda store'u `window`'a bağlayıp `setState({ isOpen: true })` çağırın; ekran güncelleniyor mu?
 - `set({ isOpen: true }, true)` yazın. TypeScript ne diyor?
 
-## Detaylı Öğrenmek İçin
+## Detaylı öğrenmek için
 
 - **Resmi doküman:** "Beginner TypeScript Guide"; tipli store, `ExtractState`, sıfırlama ve birden fazla store.[^7]
 - **Resmi doküman:** "Advanced TypeScript Guide"; curried yazımın ve tip çıkarımının nedeni.[^4]

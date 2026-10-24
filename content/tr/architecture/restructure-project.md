@@ -26,7 +26,7 @@ Başlangıç ve çözüm GitHub'da: [examples/architecture/restructure-project](
 >
 > Proje `next@16.4.2`, `eslint@9.39.5` ve `@playwright/test@1.64.1` ile yazıldı. Testler Chromium'da production build üzerinde çalıştırıldı.
 
-## Adım 1: Önce Testi Çalıştırın
+## Adım 1: Önce testi çalıştırın
 
 [Martin Fowler](https://martinfowler.com)'ın tanımıyla refactoring, kodun iç yapısını *gözlemlenebilir davranışını değiştirmeden* düzenlemektir.[^1] Davranışın değişmediğini bilmenin yolu bir testtir.
 
@@ -48,7 +48,7 @@ npm run test:e2e
 
 İki test geçmeli. Test dosya yollarını, bileşen adlarını ya da state'i bilmiyor; yalnızca kullanıcının gördüğüne bakıyor. [Kent C. Dodds](https://kentcdodds.com), iç ayrıntıya bağlı testlerin refactoring sırasında kod sağlamken kırıldığını yazar.[^2] Bu test ise taşıma boyunca hiç değişmeyecek.
 
-## Adım 2: Kuralları Ekleyin
+## Adım 2: Kuralları ekleyin
 
 Kuralları en başta açın. Lint hataları yapılacak işlerin listesi olur.
 
@@ -97,7 +97,7 @@ src/components/CartSummary.tsx
 
 Zone hataları henüz çıkmıyor, çünkü `features/` klasörü yok. Onlar taşıma sırasında görünecek.
 
-## Adım 3: Ortak Kodu Ayırın
+## Adım 3: Ortak kodu ayırın
 
 `utils/utils.ts` üç farklı işi bir arada tutuyor. Her fonksiyonu kullanıldığı yere taşıyın:
 
@@ -111,7 +111,7 @@ Zone hataları henüz çıkmıyor, çünkü `features/` klasörü yok. Onlar ta�
 
 Ortak katmana yalnızca iki özelliğin gerçekten paylaştığı kod çıkar.[^6] Gerisi özelliğin içinde kalır; [Kent C. Dodds](https://kentcdodds.com)'ın dediği gibi kod, ilgili olduğu yere yakın durur.[^7]
 
-## Adım 4: Özellikleri Taşıyın
+## Adım 4: Özellikleri taşıyın
 
 ```text
 src/
@@ -133,7 +133,7 @@ src/
 
 Dosya adlarını `kebab-case` yapın. Linux'ta çalışan CI büyük/küçük harfi ayırır; tek bir yazım seçmek canlıda *"Module not found"* sürprizini önler.[^8] Import'ları `@/` ile yazın; `create-next-app` bu alias'ı kendisi kurar.[^9]
 
-## Adım 5: Döngüyü Kırın
+## Adım 5: Döngüyü kırın
 
 Başlangıçta döngü şöyle kuruluyor: `CartSummary` → `hooks/useCart` → `components/index.ts` → `CartSummary`. `export *` barrel'ı her şeyi her şeye bağlıyor.
 
@@ -152,7 +152,7 @@ export type { CartItem } from "./types/cart-item";
 
 Özelliğin kendi dosyaları birbirini `index.ts` üzerinden değil, doğrudan dosya yoluyla import eder. [TkDodo](https://tkdodo.eu), barrel'ların döngüsel import'a ne kadar kolay yol açtığını anlatır.[^11]
 
-## Adım 6: Özellikleri Ayırın
+## Adım 6: Özellikleri ayırın
 
 `ProductCard` dosyasını `features/products`'a taşıdığınızda lint şunu söyler:
 
@@ -183,7 +183,7 @@ export function ProductCard({ product, action }: { product: Product; action?: Re
 
 İki özelliği birleştirmek sayfanın işi. Akış tek yönlü kalır: ortak kod → özellikler → uygulama.[^6]
 
-## Adım 7: Son Kontrol
+## Adım 7: Son kontrol
 
 ```command
 npm run lint && npm run typecheck && npm run test:e2e
@@ -195,7 +195,7 @@ npm run lint && npm run typecheck && npm run test:e2e
 >
 > Bu işi bir kodlama ajanına verecekseniz önce Adım 1 ve 2'yi siz yapın. Test ve lint, ajanın işini kendi kontrol edebileceği bir hedef olur.
 
-## Kendin Dene
+## Kendin dene
 
 - `features/products` içinden `@/features/cart/components/cart-provider` import edin ve hatayı görün.
 - Bir `checkout` özelliği ekleyin. Zone listesine kendi satırını yazın; sepet toplamına ihtiyaç duyarsa `cartTotal`'ı nereye taşımanız gerektiğine karar verin.

@@ -64,29 +64,27 @@ Composition yalnızca görünüş için değil, **mantık** paylaşmak için de 
 **Custom hook.** HOC ve render props ile mantık paylaşırken component ağacını yeniden düzenlemek gerekiyor ve bu DevTools'ta iç içe sarmalayıcılara ("wrapper hell") yol açıyor. Hook'lar mantığı hiyerarşiyi değiştirmeden paylaşmaya izin veriyor.[^4]
 
 ```tsx
-function useData<T>(url: string) {
-  const [data, setData] = useState<T | null>(null)
+import { useSyncExternalStore } from 'react'
 
-  useEffect(() => {
-    let ignore = false
-    fetch(url)
-      .then((res) => res.json())
-      .then((json) => {
-        if (!ignore) setData(json)
-      })
-    return () => {
-      ignore = true
-    }
-  }, [url])
-
-  return data
+function subscribe(callback: () => void) {
+  window.addEventListener('online', callback)
+  window.addEventListener('offline', callback)
+  return () => {
+    window.removeEventListener('online', callback)
+    window.removeEventListener('offline', callback)
+  }
 }
 
-const cities = useData<City[]>('/api/cities')
-const areas = useData<Area[]>('/api/areas')
+export function useOnlineStatus() {
+  return useSyncExternalStore(
+    subscribe,
+    () => navigator.onLine, // istemcideki değer
+    () => true, // sunucudaki değer
+  )
+}
 ```
 
-Hook **mantığı** paylaşır, state'i değil. `useData`'yı iki kez çağırdığınızda iki ayrı state oluşur.[^5] İsmin `use` ile başlaması da bir kural: çağıran yerden state ya da Effect saklı olabileceğini görürsünüz.[^5]
+`StatusBar` ve `SaveButton` gibi iki component aynı `useOnlineStatus()` çağrısını yapar ve tarayıcı olayını izleme ayrıntısını bilmez.[^5] Hook **mantığı** paylaşır, state'i değil: her çağıran kendi state'ini alır.[^5] İsmin `use` ile başlaması da bir kural: çağıran yerden state ya da Effect saklı olabileceğini görürsünüz.[^5]
 
 ## Ne zaman gerekmez?
 

@@ -25,7 +25,7 @@ Başlangıç ve çözüm GitHub'da: [examples/architecture/multilingual-ci-proje
 >
 > Proje `next@16.4.2`, `next-intl@4.14.9`, `pnpm@10.28.0`, `vitest@5.0.5` ve `@playwright/test@1.64.1` ile yazıldı. `cacheComponents` açık bırakıldı.
 
-## Adım 1: Metinleri Çıkarın
+## Adım 1: Metinleri çıkarın
 
 Önce sayfadaki her metni bulun. `starter/src/app/page.tsx` içinde beş tane var: ürün adı, fiyat, stok, tarih ve buton. `layout.tsx`'te de başlık ve açıklama duruyor.
 
@@ -41,7 +41,7 @@ export const product = {
 };
 ```
 
-## Adım 2: next-intl'i Kurun
+## Adım 2: next-intl'i kurun
 
 ```command
 pnpm add next-intl
@@ -60,7 +60,7 @@ return {
 
 Saat dilimini vermezseniz tarih sunucunun saat dilimine göre yazılır.[^2] Ürün UTC'de 15 Ekim 21:00'de güncellendi; İstanbul'da bu 16 Ekim.
 
-## Adım 3: Mesajları Yazın
+## Adım 3: Mesajları yazın
 
 ```json
 // messages/tr.json
@@ -85,7 +85,7 @@ Saat dilimini vermezseniz tarih sunucunun saat dilimine göre yazılır.[^2] Ür
 - **Çoğul:** Türkçe sayıyla birlikte ismi tekil kullanır, `one` dalı gerekmez. İngilizcede `one` ayrı yazılır.[^3]
 - **Para birimi:** İki dilde de `TRY`. Para birimine ürün karar verir, dil yalnızca gösterimi değiştirir. Denemede Türkçe `₺2.499,90`, İngilizce `TRY 2,499.90` çıktı; `en` dilinde lira için bir sembol yok, kod yazılıyor.[^4]
 
-## Adım 4: Sayfa ve Dil Değiştirici
+## Adım 4: Sayfa ve dil değiştirici
 
 ```tsx
 // src/app/[locale]/page.tsx
@@ -106,7 +106,7 @@ curl -I -H "Accept-Language: en-US" http://localhost:3000/
 
 Yanıtta `location: /en` gelmeli. `/tr` yanıtındaki `link` başlığında `hreflang="tr"`, `hreflang="en"` ve `x-default` görünür.
 
-## Adım 5: Kontrolleri Yazın
+## Adım 5: Kontrolleri yazın
 
 CI'ın çalıştıracağı her kontrol önce yerelde bir script olmalı:
 
@@ -145,7 +145,7 @@ Denemede `en.json`'dan `addToCart` silinince test kırmızıya döndü.
 > await expect(main.getByTestId("price")).toHaveText("Price: TRY 2,499.90");
 > ```
 
-## Adım 6: CI'a Bağlayın
+## Adım 6: CI'a bağlayın
 
 ```yaml
 # .github/workflows/ci.yml
@@ -179,15 +179,15 @@ jobs:
 - `pnpm/setup` pnpm'i, Node.js'i kurar ve `pnpm install`'ı kendisi çalıştırır.[^6]
 - İki iş paralel çalışır. Hızlı kontroller, uzun süren tarayıcı testini beklemez.
 - Test kırılınca rapor artifact olarak yüklenir; Playwright dokümanındaki örnek de böyle.[^7]
-- `playwright.config.ts`'te `forbidOnly: !!process.env.CI` var: unutulmuş bir `test.only` CI'ı kırar.[^9]
+- `playwright.config.ts`'te `forbidOnly: !!process.env.CI` var: unutulmuş bir `test.only` CI'ı kırar.[^8]
 
-Son olarak GitHub'da `quality` ve `e2e` işlerini *required status check* yapın. Böylece kontroller geçmeden birleştirme yapılamaz.[^8]
+Son olarak GitHub'da `quality` ve `e2e` işlerini *required status check* yapın. Böylece kontroller geçmeden birleştirme yapılamaz.[^9]
 
 > [!NOTE]
 >
 > Bu workflow'un her komutu yerelde ve temiz kurulumda denendi. GitHub Actions'ta çalıştırılmadı; ilk PR'ınızda çıktısına bakın.
 
-## Kendin Dene
+## Kendin dene
 
 - Almanca ekleyin: `messages/de.json`'u eksik bir anahtarla oluşturun ve testin yakaladığını görün.
 - `localePrefix: "as-needed"` yapın. Playwright testlerinde hangi URL'leri değiştirmeniz gerekiyor?
@@ -202,5 +202,5 @@ Son olarak GitHub'da `quality` ve `e2e` işlerini *required status check* yapın
 5. [Next.js: Preserving UI state](https://nextjs.org/docs/app/guides/preserving-ui-state) *(doc)* — `cacheComponents` ile önceki sayfaların `<Activity>` ile gizlenip DOM'da tutulması.
 6. [pnpm: Continuous Integration](https://pnpm.io/continuous-integration) *(doc)* — `pnpm/setup` ile GitHub Actions, önbellek ve `packageManager` alanı.
 7. [Playwright: Setting up CI](https://playwright.dev/docs/ci-intro) *(doc)* — GitHub Actions workflow'u, tarayıcı kurulumu ve raporu artifact olarak yükleme.
-8. [GitHub: About protected branches](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches) *(doc)* — Zorunlu durum kontrolleri ve benzersiz iş adı uyarısı.
-9. [Playwright: Test configuration](https://playwright.dev/docs/test-configuration) *(doc)* — `forbidOnly` ve CI'a göre ayarlanan seçenekler.
+8. [Playwright: Test configuration](https://playwright.dev/docs/test-configuration) *(doc)* — `forbidOnly` ve CI'a göre ayarlanan seçenekler.
+9. [GitHub: About protected branches](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches) *(doc)* — Zorunlu durum kontrolleri ve benzersiz iş adı uyarısı.

@@ -5,7 +5,7 @@ lastVerified: "2026-10-21"
 translationKey: "nextjs/route-handlers-and-proxy"
 ---
 
-## Hangisi Ne İçin
+## Hangisi ne için
 
 Next.js'te sunucuda kod çalıştırmanın dört yolu var. Yanlış olanı seçmek, App Router'daki en yaygın hatalardan biri:[^1]
 
@@ -47,7 +47,7 @@ Cache Components açıkken `GET` handler'ları sayfalarla aynı kurala uyar: ist
 > - Kendi Server Component'inizden kendi Route Handler'ınıza `fetch` atmak. Fonksiyonu doğrudan çağırın.[^1]
 > - Route Handler'ı bir Server Action yerine form göndermek için kullanmak. Action tipli ve tek istekte sayfayı da günceller.
 
-## Webhook: CMS Değişince Cache'i Yenilemek
+## Webhook: CMS değişince cache'i yenilemek
 
 Bir CMS içerik değişince sizin adresinize istek atabilir. Handler isteği doğrular ve ilgili etiketi yeniler:[^3]
 
@@ -114,7 +114,7 @@ export const config = {
 >
 > Proxy yavaş veri çekme ya da tam bir yetki sistemi için değildir. Cookie var mı diye bakıp iyimser yönlendirme yapabilir; asıl kontrol veriye yakın yapılır.[^6] Neden böyle olduğu ve CVE-2025-29927 örneği [Next.js'te auth](/academy/auth-security/auth-in-nextjs) dersinde.
 
-## Kendin Dene
+## Kendin dene
 
 - `app/api/products/[slug]/route.ts`'i yazın ve `curl localhost:3000/api/products/canvas-sneaker` ile çağırın.
 - Webhook'u gizli anahtar olmadan ve anahtarla çağırın; iki yanıtı karşılaştırın.
@@ -122,7 +122,7 @@ export const config = {
 - `proxy.ts`'ten `matcher`'ı silin ve her isteğe `console.log` yazdırın. Bir sayfa açılınca kaç kez çalışıyor?
 - `next.config.ts`'e `/old-shop` → `/products` yönlendirmesini `redirects` ile ekleyin.
 
-## Detaylı Öğrenmek İçin
+## Detaylı öğrenmek için
 
 - **Resmi doküman:** "Backend for Frontend" rehberi; içerik türleri, bir backend'e proxy'leme, webhook'lar, güvenlik ve sınırlar.[^3]
 - **Yazı:** [Lee Robinson](https://leerob.com/), "Common mistakes with the Next.js App Router"; Route Handler'ı gereksiz kullanmak ve diğer hatalar.[^1]

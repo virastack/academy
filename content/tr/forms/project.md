@@ -30,7 +30,7 @@ Amaç tasarım değil, derslerdeki parçaların birlikte çalışmasıdır. Her 
 
 Projenin çalışan hali GitHub'da: [examples/forms/project](https://github.com/virastack/academy/tree/main/examples/forms/project). Akışları tarayıcıda deneyen Playwright testleri de orada; takıldığınızda karşılaştırın.
 
-## Adım 1: Projeyi Kurun
+## Adım 1: Projeyi kurun
 
 [!nextjs] projesini varsayılan ayarlarla açın ve paketleri ekleyin:[^1]
 
@@ -216,7 +216,7 @@ export async function submitApplication(values: unknown): Promise<ApplicationRes
 
 Action girdiyi `unknown` alır; tipini şema garanti eder. `z.flattenError` her alan için bir mesaj listesi verir; ilkini döndürüyoruz.[^5] Gerçek bir uygulamada action'ın başında oturum ve yetki kontrolü de olmalı.[^6]
 
-## Adım 4: Field ve Maske Yardımcısı
+## Adım 4: Field ve maske yardımcısı
 
 `Field`, [Hata gösterimi ve erişilebilirlik](/academy/forms/errors-and-accessibility) dersindeki component'in aynısıdır:
 
@@ -287,7 +287,7 @@ export function toInputProps({ rawValue, ...props }: MaskField): MaskInputProps 
 }
 ```
 
-## Adım 5: Mağaza Adımı
+## Adım 5: Mağaza adımı
 
 Mağaza adı, maskeli vergi numarası, kategori ve dinamik ürün listesi:[^8]
 
@@ -386,7 +386,7 @@ export function StoreStep({ taxNumber }: { taxNumber: MaskInputProps }) {
 - Her "Kaldır" butonunun `aria-label`'ı satır numarasını içerir.
 - Fiyat alanı `type="number"` değil; `inputMode="decimal"` ile metin alanıdır *(bkz. [Maskeleme ve regex](/academy/forms/masking-and-regex))*.
 
-## Adım 6: İletişim ve Ödeme Adımları
+## Adım 6: İletişim ve ödeme adımları
 
 ```tsx
 // components/contact-step.tsx
@@ -457,7 +457,7 @@ export function PaymentStep({ iban }: { iban: MaskInputProps }) {
 
 Telefonun açıklaması, kullanıcıya beklenen biçimi placeholder yerine kalıcı bir metinle gösterir. `autoComplete` değerleri otomatik doldurmayı açar.
 
-## Adım 7: Formu Birleştirin
+## Adım 7: Formu birleştirin
 
 ```tsx
 // components/application-form.tsx
@@ -650,7 +650,7 @@ npm test
 
 Testlerin nasıl yazıldığı Playwright rehberinde anlatılıyor.
 
-## Kendin Dene
+## Kendin dene
 
 - Vergi numarası için sağlama fonksiyonu yazın ve şemaya `refine` ile ekleyin. `1234567890` geçerli mi?
 - Field'daki `min-h-5`'i silin ve testleri çalıştırın. Hangi testler neden düşüyor?

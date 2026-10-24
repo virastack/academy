@@ -30,7 +30,7 @@ export const hasFreeShipping = (total: number) => total >= FREE_SHIPPING_THRESHO
 
 Eşik değişince tek dosyayı değiştirirsiniz. Üç dosya ise biri unutulduğunda tutarsız davranır.
 
-Tersi de var: iki kod parçası bugün aynı görünüyor ama farklı sebeplerle değişecekse, birleştirmek sorun çıkarır. [Kent C. Dodds](https://kentcdodds.com)'ın AHA ilkesi bunu söylüyor: tekrar gerçekten görülene ve neyin değiştiği anlaşılana kadar soyutlamayı bekletin.[^5] Yanlış soyutlamanın nasıl oluştuğunu [Klasör Yapısı ve İsimlendirme](/academy/architecture/folder-structure) rehberinde anlatmıştık.
+Tersi de var: iki kod parçası bugün aynı görünüyor ama farklı sebeplerle değişecekse, birleştirmek sorun çıkarır. [Kent C. Dodds](https://kentcdodds.com)'ın AHA ilkesi bunu söylüyor: tekrar gerçekten görülene ve neyin değiştiği anlaşılana kadar soyutlamayı bekletin.[^3] Yanlış soyutlamanın nasıl oluştuğunu [Klasör Yapısı ve İsimlendirme](/academy/architecture/folder-structure) rehberinde anlatmıştık.
 
 ## KISS: Sade tutun
 
@@ -49,11 +49,11 @@ useEffect(() => {
 const fullName = firstName + ' ' + lastName
 ```
 
-React dokümanına göre gereksiz Effect'leri kaldırmak kodu daha hızlı, takibi kolay ve daha az hata yapan hâle getirir.[^6] Sade, kısa demek değil: bir satırlık zekice kod, üç satırlık açık koddan daha zor okunur. Beck'in ikinci kuralı da niyeti açık göstermek.[^4]
+React dokümanına göre gereksiz Effect'leri kaldırmak kodu daha hızlı, takibi kolay ve daha az hata yapan hâle getirir.[^5] Sade, kısa demek değil: bir satırlık zekice kod, üç satırlık açık koddan daha zor okunur. Beck'in ikinci kuralı da niyeti açık göstermek.[^4]
 
 ## YAGNI: İhtiyaç olmadan yapmayın
 
-*You Aren't Gonna Need It*: henüz gerekmeyen bir yeteneği, ileride lazım olur diye şimdi eklemeyin. Fowler dört maliyet sayıyor: yazma maliyeti, ertelenen gerçek işin maliyeti, kodu taşımanın maliyeti ve yanlış yazıldıysa onarım maliyeti.[^3]
+*You Aren't Gonna Need It*: henüz gerekmeyen bir yeteneği, ileride lazım olur diye şimdi eklemeyin. Fowler dört maliyet sayıyor: yazma maliyeti, ertelenen gerçek işin maliyeti, kodu taşımanın maliyeti ve yanlış yazıldıysa onarım maliyeti.[^6]
 
 ```tsx
 // ❌ Tek bir tablo için 15 proptan oluşan genel DataTable
@@ -65,7 +65,7 @@ React dokümanına göre gereksiz Effect'leri kaldırmak kodu daha hızlı, taki
 
 Genel bileşeni ikinci tablo gerçekten gelince çıkarırsınız. O zaman neyin ortak olduğunu bilirsiniz.
 
-YAGNI "kodu değiştirmeyi kolaylaştırma" demek değil. Fowler açıkça belirtiyor: bu prensip yalnızca henüz gerekmeyen özellik için eklenen yetenekleri kapsıyor, refactoring buna aykırı değil.[^3]
+YAGNI "kodu değiştirmeyi kolaylaştırma" demek değil. Fowler açıkça belirtiyor: bu prensip yalnızca henüz gerekmeyen özellik için eklenen yetenekleri kapsıyor, refactoring buna aykırı değil.[^6]
 
 ## Ne zaman gerekmez?
 
@@ -73,16 +73,16 @@ YAGNI "kodu değiştirmeyi kolaylaştırma" demek değil. Fowler açıkça belir
 >
 > Bu prensipler kural değil, karar yardımcısı. Abartılırsa zarar verir.
 >
-> - **DRY'ı zorlamayın.** Birleştirdiğiniz kod her yeni kullanımda parametre ve koşul eklemeye başlıyorsa tekrar etmek daha ucuzdur.[^5]
+> - **DRY'ı zorlamayın.** Birleştirdiğiniz kod her yeni kullanımda parametre ve koşul eklemeye başlıyorsa tekrar etmek daha ucuzdur.[^3]
 > - **KISS'i "az satır" sanmayın.** Sade olan, okuyanın kolay anlayandır.[^4]
-> - **YAGNI her hazırlığı yasaklamaz.** Gelecek ihtiyaca hazırlık karmaşıklık eklemiyorsa YAGNI devreye girmez.[^3]
+> - **YAGNI her hazırlığı yasaklamaz.** Gelecek ihtiyaca hazırlık karmaşıklık eklemiyorsa YAGNI devreye girmez.[^6]
 > - **Beck'in kuralları öncelik sırasıyla çalışır.** "Testler geçsin" kuralı "tekrar olmasın" kuralından önce gelir.[^4]
 
 ## Kaynaklar
 
 1. [Clean Code: A Handbook of Agile Software Craftsmanship](https://www.pearson.com/en-us/subject-catalog/p/clean-code-a-handbook-of-agile-software-craftsmanship/P200000009044/9780132350884) *(book)* — Robert C. Martin, 2008. Temiz olmayan kodun ekibi yavaşlatması, anlaşılır isim ve fonksiyon yazma.
 2. [The Pragmatic Programmer: Tips](https://pragprog.com/tips/) *(doc)* — DRY tanımı (bilginin tek ve yetkili temsili) ve sade kodun hata alanını daraltması.
-3. [Martin Fowler: Yagni](https://martinfowler.com/bliki/Yagni.html) *(article)* — Henüz gerekmeyen yetenek için dört maliyet. Refactoring ve kodu değiştirilebilir tutma Yagni'ye aykırı değil. 26 Mayıs 2015.
+3. [Kent C. Dodds: AHA Programming](https://kentcdodds.com/blog/aha-programming) *(article)* — Aceleci soyutlamadan kaçınma: tekrar anlaşılana kadar bekleme. 22 Haziran 2020.
 4. [Martin Fowler: Beck Design Rules](https://martinfowler.com/bliki/BeckDesignRules.html) *(article)* — Kent Beck'in dört basit tasarım kuralı, öncelik sırası ve "Once and Only Once". 2 Mart 2015.
-5. [Kent C. Dodds: AHA Programming](https://kentcdodds.com/blog/aha-programming) *(article)* — Aceleci soyutlamadan kaçınma: tekrar anlaşılana kadar bekleme. 22 Haziran 2020.
-6. [React: You Might Not Need an Effect](https://react.dev/learn/you-might-not-need-an-effect) *(doc)* — Türetilmiş değeri render sırasında hesaplama, gereksiz Effect'in maliyeti.
+5. [React: You Might Not Need an Effect](https://react.dev/learn/you-might-not-need-an-effect) *(doc)* — Türetilmiş değeri render sırasında hesaplama, gereksiz Effect'in maliyeti.
+6. [Martin Fowler: Yagni](https://martinfowler.com/bliki/Yagni.html) *(article)* — Henüz gerekmeyen yetenek için dört maliyet. Refactoring ve kodu değiştirilebilir tutma Yagni'ye aykırı değil. 26 Mayıs 2015.

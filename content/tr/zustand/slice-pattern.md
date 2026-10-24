@@ -5,7 +5,7 @@ lastVerified: "2026-10-21"
 translationKey: "zustand/slice-pattern"
 ---
 
-## Store Büyüdüğünde İki Yol
+## Store büyüdüğünde iki yol
 
 Sepet, kullanıcı tercihleri ve arayüz durumu aynı store'da biriktikçe dosya uzar. Zustand'da bunu bölmenin iki yolu var:
 
@@ -16,7 +16,7 @@ Sepet, kullanıcı tercihleri ve arayüz durumu aynı store'da biriktikçe dosya
 
 İkisi de geçerli. Seçimi şu soru belirler: parçalar **birbirini değiştiriyor mu?**
 
-## Birden Fazla Küçük Store
+## Birden fazla küçük store
 
 TkDodo, Redux'ın aksine Zustand'ın küçük ve çok sayıda store'u teşvik ettiğini söyler. Her store tek bir işten sorumludur. Birleştirmeniz gerekirse custom hook kullanırsınız:[^1]
 
@@ -35,7 +35,7 @@ export const useMyFavorites = () => {
 
 TkDodo slice'lara hiç ihtiyaç duymadığını, özellikle TypeScript'le pek kolay görünmediğini yazar.[^1] Store'lar birbirinden bağımsızsa bu yol daha az kod demektir.
 
-## Slice'lardan Oluşan Tek Store
+## Slice'lardan oluşan tek store
 
 Bir action birden fazla parçayı değiştiriyorsa *(sepete ekleyince sepet çekmecesini de açmak)* tek store daha uygundur. Doküman global state'i tek store'da tutmayı ve büyüyünce slice'lara bölmeyi önerir.[^3]
 
@@ -109,7 +109,7 @@ export const useShopStore = create<ShopState>()((...a) => ({
 >
 > Slice'lar aynı nesneye yayıldığı için alan adları çakışmamalı. İki slice'ta da `actions` ya da `reset` varsa sonraki öncekini ezer. [Action ve güncelleme](/academy/zustand/actions-and-updates) dersindeki `actions` nesnesini slice'larla kullanacaksanız `cartActions`, `uiActions` gibi ayrı adlar verin.
 
-## Middleware Nereye
+## Middleware nereye
 
 Middleware'i yalnızca **birleşmiş** store'a uygulayın. Bir slice'ın içine `persist` ya da `devtools` koymak beklenmedik sonuçlar doğurur:[^2]
 
@@ -143,13 +143,13 @@ export const createCartSlice: StateCreator<ShopState, Mutators, [], CartSlice> =
 
 `persist` ve `devtools` ayrıntısı bir sonraki derste.
 
-## Kendin Dene
+## Kendin dene
 
 - Sepet ve arayüz durumunu önce iki ayrı store olarak yazın. "Sepete ekleyince çekmeceyi aç" davranışını nereye koymanız gerekiyor?
 - Aynısını slice'larla yazın ve `addToCart`'ı ortak bir slice'a koyun.
 - İki slice'a da `reset` adlı bir action verin. Hangisi çalışıyor?
 
-## Detaylı Öğrenmek İçin
+## Detaylı öğrenmek için
 
 - **Resmi doküman:** "Slices Pattern"; slice'ları birleştirmek, birden fazla slice'ı güncellemek ve middleware.[^2]
 - **Resmi doküman:** "Advanced TypeScript Guide", "Slices pattern" bölümü; `StateCreator` ve mutator listesi.[^4]

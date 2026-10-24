@@ -34,7 +34,7 @@ Amaç tasarım değil, derslerdeki parçaların birlikte çalışmasıdır. Her 
 
 Projenin çalışan hali GitHub'da: [examples/nextjs/project](https://github.com/virastack/academy/tree/main/examples/nextjs/project). Takıldığınızda karşılaştırın.
 
-## Adım 1: Projeyi Kurun
+## Adım 1: Projeyi kurun
 
 [Kurulum ve proje yapısı](/academy/nextjs/setup-and-folder-structure) dersindeki gibi varsayılanlarla bir proje açın:[^1]
 
@@ -44,7 +44,7 @@ npx create-next-app@latest my-shop --yes
 
 `next.config.ts`'te `cacheComponents: true` ve `partialPrefetching: true` hazır gelir; bu proje ikisine de dayanıyor. `app/page.tsx`'in içeriğini Adım 4'te değiştireceksiniz.
 
-## Adım 2: Veri Katmanı
+## Adım 2: Veri katmanı
 
 Gerçek bir veritabanı yerine gecikmeli fonksiyonlar kullanın. Ürün bilgisi saatlerce değişmez, cache'lenir. Stok ise her istekte güncel olmalı.
 
@@ -106,7 +106,7 @@ export async function getStock(slug: string) {
 - İki etiket var: `products` tüm listeyi, `product-${slug}` tek ürünü yeniler. Adım 10'daki webhook bunları kullanacak.[^3]
 - `connection()` Next.js'e *"bunu prerender etme, istek anında çalıştır"* der. Stok her ziyarette yeniden okunur.[^2]
 
-## Adım 3: Cookie'de Sepet
+## Adım 3: Cookie'de sepet
 
 Sepeti bir cookie'de JSON olarak tutun. Cookie okumak Server Component'te serbesttir; yazmak ise yalnızca bir Server Action ya da Route Handler'da olur, çünkü cookie yanıt başlığıyla gönderilir.[^4]
 
@@ -142,7 +142,7 @@ export async function saveCart(cart: Cart) {
 
 `httpOnly` cookie'yi tarayıcıdaki JavaScript'ten gizler. Yine de kullanıcı onu DevTools'tan değiştirebilir; bu yüzden içindeki her değeri güvenilmez kabul edeceksiniz *(Adım 7 ve 8)*.
 
-## Adım 4: Layout ve Sepet Linki
+## Adım 4: Layout ve sepet linki
 
 Sepet sayısı cookie'den gelir, yani istek anında hesaplanır. Onu `<Suspense>` içine alırsanız header'ın geri kalanı statik kabukta kalır.[^2]
 
@@ -213,7 +213,7 @@ export default function HomePage() {
 
 `create-next-app`'in yazdığı `layout.tsx` Geist font'larını `next/font` ile yükler. Bu dosyayla değiştirince `globals.css`'teki `--font-geist-sans` ve `--font-geist-mono` değişkenleri boşta kalır; onları `system-ui, sans-serif` ve `ui-monospace, monospace` ile değiştirin.
 
-## Adım 5: Ürün Listesi ve Arama
+## Adım 5: Ürün listesi ve arama
 
 `next/form`, `action` bir adres olduğunda aramayı `?q=` olarak URL'ye yazar ve istemci tarafında geçiş yapar.[^5] `searchParams` istek anında bilinir; okuyan kısım `<Suspense>` içinde olmalı.[^2]
 
@@ -274,7 +274,7 @@ export async function ProductList({
 
 `q` bir dizi de olabilir *(`?q=a&q=b`)*; `typeof` kontrolü bu yüzden var. `prefetch` ürün sayfasındaki cache'li içeriği tıklamadan önce getirir; etkisini Adım 12'deki test gösterecek.[^6]
 
-## Adım 6: Ürün Sayfası
+## Adım 6: Ürün sayfası
 
 Sayfanın üç katmanı var:
 
@@ -368,7 +368,7 @@ async function Stock({ slug }: { slug: string }) {
 - `generateStaticParams` üç ürünü build'de prerender eder. Ürüne doğrudan gelen ziyaretçi adı statik HTML'de görür.[^7]
 - `generateMetadata` ve `ProductDetails` aynı `getProduct`'ı çağırıyor; `"use cache"` sayesinde veri bir kez okunur.[^8]
 
-## Adım 7: Sepete Ekle
+## Adım 7: Sepete ekle
 
 Server Action stoğu ve ürünü sunucuda doğrular. İstemciden gelen `slug`'a güvenmez.[^9]
 
@@ -427,7 +427,7 @@ export function AddToCartForm({ slug }: { slug: string }) {
 
 Header'daki **Sepet (1)** için hiçbir şey yazmadınız. Bir Server Action cookie yazınca Next.js o sayfayı sunucuda yeniden render eder ve yeni arayüzü action'ın yanıtıyla aynı turda gönderir.[^4][^9] Stok kontrolü bir hata değil, beklenen bir durum; bu yüzden `throw` yerine mesaj dönüyor.
 
-## Adım 8: Sepet Sayfası
+## Adım 8: Sepet sayfası
 
 ```tsx
 // app/cart/page.tsx
@@ -484,7 +484,7 @@ async function CartItems() {
 - `bind`, `slug`'ı action'a ilk argüman olarak bağlar. Form JavaScript yüklenmeden de çalışır.[^10]
 - `robots: { index: false }` sepet sayfasını arama sonuçlarından çıkarır.
 
-## Adım 9: Bulunamadı ve Hata
+## Adım 9: Bulunamadı ve hata
 
 ```tsx
 // app/products/[slug]/not-found.tsx
@@ -516,7 +516,7 @@ export default function ProductsError({ retry }: { error: unknown; retry: () => 
 
 `error.tsx` `app/products/` altında olduğu için hem listeyi hem ürün sayfalarını korur; header yerinde kalır. `/products/nope` adresi `not-found.tsx`'i gösterir. `notFound()` akış başladıktan sonra çağrıldığı için durum kodu `200` kalır ve sayfaya `noindex` eklenir.[^11]
 
-## Adım 10: CMS Webhook'u
+## Adım 10: CMS webhook'u
 
 ```ts
 // app/api/revalidate/route.ts
@@ -544,7 +544,7 @@ REVALIDATE_SECRET=change-me
 
 `"max"` profili *stale-while-revalidate* çalışır: webhook'tan sonraki ilk ziyaretçi eski sayfayı hemen alır ve arka planda yenileme başlar, sonraki ziyaretçi yeni veriyi görür.[^3] Bu rehber yazılırken production build'de denendi: webhook'tan sonraki ilk istek eski veriyi, ikincisi yenisini gösterdi.
 
-## Adım 11: SEO Dosyaları
+## Adım 11: SEO dosyaları
 
 [Metadata ve SEO](/academy/nextjs/metadata-and-seo) dersindeki üç dosyayı ekleyin:
 
@@ -602,7 +602,7 @@ export default async function Image({ params }: { params: Promise<{ slug: string
 
 Next.js `opengraph-image.tsx`'i bulunca ürün sayfasının `<head>`'ine `og:image` etiketini kendisi ekler; `metadataBase` sayesinde adres tam URL olur.[^12]
 
-## Adım 12: Anında Navigasyonu Test Edin
+## Adım 12: Anında navigasyonu test edin
 
 [!playwright] ve Next.js'in test yardımcısını kurun:[^13][^14]
 
@@ -668,7 +668,7 @@ npx playwright test
 
 Testler `next dev`'e karşı çalışır; test API'si orada kendiliğinden açıktır.[^14] Playwright'ın kendisi [Playwright](/academy/playwright) rehberinde.
 
-## Adım 13: Son Kontrol
+## Adım 13: Son kontrol
 
 ```bash
 npm run lint
@@ -691,7 +691,7 @@ npm run build
 >
 > Bu projeyi bir agent'la geliştirecekseniz `next-dev-loop` skill'ini kurun ve her değişiklikten sonra `npx playwright test`'i çalıştırmasını isteyin. Ayrıntısı [AI agent'larla Next.js](/academy/nextjs/ai-agents) dersinde.
 
-## Kendin Dene
+## Kendin dene
 
 - DevTools'tan `cart` cookie'sini `{"canvas-sneaker":99}` yapın. Sepet ne gösteriyor? **Sepete ekle**'ye basınca ne oluyor? Gerçek bir mağazada sepetin neden veritabanında tutulduğunu düşünün.
 - `getProduct`'tan `"use cache"`, `cacheLife` ve `cacheTag` satırlarını silip `instant()` testini çalıştırın. Neden başarısız oldu? *(Yalnızca `"use cache"`'i silerseniz `cacheLife` hata verir.)*

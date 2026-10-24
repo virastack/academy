@@ -5,7 +5,7 @@ lastVerified: "2026-10-21"
 translationKey: "nextjs/navigation-and-prefetching"
 ---
 
-## Hızlı Navigasyonun Üç Parçası
+## Hızlı navigasyonun üç parçası
 
 Sayfalar sunucuda render edilir. Yani bir linke tıklayınca istemci sunucuyu beklemek zorunda kalabilir. Next.js bu beklemeyi üç şeyle gizler:[^1]
 
@@ -13,7 +13,7 @@ Sayfalar sunucuda render edilir. Yani bir linke tıklayınca istemci sunucuyu be
 - **Streaming:** Hazır olan kısım hemen gelir, gerisi `<Suspense>` fallback'inin yerine akar.
 - **İstemci tarafı geçiş:** Ortak layout'lar yerinde kalır, yalnızca değişen kısım yenilenir.
 
-## Partial Prefetching
+## Partial prefetching
 
 Next.js 16.3 ile gelen **Partial Prefetching**, her rota için tek bir yeniden kullanılabilir **App Shell** üretir: URL'ye bağlı olmayan statik ve cache'li içerik, artı fallback'ler. Aynı rotaya giden yirmi link yirmi ayrı istek değil, tek bir App Shell paylaşır.[^2][^3] `create-next-app` ile açılan projelerde açık gelir *(`partialPrefetching: true`)*.
 
@@ -50,7 +50,7 @@ async function ProductDetails({ params }: Pick<PageProps<"/products/[slug]">, "p
 
 Bu rehberin proje uygulamasında `prefetch` olmadan ürün sayfasına geçişte yalnızca *"Ürün yükleniyor..."* göründü. `prefetch` ve `"use cache"`'li `getProduct` ile ürün adı tıklama anında geldi. Bunu koruyan `instant()` testi [Ürün kataloğu](/academy/nextjs/project) projesinde.
 
-## Anında Navigasyon
+## Anında navigasyon
 
 Next.js'in tanımıyla bir navigasyon **anında** *(instant)* ise kullanıcı tıkladığı an statik, cache'li ve fallback içerik görünür; gerisi akarak gelir.[^5]
 
@@ -72,7 +72,7 @@ export const instant = false;
 >
 > 16.4 ile gelen `ensureStatic` bunun bir adım ötesidir: bir sayfanın kabuğunun ya da tamamının statik kalmasını **zorunlu** kılar; biri istek anında çalışan kod eklerse build kırılır.[^7]
 
-## Activity: Geri Dönünce State Yerinde
+## Activity: Geri dönünce state yerinde
 
 Cache Components açıkken Next.js, ayrıldığınız sayfayı silmez; React'in `<Activity>` component'iyle **gizler**. Geri döndüğünüzde form taslağı, scroll konumu ve açık bir `<details>` olduğu gibi durur. Effect'ler gizlenince temizlenir, görünür olunca yeniden kurulur. En fazla son üç rota saklanır.[^8][^9]
 
@@ -103,7 +103,7 @@ export function SortMenu() {
 >
 > Gizlenen sayfa `display: none` ile DOM'da kalır. Uçtan uca testte `page.locator("h1")` iki başlık bulabilir. Bu rehberin proje uygulamasında tam olarak bu oldu. Görünürlüğe bakan `getByRole` ve `getByLabel` sorgularını kullanın.[^8] Playwright'ın kendisi [Playwright](/academy/playwright) rehberinde.
 
-## Yavaş Ağda Geri Bildirim
+## Yavaş ağda geri bildirim
 
 Ağ yavaşsa prefetch tıklamadan önce bitmeyebilir. `useLinkStatus`, tıklanan linkin beklemede olduğunu söyler; linkin içine küçük bir gösterge koyabilirsiniz:[^1][^10]
 
@@ -128,14 +128,14 @@ Göstergeyi kısa bir gecikmeyle *(ör. 100 ms)* görünür yapmak, hızlı geç
 
 Geçişleri canlandırmak için React 19.3'te kararlı hâle gelen `<ViewTransition>`'ı kullanabilirsiniz. Next.js'in rehberi küçük resmin büyük görsele dönüşmesinden yön bildiren geçişlere kadar örnekler veriyor.[^11] React tarafı [View Transition ve Activity](/academy/react/view-transitions-and-activity) dersinde.
 
-## Kendin Dene
+## Kendin dene
 
 - Ürün listesinde `next build && next start` ile production'da çalışın. Network sekmesinde linkler ekrana girince gelen prefetch isteklerini izleyin. *(Geliştirmede prefetch yapılmaz.)*
 - Bir ürün linkine `prefetch` verin ve gelen isteği diğerleriyle karşılaştırın.
 - Ürün sayfasına bir `<input>` koyun, bir şey yazın, başka sayfaya gidip geri dönün. Yazdığınız duruyor mu?
 - Navigation Inspector'da **Pause on navigations**'ı açıp bir linke tıklayın. Kabukta ne görünüyor?
 
-## Detaylı Öğrenmek İçin
+## Detaylı öğrenmek için
 
 - **Resmi doküman:** "Building App-like Experiences with Next.js 16.3"; [Aurora Scharff](https://aurorascharff.no/)'ın da yazarları arasında olduğu, anında navigasyonu bir uygulama üzerinden anlatan yazı.[^12]
 - **Resmi doküman:** "Instant Navigation" rehberi; kilitlenen bir navigasyonu adım adım anında hâle getirmek ve `instant()` testleri.[^5]

@@ -5,7 +5,7 @@ lastVerified: "2026-10-22"
 translationKey: "forms/forms-with-server-actions"
 ---
 
-## Server Action Nedir?
+## Server Action nedir?
 
 Server Action, sunucuda çalışan ve tarayıcıdan çağrılabilen bir async fonksiyondur. Dosyanın başına `"use server"` yazarsınız; [!nextjs] fonksiyonu bir uç noktaya çevirir ve çağrıyı sizin yerinize yapar. `<form action>`'a verildiğinde fonksiyon `FormData`'yı doğrudan alır.[^1][^2]
 
@@ -13,7 +13,7 @@ Server Action, sunucuda çalışan ve tarayıcıdan çağrılabilen bir async fo
 >
 > Server Action herkese açık bir uç noktadır. Formu yalnızca giriş yapmış kullanıcıya göstermeniz, action'ın yalnızca onlardan çağrılacağı anlamına gelmez. Her action'da oturumu ve yetkiyi **action'ın içinde** kontrol edin, girdiyi her zaman doğrulayın.[^1]
 
-## Doğal Form ve useActionState
+## Doğal form ve useActionState
 
 En sade yol React'in kendi form desteğidir. Action önceki durumu ve `FormData`'yı alır, yeni durumu döndürür:[^1][^3]
 
@@ -104,11 +104,11 @@ Bu formun güçlü yanı **progressive enhancement**'tır: JavaScript yüklenmed
 
 `Object.fromEntries(formData)` kısa bir yol gibi görünür ama nesneye Next.js'in `$ACTION_` önekli alanları da girer. Alanları adıyla okumak ya da şemayı doğrudan nesneye uygulamak daha temizdir.[^1]
 
-## React Hook Form ile Birlikte
+## React Hook Form ile birlikte
 
 Doğal form JavaScript'siz çalışır ama anlık doğrulama, odak yönetimi ve dinamik alanlar yoktur. İkisini birleştirmenin iki yolu var.
 
-### 1. Action'ı Doğrudan Çağırmak
+### 1. action'ı doğrudan çağırmak
 
 Server Action sıradan bir async fonksiyon gibi çağrılabilir. `handleSubmit` tarayıcıda doğrular, geçerse doğrulanmış değerleri action'a verir. Bu rehberin proje örneği bu yolu kullanır:[^7]
 
@@ -189,7 +189,7 @@ export function ProfileForm() {
 
 React Hook Form'un beta durumdaki `Form` component'i de `action` prop'una Server Action alabilir ve progressive enhancement'ı kendisi kurar.[^9]
 
-## Sunucu Her Zaman Tekrar Doğrular
+## Sunucu her zaman tekrar doğrular
 
 İstemci doğrulaması kullanıcı içindir; sunucu doğrulaması güvenlik içindir. Action'a gelen değer `unknown`'dır; tipini TypeScript değil şema garanti eder:[^5][^1]
 
@@ -211,7 +211,7 @@ export async function submitApplication(values: unknown): Promise<ApplicationRes
 >
 > `handleSubmit` şemanın **çıktısını** verir. Şemada `.transform` varsa *(metni sayıya çevirmek gibi)* bu çıktıyı aynı şemayla sunucuda tekrar doğrulamak başarısız olur: şema metin bekler, sayı gelir. Sunucuyla paylaşılan şemada dönüşüm yapmayın; dönüşümü doğrulamadan sonra sunucuda yapın. Proje örneğinde fiyat bu yüzden metin olarak doğrulanır ve sayıya sunucuda çevrilir.
 
-## Hata Hangi Adımda?
+## Hata hangi adımda?
 
 Çok adımlı bir formda sunucu, ilk adımdaki bir alan için hata döndürebilir *(ör. "Bu e-posta ile daha önce başvuru yapılmış.")*. Kullanıcı son adımdadır ve hatayı görmez. Hatanın düştüğü en erken adıma dönün:
 
@@ -224,7 +224,7 @@ if (fields.length > 0) {
 
 `stepOf`, alanın hangi adımda olduğunu `steps` listesinden bulur *(bkz. [Dinamik alanlar ve çok adımlı formlar](/academy/forms/dynamic-and-multi-step-forms))*.
 
-## Kendin Dene
+## Kendin dene
 
 - Bülten formunu kurun, yanlış e-posta ile gönderin. `defaultValue`'yu silip tekrar deneyin; yazdıklarınıza ne oluyor?
 - Tarayıcıda JavaScript'i kapatın *(DevTools > Ayarlar > Debugger > Disable JavaScript)* ve formu gönderin.
@@ -232,7 +232,7 @@ if (fields.length > 0) {
 - Action'a `const session = await auth()` benzeri bir kontrol ekleyin ve oturum yokken çağırın.
 - Şemaya fiyatı sayıya çeviren bir `.transform` ekleyin, aynı şemayı action'da kullanın ve hatayı görün.
 
-## Detaylı Öğrenmek İçin
+## Detaylı öğrenmek için
 
 - **Resmi doküman:** Next.js, "How to create forms with Server Actions"; doğrulama, bekleme durumu ve iyimser güncelleme.[^1]
 - **Resmi doküman:** React, "useActionState"; durum, transition ve progressive enhancement.[^3]

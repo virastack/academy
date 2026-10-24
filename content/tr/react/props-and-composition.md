@@ -5,7 +5,7 @@ lastVerified: "2026-10-21"
 translationKey: "react/props-and-composition"
 ---
 
-## Props Nedir
+## Props nedir
 
 **Props**, ebeveynin çocuğa verdiği girdilerdir. Component fonksiyonunun tek parametresi olan bir objedir; genellikle destructuring ile açılır ve varsayılan değer orada verilir:[^1]
 
@@ -34,7 +34,7 @@ Veri yukarıdan aşağı akar; çocuk ebeveyne bir şey söylemek istediğinde e
 <AddToCartButton onAdd={handleAdd} />
 ```
 
-## children ve Slot'lar
+## children ve slot'lar
 
 Bir component'in içine yazılan JSX, `children` prop'u olarak gelir. Böylece component, içinde ne olduğunu bilmeden bir **boşluk** bırakır:[^1]
 
@@ -61,7 +61,7 @@ Birden fazla boşluk gerekiyorsa JSX'i adlandırılmış prop olarak geçin. Bu 
 
 `Dialog` butonun ne yaptığını bilmez; yalnızca nereye konacağını bilir. Bu, `showCancel`, `confirmText`, `danger` gibi boolean ve string prop'larını çoğaltmaktan daha esnek bir yoldur. Kalıbın büyük ölçekli hâli *(compound component)* [Component ve Kod Organizasyonu](/academy/architecture/component-organization) rehberinde.
 
-## Props'u State'e Kopyalamayın
+## Props'u state'e kopyalamayın
 
 En sık yapılan hatalardan biri, prop'u `useState`'in başlangıç değeri yapıp sonra onu kullanmaktır:
 
@@ -90,7 +90,7 @@ function EmailField({ email }: { email: string }) {
 
 İsimdeki `initial` öneki okuyana *"bu prop sonradan değişirse dikkate alınmaz"* der.[^5]
 
-## Prop Drilling ve İlk Çözüm
+## Prop drilling ve ilk çözüm
 
 Bir değeri beş seviye aşağıya prop olarak taşımaya **prop drilling** denir. İki üç seviye sorun değildir; veri akışı açık kalır. Uzadığında ilk refleks Context olmamalı. React dokümanı Context'ten önce iki şey denemeyi önerir: önce props'la devam edin, sonra ara component'lere props yerine `children` geçin.[^6]
 
@@ -110,14 +110,14 @@ Ara katmanlar artık `user`'ı bilmiyor. Bu yaklaşım hem kodu sadeleştirir he
 >
 > `{...props}` ile tüm props'u körü körüne iletmek, hangi verinin nereden geldiğini gizler. React dokümanına göre spread her ikinci component'te karşınıza çıkıyorsa component'leri bölüp `children` geçirmek gerekir.[^1]
 
-## Kendin Dene
+## Kendin dene
 
 - `Price`'a `discount?: number` prop'u ekleyin; indirim varsa eski fiyatın üstünü çizin.
 - `Card`'a `footer` slot'u ekleyin ve iki farklı kullanımda farklı butonlar verin.
 - İki kullanıcılık bir listeden seçim yapan bir sayfada `EmailField`'ı önce `key`'siz, sonra `key={user.id}` ile deneyin.
 - Kendi projenizde üç seviyeden fazla aşağı inen bir prop bulun ve `children` ile kısaltmayı deneyin.
 
-## Detaylı Öğrenmek İçin
+## Detaylı öğrenmek için
 
 - **Yazı:** [Dan Abramov](https://overreacted.io/)'un "Writing Resilient Components" yazısı; props'u state'e kopyalamamak, her an render'a hazır olmak ve tekil olmayan component'ler.[^4]
 - **Yazı:** [TkDodo](https://tkdodo.eu/)'nun props'u `useState`'e koymanın üç çözümünü karşılaştırdığı yazı.[^3]

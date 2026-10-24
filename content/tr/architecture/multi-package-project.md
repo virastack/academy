@@ -25,7 +25,7 @@ Projenin çalışan hali GitHub'da: [examples/architecture/multi-package-project
 >
 > Proje `pnpm@10.28.0`, `turbo@2.11.10`, `next@16.4.2`, `vite@8.3.5` ve `vitest@5.0.5` ile yazıldı.
 
-## Adım 1: Kök Dizin
+## Adım 1: Kök dizin
 
 ```text
 store-monorepo/
@@ -90,7 +90,7 @@ Kök `package.json`'da yalnızca `turbo` var. Uygulama bağımlılıkları onlar
 
 `outputs` iki uygulamanın çıktısını kapsar: Next.js `.next/`'e, Vite `dist/`'e yazar.[^3]
 
-## Adım 2: Ortak TypeScript Ayarı
+## Adım 2: Ortak TypeScript ayarı
 
 `packages/typescript-config` içinde iki dosya var: `base.json` ve onu genişleten `nextjs.json`. Her paket kendi `tsconfig.json`'ında bunlardan birini seçer.[^4]
 
@@ -115,7 +115,7 @@ Kök `package.json`'da yalnızca `turbo` var. Uygulama bağımlılıkları onlar
 extension when 'allowImportingTsExtensions' is enabled.
 ```
 
-## Adım 3: UI Paketi
+## Adım 3: UI paketi
 
 ```json
 // packages/ui/package.json
@@ -152,7 +152,7 @@ export function Price({ value }: { value: number }) {
 
 Stil de paketin parçası: `styles.css` dosyası `exports` ile dışa açılır ve iki uygulama da onu import eder.
 
-## Adım 4: Uygulamalara Bağlayın
+## Adım 4: Uygulamalara bağlayın
 
 ```json
 // apps/store/package.json ve apps/admin/package.json
@@ -186,7 +186,7 @@ import { Price } from "@repo/ui/price";
 >
 > `Button` dosyasında `"use client"` yok, çünkü kendisi state tutmuyor. `onClick` veren bileşen ise Client Component olmalı. Mağazada bu yüzden `add-to-cart.tsx` ayrı bir dosya.
 
-## Adım 5: Paketi Test Edin
+## Adım 5: Paketi test edin
 
 Testler paketin yanında durur. Paketi değiştiren, onun testini de çalıştırır.
 
@@ -204,9 +204,9 @@ pnpm install
 pnpm turbo run build check-types test
 ```
 
-Altı görev de geçmeli: iki `build`, üç `check-types` ve bir `test`. Turborepo birbirine bağlı olmayan görevleri paralel çalıştırır.[^10]
+Altı görev de geçmeli: iki `build`, üç `check-types` ve bir `test`. Turborepo birbirine bağlı olmayan görevleri paralel çalıştırır.[^9]
 
-## Adım 6: Önbelleği ve Filtreyi Görün
+## Adım 6: Önbelleği ve filtreyi görün
 
 Aynı komutu ikinci kez çalıştırın:
 
@@ -216,9 +216,9 @@ Cached:    6 cached, 6 total
   Time:    14ms >>> FULL TURBO
 ```
 
-Hiçbir girdi değişmediği için Turborepo işi tekrarlamadı, sonucu önbellekten getirdi.[^9]
+Hiçbir girdi değişmediği için Turborepo işi tekrarlamadı, sonucu önbellekten getirdi.[^10]
 
-Şimdi `packages/ui/src/styles.css`'te bir satır değiştirin ve yalnızca UI'ı kullananları derleyin:[^10]
+Şimdi `packages/ui/src/styles.css`'te bir satır değiştirin ve yalnızca UI'ı kullananları derleyin:[^9]
 
 ```command
 pnpm turbo run build --filter=...@repo/ui
@@ -241,7 +241,7 @@ store:build: cache hit, replaying logs cb587f335c67df93
 >
 > `pnpm dev` iki geliştirme sunucusunu birlikte açar: mağaza `localhost:3000`'de, panel `localhost:5173`'te. UI paketinde yaptığınız değişiklik ikisine de anında yansır.
 
-## Kendin Dene
+## Kendin dene
 
 - `@repo/ui`'a bir `Card` bileşeni ekleyin. `exports`'a yeni satırını yazın ve iki uygulamada kullanın.
 - `turbo.json`'dan `outputs` alanını silin, iki kez build alın ve `.next` klasörünü silip üçüncüsünü çalıştırın. Önbellekten dönen build dosyaları geri getiriyor mu?
@@ -258,5 +258,5 @@ store:build: cache hit, replaying logs cb587f335c67df93
 6. [Turborepo: Structuring a repository](https://turborepo.dev/docs/crafting-your-repository/structuring-a-repository) *(doc)* — `apps/` ve `packages/` yapısı, dosya başına `exports` ve `@repo` öneki.
 7. [pnpm: Workspace](https://pnpm.io/workspaces) *(doc)* — `workspace:` protokolü ve tek lockfile.
 8. [Next.js: transpilePackages](https://nextjs.org/docs/app/api-reference/config/next-config-js/transpilePackages) *(doc)* — Turbopack'in workspace paketlerini kendisi derlemesi ve ayarın gerektiği durumlar.
-9. [Turborepo: Caching](https://turborepo.dev/docs/crafting-your-repository/caching) *(doc)* — Girdilerin parmak izi ve önbellekten geri getirme.
-10. [Turborepo: Running tasks](https://turborepo.dev/docs/crafting-your-repository/running-tasks) *(doc)* — `--filter` ve `...` ile bağımlı paketleri seçme.
+9. [Turborepo: Running tasks](https://turborepo.dev/docs/crafting-your-repository/running-tasks) *(doc)* — `--filter` ve `...` ile bağımlı paketleri seçme.
+10. [Turborepo: Caching](https://turborepo.dev/docs/crafting-your-repository/caching) *(doc)* — Girdilerin parmak izi ve önbellekten geri getirme.

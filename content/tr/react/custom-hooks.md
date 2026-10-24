@@ -5,7 +5,7 @@ lastVerified: "2026-10-21"
 translationKey: "react/custom-hooks"
 ---
 
-## Hook Kuralları
+## Hook kuralları
 
 `use` ile başlayan her fonksiyon bir **hook**'tur. İki kural vardır:[^1]
 
@@ -14,7 +14,7 @@ translationKey: "react/custom-hooks"
 
 Neden? React hook'ları isimle değil **çağrılma sırasıyla** tanır. Birinci `useState` her render'da birinci olmalıdır; bir koşul sırayı değiştirirse state'ler karışır. [Dan Abramov](https://overreacted.io/) bu tasarımın arkasındaki ödünleşimleri uzun bir yazıda anlatıyor.[^2] İstisna `use`'dur: koşul içinde çağrılabilir.[^3] `rules-of-hooks` lint kuralı ihlalleri yakalar.
 
-## Custom Hook Nedir
+## Custom hook nedir
 
 Custom hook, içinde başka hook'lar çağıran ve adı `use` ile başlayan sıradan bir fonksiyondur. Component'lerdeki tekrar eden **mantığı** paylaşır.[^4]
 
@@ -45,7 +45,7 @@ function ProductSearch() {
 >
 > Hook mantığı paylaşır, **state'i paylaşmaz**. `useDebouncedValue`'yu iki component'te çağırırsanız iki ayrı state oluşur. Ortak state gerekiyorsa state'i ebeveyne taşıyın ya da Context kullanın.[^4]
 
-## İyi Bir Hook
+## İyi bir hook
 
 - **Amacı somut olsun.** `useMount` ya da `useEffectOnce` gibi yaşam döngüsü hook'ları yazmayın; `useOnlineStatus`, `useProduct(id)`, `useDebouncedValue` gibi ne işe yaradığını söyleyen isimler verin.[^4]
 - **Arayüzü küçük olsun.** [TkDodo](https://tkdodo.eu/)'nun örneğinde başlığı yalnızca `document.title`'da gösteren bir hook, değeri hiç dışarı açmaz; sadece setter'ı döndürür. Hook'a ait olan her şey içinde kalır.[^5]
@@ -54,7 +54,7 @@ function ProductSearch() {
 
 Hook'u nereye koyacağınız ve ne zaman ortak klasöre taşıyacağınız [Component ve Kod Organizasyonu](/academy/architecture/component-organization) rehberinde.
 
-## Dış Bir Kaynağa Abone Olmak
+## Dış bir kaynağa abone olmak
 
 Tarayıcının bağlantı durumu, `localStorage`, ekran genişliği ya da bir store gibi React dışında tutulan veriyi okumak için Effect + `useState` yerine `useSyncExternalStore` kullanın. React dokümanı bu iş için elle yazılmış Effect yerine bu hook'u önerir.[^6][^7]
 
@@ -88,18 +88,18 @@ function CheckoutButton() {
 }
 ```
 
-## Hook'u Test Etmek
+## Hook'u test etmek
 
 Custom hook'u kullanan component üzerinden test etmek çoğu zaman yeterlidir. Hook tek başına bir kütüphane gibi kullanılıyorsa React Testing Library'nin `renderHook`'u ile test edilir; [Provider ve Hook](/academy/vitest/provider-and-hook) dersi anlatıyor.
 
-## Kendin Dene
+## Kendin dene
 
 - `useDebouncedValue`'yu bir arama kutusunda kullanın; `query` ve `debouncedQuery`'yi yan yana ekrana basıp farkı görün.
 - `useOnlineStatus`'u iki farklı component'te kullanın. DevTools'ta Network sekmesinden "Offline" seçin; ikisi de güncelleniyor mu?
 - `subscribe`'ı component'in içine taşıyın ve React DevTools Profiler'da ne değiştiğine bakın.
 - Projenizde bir component'teki iki Effect'i, adı ne yaptığını söyleyen iki hook'a taşıyın.
 
-## Detaylı Öğrenmek İçin
+## Detaylı öğrenmek için
 
 - **Resmi doküman:** "Reusing Logic with Custom Hooks"; `useOnlineStatus`'tan `useChatRoom`'a adım adım hook çıkarma.[^4]
 - **Yazı:** [Dan Abramov](https://overreacted.io/)'un "Why Do Hooks Rely on Call Order?" yazısı; hook kurallarının nedenini alternatif tasarımlarla karşılaştırır.[^2]

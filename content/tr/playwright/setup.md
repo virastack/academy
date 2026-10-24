@@ -5,7 +5,7 @@ lastVerified: "2026-10-22"
 translationKey: "playwright/setup"
 ---
 
-## Uçtan Uca Test Nedir?
+## Uçtan uca test nedir?
 
 [Vitest](/academy/vitest) dersleri bir component'i ya da hook'u tek başına, JSDOM içinde test eder. Uçtan uca *(end-to-end, E2E)* test ise uygulamanın tamamını gerçek bir tarayıcıda çalıştırır: sayfa açılır, kullanıcı gibi tıklanır, yazılır ve ekranda görünen sonuç doğrulanır. Sunucu, veritabanı, yönlendirme ve cookie'ler de işin içindedir.
 
@@ -108,7 +108,7 @@ projects: [
 npx playwright test --project="*"
 ```
 
-## webServer: Uygulamayı Playwright Başlatsın
+## webServer: Uygulamayı Playwright başlatsın
 
 Testler çalışan bir uygulamaya ihtiyaç duyar. `webServer` alanı, testlerden önce sunucuyu başlatır ve adres yanıt verene kadar bekler.[^7] [!nextjs] dokümanı testleri production build'e karşı çalıştırmayı önerir; uygulama gerçekte nasıl çalışacaksa öyle test edilir.[^3]
 
@@ -127,7 +127,7 @@ webServer: {
 >
 > Test yazarken her seferinde build beklemek yavaştır. Bir terminalde `npm run dev` açık tutun; `reuseExistingServer` sayesinde Playwright onu kullanır. Göndermeden önce dev sunucusunu kapatıp production build ile bir kez çalıştırın.
 
-## Testleri Çalıştırmak
+## Testleri çalıştırmak
 
 ```command
 npx playwright test
@@ -148,14 +148,14 @@ HTML rapor yalnızca test başarısız olunca kendiliğinden açılır.[^2]
 
 [!vscode] kullanıyorsanız Playwright eklentisi testleri editörden çalıştırmayı, kesme noktası koymayı ve locator seçmeyi sağlar.[^9]
 
-## Kendin Dene
+## Kendin dene
 
 - Bir [!nextjs] projesine Playwright'ı ekleyin. `tests/example.spec.ts`'i çalıştırın, sonra `npx playwright show-report` ile raporu açın.
 - Firefox ve WebKit projelerine `default: false` ekleyin. `npx playwright test` ve `npx playwright test --project="*"` çıktılarındaki test sayısını karşılaştırın.
 - `webServer`'ı ekleyin, `baseURL`'i ayarlayın. Örnek testteki adresi `page.goto("/")` yapın.
 - `npx playwright test --ui` ile UI Mode'u açın ve bir testi adım adım izleyin.
 
-## Detaylı Öğrenmek İçin
+## Detaylı öğrenmek için
 
 - **Resmi doküman:** Playwright, "Installation"; kurulum, oluşan dosyalar ve ilk çalıştırma.[^2]
 - **Resmi doküman:** Next.js, "How to set up Playwright with Next.js"; production build'e karşı test önerisi.[^3]

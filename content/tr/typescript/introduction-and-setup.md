@@ -5,7 +5,7 @@ lastVerified: "2026-10-17"
 translationKey: "typescript/introduction-and-setup"
 ---
 
-## TypeScript Nedir
+## TypeScript nedir
 
 [!typescript], JavaScript'in üzerine **statik tip** sistemi ekleyen bir dildir. JavaScript'in bütün özelliklerini içerir; çalışan her JavaScript kodu aynı zamanda geçerli TypeScript kodudur.[^1] Bu yüzden TypeScript'e JavaScript'in **üst kümesi** *(superset)* denir.
 
@@ -13,7 +13,7 @@ Fark şudur: değişkenlerin, fonksiyon parametrelerinin ve nesnelerin hangi tip
 
 Bu ders TypeScript'in ne olduğunu, bir projeye nasıl kurulduğunu ve tip kontrolünün nerede çalıştığını anlatır. Tipleri yazmayı sonraki derslerde adım adım öğreneceksiniz.
 
-## Neden Kullanılır
+## Neden kullanılır
 
 JavaScript dinamik tiplidir: bir değişkenin tipi ancak kod çalışınca belli olur. TypeScript bu bilgiyi kod yazarken verir. Bunun üç somut faydası vardır:
 
@@ -54,7 +54,7 @@ const cart: CartItem[] = [
 
 `type` ile tip tanımlamayı [Interface, type ve union](/academy/typescript/interfaces-types-and-unions) dersinde ayrıntılı göreceksiniz.
 
-## Tipler Çalışma Anında Yoktur
+## Tipler çalışma anında yoktur
 
 Tarayıcılar ve Node.js TypeScript tiplerini anlamaz. Kod çalışmadan önce tipler silinir ve geriye düz JavaScript kalır. Handbook'un ifadesiyle tip açıklamaları programın çalışma davranışını hiçbir zaman değiştirmez.[^2]
 
@@ -74,7 +74,7 @@ function formatPrice(price) {
 >
 > TypeScript yalnızca **sizin yazdığınız** kodu kontrol eder. `fetch` ile gelen veri, `JSON.parse` sonucu ya da form girdisi çalışma anında gelir ve hiçbir tip kontrolünden geçmez. Bir API yanıtına `Product` tipi vermek, verinin gerçekten öyle olduğunu garanti etmez. Bu tür veriyi güvenle daraltmayı [Narrowing ve type guard](/academy/typescript/narrowing-and-type-guards) dersinde, şema ile doğrulamayı Formlar yolundaki [!zod] dersinde göreceksiniz.
 
-## Playground'da Deneyin
+## Playground'da deneyin
 
 Kurulum yapmadan denemenin en kısa yolu TypeScript Playground'dur.[^4] Sol tarafa kod yazarsınız, hatalar anında altı çizili görünür, sağ tarafta tipleri silinmiş JavaScript çıktısını izlersiniz. Yazdığınız kodu bir link ile paylaşabilirsiniz; soru sorarken çok işe yarar.
 
@@ -89,7 +89,7 @@ TypeScript dosyaları `.ts` uzantısını kullanır. İçinde JSX olan her dosya
 | Tip tanımları, yardımcı fonksiyonlar, API çağrıları | `types.ts`, `format-price.ts` |
 | React component'leri | `ProductCard.tsx`, `App.tsx` |
 
-## Yeni Proje: Vite ile React ve TypeScript
+## Yeni proje: Vite ile React ve TypeScript
 
 [!react] ile TypeScript projesi başlatmanın en kolay yolu [!vite]'ın `react-ts` şablonudur.[^6]
 
@@ -105,7 +105,7 @@ npm create vite@latest my-store -- --template react-ts
 
 tsconfig dosyaları derleyiciye hangi dosyaları hangi kurallarla kontrol edeceğini söyler; ayrıntısını [tsconfig ve strict mod](/academy/typescript/tsconfig-and-strict-mode) dersinde göreceksiniz.
 
-## Var Olan Projeye Eklemek
+## Var olan projeye eklemek
 
 TypeScript bir npm paketidir ve `tsc` adında bir derleyici komutu getirir.[^2] Projeye geliştirme bağımlılığı olarak kurulur:
 
@@ -121,7 +121,7 @@ npx tsc --init
 
 TypeScript 7'de bu komut `strict`, `noUncheckedIndexedAccess`, `verbatimModuleSyntax` gibi önerilen ayarların açık olduğu bir dosya üretir. React projesinde ayrıca `@types/react` ve `@types/react-dom` paketlerini kurmanız gerekir.[^5] Sonra dosyaları birer birer `.ts` / `.tsx` yapmaya başlayabilirsiniz; JavaScript dosyaları çalışmaya devam eder.
 
-## Tip Kontrolünü Kim Yapar?
+## Tip kontrolünü kim yapar?
 
 Bu, TypeScript'e yeni başlayanların en sık atladığı noktadır. Bir projede TypeScript iki ayrı işe yarar ve bu işleri farklı araçlar yapar:
 
@@ -146,7 +146,7 @@ npx tsc --noEmit
 
 Pratikte tip hatalarını üç yerde görürsünüz: yazarken editörde, build sırasında ve CI'da. CI adımını [tsconfig ve strict mod](/academy/typescript/tsconfig-and-strict-mode) dersinde kuracağız.
 
-## Node.js ile Doğrudan Çalıştırmak
+## Node.js ile doğrudan çalıştırmak
 
 [!nodejs] 22.18 ve 23.6 sürümlerinden itibaren `.ts` dosyalarını ek araç olmadan çalıştırabilir; özellik 24.12 ve 25.2'de kararlı *(stable)* oldu.[^9] Node tip yazımını boşlukla değiştirip kodu çalıştırır, buna **type stripping** denir.
 
@@ -169,14 +169,14 @@ TypeScript 7 henüz bir JavaScript API'si sunmuyor. TypeScript'i kütüphane ola
 
 Yeni başlıyorsanız bu ayrım sizi çok etkilemez: 6.0'da temiz derlenen kod 7.0'da da aynı şekilde derlenir.[^10]
 
-## Kendin Dene
+## Kendin dene
 
 - Playground'da ilk örnekteki `CartItem` tipini yazın, `price` değerini metin yapın ve hata mesajını okuyun.
 - Aynı kodda bir alanın adını yanlış yazın *(`item.prise`)* ve TypeScript'in önerisine bakın.
 - `npm create vite@latest` ile `react-ts` projesi açın, `App.tsx` içine bilerek bir tip hatası koyun; `npm run dev` çalışırken `npx tsc -b` ile hatayı görün.
 - Bir `price.ts` dosyası yazıp `node price.ts` ile çalıştırın.
 
-## Detaylı Öğrenmek İçin
+## Detaylı öğrenmek için
 
 - **Resmi doküman:** TypeScript Handbook'un "The Basics" bölümü; statik tip kontrolü, `tsc` ve tiplerin silinmesi.[^2]
 - **Kitap:** [Matt Pocock](https://www.mattpocock.com/)'un çevrimiçi okunabilen Total TypeScript Essentials kitabının "TypeScript In The Development Pipeline" bölümü.[^11]

@@ -5,7 +5,7 @@ lastVerified: "2026-10-17"
 translationKey: "performance-accessibility/core-web-vitals"
 ---
 
-## Core Web Vitals Nedir
+## Core Web Vitals nedir
 
 **Core Web Vitals**, Google'ın her web sayfası için ölçülmesini önerdiği üç kullanıcı deneyimi metriğidir. Her biri deneyimin ayrı bir yönünü ölçer ve gerçek kullanıcılardan toplanabilir:[^1]
 
@@ -17,7 +17,7 @@ translationKey: "performance-accessibility/core-web-vitals"
 
 Kısacası üç soruya cevap ararlar: sayfa hızlı açıldı mı, dokununca hemen tepki verdi mi, okurken yerinden oynadı mı?
 
-## Eşikler ve 75. Persentil
+## Eşikler ve 75. persentil
 
 Her metrik için üç bant vardır: **iyi**, **iyileştirilmeli** (needs improvement) ve **kötü** (poor).[^2]
 
@@ -29,7 +29,7 @@ Her metrik için üç bant vardır: **iyi**, **iyileştirilmeli** (needs improve
 
 Değerlendirme tek bir ziyarete göre yapılmaz. Bir sayfa, ziyaretlerin **75. persentilinde** eşiği tutturuyorsa o metrikte "iyi" sayılır; yani her dört ziyaretten en az üçü hedefin altında kalmalıdır. 75. persentil, ziyaretlerin çoğunu temsil ederken birkaç aşırı ölçümün sonucu bozmasını da engeller.[^2] Mobil ve masaüstü ayrı değerlendirilir ama eşikler aynıdır; mobil cihazlar daha kısıtlı olduğu için eşikler büyük ölçüde mobilin başarabileceğine göre belirlenmiştir.[^2] Bir sayfa üç metriğin üçünde de "iyi" ise Core Web Vitals'ı geçmiş olur.[^1]
 
-## LCP: Ana İçerik Ne Zaman Göründü
+## LCP: Ana içerik ne zaman göründü
 
 **LCP**, kullanıcı sayfaya gitmeye başladığı andan, ekranda görünen en büyük içerik parçası çizilene kadar geçen süredir.[^3] Aday olabilen öğeler şunlardır:[^3]
 
@@ -42,7 +42,7 @@ Tarayıcı, kullanıcı tıklar, kaydırır ya da bir tuşa basarsa yeni LCP ada
 
 **Tipik nedenler:** Yavaş sunucu yanıtı (TTFB), render'ı bloklayan CSS ve JavaScript, geç keşfedilen ya da lazy-load edilen LCP görseli ve geç yüklenen fontlar.[^3][^4] Görsel ve font tarafını [Görsel ve font](/academy/performance-accessibility/images-and-fonts) dersinde ele alıyoruz.
 
-## INP: Sayfa Ne Kadar Hızlı Yanıt Verdi
+## INP: Sayfa ne kadar hızlı yanıt verdi
 
 **INP**, ziyaret boyunca yapılan tıklama, dokunma ve tuş basma etkileşimlerinin gecikmesini izler ve neredeyse hepsinin altında kaldığı tek bir değer raporlar. Hover, kaydırma ve yakınlaştırma sayılmaz.[^5] Çoğu sayfada en yavaş etkileşim raporlanır; çok etkileşimli sayfalarda her 50 etkileşimde en kötü bir tanesi göz ardı edilir.[^5]
 
@@ -56,7 +56,7 @@ INP, 12 Mart 2024'te **First Input Delay (FID)**'in yerini aldı.[^6] FID yalnı
 
 **Tipik nedenler:** Ana thread'i uzun süre meşgul eden görevler (50 ms üstü), gereğinden fazla JavaScript, büyük DOM ve React'te gereksiz yeniden render'lar.[^4][^7] Bunları [React'te render performansı](/academy/performance-accessibility/render-performance) ve [Bundle boyutu](/academy/performance-accessibility/bundle-size) derslerinde görüyoruz.
 
-## CLS: Sayfa Yerinden Oynadı mı
+## CLS: Sayfa yerinden oynadı mı
 
 **CLS**, görünen içeriğin beklenmedik şekilde kaymasını ölçer. Okurken metnin aşağı kayması ya da tam tıklarken butonun yer değiştirmesi bunun örneğidir.[^8]
 
@@ -72,11 +72,11 @@ Her kaymaya, ekranın ne kadarının etkilendiğine ve öğenin ne kadar uzağa 
 <img src="/kapak.jpg" alt="Kapak" width={1200} height={630} />
 ```
 
-## Yardımcı Metrikler
+## Yardımcı metrikler
 
 **Time to First Byte (TTFB)** ve **First Contentful Paint (FCP)** Core Web Vitals değildir; yavaş sunucu ya da render'ı bloklayan kaynaklar gibi LCP sorunlarının teşhisinde kullanılır. **Total Blocking Time (TBT)** ise kullanıcı etkileşimi olmayan test ortamında INP'nin yerine bakılan bir laboratuvar metriğidir.[^1]
 
-## Field ve Lab Verisi
+## Field ve lab verisi
 
 **Field verisi** gerçek kullanıcıların kendi cihaz, ağ ve konumlarından toplanır; Google'ın kamuya açık veri seti **Chrome User Experience Report (CrUX)** buna örnektir. **Lab verisi** ise sayfayı sabit cihaz ve ağ ayarlarıyla, kontrollü bir ortamda yükleyerek elde edilir ve hata ayıklamak için tekrarlanabilir sonuç verir. İkisi sık sık farklı çıkar: testte önbellek boştur, kullanıcı tıklamaz ve kaydırmaz, ekran boyutuna göre LCP öğesi değişebilir. Bu yüzden ikisi de varsa öncelik field verisindedir; lab verisi geliştirme sırasında sorunu bulmaya yarar.[^9] Bu ölçümleri nereden okuyacağınızı [Ölçüm](/academy/performance-accessibility/measuring) dersinde anlatıyoruz.
 
@@ -86,7 +86,7 @@ Her kaymaya, ekranın ne kadarının etkilendiğine ve öğenin ne kadar uzağa 
 
 Aralık 2025 itibarıyla LCP ve INP tüm büyük tarayıcılarda destekleniyor; CLS ise hâlâ yalnızca Chromium tabanlı tarayıcılarda ölçülebiliyor. CrUX da yalnızca Chrome kullanıcılarından veri topluyor.[^10]
 
-## Neden Önemli
+## Neden önemli
 
 Asıl neden kullanıcıdır: yavaş ya da kararsız bir sayfadan sıkılan kullanıcı başka bir siteye geçebilir.[^11] Örneğin Farfetch, LCP'nin 2,5 saniyeyi aştığı her 100 ms için dönüşüm oranının yaklaşık %1,3 düştüğünü raporladı.[^12]
 
@@ -96,7 +96,7 @@ Arama tarafında Google, Core Web Vitals'ın sıralama sistemlerinde kullanıld�
 >
 > 2025 verisine göre mobilde sitelerin yalnızca %48'i, masaüstünde %56'sı üç metriği birden geçiyor. Mobilde en zayıf halka LCP: sitelerin %62'si iyi bantta.[^14] "İyi" olmak hâlâ ortalamanın üstünde olmak demek.
 
-## Detaylı Öğrenmek İçin
+## Detaylı öğrenmek için
 
 - **Resmi giriş:** web.dev'in Web Vitals sayfası; metriklerin yaşam döngüsü, yardımcı metrikler ve araç listesiyle.[^1]
 - **Neden 75. persentil:** Eşiklerin nasıl ve neden belirlendiğini anlatan yazı.[^2]

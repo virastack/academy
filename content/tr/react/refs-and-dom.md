@@ -5,7 +5,7 @@ lastVerified: "2026-10-21"
 translationKey: "react/refs-and-dom"
 ---
 
-## Ref Nedir
+## Ref nedir
 
 **Ref**, render'lar arasında saklanan ama değiştiğinde render **tetiklemeyen** bir kutudur. `useRef` bir obje döndürür; değer `current` alanındadır.[^1]
 
@@ -22,7 +22,7 @@ React dokümanı ref'i bir **kaçış kapısı** olarak tanımlar: React dışı
 >
 > Render sırasında `ref.current`'i okumayın ya da yazmayın. Değer ekranda bir şeyi belirliyorsa state olmalıdır. `eslint-plugin-react-hooks`'un `refs` kuralı bunu yakalar.[^2][^1]
 
-## DOM Elemanına Erişmek
+## DOM elemanına erişmek
 
 Çoğu iş deklaratif yapılır, ama bazı şeylerin JSX karşılığı yoktur: odaklanmak, bir yere kaydırmak, video oynatmak, eleman ölçmek. Bunun için ref'i JSX'teki `ref` attribute'una verirsiniz; React DOM elemanını `current`'a koyar.[^3]
 
@@ -43,7 +43,7 @@ export function SearchBox() {
 
 `current` ilk render'da `null`'dır; React ref'i commit sırasında, DOM'u güncelledikten sonra bağlar. Bu yüzden ref'lere event handler'larda ya da Effect'lerde erişilir.[^3]
 
-## Kendi Component'inize ref Vermek
+## Kendi component'inize ref vermek
 
 React 19'dan beri `ref` fonksiyon component'lerde sıradan bir prop'tur. `forwardRef` artık gerekmez ve ileride kaldırılacak.[^4]
 
@@ -61,7 +61,7 @@ Ebeveynin DOM elemanının tamamına değil, yalnızca birkaç metoda erişmesin
 >
 > - React'in yönettiği DOM'u ref ile değiştirmek: elemanı silmek, içine çocuk eklemek. React bir sonraki render'da DOM'u kendi bildiği hâle getirmeye çalışır ve hata verir. Ref'le yalnızca React'in dokunmadığı şeyleri yapın *(odak, kaydırma, ölçme)*.[^3]
 
-## Ref Callback ve Cleanup
+## Ref callback ve cleanup
 
 `ref`'e obje yerine bir fonksiyon da verebilirsiniz. React elemanı DOM'a ekleyince fonksiyonu elemanla çağırır. React 19'da bu fonksiyon bir **cleanup** döndürebilir; eleman kaldırılınca çağrılır.[^6][^4]
 
@@ -85,7 +85,7 @@ function measure(node: HTMLElement) {
 
 Strict Mode, ref callback'leri de development'ta bir kez fazladan kurup söker; cleanup eksikse burada görürsünüz.[^6]
 
-## Fragment Ref'leri
+## Fragment ref'leri
 
 React 19.3 ile `<Fragment>`'e ref verilebiliyor. Sarmalayıcı bir `<div>` eklemeden, bir component'in render ettiği kardeş elemanların hepsiyle grup olarak çalışırsınız. Dönen `FragmentInstance` odak *(`focus`, `focusLast`, `blur`)*, event listener ekleme ve `IntersectionObserver`/`ResizeObserver` bağlama gibi metotlar sunar.[^8][^9]
 
@@ -109,14 +109,14 @@ Bu özellikle elinizde olmayan component'lere *(bir kütüphanenin listesi gibi)
 
 Modal, tooltip ve toast gibi elemanlar görsel olarak sayfanın en üstünde durmalıdır, ama component ağacında onları açan component'in yanında yaşar. `createPortal`, JSX'i DOM'da başka bir yere *(genellikle `document.body`)* render eder; event'ler ve context React ağacındaki yerine göre çalışmaya devam eder.[^10] Basit diyaloglar için önce yerleşik `<dialog>` elemanına bakın; [HTML](/academy/web-fundamentals/html) dersi anlatıyor.
 
-## Kendin Dene
+## Kendin dene
 
 - `SearchBox`'a sayfa açılınca input'a odaklanma ekleyin. Önce `useEffect` ile, sonra ref callback ile yazın.
 - Bir ürün kartının genişliğini `ResizeObserver` ile ölçen ref callback'i yazın; cleanup'ı silip kartı birkaç kez gizleyip gösterin.
 - Render sırasında `inputRef.current?.value`'yu ekrana basmayı deneyin ve lint'in uyarısını okuyun.
 - Bir listeyi saran `<div>`'i kaldırıp yerine Fragment ref'i ile "görünür olunca logla" davranışı ekleyin.
 
-## Detaylı Öğrenmek İçin
+## Detaylı öğrenmek için
 
 - **Resmi doküman:** "Referencing Values with Refs" ve "Manipulating the DOM with Refs"; ikisi birlikte ref konusunun tamamı.[^1][^3]
 - **Yazı:** [TkDodo](https://tkdodo.eu/)'nun ref callback'leri React 19 ve compiler ile yeniden değerlendirdiği yazı.[^7]

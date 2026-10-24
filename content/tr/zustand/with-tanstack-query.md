@@ -5,7 +5,7 @@ lastVerified: "2026-10-21"
 translationKey: "zustand/with-tanstack-query"
 ---
 
-## Görev Paylaşımı
+## Görev paylaşımı
 
 İki kütüphane farklı işler yapar ve birbirinin yerine geçmez:[^1][^2]
 
@@ -16,7 +16,7 @@ translationKey: "zustand/with-tanstack-query"
 
 Kural basit: sunucudan gelen veriyi store'a **kopyalamayın**. Kopya, sunucudaki veri değiştiğinde eskir; yükleme, hata ve yenileme durumlarını elle yazmak zorunda kalırsınız.[^2] Bu derste ikisini birleştirmenin iki kalıbı var.
 
-## Store Sorguyu Sürer
+## Store sorguyu sürer
 
 Filtreler client state'tir; ürün listesi server state. Filtreyi store'da tutup **query key'e** koyduğunuzda, filtre değiştiği anda sorgu kendiliğinden yeniden çalışır. [TkDodo](https://tkdodo.eu/) iki hook'u bir custom hook'ta birleştirir:[^3]
 
@@ -64,7 +64,7 @@ Filtre paneli `setCategory`'yi çağırır; ürün listesi `useFilteredProducts`
 >
 > Filtrenin paylaşılabilir bir linkte ya da geri butonunda korunması gerekiyorsa store yerine URL'de tutun. Kalıp aynı kalır: URL'den okunan değer query key'e girer.[^4]
 
-## Senkronlama Değil, Türetme
+## Senkronlama değil, türetme
 
 Sık görülen bir sorun: store'da seçili kullanıcının `id`'si duruyor, ama kullanıcı sunucudan silinmiş. İlk akla gelen, sorgu sonucu değişince store'u bir `useEffect` ile düzeltmektir:[^5]
 
@@ -112,7 +112,7 @@ const activeId = selection ?? products?.[0]?.id;
 
 Bu yaklaşım Zustand'a özel değildir; `useState` ya da URL state'i için de aynı şekilde çalışır.[^5] Genel ilke React dokümanında da var: hesaplanabilen bir değer için Effect yazmayın.[^6]
 
-## Sepet Örneği
+## Sepet örneği
 
 Sepeti store'da saklamak mantıklıdır; kullanıcının seçimidir ve sunucuda henüz yoktur. Ama stok sunucunun verisidir. Sepetteki ürünün stoğu azaldıysa uyarıyı store'u güncelleyerek değil, iki kaynağı birleştirerek gösterin:
 
@@ -135,13 +135,13 @@ function CartLine({ id }: { id: number }) {
 
 Kullanıcı adedi azaltınca ya da stok sunucuda artınca uyarı kendiliğinden kaybolur.
 
-## Kendin Dene
+## Kendin dene
 
 - Ürün listesini önce kategori `useState`'te, sonra Zustand store'unda olacak şekilde yazın. Filtre paneli ile liste farklı component'lerdeyse hangisi daha az prop geçirir?
 - Seçili kullanıcıyı `useEffect` ile senkronlayın, sonra türeterek yazın. Kullanıcıyı sahte API'den silip geri ekleyin; iki versiyonda seçime ne oluyor?
 - Sepetteki bir ürünün stoğunu sahte API'de düşürün ve `invalidateQueries` çağırın. Uyarı görünüyor mu?
 
-## Detaylı Öğrenmek İçin
+## Detaylı öğrenmek için
 
 - **Yazı:** [TkDodo](https://tkdodo.eu/), "Deriving Client State from Server State"; senkronlama yerine türetme ve varsayılan değerler.[^5]
 - **Yazı:** [TkDodo](https://tkdodo.eu/), "Working with Zustand"; store'u `useQuery` ile custom hook'ta birleştirmek.[^3]

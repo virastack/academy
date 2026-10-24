@@ -73,13 +73,13 @@ export const applyDiscount = (price: number, percent: number) =>
 npx vitest run
 ```
 
-[!vitest] `vitest run` testleri izleme moduna girmeden bir kez çalıştırır. Test dosyalarının adında `.test.` ya da `.spec.` geçmesi gerekir.[^6] Kurulum için [Vitest Kurulum](/academy/vitest/setup) rehberine bakın.
+[!vitest] `vitest run` testleri izleme moduna girmeden bir kez çalıştırır. Test dosyalarının adında `.test.` ya da `.spec.` geçmesi gerekir.[^3] Kurulum için [Vitest Kurulum](/academy/vitest/setup) rehberine bakın.
 
 ## Hangi testi yazmalı?
 
-TDD'nin "nasıl" sorusunu cevapladık. "Hangi test" sorusu için [Kent C. Dodds](https://kentcdodds.com)'ın **Testing Trophy** modeli var: statik, unit, entegrasyon ve uçtan uca (E2E) katmanları. Testlerden beklenen *güven*, harcanan zamana karşılık getirdiği değerdir.[^3] Dodds'a göre yatırımın büyük bölümü entegrasyon testlerine gitmeli, çünkü güven, hız ve maliyet dengesi orada en iyi.[^4]
+TDD'nin "nasıl" sorusunu cevapladık. "Hangi test" sorusu için [Kent C. Dodds](https://kentcdodds.com)'ın **Testing Trophy** modeli var: statik, unit, entegrasyon ve uçtan uca (E2E) katmanları. Testlerden beklenen *güven*, harcanan zamana karşılık getirdiği değerdir.[^4] Dodds'a göre yatırımın büyük bölümü entegrasyon testlerine gitmeli, çünkü güven, hız ve maliyet dengesi orada en iyi.[^5]
 
-İlkesi şu: testleriniz yazılımın kullanılma biçimine ne kadar benzerse o kadar güven verir.[^3] Testing Library de aynı fikre dayanıyor: DOM düğümleriyle çalışır, component örneklerinin iç yapısına girmez.[^5] Testing Trophy'nin ayrıntısı [Vitest](/academy/vitest/introduction) rehberinde.
+İlkesi şu: testleriniz yazılımın kullanılma biçimine ne kadar benzerse o kadar güven verir.[^4] Testing Library de aynı fikre dayanıyor: DOM düğümleriyle çalışır, component örneklerinin iç yapısına girmez.[^6] Testing Trophy'nin ayrıntısı [Vitest](/academy/vitest/introduction) rehberinde.
 
 ## Sık yapılan hatalar
 
@@ -98,15 +98,15 @@ Beck'in uyardığı hatalardan seçmeler:[^2]
 >
 > TDD ve test sayısı hedef değil, araç.
 >
-> - **%100 kapsama kovalamayın.** Dodds'a göre belli bir noktadan sonra getirisi azalıyor ve mantığı olmayan kodu test etmeye başlıyorsunuz.[^4]
-> - **İç ayrıntıları test etmeyin.** Yalnızca zor ulaşılan bir satırı kapsamak için yazılan testler güven vermiyor, refactoring'i de zorlaştırıyor.[^4]
+> - **%100 kapsama kovalamayın.** Dodds'a göre belli bir noktadan sonra getirisi azalıyor ve mantığı olmayan kodu test etmeye başlıyorsunuz.[^5]
+> - **İç ayrıntıları test etmeyin.** Yalnızca zor ulaşılan bir satırı kapsamak için yazılan testler güven vermiyor, refactoring'i de zorlaştırıyor.[^5]
 > - **Her kod parçasında TDD'yi şart koşmayın.** Bu rehberin önerisi: iş kuralı içeren saf fonksiyonlarla başlayın. Girdisi ve çıktısı net olduğu için ilk testi yazmak kolaydır.
 
 ## Kaynaklar
 
 1. [Martin Fowler: Test Driven Development](https://martinfowler.com/bliki/TestDrivenDevelopment.html) *(article)* — Red-Green-Refactor döngüsü, test listesi, arayüzü önce düşünmek ve refactor adımını atlamanın yaygın hata olduğu. 11 Aralık 2023.
 2. [Kent Beck: Canon TDD](https://newsletter.kentbeck.com/p/canon-tdd) *(article)* — TDD'nin beş adımı ve yaygın hatalar. 11 Aralık 2023.
-3. [Kent C. Dodds: The Testing Trophy and Testing Classifications](https://kentcdodds.com/blog/the-testing-trophy-and-testing-classifications) *(article)* — Statik, unit, entegrasyon ve E2E katmanları, güven ve maliyet dengesi, "kullanıma ne kadar benzerse o kadar güven". 3 Haziran 2021.
-4. [Kent C. Dodds: Write tests. Not too many. Mostly integration.](https://kentcdodds.com/blog/write-tests) *(article)* — Entegrasyon testlerine ağırlık, %100 kapsamanın azalan getirisi ve iç ayrıntıları test etmenin sakıncası. 13 Temmuz 2019.
-5. [Testing Library: Guiding Principles](https://testing-library.com/docs/guiding-principles/) *(doc)* — Kullanıma benzeyen testler ve DOM düğümleriyle çalışma ilkesi.
-6. [Vitest: Getting Started](https://vitest.dev/guide/) *(doc)* — `test` ve `expect`, `.test.` dosya adı, `vitest run`.
+3. [Vitest: Getting Started](https://vitest.dev/guide/) *(doc)* — `test` ve `expect`, `.test.` dosya adı, `vitest run`.
+4. [Kent C. Dodds: The Testing Trophy and Testing Classifications](https://kentcdodds.com/blog/the-testing-trophy-and-testing-classifications) *(article)* — Statik, unit, entegrasyon ve E2E katmanları, güven ve maliyet dengesi, "kullanıma ne kadar benzerse o kadar güven". 3 Haziran 2021.
+5. [Kent C. Dodds: Write tests. Not too many. Mostly integration.](https://kentcdodds.com/blog/write-tests) *(article)* — Entegrasyon testlerine ağırlık, %100 kapsamanın azalan getirisi ve iç ayrıntıları test etmenin sakıncası. 13 Temmuz 2019.
+6. [Testing Library: Guiding Principles](https://testing-library.com/docs/guiding-principles/) *(doc)* — Kullanıma benzeyen testler ve DOM düğümleriyle çalışma ilkesi.

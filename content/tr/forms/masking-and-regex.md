@@ -5,7 +5,7 @@ lastVerified: "2026-10-22"
 translationKey: "forms/masking-and-regex"
 ---
 
-## Görünen Değer, Ham Değer
+## Görünen değer, ham değer
 
 Telefon alanına `5321234567` yazan kullanıcı ekranda `(532) 123 45 67` görmek ister; okuması ve kontrol etmesi kolaydır. Sunucu ise boşluksuz `5321234567`'yi bekler. **Maske** bu iki değeri ayırır:
 
@@ -19,7 +19,7 @@ Telefon alanına `5321234567` yazan kullanıcı ekranda `(532) 123 45 67` görme
 
 Kural: **doğrulama ve saklama ham değerle yapılır.** Görünen değer yalnızca ekran içindir.
 
-## Regex ile Biçim Doğrulamak
+## Regex ile biçim doğrulamak
 
 Ham değerin biçimini düzenli ifadeyle *(regex)* kontrol edersiniz. Formlarda gereken parçalar azdır:[^2]
 
@@ -44,7 +44,7 @@ const price = /^\d+([.,]\d{1,2})?$/; // 249 ya da 249,90
 > - Ad ve soyad alanını `/^[a-zA-Z]+$/` ile kısıtlamak. "Çağrı", "Ayşe Nur" ve "O'Brien" reddedilir. Ad alanında uzunluktan başka kural koymayın.
 > - E-postayı kendi regex'inizle doğrulamak. Zod'un `z.email()`'i ve sunucuya giden doğrulama e-postası daha güvenilirdir.
 
-## type="number" Yerine inputMode
+## type="number" yerine inputMode
 
 Sayı gibi görünen her alan sayı değildir. Telefon, kart, IBAN ve vergi numarası **rakamlardan oluşan metinlerdir**: başındaki sıfır önemlidir, toplanmazlar, artırılmazlar. GOV.UK ekibi `type="number"`'ı bu yüzden bıraktı: ekran okuyucular ve sesle kontrol yazılımları alanı tanımıyor, fare tekerleği değeri sessizce değiştiriyor, uzun sayılar yuvarlanabiliyor ve Chrome harfleri haber vermeden siliyor.[^3]
 
@@ -158,7 +158,7 @@ Aynı alan için birden fazla kural tutmadığında RHF ilk mesajı gösterir: 1
 >
 > Paketin dışa açtığı `validateTCKN` ve `validateIBAN` gibi fonksiyonlar tarayıcıda kullanılabilir. Paket `"use client"` ile işaretli olduğu için bu fonksiyonları bir Server Action'da ya da sunucuda çalışan şemada çağıramazsınız. Sunucuyla paylaşılan şemada kendi fonksiyonunuzu ya da Zod'un biçimlerini kullanın.
 
-## Kendin Dene
+## Kendin dene
 
 - Telefon maskesini kurun ve `form.watch("phone")` ile forma yazılan değeri ekranda gösterin. Görünen değerle aynı mı?
 - IBAN alanına harf ve boşluk yapıştırın. Ne oluyor?
@@ -166,7 +166,7 @@ Aynı alan için birden fazla kural tutmadığında RHF ilk mesajı gösterir: 1
 - Vergi numarası için de bir sağlama fonksiyonu yazın ve `taxNumber` maskesiyle bağlayın.
 - Bir fiyat alanını `type="number"` ile yapın; fare tekerleğiyle üzerinden geçin ve `e` yazmayı deneyin.
 
-## Detaylı Öğrenmek İçin
+## Detaylı öğrenmek için
 
 - **Resmi doküman:** [ViraStack Mask](https://virastack.com/mask/); hazır maskeler, seçenekler ve örnekler.[^4]
 - **Yazı:** GOV.UK, "Why the GOV.UK Design System team changed the input type for numbers"; `type="number"`'ın sorunları.[^3]

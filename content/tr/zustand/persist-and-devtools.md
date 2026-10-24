@@ -5,7 +5,7 @@ lastVerified: "2026-10-21"
 translationKey: "zustand/persist-and-devtools"
 ---
 
-## persist ile Saklamak
+## persist ile saklamak
 
 Sayfa yenilenince sepetin boşalmasını istemezsiniz. `persist` middleware'i store'u bir depolama alanına yazar ve açılışta geri okur. Varsayılan depolama `localStorage`'dır:[^1][^2]
 
@@ -31,7 +31,7 @@ export const useCartStore = create<CartState>()(
 
 v5'ten beri `persist`, store oluşturulurken ilk state'i depolamaya **yazmaz**. Kayıt ilk `set` çağrısında oluşur.[^3]
 
-## partialize: Neyi Saklayacağınızı Seçin
+## partialize: Neyi saklayacağınızı seçin
 
 Varsayılan olarak tüm state saklanır. Sepet çekmecesinin açık kalması gibi geçici değerleri saklamak istemezsiniz. `partialize` saklanacak alanları seçer:[^2]
 
@@ -129,7 +129,7 @@ export function CartHydrator() {
 
 Sunucu ve tarayıcının ilk render'ı aynı olur, kayıtlı sepet mount'tan hemen sonra gelir. Next.js'te store'u nerede oluşturacağınız [Context ile store](/academy/zustand/store-with-context) dersinde.
 
-## devtools ile İzlemek
+## devtools ile izlemek
 
 `devtools` middleware'i store'u Redux DevTools tarayıcı eklentisine bağlar. Redux kullanmadan her değişikliği, önceki ve sonraki state'i görür, geçmişte gezinirsiniz.[^5]
 
@@ -172,14 +172,14 @@ export const useCartStore = create<CartState>()(
 
 Panelde varsayılan olarak tek bir store görünür; diğerleri için üstteki seçiciyi kullanın.[^5]
 
-## Kendin Dene
+## Kendin dene
 
 - Sepete `persist` ekleyin ve DevTools'un Application sekmesinde `localStorage`'daki kaydı bulun. Sayfayı yenileyin.
 - `partialize` olmadan sepet çekmecesini açıp sayfayı yenileyin. Sonra `partialize` ekleyin.
 - Kayıttaki `version`'ı elle `0` yapın, kodda `version: 1` ve `migrate` yazın. Sayfayı yenileyince ne oluyor?
 - `devtools` ekleyin ve action adı vermeden bir ürün ekleyin. Panelde ne görünüyor?
 
-## Detaylı Öğrenmek İçin
+## Detaylı öğrenmek için
 
 - **Resmi doküman:** "Persisting store data"; tüm seçenekler, hydration, Next.js ve özel depolama.[^2]
 - **Resmi doküman:** "persist"; sürüm ve migration'ı adım adım anlatan örnekler.[^1]

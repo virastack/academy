@@ -11,7 +11,7 @@ Kullanıcı kimliğini kanıtlamak için üç tür şey kullanabilir: **bildiği
 >
 > Bu dersteki kodlar Node 22 üzerinde `@node-rs/argon2@2.2.2` ve `@simplewebauthn/browser` / `@simplewebauthn/server` 14 sürümleriyle, Chromium'un sanal authenticator'ü kullanılarak denendi.
 
-## Giriş Formu
+## Giriş formu
 
 Tarayıcı ve parola yöneticisi formunuzu ancak doğru işaretlerseniz tanır. `autocomplete` değerleri bu yüzden önemlidir:[^2][^3]
 
@@ -49,7 +49,7 @@ Tarayıcı ve parola yöneticisi formunuzu ancak doğru işaretlerseniz tanır. 
 
 NIST ve OWASP ikisi de parola yöneticilerine ve yapıştırmaya izin verilmesini ister.[^4][^5]
 
-## Parola Kuralları
+## Parola kuralları
 
 ABD'nin dijital kimlik standardı NIST SP 800-63B-4, Temmuz 2025'te son halini aldı. "Bir büyük harf, bir sembol" gibi alışık olduğumuz kuralların çoğunu kaldırıyor:[^4]
 
@@ -63,7 +63,7 @@ ABD'nin dijital kimlik standardı NIST SP 800-63B-4, Temmuz 2025'te son halini a
 
 OWASP'ın Authentication Cheat Sheet'i de aynı eşikleri kullanır.[^5] [Pilcrow](https://pilcrowonpaper.com/) daha esnek: en az 8–10 karakter, karmaşıklık kuralı yok, sızmış parola kontrolü var.[^6]
 
-### Sızmış Parola Kontrolü
+### Sızmış parola kontrolü
 
 [Troy Hunt](https://www.troyhunt.com/)'ın Have I Been Pwned servisi, sızıntılarda görülmüş parolaları anahtar gerektirmeyen bir API ile sunar. Parolayı göndermezsiniz: SHA-1 hash'inin yalnızca ilk 5 karakterini gönderir, dönen listede geri kalanını ararsınız *(k-anonymity)*.[^7]
 
@@ -88,7 +88,7 @@ export async function isPwnedPassword(password: string) {
 
 `Add-Padding` yanıta sayısı `0` olan sahte satırlar ekler; ağı izleyen biri yanıt boyutundan hash'i tahmin edemez. Bu satırları atlamanız gerekir.[^7]
 
-## Parolayı Sunucuda Saklamak
+## Parolayı sunucuda saklamak
 
 Parola veritabanına **asla** düz metin ya da geri çözülebilir şekilde *(encryption)* yazılmaz. Tek yönlü ve kasıtlı olarak yavaş bir **hash** fonksiyonundan geçirilir. Her parolaya rastgele bir **salt** eklenir; böylece aynı parolalar farklı hash üretir ve hazır tablolarla *(rainbow table)* kırılamaz.[^8]
 
@@ -113,13 +113,13 @@ const isValid = await verify(passwordHash, attempt);
 >
 > Parola işlemlerini kendiniz yazmak zorunda değilsiniz. Bir auth kütüphanesi bunları hazır getirir; seçenekler Next.js'te auth dersinde.
 
-### Kaba Kuvvet ve Hata Mesajları
+### Kaba kuvvet ve hata mesajları
 
 Parola kontrol eden her uç noktaya **rate limit** koyun. OWASP başarısız deneme sayacını IP adresine değil hesaba bağlamayı önerir. Hesabı tamamen kilitlemek ise saldırganın kullanıcıyı dışarıda bırakmasına yol açabilir.[^5] [Pilcrow](https://pilcrowonpaper.com/) başlangıç noktası olarak kullanıcı başına dakikada bir denemeyi önerir.[^6]
 
 OWASP, giriş hatasında hesabın var olup olmadığını belli etmeyen tek bir mesaj ister: "E-posta ya da parola hatalı." Aksi halde saldırgan hangi e-postaların kayıtlı olduğunu öğrenir *(user enumeration)*.[^5]
 
-## İki Adımlı Doğrulama
+## İki adımlı doğrulama
 
 Parola sızsa bile saldırganın girememesi için ikinci bir faktör istenir *(2FA ya da MFA)*. Seçenekler eşit derecede güvenli değildir:[^1]
 
@@ -143,7 +143,7 @@ Sunucu yalnızca açık anahtarı tuttuğu için veritabanı sızsa bile bununla
 
 Passkey'ler Apple, Google ya da parola yöneticisi hesabı üzerinden cihazlar arasında senkronize edilir; senkronize eden servis özel anahtarı göremez.[^9]
 
-### Formda Passkey
+### Formda passkey
 
 Kullanıcının alışkanlığını bozmamak için passkey'i mevcut giriş formuna eklemek en kolay yoldur. Kullanıcı adı alanına `webauthn` değeri eklenince tarayıcı, otomatik doldurma listesinde kayıtlı passkey'leri de gösterir *(conditional UI)*:[^11][^3]
 
@@ -178,13 +178,13 @@ Challenge'ı üretmek ve gelen imzayı doğrulamak her zaman sunucunun işidir *
 >
 > Kullanıcı tüm cihazlarını kaybedebilir. Passkey eklemek, hesabı kurtarma yolunu düşünmeyi gerektirir: ikinci bir passkey, kurtarma kodları ya da doğrulanmış e-posta.[^1]
 
-## Kendin Dene
+## Kendin dene
 
 - Kendi giriş formunuza doğru `autocomplete` değerlerini ekleyin ve tarayıcının parola önerisini kayıt formunda görün.
 - [webauthn.io](https://webauthn.io/) demo sitesinde bir passkey oluşturup onunla giriş yapın; ardından passkey'in tarayıcınızın ya da işletim sisteminizin parola yöneticisinde nasıl göründüğüne bakın.
 - `isPwnedPassword("password123")` çağırıp sonucu görün; sonra uzun ve rastgele bir parola deneyin.
 
-## Detaylı Öğrenmek İçin
+## Detaylı öğrenmek için
 
 - **Rehber:** [Pilcrow](https://pilcrowonpaper.com/)'un auth kitabındaki "Passwords" ve "Passkeys" sayfaları.[^6]
 - **Resmi doküman:** OWASP Password Storage ve Multifactor Authentication cheat sheet'leri.[^8][^1]

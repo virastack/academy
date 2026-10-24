@@ -5,13 +5,13 @@ lastVerified: "2026-10-22"
 translationKey: "playwright/assertions-and-waiting"
 ---
 
-## Neden Bekleme Yazmıyoruz?
+## Neden bekleme yazmıyoruz?
 
 Web sayfası asenkrondur. Butona tıklarsınız; istek gider, yanıt gelir, liste yeniden çizilir. Eski test araçlarında bu yüzden `sleep(2000)` gibi beklemeler yazılırdı. [Martin Fowler](https://martinfowler.com/) bunun iki yönlü kaybettiğini anlatır: uzun bekleme test paketini yavaşlatır, kısa bekleme yavaş bir makinede testi rastgele düşürür. Önerisi açıktır: sabit bekleme kullanmayın, bir sinyali bekleyin ya da koşul sağlanana kadar kısa aralıklarla tekrar bakın.[^1]
 
 Playwright bu ikinci yolu kendisi yapar. Eylemlerden önce elementin hazır olmasını, assertion'larda da beklenen durumun oluşmasını bekler.
 
-## Eylemlerden Önce Otomatik Bekleme
+## Eylemlerden önce otomatik bekleme
 
 `click()` çağırdığınızda Playwright tıklamadan önce şunları kontrol eder ve hepsi sağlanana kadar bekler:[^2]
 
@@ -28,7 +28,7 @@ Playwright bu ikinci yolu kendisi yapar. Eylemlerden önce elementin hazır olma
 >
 > `click({ force: true })` bu kontrollerin bir kısmını kapatır. Test geçer ama kullanıcının tıklayamadığı bir butona tıklamış olabilirsiniz. Önce elementin neden tıklanamadığını bulun.[^2]
 
-## Web-First Assertion'lar
+## Web-First assertion'lar
 
 `expect(locator)` ile başlayan assertion'lar koşul sağlanana kadar elementi tekrar tekrar bulur ve kontrol eder. Varsayılan bekleme süresi 5 saniyedir.[^3]
 
@@ -87,7 +87,7 @@ const response = await page.request.post("/api/orders/SP-1001/cancel");
 expect(response.status()).toBe(403);
 ```
 
-## Zaman Aşımları
+## Zaman aşımları
 
 | Zaman aşımı | Varsayılan | Ayarı |
 | :-- | :-- | :-- |
@@ -97,7 +97,7 @@ expect(response.status()).toBe(403);
 
 Test süresine `beforeEach` ve fixture hazırlığı da dahildir.[^5] Bir assertion'ın süresini uzatmak çoğu zaman sorunu gizler. Önce neden yavaş olduğuna bakın.
 
-## Soft Assertion
+## Soft assertion
 
 Normalde ilk başarısız assertion testi durdurur. `expect.soft` testi başarısız işaretler ama devam eder; bir formdaki beş alanı tek seferde kontrol etmek gibi durumlarda tüm hataları birden görürsünüz:[^3]
 
@@ -131,7 +131,7 @@ await expect(async () => {
 >
 > `toPass`'in varsayılan zaman aşımı 0'dır ve `expect` ayarındaki süreyi kullanmaz. Süreyi kendiniz verin; yoksa yalnızca test süresi sınırlar.[^3]
 
-## Sabit Bekleme Yok
+## Sabit bekleme yok
 
 > [!DONT]
 >
@@ -143,7 +143,7 @@ await expect(async () => {
 
 `page.waitForLoadState("networkidle")` da aynı kategoridedir. Doküman `networkidle`'ı açıkça önermez ve hazır olmayı web-first assertion'larla doğrulamayı söyler.[^7] Bir sonraki adımın önkoşulu neyse onu bekleyin: liste mi yüklenecek, satır sayısını; mesaj mı gelecek, mesajı.
 
-## Hidrasyon Tuzağı
+## Hidrasyon tuzağı
 
 Server-side render edilen bir [!nextjs] sayfasında HTML, JavaScript'ten önce gelir. Playwright butonu görür, görünür ve etkin olduğu için tıklar. Ama React henüz sayfaya bağlanmadıysa *(hidrasyon)* `onClick` ya da `onSubmit` çalışmaz.
 
@@ -160,20 +160,20 @@ Bu rehberdeki [Formlar](/academy/forms/project) projesinin testleri tam bu yüzd
 
 Bu rehberin projesinde giriş formu Server Action kullanır; sipariş testleri de filtreye dokunmadan önce satırların yüklenmesini bekler.
 
-## Düzen Kayması
+## Düzen kayması
 
 Otomatik bekleme elementin **sabit** olmasını bekler ama sizin tıklamanızdan sonraki kaymayı bilemez. Bir alandan çıkınca hata mesajı beliriyor ve alttaki butonu aşağı itiyorsa, Playwright butonun eski yerine tıklayabilir ve boşluğa basar. Kullanıcı da aynı sorunu yaşar.
 
 Çözüm testte değil arayüzdedir: hata mesajı için yeri baştan ayırın *(`min-h-5` gibi)*. Formlar projesinde bu düzeltmeyle hem testler kararlı hale geldi hem de kayma ortadan kalktı.
 
-## Kendin Dene
+## Kendin dene
 
 - Bir assertion'ı `isVisible()` ile yazın, API yanıtına 500 milisaniye gecikme ekleyin. Test düşüyor mu? Sonra `toBeVisible()`'a çevirin.
 - `toHaveText` ile bir listenin tüm elemanlarını sırasıyla doğrulayın. Bir eleman eksik olunca hata mesajı neyi gösteriyor?
 - Bir testte `expect.soft` ile üç alan kontrol edin, ikisini bilerek yanlış yazın. Raporda kaç hata görüyorsunuz?
 - `onSubmit` ile çalışan bir formun testini `--repeat-each=20` ile çalıştırın. Ara sıra düşüyor mu? Formu Server Action'a çevirip tekrar deneyin.
 
-## Detaylı Öğrenmek İçin
+## Detaylı öğrenmek için
 
 - **Resmi doküman:** Playwright, "Auto-waiting"; hangi eylemin hangi kontrolleri beklediğinin tam tablosu.[^2]
 - **Resmi doküman:** Playwright, "Assertions"; tüm assertion'lar, soft, poll ve toPass.[^3]

@@ -30,7 +30,7 @@ Sizin işiniz bu uygulamanın test paketini yazmak. Amaç her dersteki parçayı
 
 Projenin çalışan hali GitHub'da: [examples/playwright/project](https://github.com/virastack/academy/tree/main/examples/playwright/project). Uygulama ve 19 test orada; takıldığınızda karşılaştırın.
 
-## Adım 1: Projeyi Kurun
+## Adım 1: Projeyi kurun
 
 [!nextjs] projesini açın, TanStack Query'yi ve test paketlerini ekleyin:[^1]
 
@@ -54,7 +54,7 @@ npm install -D @axe-core/playwright
 
 `package.json`'a test komutunu ekleyin: `"test": "playwright test"`. `public/` altındaki örnek SVG'leri ve oluşturulan `tests/example.spec.ts`'i silin.
 
-## Adım 2: Test Edilecek Uygulama
+## Adım 2: Test edilecek uygulama
 
 Uygulamanın kendisi bu rehberin konusu değil; [Next.js](/academy/nextjs) ve [TanStack Query](/academy/tanstack-query) rehberlerindeki parçalardan oluşur. Dosyaları yazın ya da örnek klasörden kopyalayın.
 
@@ -727,7 +727,7 @@ export class OrdersPage {
 }
 ```
 
-## Adım 5: Fixture'lar ve Oturum
+## Adım 5: Fixture'lar ve oturum
 
 Page Object'ler fixture olarak verilir. `signedOut` oturumsuz testler için boş durumdur.[^9]
 
@@ -777,7 +777,7 @@ for (const { email, file } of accounts) {
 }
 ```
 
-## Adım 6: Giriş ve Rol Testleri
+## Adım 6: Giriş ve rol testleri
 
 Giriş testleri oturumsuz başlar. Oturum yokken `/orders`'a gidince yönlendirme, oturumu okuyan component Suspense içinde olduğu için akış sırasında olur; `toHaveURL` bunu bekler.
 
@@ -844,7 +844,7 @@ test("izleyici API ile de iptal edemez", async ({ page }) => {
 });
 ```
 
-## Adım 7: Sipariş Testleri
+## Adım 7: Sipariş testleri
 
 Okuma testleri paylaşılan yönetici oturumunu kullanır. Her test önce satırların yüklenmesini bekler; satırlar görünüyorsa React çalışıyordur ve filtre güvenle değiştirilebilir. Aria snapshot tablonun yapısını tek assertion'da doğrular.[^10]
 
@@ -923,7 +923,7 @@ test("yönetici kargodaki siparişi iptal edemez", async ({ page, loginPage }) =
 >
 > İptal testi ilk yazıldığında `orders.spec.ts`'in içindeydi ve dosyanın `beforeEach`'i `/orders`'a gidiyordu. Oturumsuz başlayan test `/login`'e gitmeye çalışırken `beforeEach`'in başlattığı yönlendirme hâlâ sürüyordu: "Navigation is interrupted by another navigation". Test tek başına hep geçiyordu; yalnızca `--shuffle --repeat-each=3 --workers=4` ile ve belirli bir sırada düştü. Çözüm testi kendi dosyasına taşımaktı.
 
-## Adım 8: Mock Testleri
+## Adım 8: Mock testleri
 
 Sipariş listesi tarayıcıda yüklendiği için `page.route` ile yakalanabilir. Kalıp `"**/api/orders?*"`'dir; sorgu dizesi URL'nin parçası olduğu için `"**/api/orders"` uymaz.[^11]
 
@@ -981,7 +981,7 @@ test("yükleniyor durumu görünür", async ({ page, ordersPage }) => {
 });
 ```
 
-## Adım 9: Erişilebilirlik ve Görsel Test
+## Adım 9: Erişilebilirlik ve görsel test
 
 axe taraması sayfa hazır olunca yapılır. Klavye testi formun yalnızca klavyeyle doldurulup gönderilebildiğini doğrular.[^12]
 
@@ -1098,7 +1098,7 @@ jobs:
           retention-days: 30
 ```
 
-## Kendin Dene
+## Kendin dene
 
 - Yönetici için "Kargoda" filtresinde iptal butonunun hiç görünmediğini doğrulayan bir test ekleyin.
 - `cancel-order.spec.ts`'i `orders.spec.ts`'e geri taşıyıp `--shuffle --repeat-each=5` ile çalıştırın. Hatayı yakalayın ve trace'inde iki gezinmeyi bulun.

@@ -5,7 +5,7 @@ lastVerified: "2026-10-21"
 translationKey: "react/effects"
 ---
 
-## Effect Ne İçindir
+## Effect ne içindir
 
 React'te kodun çoğu iki yerde çalışır: **render** *(JSX'i hesaplar, saf olmalı)* ve **event handler** *(tıklama gibi bir etkileşime cevap verir)*. **Effect** üçüncü yerdir: render'dan sonra çalışır ve component'i React dışındaki bir **sistemle senkronlar**. Tarayıcı API'si, bir WebSocket, bir harita kütüphanesi ya da üçüncü parti bir widget bu dış sistemlere örnektir.[^1]
 
@@ -20,7 +20,7 @@ useEffect(() => {
 
 [Dan Abramov](https://overreacted.io/)'un uzun `useEffect` rehberindeki ana fikir: *"Bu Effect ne zaman çalışır?"* yerine *"Bu Effect hangi state ile senkron?"* diye sorun. Her render kendi props ve state'ini görür; Effect de o render'ın değerleriyle çalışır.[^2]
 
-## Effect Gerekmeyen Durumlar
+## Effect gerekmeyen durumlar
 
 React dokümanına göre en yaygın hata, dış sistem olmayan işler için Effect yazmaktır.[^3] [David Khourshid](https://github.com/davidkpiano) da React Advanced 2022 konuşmasında aynı noktayı vurgular: Effect'lerin çoğu aslında bir event'in sonucu olmalı.[^4]
 
@@ -107,7 +107,7 @@ Sepet sayısı değiştiğinde ziyaret yeniden loglanmaz; ürün değiştiğinde
 >
 > `useEffectEvent`'i bağımlılık dizisini kısaltmanın kestirmesi olarak kullanmayın. Yalnızca Effect'ten tetiklenen, gerçekten "event" gibi davranan mantık için kullanın. Effect Event'ler yalnızca Effect içinden çağrılır, başka component'e geçirilmez.[^10]
 
-## Effect İçinde Veri Çekmek
+## Effect içinde veri çekmek
 
 Mecbursanız iki şeye dikkat edin: **race condition** *(hızlı yazan kullanıcıda eski cevabın yenisini ezmesi)* ve cleanup. İsteği iptal etmek için `AbortController` kullanın:[^3]
 
@@ -127,14 +127,14 @@ useEffect(() => {
 
 Bu kodda hâlâ cache, tekrar deneme, yükleme durumu ve waterfall sorunu yok. React dokümanı bu yüzden framework'ün veri çekme yöntemini ya da bir kütüphaneyi önerir.[^3] [TkDodo](https://tkdodo.eu/)'nun kuralı kısa: asenkron işlerde Effect de değil ref de değil, TanStack Query.[^11] Suspense ve `use` ile veri okumayı ilerideki derste göreceksiniz.
 
-## Kendin Dene
+## Kendin dene
 
 - Bir modal'a `useEscapeKey` ekleyin; cleanup'ı silin ve modalı birkaç kez açıp kapattıktan sonra Escape'e basınca ne olduğunu görün.
 - Projenizde `useEffect` arayın. Her biri için tablodaki soruyu sorun: dış sistem var mı?
 - Effect içinde `setFiltered(products.filter(...))` yazın ve `set-state-in-effect` uyarısını okuyun; sonra render'da hesaplayın.
 - Arama kutusunda `AbortController`'ı kaldırın, DevTools'ta ağı "Slow 4G" yapın ve hızlı yazıp sonucu izleyin.
 
-## Detaylı Öğrenmek İçin
+## Detaylı öğrenmek için
 
 - **Resmi doküman:** "You Might Not Need an Effect"; Effect gerektirmeyen yaygın durumlar ve çözümleri. React'in en çok okunması gereken sayfalarından.[^3]
 - **Yazı:** [Dan Abramov](https://overreacted.io/)'un "A Complete Guide to useEffect" yazısı; 2019 tarihli ve uzun, ama "her render'ın kendi değerleri vardır" fikrini en iyi anlatan kaynak.[^2]

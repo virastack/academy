@@ -5,7 +5,7 @@ lastVerified: "2026-10-17"
 translationKey: "web-fundamentals/tailwind"
 ---
 
-## Tailwind Nedir
+## Tailwind nedir
 
 [!tailwind], stili ayrı bir CSS dosyasında isimlendirilmiş sınıflarla değil, HTML'de tek iş yapan küçük sınıfları birleştirerek yazdığınız bir CSS framework'üdür. Bu yaklaşıma **utility-first** denir.[^1]
 
@@ -61,7 +61,7 @@ Vite kullanan projelerde paket `@tailwindcss/vite`'tır.[^7] Hiçbir şey kurmad
 
 Tailwind'in temel stilleri (**Preflight**) tarayıcı varsayılanlarını sıfırlar: margin'ler sıfırlanır, `h1`–`h6` normal metin boyutunda görünür, listelerde madde işareti olmaz.[^10] "Başlığım neden büyük değil?" sorusunun cevabı budur; boyutu sınıfla verirsiniz.
 
-## Temel Sınıflar
+## Temel sınıflar
 
 | Ne için | Örnek | CSS karşılığı |
 | :-- | :-- | :-- |
@@ -118,7 +118,7 @@ Bu liste telefonda tek, tablette iki, geniş ekranda üç sütun olur.
 
 Bileşeni ekrana göre değil, içinde durduğu alana göre değiştirmek için **container query** vardır: ebeveyne `@container`, çocuğa `@md:flex-row` gibi sınıflar verilir.[^14]
 
-## Dark Mode
+## Dark mode
 
 `dark:` variant'ı varsayılan olarak işletim sisteminin tema tercihine (`prefers-color-scheme`) bakar.[^15]
 
@@ -148,7 +148,7 @@ Renk, font, breakpoint gibi tasarım değerleri CSS içinde `@theme` bloğunda t
 
 Artık `bg-brand-500`, `text-brand-500` ve `font-display` sınıfları kullanılabilir. Değişkenin öneki (`--color-*`, `--font-*`, `--breakpoint-*`) hangi sınıf ailesinin oluşacağını belirler. Tema değerleri normal CSS değişkeni olarak da durur, `var(--color-brand-500)` ile her yerde okunur. Sınıf üretmesini istemediğiniz değişkenler için `@theme` yerine `:root` kullanılır.[^16]
 
-## React'te Kullanım
+## React'te kullanım
 
 ### Tekrarı component ile çözün
 
@@ -199,7 +199,7 @@ cn("px-2 py-1", isLarge && "px-4"); // isLarge true ise "py-1 px-4"
 
 [!tailwind] tartışmalı bir araç. En sık itirazlar: uzun sınıf listeleri HTML'i okumayı zorlaştırır, sınıf adındaki yazım hatası (`txt-blue`) editörde fark edilmez ve CSS'e ek olarak Tailwind'in isimlendirmesini de öğrenmek gerekir.[^23][^24] Savunanlar ise sabit tasarım ölçeğinin ekip içinde tutarlılık sağladığını vurgular; sert eleştirmenler bile bu noktayı kabul eder.[^24] Dengeli bir değerlendirme için [Chris Coyier](https://chriscoyier.net/)'in yazısı iyi bir başlangıçtır.[^23]
 
-## Detaylı Öğrenmek İçin
+## Detaylı öğrenmek için
 
 - **Resmi doküman:** Tailwind dokümanının "Core concepts" bölümü bu dersin her başlığını derinlemesine anlatır; sınıf referans sayfalarına ihtiyaç oldukça bakılır.[^1]
 - **v3'ten gelen kod:** Eski bir projeyle ya da eğitimle karşılaşırsanız upgrade guide.[^9]

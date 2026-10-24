@@ -5,7 +5,7 @@ lastVerified: "2026-10-22"
 translationKey: "playwright/first-test-and-locators"
 ---
 
-## Bir Testin Yapısı
+## Bir testin yapısı
 
 Her test bir başlık ve async bir fonksiyondan oluşur. Fonksiyon ihtiyaç duyduğu araçları parametre olarak alır; bunlara **fixture** denir. En sık kullanılanı `page`'dir: test için açılmış, temiz bir tarayıcı sekmesi.[^1]
 
@@ -40,7 +40,7 @@ test.describe("sipariş listesi", () => {
 });
 ```
 
-## Locator Nedir?
+## Locator nedir?
 
 Locator, sayfada bir elementi **bulmanın tarifidir**; elementin kendisi değil. Locator oluşturmak sayfaya dokunmaz. Element ancak bir eylem *(`click`, `fill`)* ya da assertion sırasında aranır ve her seferinde yeniden aranır. Sayfa yeniden render olsa da locator güncel elementi bulur.[^3]
 
@@ -49,7 +49,7 @@ const submit = page.getByRole("button", { name: "Giriş yap" }); // henüz arama
 await submit.click(); // şimdi aranır, görünür ve tıklanabilir olması beklenir
 ```
 
-## Hangi Locator?
+## Hangi locator?
 
 Playwright dokümanı kullanıcının gördüğü özellikleri ve açık sözleşmeleri öncelemenizi önerir. Kullanıcı bir butonu sınıf adıyla değil, rolü ve üzerindeki yazıyla tanır:[^3][^4]
 
@@ -94,7 +94,7 @@ page.getByRole("button", { name: /^giriş yap$/i });
 > page.getByRole("button", { name: "Giriş yap" });
 > ```
 
-## Strict Mod
+## Strict mod
 
 Locator'lar katıdır: bir eylem tek element bekler. Locator birden fazla elemente uyuyorsa Playwright tahmin etmez, "strict mode violation" hatası verir.[^3]
 
@@ -114,7 +114,7 @@ await expect(form.getByRole("alert")).toHaveText("E-posta veya parola hatalı.")
 
 `<form>` yalnızca erişilebilir bir adı varsa `form` rolü alır; adı `aria-label` ya da `aria-labelledby` ile verin.
 
-## Zincirleme ve Filtreleme
+## Zincirleme ve filtreleme
 
 Locator'lar zincirlenebilir. Her halka aramayı bir öncekinin içine daraltır:[^3]
 
@@ -163,7 +163,7 @@ await expect(statusCells).toHaveText(["Kargoda", "Kargoda"]);
 >
 > `within()`'e verilen ilk locator bağımsız olmalı. `rows.getByRole("cell").nth(3).within(rows)` satırların içinde bir kez daha satır arar ve hiçbir şey bulmaz. Bu rehberin projesini yazarken tam olarak bu hatayı yaptık.
 
-## Görünür Elementler
+## Görünür elementler
 
 `visible()` *(1.63)* yalnızca görünür elementlere uyan bir locator döndürür. Eski `:visible` CSS sözde sınıfının önerilen yerine geçenidir.[^7] `getByRole` zaten gizli elementleri atlar; `visible()` daha çok `locator()` ve `getByText` ile işe yarar.
 
@@ -171,7 +171,7 @@ await expect(statusCells).toHaveText(["Kargoda", "Kargoda"]);
 await page.getByText("Kaydedildi").visible().click();
 ```
 
-## Codegen ile Locator Bulmak
+## Codegen ile locator bulmak
 
 Hangi locator'ı yazacağınızdan emin değilseniz Playwright'a sorun. `codegen` bir tarayıcı açar; tıkladığınız her elemente rol, metin ve test id önceliğiyle bir locator önerir ve birden fazla element eşleşirse locator'ı tekilleştirir:[^4][^8]
 
@@ -185,14 +185,14 @@ npx playwright codegen localhost:3000
 >
 > [!nextjs] dokümanındaki örnek test `page.click("text=About")` ve `page.locator("h1")` kullanır. İkisi de çalışır ama eski yazımdır. Aynı testi `page.getByRole("link", { name: "About" }).click()` ve `page.getByRole("heading", { name: "About" })` ile yazın.[^9]
 
-## Kendin Dene
+## Kendin dene
 
 - [Kurulum](/academy/playwright/setup) dersindeki projede bir giriş formu için test yazın. Locator'ları önce `codegen` ile bulun, sonra elle sadeleştirin.
 - Bir butonu `getByRole` ile bulamıyorsanız nedenini araştırın: buton bir `<div>` mi, adı ikon mu?
 - `name: "Gir"` ve `name: "Gir", exact: true` ile aynı butonu aramayı deneyin. Hangisi buluyor?
 - Bir tabloda iki satırda aynı butonu bırakın ve `click()` çağırın. Strict mod hatasını okuyun, sonra `filter` ile düzeltin.
 
-## Detaylı Öğrenmek İçin
+## Detaylı öğrenmek için
 
 - **Resmi doküman:** Playwright, "Locators"; tüm locator'lar, filtreleme, zincirleme ve strict mod.[^3]
 - **Resmi doküman:** Playwright, "Best Practices"; kullanıcı odaklı locator'lar ve CSS'ten kaçınmak.[^4]

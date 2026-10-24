@@ -5,7 +5,7 @@ lastVerified: "2026-10-17"
 translationKey: "web-fundamentals/javascript"
 ---
 
-## JavaScript Nedir
+## JavaScript nedir
 
 [!javascript], web sayfalarını etkileşimli yapan programlama dilidir. [!html] içeriği, [!css] görünümü tanımlar; bir sayfa sabit bilgi göstermekten fazlasını yapıyorsa *(menü açılıyor, form kontrol ediliyor, veri sunucudan geliyorsa)* arkasında JavaScript vardır.[^1] Aynı dil tarayıcının dışında [!nodejs] ile de çalışır; [!react] projelerindeki geliştirme sunucusu, build araçları ve paketler de JavaScript'tir.
 
@@ -19,7 +19,7 @@ JavaScript sayfaya `<script>` etiketiyle eklenir. Modern yöntem `type="module"`
 
 Kodu denemenin en kısa yolu tarayıcının DevTools konsoludur: herhangi bir sayfada konsolu açıp `console.log("merhaba")` yazmak yeterlidir.
 
-## Değişkenler ve Tipler
+## Değişkenler ve tipler
 
 Değişken tanımlamanın üç yolu vardır. `var` eski ve hataya açık davranışları yüzünden artık kullanılmaz.[^2]
 
@@ -75,7 +75,7 @@ increment(); // 2
 
 Closure, React'te hook'ların ve olay işleyicilerinin nasıl çalıştığını anlamanın temelidir; bir component'in içindeki fonksiyon, o render'daki state'i "hatırlar".
 
-## Object ve Array
+## Object ve array
 
 **Object** anahtar ve değer çiftlerinden, **array** sıralı değerlerden oluşur. Sunucudan gelen veri neredeyse her zaman bu ikisinin birleşimidir.
 
@@ -122,7 +122,7 @@ const total = products.reduce((sum, p) => sum + p.price, 0); // 65
 
 Eksik olabilecek değerler için iki kısa operatör vardır: `user.address?.city`, `address` yoksa hata vermek yerine `undefined` döner, `value ?? "default"` ise değer `null` ya da `undefined` ise sağdakini kullanır.[^11]
 
-## DOM ve Olaylar
+## DOM ve olaylar
 
 Tarayıcı HTML'i okuyup bir ağaç yapısına çevirir; buna **DOM** *(Document Object Model)* denir. JavaScript bu ağaca erişip içeriği okuyabilir ve değiştirebilir.[^12]
 
@@ -147,7 +147,7 @@ form.addEventListener("submit", (e) => {
 >
 > React'te DOM'u bu şekilde elle değiştirmezsiniz; state'i güncellersiniz, React DOM'u sizin yerinize günceller. Yine de altta olanı bilmek, React'in neyi neden yaptığını anlamayı kolaylaştırır.
 
-## Asenkron Akış
+## Asenkron akış
 
 Sunucudan veri çekmek gibi işlemler zaman alır. JavaScript bu süre boyunca beklemek yerine işini sürdürür ve sonuç gelince devam eder. Bu bekleme **Promise** ile temsil edilir: ileride tamamlanacak ya da başarısız olacak bir işlemin sonucunu taşıyan bir object.[^14]
 
@@ -193,7 +193,7 @@ import addTax, { TAX_RATE } from "./price.js";
 
 Süslü parantezli olanlar **named export**'tur ve istenildiği kadar olabilir. Parantezsiz olan **default export**'tur ve modül başına bir tanedir.[^19] React projelerinde her component bir modüldür ve bu iki yazımı sürekli görürsünüz.
 
-## Detaylı Öğrenmek İçin
+## Detaylı öğrenmek için
 
 - **Baştan sona rehber:** javascript.info; dil ve tarayıcı *(DOM, olaylar)* bölümleri, güncel tutuluyor.[^20]
 - **Alıştırmalı kurs:** MDN'in Dynamic scripting with JavaScript modülü.[^21]

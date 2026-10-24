@@ -11,7 +11,7 @@ translationKey: "auth-security/auth-in-nextjs"
 >
 > Bu dersteki kodlar `create-next-app` ile açılan `next@16.4.2` projesinde, `better-auth@1.7.10` ve `better-sqlite3` ile çalıştırıldı. Giriş, çıkış ve yönlendirme akışı Chromium'da Playwright ile test edildi; `next build` hatasız tamamlandı.
 
-## Kütüphane Seçimi
+## Kütüphane seçimi
 
 Next.js dokümantasyonu auth'u kendiniz yazabileceğinizi ama güvenlik ve sadelik için bir kütüphane kullanmanızı önerir.[^1] Seçenekler iki gruba ayrılır:
 
@@ -75,7 +75,7 @@ import { createAuthClient } from "better-auth/react";
 export const authClient = createAuthClient();
 ```
 
-## Giriş Formu
+## Giriş formu
 
 Giriş, istemci tarafında `authClient.signIn.email` ile yapılır.[^6] Hata mesajı, [Parola, passkey ve 2FA](/academy/auth-security/passwords-passkeys-and-mfa) dersinde gördüğümüz gibi hesabın var olup olmadığını belli etmez:
 
@@ -119,7 +119,7 @@ export default function SignInPage() {
 
 Başarılı girişten sonra tarayıcıda `better-auth.session_token` adında `HttpOnly` ve `SameSite=Lax` bir cookie oluştu. "GitHub ile giriş" gibi OAuth sağlayıcıları ise `socialProviders` ayarıyla eklenir ve `authClient.signIn.social({ provider: "github" })` ile çağrılır.[^4][^6]
 
-## Oturumu Sunucuda Okumak
+## Oturumu sunucuda okumak
 
 Oturumu okuyan kodu tek bir yerde toplamak, Next.js'in önerdiği **Data Access Layer** fikrinin özüdür. `server-only` paketi bu dosyanın yanlışlıkla bir Client Component'e import edilmesini build hatasıyla engeller.[^1][^7]
 
@@ -206,7 +206,7 @@ export async function signOut() {
 
 Testte çıkıştan sonra veritabanındaki oturum kaydı silindi, tarayıcıda cookie kalmadı ve `/dashboard`'a gitmek yeniden `/sign-in`'e yönlendirdi.
 
-## Proxy ile Yönlendirme
+## Proxy ile yönlendirme
 
 Next.js 16'da `middleware.ts` dosyasının adı `proxy.ts` oldu ve varsayılan olarak Node.js runtime'ında çalışıyor.[^9] Proxy her istekten önce çalıştığı için giriş yapmamış kullanıcıyı erkenden yönlendirmek için uygundur:
 
@@ -241,13 +241,13 @@ Proxy'nin tek savunma hattı olmaması gerektiğini gösteren gerçek bir örnek
 
 Rollere göre erişim ve Server Action koruması bir sonraki dersin konusu.
 
-## Kendin Dene
+## Kendin dene
 
 - Yukarıdaki dosyalarla bir proje kurun, `/dashboard`'a giriş yapmadan gidin ve yönlendirmeyi görün.
 - DevTools > **Application** > **Cookies** sekmesinden oturum cookie'sinin değerini değiştirin ve sayfayı yenileyin; proxy'nin geçirdiğini ama sayfanın sizi dışarı attığını görün.
 - `Welcome` bileşenini `<Suspense>` dışına taşıyıp `next dev` çıktısındaki hatayı okuyun.
 
-## Detaylı Öğrenmek İçin
+## Detaylı öğrenmek için
 
 - **Resmi doküman:** Next.js Authentication rehberi; oturum, Data Access Layer ve yetki kontrolü.[^1]
 - **Yazı:** Sebastian Markbåge, "How to Think About Security in Next.js"; Server Component ve Server Action'larda güvenlik modeli.[^7]

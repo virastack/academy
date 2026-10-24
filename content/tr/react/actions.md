@@ -5,7 +5,7 @@ lastVerified: "2026-10-21"
 translationKey: "react/actions"
 ---
 
-## Action Nedir
+## Action nedir
 
 Bir butona basıldığında sunucuya istek atıp sonucu göstermek için eskiden üç state yazılırdı: `isPending`, `error`, `data`. React 19 bunu **Action** kavramıyla toplar: `startTransition` içinde çalışan, async olabilen bir fonksiyon.[^1][^2]
 
@@ -38,7 +38,7 @@ React, Action bitene kadar `isPending`'i `true` tutar, arayüzü kilitlemez ve A
 
 `useTransition`'ın performans tarafı *(yavaş bir listeyi bloklamadan filtrelemek)* [React'te render performansı](/academy/performance-accessibility/render-performance) dersinde.
 
-## Form Action'ı
+## Form action'ı
 
 `<form>`'un `action` prop'una bir fonksiyon verdiğinizde React onu form gönderilince `FormData` ile çağırır. `onSubmit`'ten farkı: bir transition içinde çalışır, `preventDefault` gerekmez ve başarılı olunca kontrolsüz *(uncontrolled)* alanları sıfırlar.[^3]
 
@@ -64,7 +64,7 @@ function SubmitButton() {
 
 `useFormStatus` aynı component'teki `<form>`'u değil, ebeveyndeki formu görür; bu yüzden buton ayrı bir component olmalıdır.[^4]
 
-## useActionState: Action'ın Sonucu
+## useActionState: Action'ın sonucu
 
 Action'ın bir sonucu varsa *(hata mesajı, uygulanan indirim)* `useActionState` kullanın. Bir önceki state'i ve gönderilen veriyi alıp yeni state döndüren async bir reducer gibi çalışır.[^5]
 
@@ -98,7 +98,7 @@ export function CouponForm() {
 
 Aynı Action birden fazla kez tetiklenirse React çağrıları **sırayla** çalıştırır; her çağrı bir öncekinin sonucunu alır.[^5]
 
-## useOptimistic: Cevabı Beklemeden Göstermek
+## useOptimistic: Cevabı beklemeden göstermek
 
 Kullanıcı favori butonuna bastığında sunucuyu beklemeden kalbi doldurmak istersiniz. `useOptimistic`, Action sürerken geçici bir değer gösterir. Action bitince değer kendiliğinden gerçek kaynağa döner; istek başarısız olduysa iyimser değer kaybolur.[^6]
 
@@ -127,24 +127,24 @@ function FavoriteButton({ isFavorite, action }: FavoriteButtonProps) {
 
 `setOptimistic...` yalnızca bir Action içinde çağrılır; dışında çağrılırsa React uyarır.[^6] Server state'i TanStack Query ile yönetiyorsanız iyimser güncellemenin kütüphane tarafı [TanStack Query](/academy/tanstack-query) rehberinde.
 
-## action Prop'u ile Component Tasarımı
+## action prop'u ile component tasarımı
 
 Yukarıdaki `FavoriteButton`, prop'unu `onClick` değil **`action`** diye adlandırıyor. React dokümanı bu kalıbı önerir: tasarım sisteminizdeki buton, sekme ve select gibi component'ler `action` prop'u alır, kendi içinde `startTransition`'ı çağırır ve bekleme durumunu kendisi gösterir. Ürün kodu yalnızca `await` eder.[^7]
 
 [Ricky Hanlon](https://github.com/rickhanlonii) React Conf 2025'teki "Async React" konuşmasının demosunda bu fikri sonuna kadar götürür: router transition'ları, veri katmanı Suspense'i, tasarım component'leri `action` prop'larını ve iyimser güncellemeleri varsayılan olarak kullanır. Sonuç: ağ hızlıyken hiç yükleme durumu görünmez, yavaşken otomatik olarak görünür.[^8][^9]
 
-## Bu Ders ve Formlar Rehberi
+## Bu ders ve formlar rehberi
 
 Bu derste React'in kendi araçlarını gördünüz. Alan bazlı doğrulama, Zod şeması, maskeleme ve çok adımlı formlar [Formlar](/academy/forms) rehberinde; Action'ın sunucuda çalışan hâli *(Server Functions)* Next.js rehberinin [Server Actions](/academy/nextjs/server-actions) dersinde.
 
-## Kendin Dene
+## Kendin dene
 
 - `AddToCartButton`'ın `addToCart`'ına 2 saniyelik gecikme ekleyin ve butona hızlıca üç kez basın.
 - `CouponForm`'da `checkCoupon`'ı `"SALE10"` dışındaki her kodu reddedecek şekilde yazın; hata ve başarı mesajlarını deneyin.
 - `FavoriteButton`'ın `action`'ını her seferinde hata fırlatacak şekilde değiştirin. Kalp ne yapıyor?
 - Bir Action içinde `await`'ten sonra `setState` çağırın; ardından onu `startTransition` ile sarın ve farkı gözlemleyin.
 
-## Detaylı Öğrenmek İçin
+## Detaylı öğrenmek için
 
 - **Resmi doküman:** `useTransition` referansı; Action'lar, `action` prop'u açmak, istenmeyen yükleme göstergelerini önlemek ve sorun giderme.[^1]
 - **Video:** [Ricky Hanlon](https://github.com/rickhanlonii)'ın "Async React" konuşmasının iki bölümü *(React Conf 2025)*.[^8][^10]

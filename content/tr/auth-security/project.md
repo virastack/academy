@@ -32,7 +32,7 @@ Projenin çalışan hali GitHub'da: [examples/auth-security/project](https://git
 >
 > Proje `next@16.4.2`, `better-auth@1.7.12`, `better-sqlite3@13.0.3` ve `isomorphic-dompurify@4.6.0` ile yazıldı. Testler Chromium'da production build üzerinde çalıştırıldı.
 
-## Adım 1: Projeyi Kurun
+## Adım 1: Projeyi kurun
 
 ```command
 npx create-next-app@latest admin-panel --yes
@@ -67,7 +67,7 @@ Kök layout'ta `await connection()` çağırın. Nonce her istekte üretildiği 
 >
 > npm 12 kullanıyorsanız kurulumda `better-sqlite3`, `esbuild` ve `unrs-resolver` için script uyarısı görürsünüz. Örnek projede üçü de `package.json`'daki `allowScripts` alanında onaylı.
 
-## Adım 2: Kullanıcı ve Rol
+## Adım 2: Kullanıcı ve rol
 
 Rol, kullanıcının kendisinin gönderemeyeceği bir alandır:[^3]
 
@@ -117,7 +117,7 @@ export async function requirePermission(permission: Permission) {
 
 Her sayfa ilk satırda bunu çağırır: `/admin` için `product:read`, `/admin/users` için `user:manage`.
 
-## Adım 4: Ürünler ve Temiz HTML
+## Adım 4: Ürünler ve temiz HTML
 
 Veri katmanı tablo satırını değil, sayfanın ihtiyacı olan alanları döndürür. Açıklama burada, üretildiği yerde temizlenir:[^4][^5]
 
@@ -223,7 +223,7 @@ Bunun bir sebebi daha var. Better Auth production'da `/sign-in/email` isteklerin
 
 CSRF testi saldırgan sayfayı `page.route` ile sahte bir alan adında *(`https://evil.example`)* üretir. Tarayıcı isteği gerçekten başka bir siteden gönderir.
 
-## Adım 9: Son Kontrol
+## Adım 9: Son kontrol
 
 ```bash
 npm run lint
@@ -233,7 +233,7 @@ npm run test:e2e
 
 Build çıktısında bütün sayfalar `ƒ` *(dinamik)* görünmeli. `npm audit` geliştirme araçlarındaki bir açığı raporladı; `npm audit --omit=dev` ise sıfır açık gösterdi. Production'a giden paketlerle geliştirme araçlarını ayırarak okuyun.
 
-## Kendin Dene
+## Kendin dene
 
 - `lib/dal.ts`'ten `forbidden()` satırını silin. Hangi testler kırılıyor?
 - `setRoleAction`'daki "kendi rolünü değiştiremez" kontrolünü silin ve tek admin olarak kendinizi `customer` yapın. Paneli geri almanın bir yolu var mı?

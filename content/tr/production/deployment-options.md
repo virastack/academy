@@ -5,7 +5,7 @@ lastVerified: "2026-10-22"
 translationKey: "production/deployment-options"
 ---
 
-## Dört Yol
+## Dört yol
 
 [!nextjs] dört şekilde yayınlanabilir:[^1]
 
@@ -18,7 +18,7 @@ translationKey: "production/deployment-options"
 
 Next.js dokümanı minimum gereksinimi tek cümleyle söyler: Next.js'i çalıştırmak için platformun **bir Node.js sunucusu** sağlaması yeterlidir. Tek bir `next start` süreci Server Components, Server Actions, Cache Components, proxy ve `after()` dahil her özelliği doğru çalıştırır.[^2]
 
-## Adaptörler ve Platformlar
+## Adaptörler ve platformlar
 
 Platformlar Next.js'i kendi altyapısına Deployment Adapter API ile uyarlar. Açık kaynak olan ve Next.js uyumluluk test paketini çalıştıran adaptörlere **doğrulanmış** *(verified)* adaptör denir. Bu rehber yazılırken doğrulanmış adaptörler [!vercel] ve Bun'dır; Cloudflare ve Netlify kendi adaptörleri üzerinde çalışıyor.[^1][^2]
 
@@ -29,7 +29,7 @@ Doküman iki kavramı ayırır:[^2]
 
 Vercel'de deploy etmek için depoyu bağlamak yeterlidir; her pull request bir önizleme adresi, `main` canlı ortam olur. Kendi sunucunuzda ise bu işleri sizin kurmanız gerekir. Bu dersin geri kalanı o işleri anlatır.
 
-## Node.js Sunucusu
+## Node.js sunucusu
 
 En sade yol, `package.json`'daki iki betiktir:[^1]
 
@@ -40,7 +40,7 @@ npm run start
 
 `next build` uygulamayı derler, `next start` production sunucusunu başlatır. Sunucuda kaynak kodun ve tüm `node_modules`'ın bulunması gerekir.
 
-## Standalone Çıktı
+## Standalone çıktı
 
 `output: "standalone"` build sırasında yalnızca çalışmak için gereken dosyaları `.next/standalone` klasörüne toplar. Kullanılan paketlerin yalnızca gereken dosyaları kopyalanır; klasör `node_modules` kurulmadan tek başına deploy edilebilir:[^3]
 
@@ -73,7 +73,7 @@ Klasörde `next start` yerine kullanılan küçük bir `server.js` vardır. İki
 >
 > `output: "standalone"` ile `next start` çalıştırırsanız Next.js uyarı verir: `"next start" does not work with "output: standalone" configuration`. Bu rehberin projesinde `start` betiği bu yüzden `node .next/standalone/server.js`'dir ve statik dosyaları kopyalayan küçük bir `postbuild` betiği vardır.
 
-## Docker İmajı
+## Docker imajı
 
 Docker dokümanı **çok aşamalı** *(multi-stage)* build önerir: her `FROM` yeni bir aşama başlatır ve son imaja yalnızca çalışmak için gereken dosyalar kopyalanır. İmaj küçülür; derleme araçları ve kaynak kod son imajda kalmaz.[^4][^5] Next.js'in resmi Docker örneği bu yapıyı standalone çıktıyla kullanır:[^6]
 
@@ -146,7 +146,7 @@ Ortam değişkenleri `docker run -e` ile çalışma anında verilir. Aynı imaj 
 >
 > Secret'ı Dockerfile'da `ARG` ya da `ENV` ile vermeyin. Docker dokümanı bunların son imajda kaldığını söyler.[^8] Build sırasında bir anahtar gerekiyorsa *(özel bir npm kayıt defteri gibi)* `RUN --mount=type=secret` kullanın; secret yalnızca o komut boyunca görünür.
 
-## Sağlık Kontrolü
+## Sağlık kontrolü
 
 Bir konteyner platformu, yük dengeleyici ya da Docker'ın `HEALTHCHECK`'i uygulamanın ayakta olup olmadığını bir HTTP uç noktasıyla sorar:
 
@@ -170,7 +170,7 @@ export async function GET() {
 - `version` alanı canlıda hangi sürümün çalıştığını tek komutla gösterir. Bir deploy'un yayına çıkıp çıkmadığını anlamanın en kısa yoludur.
 - Uç noktayı hafif tutun. Her kontrol bir veritabanı sorgusu yaparsa sağlık kontrolü yük oluşturur.
 
-## Kendi Sunucunuzda Dikkat Edilecekler
+## Kendi sunucunuzda dikkat edilecekler
 
 Next.js'in kendi sunucunuzda barındırma rehberi şunları ister:[^9]
 
@@ -185,7 +185,7 @@ Next.js'in kendi sunucunuzda barındırma rehberi şunları ister:[^9]
 
 Bu rehberin projesindeki imajda `docker stop` bir saniyeden kısa sürede temiz kapanır: Next.js sunucusu `SIGTERM`'i kendisi dinler ve süreç doğrudan `node` ile başlatıldığı için sinyal ona ulaşır.
 
-## Hangisini Seçmeli?
+## Hangisini seçmeli?
 
 | Durum | Öneri |
 | :-- | :-- |
@@ -194,14 +194,14 @@ Bu rehberin projesindeki imajda `docker stop` bir saniyeden kısa sürede temiz 
 | Tek bir sanal sunucu | Node.js sunucusu, önünde nginx, süreç yöneticisi olarak systemd ya da Docker |
 | Blog, dokümantasyon, sunucu özelliği yok | Statik çıktı |
 
-## Kendin Dene
+## Kendin dene
 
 - Projenize `output: "standalone"` ekleyin, build alın ve `.next/standalone` klasörünün boyutunu `node_modules` ile karşılaştırın.
 - Dockerfile'ı yazın ve imajı oluşturun. `docker image ls` ile boyutuna bakın; çok aşamalı yapıyı tek aşamaya indirip farkı görün.
 - Konteyneri başlatıp `docker inspect -f '{{.State.Health.Status}}'` ile sağlık durumunu izleyin.
 - `CMD`'yi `npm start` yapıp `docker stop`'un ne kadar sürdüğünü ölçün; sonra geri alın.
 
-## Detaylı Öğrenmek İçin
+## Detaylı öğrenmek için
 
 - **Resmi doküman:** Next.js, "Deploying" ve "Deploying to Platforms"; seçenekler, adaptörler ve özellik gereksinimleri.[^1][^2]
 - **Resmi doküman:** Next.js, "Self-Hosting"; ters vekil, önbellek, sürüm farkı ve kapanış.[^9]

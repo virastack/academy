@@ -17,7 +17,7 @@ Ajanla çalışmak, sohbetteki *"soruyu sor, cevabı kopyala"* düzenine benzeme
 
 [!claudeCode]'un önerdiği akış dört adım: keşfet, planla, uygula, commit.[^2] [!cursor] ekibi de aynı yerden başlıyor: yapabileceğiniz en etkili değişiklik, kodlamadan önce planlamak.[^3]
 
-### 1. Planla
+### 1. planla
 
 Her iş için plan gerekmez. [!claudeCode] dokümanı pratik bir ölçüt veriyor: değişikliği tek cümleyle anlatabiliyorsanız planı atlayın.[^2]
 
@@ -29,11 +29,11 @@ Her iş için plan gerekmez. [!claudeCode] dokümanı pratik bir ölçüt veriyo
 | Sepet state'ini başka bir kütüphaneye taşımak | Bir log satırı eklemek |
 | Tanımadığınız bir kod tabanında özellik eklemek | Daha önce defalarca yaptığınız bir iş |
 
-### 2. Uygula
+### 2. uygula
 
 Planı onaylayıp ajana planı izleyerek kodlatın. Sonuç beklediğiniz gibi çıkmadıysa takip mesajlarıyla düzeltmeye çalışmayın: değişiklikleri geri alın, planı daha net yazın ve yeniden çalıştırın. [!cursor] bunun çoğu zaman daha hızlı ve daha temiz sonuç verdiğini söylüyor.[^3]
 
-### 3. Test et
+### 3. test et
 
 Ajan "bitti" dediğinde kanıt isteyin: test çıktısı, çalıştırdığı komut, ekran görüntüsü. Kanıtı okumak, doğrulamayı baştan yapmaktan hızlıdır.[^2] Testleri önce yazdırmak da iyi çalışıyor ([!cursor]'ın TDD akışı):[^3]
 
@@ -45,7 +45,7 @@ Ajan "bitti" dediğinde kanıt isteyin: test çıktısı, çalıştırdığı ko
 
 Frontend'de bu, [Vitest ile Component Testi](/academy/vitest) rehberinde yazdığınız component testlerini ajana hedef olarak vermek demektir.
 
-### 4. Commit et
+### 4. commit et
 
 Küçük ve sık commit atın. Her commit, ajanın bir sonraki hatasında geri dönebileceğiniz bir kayıt noktasıdır. [Addy Osmani](https://addyosmani.com)'nin kuralı net: açıklayamadığınız kodu commit etmeyin.[^4]
 

@@ -5,13 +5,13 @@ lastVerified: "2026-10-17"
 translationKey: "performance-accessibility/render-performance"
 ---
 
-## Render Nedir
+## Render nedir
 
 React'te **render**, React'in component fonksiyonlarınızı çağırıp ekranda ne olması gerektiğini hesaplamasıdır. Her ekran güncellemesi üç adımdan geçer: bir şey render'ı **tetikler** (ilk açılış ya da bir state güncellemesi), React component'leri **render** eder, sonra farkları DOM'a **commit** eder. React DOM'a yalnızca iki render arasında fark varsa dokunur.[^1]
 
 Yani bir component'in yeniden render olması her zaman DOM'un değişmesi demek değildir; çoğu re-render hızlıdır. Sorun genellikle render sırasında yapılan pahalı iştir. Kent C. Dodds'un deyişiyle, render'larınızın tamamı gerekli olsa bile yavaşsalar kullanıcı yine kötü bir deneyim yaşar.[^2]
 
-## React Neden Yeniden Render Eder
+## React neden yeniden render eder
 
 Her re-render bir **state değişikliğiyle** başlar. State'i değişen component yeniden render olur ve React onun altındaki **tüm** component'leri de yeniden render eder; prop olarak o state'i alıp almamaları fark etmez.[^3] Bir component dört sebepten render olur: kendi **state**'i değişti, **ebeveyni** render oldu (render yukarıdan aşağı akar, çocuk render olunca ebeveyn olmaz), kullandığı **context**'in değeri değişti ya da içinde kullandığı bir **hook**'un state'i değişti.[^4]
 
@@ -19,9 +19,9 @@ Her re-render bir **state değişikliğiyle** başlar. State'i değişen compone
 >
 > "Props değişince component render olur" yaygın bir yanlış bilgidir. `memo` kullanılmayan bir component, prop'ları aynı kalsa da ebeveyniyle birlikte render olur. Prop'lar yalnızca memoization devreye girdiğinde önem kazanır.[^3][^4]
 
-## Ölçmeden Optimize Etmeyin
+## Ölçmeden optimize etmeyin
 
-### React DevTools Profiler
+### React DevTools profiler
 
 React Developer Tools eklentisindeki **Profiler** sekmesinde kaydı başlatır, yavaş hissettiren etkileşimi yapar ve kaydı durdurursunuz. Sonuç **commit**'lere bölünür; her commit'in **flame chart**'ında sarı çubuklar uzun, mavi çubuklar kısa süren render'ları gösterir, gri olanlar o commit'te hiç render olmamıştır. **Ranked chart** ise component'leri render süresine göre sıralar.[^5]
 
@@ -34,7 +34,7 @@ React Developer Tools eklentisindeki **Profiler** sekmesinde kaydı başlatır, 
 >
 > Development modundaki milisaniyeler gerçeği yansıtmaz. Kesin sonuç için production build alın ve DevTools'taki CPU throttling ile yavaş bir cihazı taklit edin; sizin bilgisayarınız büyük ihtimalle kullanıcılarınızınkinden hızlıdır.[^3][^7]
 
-### Performance Tracks
+### Performance tracks
 
 React 19.2 ile birlikte React, tarayıcının **Performance** paneline kendi izlerini ekler.[^8] Ölçüm dersinde gördüğünüz Performance panelinde kayıt aldığınızda **Scheduler** izi işin hangi öncelikte yapıldığını (kullanıcı etkileşimi için Blocking, `startTransition` için Transition) ve işin baştan yapılmasına yol açan **cascading update**'leri gösterir. **Components** izi ise render sürelerini flamegraph olarak verir; development build'de bir render'a tıklayınca değişen prop'ları görürsünüz. İzler development build'de açık, ek yük getirdiği için production build'de kapalıdır.[^9]
 
@@ -63,7 +63,7 @@ Vite ve Expo için de resmi kurulum yolları vardır; Expo SDK 54 ve sonrasında
 > - Yeni kodda memoization'ı compiler'a bırakın; `useMemo`/`useCallback`'i yalnızca hassas kontrol gereken yerde kullanın.[^10]
 > - Mevcut `useMemo`/`useCallback`'leri compiler'ı açınca toplu silmeyin; silmek derleme sonucunu değiştirebilir, önce test edin.[^10]
 
-## memo, useMemo ve useCallback Ne Zaman
+## memo, useMemo ve useCallback ne zaman
 
 Compiler kullanmıyorsanız ya da kaçış kapısına ihtiyacınız varsa üç araç vardır:
 
@@ -77,7 +77,7 @@ Compiler kullanmıyorsanız ya da kaçış kapısına ihtiyacınız varsa üç a
 
 `memo`'lu bir component'e her render'da yeniden oluşan bir obje ya da fonksiyon geçerseniz `memo` hiçbir işe yaramaz; bu yüzden `useMemo` ve `useCallback` çoğu zaman `memo` ile birlikte kullanılır.[^13] Memoization bu nedenle kırılgandır: başka biri component'e satır içi bir obje ya da JSX `children` geçtiği an etkisi sessizce kaybolur.[^14]
 
-## State'i Aşağı Taşımak ve children
+## State'i aşağı taşımak ve children
 
 `memo`'ya uzanmadan önce component yapısını değiştirmek çoğu zaman yeterlidir.[^15][^13]
 
@@ -107,7 +107,7 @@ Aynı listede iki kural daha vardır: input ya da hover gibi geçici state'i glo
 >
 > - Bir component'i başka bir component'in içinde tanımlamayın. Her render'da yeni bir component oluşur, React onu sıfırdan mount eder; bu re-render'dan da yavaştır ve state'i sıfırlar.[^4]
 
-## Uzun Listelerde Virtualization
+## Uzun listelerde virtualization
 
 Binlerce satırlık bir listede sorun her satırın kendisi değil, DOM'un büyüklüğüdür: DOM büyüdükçe tarayıcının render işi de büyür ve hem ilk yükleme hem etkileşimler yavaşlar.[^16] **Virtualization**, yalnızca ekranda görünen satırları DOM'a koyup kaydırdıkça değiştirme tekniğidir.
 
@@ -183,7 +183,7 @@ Bu, `SlowList`'i hızlandırmaz; yalnızca tuşlara basmayı bloklamamasını sa
 
 Bu iki API tek bir component'in kendisi pahalıysa yardımcı olmaz ve ek CPU işi getirir; önce render'ı hızlandırmaya bakın.[^21]
 
-## Detaylı Öğrenmek İçin
+## Detaylı öğrenmek için
 
 - **Konuşma:** Nadia Makarevich'in re-render nedenlerini ve composition tekniklerini anlattığı 23 dakikalık konuşması (React Summit 2022).[^24]
 - **Konuşma:** Ivan Akulov'un yavaş bir filtre örneği üzerinden `startTransition`'ı anlattığı 23 dakikalık konuşması (React Summit 2023).[^21]

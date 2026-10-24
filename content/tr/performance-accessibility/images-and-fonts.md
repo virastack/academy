@@ -5,11 +5,11 @@ lastVerified: "2026-10-17"
 translationKey: "performance-accessibility/images-and-fonts"
 ---
 
-## Görsel ve Font Neden Önemli
+## Görsel ve font neden önemli
 
 Görseller ve fontlar sayfanın ilk görünüşünü doğrudan belirler. 2025'te mobil sayfaların %76'sında, masaüstü sayfaların %85'inde **Largest Contentful Paint (LCP)** öğesi bir görseldi; mobil sayfaların %87'si de en az bir web fontu kullanıyordu.[^1] Yanlış yüklenen bir görsel LCP'yi geciktirir, boyutu belirtilmemiş bir görsel ya da geç gelen bir font ise **Cumulative Layout Shift (CLS)** ile sayfayı kaydırır. Bu metriklerin ne anlama geldiğini Core Web Vitals dersinde gördünüz; burada dört soruya bakıyoruz: hangi format, hangi boyut, hangi öncelik ve yer kayması nasıl önlenir.
 
-## Görsel Formatları
+## Görsel formatları
 
 | Format | Ne zaman |
 | :-- | :-- |
@@ -31,7 +31,7 @@ Birden fazla format sunmanın yolu `<picture>`'dır. Tarayıcı `type`'ını des
 </picture>
 ```
 
-## Doğru Boyut: srcset ve sizes
+## Doğru boyut: srcset ve sizes
 
 Telefona 2000 piksellik masaüstü görselini göndermek, kullanıcının hiç görmeyeceği baytları indirtmektir. `srcset` tarayıcıya aynı görselin farklı genişlikteki kopyalarını, `sizes` ise görselin sayfada ne kadar yer kaplayacağını söyler; tarayıcı ekran genişliğine ve piksel yoğunluğuna göre en uygun dosyayı seçer.[^4]
 
@@ -52,11 +52,11 @@ Bu örnekte görsel 768px ve üstünde 500px genişliğinde, altında ekran geni
 >
 > 3x ekranlarda 3x görsel göndermek çoğu zaman fark edilmez. Bir ürün listesinde yoğunluğu 2x ile sınırlamak, görünür kalite kaybı olmadan görsel ağırlığını %45 azalttı.[^6]
 
-## width ve height ile Yer Ayırmak
+## width ve height ile yer ayırmak
 
 Görselin `width` ve `height` attribute'larını her zaman yazın. Tarayıcı bu iki değerden en-boy oranını hesaplar ve görsel inmeden önce yerini ayırır; böylece altındaki metin aşağı itilmez.[^7] Boyutu bilemediğiniz durumlarda CSS `aspect-ratio` ile yer ayırabilirsiniz.[^7] Bu hâlâ en yaygın hatalardan biri: 2025'te mobil sayfaların %62'sinde en az bir görselin boyutu eksikti.[^1]
 
-## loading="lazy": LCP Görselinde Değil
+## loading="lazy": LCP görselinde değil
 
 `loading="lazy"` görselin indirilmesini, görsel ekrana yaklaşana kadar erteler; sayfanın altındaki görseller ilk görünen içerikle bant genişliği için yarışmaz. Desteklemeyen tarayıcı attribute'u yok sayar.[^8]
 
@@ -106,7 +106,7 @@ export function Hero() {
 - **Format:** Varsayılan çıktı WebP'dir. AVIF için `next.config` içinde `formats: ["image/avif", "image/webp"]` yazılır.[^13]
 - **Dış kaynak:** Başka bir domain'deki görseller için `remotePatterns` ile izin vermek gerekir. Next.js 16'dan beri kalite değerleri de `qualities` listesiyle sınırlıdır, varsayılan `[75]`.[^13]
 
-## Font Formatı ve Barındırma
+## Font formatı ve barındırma
 
 Font için tek format yeterlidir: **WOFF2**. WOFF'tan yaklaşık %30 daha iyi sıkıştırır ve geniş tarayıcı desteğine sahiptir.[^14][^15] Web'deki font isteklerinin yaklaşık %65'i bugün WOFF2.[^16]
 
@@ -131,12 +131,12 @@ Font inene kadar metnin ne yapacağını `@font-face` içindeki `font-display` b
 
 `swap` metni en hızlı gösteren değerdir ve sayfaların yaklaşık yarısında kullanılıyor.[^14][^16] Layout shift'i tamamen önlemek istiyorsanız `optional` en güvenli seçenektir, bedeli ilk ziyarette fontun görünmeyebilmesidir.[^7][^14]
 
-## Subset ve Variable Font
+## Subset ve variable font
 
 - **Subset:** Fontta kullanmadığınız karakterleri (glyph) çıkarmaktır ve dosya boyutunu ciddi küçültür. `unicode-range` ile tarayıcıya fontun hangi karakterleri kapsadığını söylerseniz, dosya yalnızca sayfada o karakterlerden biri geçtiğinde indirilir.[^14] Ortanca font dosyası sıkıştırılmış hâlde 35 KB civarındadır; en büyük %10'luk dilim 100 KB'ı aşar ve bunun nedenleri arasında subset yapılmamış dosyalar da vardır.[^16]
 - **Variable font:** Light, regular, bold gibi ayrı dosyalar yerine tek dosyada tüm kalınlıkları taşır.[^14] Masaüstü sitelerin %39'u, mobil sitelerin %41'i en az bir variable font kullanıyor.[^16] Tek dosya tek bir statik dosyadan büyük olabilir; çok sayıda kalınlık kullanmıyorsanız kazanç az olur.[^14]
 
-## Yedek Font ve Layout Shift
+## Yedek font ve layout shift
 
 Font değiştiğinde sayfa kayar, çünkü web fontu ile yedek font aynı metin için farklı genişlik ve yükseklik kaplar.[^14] Çözüm, yedek fontu web fontuna benzetmektir: `size-adjust`, `ascent-override`, `descent-override` ve `line-gap-override` descriptor'ları yedek fontun ölçülerini ayarlar.[^7]
 
@@ -181,7 +181,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 >
 > Türkçe içerikte `ğ`, `ş`, `ı`, `İ` gibi harflerin seçtiğiniz subset'te bulunduğunu fontun Google Fonts sayfasındaki subset listesinden ve gerçek metinle kontrol edin.[^17]
 
-## Detaylı Öğrenmek İçin
+## Detaylı öğrenmek için
 
 - **Kurs:** web.dev'in ücretsiz Learn Performance kursundaki görsel ve font bölümleri.[^4][^15]
 - **Veri:** Web Almanac 2025'in Fonts bölümü; formatlar, barındırma, `font-display` ve variable font kullanımı.[^16]

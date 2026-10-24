@@ -5,7 +5,7 @@ lastVerified: "2026-10-17"
 translationKey: "performance-accessibility/bundle-size"
 ---
 
-## Bundle Nedir
+## Bundle nedir
 
 **Bundle**, uygulama kodunuzun ve bağımlılıklarının tarayıcı ve sunucu için birleştirilip optimize edilmiş çıktı dosyalarıdır. Bu işi yapan araca **bundler** denir. Küçük bundle daha hızlı iner, daha az çalıştırma süresi ister ve Core Web Vitals değerlerini iyileştirir.[^1]
 
@@ -13,7 +13,7 @@ JavaScript'in bedeli yalnızca indirme değildir: script'i işlemenin asıl mali
 
 Bugün kullanacağınız bundler büyük ihtimalle hazır gelir. Next.js 16'da varsayılan bundler **Turbopack**'tir.[^4] Vite 8 ise **Rolldown** adlı tek bir Rust tabanlı bundler kullanır.[^5] Next.js code splitting ve tree shaking gibi optimizasyonları otomatik yapar; sizin işiniz bunlara engel olmamak ve neyin yüklendiğini görmektir.[^1]
 
-## Tree Shaking
+## Tree shaking
 
 **Tree shaking**, kullanılmayan kodun (dead code) bundle'dan atılmasıdır. Bundler, hangi modülün ne export ettiğini ve nerede import edildiğini `import`/`export` ifadelerinden çıkarır.[^6]
 
@@ -32,7 +32,7 @@ import { formatPrice } from "./utils"; // parseCsv bundle'a girmez
 - **`sideEffects` alanı:** Bir paket `package.json`'da `"sideEffects": false` diyorsa bundler kullanılmayan dosyaları çekinmeden atar. Yalnızca import edildiği için çalışan dosyalar (polyfill, global CSS) listede belirtilmelidir, yoksa production'da düşebilir.
 - **Named import tercih edin** ve ES module yayınlayan paketleri seçin. Kütüphanenin tamamını getiren import kalıpları eski kurulumlarda tree shaking'i bozabilir.
 
-## Code Splitting
+## Code splitting
 
 **Code splitting**, bundle'ı parçalara bölüp ilk görünüm için gereken kodu önce, geri kalanı ihtiyaç olunca yüklemektir. Büyük bir başlangıç script'i ana thread'i meşgul eder, etkileşimi geciktirir.[^9] V8 ekibinin pratik kuralı: 50-100 kB'ı aşan bir bundle'ı daha küçük parçalara bölün.[^2]
 
@@ -102,7 +102,7 @@ Named export için `import("./hello").then((mod) => mod.Hello)` yazılır. `ssr:
 >
 > Modal, grafik, zengin metin editörü, harita gibi ilk ekranda görünmeyen ve ağır olan parçalar code splitting için en iyi adaylardır.
 
-## Bundle'ı Görmek
+## Bundle'ı görmek
 
 Tahmin etmek yerine bundle'ın içine bakın. Bu araçlar her modülü alanı boyutuyla orantılı bir dikdörtgen olarak çizer (**treemap**).[^1]
 
@@ -138,7 +138,7 @@ export default defineConfig({
 
 Hiç ayar eklemeden bakmak isterseniz `npx vite-bundle-visualizer` aynı plugin'i sizin için çalıştırır.[^14]
 
-## Paketin Maliyetini Kurmadan Görmek
+## Paketin maliyetini kurmadan görmek
 
 Yeni bir bağımlılık eklemeden önce boyutuna bakın. **Bundlephobia** bir npm paketinin boyutunu, neyden oluştuğunu ve export'larını gösterir.[^15] **pkg-size.dev** paketi tarayıcınızda gerçekten kurup bundle'lar; önbellek yerine her seferinde taze kurulum yaptığı için iç içe bağımlılıklardaki değişiklikleri de yansıtır.[^16]
 
@@ -147,7 +147,7 @@ Yeni bir bağımlılık eklemeden önce boyutuna bakın. **Bundlephobia** bir np
 > - Paketi eklemeden önce boyutuna ve tree shaking'e uygun olup olmadığına bakın.
 > - Aynı işi yapan iki paketi bu araçlarla karşılaştırın.
 
-## Barrel Dosyaları
+## Barrel dosyaları
 
 **Barrel dosyası**, kendi kodu olmayan, yalnızca başka modülleri yeniden export eden dosyadır (çoğunlukla `index.ts`). Her klasöre bir barrel koyulduğunda tek bir import, zincirleme olarak projenin büyük kısmını yükleyebilir; bu da özellikle geliştirme sunucusunu, testleri ve lint'i yavaşlatır.[^17]
 
@@ -175,7 +175,7 @@ export default nextConfig;
 >
 > - Kendi projenizde her klasöre `index.ts` barrel'ı koymayın; doğrudan dosyadan import edin: `import { Button } from "@/components/Button"`.[^17]
 
-## Üçüncü Parti Script'ler
+## Üçüncü parti script'ler
 
 Analytics, tag manager, chat ve reklam script'leri sizin bundle'ınızda görünmez ama aynı ana thread'i kullanır. Sayfaların %90'ından fazlası en az bir üçüncü parti kaynak kullanıyor; medyan sayfa masaüstünde 83, mobilde 79 üçüncü parti isteği yapıyor.[^20] Genel kural: kritik render yolunda gerekmiyorsa üçüncü parti script'i `async` ya da `defer` ile yükleyin.[^21]
 
@@ -197,11 +197,11 @@ export default function Page() {
 
 `worker` stratejisi hâlâ deneyseldir ve App Router'da çalışmaz. `onLoad` gibi olay prop'ları yalnızca Client Component'te kullanılabilir.[^22]
 
-## Server Components ve Client Bundle
+## Server Components ve client bundle
 
 Server Component'te kullanılan kütüphaneler istemciye gönderilmez; tarayıcıya yalnızca üretilen HTML gider. Bu yüzden syntax highlighting, markdown işleme ya da grafik hazırlama gibi tarayıcı API'si ve etkileşim gerektirmeyen ağır işleri Server Component'e taşımak, client bundle'ı küçültmenin etkili bir yoludur.[^1]
 
-## Detaylı Öğrenmek İçin
+## Detaylı öğrenmek için
 
 - **Resmi rehber:** Next.js'in bundle analizi ve büyük bundle'ları küçültme rehberi.[^1]
 - **Temel okuma:** Addy Osmani ve Mathias Bynens'in JavaScript'in maliyetini anlattığı V8 makalesi.[^2]

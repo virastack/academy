@@ -5,7 +5,7 @@ lastVerified: "2026-10-17"
 translationKey: "web-fundamentals/html"
 ---
 
-## HTML Nedir
+## HTML nedir
 
 **HTML**, bir sayfanın içeriğini ve yapısını tarayıcıya anlatan işaretleme dilidir. Başlık, paragraf, link, görsel, form gibi her parça bir **element** ile yazılır. Bir element açılış etiketi, içerik ve kapanış etiketinden oluşur; ayarlar açılış etiketine **attribute** olarak eklenir.[^1]
 
@@ -33,7 +33,7 @@ Bu önemlidir, çünkü tarayıcı HTML'den bir **erişilebilirlik ağacı** (ac
 
 Ölçek büyüktür: 2026'da bir milyon ana sayfanın %53,1'inde görsellerde alternatif metin, %51'inde form alanlarında etiket eksikti.[^3] Çoğu, doğru etiket seçilseydi çıkmayacak hatalardır.
 
-## Sayfa İskeleti
+## Sayfa iskeleti
 
 Bir sayfayı bölmek için kullanılan başlıca etiketler şunlardır:[^4]
 
@@ -83,7 +83,7 @@ HTML Standard'a göre `<section>` genel amaçlı bir kutu değildir; yalnızca s
 > - `<h2>`'den `<h4>`'e atlamayın.
 > - Yazıyı büyütmek için başlık kullanmayın; bunun için CSS `font-size` vardır.[^8]
 
-## Doğru Etiketi Seçmek
+## Doğru etiketi seçmek
 
 ### Button ve link
 
@@ -117,11 +117,11 @@ Her form alanının bir `<label>`'ı olmalıdır. Etiket alanın ne için olduğ
 
 "Buraya tıklayın" yerine tek başına okunduğunda anlamlı bir metin yazın: "Balinalar hakkında daha fazla bilgi".[^7]
 
-## ARIA'dan Önce HTML
+## ARIA'dan önce HTML
 
 **ARIA**, HTML'in yetmediği durumlarda elemente rol ve durum ekleyen özelliklerdir (`role`, `aria-label`). W3C'nin ilk kuralı şudur: gereken anlam ve davranışı veren yerel bir HTML elementi varsa ARIA eklemek yerine onu kullanın.[^13] `role="button"` yalnızca anlam ekler, klavye davranışını eklemez.[^2] Veriler de ARIA kullanan sayfalarda ortalama hatanın daha yüksek çıktığını gösteriyor (59,1'e karşılık 42), karmaşık sayfaların daha çok ARIA kullanması bunun bir kısmını açıklayabilir.[^3]
 
-## Detaylı Öğrenmek İçin
+## Detaylı öğrenmek için
 
 - **Baştan sona kurs:** web.dev'in ücretsiz Learn HTML kursu.[^14]
 - **Her etiketin tanımı:** MDN'in element listesi, işlevine göre gruplanmış.[^15]

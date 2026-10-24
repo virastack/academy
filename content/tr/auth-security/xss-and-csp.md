@@ -13,7 +13,7 @@ Kötü içerik iki yoldan gelir. URL'deki bir parametre sayfaya basılırsa sald
 >
 > Bu dersteki kodlar `next@16.4.2`, `react@19.3.1` ve `isomorphic-dompurify@4.6.0` ile Chromium'da test edildi.
 
-## React Sizi Çoğu Zaman Korur
+## React sizi çoğu zaman korur
 
 JSX içine yazılan her değer metin olarak kodlanır *(output encoding)*. `<` işareti `&lt;` olur ve tarayıcı onu etiket olarak değil, yazı olarak gösterir.[^1]
 
@@ -63,7 +63,7 @@ Testte `<b>Merhaba</b><img src=x onerror="...">` girdisi `<b>Merhaba</b><img src
 >
 > DOMPurify'ı ve sunucudaki jsdom'u güncel tutun. Tarayıcılar değiştikçe yeni atlatma yolları bulunur.[^2][^5]
 
-## Güvenli Olmayan URL'ler
+## Güvenli olmayan URL'ler
 
 Kullanıcının girdiği bir web sitesi adresini link yapmak masum görünür. Ama adres `javascript:` ile başlarsa tıklanınca kod çalışır.
 
@@ -161,13 +161,13 @@ CSP'yi canlıya doğrudan koymak bir analitik script'ini ya da üçüncü parti 
 >
 > Chromium tabanlı tarayıcılarda `require-trusted-types-for 'script'` direktifi, `innerHTML` gibi noktalara düz metin atanmasını tamamen engeller. OWASP bunu DOM XSS'i sınıf olarak ortadan kaldıran az sayıdaki önlemden biri sayar.[^2] [Philippe De Ryck](https://pragmaticwebsecurity.com/about) React'te DOMPurify ile birlikte nasıl kullanılacağını anlatır.[^4]
 
-## Kendin Dene
+## Kendin dene
 
 - Bir sayfada `searchParams`'tan gelen değeri hem `{value}` ile hem `dangerouslySetInnerHTML` ile basın. `?q=<img src=x onerror=alert(1)>` adresini açıp farkı görün.
 - `proxy.ts`'i ekleyip aynı adresi tekrar açın. DevTools > **Console**'da CSP hatasını bulun.
 - Sayfanızın kaynağında `<script` etiketlerini arayın ve hepsinin `nonce` taşıdığını kontrol edin.
 
-## Detaylı Öğrenmek İçin
+## Detaylı öğrenmek için
 
 - **Resmi doküman:** OWASP XSS Prevention Cheat Sheet; framework açıkları, sanitize ve CSP'nin yeri.[^2]
 - **Makale:** Lukas Weichselbaum, "Mitigate cross-site scripting with a strict CSP"; nonce ve hash ile politika kurmak, adım adım geçiş.[^8]

@@ -5,7 +5,7 @@ lastVerified: "2026-10-21"
 translationKey: "nextjs/error-handling"
 ---
 
-## İki Tür Hata
+## İki tür hata
 
 Next.js hataları ikiye ayırır ve ikisini farklı ele alır:[^1]
 
@@ -14,7 +14,7 @@ Next.js hataları ikiye ayırır ve ikisini farklı ele alır:[^1]
 | Beklenen hata | Geçersiz kupon, stokta yok, bulunamayan ürün | Değer olarak döndürün ya da `notFound()` çağırın |
 | Beklenmeyen hata | Veritabanı çöktü, koddaki bir bug | `throw` edin; hata sınırı yakalasın |
 
-## Beklenen Hatalar: Değer Döndürün
+## Beklenen hatalar: Değer döndürün
 
 Server Action'da doğrulama hatası için `throw` etmeyin; `useActionState`'e bir mesaj döndürün. Doküman bu durumda `try`/`catch` ve `throw` yerine hatayı dönüş değeri olarak modellemeyi önerir.[^1] Örneği [Server Actions](/academy/nextjs/server-actions) dersinde gördünüz.
 
@@ -69,7 +69,7 @@ export default function ProductNotFound() {
 >
 > `notFound()` ve `redirect()` içeride bir hata fırlatarak çalışır. Onları bir `try` bloğunun içinde çağırırsanız `catch` yakalar ve çalışmazlar. `try`/`catch` dışında çağırın.[^3]
 
-## Beklenmeyen Hatalar: error.tsx
+## Beklenmeyen hatalar: error.tsx
 
 Bir segmente `error.tsx` eklemek, o segmenti bir Error Boundary ile sarar. Hata en yakın üst sınıra kadar çıkar; böylece hatayı sayfanın bir bölümüyle sınırlayabilirsiniz. Error Boundary'ler Client Component olmalıdır.[^4]
 
@@ -107,7 +107,7 @@ export default function ProductsError({
 
 Kök layout'taki hataları yakalamak için `app/global-error.tsx` var. Kök layout'un yerini aldığı için kendi `<html>` ve `<body>` etiketlerini yazar.[^1]
 
-## Component Seviyesinde: catchError
+## Component seviyesinde: catchError
 
 Bir sayfadaki tek bir bölümü *(öneriler, yorumlar)* korumak için dosya kuralı yerine `catchError` kullanabilirsiniz. 16.3'te kararlı hâle geldi.[^5]
 
@@ -137,18 +137,18 @@ export default catchError(SectionError);
 
 Kendi Error Boundary class'ınızdan farkı: `redirect()` ve `notFound()`'u yanlışlıkla yakalamaz, `retry()` ile veriyi yeniden çeker ve başka bir sayfaya geçince hata durumu kendiliğinden temizlenir.[^5]
 
-## Hata Sınırının Yakalamadıkları
+## Hata sınırının yakalamadıkları
 
 Error Boundary'ler render sırasındaki hataları yakalar. Bir `onClick` içindeki hata yakalanmaz; onu `try`/`catch` ile yakalayıp state'te tutun. `startTransition` içinde fırlatılan hata ise en yakın sınıra gider.[^1] Canlı ortamda hataları toplamak [Production'a Hazırlık](/academy/production) rehberinin konusu.
 
-## Kendin Dene
+## Kendin dene
 
 - `getProducts`'ın içine `throw new Error("db down")` yazın. `error.tsx` görünüyor mu? Header yerinde duruyor mu?
 - Hatayı yalnızca ilk çağrıda fırlatacak şekilde değiştirin ve **Tekrar dene**'ye basın.
 - `next build && next start` ile çalıştırıp `error` nesnesinin mesajına bakın. Geliştirmedekiyle aynı mı?
 - `notFound()`'u bir `try` bloğuna alın. Ne oluyor?
 
-## Detaylı Öğrenmek İçin
+## Detaylı öğrenmek için
 
 - **Resmi doküman:** "Error Handling" sayfası; beklenen ve beklenmeyen hatalar, iç içe sınırlar ve `global-error`.[^1]
 - **Resmi doküman:** `error.js` referansı; `retry` ile `reset` farkı ve özel hata sınırı örneği.[^4]

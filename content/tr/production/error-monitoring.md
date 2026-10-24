@@ -5,7 +5,7 @@ lastVerified: "2026-10-22"
 translationKey: "production/error-monitoring"
 ---
 
-## Kullanıcılar Hata Bildirmez
+## Kullanıcılar hata bildirmez
 
 Canlıda bir sayfa çöktüğünde kullanıcıların çoğu size yazmaz; sekmeyi kapatır. Yazanlar da "çalışmıyor" der. Hangi sayfa, hangi tarayıcı, hangi sürüm, hangi satır? Bunları bilmeden hata ayıklanmaz.
 
@@ -13,7 +13,7 @@ Hata izleme bu boşluğu kapatır: her hata yığın izi *(stack trace)*, sürü
 
 Bu dersin iki katmanı var: önce [!nextjs]'in kendi kancaları, sonra bunları bir hata izleme servisine bağlamak.
 
-## İki Tarafta Hata
+## İki tarafta hata
 
 | Nerede | Örnek | Kim yakalar |
 | :-- | :-- | :-- |
@@ -22,7 +22,7 @@ Bu dersin iki katmanı var: önce [!nextjs]'in kendi kancaları, sonra bunları 
 
 Sunucudaki hata tarayıcıya **ayrıntısız** gider. Next.js dokümanına göre Server Component'ten gelen hatalarda kullanıcı yalnızca genel bir mesaj ve bir kimlik görür; asıl mesaj hassas bilgi sızdırmasın diye gizlenir.[^1] Bu kimliğe **digest** denir ve sunucu loglarındaki hatayla eşleştirmek için vardır.
 
-## error.tsx ve Digest
+## error.tsx ve digest
 
 `error.tsx` bir route segmentini React hata sınırıyla sarar *(bkz. [Hata yönetimi](/academy/nextjs/error-handling))*. Production'da kullanıcıya bir hata kodu göstermek, destek ekibinin loglarda hatayı bulmasını sağlar:
 
@@ -66,7 +66,7 @@ Next.js 16'da `error` prop'unun tipi `unknown`'dır; okumadan önce daraltmanız
 
 `global-error.tsx` kök layout'taki hataları yakalar. Kök layout'un yerine geçtiği için kendi `<html>` ve `<body>` etiketlerini çizmek zorundadır ve global stilleriniz burada yüklü değildir.[^1]
 
-## onRequestError: Sunucudaki Her Hata
+## onRequestError: Sunucudaki her hata
 
 `instrumentation.ts` dosyasındaki `onRequestError`, Next.js sunucuda bir hata yakaladığında çağrılır: Server Component render'ı, Route Handler, Server Action ve proxy.[^2]
 
@@ -114,7 +114,7 @@ Bu rehberin projesinde `/debug` sayfası bilerek hata fırlatır. Tarayıcıda g
 >
 > `request.headers` cookie ve yetkilendirme başlıkları taşır. Hata kaydına başlıkların tamamını eklemeyin *(bkz. [Loglama](/academy/production/logging))*.
 
-## Bir Servise Göndermek: Sentry
+## Bir servise göndermek: Sentry
 
 Log, hatayı kaydeder ama gruplamaz, yeni bir hata türü çıkınca haber vermez, tarayıcı hatalarını görmez. Sentry gibi bir hata izleme servisi bunları yapar. Next.js entegrasyonu için Sentry'nin sihirbazı gerekli dosyaları oluşturur:[^3]
 
@@ -179,7 +179,7 @@ useEffect(() => {
 }, [error]);
 ```
 
-## Okunabilir Yığın İzi: Source Map'ler
+## Okunabilir yığın izi: Source map'ler
 
 Production'daki JavaScript küçültülmüştür *(minified)*. Source map olmadan yığın izi `at g (chunk.js:1:209)` gibi görünür. `withSentryConfig` build sırasında source map'leri Sentry'ye yükler; bunun için bir yetki token'ı gerekir:[^3]
 
@@ -205,7 +205,7 @@ export default withSentryConfig(nextConfig, {
 
 Eklenti build sırasında Sentry'de bir **release** *(sürüm)* de oluşturur ve sürümü ortamdan kendisi bulmaya çalışır; isterseniz `SENTRY_RELEASE` ile belirtirsiniz.[^5] Sürüm bilgisi, "bu hata hangi deploy'la başladı?" sorusunu cevaplar.
 
-## Ne Kadar Veri?
+## Ne kadar veri?
 
 **Örnekleme.** Hatalar varsayılan olarak tamamen gönderilir. Performans izleri *(trace)* ise çok olduğu için örneklenir: Sentry'nin örneği geliştirmede yüzde 100, production'da yüzde 10 kullanır ve trafiğe göre ayarlamanızı söyler.[^3]
 
@@ -213,7 +213,7 @@ Eklenti build sırasında Sentry'de bir **release** *(sürüm)* de oluşturur ve
 
 **Reklam engelleyiciler.** Bazı engelleyiciler Sentry'ye giden istekleri keser. `tunnelRoute: "/sentry-tunnel"` olayları kendi sunucunuz üzerinden yönlendirir; karşılığında sunucu yükü artar.[^3]
 
-## İşe Yarar Uyarılar
+## İşe yarar uyarılar
 
 Her hata için bildirim gönderen bir sistem birkaç gün içinde susturulur. Google'ın SRE kitabı izleme üzerine şu ilkeyi koyar: sizi uyaran her bildirim **eyleme dönüştürülebilir** olmalı ve bir insanın zekâsını gerektirmelidir; otomatik bir tepkiyle çözülebilen şey bildirim olmamalıdır.[^7]
 
@@ -224,7 +224,7 @@ Pratikte:
 - **Kullanıcıyı etkileyen belirtilere** öncelik verin. SRE kitabı belirtiyi *(ne bozuk?)* nedenden *(neden bozuk?)* ayırır: "ödeme sayfası yüzde 5 hata veriyor" bir belirtidir ve uyarıya değer; "bir sunucunun belleği yüksek" ise belki değildir.[^7]
 - Beklenen hataları *(geçersiz form, bulunamayan kayıt)* hata olarak raporlamayın; onlar uygulamanın normal akışıdır *(bkz. [Hata yönetimi](/academy/nextjs/error-handling))*.
 
-## Hattı Denemek
+## Hattı denemek
 
 Kurulumdan sonra bir hata fırlatıp gerçekten servise ulaştığını görmeden işi bitmiş saymayın. Bu rehberin projesindeki `/debug` sayfası bunun içindir:
 
@@ -252,14 +252,14 @@ async function FailingSection(): Promise<never> {
 
 `connection()` hatanın build sırasında değil istek anında fırlamasını sağlar; aksi halde build düşer. Sayfa production'da 404 döner. Sentry'nin sihirbazı da benzer bir örnek sayfa oluşturur.[^3]
 
-## Kendin Dene
+## Kendin dene
 
 - Projenize `onRequestError` ekleyin. Bir Server Component'te hata fırlatın, tarayıcıdaki hata kodunu sunucu logunda bulun.
 - `error.tsx`'te hata kodunu gösterin. Geliştirme ve production build'inde mesajın nasıl değiştiğini karşılaştırın.
 - Ücretsiz bir Sentry hesabıyla sihirbazı çalıştırın. Bir istemci ve bir sunucu hatası üretip ikisinin de geldiğini görün.
 - Source map yüklemeden ve yükledikten sonra aynı hatanın yığın izini karşılaştırın.
 
-## Detaylı Öğrenmek İçin
+## Detaylı öğrenmek için
 
 - **Resmi doküman:** Next.js, "error.js"; `error`, `digest`, `retry` ve `global-error`.[^1]
 - **Resmi doküman:** Sentry, "Manual Setup for Next.js"; dosyalar, source map, tünel ve doğrulama.[^3]

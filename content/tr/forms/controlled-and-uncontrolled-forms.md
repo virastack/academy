@@ -5,7 +5,7 @@ lastVerified: "2026-10-22"
 translationKey: "forms/controlled-and-uncontrolled-forms"
 ---
 
-## Değeri Kim Tutuyor?
+## Değeri kim tutuyor?
 
 Bir `<input>`'a yazılan metin bir yerde saklanır. Bu derste iki seçenek var:[^1][^2]
 
@@ -18,7 +18,7 @@ Bir `<input>`'a yazılan metin bir yerde saklanır. Bu derste iki seçenek var:[
 
 [Josh W. Comeau](https://www.joshwcomeau.com/) farkı şöyle özetler: React varsayılan olarak form alanına karışmaz; alan **uncontrolled**'dır. `value` verdiğiniz anda React değeri yönetmeye başlar ve alan **controlled** olur.[^2]
 
-## Uncontrolled: DOM'a Bırakmak
+## Uncontrolled: DOM'a bırakmak
 
 En basit form state tutmaz. Değerler gönderim anında `FormData` ile okunur. Her alanın bir `name`'i olmalı; `FormData` alanları adıyla toplar:[^3][^4]
 
@@ -51,7 +51,7 @@ export function NewsletterForm() {
 
 `action` ile gönderilen form, işlem başarıyla bitince uncontrolled alanları **sıfırlar**. Tarayıcının kendi davranışı da budur. Hata durumunda kullanıcının yazdıklarını korumak için ne yapacağınız [Server Actions ile form](/academy/forms/forms-with-server-actions) dersinde.[^5]
 
-## Controlled: State'e Bağlamak
+## Controlled: State'e bağlamak
 
 Alanın değeri state'ten gelir; her tuşta `onChange` state'i günceller ve React alanı yeni değerle çizer:[^1]
 
@@ -71,7 +71,7 @@ export function SearchBox() {
 
 Değer her an elinizde olduğu için yazarken arayüzü değiştirmek kolaydır: karakter sayacı, canlı filtre, bir alana göre başka alanı açmak. Bedeli, state'in sahibi component'in **her tuşta** yeniden render olmasıdır. Küçük bir formda fark edilmez; onlarca alanlı ve ağır component'li bir formda yazarken takılma hissedilir.
 
-## Yaygın Hatalar
+## Yaygın hatalar
 
 React dokümanı controlled alanlarla ilgili üç uyarıyı ayrıca anlatır:[^1]
 
@@ -85,7 +85,7 @@ Josh W. Comeau select için de aynı kuralı hatırlatır: başlangıç değeri 
 >
 > Aynı alanda `value` ve `defaultValue`'yu birlikte kullanmayın. Alan ya controlled ya uncontrolled olmalı; ömrü boyunca değişmemeli.[^1]
 
-## Tarayıcının Doğrulaması
+## Tarayıcının doğrulaması
 
 `required`, `type="email"`, `minLength` ve `pattern` tarayıcıya ücretsiz doğrulama verir. Ama mesajlar tarayıcıya göre değişir, tasarıma uymaz ve ekran okuyucularla iyi çalışmaz. [Adrian Roselli](https://adrianroselli.com/) testlerinde alanın odak alır almaz "geçersiz" okunduğunu, desenin hiç açıklanmadığını ve alan düzelince bunun duyurulmadığını gösterir. Önerisi kendi doğrulamanızı yazmaktır.[^6] GOV.UK Design System da `novalidate` ile tarayıcı doğrulamasını kapatıp kendi hata mesajlarını göstermeyi önerir.[^7]
 
@@ -95,13 +95,13 @@ Josh W. Comeau select için de aynı kuralı hatırlatır: başlangıç değeri 
 
 `novalidate` yalnızca tarayıcının balonlarını kapatır. `type="email"` mobil klavyeyi değiştirmeye, `autocomplete` otomatik doldurmaya devam eder. Hata mesajlarını nasıl göstereceğiniz [Hata gösterimi ve erişilebilirlik](/academy/forms/errors-and-accessibility) dersinde.
 
-## Form Kütüphanesi Neden?
+## Form kütüphanesi neden?
 
 İki alanlı bir formu iki yaklaşımla da elle yazabilirsiniz. Gerçek formlarda şunlar birikir: her alan için hata state'i, "alana dokunuldu mu", gönderiliyor mu, ilk değerden değişti mi, ilk hatalı alana odaklanmak, sunucudan gelen hatayı alana yazmak.
 
 [!react-hook-form] uncontrolled yaklaşımı temel alır: alanlara `ref` ile bağlanır, değeri DOM'dan okur ve yalnızca gereken component'i render eder.[^8] Kendi bileşeni `value`/`onChange` isteyen bir tarih seçici gibi controlled alanlar için de `Controller` sunar *(bkz. [Dinamik alanlar ve çok adımlı formlar](/academy/forms/dynamic-and-multi-step-forms))*.
 
-## Ne Zaman Hangisi
+## Ne zaman hangisi
 
 | Durum | Öneri |
 | :-- | :-- |
@@ -111,14 +111,14 @@ Josh W. Comeau select için de aynı kuralı hatırlatır: başlangıç değeri 
 | `value`/`onChange` isteyen üçüncü parti bileşen | React Hook Form'da `Controller` |
 | JavaScript yüklenmeden de çalışması gereken form | Uncontrolled + `action` *(Server Action)* |
 
-## Kendin Dene
+## Kendin dene
 
 - Bülten formunu uncontrolled yazın, `console.log(Object.fromEntries(formData))` ile gelen nesneye bakın. Yaş alanı ekleyin; tipi ne?
 - Arama kutusunu `useState("")` yerine `useState<string>()` ile başlatın ve bir şey yazın. Konsolda ne çıkıyor?
 - `value` verip `onChange`'i silin. Alana yazabiliyor musunuz?
 - Formu `novalidate` olmadan, `required` ve `type="email"` ile gönderin. Sonra bir ekran okuyucuyla *(VoiceOver, NVDA)* deneyin.
 
-## Detaylı Öğrenmek İçin
+## Detaylı öğrenmek için
 
 - **Resmi doküman:** React, "`<input>`"; controlled alan, `defaultValue` ve sık yapılan hatalar.[^1]
 - **Yazı:** [Josh W. Comeau](https://www.joshwcomeau.com/), "Data Binding in React"; text, checkbox, radio ve select ile bağlama.[^2]

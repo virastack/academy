@@ -5,7 +5,7 @@ lastVerified: "2026-10-21"
 translationKey: "nextjs/routing-and-layouts"
 ---
 
-## Klasör = Adres
+## Klasör = adres
 
 App Router dosya tabanlıdır. Her klasör URL'de bir **segment**, klasördeki `page.tsx` o adresin sayfasıdır.[^1]
 
@@ -20,7 +20,7 @@ app/
         └── page.tsx        # /products/canvas-sneaker
 ```
 
-## Layout: Gezinmede Kalan Arayüz
+## Layout: Gezinmede kalan arayüz
 
 Layout, alt sayfaları `children` olarak sarar. Kullanıcı `/products/a`'dan `/products/b`'ye geçtiğinde ortak layout **yeniden render edilmez**; state'i ve scroll'u korunur, yalnızca sayfa değişir.[^1]
 
@@ -47,7 +47,7 @@ Layout yeniden render edilmediği için iki sınırı vardır:[^2]
 >
 > Oturum kontrolünü layout'a koymayın. Layout gezinmede tekrar çalışmadığı için her alt sayfayı korumaz. Kontrolü veriye yakın yapın; [Next.js'te auth](/academy/auth-security/auth-in-nextjs) dersi bunu ayrıntılı anlatıyor.
 
-## Dinamik Segment
+## Dinamik segment
 
 Köşeli parantezli klasör veriden üretilen sayfalar içindir:[^3]
 
@@ -73,7 +73,7 @@ export default async function ProductPage({ params }: PageProps<"/products/[slug
 >
 > Bu ve sonraki birkaç dersteki örnekler kısa olsun diye `params`'ı sayfanın en üstünde okuyor. Partial Prefetching açıkken Next.js geliştirmede bunu bir uyarıyla işaretler; çünkü bir rotaya giden bütün linkler tek bir kabuğu paylaşır. Gerçek projede `params`'ı `<Suspense>` içindeki bir child'da okuyun. Nedeni [Navigasyon ve prefetch](/academy/nextjs/navigation-and-prefetching) dersinde.[^5]
 
-## searchParams: Sayfada mı, İstemcide mi
+## searchParams: Sayfada mı, istemcide mi
 
 | İhtiyaç | Kullanın |
 | :-- | :-- |
@@ -82,7 +82,7 @@ export default async function ProductPage({ params }: PageProps<"/products/[slug
 
 `searchParams` okumak sayfanın o kısmını istek anına bağlar. Cache Components ile bunu bir `<Suspense>` içinde yapmanız gerekir; nedenini [Cache ve render modeli](/academy/nextjs/caching-and-rendering) dersinde göreceksiniz.[^1]
 
-## Route Group ve Birden Fazla Layout
+## Route Group ve birden fazla layout
 
 Parantezli klasör URL'ye eklenmez ama kendi layout'una sahip olabilir. Mağaza ve pazarlama sayfalarına farklı üst menü vermek için:[^6]
 
@@ -98,7 +98,7 @@ app/
 
 Kök `app/layout.tsx`'i silip her gruba kendi `<html>`'li layout'unu verirseniz birden fazla kök layout kurarsınız. Gruplar arasında geçişte sayfa tamamen yeniden yüklenir.[^6]
 
-## Link ile Gezinme
+## Link ile gezinme
 
 `<Link>`, `<a>`'yı genişletir. Görünür linklerin hedefini arka planda **prefetch** eder ve tıklamada sayfayı yenilemeden geçiş yapar; ortak layout'lar yerinde kalır.[^7]
 
@@ -125,7 +125,7 @@ import Form from "next/form";
 >
 > `next.config.ts`'te `typedRoutes: true` açarsanız `<Link href="/prodcts">` gibi yazım hataları tip hatası olur.[^10]
 
-## İleri Kalıplar
+## İleri kalıplar
 
 İki kalıp belirli arayüzler içindir, her projede gerekmez:[^11][^12]
 
@@ -134,14 +134,14 @@ import Form from "next/form";
 | Parallel route | `@cart/` | Aynı layout'ta bağımsız yüklenen iki bölüm |
 | Intercepting route | `(.)photo/[id]` | Listeden açılan fotoğrafı modal olarak göstermek, linki paylaşınca tam sayfa |
 
-## Kendin Dene
+## Kendin dene
 
 - `app/products/[slug]/page.tsx`'te `params`'ı `await` etmeden `params.slug` diye okuyun. TypeScript ne diyor?
 - `products/layout.tsx`'e bir sayaç butonu *(Client Component)* ekleyin. İki ürün arasında gezinin; sayaç sıfırlanıyor mu?
 - Aktif menü linkini `usePathname` ile işaretleyen bir `NavLink` yazın.
 - `typedRoutes`'u açıp var olmayan bir adrese link verin.
 
-## Detaylı Öğrenmek İçin
+## Detaylı öğrenmek için
 
 - **Resmi doküman:** "Layouts and Pages" ve "Linking and Navigating" sayfaları; prefetch, streaming ve istemci tarafı geçişin birlikte nasıl çalıştığını anlatır.[^1][^7]
 - **Resmi doküman:** `layout.js` referansının "Caveats" bölümü; layout'un neden `searchParams` ve `pathname` almadığını örneklerle gösterir.[^2]

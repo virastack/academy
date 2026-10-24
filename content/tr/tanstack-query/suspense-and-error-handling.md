@@ -5,7 +5,7 @@ lastVerified: "2026-10-21"
 translationKey: "tanstack-query/suspense-and-error-handling"
 ---
 
-## Hatayı Göstermenin Üç Yolu
+## Hatayı göstermenin üç yolu
 
 [TkDodo](https://tkdodo.eu/) TanStack Query'de hatayı ele almanın üç yolunu sayar ve bunları karıştırarak kullanmayı önerir:[^1]
 
@@ -17,7 +17,7 @@ translationKey: "tanstack-query/suspense-and-error-handling"
 
 `error` alanını önceki derslerde kullandınız. Bu derste diğer ikisi var.
 
-## Global Toast
+## Global toast
 
 v5 ile `useQuery`'nin `onSuccess`, `onError` ve `onSettled` callback'leri kaldırıldı. Mutation'larda duruyorlar.[^2] Sorgu başına callback, aynı sorguyu kullanan her component'te ayrı ayrı çalıştığı için aynı hata için üç toast gösterebiliyordu.[^1]
 
@@ -121,7 +121,7 @@ function ProductPage({ id }: { id: number }) {
 }
 ```
 
-## Hangisi Ne Zaman
+## Hangisi ne zaman
 
 | Durum | Öneri |
 | :-- | :-- |
@@ -140,13 +140,13 @@ declare module "@tanstack/react-query" {
 }
 ```
 
-## Kendin Dene
+## Kendin dene
 
 - Ürün API'sini her ikinci istekte hata verecek şekilde değiştirin. `QueryCache` `onError` ile toast gösterin; ilk yüklemedeki hatada toast çıkmadığını doğrulayın.
 - `ProductDetail`'i `useSuspenseQuery`'ye çevirin. `QueryErrorResetBoundary` olmadan "Tekrar dene"ye basın; ne oluyor?
 - Aynı component'e iki `useSuspenseQuery` koyun ve Network sekmesinde sırayla çalıştıklarını görün. `useSuspenseQueries` ile düzeltin.
 
-## Detaylı Öğrenmek İçin
+## Detaylı öğrenmek için
 
 - **Yazı:** [TkDodo](https://tkdodo.eu/), "React Query Error Handling"; `error` alanı, global callback'ler ve Error Boundary'yi birlikte kullanmak.[^1]
 - **Resmi doküman:** "Suspense"; `useSuspenseQuery`, `throwOnError` varsayılanı ve hata sınırlarını sıfırlamak.[^3]

@@ -7,7 +7,7 @@ translationKey: "auth-security/oauth-and-oidc"
 
 "[!google] Google ile giriş yap" düğmesine bastığınızda arka planda iki standart birlikte çalışır: **OAuth 2.0** ve onun üzerine kurulan **OpenID Connect** *(OIDC)*. Bu derste ikisinin ne işe yaradığını, bugün hangi akışın kullanılması gerektiğini ve token'ların nerede durması gerektiğini göreceksiniz.
 
-## OAuth Ne Çözer
+## OAuth ne çözer
 
 OAuth'tan önce bir uygulama Gmail kişilerinize erişmek isterse sizden Gmail parolanızı isterdi. OAuth bu sorunu çözmek için çıktı: kullanıcı parolasını paylaşmadan, bir uygulamaya **sınırlı ve geri alınabilir** bir erişim izni verir.[^1]
 
@@ -24,7 +24,7 @@ Akışta dört rol vardır:[^2]
 >
 > OAuth bir **yetkilendirme** protokolüdür: "bu uygulama şu API'ye şu kapsamda erişebilir" der. Kullanıcının kim olduğunu söylemez. Kimlik doğrulama için OIDC gerekir.
 
-## Authorization Code Akışı
+## Authorization Code akışı
 
 Bugün tarayıcıdan başlayan her OAuth girişi için önerilen akış budur:[^2][^3]
 
@@ -86,7 +86,7 @@ export async function createCodeChallenge(codeVerifier: string) {
 
 `createCodeChallenge("dBjftJeZ4CVP-mB92K27uhbUJU1p1r_wW1gFWFOEjXk")` çağrısı, RFC 7636'daki örnekle aynı sonucu verdi: `E9Melhoa2OwvFrEMTJguCHaoeK1t8URWbuGJSstw-cM`.[^5] Gerçek projede bunu kendiniz yazmazsınız; auth kütüphanesi yapar. Yine de bir kütüphanenin PKCE kullandığından emin olun.
 
-## Artık Kullanılmayan Akışlar
+## Artık kullanılmayan akışlar
 
 OAuth 2.0 güvenlik önerilerini toplayan RFC 9700 *(Ocak 2025)* bazı eski akışları açıkça bırakır:[^3]
 
@@ -125,7 +125,7 @@ ID token bir JWT'dir *(JWT'yi [Oturum, cookie ve JWT](/academy/auth-security/ses
 
 Kullanıcıyı veritabanınızda e-postayla değil, `iss` + `sub` ikilisiyle eşleştirin.[^8]
 
-### Access Token ve ID Token
+### Access token ve ID token
 
 İki token sık karıştırılır. oauth.net'teki kural kısa: ID token API'ye gönderilmez, access token'ı da istemci okumaz.[^9]
 
@@ -135,7 +135,7 @@ Kullanıcıyı veritabanınızda e-postayla değil, `iss` + `sub` ikilisiyle eş
 | Ne söyler | "Bu istek şu kapsamda yetkili" | "Bu kullanıcı şu anda giriş yaptı" |
 | Formatı | Sağlayıcıya göre değişir; istemci için opak | Her zaman JWT |
 
-## Token Nerede Durmalı
+## Token nerede durmalı
 
 Ağustos 2026'da yayımlanan RFC 10017, tarayıcı uygulamaları için üç mimari tarif eder ve bunları güvenlik sırasına koyar.[^10] Belgenin yazarları arasında [Aaron Parecki](https://aaronparecki.com/) ve [Philippe De Ryck](https://pragmaticwebsecurity.com/about) de var.
 
@@ -151,13 +151,13 @@ Gerekçe basit: sayfada çalışan kötü niyetli bir script, uygulamanın kendi
 >
 > Kural olarak: OAuth akışını sunucuda yürütün, tarayıcıya access token vermeyin, kullanıcıyı ilk derste gördüğünüz `HttpOnly` cookie ile tanıyın.
 
-## Kendin Dene
+## Kendin dene
 
 - Giriş yaparken DevTools > **Network** sekmesini açık tutun ve "Google ile giriş" yapan bir sitede `authorize` isteğini bulun. `response_type`, `scope` ve `state` parametrelerine bakın; PKCE kullanan sitelerde `code_challenge` da görürsünüz.
 - Yukarıdaki `createCodeChallenge` fonksiyonunu tarayıcı konsolunda çalıştırıp RFC 7636'daki örnek değeri elde edin.
 - Kendi kimlik sağlayıcınızın `/.well-known/openid-configuration` adresini açın; `authorization_endpoint`, `token_endpoint` ve desteklenen `code_challenge_methods_supported` alanlarını bulun.
 
-## Detaylı Öğrenmek İçin
+## Detaylı öğrenmek için
 
 - **Video:** [David Neal](https://reverentgeek.com/), "An Illustrated Guide to OAuth and OpenID Connect" *(16 dk)*; akışın çizimlerle anlatımı.[^2]
 - **Konuşma:** [Aaron Parecki](https://aaronparecki.com/), "Why Do We Really Need OAuth?" *(OWASP NZ 2022)*; OAuth'un çözdüğü sorun ve bugünkü akışlar.[^1]

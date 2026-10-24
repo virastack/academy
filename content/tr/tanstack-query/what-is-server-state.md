@@ -5,7 +5,7 @@ lastVerified: "2026-10-21"
 translationKey: "tanstack-query/what-is-server-state"
 ---
 
-## Bu Rehber Ne Anlatıyor
+## Bu rehber ne anlatıyor
 
 [!tanstack-query] dokümanı İngilizce ve kapsamlı. Bu rehber onu tekrar etmiyor. Her derste konuyu kısaca özetleyip kütüphanenin maintainer'larının önerilerini ve yaygın hataları topluyor. Sürüm: TanStack Query v5.104 *(Ekim 2026)*. React 18 ve sonrasıyla çalışır.[^1][^2]
 
@@ -15,7 +15,7 @@ translationKey: "tanstack-query/what-is-server-state"
 >
 > Kütüphanenin eski adı **React Query**. Blog yazılarında ve konuşmalarda iki ad da geçer; aynı kütüphaneden söz edilir.[^1]
 
-## Server State Nedir
+## Server state nedir
 
 Bir component'in ekranda gösterdiği verinin iki kaynağı olabilir. **Client state** yalnızca tarayıcıda yaşar: modal açık mı, hangi sekme seçili. **Server state** ise başka bir yerde durur ve siz onun yalnızca bir kopyasını görürsünüz. Doküman server state'i dört özellikle tanımlar:[^1]
 
@@ -26,7 +26,7 @@ Bir component'in ekranda gösterdiği verinin iki kaynağı olabilir. **Client s
 
 Sepetteki ürün sayısı client state'tir. Ürünün stok adedi server state'tir: siz sayfaya bakarken başka bir müşteri son ürünü satın alabilir.
 
-## useEffect ile Veri Çekmek Neden Yetmez
+## useEffect ile veri çekmek neden yetmez
 
 İlk akla gelen çözüm `useEffect` içinde `fetch`'tir:
 
@@ -56,7 +56,7 @@ TanStack Query'nin ana maintainer'ı [Dominik Dorfmeister](https://tkdodo.eu/) *
 
 Hepsini düzeltmek için cleanup'ta bir `ignore` bayrağı, ayrı `isLoading` ve `error` state'leri ve kategori değişince sıfırlama gerekir. React dokümanı da Effect içinde veri çekmeyi tarif ederken bu yüzden bir framework'ü ya da bir veri kütüphanesini önerir.[^4] TkDodo sonucu tek cümleyle özetler: *"Veri çekmek kolay. Asenkron state yönetimi değil."*[^3]
 
-## TanStack Query Ne Yapar
+## TanStack Query ne yapar
 
 TanStack Query bir veri çekme kütüphanesi değildir; `fetch`'i yine siz yazarsınız. Kütüphane, o `fetch`'in sonucunu bir **anahtarla** cache'ler ve uygulamanın her yerinde tutarlı biçimde paylaşır:[^1][^3]
 
@@ -87,7 +87,7 @@ Yukarıdaki beş hata burada yok. Veri anahtara *(`category`)* göre saklandığ
 - Kullanılmayan veriyi bir süre sonra bellekten silmek.
 - Sayfalama, sonsuz liste ve iyimser güncelleme gibi kalıplar.
 
-## Client State Nerede Kalır
+## Client state nerede kalır
 
 TanStack Query bir **server state** kütüphanesidir. Redux ya da [!zustand] gibi client state kütüphanelerinin yerini almaz, onlarla birlikte çalışır. Doküman bir örnekle gösterir: global store'daki `projects`, `teams`, `tasks` ve `users` TanStack Query'ye taşındığında geriye çoğu zaman yalnızca `themeMode` ve `sidebarStatus` kalır.[^5]
 
@@ -100,7 +100,7 @@ TanStack Query bir **server state** kütüphanesidir. Redux ya da [!zustand] gib
 
 TkDodo'nun kuralı: sunucudan gelen veriyi client state'e kopyalamayın. Kopyaladığınız an arka plandaki güncellemeleri kaçırırsınız ve iki gerçeği senkron tutmaya çalışırsınız.[^7] TanStack'in yaratıcısı [Tanner Linsley](https://github.com/tannerlinsley) da React Summit 2020 konuşmasında aynı noktadan başlar: global store'ların büyük kısmı aslında sunucu verisinin cache'idir.[^8]
 
-## Ne Zaman Gerekmez
+## Ne zaman gerekmez
 
 Next.js App Router gibi Server Component destekli bir framework'te veri çoğunlukla sunucuda okunur. TkDodo bu durumda açık konuşur: veri çekme ve mutation için olgun bir çözümü olan bir framework'le yeni başlıyorsanız muhtemelen TanStack Query'ye ihtiyacınız yok.[^9] Doküman da aynı öneriyi yapar: framework'ün sunduğuyla başlayın, ihtiyaç doğana kadar eklemeyin.[^10]
 
@@ -113,13 +113,13 @@ Kütüphane şu durumlarda hâlâ değerlidir:[^9]
 
 Boyut endişesi için TkDodo'nun ölçümü: `QueryClient`, `QueryClientProvider`, `useQuery` ve `useMutation` ile 10 kB'ın altında *(minify + gzip)*. npm sayfasında gördüğünüz boyut kaynak kodu ve source map'leri de içerir, tarayıcıya gitmez.[^11]
 
-## Kendin Dene
+## Kendin dene
 
 - Yukarıdaki `useEffect` örneğinde kategoriyi hızlıca değiştirin ve DevTools'un Network sekmesinde cevapların sırasını izleyin. Ekranda hangi kategori kalıyor?
 - Aynı component'i `useQuery` ile yazın ve aynı denemeyi tekrarlayın.
 - Kendi projenizdeki global store'u açın. Hangi alanlar aslında sunucu verisinin kopyası?
 
-## Detaylı Öğrenmek İçin
+## Detaylı öğrenmek için
 
 - **Yazı:** [TkDodo](https://tkdodo.eu/), "Why You Want React Query"; `useEffect` ile veri çekmenin beş hatası ve TanStack Query karşılığı.[^3]
 - **Video:** [Tanner Linsley](https://github.com/tannerlinsley), "React Query: It's Time to Break up with your Global State!"; kütüphaneyi tanıtan React Summit 2020 konuşması.[^8]

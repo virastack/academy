@@ -5,7 +5,7 @@ lastVerified: "2026-10-21"
 translationKey: "nextjs/ai-agents"
 ---
 
-## Sorun: Model Eski Next.js'i Biliyor
+## Sorun: Model eski Next.js'i biliyor
 
 Next.js son iki yılda hızlı değişti. Bir modelin eğitim verisi çoğu zaman kurulu sürümden eskidir ve eski kalıpları önerir.[^1] Bu rehberde gördüğünüz değişikliklerin AI çıktısında sık görülen eski hâlleri:
 
@@ -21,7 +21,7 @@ Next.js son iki yılda hızlı değişti. Bir modelin eğitim verisi çoğu zama
 
 Next.js ekibi bu sorunu framework'ün içinden çözmeye karar verdi. 16.2'den beri her sürüm agent'lar için ayrı araçlarla geliyor.[^2][^3]
 
-## Paketle Gelen Doküman ve AGENTS.md
+## Paketle gelen doküman ve AGENTS.md
 
 Next.js 16.2'den beri doküman paketin içinde, `node_modules/next/dist/docs/` altında gelir. Kurulu sürümle birebir eşleşir ve internet gerektirmez. 16.3'ten beri `create-next-app` ve `next dev`, projenin kökündeki `AGENTS.md`'ye agent'ı bu klasöre yönlendiren bir blok yazar:[^1]
 
@@ -47,7 +47,7 @@ Neden skill değil de `AGENTS.md`? Vercel'in Next.js 16 değerlendirmesinde `AGE
 
 Agent `node_modules`'a erişemiyorsa: nextjs.org'daki her doküman sayfası `.md` uzantısıyla düz Markdown döner, `/docs/llms.txt` de bir dizin sunar.[^1]
 
-## Hatalar Prompt'a Dönüşür
+## Hatalar prompt'a dönüşür
 
 Cache Components açıkken engelleyici bir hata, etiketli çözümlerle gelir. Aynı liste geliştirme ekranında, terminalde ve `next build` çıktısında görünür; yani CI loglarını okuyan bir agent da görür:[^1]
 
@@ -64,7 +64,7 @@ Learn more: https://nextjs.org/docs/messages/blocking-prerender-dynamic
 
 Hata ekranındaki **Copy prompt** butonu seçtiğiniz çözümü agent'a yapıştırılacak bir talimata çevirir. `Learn more` sayfaları da agent'lar okusun diye yazılmıştır: her çözümün kalıbı, ödünleşimi ve ilk denemede gözden kaçan noktalar.[^1]
 
-## Çalışan Uygulamayı Görmek
+## Çalışan uygulamayı görmek
 
 Agent'ın değişikliğini doğrulaması için hem framework'ün hem tarayıcının gördüğünü bilmesi gerekir:[^1][^6]
 
@@ -72,7 +72,7 @@ Agent'ın değişikliğini doğrulaması için hem framework'ün hem tarayıcın
 - Dev sunucusu `/_next/mcp` adresinde bir MCP uç noktası açar. `next-devtools-mcp` ile bağlanan agent rotaları, hataları ve derleme sorunlarını okur; `next build` çalıştırmadan kodun derlenip derlenmediğini sorabilir. Kurulumu [MCP](/academy/ai/mcp) dersinde.
 - `next-dev-loop` skill'i, `agent-browser` CLI'ı ile tarayıcının DOM, konsol ve ağ görünümünü ekler. React DevTools açık başlatıldığı için component ağacını ve bekleyen Suspense sınırlarını da okur.
 
-## Next.js Skill'leri
+## Next.js skill'leri
 
 Doküman bilgiyi verir, skill'ler ise **çok adımlı işleri** sıralar. Next.js ekibinin kendi skill'leri:[^1][^7]
 
@@ -92,7 +92,7 @@ npx skills add vercel/next.js --skill next-dev-loop
 
 `optimizer` skill'lerinin yöntemi iyi bir alışkanlık: önce istenen davranışı bir testle tarif et, test geçene kadar değiştir, testi commit'le ki gelecekteki bir değişiklik bozarsa yakalansın.[^1] Skill yazmanın genel kuralları [Skills](/academy/ai/skills) dersinde.
 
-## Agent ile Sürüm Güncellemek
+## Agent ile sürüm güncellemek
 
 `next upgrade --agent`, yeni sürümün geçiş rehberlerini toplar ve işi agent'a devreder; agent değişikliği yapar ve uygulamayı doğrular. 16.4'te deneysel ve `canary` sürümüyle çalışıyor:[^8]
 
@@ -106,13 +106,13 @@ npx next@canary upgrade --agent=latest
 > - "Bitti" demeden önce `npm run lint`, `tsc --noEmit` ve `next build` çalıştırmasını şart koşun.
 > - Önerilen kodu yukarıdaki tabloyla karşılaştırın; eski bir kalıp görürseniz agent'a ilgili doküman sayfasını verin.
 
-## Kendin Dene
+## Kendin dene
 
 - Bir AI aracına `AGENTS.md`'siz bir klasörde *"Next.js'te ürün sayfasını 60 saniyede bir yenilenecek şekilde cache'le"* deyin. Sonra aynı isteği `create-next-app` ile açılmış projede yapın. Cevapları tablodaki satırlarla karşılaştırın.
 - Bir sayfada cache'lenmemiş veriyi `<Suspense>` dışında okuyun. Hata ekranındaki **Copy prompt**'u bir agent'a yapıştırın ve hangi çözümü seçtiğine bakın.
 - `next-devtools-mcp`'yi bağlayın ve agent'a *"projedeki rotaları listele"* deyin.
 
-## Detaylı Öğrenmek İçin
+## Detaylı öğrenmek için
 
 - **Resmi doküman:** "How Next.js supports AI coding agents"; paketle gelen doküman, hata rehberleri, MCP, skill'ler ve agent geri bildirimi.[^1]
 - **Yazı:** Vercel'in "AGENTS.md outperforms skills in our agent evals" yazısı; değerlendirmenin nasıl kurulduğu ve skill'lerin neden geride kaldığı.[^5]

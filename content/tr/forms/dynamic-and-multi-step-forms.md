@@ -82,7 +82,7 @@ Dokümanın kuralları:[^2]
 
 `append` yeni satırın ilk alanına odaklanır. Klavye ve ekran okuyucu kullanıcısı için doğrudur; istemezseniz `append(value, { shouldFocus: false })`.[^2] Silme butonundaki `aria-label` her satırın butonunu ayırt eder; yalnızca "Kaldır" yazan beş buton ekran okuyucuda aynı duyulur.
 
-## Dizinin Kendi Hatası
+## Dizinin kendi hatası
 
 `min(1)` ve `max(3)` tek bir satırın değil dizinin hatasıdır. Resolver bu hatayı satır hatalarıyla çakışmasın diye `errors.products.root`'a yazar. Dizi tamamen boşsa satır adı olmadığından hata doğrudan `errors.products.message`'a düşer. İkisini birlikte okuyun:[^2][^3]
 
@@ -95,7 +95,7 @@ const listError = errors.products?.root?.message ?? errors.products?.message;
 
 Yukarıdaki form son satırın silinmesini ve dördüncü satırı engellediği için bu mesajlar normal kullanımda görünmez. Yine de şemadaki sınır sunucuyu korur.
 
-## Controller: Controlled Bileşenler
+## Controller: Controlled bileşenler
 
 `register` DOM input'ları içindir. Kendi `value` ve `onChange` prop'larını isteyen bir bileşen *(tarih seçici, yıldız puanı, bir UI kütüphanesinin select'i)* için `Controller` kullanılır. `render` fonksiyonuna `field` *(value, onChange, onBlur, name, ref)* ve `fieldState` *(error, invalid)* gelir:[^4]
 
@@ -123,7 +123,7 @@ Yukarıdaki form son satırın silinmesini ve dördüncü satırı engellediği 
 
 Bir alanın değerini yalnızca dışarıdan güncellemek istiyorsanız `Controller` gerekmez; `useForm`'un `values` seçeneği yeterlidir.[^4]
 
-## FormProvider ile Bölmek
+## FormProvider ile bölmek
 
 Uzun bir formu component'lere bölünce `register`'ı ve `control`'ü prop olarak geçmek yorar. `FormProvider` form nesnesini Context'e koyar; alt component'ler `useFormContext` ile alır:[^5]
 
@@ -151,7 +151,7 @@ export function StoreStep() {
 
 Context, form durumu değişince altındaki ağacı render eder. Hata göstermek gibi alana özel durumları `useFormState({ name })` ile okuyun; yalnızca o alan değişince render olur. [Hata gösterimi ve erişilebilirlik](/academy/forms/errors-and-accessibility) dersindeki `Field` component'i bu yüzden `useFormState` kullanır.[^5][^6]
 
-## Çok Adımlı Form
+## Çok adımlı form
 
 Mağaza, iletişim ve ödeme bilgileri üç adımda istensin. İki yaklaşım var:
 
@@ -203,7 +203,7 @@ async function goNext() {
 <h2>{steps[step].title}</h2>
 ```
 
-## Next.js'te Suspense Notu
+## Next.js'te Suspense notu
 
 [!nextjs] 16'da `cacheComponents` açıkken sayfalar build sırasında önceden render edilir. `useFieldArray` satır `id`'lerini `crypto.randomUUID()` ile üretir. Next.js, rastgele değer üreten bir Client Component'i önceden render etmeyi reddeder ve build hatası verir: her ziyaretçiye aynı `id` gitmesin diye. Çözüm formu `<Suspense>` ile sarıp istek anında render etmektir:[^10]
 
@@ -221,7 +221,7 @@ export default function Page() {
 }
 ```
 
-## Kendin Dene
+## Kendin dene
 
 - `key={field.id}`'yi `key={index}` yapın. Üç satıra farklı adlar yazıp ortadakini silin. Ne oluyor?
 - `append({ name: "" })` yazın. TypeScript ne diyor?
@@ -229,7 +229,7 @@ export default function Page() {
 - `goNext`'teki `shouldFocus`'u silip boş formla "İleri"ye basın. Odak nerede?
 - İkinci adıma geçin, geri dönün. Ürün satırları ve değerleri duruyor mu? `useForm({ shouldUnregister: true })` ile tekrar deneyin.
 
-## Detaylı Öğrenmek İçin
+## Detaylı öğrenmek için
 
 - **Resmi doküman:** "useFieldArray"; tüm işlemler, kurallar ve örnekler.[^2]
 - **Resmi doküman:** "Controller"; controlled bileşenleri bağlamak.[^4]

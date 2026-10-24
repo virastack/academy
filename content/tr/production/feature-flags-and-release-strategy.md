@@ -5,13 +5,13 @@ lastVerified: "2026-10-22"
 translationKey: "production/feature-flags-and-release-strategy"
 ---
 
-## Deploy Etmek ile Yayınlamak Farklıdır
+## Deploy etmek ile yayınlamak farklıdır
 
 **Deploy**, yeni kodun sunucuya gitmesidir. **Yayın** *(release)*, kullanıcının yeni özelliği görmesidir. Çoğu projede ikisi aynı andadır: kod canlıya çıktığı an herkes yeni özelliği görür ve bir sorun çıkarsa tek çare geri deploy etmektir.
 
 Feature flag *(özellik bayrağı)* ikisini ayırır. Kod canlıdadır ama özellik kapalıdır; kimin ne zaman göreceğine bir yapılandırma karar verir. Sorun çıkarsa flag kapatılır, deploy gerekmez.
 
-## Flag Türleri
+## Flag türleri
 
 Pete Hodgson'ın [martinfowler.com](https://martinfowler.com/)'da yayımlanan yazısı flag'leri ne kadar yaşadıklarına ve ne kadar dinamik olduklarına göre dörde ayırır:[^1]
 
@@ -90,13 +90,13 @@ async function OrdersSection() {
 
 Her flag aynı biçimde çağrılır: `await orderSummaryFlag()`. Editörde "Tüm referansları bul" ile flag'in nerelerde kullanıldığı görünür; silme günü geldiğinde bu çok işe yarar.[^3]
 
-## Neden Sunucuda?
+## Neden sunucuda?
 
 Flags SDK flag'lerin sunucuda değerlendirilmesini savunur. Tarayıcıda değerlendirilen bir flag, değeri ağdan gelene kadar ya bir yükleniyor göstergesi ya da tahmini bir sürüm göstermek zorundadır; değer farklı çıkarsa sayfa kayar.[^5] Sunucuda değerlendirilen flag'de sunucu yalnızca doğru sürümü gönderir.
 
 Bedeli: flag cookie okuduğu için sayfanın o kısmı isteğe bağlı *(dinamik)* olur. Bu projede flag zaten oturum okuyan, `Suspense` içindeki bir bileşende çağrılır *(bkz. [Veri çekme ve streaming](/academy/nextjs/data-fetching-and-streaming))*. Statik kalması gereken pazarlama sayfaları için SDK'nın proxy ile önceden hesaplama *(precompute)* kalıpları vardır.[^5]
 
-## Yüzdeli Açılış
+## Yüzdeli açılış
 
 "Kullanıcıların yüzde 10'una aç" demek kolaydır, doğru yapmak değil. `Math.random() < 0.1` her istekte farklı sonuç verir: kullanıcı sayfayı yenileyince özellik kaybolur.
 
@@ -150,7 +150,7 @@ Flag'ler özellik düzeyinde çalışır. Bir de **deploy düzeyinde** stratejil
 >
 > Kademeli yayın sırasında eski ve yeni sürüm aynı anda çalışır. Veritabanı şeması değişiyorsa yeni sürüm eski şemayla, eski sürüm yeni şemayla da çalışabilmelidir. Next.js tarafındaki karşılığı sürüm farkıdır *(version skew)*; `deploymentId` bunun için vardır *(bkz. [Deploy seçenekleri](/academy/production/deployment-options))*.
 
-## Açılışı İzlemek
+## Açılışı izlemek
 
 Yüzdeyi artırmadan önce sorun: hata oranı arttı mı? Gecikme değişti mi? Hata izleme ve loglarda flag'in açık olduğu kullanıcıları ayırabilmek için flag değerini kayıtlara ekleyin:
 
@@ -160,7 +160,7 @@ logger.info({ event: "orders_viewed", userId: user.id, orderSummary: showSummary
 
 Tipik bir açılış takvimi: iç ekip, yüzde 1, yüzde 10, yüzde 50, yüzde 100. Her adımda metriklere bakın; bir sonraki adıma geçmek bir karardır, otomatik değildir.
 
-## Flag'leri Test Etmek
+## Flag'leri test etmek
 
 Flag'li bir özelliğin iki hali vardır ve ikisi de test edilmelidir.
 
@@ -179,14 +179,14 @@ webServer: {
 
 Flags SDK test başına değer vermek için şifreli bir override cookie'si de destekler. Bunun için `FLAGS_SECRET` gerekir; aynı secret Vercel Toolbar'ın Flags Explorer'ı ile kendi oturumunuzda flag değiştirmeye de yarar.[^8]
 
-## Kendin Dene
+## Kendin dene
 
 - Projenize bir yayın flag'i ekleyin. Kapalıyken eski, açıkken yeni bileşeni gösterin.
 - `rolloutBucket`'ı 10.000 kimlikle çalıştırın ve yüzde 10, 30, 50 için dağılımı ölçün.
 - Tuzu çıkarın ve iki farklı flag için içeride kalan kullanıcıların aynı olduğunu görün.
 - Projenizdeki flag'leri listeleyin. Hangisi yüzde 100'de ve hâlâ kodda?
 
-## Detaylı Öğrenmek İçin
+## Detaylı öğrenmek için
 
 - **Yazı:** Pete Hodgson, "Feature Toggles (aka Feature Flags)"; flag türleri, karar noktası ve taşıma maliyeti.[^1]
 - **Resmi doküman:** Flags SDK, "Quickstart" ve "Flags as Code"; Next.js'te flag tanımlamak.[^2][^3]

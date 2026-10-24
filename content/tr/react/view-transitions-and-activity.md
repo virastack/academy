@@ -5,7 +5,7 @@ lastVerified: "2026-10-21"
 translationKey: "react/view-transitions-and-activity"
 ---
 
-## İki Yeni Bileşen
+## İki yeni bileşen
 
 React 19.2 `<Activity>`'yi, React 19.3 de `<ViewTransition>`'ı kararlı hâle getirdi.[^1][^2] İkisi de aynı soruya cevap verir: arayüz bir durumdan diğerine geçerken ne olmalı? `ViewTransition` geçişi **canlandırır**, `Activity` gizlenen parçanın **state'ini korur**.
 
@@ -138,14 +138,14 @@ Tipik kullanımlar: kullanıcının yazdığı yorum taslağı sekme değişince
 >
 > Gizlenen parçada video, ses ya da bir zamanlayıcı varsa Effect cleanup'ında durdurun. Activity Effect'leri söker ama `<video>` elemanı DOM'da kalır ve kendi kendine oynamaya devam edebilir.[^5]
 
-## Kendin Dene
+## Kendin dene
 
 - `SizeGuideToggle`'da `startTransition`'ı kaldırın; animasyon ne oldu?
 - `CartDrawer` için `slide-up`/`slide-down` class'larını ve `@keyframes`'leri yazın, sonra işletim sisteminizde "hareketi azalt" ayarını açıp deneyin.
 - Ürün kartındaki görsel ile detaydaki görsele aynı `name`'i verin ve sayfa geçişini izleyin.
 - `ProductTabs`'ta yorum formuna bir şey yazın, sekmeyi değiştirip geri dönün. Sonra `Activity` yerine `&&` kullanıp tekrar deneyin.
 
-## Detaylı Öğrenmek İçin
+## Detaylı öğrenmek için
 
 - **Resmi doküman:** `<ViewTransition>` referansı; ekleme/çıkarma, ortak eleman, liste sıralama, Suspense ve JavaScript ile animasyon örnekleri.[^3]
 - **Video:** [Chance Strickland](https://chance.dev/)'ın React ekibiyle birlikte hazırladığı "View Transitions and Activity" konuşması *(React Conf 2025, 1. gün)*.[^7]
