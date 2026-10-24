@@ -212,7 +212,7 @@ Server Component'te kullanılan kütüphaneler istemciye gönderilmez; tarayıc�
 ## Kaynaklar
 
 1. [Next.js: Optimizing package bundling](https://nextjs.org/docs/app/guides/package-bundling) *(doc)* — Bundle Analyzer, `@next/bundle-analyzer`, `optimizePackageImports` ve ağır işi Server Component'e taşımak.
-2. [Addy Osmani, Mathias Bynens: The cost of JavaScript in 2019](https://v8.dev/blog/cost-of-javascript-2019) *(article)* — İndirme ve çalıştırma maliyeti, bundle'ı 50-100 kB üstünde bölme önerisi.
+2. [V8: The cost of JavaScript in 2019](https://v8.dev/blog/cost-of-javascript-2019) *(article)* — Addy Osmani ve Mathias Bynens. İndirme ve çalıştırma maliyeti, bundle'ı 50-100 kB üstünde bölme önerisi.
 3. [Web Almanac 2025: Page Weight](https://almanac.httparchive.org/en/2025/page-weight) *(research)* — Sayfa başına medyan JavaScript boyutu ve istek sayısı.
 4. [Next.js 16 (beta)](https://nextjs.org/blog/next-16-beta) *(doc)* — Turbopack'in varsayılan bundler olması ve `--webpack` ile geri dönüş.
 5. [Vite 8](https://vite.dev/blog/announcing-vite8) *(doc)* — Rolldown'ın Vite'ın tek bundler'ı olması.
