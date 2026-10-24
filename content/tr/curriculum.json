@@ -1116,7 +1116,7 @@
                   "slug": "composition",
                   "title": "Composition over Inheritance",
                   "description": "React'te neden kalıtım değil composition kullanılır.",
-                  "status": "coming_soon",
+                  "status": "published",
                   "kind": "lesson"
                 },
                 {
