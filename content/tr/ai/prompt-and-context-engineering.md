@@ -1,7 +1,7 @@
 ---
 title: "Prompt ve context engineering"
 description: "İyi istek yazma, doğru bağlam verme, CLAUDE.md/AGENTS.md ve proje kural dosyaları."
-lastVerified: "2026-10-14"
+lastVerified: "2026-10-26"
 translationKey: "ai/prompt-and-context-engineering"
 ---
 
@@ -81,6 +81,24 @@ Pratikte:
 - **İki düzeltmeden sonra sıfırlayın.** Başarısız denemeler bağlamı kirletir. Öğrendiklerinizle daha iyi bir ilk istek yazıp yeni konuşma açın[^4].
 - **Önemli kararı dosyaya yazın.** Araçlar uzayan konuşmayı özetler, özet küçük ayrıntıları kaybedebilir[^3]. Yalnızca konuşmada söylediğiniz talimat özetten sonra kaybolabilir[^5].
 - **Ne yüklendiğine bakın.** [!claudeCode]'da `/context` hangi talimat dosyalarının yüklendiğini gösterir[^4].
+
+### Bağlam dolunca ve oturumlar arasında
+
+Pencere dolmaya yaklaşınca [!claudeCode] konuşmayı kendiliğinden **özetler** *(compaction)*. Kod kalıplarını, dosya durumlarını ve önemli kararları korumaya çalışır.[^4] Bunu siz de yönetebilirsiniz:[^4]
+
+| Komut | Ne yapar | Ne zaman |
+| :-- | :-- | :-- |
+| `/clear` | Bağlamı tamamen sıfırlar | İlgisiz bir işe geçerken |
+| `/compact <odak>` | Konuşmayı verdiğiniz odağa göre özetler | Uzun bir işin ortasında, örneğin `/compact API değişikliklerine odaklan` |
+| `/btw` | Yan soruyu cevaplar, cevap konuşmaya girmez | Küçük bir ayrıntıyı kontrol ederken |
+
+`CLAUDE.md`'ye *"özetlerken değişen dosyaların listesini ve test komutlarını koru"* gibi bir satır ekleyerek özetin neyi tutacağını da belirleyebilirsiniz.[^4]
+
+Her oturum boş bir bağlamla başlar. Oturumlar arasında bilgiyi iki şey taşır: sizin yazdığınız `CLAUDE.md` ve ajanın kendi tuttuğu **otomatik hafıza**.[^5] Ajana *"her zaman pnpm kullan"* dediğinizde bunu `~/.claude/projects/<proje>/memory/` altına not eder. Her oturumda bu notların dizini olan `MEMORY.md`'nin ilk 200 satırı yüklenir.[^5] `/memory` ile notları görüp düzenleyebilirsiniz.[^5]
+
+> [!WARNING]
+>
+> Hafıza da talimat gibi bağlamdır, zorunlu değildir.[^5] Konuşmanızı saklayan üçüncü taraf hafıza eklentileri ise oturum içeriğini başka bir servise gönderebilir. Kurmadan önce verinin nereye gittiğine bakın.
 
 > [!TIP]
 >

@@ -1,7 +1,7 @@
 ---
 title: "Modeller ve araçlar"
 description: "Model türleri, güçlü ve zayıf yönleri; sohbet, editör ve terminal tabanlı araçlar."
-lastVerified: "2026-10-18"
+lastVerified: "2026-10-26"
 translationKey: "ai/models-and-tools"
 ---
 
@@ -104,6 +104,21 @@ Bu katman mantığını ve model tercihlerini, bir e-ticaret sitesinin sepet ve 
 | `CartItem` bileşenini ve `useCart` hook'unu yazmak | Dengeli katman ([!claude] **Sonnet**) + editör *([!cursor] veya [!copilot])* | Günlük arayüz geliştirmede yüksek kod kalitesini hızlı ve makul maliyetle almak esastır. |
 | 30 dosyada import yollarını güncellemek | Hızlı ve ucuz katman ([!claude] **Haiku**) + terminal *(CLI)* veya editör | Mantıksal risk taşımayan mekanik güncellemeleri pahalı modellere bırakmamak gerekir. |
 
+## Modelin sınırları
+
+Model ne kadar güçlü olursa olsun dört sınırı vardır. Bunları bilmek, çıktıya ne kadar güveneceğinizi belirler.
+
+- **Bilgisi eğitim tarihinde kalır.** Kurulu kütüphane modelin bildiğinden yeniyse eski API'yi önerir. Next.js'teki örnekleri [AI agent'larla Next.js](/academy/nextjs/ai-agents) dersinde gördünüz. Çözüm, güncel dokümanı bağlama vermektir.
+- **Uydurabilir.** Var olmayan bir prop, fonksiyon ya da paket önerebilir. 16 modelle üretilen 576.000 kod örneğini inceleyen bir çalışmada ticari modeller en az %5,2, açık modeller %21,7 oranında var olmayan paket önerdi.[^9] Saldırganlar bu isimlerle sahte paket yayınlayabilir *(bkz. [Secret ve bağımlılık güvenliği](/academy/auth-security/secrets-and-dependencies))*. Önerilen her paketi kurmadan önce npm'de kontrol edin.
+- **Emin görünmek doğru olmak demek değildir.** Model yanlış cevabı da aynı tonla yazar. [!anthropic], modele *"emin değilsen bilmiyorum de"* izni vermenin ve iddialarına kaynak istemenin uydurmayı belirgin şekilde azalttığını söylüyor.[^10]
+- **Çalışan uygulamayı görmez.** Tarayıcı, test ya da ekran görüntüsü vermezseniz arayüzün gerçekte nasıl göründüğünü bilemez. Ona kendi işini kontrol edebileceği bir yol verin *(bkz. [Test, eval ve code review](/academy/ai/testing-evals-and-code-review))*.
+
+> [!DONT]
+>
+> - Açıklayamadığınız kodu commit etmek.
+> - Ödeme, yetkilendirme ve kişisel veri koduna incelemeden onay vermek.
+> - Önerilen paketi adına bakmadan kurmak.
+
 ## Kaynaklar
 
 1. [Addy Osmani: AI Coding Agent](https://addyosmani.com/agentic-engineering/ai-coding-agent/) *(article)* — Kodu yalnızca öneren sohbet ile kodu yazıp çalıştıran ve düzelten kodlama ajanı arasındaki fark.
@@ -114,3 +129,5 @@ Bu katman mantığını ve model tercihlerini, bir e-ticaret sitesinin sepet ve 
 6. [Anthropic: Choosing a Claude model and effort level in Claude Code](https://claude.com/blog/claude-model-and-effort-level-in-claude-code) *(article)* — Model ile effort'un neyi değiştirdiği, hangisine ne zaman dokunulacağı.
 7. [Google: Prompt design strategies](https://ai.google.dev/gemini-api/docs/prompting-strategies) *(doc)* — Gemini 3'ün düşünme davranışı ("Enhancing reasoning and planning" bölümü).
 8. [Anthropic: Claude Code Overview](https://code.claude.com/docs/en/overview) *(doc)* — Claude Code'un terminal, IDE, masaüstü ve web'de çalıştığı yerler.
+9. [USENIX Security: We Have a Package for You! A Comprehensive Analysis of Package Hallucinations by Code Generating LLMs](https://www.usenix.org/conference/usenixsecurity25/presentation/spracklen) *(research)* — Spracklen ve diğerleri, USENIX Security 2025. 16 modelde var olmayan paket önerme oranları.
+10. [Claude Platform: Reduce hallucinations](https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/reduce-hallucinations) *(doc)* — "Bilmiyorum" izni, alıntıyla temellendirme ve kaynakla doğrulama.

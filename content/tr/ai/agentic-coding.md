@@ -1,7 +1,7 @@
 ---
 title: "Agentic kodlama"
 description: "Claude Code ve Cursor gibi araçlarla planla, kodla, test et döngüsü ve subagent'lar."
-lastVerified: "2026-10-14"
+lastVerified: "2026-10-26"
 translationKey: "ai/agentic-coding"
 ---
 
@@ -96,9 +96,7 @@ Dosyalara yazma, bulduklarını dosya ve satır numarasıyla raporla.
 >
 > *"Boşluk bul"* diye yönlendirilen inceleyici sağlam işte bile bir şeyler bulur, peşine düşmek de gereksiz soyutlama ve savunmacı kod üretir. İnceleyiciye yalnızca doğruluğu veya belirtilen gereksinimleri etkileyen boşlukları raporlamasını söyleyin.[^2]
 
-**Paralel çalışma:** Birden çok ajan aynı klasörde çalışırsa birbirinin dosyasını ezer. Her ajanı kendi git worktree'sinde çalıştırın. [!cursor] worktree'leri kendisi yönetir, [!claudeCode]'da ayrı oturumları worktree'lerde açarsınız.[^2][^3][^6]
-
-**Maliyet:** Her subagent kendi token'ını harcar. [!cursor]'a göre beş subagent'ı paralel çalıştırmak, kabaca tek ajanın beş katı token demek. Bağlam izolasyonu hız değil düzen sağlar: basit işte ana ajan daha hızlıdır.[^6] İki-üç odaklı subagent'la başlayın, "yardımcı" diye onlarca genel subagent açmayın.[^6] [!claudeCode]'da subagent açıklamaları da bağlamdan yer kaplar.[^5]
+Birden çok ajanı aynı anda çalıştırmak [Paralel ajanlar](/academy/ai/parallel-agents), spec, kod ve test rollerini bir hatta bağlamak [Ajan takımı kurmak](/academy/ai/agent-teams) dersinde. Her subagent kendi token'ını harcar. İki-üç odaklı subagent'la başlayın, *"yardımcı"* diye onlarca genel subagent açmayın.[^6]
 
 <details>
 <summary>Hata ayıklama modu ([!cursor])</summary>
