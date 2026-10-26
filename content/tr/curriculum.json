@@ -1326,6 +1326,13 @@
                   "description": "Ajanı kurala bağlama: format, lint ve test kapısı, tehlikeli işlemleri engelleme ve izin modları.",
                   "status": "published",
                   "kind": "lesson"
+                },
+                {
+                  "slug": "parallel-agents",
+                  "title": "Paralel ajanlar",
+                  "description": "Git worktree ile birden çok ajanı aynı anda, birbirinin dosyasını ezmeden çalıştırma.",
+                  "status": "published",
+                  "kind": "lesson"
                 }
               ]
             },
