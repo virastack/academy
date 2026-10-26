@@ -1310,6 +1310,19 @@
               ]
             },
             {
+              "id": "ajan-takimlari",
+              "title": "Ajan Takımları",
+              "lessons": [
+                {
+                  "slug": "spec-driven-development",
+                  "title": "Spec-driven geliştirme",
+                  "description": "Ajana önce spec ve görev listesi yazdırma, sonra görev görev uygulatma ve spec'i güncel tutma.",
+                  "status": "published",
+                  "kind": "lesson"
+                }
+              ]
+            },
+            {
               "id": "uygulamaya-ai-ekleme",
               "title": "Uygulamaya AI Ekleme",
               "lessons": [
