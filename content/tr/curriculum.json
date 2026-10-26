@@ -1340,6 +1340,13 @@
                   "description": "Spec, frontend, test ve inceleme rollerinde subagent'larla hat kurma, hata döngüsü, lead özeti ve agent teams.",
                   "status": "published",
                   "kind": "lesson"
+                },
+                {
+                  "slug": "unattended-agents",
+                  "title": "Gözetimsiz ajan",
+                  "description": "Bulutta ve arka planda çalışan ajanlar, GitHub'da @claude ile iş verme, otomatik PR incelemesi ve sonucu doğrulama.",
+                  "status": "published",
+                  "kind": "lesson"
                 }
               ]
             },
