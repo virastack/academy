@@ -1333,6 +1333,13 @@
                   "description": "Git worktree ile birden çok ajanı aynı anda, birbirinin dosyasını ezmeden çalıştırma.",
                   "status": "published",
                   "kind": "lesson"
+                },
+                {
+                  "slug": "agent-teams",
+                  "title": "Ajan takımı kurmak",
+                  "description": "Spec, frontend, test ve inceleme rollerinde subagent'larla hat kurma, hata döngüsü, lead özeti ve agent teams.",
+                  "status": "published",
+                  "kind": "lesson"
                 }
               ]
             },
