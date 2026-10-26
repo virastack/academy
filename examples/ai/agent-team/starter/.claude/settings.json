@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": ["Bash(npm run test:unit)", "Bash(npm run test:e2e)", "Bash(npm run build)", "Bash(git diff *)"],
+    "deny": ["Bash(npm install *)", "Read(./.env)"]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [{ "type": "command", "command": "\"$CLAUDE_PROJECT_DIR\"/.claude/hooks/protect-files.sh" }]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [{ "type": "command", "command": "\"$CLAUDE_PROJECT_DIR\"/.claude/hooks/require-tests.sh" }]
+      }
+    ]
+  }
+}

@@ -1347,6 +1347,13 @@
                   "description": "Bulutta ve arka planda çalışan ajanlar, GitHub'da @claude ile iş verme, otomatik PR incelemesi ve sonucu doğrulama.",
                   "status": "published",
                   "kind": "lesson"
+                },
+                {
+                  "slug": "agent-team-project",
+                  "title": "AI ekibiyle özellik",
+                  "description": "Spec, frontend, test ve inceleme ajanlarından oluşan bir ekiple sepete kupon özelliği ekleme.",
+                  "status": "published",
+                  "kind": "project"
                 }
               ]
             },
