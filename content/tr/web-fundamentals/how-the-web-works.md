@@ -7,9 +7,9 @@ translationKey: "web-fundamentals/how-the-web-works"
 
 ## Client ve server
 
-Web, iki tarafın konuşmasıdır. **Client** (*istemci*) sizin cihazınız ve üzerindeki tarayıcıdır. **Server** (*sunucu*) sayfaları ve uygulamaları barındıran bilgisayardır. Bir sayfayı açtığınızda sayfanın kodunun bir kopyası server'dan tarayıcınıza iner, tarayıcı da onu ekrana çizer.[^1]
+Web, iki tarafın konuşmasıdır. **Client** *(istemci)* sizin cihazınız ve üzerindeki tarayıcıdır. **Server** *(sunucu)* sayfaları ve uygulamaları barındıran bilgisayardır. Bir sayfayı açtığınızda sayfanın kodunun bir kopyası server'dan tarayıcınıza iner, tarayıcı da onu ekrana çizer.[^1]
 
-Bir web sitesi tek bir dosya değildir. **Kod** dosyaları (*HTML, CSS, JavaScript*) ve **asset**'ler (*görsel, video, font, PDF*) ayrı ayrı indirilir ve tarayıcıda birleştirilir.[^1]
+Bir web sitesi tek bir dosya değildir. **Kod** dosyaları *(HTML, CSS, JavaScript)* ve **asset**'ler *(görsel, video, font, PDF)* ayrı ayrı indirilir ve tarayıcıda birleştirilir.[^1]
 
 ## Bir adresi açtığınızda neler olur
 
@@ -19,7 +19,7 @@ Bir web sitesi tek bir dosya değildir. **Kod** dosyaları (*HTML, CSS, JavaScri
 2. **DNS** ile alan adının arkasındaki server'ın IP adresini bulur.
 3. Server'la bir bağlantı açar; adres `https` ise bağlantı **TLS** ile şifrelenir.
 4. Bir **HTTP isteği** gönderir.
-5. Server bir **HTTP yanıtı** döner; veri küçük parçalar (***packet***) halinde gelir ve tarayıcı bunları doğru sırayla birleştirir.
+5. Server bir **HTTP yanıtı** döner; veri küçük parçalar *(packet)* halinde gelir ve tarayıcı bunları doğru sırayla birleştirir.
 6. Tarayıcı HTML'i okur, gereken CSS, JavaScript ve görselleri de ister ve sayfayı çizer.
 
 Aşağıdaki bölümler bu adımları tek tek açar.
@@ -32,18 +32,18 @@ Aşağıdaki bölümler bu adımları tek tek açar.
 | :-- | :-- | :-- |
 | Scheme | `https` | Hangi protokolle isteneceği |
 | Domain | `www.example.com` | Hangi server'a gidileceği |
-| Port | `443` | Server'daki kapı; standart portlarda (*HTTP 80, HTTPS 443*) yazılmaz |
+| Port | `443` | Server'daki kapı; standart portlarda *(HTTP 80, HTTPS 443)* yazılmaz |
 | Path | `/urunler/kitap` | Server'daki kaynağın yolu |
 | Parametreler | `?renk=mavi&sayfa=2` | Server'a gönderilen anahtar/değer çiftleri |
 | Anchor | `#yorumlar` | Sayfa içindeki bir yer; **server'a hiç gönderilmez** |
 
 ## DNS
 
-**DNS** (*Domain Name System*) internetin adres defteridir: `example.com` gibi okunabilir bir adı, server'ın `192.0.2.172` gibi IP adresine çevirir.[^1] Büyük siteler birden fazla server'da çalıştığı için aynı ad, bulunduğunuz yere göre farklı bir IP'ye çıkabilir.[^1]
+**DNS** *(Domain Name System)* internetin adres defteridir: `example.com` gibi okunabilir bir adı, server'ın `192.0.2.172` gibi IP adresine çevirir.[^1] Büyük siteler birden fazla server'da çalıştığı için aynı ad, bulunduğunuz yere göre farklı bir IP'ye çıkabilir.[^1]
 
-Tarayıcı cevabı önce kendi önbelleğinde, sonra işletim sisteminde arar. Orada yoksa soru bir **recursive resolver**'a (*çoğunlukla internet sağlayıcınızın ya da `1.1.1.1`, `8.8.8.8` gibi bir servisin*) gider. Resolver sırasıyla root server'ına, `.com` gibi uzantının server'ına ve son olarak alan adının **authoritative** server'ına sorar; asıl kayıt oradadır.[^4]
+Tarayıcı cevabı önce kendi önbelleğinde, sonra işletim sisteminde arar. Orada yoksa soru bir **recursive resolver**'a *(çoğunlukla internet sağlayıcınızın ya da `1.1.1.1`, `8.8.8.8` gibi bir servisin)* gider. Resolver sırasıyla root server'ına, `.com` gibi uzantının server'ına ve son olarak alan adının **authoritative** server'ına sorar; asıl kayıt oradadır.[^4]
 
-Her kaydın bir **TTL**'i (*time to live*) vardır ve önbellekler cevabı bu süre boyunca saklar. DNS kaydını değiştirdiğinizde herkesin hemen yeni adresi görmemesi bundandır. "Böyle bir alan adı yok" cevabı da önbelleğe alınır.[^5]
+Her kaydın bir **TTL**'i *(time to live)* vardır ve önbellekler cevabı bu süre boyunca saklar. DNS kaydını değiştirdiğinizde herkesin hemen yeni adresi görmemesi bundandır. "Böyle bir alan adı yok" cevabı da önbelleğe alınır.[^5]
 
 ## HTTP istek ve yanıt
 
@@ -63,7 +63,7 @@ Content-Length: 29769
 <!doctype html>…
 ```
 
-İstek satırında bir **method** (*ne yapılacağı*), bir hedef (*path*) ve protokol sürümü bulunur. En sık kullanılanlar veri almak için `GET`, veri göndermek için `POST`'tur; body genellikle yalnızca `POST`, `PUT` ve `PATCH` isteklerinde olur.[^7]
+İstek satırında bir **method** *(ne yapılacağı)*, bir hedef *(path)* ve protokol sürümü bulunur. En sık kullanılanlar veri almak için `GET`, veri göndermek için `POST`'tur; body genellikle yalnızca `POST`, `PUT` ve `PATCH` isteklerinde olur.[^7]
 
 Yanıttaki **status code** sonucun ne olduğunu söyler. İlk rakam sınıfını belirler:[^8]
 
@@ -77,7 +77,7 @@ Yanıttaki **status code** sonucun ne olduğunu söyler. İlk rakam sınıfını
 
 HTTP **stateless**'tır: iki istek arasında kendiliğinden bir bağ yoktur. Giriş yapmış kalmanız ya da sepetinizin durması **cookie**'ler sayesindedir.[^6] Tarayıcı ile server arasında önbellek, yük dengeleyici ya da güvenlik katmanı gibi **proxy**'ler de olabilir.[^6]
 
-Mesajların anlamı sürümler arasında aynı kalır; değişen, verinin taşınma biçimidir. 2024'te mobilde ana sayfaların %70'i HTTP/2, %9'u HTTP/3, %21'i HTTP/1.1 ile sunuluyordu.[^9]
+Mesajların anlamı sürümler arasında aynı kalır; değişen, verinin taşınma biçimidir. 2024'te mobilde ana sayfaların %70'i HTTP/2, %9'u HTTP/3, %21'i HTTP/1.1 ile sunuluyordu.[^9] Buradaki HTTP/3 oranı olduğundan düşük görünür: tarayıcı HTTP/3'ü ancak sunucu desteğini önceden bildirdiğinde kullandığı için ölçüm yöntemi onu eksik sayıyor. Siteleri destek bildirimine göre sayınca oran %30'a yaklaşıyor.[^9]
 
 ## HTTPS
 
@@ -87,9 +87,9 @@ Kamera, mikrofon ve service worker gibi birçok tarayıcı özelliği yalnızca 
 
 ## Tarayıcı sayfayı nasıl çizer
 
-HTML gelince tarayıcı onu okuyup bir ağaç yapısına, **DOM**'a (*Document Object Model*) çevirir; her element, attribute ve metin bir **node** olur.[^13] Okurken karşılaştığı `<link>`, `<script>` ve `<img>` için yeni istekler atar.[^13]
+HTML gelince tarayıcı onu okuyup bir ağaç yapısına, **DOM**'a *(Document Object Model)* çevirir; her element, attribute ve metin bir **node** olur.[^13] Okurken karşılaştığı `<link>`, `<script>` ve `<img>` için yeni istekler atar.[^13]
 
-Ardından CSS kurallarını ilgili node'lara bağlar, her kutunun boyutunu ve yerini hesaplar (***layout***) ve pikselleri ekrana boyar (***paint***). JavaScript de bu sırada çalışır ve DOM'u değiştirerek görüntüyü etkileyebilir. Ekran okuyucular için DOM'dan bir **erişilebilirlik ağacı** da üretilir.[^13]
+Ardından CSS kurallarını ilgili node'lara bağlar, her kutunun boyutunu ve yerini hesaplar *(layout)* ve pikselleri ekrana boyar *(paint)*. JavaScript de bu sırada çalışır ve DOM'u değiştirerek görüntüyü etkileyebilir. Ekran okuyucular için DOM'dan bir **erişilebilirlik ağacı** da üretilir.[^13]
 
 > [!TIP]
 >
@@ -97,7 +97,7 @@ Ardından CSS kurallarını ilgili node'lara bağlar, her kutunun boyutunu ve ye
 
 ## DevTools
 
-Tarayıcının geliştirici araçları, bu derste anlatılan her şeyi gözünüzle görmenizi sağlar. Windows'ta `Ctrl` + `Shift` + `I` ya da `F12`, macOS'ta `⌘` + `⌥` + `I` ile açılır; bir elemente sağ tıklayıp **Inspect** (*İncele*) demek de olur. Safari'de önce ayarlardan Develop menüsünü açmak gerekir.[^15]
+Tarayıcının geliştirici araçları, bu derste anlatılan her şeyi gözünüzle görmenizi sağlar. Windows'ta `Ctrl` + `Shift` + `I` ya da `F12`, macOS'ta `⌘` + `⌥` + `I` ile açılır; bir elemente sağ tıklayıp **Inspect** *(İncele)* demek de olur. Safari'de önce ayarlardan Develop menüsünü açmak gerekir.[^15]
 
 | Panel | Ne için |
 | :-- | :-- |
@@ -137,7 +137,7 @@ Network panelinde bir isteğe tıklayınca **Headers** sekmesinde istek ve yanı
 6. [MDN: Overview of HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Overview) *(doc)* — İsteği her zaman client'ın başlatması, stateless yapı ve cookie'ler, proxy'ler.
 7. [MDN: HTTP messages](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Messages) *(doc)* — İstek ve yanıtın yapısı: başlangıç satırı, method, header, body.
 8. [MDN: HTTP response status codes](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status) *(doc)* — Beş status code sınıfı ve her kodun anlamı.
-9. [Web Almanac 2024: HTTP](https://almanac.httparchive.org/en/2024/http) *(research)* — Robin Marx. Mobil ana sayfalarda %70 HTTP/2, %9 HTTP/3, %21 HTTP/1.1.
+9. [Web Almanac 2024: HTTP](https://almanac.httparchive.org/en/2024/http) *(research)* — Robin Marx. Mobil ana sayfalarda %70 HTTP/2, %9 HTTP/3, %21 HTTP/1.1; `alt-svc` keşfi yüzünden HTTP/3'ün eksik ölçülmesi ve gerçek oranın %30'a yakın olması.
 10. [MDN: HTTPS](https://developer.mozilla.org/en-US/docs/Glossary/HTTPS) *(doc)* — HTTP'nin TLS ile şifrelenmiş hali.
 11. [Web Almanac 2024: Security](https://almanac.httparchive.org/en/2024/security) *(research)* — Mobilde isteklerin %98'i TLS üzerinden.
 12. [MDN: Secure contexts](https://developer.mozilla.org/en-US/docs/Web/Security/Defenses/Secure_Contexts) *(doc)* — Hangi özelliklerin HTTPS istediği ve `localhost`'un güvenli sayılması.
