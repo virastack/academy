@@ -45,7 +45,7 @@ import axe from 'axe-core'
 import { expect, test } from 'vitest'
 import { SignupForm } from './SignupForm'
 
-test('SignupForm otomatik bulunabilen a11y hatası içermez', async () => {
+test('SignupForm has no automatically detectable a11y issues', async () => {
   const { container } = render(<SignupForm />)
   const results = await axe.run(container)
   expect(results.violations).toEqual([])
@@ -70,7 +70,7 @@ npm install -D @axe-core/playwright
 import { test, expect } from '@playwright/test'
 import AxeBuilder from '@axe-core/playwright'
 
-test('ana sayfada otomatik bulunabilen a11y hatası yok', async ({ page }) => {
+test('no automatically detectable a11y issues on the home page', async ({ page }) => {
   await page.goto('/')
   const results = await new AxeBuilder({ page })
     .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])

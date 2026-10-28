@@ -11,7 +11,7 @@ export function CartSummary() {
 
   return (
     <p data-testid="cart-summary">
-      Sepet: {count} ürün, {formatPrice(cartTotal(items))}
+      Cart: {count} items, {formatPrice(cartTotal(items))}
     </p>
   );
 }

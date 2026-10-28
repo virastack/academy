@@ -6,7 +6,7 @@ import { products } from "@/products";
 export default function HomePage() {
   return (
     <main>
-      <h1>Mağaza</h1>
+      <h1>Store</h1>
       <ul>
         {products.map((product) => (
           <li key={product.slug}>

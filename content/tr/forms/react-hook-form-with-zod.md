@@ -31,11 +31,11 @@ export const signUpSchema = z
   .object({
     name: z.string().trim().min(2, "The name must be at least 2 characters."),
     email: z.email("Enter the email address as name@example.com."),
-    password: z.string().min(8, "Şifre en az 8 karakter olmalı."),
+    password: z.string().min(8, "The password must be at least 8 characters."),
     confirmPassword: z.string(),
   })
   .refine((data) => data.password === data.confirmPassword, {
-    error: "Şifreler eşleşmiyor.",
+    error: "The passwords do not match.",
     path: ["confirmPassword"],
   });
 
@@ -105,7 +105,7 @@ Resolver'la çalışırken üç kural:[^1]
 
 ## Alanlar arası kural ve deps
 
-Şifre ve tekrarı eşleştiğinde hata yok. Kullanıcı sonra şifreyi değiştirirse "Şifreler eşleşmiyor." çıkmalı. Çıkmaz: RHF yalnızca değişen alanın hatasını günceller; refine `confirmPassword`'a yazıyor ama değişen alan `password`.
+Şifre ve tekrarı eşleştiğinde hata yok. Kullanıcı sonra şifreyi değiştirirse "The passwords do not match." çıkmalı. Çıkmaz: RHF yalnızca değişen alanın hatasını günceller; refine `confirmPassword`'a yazıyor ama değişen alan `password`.
 
 `deps` bu bağı kurar. `password` doğrulandığında listedeki alanlar da yeniden doğrulanır:[^4]
 
@@ -125,7 +125,7 @@ Yukarıdaki formda `deps` bu yüzden var. `trigger()` ile elle doğrulama yaptı
 
 ```tsx
 const productSchema = z.object({
-  title: z.string().trim().min(1, "Ürün adı girin."),
+  title: z.string().trim().min(1, "Enter the product name."),
   price: z
     .string()
     .regex(/^\d+(,\d{1,2})?$/, "Enter the price as 1250,50.")

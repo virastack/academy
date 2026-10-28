@@ -18,7 +18,7 @@ export function App() {
 
   return (
     <main style={{ fontFamily: "system-ui, sans-serif", maxWidth: "40rem", margin: "2rem auto" }}>
-      <h1>Yönetim</h1>
+      <h1>Administration</h1>
       <table>
         <tbody>
           {products.map((product) => (

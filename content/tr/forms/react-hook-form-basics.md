@@ -57,7 +57,7 @@ export function ContactForm() {
       />
       {errors.message && <p>{errors.message.message}</p>}
 
-      <button disabled={isSubmitting}>{isSubmitting ? "Submitting..." : "Gönder"}</button>
+      <button disabled={isSubmitting}>{isSubmitting ? "Submitting..." : "Submit"}</button>
     </form>
   );
 }
@@ -94,7 +94,7 @@ Alan adı nokta içerebilir. `register("address.city")` değeri `{ address: { ci
 ```tsx
 <input
   {...register("username", {
-    validate: async (value) => (await isUsernameFree(value)) || "Bu kullanıcı adı alınmış.",
+    validate: async (value) => (await isUsernameFree(value)) || "This username is taken.",
   })}
 />
 ```
@@ -119,7 +119,7 @@ const onSubmit: SubmitHandler<ContactForm> = async (data) => {
   try {
     await sendMessage(data);
   } catch {
-    setError("root.server", { message: "Mesaj gönderilemedi. Tekrar deneyin." });
+    setError("root.server", { message: "The message could not be sent. Try again." });
   }
 };
 ```

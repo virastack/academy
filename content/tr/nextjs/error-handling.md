@@ -130,7 +130,7 @@ export default catchError(SectionError);
 ```
 
 ```tsx
-<SectionBoundary title="Öneriler">
+<SectionBoundary title="Suggestions">
   <Recommendations />
 </SectionBoundary>
 ```

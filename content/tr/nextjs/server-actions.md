@@ -30,7 +30,7 @@ import { addReview } from "@/app/actions";
 
 <form action={addReview}>
   <textarea name="text" aria-label="Yorumunuz" required />
-  <button>Gönder</button>
+  <button>Submit</button>
 </form>;
 ```
 
@@ -53,7 +53,7 @@ export async function subscribe(
   formData: FormData,
 ): Promise<SubscribeState> {
   const email = String(formData.get("email"));
-  if (!email.includes("@")) return { message: "Geçerli bir e-posta girin." };
+  if (!email.includes("@")) return { message: "Enter a valid email address." };
 
   await db.subscriber.create({ data: { email } });
   return { message: "Abone oldunuz." };
@@ -119,7 +119,7 @@ export async function deleteReview(reviewId: string) {
   const review = await db.review.findFirst({
     where: { id: reviewId, authorId: user.id },
   });
-  if (!review) return { error: "Yorum bulunamadı." };
+  if (!review) return { error: "No reviews found." };
 
   await db.review.delete({ where: { id: review.id } });
   updateTag("reviews");

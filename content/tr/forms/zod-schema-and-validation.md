@@ -61,7 +61,7 @@ Zod 4'te mesaj, `error` parametresiyle ya da doğrudan metinle verilir:[^6]
 ```ts
 z.string().min(2, "The name must be at least 2 characters.");
 z.string().min(2, { error: "The name must be at least 2 characters." });
-z.number({ error: "Yaşınızı girin." }); // tip hatası için
+z.number({ error: "Enter your age." }); // tip hatası için
 ```
 
 Zod 3'teki `message`, `invalid_type_error` ve `required_error` yerine artık tek parametre `error` var. İnternetteki eski örneklerde *(Next.js'in form rehberindeki örnek dahil)* hâlâ bu adları görebilirsiniz.[^7]
@@ -87,18 +87,18 @@ Bir kural birden fazla alana bakıyorsa nesneye `.refine` ekleyin. `path` hatan�
 ```ts
 const passwordSchema = z
   .object({
-    password: z.string().min(8, "Şifre en az 8 karakter olmalı."),
+    password: z.string().min(8, "The password must be at least 8 characters."),
     confirmPassword: z.string(),
   })
   .refine((data) => data.password === data.confirmPassword, {
-    error: "Şifreler eşleşmiyor.",
+    error: "The passwords do not match.",
     path: ["confirmPassword"],
   });
 ```
 
 > [!WARNING]
 >
-> Nesnedeki bir alanda **tip** hatası varsa *(seçilmemiş enum, `NaN` sayı)* nesnenin `.refine`'ı hiç çalışmaz. Zod refinement'a yalnızca tipi doğru veriyi verir. Kullanıcı başka bir alanı düzeltene kadar "Şifreler eşleşmiyor." görünmez. Gerekirse `when` seçeneğiyle refine'ın hangi koşulda çalışacağını kendiniz belirleyin.[^8]
+> Nesnedeki bir alanda **tip** hatası varsa *(seçilmemiş enum, `NaN` sayı)* nesnenin `.refine`'ı hiç çalışmaz. Zod refinement'a yalnızca tipi doğru veriyi verir. Kullanıcı başka bir alanı düzeltene kadar "The passwords do not match." görünmez. Gerekirse `when` seçeneğiyle refine'ın hangi koşulda çalışacağını kendiniz belirleyin.[^8]
 
 ## Dönüşüm: transform ve pipe
 
@@ -140,7 +140,7 @@ Formdan gelen değer çoğu zaman metindir ve boş alan `""`'dır, `undefined` d
 website: z.union([z.url("Enter the website as https://example.com."), z.literal("")]),
 
 // Zorunlu sayı: boş metni önce yakalayın
-age: z.string().min(1, "Yaşınızı girin.").pipe(z.coerce.number<string>().int().min(18)),
+age: z.string().min(1, "Enter your age.").pipe(z.coerce.number<string>().int().min(18)),
 ```
 
 `z.coerce.number()`'ın girdi tipi `unknown`'dır; şemayı formla kullanırken bu tip `useForm`'a da yansır. `pipe` ile bağlarken girdi tipini generic ile verin: `z.coerce.number<string>()`.[^11]
@@ -177,7 +177,7 @@ Telefon için `z.e164()` *(`+905321234567`)* hazır gelir.[^3] Maskeli alanlarda
 
 - `signUpSchema`'yı yazıp `safeParse`'a `{ name: " a", email: "x@", age: "20" }` verin. Kaç hata çıkıyor? `age` neden hata veriyor?
 - `z.config(tr())` ekleyip aynı denemeyi yapın.
-- Şifre şemasına `role: z.enum(["buyer", "seller"])` ekleyin, `role: ""` ve farklı şifreler verin. "Şifreler eşleşmiyor." görünüyor mu?
+- Şifre şemasına `role: z.enum(["buyer", "seller"])` ekleyin, `role: ""` ve farklı şifreler verin. "The passwords do not match." görünüyor mu?
 - `z.url().optional()`'a `""` verin, sonra `z.literal("")` ile birleştirin.
 - `priceSchema` için `z.input` ve `z.output` tiplerini editörde fareyle inceleyin.
 

@@ -3,7 +3,7 @@ import "./globals.css";
 
 import type { Metadata } from "next";
 
-export const metadata: Metadata = { title: "Mağaza" };
+export const metadata: Metadata = { title: "Store" };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (

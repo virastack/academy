@@ -118,7 +118,7 @@ Hata ne zaman gösterilmeli? [Vitaly Friedman](https://www.smashingmagazine.com/
 
 React Hook Form'daki `mode: "onTouched"` bu öneriye yakındır: ilk kontrol alandan çıkınca, sonrası her değişiklikte yapılır. Hata yazarken kaybolur.[^5]
 
-GOV.UK Design System daha temkinlidir: alandan çıkınca değil, kullanıcı "Devam" ya da "Gönder"e bastığında doğrulamayı önerir. Gerekçesi, yazmayı bitirmemiş birine hata göstermenin daha çok sorun çıkarmasıdır.[^8] İki yaklaşım da savunulabilir. Ortak noktaları: kullanıcı **yazarken** hata göstermeyin.
+GOV.UK Design System daha temkinlidir: alandan çıkınca değil, kullanıcı "Devam" ya da "Submit"e bastığında doğrulamayı önerir. Gerekçesi, yazmayı bitirmemiş birine hata göstermenin daha çok sorun çıkarmasıdır.[^8] İki yaklaşım da savunulabilir. Ortak noktaları: kullanıcı **yazarken** hata göstermeyin.
 
 ## Gönderimde odak ve hata özeti
 

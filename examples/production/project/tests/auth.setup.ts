@@ -6,7 +6,7 @@ const accounts = [
 ];
 
 for (const { email, file } of accounts) {
-  setup(`${email} ile oturum aç`, async ({ page, loginPage }) => {
+  setup(`sign in as ${email}`, async ({ page, loginPage }) => {
     await loginPage.goto();
     await loginPage.login(email);
     await expect(page).toHaveURL("/orders");

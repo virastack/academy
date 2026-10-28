@@ -6,7 +6,7 @@ import { CartProvider, CartSummary } from "../components";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Mağaza",
+  title: "Store",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
@@ -15,7 +15,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <body>
         <CartProvider>
           <header>
-            <Link href="/">Mağaza</Link>
+            <Link href="/">Store</Link>
             <CartSummary />
           </header>
           {children}
