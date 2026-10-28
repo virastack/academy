@@ -1,8 +1,9 @@
 # Academy content guide
 
-Lessons live as Markdown under `content/tr/<track>/<lesson>.md`.
-The curriculum tree (including `coming_soon` lessons without a body) is
-`content/tr/curriculum.json`. Titles and descriptions are plain Turkish strings.
+Lessons live as Markdown under `content/<locale>/<track>/<lesson>.md`, one folder
+per language. The curriculum tree for a locale (including `coming_soon` lessons
+without a body) is `content/<locale>/curriculum.json`. Titles and descriptions
+are plain strings in that locale's language.
 
 You don't need to flip `status` by hand. On every push to `main`, the deploy
 workflow runs `node scripts/sync-curriculum.mjs`, which marks a lesson
@@ -11,9 +12,13 @@ workflow runs `node scripts/sync-curriculum.mjs`, which marks a lesson
 `draft: true` to the frontmatter to keep a written lesson unpublished. Run the
 script locally to see the result before pushing.
 
-`content/en` is empty for now, and English pages fall back to the Turkish tree
-until `content/en/curriculum.json` exists. Adding that file is what switches
-them over, so add it together with the lessons it lists rather than on its own.
+Turkish (`content/tr`) is the source language: a new lesson is written there
+first. English (`content/en`) now covers every track, apart from the two
+exempt lessons noted below. A locale's pages fall back to the Turkish tree
+until its `curriculum.json` exists, and that file lists only the tracks that
+have been written, so add tracks to it together with their lessons. A new
+Turkish lesson therefore needs its English counterpart in the same pass, and
+`node scripts/check-translation.mjs` compares the two trees.
 
 The sync script walks every locale under `content/` that has a
 `curriculum.json`, so a new translation needs no change to it or to the deploy
@@ -31,7 +36,7 @@ translationKey: "vitest/introduction"
 ---
 ```
 
-- `translationKey` is `<track>/<lesson>`.
+- `translationKey` is `<track>/<lesson>`, and it is the same in every locale.
 
 ## Callouts
 
@@ -119,16 +124,15 @@ npm install vitest
 
 ## Language in code
 
-Lesson prose is Turkish. Code is not.
+Lesson prose is in the locale's language. Code is not.
 
 Everything under `examples/` is English: identifiers, UI strings and
 comments. One example repo backs every language of a lesson, so Turkish in
 there would leave the other language's snippets out of step with the code
 its reader is told to compare against.
 
-Comments inside a lesson's own fenced code blocks stay Turkish. They are
-read as part of the Turkish paragraph around them, and each language's
-lesson keeps its own.
+Comments inside a lesson's own fenced code blocks follow the prose around
+them, and so do the UI strings in them. Each locale keeps its own.
 
 ```tsx
 // examples/ -> English
@@ -136,19 +140,25 @@ lesson keeps its own.
 ```
 
 ```tsx
-// a lesson code block -> Turkish comment, English code
-<button onClick={addToCart}>Add to cart</button>   // sepet kendisi açılır
+// a Turkish lesson's code block -> Turkish comment, English code
+<button onClick={addToCart}>Sepete ekle</button>   // sepet kendisi açılır
 ```
 
-Some strings are domain data rather than interface copy, and they stay as
-they are in both places: `TRY` and `tr-TR` number and currency formatting,
-the Turkish ID, IBAN, tax-number and phone formats the forms track teaches,
-and people's names. The i18n lesson and the multilingual CI project are
-exempt altogether, since Turkish is one of the two locales they
-demonstrate.
+Example data belongs to the reader, not to the source language. Invented
+names, currency and number formatting, and the ID, IBAN, tax-number and
+phone formats the forms track teaches are chosen to suit the locale's
+reader: `tr` teaches the Turkish formats, `en` the European ones. Because
+`examples/` serves both, a value that lives in an example project is shared,
+and changing it there means updating the snippets in every locale's lesson
+in the same pass. [`TRANSLATION.md`](TRANSLATION.md) records the mapping and
+the wording each locale uses, so terms don't drift between lessons.
+
+The i18n lesson and the multilingual CI project are exempt altogether, since
+Turkish is one of the two locales they demonstrate, and their Turkish strings
+stay as they are in every locale.
 
 ## Edit links
 
 Published pages link to:
 
-`https://github.com/virastack/academy/edit/main/content/tr/<track>/<lesson>.md`
+`https://github.com/virastack/academy/edit/main/content/<locale>/<track>/<lesson>.md`
