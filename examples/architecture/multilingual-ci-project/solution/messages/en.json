@@ -4,7 +4,7 @@
     "description": "Keyboards and accessories"
   },
   "ProductPage": {
-    "price": "Price: {price, number, ::currency/TRY}",
+    "price": "Price: {price, number, ::currency/EUR}",
     "stock": "{count, plural, =0 {Out of stock} one {Last one left} other {Only # left}}",
     "updated": "Updated on {date, date, long}",
     "addToCart": "Add to cart"

@@ -237,7 +237,12 @@ same-site example in `auth-security`)* is decided in that lesson's own pass.
 | `1.249,90 ₺` | `€1,249.90` |
 
 `Intl.NumberFormat` and `toLocaleString` calls change together with every test
-assertion that depends on them. Amounts keep their numeric value; only the
+assertion that depends on them. The one place the two locales hold different
+currencies is `examples/architecture/multilingual-ci-project`, where
+`messages/tr.json` formats in `TRY` and `messages/en.json` in `EUR`: there the
+currency is part of the message being translated, and the lesson says in prose
+that a real store picks its currency by market rather than by interface
+language. Amounts keep their numeric value; only the
 currency and the grouping change.
 
 Two forms, picked by what the code means:
@@ -271,9 +276,20 @@ The sources stay as they are; only the examples and the messages change.
   locale are all rewritten, so the scores and the `hit@k` line change with
   them, and the prose around the output describes the new run rather than the
   Turkish one.
-- **architecture/i18n.md** and **architecture/multilingual-ci-project.md** are
-  exempt. Turkish is one of the two locales they teach, so the `tr.json`
-  payloads and the Turkish strings stay exactly as they are.
+- **architecture/i18n.md** and **architecture/multilingual-ci-project.md**
+  teach i18n with `tr` and `en` as their two locales, so Turkish appears in
+  them as *data*, not as prose. The split is: a `messages/tr.json` block, the
+  comments showing what that payload renders to *(`// Sepetinizde 2 ürün
+  var`)*, the `tr` branch of a `resources` object and a `name: { tr: ... }`
+  data field stay exactly as they are; everything else — the prose, the code
+  comments, the `en.json` blocks, the table headers — is rewritten like any
+  other lesson. `locales: ['tr', 'en']`, `defaultLocale: 'tr'` and
+  `hreflang="tr"` stay too, since they are what the lesson configures.
+  The check script's leftover-Turkish check knows these payloads by lesson, in
+  `TURKISH_ALLOWED_IN`, so a new one has to be written down before it passes.
+  The example project `examples/architecture/multilingual-ci-project` is
+  already bilingual and needs no pass of its own: its `tr.json` is Turkish and
+  its `en.json` English by design.
 
 ### UI strings in lesson code blocks
 

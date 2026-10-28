@@ -75,7 +75,7 @@ Saat dilimini vermezseniz tarih sunucunun saat dilimine göre yazılır.[^2] Ür
 ```json
 // messages/en.json
 "ProductPage": {
-  "price": "Price: {price, number, ::currency/TRY}",
+  "price": "Price: {price, number, ::currency/EUR}",
   "stock": "{count, plural, =0 {Out of stock} one {Last one left} other {Only # left}}",
   "updated": "Updated on {date, date, long}",
   "addToCart": "Add to cart"
@@ -83,7 +83,7 @@ Saat dilimini vermezseniz tarih sunucunun saat dilimine göre yazılır.[^2] Ür
 ```
 
 - **Çoğul:** Türkçe sayıyla birlikte ismi tekil kullanır, `one` dalı gerekmez. İngilizcede `one` ayrı yazılır.[^3]
-- **Para birimi:** İki dilde de `TRY`. Para birimine ürün karar verir, dil yalnızca gösterimi değiştirir. Denemede Türkçe `₺2.499,90`, İngilizce `TRY 2,499.90` çıktı; `en` dilinde lira için bir sembol yok, kod yazılıyor.[^4]
+- **Para birimi:** Türkçe mesaj `TRY`, İngilizce mesaj `EUR` kullanıyor. Para birimi mesajın içinde durduğu için her dil kendi para birimini taşıyabilir. Denemede Türkçe `₺2.499,90`, İngilizce `€2,499.90` çıktı: hem para birimi hem biçim locale ile birlikte değişti.[^4] Gerçek bir mağazada para birimine dil değil kullanıcının pazarı karar verir; burada ikisini birlikte değiştirmek iki biçimi tek örnekte göstermek için.
 
 ## Adım 4: Sayfa ve dil değiştirici
 
@@ -142,7 +142,7 @@ Denemede `en.json`'dan `addToCart` silinince test kırmızıya döndü.
 >
 > ```ts
 > const main = page.getByRole("main");
-> await expect(main.getByTestId("price")).toHaveText("Price: TRY 2,499.90");
+> await expect(main.getByTestId("price")).toHaveText("Price: €2,499.90");
 > ```
 
 ## Adım 6: CI'a bağlayın

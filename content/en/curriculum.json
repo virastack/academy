@@ -1108,14 +1108,14 @@
                   "slug": "i18n",
                   "title": "Multiple languages (i18n)",
                   "description": "Translation, locale routing and date and currency formatting with next-intl.",
-                  "status": "coming_soon",
+                  "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "multilingual-ci-project",
                   "title": "A multilingual page and a CI pipeline",
                   "description": "Translating an existing page into two languages and tying the lint, type and test checks to CI.",
-                  "status": "coming_soon",
+                  "status": "published",
                   "kind": "project"
                 }
               ]

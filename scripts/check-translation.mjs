@@ -47,7 +47,19 @@ const TURKISH_ALLOWED = [
 ];
 
 /** Lessons whose Turkish content is the subject of the lesson. */
-const EXEMPT = new Set(["architecture/i18n", "architecture/multilingual-ci-project"]);
+/**
+ * Turkish strings a particular English lesson may keep, because the string is
+ * the lesson's subject rather than its prose: an i18n lesson teaches with a
+ * `messages/tr.json` payload, and translating that payload would leave the
+ * example demonstrating nothing. Keep this list narrow and per lesson, so the
+ * leftover check stays strict everywhere else.
+ */
+const TURKISH_ALLOWED_IN = new Map([
+  [
+    "architecture/i18n",
+    ["Mağazaya hoş geldiniz", "Sepetiniz boş", "Sepetinizde", "Hoş geldiniz"],
+  ],
+]);
 
 /**
  * Source URLs that legitimately differ between locales, because the source is
@@ -61,7 +73,6 @@ const URL_OVERRIDES = new Map([
 const problems = [];
 const notes = [];
 let checked = 0;
-let exempt = 0;
 
 function fail(file, message) {
   problems.push(`${file}: ${message}`);
@@ -226,12 +237,13 @@ function checkPlacement(file, lesson) {
   }
 }
 
-function checkTurkishLeftovers(file, lesson) {
+function checkTurkishLeftovers(file, lesson, id) {
+  const allowedHere = [...TURKISH_ALLOWED, ...(TURKISH_ALLOWED_IN.get(id) ?? [])];
   const lines = lesson.body.split("\n");
   for (const [i, line] of lines.entries()) {
     if (!TURKISH_LETTERS.test(line)) continue;
     let rest = line;
-    for (const allowed of TURKISH_ALLOWED) rest = rest.replaceAll(allowed, "");
+    for (const allowed of allowedHere) rest = rest.replaceAll(allowed, "");
     if (TURKISH_LETTERS.test(rest)) {
       warn(file, `line ${i + 1} still has Turkish letters: ${line.trim().slice(0, 80)}`);
     }
@@ -246,11 +258,6 @@ function checkLesson(track, slug, trCurriculumEntry, enCurriculumEntry) {
 
   if (!existsSync(trPath)) {
     fail(file, `no Turkish source at content/${SOURCE_LOCALE}/${id}.md`);
-    return;
-  }
-  // An exempt lesson stays Turkish on purpose: its payloads are what the lesson teaches.
-  if (EXEMPT.has(id) && !existsSync(enPath)) {
-    exempt += 1;
     return;
   }
   if (!existsSync(enPath)) {
@@ -348,7 +355,7 @@ function checkLesson(track, slug, trCurriculumEntry, enCurriculumEntry) {
     }
   }
 
-  if (!EXEMPT.has(id)) checkTurkishLeftovers(file, en);
+  checkTurkishLeftovers(file, en, id);
 }
 
 const trCurriculum = readCurriculum(SOURCE_LOCALE);
@@ -412,7 +419,7 @@ for (const problem of problems) console.error(`error: ${problem}`);
 console.log(
   `\n${checked} lesson${checked === 1 ? "" : "s"} checked in ${tracks.length} track${tracks.length === 1 ? "" : "s"}: ` +
     `${problems.length} error${problems.length === 1 ? "" : "s"}, ${notes.length} warning${notes.length === 1 ? "" : "s"}` +
-    `${exempt > 0 ? `, ${exempt} exempt (kept in Turkish on purpose)` : ""}.`,
+    ".",
 );
 
 process.exit(problems.length > 0 ? 1 : 0);

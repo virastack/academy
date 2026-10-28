@@ -29,7 +29,7 @@ test("switches to English", async ({ page }) => {
 
   await expect(page).toHaveURL(/\/en$/);
   await expect(main.getByRole("heading", { level: 1 })).toHaveText("Mechanical Keyboard");
-  await expect(main.getByTestId("price")).toHaveText("Price: TRY 2,499.90");
+  await expect(main.getByTestId("price")).toHaveText("Price: €2,499.90");
   await expect(main.getByTestId("stock")).toHaveText("Only 3 left");
   await expect(main.getByTestId("updated")).toHaveText("Updated on October 16, 2026");
 });

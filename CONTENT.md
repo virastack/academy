@@ -13,8 +13,8 @@ workflow runs `node scripts/sync-curriculum.mjs`, which marks a lesson
 script locally to see the result before pushing.
 
 Turkish (`content/tr`) is the source language: a new lesson is written there
-first. English (`content/en`) now covers every track, apart from the two
-exempt lessons noted below. A locale's pages fall back to the Turkish tree
+first. English (`content/en`) now covers every track and every lesson. A
+locale's pages fall back to the Turkish tree
 until its `curriculum.json` exists, and that file lists only the tracks that
 have been written, so add tracks to it together with their lessons. A new
 Turkish lesson therefore needs its English counterpart in the same pass, and
@@ -153,9 +153,13 @@ and changing it there means updating the snippets in every locale's lesson
 in the same pass. [`TRANSLATION.md`](TRANSLATION.md) records the mapping and
 the wording each locale uses, so terms don't drift between lessons.
 
-The i18n lesson and the multilingual CI project are exempt altogether, since
-Turkish is one of the two locales they demonstrate, and their Turkish strings
-stay as they are in every locale.
+The i18n lesson and the multilingual CI project are the one place Turkish
+appears inside an English lesson. They demonstrate i18n with `tr` and `en`,
+so a `messages/tr.json` payload and the comments showing what it renders to
+are the subject of the lesson, not its prose, and they stay as they are in
+every locale. The prose around them is rewritten like any other lesson's.
+[`TRANSLATION.md`](TRANSLATION.md) draws the line, and
+`scripts/check-translation.mjs` holds the allowed strings per lesson.
 
 ## Edit links
 
