@@ -1,0 +1,43 @@
+name: Link check
+
+# Curated sources are the point of this repo, so rot is a content bug.
+# Monthly rather than per-push: the links are external and fail for reasons
+# a pull request cannot cause.
+on:
+  schedule:
+    - cron: "0 6 1 * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  links:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Check every link in the lessons
+        id: lychee
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: >-
+            --no-progress
+            --max-concurrency 8
+            --timeout 20
+            --max-retries 2
+            --accept 200,206,429
+            --exclude-path content/en
+            "content/**/*.md"
+            "*.md"
+          output: lychee-report.md
+          fail: false
+
+      - name: Open an issue when something is dead
+        if: steps.lychee.outputs.exit_code != 0
+        uses: peter-evans/create-issue-from-file@v5
+        with:
+          title: "Dead links in the lessons"
+          content-filepath: lychee-report.md
+          labels: content, link-rot
