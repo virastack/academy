@@ -6,8 +6,8 @@ test.beforeEach(async ({ ordersPage }) => {
 
 test("lists all orders", async ({ ordersPage }) => {
   await expect(ordersPage.rows).toHaveCount(6);
-  await expect(ordersPage.row("SP-1001")).toContainText("Ayşe Yılmaz");
-  await expect(ordersPage.row("SP-1001")).toContainText("₺1.249,90");
+  await expect(ordersPage.row("SP-1001")).toContainText("Jane Miller");
+  await expect(ordersPage.row("SP-1001")).toContainText("€1,249.90");
 });
 
 test("filters by status", async ({ ordersPage }) => {
@@ -25,10 +25,10 @@ test("the table structure is as expected", async ({ ordersPage }) => {
       - rowgroup:
         - row "Order Customer Amount Status Action"
       - rowgroup:
-        - row /SP-1003 Zeynep Demir/:
+        - row /SP-1003 Nina Kowalski/:
           - cell "SP-1003"
-          - cell "Zeynep Demir"
-          - cell /2\\.150,00/
+          - cell "Nina Kowalski"
+          - cell /2,150\\.00/
           - cell "Delivered"
           - cell
   `);

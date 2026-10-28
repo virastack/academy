@@ -28,7 +28,7 @@ import { z } from 'zod';
 
 export const tools = {
   getOrderStatus: tool({
-    description: 'Returns an order's shipping status.',
+    description: 'Returns the shipping status of an order.',
     inputSchema: z.object({
       orderId: z.string().describe('The order number, e.g. TR-1042'),
     }),
@@ -178,12 +178,12 @@ export function MessageParts({
               case 'approval-requested':
                 return (
                   <div key={i}>
-                    <p>{part.input.orderId} numaralı sipariş iptal edilsin mi?</p>
+                    <p>Cancel order {part.input.orderId}?</p>
                     <button onClick={() => onApproval({ id: part.approval.id, approved: true })}>
-                      Evet, iptal et
+                      Yes, cancel it
                     </button>
                     <button onClick={() => onApproval({ id: part.approval.id, approved: false })}>
-                      Vazgeç
+                      Dismiss
                     </button>
                   </div>
                 );

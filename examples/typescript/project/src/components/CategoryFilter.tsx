@@ -28,7 +28,7 @@ export function CategoryFilter({ value, onChange }: CategoryFilterProps) {
 
   return (
     <label>
-      Kategori{" "}
+      Category{" "}
       <select value={value} onChange={handleChange}>
         {(["all", ...CATEGORIES] as const).map((option) => (
           <option key={option} value={option}>

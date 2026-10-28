@@ -59,7 +59,7 @@ export function ProductTable({ selectedId, onSelect }: ProductTableProps) {
                     {product.name}
                   </button>
                 </td>
-                <td>{product.price} TL</td>
+                <td>€{product.price}</td>
                 <td>{product.stock} in stock</td>
               </tr>
             ))}

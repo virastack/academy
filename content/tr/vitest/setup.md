@@ -113,13 +113,13 @@ export type Product = {
 };
 ```
 
-Fiyatı Türk lirası olarak biçimlendiren bir fonksiyon yazın. Dosya: `src/format-price.ts`.
+Fiyatı euro olarak biçimlendiren bir fonksiyon yazın. Dosya: `src/format-price.ts`.
 
 ```ts
 export function formatPrice(price: number): string {
-  return new Intl.NumberFormat("tr-TR", {
+  return new Intl.NumberFormat("en-US", {
     style: "currency",
-    currency: "TRY",
+    currency: "EUR",
   }).format(price);
 }
 ```
@@ -156,7 +156,7 @@ test("shows the product name and price", () => {
   expect(
     screen.getByRole("heading", { name: "Wireless Headphones" }),
   ).toBeInTheDocument();
-  expect(screen.getByText("₺1.299,00")).toBeInTheDocument();
+  expect(screen.getByText("€1,299.00")).toBeInTheDocument();
 });
 ```
 
@@ -189,7 +189,7 @@ Test geçerse kurulum tamamdır. Vitest, adında `.test.` veya `.spec.` geçen d
 ## Kendin dene
 
 - `src/format-price.test.ts` dosyası oluşturun.
-- `formatPrice(0)` ifadesinin `₺0,00` döndürdüğünü test edin.
+- `formatPrice(0)` ifadesinin `€0.00` döndürdüğünü test edin.
 - Beklenen değeri bilerek bozun. Testin başarısız olduğunu görün.
 - Beklenen değeri düzeltin. Testin geçtiğini görün.
 

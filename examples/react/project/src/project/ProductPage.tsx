@@ -14,7 +14,7 @@ export function ProductPage({ id }: { id: string }) {
   return (
     <article>
       <h1>{product.name}</h1>
-      <p>{product.price.toLocaleString("tr-TR")} TL</p>
+      <p>€{product.price.toLocaleString("en-US")}</p>
       <button type="button" onClick={() => dispatch({ type: "add", product })}>Add to cart</button>
       <FavoriteButton
         key={product.id}
@@ -24,7 +24,7 @@ export function ProductPage({ id }: { id: string }) {
 
       <div role="tablist">
         <button role="tab" aria-selected={tab === "details"} onClick={() => setTab("details")}>
-          Açıklama
+          Details
         </button>
         <button role="tab" aria-selected={tab === "reviews"} onClick={() => setTab("reviews")}>Reviews</button>
       </div>

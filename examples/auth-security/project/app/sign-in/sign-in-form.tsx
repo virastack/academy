@@ -26,11 +26,11 @@ export function SignInForm() {
   return (
     <form action={handleSubmit}>
       <p>
-        <label htmlFor="email">E-posta</label>
+        <label htmlFor="email">Email</label>
         <input id="email" name="email" type="email" autoComplete="username" required />
       </p>
       <p>
-        <label htmlFor="password">Parola</label>
+        <label htmlFor="password">Password</label>
         <input id="password" name="password" type="password" autoComplete="current-password" required />
       </p>
       {error && <p role="alert">{error}</p>}

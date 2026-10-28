@@ -5,7 +5,7 @@ test.use({ storageState: "playwright/.auth/viewer.json" });
 test("a viewer does not see the cancel button", async ({ page, ordersPage }) => {
   await ordersPage.goto();
 
-  await expect(page.getByText("Ece Viewer")).toBeVisible();
+  await expect(page.getByText("Evan Viewer")).toBeVisible();
   await expect(ordersPage.rows).toHaveCount(6);
   await expect(ordersPage.table.getByRole("button", { name: "Cancel" })).toHaveCount(0);
 });

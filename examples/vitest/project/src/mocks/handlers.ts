@@ -8,7 +8,7 @@ export const products: Product[] = [
 ];
 
 export const handlers = [
-  http.get("https://api.magaza.test/products", () =>
+  http.get("https://api.shop.test/products", () =>
     HttpResponse.json(products),
   ),
 ];

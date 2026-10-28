@@ -20,11 +20,11 @@ export function StoreStep({ taxNumber }: { taxNumber: MaskInputProps }) {
         {(a11y) => <input {...a11y} {...register("storeName")} className={inputClass} />}
       </Field>
 
-      <Field name="taxNumber" label="Tax number" description="10-digit tax identification number">
+      <Field name="taxNumber" label="VAT number" description="Country code and number, such as DE123456789">
         {(a11y) => <input {...taxNumber} {...a11y} className={inputClass} />}
       </Field>
 
-      <Field name="category" label="Kategori">
+      <Field name="category" label="Category">
         {(a11y) => (
           <select {...a11y} {...register("category")} className={inputClass}>
             <option value="">Choose</option>
@@ -46,7 +46,7 @@ export function StoreStep({ taxNumber }: { taxNumber: MaskInputProps }) {
                 <input {...a11y} {...register(`products.${index}.name`)} className={inputClass} />
               )}
             </Field>
-            <Field name={`products.${index}.price`} label={`Product ${index + 1} price (₺)`}>
+            <Field name={`products.${index}.price`} label={`Product ${index + 1} price (€)`}>
               {(a11y) => (
                 <input
                   {...a11y}

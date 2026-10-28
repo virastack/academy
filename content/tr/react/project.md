@@ -12,7 +12,7 @@ Bir mağazanın ürün detay sayfasını kuracaksınız. Sayfa:
 - Ürünü sahte bir API'den yükler; yüklenirken iskelet, hata olursa "Tekrar dene" gösterir.
 - **Add to cart** ile ürünü sepete koyar; üstteki **Cart** butonu kayarak açılan bir çekmece gösterir.
 - **Add to favorites** butonu sunucuyu beklemeden kalbi doldurur.
-- **Açıklama** ve **Reviews** sekmeleri arasında geçerken yazılan yorum taslağı kaybolmaz.
+- **Details** ve **Reviews** sekmeleri arasında geçerken yazılan yorum taslağı kaybolmaz.
 - Yorum formu hata mesajı gösterir; gönderilen yorum cevap gelmeden listede soluk olarak belirir.
 
 Amaç tasarım değil, derslerdeki parçaların birlikte çalışmasıdır. Her parçanın hangi dersten geldiği:
@@ -70,7 +70,7 @@ const products: Record<string, Product> = {
 };
 
 const reviews: Record<string, Review[]> = {
-  "1": [{ id: 1, author: "Ayşe", text: "The sound is very clear." }],
+  "1": [{ id: 1, author: "Jane", text: "The sound is very clear." }],
 };
 
 function wait(ms: number) {
@@ -316,9 +316,9 @@ export function ProductPage({ id }: { id: string }) {
   return (
     <article>
       <h1>{product.name}</h1>
-      <p>{product.price.toLocaleString("tr-TR")} TL</p>
+      <p>€{product.price.toLocaleString("en-US")}</p>
       <button type="button" onClick={() => dispatch({ type: "add", product })}>
-        Sepete ekle
+        Add to cart
       </button>
       <FavoriteButton
         key={product.id}
@@ -328,10 +328,10 @@ export function ProductPage({ id }: { id: string }) {
 
       <div role="tablist">
         <button role="tab" aria-selected={tab === "details"} onClick={() => setTab("details")}>
-          Açıklama
+          Details
         </button>
         <button role="tab" aria-selected={tab === "reviews"} onClick={() => setTab("reviews")}>
-          Yorumlar
+          Reviews
         </button>
       </div>
       <Activity mode={tab === "details" ? "visible" : "hidden"}>
@@ -349,7 +349,7 @@ export function ProductPage({ id }: { id: string }) {
 
 Sekmeler koşullu render yerine `<Activity>` ile yazıldı. Bunun iki sonucu var:[^10]
 
-- Yorum formuna yazılan taslak, **Açıklama** sekmesine geçip dönünce kaybolmaz.
+- Yorum formuna yazılan taslak, **Details** sekmesine geçip dönünce kaybolmaz.
 - Yorumlar sekmesi gizliyken de düşük öncelikle render edilir. `Reviews` bileşeni gizliyken yorumları çekmeye başlar; kullanıcı sekmeye tıkladığında veri çoğu zaman hazırdır.
 
 ## Adım 7: Kayan sepet çekmecesi
@@ -393,13 +393,13 @@ function CartDrawer() {
             <li key={item.id}>
               {item.name} × {item.quantity}
               <button type="button" onClick={() => dispatch({ type: "remove", id: item.id })}>
-                Kaldır
+                Remove
               </button>
             </li>
           ))}
         </ul>
       )}
-      <p>Total: {total.toLocaleString("tr-TR")} TL</p>
+      <p>Total: €{total.toLocaleString("en-US")}</p>
     </aside>
   );
 }

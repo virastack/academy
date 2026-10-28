@@ -90,7 +90,7 @@ export type FetchState<T> =
   { "id": 1, "name": "Wireless Headphones", "price": 1299, "category": "audio", "inStock": true },
   { "id": 2, "name": "Bluetooth Speaker", "price": 899, "category": "audio", "inStock": false },
   { "id": 3, "name": "Laptop", "price": 32999, "category": "computer", "inStock": true },
-  { "id": 4, "name": "USB-C Kablo", "price": 149, "category": "accessory", "inStock": true }
+  { "id": 4, "name": "USB-C Cable", "price": 149, "category": "accessory", "inStock": true }
 ]
 ```
 
@@ -186,7 +186,7 @@ export function ProductCard({ product, onAddToCart }: ProductCardProps) {
   return (
     <article>
       <h2>{product.name}</h2>
-      <p>{product.price.toLocaleString("tr-TR")} TL</p>
+      <p>€{product.price.toLocaleString("en-US")}</p>
       <button
         type="button"
         disabled={!product.inStock}
@@ -233,7 +233,7 @@ export function CategoryFilter({ value, onChange }: CategoryFilterProps) {
 
   return (
     <label>
-      Kategori{" "}
+      Category{" "}
       <select value={value} onChange={handleChange}>
         {(["all", ...CATEGORIES] as const).map((option) => (
           <option key={option} value={option}>
@@ -351,7 +351,7 @@ export default function App() {
     case "loading":
       return <p>Loading...</p>;
     case "error":
-      return <p role="alert">Hata: {state.message}</p>;
+      return <p role="alert">Error: {state.message}</p>;
     case "success": {
       const products =
         category === "all"
@@ -362,7 +362,7 @@ export default function App() {
         <main>
           <p>
             Cart: {items.length} item types,{" "}
-            {totalPrice.toLocaleString("tr-TR")} TL
+            €{totalPrice.toLocaleString("en-US")}
           </p>
           <CategoryFilter value={category} onChange={setCategory} />
           {products.map((product) => (

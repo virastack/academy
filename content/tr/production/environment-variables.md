@@ -170,7 +170,7 @@ ORDER_SUMMARY_ROLLOUT=150 npm start
 ```
 
 ```text
-Geçersiz ortam değişkenleri:
+Invalid environment variables:
 - ORDER_SUMMARY_ROLLOUT: Too big: expected number to be <=100
 ```
 

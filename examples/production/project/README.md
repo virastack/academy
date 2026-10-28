@@ -18,7 +18,7 @@ Uygulamanın kendisi aynıdır: giriş sayfası, oturum cookie'si, TanStack Quer
 | `.github/workflows/ci.yml` | Lint, tip kontrolü, uçtan uca testler ve Docker smoke testi |
 | `tests/production.spec.ts`, `tests/rollout.spec.ts` | Yayına hazırlık testleri |
 
-Demo hesaplar, parola `parola123`:
+Demo hesaplar, parola `password123`:
 
 | E-posta | Rol |
 | :-- | :-- |

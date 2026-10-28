@@ -19,7 +19,7 @@ const products: Record<string, Product> = {
 };
 
 const reviews: Record<string, Review[]> = {
-  "1": [{ id: 1, author: "Ayşe", text: "The sound is very clear." }],
+  "1": [{ id: 1, author: "Jane", text: "The sound is very clear." }],
 };
 
 function wait(ms: number) {

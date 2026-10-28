@@ -89,7 +89,7 @@ describe("ShopPage", () => {
     expect(
       within(summary).getByText("Wireless Headphones × 1"),
     ).toBeInTheDocument();
-    expect(within(summary).getByText("Total: ₺5.697,00")).toBeInTheDocument();
+    expect(within(summary).getByText("Total: €5,697.00")).toBeInTheDocument();
   });
 ```
 
@@ -150,7 +150,7 @@ Konu: `server.use` ile tek test için farklı yanıt.[^6]
   test("the cart keeps working when the API fails", async () => {
     server.use(
       http.get(
-        "https://api.magaza.test/products",
+        "https://api.shop.test/products",
         () => new HttpResponse(null, { status: 500 }),
       ),
     );

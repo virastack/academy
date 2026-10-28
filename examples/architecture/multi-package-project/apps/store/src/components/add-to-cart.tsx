@@ -8,7 +8,7 @@ export function AddToCart({ name }: { name: string }) {
 
   return (
     <Button onClick={() => setCount(count + 1)} aria-label={`${name} sepete ekle`}>
-      Sepete ekle ({count})
+      Add to cart ({count})
     </Button>
   );
 }

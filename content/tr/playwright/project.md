@@ -11,7 +11,7 @@ Küçük bir sipariş paneli var. Uygulama:
 
 - `/login` sayfasında e-posta ve parolayla giriş alır; oturumu `httpOnly` bir cookie'de tutar.
 - `/orders` sayfasında siparişleri [!tanstack-query] ile `/api/orders`'tan yükler ve duruma göre filtreler.
-- Yükleniyor, hata *("Tekrar dene" butonuyla)* ve boş liste durumlarını gösterir.
+- Yükleniyor, hata *("Try again" butonuyla)* ve boş liste durumlarını gösterir.
 - Yöneticiye hazırlanan siparişleri iptal etme yetkisi verir; izleyici yalnızca görüntüler. Sunucu da izleyicinin iptal isteğini reddeder.
 
 Sizin işiniz bu uygulamanın test paketini yazmak. Amaç her dersteki parçayı bir arada kullanmak:
@@ -104,20 +104,20 @@ type Session = {
   orders: Order[];
 };
 
-const PASSWORD = "parola123";
+const PASSWORD = "password123";
 
 const users: User[] = [
-  { id: "u1", name: "Deniz Admin", email: "admin@example.com", role: "admin" },
-  { id: "u2", name: "Ece Viewer", email: "viewer@example.com", role: "viewer" },
+  { id: "u1", name: "Dana Admin", email: "admin@example.com", role: "admin" },
+  { id: "u2", name: "Evan Viewer", email: "viewer@example.com", role: "viewer" },
 ];
 
 const seedOrders: Order[] = [
-  { id: "SP-1001", customer: "Ayşe Yılmaz", total: 1249.9, status: "preparing" },
-  { id: "SP-1002", customer: "Mehmet Kaya", total: 389, status: "shipped" },
-  { id: "SP-1003", customer: "Zeynep Demir", total: 2150, status: "delivered" },
-  { id: "SP-1004", customer: "Can Öztürk", total: 74.5, status: "preparing" },
-  { id: "SP-1005", customer: "Elif Şahin", total: 999, status: "cancelled" },
-  { id: "SP-1006", customer: "Burak Arslan", total: 560, status: "shipped" },
+  { id: "SP-1001", customer: "Jane Miller", total: 1249.9, status: "preparing" },
+  { id: "SP-1002", customer: "Marco Rossi", total: 389, status: "shipped" },
+  { id: "SP-1003", customer: "Nina Kowalski", total: 2150, status: "delivered" },
+  { id: "SP-1004", customer: "Tom Baker", total: 74.5, status: "preparing" },
+  { id: "SP-1005", customer: "Clara Dubois", total: 999, status: "cancelled" },
+  { id: "SP-1006", customer: "Felix Wagner", total: 560, status: "shipped" },
 ];
 
 // Demo veri katmanı: veritabanı yerine bellekte tutulur. Her oturum siparişlerin
@@ -299,7 +299,7 @@ export function LoginForm() {
     <form action={formAction} className="space-y-4" aria-label="Sign in">
       <div className="space-y-1">
         <label htmlFor="email" className="block text-sm font-medium">
-          E-posta
+          Email
         </label>
         <input
           id="email"
@@ -313,7 +313,7 @@ export function LoginForm() {
       </div>
       <div className="space-y-1">
         <label htmlFor="password" className="block text-sm font-medium">
-          Parola
+          Password
         </label>
         <input
           id="password"
@@ -347,7 +347,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { isStatusFilter, statusLabels, type Order, type StatusFilter } from "@/lib/orders";
 
-const currency = new Intl.NumberFormat("tr-TR", { style: "currency", currency: "TRY" });
+const currency = new Intl.NumberFormat("en-US", { style: "currency", currency: "EUR" });
 
 async function fetchOrders(status: StatusFilter): Promise<Order[]> {
   const response = await fetch(`/api/orders?status=${status}`);
@@ -386,7 +386,7 @@ export function OrdersPanel({ canCancel }: { canCancel: boolean }) {
     <section className="space-y-4">
       <div className="flex items-center gap-2">
         <label htmlFor="status" className="text-sm font-medium">
-          Durum
+          Status
         </label>
         <select
           id="status"
@@ -416,7 +416,7 @@ export function OrdersPanel({ canCancel }: { canCancel: boolean }) {
         <div role="alert" className="space-y-2 rounded border border-red-300 bg-red-50 p-4">
           <p>Orders could not be loaded.</p>
           <button type="button" onClick={() => orders.refetch()} className="underline">
-            Tekrar dene
+            Try again
           </button>
         </div>
       ) : orders.data.length === 0 ? (
@@ -449,7 +449,7 @@ export function OrdersPanel({ canCancel }: { canCancel: boolean }) {
                         disabled={cancel.isPending}
                         className="text-red-700 underline disabled:opacity-60"
                       >
-                        İptal et
+                        Cancel
                       </button>
                     )}
                   </td>
@@ -479,7 +479,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="tr">
+    <html lang="en">
       <body>
         <Providers>{children}</Providers>
       </body>
@@ -516,7 +516,7 @@ export default function LoginPage() {
       <h1 className="text-2xl font-semibold">Sign in to the order panel</h1>
       <LoginForm />
       <p className="text-sm text-gray-700">
-        Demo hesaplar: yonetici@example.com ve izleyici@example.com, parola: parola123
+        Demo accounts: admin@example.com and viewer@example.com, password: password123
       </p>
     </main>
   );
@@ -536,7 +536,7 @@ export default function OrdersPage() {
   return (
     <main className="mx-auto max-w-3xl space-y-6 px-4 py-10">
       <h1 className="text-2xl font-semibold">Orders</h1>
-      <Suspense fallback={<p>Oturum kontrol ediliyor...</p>}>
+      <Suspense fallback={<p>Checking the session...</p>}>
         <OrdersSection />
       </Suspense>
     </main>
@@ -554,7 +554,7 @@ async function OrdersSection() {
         </p>
         <form action={logout}>
           <button type="submit" className="underline">
-            Çıkış yap
+            Sign out
           </button>
         </form>
       </div>
@@ -661,8 +661,8 @@ export class LoginPage {
 
   constructor(private readonly page: Page) {
     const form = page.getByRole("form", { name: "Sign in" });
-    this.email = form.getByLabel("E-posta");
-    this.password = form.getByLabel("Parola");
+    this.email = form.getByLabel("Email");
+    this.password = form.getByLabel("Password");
     this.submit = form.getByRole("button", { name: "Sign in" });
     this.error = form.getByRole("alert");
   }
@@ -671,7 +671,7 @@ export class LoginPage {
     await this.page.goto("/login");
   }
 
-  async login(email: string, password = "parola123") {
+  async login(email: string, password = "password123") {
     await this.email.fill(email);
     await this.password.fill(password);
     await this.submit.click();
@@ -810,7 +810,7 @@ test("a signed-in user sees the orders and can sign out", async ({
   await loginPage.login("admin@example.com");
 
   await expect(page).toHaveURL("/orders");
-  await expect(page.getByText("Deniz Admin")).toBeVisible();
+  await expect(page.getByText("Dana Admin")).toBeVisible();
 
   await ordersPage.logout.click();
   await expect(page).toHaveURL("/login");
@@ -831,7 +831,7 @@ test.use({ storageState: "playwright/.auth/viewer.json" });
 test("a viewer does not see the cancel button", async ({ page, ordersPage }) => {
   await ordersPage.goto();
 
-  await expect(page.getByText("Ece Viewer")).toBeVisible();
+  await expect(page.getByText("Evan Viewer")).toBeVisible();
   await expect(ordersPage.rows).toHaveCount(6);
   await expect(ordersPage.table.getByRole("button", { name: "Cancel" })).toHaveCount(0);
 });
@@ -858,8 +858,8 @@ test.beforeEach(async ({ ordersPage }) => {
 
 test("lists all orders", async ({ ordersPage }) => {
   await expect(ordersPage.rows).toHaveCount(6);
-  await expect(ordersPage.row("SP-1001")).toContainText("Ayşe Yılmaz");
-  await expect(ordersPage.row("SP-1001")).toContainText("₺1.249,90");
+  await expect(ordersPage.row("SP-1001")).toContainText("Jane Miller");
+  await expect(ordersPage.row("SP-1001")).toContainText("€1,249.90");
 });
 
 test("filters by status", async ({ ordersPage }) => {
@@ -877,10 +877,10 @@ test("the table structure is as expected", async ({ ordersPage }) => {
       - rowgroup:
         - row "Order Customer Amount Status Action"
       - rowgroup:
-        - row /SP-1003 Zeynep Demir/:
+        - row /SP-1003 Nina Kowalski/:
           - cell "SP-1003"
-          - cell "Zeynep Demir"
-          - cell /2\\.150,00/
+          - cell "Nina Kowalski"
+          - cell /2,150\\.00/
           - cell "Delivered"
           - cell
   `);
@@ -940,7 +940,7 @@ test("error state and retry on a server error", async ({ page, ordersPage }) => 
   await expect(ordersPage.loadError).toBeVisible();
 
   await page.unroute("**/api/orders?*");
-  await ordersPage.loadError.getByRole("button", { name: "Tekrar dene" }).click();
+  await ordersPage.loadError.getByRole("button", { name: "Try again" }).click();
 
   await expect(ordersPage.rows).toHaveCount(6);
   await expect(ordersPage.loadError).toBeHidden();
@@ -957,12 +957,12 @@ test("overrides the response to try a long customer name", async ({ page, orders
   await page.route("**/api/orders?*", async (route) => {
     const response = await route.fetch();
     const { orders } = await response.json();
-    orders[0].customer = "Ayşe Nur Yılmaz Karadeniz Verylongsurname";
+    orders[0].customer = "Wilhelmina Fitzgerald-Montgomery Vandersteen Verylongsurname";
     await route.fulfill({ response, json: { orders } });
   });
 
   await ordersPage.goto();
-  await expect(ordersPage.row("SP-1001")).toContainText("Ayşe Nur Yılmaz Karadeniz Verylongsurname");
+  await expect(ordersPage.row("SP-1001")).toContainText("Wilhelmina Fitzgerald-Montgomery Vandersteen Verylongsurname");
 });
 
 test("the loading state is visible", async ({ page, ordersPage }) => {
@@ -1007,7 +1007,7 @@ test.describe("sign-in page", () => {
     await page.keyboard.press("Tab");
     await expect(loginPage.password).toBeFocused();
 
-    await page.keyboard.type("parola123");
+    await page.keyboard.type("password123");
     await page.keyboard.press("Enter");
     await expect(page).toHaveURL("/orders");
   });

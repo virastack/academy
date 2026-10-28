@@ -7,6 +7,6 @@ export const logger = pino({
   base: { service: "order-panel", env: getEnv().APP_ENV, version: getEnv().APP_VERSION },
   redact: {
     paths: ["password", "*.password", "cookie", "*.cookie", "headers.cookie", "*.headers.cookie"],
-    censor: "[gizlendi]",
+    censor: "[redacted]",
   },
 });

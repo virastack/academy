@@ -17,10 +17,10 @@ Tarayıcı ve parola yöneticisi formunuzu ancak doğru işaretlerseniz tanır. 
 
 ```html
 <form action="/login" method="post">
-  <label for="email">E-posta</label>
+  <label for="email">Email</label>
   <input id="email" name="email" type="email" autocomplete="username" required />
 
-  <label for="password">Parola</label>
+  <label for="password">Password</label>
   <input
     id="password"
     name="password"

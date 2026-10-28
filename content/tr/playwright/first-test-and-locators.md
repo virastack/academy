@@ -16,8 +16,8 @@ import { test, expect } from "@playwright/test";
 test("a wrong password shows an error message", async ({ page }) => {
   await page.goto("/login");
 
-  await page.getByLabel("E-posta").fill("admin@example.com");
-  await page.getByLabel("Parola").fill("wrongpass");
+  await page.getByLabel("Email").fill("admin@example.com");
+  await page.getByLabel("Password").fill("wrongpass");
   await page.getByRole("button", { name: "Sign in" }).click();
 
   await expect(page.getByRole("alert")).toHaveText("Email or password is incorrect.");

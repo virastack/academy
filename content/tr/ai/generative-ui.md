@@ -35,7 +35,7 @@ import { orderService } from './orders'; // sizin servis katmanınız
 
 export const tools = {
   getOrderStatus: tool({
-    description: 'Shows an order's shipping status as a card.',
+    description: 'Shows the shipping status of an order as a card.',
     inputSchema: z.object({
       orderId: z.string().describe('The order number, e.g. TR-1042'),
     }),

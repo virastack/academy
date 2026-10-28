@@ -1,4 +1,4 @@
-export const PASSWORD = "parola-1234";
+export const PASSWORD = "password-1234";
 
 export const ROLES = ["admin", "editor", "customer"] as const;
 

@@ -29,7 +29,7 @@ export default function Chat() {
   return (
     <div className="mt-6">
       <p aria-live="polite" className="text-sm text-muted">
-        Sepet: {count} ürün
+        Cart: {count} items
       </p>
 
       <ul className="mt-4 space-y-4">
@@ -51,7 +51,7 @@ export default function Chat() {
                       return (
                         <div key={i} className="mt-2 grid gap-3 sm:grid-cols-2">
                           {(part.output as ProductSummary[]).map((p) => (
-                            <ProductCard key={p.id} product={p} onAdd={(id) => sendMessage({ text: `${id} sepete ekle` })} />
+                            <ProductCard key={p.id} product={p} onAdd={(id) => sendMessage({ text: `add ${id} to cart` })} />
                           ))}
                         </div>
                       );
@@ -65,9 +65,9 @@ export default function Chat() {
                   switch (part.state) {
                     case 'approval-requested':
                       return (
-                        <div key={i} role="group" aria-label="Onay" className="mt-2 rounded-xl border border-line bg-card p-4">
+                        <div key={i} role="group" aria-label="Approval" className="mt-2 rounded-xl border border-line bg-card p-4">
                           <p className="text-ink">
-                            {findProductById(part.input.productId)?.name ?? part.input.productId} ({part.input.quantity} adet) sepete eklensin mi?
+                            {findProductById(part.input.productId)?.name ?? part.input.productId} ({part.input.quantity} items) — add it to the cart?
                           </p>
                           <div className="mt-3 flex gap-2">
                             <button
@@ -75,7 +75,7 @@ export default function Chat() {
                               onClick={() => addToolApprovalResponse({ id: part.approval.id, approved: true })}
                               className="h-11 rounded-lg bg-brand px-4 text-sm font-semibold text-brand-ink"
                             >
-                              Onayla
+                              Approve
                             </button>
                             <button
                               type="button"
@@ -101,7 +101,7 @@ export default function Chat() {
 
       {error && (
         <p role="alert" className="mt-4 text-ink">
-          Bir sorun oluştu. Çok fazla istek gönderdiyseniz biraz bekleyin.
+          Something went wrong. If you sent too many requests, wait a little.
         </p>
       )}
 
@@ -119,7 +119,7 @@ export default function Chat() {
           id="msg"
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          placeholder="e.g. running shoes under 3000 TL"
+          placeholder="e.g. running shoes under 300 EUR"
           className="h-11 flex-1 rounded-lg border border-line bg-card px-3 text-ink"
         />
         <button

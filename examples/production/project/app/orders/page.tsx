@@ -10,7 +10,7 @@ export default function OrdersPage() {
   return (
     <main className="mx-auto max-w-3xl space-y-6 px-4 py-10">
       <h1 className="text-2xl font-semibold">Orders</h1>
-      <Suspense fallback={<p>Oturum kontrol ediliyor...</p>}>
+      <Suspense fallback={<p>Checking the session...</p>}>
         <OrdersSection />
       </Suspense>
     </main>

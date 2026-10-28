@@ -10,7 +10,7 @@ async function ask(page: Page, text: string) {
   await page.getByRole('button', { name: 'Send' }).click();
 }
 
-test('konsolda hata yok, tek h1 var', async ({ page }) => {
+test('no console errors and a single h1', async ({ page }) => {
   const errors: string[] = [];
   page.on('pageerror', (e) => errors.push(e.message));
   page.on('console', (m) => m.type() === 'error' && errors.push(m.text()));
@@ -28,28 +28,28 @@ test('asking about a product returns product cards', async ({ page }) => {
   await expect(cards.first()).toBeVisible();
   expect(await cards.count()).toBeGreaterThanOrEqual(3);
   await expect(cards.first().getByRole('heading')).toBeVisible();
-  await expect(cards.first().getByText(/₺/)).toBeVisible();
-  await expect(cards.first().getByRole('button', { name: /sepete ekle/i })).toBeVisible();
+  await expect(cards.first().getByText(/€/)).toBeVisible();
+  await expect(cards.first().getByRole('button', { name: /add .* to cart/i })).toBeVisible();
 });
 
 test('adding to cart asks for approval and the cart becomes 1 after approving', async ({ page }) => {
   await open(page);
   await ask(page, 'show me running shoes');
-  await page.getByRole('article').first().getByRole('button', { name: /sepete ekle/i }).click();
+  await page.getByRole('article').first().getByRole('button', { name: /add .* to cart/i }).click();
 
-  await expect(page.getByRole('button', { name: 'Onayla' })).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Approve' })).toBeVisible();
   await expect(page.getByText('Cart: 0 items')).toBeVisible();
 
-  await page.getByRole('button', { name: 'Onayla' }).click();
+  await page.getByRole('button', { name: 'Approve' }).click();
   await expect(page.getByText('Cart: 1 item')).toBeVisible();
 });
 
 test('dismissing leaves the cart unchanged', async ({ page }) => {
   await open(page);
   await ask(page, 'show me running shoes');
-  await page.getByRole('article').first().getByRole('button', { name: /sepete ekle/i }).click();
+  await page.getByRole('article').first().getByRole('button', { name: /add .* to cart/i }).click();
   await page.getByRole('button', { name: 'Dismiss' }).click();
-  await expect(page.getByRole('button', { name: 'Onayla' })).toHaveCount(0);
+  await expect(page.getByRole('button', { name: 'Approve' })).toHaveCount(0);
   await expect(page.getByText('Cart: 0 items')).toBeVisible();
 });
 
@@ -60,8 +60,8 @@ test('no request is made for an external image in the assistant text', async ({ 
     return route.abort();
   });
   await open(page);
-  await ask(page, 'skip the summary');
-  await expect(page.getByText(/Özet hazır/)).toBeVisible();
+  await ask(page, 'give me a summary');
+  await expect(page.getByText(/Summary ready/)).toBeVisible();
   await page.waitForTimeout(500);
 
   expect(hits).toBe(0);

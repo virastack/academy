@@ -4,7 +4,7 @@ export default function ProductsError({ retry }: { error: unknown; retry: () => 
   return (
     <>
       <h2>Products could not be loaded.</h2>
-      <button onClick={() => retry()}>Tekrar dene</button>
+      <button onClick={() => retry()}>Try again</button>
     </>
   );
 }

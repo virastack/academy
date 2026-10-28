@@ -65,8 +65,8 @@ export type Env = z.infer<typeof envSchema>;
 let cached: Env | undefined;
 
 /**
- * Ortam değişkenlerini bir kez doğrular ve önbelleğe alır.
- * Eksik ya da hatalı bir değer varsa hangi değişkenin neden geçersiz olduğunu söyleyerek hata fırlatır.
+ * Validates the environment variables once and caches them.
+ * If a value is missing or invalid it throws, naming the variable and why it failed.
  */
 export function getEnv(): Env {
   if (cached) return cached;
@@ -88,16 +88,16 @@ export function getEnv(): Env {
 
 ```bash
 # .env.example
-# Bu dosyayı .env.local adıyla kopyalayın. Gerçek değerleri asla depoya eklemeyin.
-# Tüm değişkenler lib/env.ts içinde Zod ile doğrulanır.
+# Copy this file as .env.local. Never add the real values to the repository.
+# Every variable is validated with Zod in lib/env.ts.
 
 # local | preview | production
 APP_ENV=local
-# Sağlık uç noktasında ve loglarda görünen sürüm. CI'da commit SHA'sı verilir.
+# The version shown on the health endpoint and in the logs. In CI the commit SHA is passed.
 APP_VERSION=dev
 # debug | info | warn | error
 LOG_LEVEL=info
-# Sipariş özetini görecek kullanıcı yüzdesi (0-100)
+# The percentage of users who will see the order summary (0-100)
 ORDER_SUMMARY_ROLLOUT=0
 ```
 
@@ -124,7 +124,7 @@ export const logger = pino({
   base: { service: "order-panel", env: getEnv().APP_ENV, version: getEnv().APP_VERSION },
   redact: {
     paths: ["password", "*.password", "cookie", "*.cookie", "headers.cookie", "*.headers.cookie"],
-    censor: "[gizlendi]",
+    censor: "[redacted]",
   },
 });
 ```
@@ -135,11 +135,11 @@ Ortam doğrulamasını ilk istekte değil, sunucu açılırken çalıştırın. 
 // instrumentation-node.ts
 import { getEnv } from "./lib/env";
 
-// Yalnızca Node.js çalışma ortamında, sunucu açılırken bir kez çalışır.
+// Runs once as the server starts, and only on the Node.js runtime.
 try {
   getEnv();
 } catch (error) {
-  // Ortam değişkenleri hatalıysa sunucu hiç trafik almadan kapanır.
+  // If the environment variables are wrong the server exits before taking any traffic.
   console.error(error instanceof Error ? error.message : error);
   process.exit(1);
 }
@@ -194,7 +194,7 @@ Kök seviyedeki `error.tsx` bütün sayfaları sarar. Sunucu hatalarında Next.j
 // app/error.tsx
 "use client";
 
-/** Sunucu hatalarında Next.js'in eklediği `digest` değerini güvenle okur. */
+/** Safely reads the `digest` value Next.js attaches to server errors. */
 function getDigest(error: unknown): string | undefined {
   if (typeof error === "object" && error !== null && "digest" in error) {
     return typeof error.digest === "string" ? error.digest : undefined;
@@ -211,11 +211,11 @@ export default function Error({ error, retry }: { error: unknown; retry: () => v
         <p>An unexpected error occurred while loading the page. You can try again.</p>
         {digest && (
           <p className="text-sm">
-            Destek ekibine iletmek için hata kodu: <code>{digest}</code>
+            Error code to pass on to support: <code>{digest}</code>
           </p>
         )}
         <button type="button" onClick={() => retry()} className="underline">
-          Tekrar dene
+          Try again
         </button>
       </div>
     </main>
@@ -231,18 +231,18 @@ Kök layout'taki hatalar için `global-error.tsx` kendi `<html>` ve `<body>` eti
 // app/global-error.tsx
 "use client";
 
-// Kök layout'taki hataları yakalar. Kendi <html> ve <body> etiketlerini çizer;
-// globals.css burada yüklü değildir, bu yüzden stiller satır içidir.
+// Catches errors in the root layout. It renders its own <html> and <body>;
+// globals.css is not loaded here, which is why the styles are inline.
 export default function GlobalError({ retry }: { error: unknown; retry: () => void }) {
   return (
-    <html lang="tr">
+    <html lang="en">
       <body style={{ fontFamily: "system-ui, sans-serif", padding: "2.5rem 1rem" }}>
         <title>Error | Order panel</title>
         <main role="alert" style={{ maxWidth: "48rem", margin: "0 auto" }}>
           <h1>The app could not be loaded</h1>
           <p>An unexpected error occurred. Try reloading the page.</p>
           <button type="button" onClick={() => retry()}>
-            Tekrar dene
+            Try again
           </button>
         </main>
       </body>
@@ -260,8 +260,8 @@ import { connection } from "next/server";
 import { Suspense } from "react";
 import { getEnv } from "@/lib/env";
 
-// Hata izleme hattını uçtan uca denemek için bilerek hata fırlatan sayfa.
-// Production'da 404 döner.
+// A page that throws on purpose, to exercise the error-tracking pipeline end to end.
+// Returns 404 in production.
 export default function DebugPage() {
   return (
     <Suspense fallback={<p>Loading...</p>}>
@@ -304,7 +304,7 @@ export async function login(_previous: LoginState, formData: FormData): Promise<
 
   const user = findUser(email, password);
   if (!user) {
-    // Parolayı asla loglamayın. E-posta, tekrar eden denemeleri fark etmek için yeterlidir.
+    // Never log the password. The email is enough to spot repeated attempts.
     logger.warn({ event: "login_failed", email }, "Sign-in failed");
     return { error: "Email or password is incorrect.", email };
   }
@@ -356,8 +356,8 @@ Kullanıcıyı sabit bir kovaya yerleştiren fonksiyon. Aynı kullanıcı her is
 ```ts
 // lib/rollout.ts
 /**
- * Bir kimliği 0 ile 99 arasında sabit bir kovaya yerleştirir (FNV-1a).
- * Aynı kullanıcı her istekte aynı kovaya düşer; yüzde 10'luk açılışta hep aynı yüzde 10 görür.
+ * Places an id in a stable bucket between 0 and 99 (FNV-1a).
+ * The same user lands in the same bucket on every request, so a 10 percent rollout always reaches the same 10 percent.
  */
 export function rolloutBucket(id: string, salt: string): number {
   let hash = 0x811c9dc5;
@@ -421,7 +421,7 @@ export default function OrdersPage() {
   return (
     <main className="mx-auto max-w-3xl space-y-6 px-4 py-10">
       <h1 className="text-2xl font-semibold">Orders</h1>
-      <Suspense fallback={<p>Oturum kontrol ediliyor...</p>}>
+      <Suspense fallback={<p>Checking the session...</p>}>
         <OrdersSection />
       </Suspense>
     </main>
@@ -440,7 +440,7 @@ async function OrdersSection() {
         </p>
         <form action={logout}>
           <button type="submit" className="underline">
-            Çıkış yap
+            Sign out
           </button>
         </form>
       </div>
@@ -518,8 +518,8 @@ Standalone sunucu `public` ve `.next/static` klasörlerini kendiliğinden sunmaz
 
 ```js
 // scripts/prepare-standalone.mjs
-// `output: "standalone"` derlemesi .next/static ve public klasörlerini kopyalamaz.
-// `node .next/standalone/server.js` bu dosyaları da sunabilsin diye build sonrası kopyalar.
+// An `output: "standalone"` build does not copy the .next/static and public folders.
+// This copies them after the build so `node .next/standalone/server.js` can serve them too.
 import { cpSync, existsSync } from "node:fs";
 
 cpSync(".next/static", ".next/standalone/.next/static", { recursive: true });
@@ -619,16 +619,16 @@ test("security headers are sent and X-Powered-By is not", async ({ request }) =>
 test("a user with the flag on sees the order summary", async ({ page, ordersPage }) => {
   await ordersPage.goto();
 
-  await expect(page.getByText("6 orders, ₺5.422,40 in total")).toBeVisible();
+  await expect(page.getByText("6 orders, €5,422.40 in total")).toBeVisible();
 });
 
 test("on a server error the error boundary shows a digest", async ({ page }) => {
   await page.goto("/debug");
 
-  // Next.js'in sayfa geçişi duyurucusu da role="alert" taşır; metinle daraltıyoruz.
+  // Next.js's route announcer also carries role="alert", so we narrow by text.
   const alert = page.getByRole("alert").filter({ hasText: "Something went wrong" });
   await expect(alert).toBeVisible();
-  await expect(alert).toContainText(/hata kodu: \S+/);
+  await expect(alert).toContainText(/Error code to pass on to support: \S+/);
   await expect(alert).not.toContainText("thrown on purpose");
 });
 ```
@@ -639,8 +639,8 @@ Açılış fonksiyonunun üç özelliğini doğrulayan saf fonksiyon testleri:
 
 ```ts
 // tests/rollout.spec.ts
-// Tarayıcı gerektirmeyen saf fonksiyon testleri. Gerçek bir projede bunları
-// Vitest gibi bir birim test aracına taşıyın; burada tek araçla kalmak için Playwright'ta.
+// Pure function tests that need no browser. In a real project, move these
+// to a unit test runner such as Vitest; they live in Playwright here to keep one tool.
 import { expect, test } from "@playwright/test";
 import { isInRollout, rolloutBucket } from "../lib/rollout";
 
@@ -677,16 +677,16 @@ test("raising the percentage never drops anyone already included", () => {
 # Dockerfile
 # syntax=docker/dockerfile:1
 
-# Node.js sürümünü güncel LTS ile birlikte düzenli olarak yükseltin.
+# Raise the Node.js version regularly, along with the current LTS.
 ARG NODE_VERSION=24-slim
 
-# 1. aşama: bağımlılıklar. Yalnızca paket dosyaları değişince yeniden çalışır.
+# Stage 1: the dependencies. It runs again only when the package files change.
 FROM node:${NODE_VERSION} AS dependencies
 WORKDIR /app
 COPY package.json package-lock.json ./
 RUN --mount=type=cache,target=/root/.npm npm ci --no-audit --no-fund
 
-# 2. aşama: build. output: "standalone" yalnızca çalışmak için gereken dosyaları toplar.
+# Stage 2: the build. output: "standalone" collects only the files needed to run.
 FROM node:${NODE_VERSION} AS builder
 WORKDIR /app
 COPY --from=dependencies /app/node_modules ./node_modules
@@ -695,7 +695,7 @@ ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
 RUN npm run build
 
-# 3. aşama: çalışma imajı. Kaynak kod ve node_modules'ın tamamı burada yok.
+# Stage 3: the runtime image. The source code and all of node_modules are not here.
 FROM node:${NODE_VERSION} AS runner
 WORKDIR /app
 ENV NODE_ENV=production
@@ -706,7 +706,7 @@ ENV HOSTNAME=0.0.0.0
 COPY --from=builder --chown=node:node /app/.next/standalone ./
 COPY --from=builder --chown=node:node /app/.next/static ./.next/static
 
-# Root olmayan kullanıcıyla çalış.
+# Run as a non-root user.
 USER node
 EXPOSE 3000
 
@@ -730,7 +730,7 @@ Dockerfile
 .dockerignore
 npm-debug.log*
 
-# testler imaja girmez
+# the tests do not enter the image
 tests
 playwright
 playwright.config.ts
@@ -770,12 +770,12 @@ on:
   pull_request:
     branches: [main]
 
-# Aynı dal için yeni bir push geldiğinde pull request'teki eski çalıştırmayı iptal et.
+# When a new push arrives for the same branch, cancel the old run on the pull request.
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
-# GITHUB_TOKEN yalnızca depoyu okuyabilsin.
+# Let GITHUB_TOKEN only read the repository.
 permissions:
   contents: read
 

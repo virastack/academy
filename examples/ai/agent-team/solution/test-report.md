@@ -1,13 +1,13 @@
 # Test report
 
-| # | Kriter | Test | Sonuç |
+| # | Criterion | Test | Result |
 | --- | --- | --- | --- |
-| 1 | SALE10 %10 indirim | `coupon.test.ts`, `e2e/coupon.spec.ts` | geçti |
-| 2 | Büyük/küçük harf ve boşluk | `coupon.test.ts`, `e2e/coupon.spec.ts` | geçti |
-| 3 | Geçersiz kodda hata | `e2e/coupon.spec.ts` | geçti |
-| 4 | İndirim satırı | `e2e/coupon.spec.ts` | geçti |
-| 5 | Tek kupon | Ayrı test yok: tek geçerli kod var, state tek `Coupon` tutuyor | elle kontrol edildi |
-| 6 | Kaldır | `e2e/coupon.spec.ts` | geçti |
+| 1 | SALE10 gives 10% off | `coupon.test.ts`, `e2e/coupon.spec.ts` | passed |
+| 2 | Case and spaces | `coupon.test.ts`, `e2e/coupon.spec.ts` | passed |
+| 3 | An error for an invalid code | `e2e/coupon.spec.ts` | passed |
+| 4 | The discount line | `e2e/coupon.spec.ts` | passed |
+| 5 | A single coupon | No separate test: there is one valid code and the state holds a single `Coupon` | checked by hand |
+| 6 | Remove | `e2e/coupon.spec.ts` | passed |
 
 Unit: 8 passed. E2E: 4 passed.
 

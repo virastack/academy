@@ -24,7 +24,7 @@ test.describe("editor", () => {
 
     const row = page.getByTestId("product-mouse");
     await row.getByLabel("Wireless Mouse price").fill("949");
-    await row.getByRole("button", { name: "Kaydet" }).click();
+    await row.getByRole("button", { name: "Save" }).click();
     await page.reload();
     await expect(page.getByLabel("Wireless Mouse price")).toHaveValue("949");
 
@@ -49,7 +49,7 @@ test.describe("admin", () => {
     await page.goto("/admin/users");
     const roleSelect = page.getByLabel("customer@example.com role");
     await roleSelect.selectOption("editor");
-    await roleSelect.locator("..").getByRole("button", { name: "Kaydet" }).click();
+    await roleSelect.locator("..").getByRole("button", { name: "Save" }).click();
     await page.reload();
     await expect(page.getByLabel("customer@example.com role")).toHaveValue("editor");
   });

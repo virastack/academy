@@ -1,4 +1,4 @@
-const formatter = new Intl.NumberFormat("tr-TR", { style: "currency", currency: "TRY" });
+const formatter = new Intl.NumberFormat("en-US", { style: "currency", currency: "EUR" });
 
 export function formatPrice(value: number) {
   return formatter.format(value);

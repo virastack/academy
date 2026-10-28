@@ -93,7 +93,7 @@ export default function ProductsError({
   return (
     <>
       <h2>Products could not be loaded.</h2>
-      <button onClick={() => retry()}>Tekrar dene</button>
+      <button onClick={() => retry()}>Try again</button>
     </>
   );
 }
@@ -121,7 +121,7 @@ function SectionError(props: { title: string }, { retry }: ErrorInfo) {
   return (
     <div role="alert">
       <p>{props.title} yüklenemedi.</p>
-      <button onClick={() => retry()}>Tekrar dene</button>
+      <button onClick={() => retry()}>Try again</button>
     </div>
   );
 }
@@ -144,7 +144,7 @@ Error Boundary'ler render sırasındaki hataları yakalar. Bir `onClick` içinde
 ## Kendin dene
 
 - `getProducts`'ın içine `throw new Error("db down")` yazın. `error.tsx` görünüyor mu? Header yerinde duruyor mu?
-- Hatayı yalnızca ilk çağrıda fırlatacak şekilde değiştirin ve **Tekrar dene**'ye basın.
+- Hatayı yalnızca ilk çağrıda fırlatacak şekilde değiştirin ve **Try again**'ye basın.
 - `next build && next start` ile çalıştırıp `error` nesnesinin mesajına bakın. Geliştirmedekiyle aynı mı?
 - `notFound()`'u bir `try` bloğuna alın. Ne oluyor?
 

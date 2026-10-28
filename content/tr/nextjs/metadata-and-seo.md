@@ -135,7 +135,7 @@ const jsonLd = {
   "@type": "Product",
   name: product.name,
   description: product.description,
-  offers: { "@type": "Offer", price: product.price, priceCurrency: "TRY" },
+  offers: { "@type": "Offer", price: product.price, priceCurrency: "EUR" },
 };
 
 <script
@@ -146,7 +146,7 @@ const jsonLd = {
 
 > [!CAUTION]
 >
-> `JSON.stringify` HTML'i temizlemez. Ürün adında `</script>` gibi bir değer XSS açığı yaratabilir. Örnekteki `<` → `<` değişimini atlamayın.[^8]
+> `JSON.stringify` HTML'i temizlemez. Ürün adında `</script>` gibi bir değer XSS açığı yaratabilir. Örnekteki `<` → `\u003c` değişimini atlamayın.[^8]
 
 Sonucu Google'ın Rich Results Test aracıyla kontrol edin.[^8] Sayfa hızı da sıralamayı etkiler; Core Web Vitals, görsel ve font [Performans ve Erişilebilirlik](/academy/performance-accessibility/core-web-vitals) rehberinde.
 

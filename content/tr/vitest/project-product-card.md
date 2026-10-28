@@ -90,7 +90,7 @@ describe("ProductCard", () => {
     expect(
       screen.getByRole("heading", { name: "Wireless Headphones" }),
     ).toBeInTheDocument();
-    expect(screen.getByText("₺1.299,00")).toBeInTheDocument();
+    expect(screen.getByText("€1,299.00")).toBeInTheDocument();
   });
 });
 ```
@@ -144,8 +144,8 @@ test("shows the old price for a discounted product", () => {
     />,
   );
 
-  expect(screen.getByText("₺1.499,00")).toBeInTheDocument();
-  expect(screen.getByText("₺1.299,00")).toBeInTheDocument();
+  expect(screen.getByText("€1,499.00")).toBeInTheDocument();
+  expect(screen.getByText("€1,299.00")).toBeInTheDocument();
 });
 ```
 
@@ -165,7 +165,7 @@ test("shows the old price for a discounted product", () => {
 <details>
 <summary>Fiyat metni neden sabit yazılır?</summary>
 
-- Fiyat metnini `formatPrice` ile üretmeyin. Testte `"₺1.299,00"` gibi sabit metin yazın. Biçim bozulursa test başarısız olur ve hatayı gösterir.
+- Fiyat metnini `formatPrice` ile üretmeyin. Testte `"€1,299.00"` gibi sabit metin yazın. Biçim bozulursa test başarısız olur ve hatayı gösterir.
 - Fiyat biçimi `Intl` için kullanılan ICU verisine bağlıdır. Bu veri Node.js derlemesine ve sisteme göre değişebilir. Takımınız farklı ortamlar kullanıyorsa CI ortamında bir kez çalıştırarak doğrulayın.[^5]
 
 </details>

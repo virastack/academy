@@ -81,13 +81,13 @@ Docker dokümanı **çok aşamalı** *(multi-stage)* build önerir: her `FROM` y
 # syntax=docker/dockerfile:1
 ARG NODE_VERSION=24-slim
 
-# 1. aşama: bağımlılıklar. Yalnızca paket dosyaları değişince yeniden çalışır.
+# Stage 1: the dependencies. It runs again only when the package files change.
 FROM node:${NODE_VERSION} AS dependencies
 WORKDIR /app
 COPY package.json package-lock.json ./
 RUN --mount=type=cache,target=/root/.npm npm ci --no-audit --no-fund
 
-# 2. aşama: build.
+# Stage 2: the build.
 FROM node:${NODE_VERSION} AS builder
 WORKDIR /app
 COPY --from=dependencies /app/node_modules ./node_modules
@@ -95,7 +95,7 @@ COPY . .
 ENV NODE_ENV=production
 RUN npm run build
 
-# 3. aşama: çalışma imajı.
+# Stage 3: the runtime image.
 FROM node:${NODE_VERSION} AS runner
 WORKDIR /app
 ENV NODE_ENV=production

@@ -8,8 +8,8 @@ export function AddToCartButton({ product }: { product: Product }) {
   const { add } = useCart();
 
   return (
-    <Button onClick={() => add(product)} aria-label={`${product.name} sepete ekle`}>
-      Sepete ekle
+    <Button onClick={() => add(product)} aria-label={`Add ${product.name} to cart`}>
+      Add to cart
     </Button>
   );
 }

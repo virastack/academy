@@ -12,12 +12,12 @@ export function ContactStep({ phone }: { phone: MaskInputProps }) {
 
   return (
     <>
-      <Field name="contactName" label="Ad soyad">
+      <Field name="contactName" label="Full name">
         {(a11y) => (
           <input {...a11y} autoComplete="name" {...register("contactName")} className={inputClass} />
         )}
       </Field>
-      <Field name="email" label="E-posta">
+      <Field name="email" label="Email">
         {(a11y) => (
           <input
             {...a11y}
@@ -28,8 +28,8 @@ export function ContactStep({ phone }: { phone: MaskInputProps }) {
           />
         )}
       </Field>
-      <Field name="phone" label="Cep telefonu" description="Example: (532) 123 45 67">
-        {(a11y) => <input {...phone} {...a11y} autoComplete="tel-national" className={inputClass} />}
+      <Field name="phone" label="Mobile phone" description="Example: +49 30 12345678">
+        {(a11y) => <input {...phone} {...a11y} autoComplete="tel" className={inputClass} />}
       </Field>
     </>
   );

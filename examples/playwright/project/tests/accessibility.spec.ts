@@ -18,7 +18,7 @@ test.describe("sign-in page", () => {
     await page.keyboard.press("Tab");
     await expect(loginPage.password).toBeFocused();
 
-    await page.keyboard.type("parola123");
+    await page.keyboard.type("password123");
     await page.keyboard.press("Enter");
     await expect(page).toHaveURL("/orders");
   });

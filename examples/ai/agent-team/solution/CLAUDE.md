@@ -1,8 +1,8 @@
-# Sepet
+# Cart
 
-- React 19, TypeScript, Tailwind CSS v4. Başka kütüphane ekleme.
-- Para hesapları `src/lib/` altında saf fonksiyonlardır. Bileşenler hesap yapmaz, bu fonksiyonları çağırır.
-- Fiyatları her zaman `formatPrice` ile göster.
-- Birim testleri `src/**/*.test.ts(x)` (Vitest), uçtan uca testler `e2e/` (Playwright).
-- Komutlar: `npm run test:unit`, `npm run test:e2e`, `npm run build`.
-- Yeni özellik `SPEC.md` olmadan başlamaz. Ekip akışı için `/feature-team` skill'ini kullan.
+- React 19, TypeScript, Tailwind CSS v4. Do not add another library.
+- The money calculations are pure functions under `src/lib/`. Components do not calculate; they call those functions.
+- Always show prices with `formatPrice`.
+- Unit tests live in `src/**/*.test.ts(x)` (Vitest), and end-to-end tests in `e2e/` (Playwright).
+- The commands: `npm run test:unit`, `npm run test:e2e`, `npm run build`.
+- A new feature does not start without `SPEC.md`. Use the `/feature-team` skill for the team flow.

@@ -131,7 +131,7 @@ test("the notification disappears after 3 seconds", async () => {
 
 > [!CAUTION]
 >
-> `vi.useFakeTimers()` çağrısı `findBy` ve `userEvent` çağrılarını bekletir, test timeout hatasıyla biter.[^9], [^8] Çözüm: `vi.useFakeTimers({ shouldAdvanceTime: true })`.[^10] `userEvent` kullanıyorsanız ayrıca `userEvent.setup({ advanceTimers: vi.advanceTimersByTime })` yazın.[^11]
+> `vi.useFakeTimers()` çağrısı `findBy` ve `userEvent` çağrılarını bekletir, test timeout hatasıyla biter.[^8][^9] Çözüm: `vi.useFakeTimers({ shouldAdvanceTime: true })`.[^10] `userEvent` kullanıyorsanız ayrıca `userEvent.setup({ advanceTimers: vi.advanceTimersByTime })` yazın.[^11]
 
 <details>
 <summary>Fake timers komutları</summary>

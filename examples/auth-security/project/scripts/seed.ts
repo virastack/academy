@@ -7,7 +7,7 @@ const users = [
   { email: "customer@example.com", role: "customer" },
 ] as const;
 
-const password = "parola-1234";
+const password = "password-1234";
 
 db.exec(`
   CREATE TABLE IF NOT EXISTS product (
@@ -23,8 +23,8 @@ db.exec(`
 const insertProduct = db.prepare(
   "INSERT INTO product (id, name, price, description) VALUES (?, ?, ?, ?)",
 );
-insertProduct.run("keyboard", "Mekanik Klavye", 2499, "<b>Turkish Q</b> layout");
-insertProduct.run("mouse", "Kablosuz Mouse", 899, "<i>Silent</i> click");
+insertProduct.run("keyboard", "Mechanical Keyboard", 2499, "<b>US</b> layout");
+insertProduct.run("mouse", "Wireless Mouse", 899, "<i>Silent</i> click");
 insertProduct.run(
   "monitor",
   "27-inch Monitor",
@@ -43,7 +43,7 @@ async function main() {
     db.prepare("UPDATE user SET role = ? WHERE email = ?").run(user.role, user.email);
   }
 
-  console.log("Seed tamam:", users.map((user) => user.email).join(", "));
+  console.log("Seed done:", users.map((user) => user.email).join(", "));
 }
 
 main();

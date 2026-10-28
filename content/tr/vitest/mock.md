@@ -139,7 +139,7 @@ Fabrika fonksiyonu vermezseniz Vitest özgün modülü yükler ve dışa aktard�
 import type { Product } from "./types";
 
 export async function fetchProducts(): Promise<Product[]> {
-  const response = await fetch("https://api.magaza.test/products");
+  const response = await fetch("https://api.shop.test/products");
 
   if (!response.ok) {
     throw new Error("Products could not be loaded.");
@@ -172,7 +172,7 @@ export const products: Product[] = [
 ];
 
 export const handlers = [
-  http.get("https://api.magaza.test/products", () =>
+  http.get("https://api.shop.test/products", () =>
     HttpResponse.json(products),
   ),
 ];
@@ -224,7 +224,7 @@ test("shows the products from the API", async () => {
 
 test("shows the empty state when the API returns an empty list", async () => {
   server.use(
-    http.get("https://api.magaza.test/products", () => HttpResponse.json([])),
+    http.get("https://api.shop.test/products", () => HttpResponse.json([])),
   );
 
   render(<ProductList loadProducts={fetchProducts} onAddToCart={vi.fn()} />);
@@ -252,7 +252,7 @@ test("shows the empty state when the API returns an empty list", async () => {
 
 API 500 hatası döndürdüğünde ne olur? Bunu test edin:
 
-- `server.use` ile `https://api.magaza.test/products` adresine `new HttpResponse(null, { status: 500 })` döndüren bir handler ekleyin.
+- `server.use` ile `https://api.shop.test/products` adresine `new HttpResponse(null, { status: 500 })` döndüren bir handler ekleyin.
 - `ProductList` bileşenini `fetchProducts` ile render edin.
 - `findByRole("alert")` ile **Products could not be loaded.** mesajını doğrulayın.
 

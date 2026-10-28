@@ -357,7 +357,7 @@ type Case = { input: string; expected: number | null };
 
 const cases: Case[] = [
   { input: 'running shoes under 1500 TL', expected: 1500 },
-  { input: 'I have a budget of 2,500 TL', expected: 2500 },
+  { input: 'I have a budget of 2.500 TL', expected: 2500 },
   { input: 'en fazla 800 tl', expected: 800 },
   { input: 'show me running shoes', expected: null }, // fiyat yok
   { input: '', expected: null },                       // boş girdi
@@ -388,7 +388,7 @@ node eval.ts
 
 ```text
 v1: 4/5
-  ✗ "I have a budget of 2,500 TL" → 500 (beklenen 2500)
+  ✗ "I have a budget of 2.500 TL" → 500 (beklenen 2500)
 v2: 5/5
 ```
 

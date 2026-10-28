@@ -17,7 +17,7 @@ export async function ProductList({
           <Link href={`/products/${product.slug}`} prefetch>
             {product.name}
           </Link>{" "}
-          {product.price} TL
+          €{product.price}
         </li>
       ))}
     </ul>

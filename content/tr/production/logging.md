@@ -54,7 +54,7 @@ export const logger = pino({
   base: { service: "order-panel", env: getEnv().APP_ENV, version: getEnv().APP_VERSION },
   redact: {
     paths: ["password", "*.password", "cookie", "*.cookie", "headers.cookie", "*.headers.cookie"],
-    censor: "[gizlendi]",
+    censor: "[redacted]",
   },
 });
 ```
@@ -143,7 +143,7 @@ En sık yapılan hata bilinçli değildir: bir nesnenin tamamını loglamak. `lo
 ```ts
 redact: {
   paths: ["password", "*.password", "cookie", "*.cookie", "headers.cookie", "*.headers.cookie"],
-  censor: "[gizlendi]",
+  censor: "[redacted]",
 },
 ```
 
@@ -152,7 +152,7 @@ logger.info({ user: { email: "a@example.com", password: "x" }, headers: { cookie
 ```
 
 ```json
-{"user":{"email":"a@example.com","password":"[gizlendi]"},"headers":{"cookie":"[gizlendi]"}}
+{"user":{"email":"a@example.com","password":"[redacted]"},"headers":{"cookie":"[redacted]"}}
 ```
 
 `*` tek seviyeyi temsil eder; `*.password` `user.password`'ü yakalar ama `a.b.password`'ü yakalamaz. Tire içeren anahtarlar köşeli parantezle yazılır: `headers["set-cookie"]`.[^5] `redact` bir güvenlik ağıdır, alışkanlığın yerini tutmaz: loglayacağınız alanları tek tek seçin.

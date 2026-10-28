@@ -192,10 +192,10 @@ Testler paketin yanında durur. Paketi değiştiren, onun testini de çalıştı
 
 ```tsx
 // packages/ui/src/button.test.tsx
-test("Price formats Turkish lira", () => {
+test("Price formats the amount in euros", () => {
   render(<Price value={2499} />);
 
-  expect(screen.getByText("₺2.499,00")).toBeTruthy();
+  expect(screen.getByText("€2,499.00")).toBeTruthy();
 });
 ```
 

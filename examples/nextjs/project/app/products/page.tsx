@@ -11,8 +11,8 @@ export default function ProductsPage({ searchParams }: PageProps<"/products">) {
     <>
       <h1>Products</h1>
       <Form action="/products">
-        <input name="q" aria-label="Search products" placeholder="Ara..." />
-        <button>Ara</button>
+        <input name="q" aria-label="Search products" placeholder="Search..." />
+        <button>Search</button>
       </Form>
       <Suspense fallback={<p>Loading products...</p>}>
         <ProductList searchParams={searchParams} />

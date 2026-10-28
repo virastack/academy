@@ -8,7 +8,7 @@ Dockerfile
 .dockerignore
 npm-debug.log*
 
-# testler imaja girmez
+# the tests do not enter the image
 tests
 playwright
 playwright.config.ts

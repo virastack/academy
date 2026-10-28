@@ -15,20 +15,20 @@ type Session = {
   orders: Order[];
 };
 
-const PASSWORD = "parola123";
+const PASSWORD = "password123";
 
 const users: User[] = [
-  { id: "u1", name: "Deniz Admin", email: "admin@example.com", role: "admin" },
-  { id: "u2", name: "Ece Viewer", email: "viewer@example.com", role: "viewer" },
+  { id: "u1", name: "Dana Admin", email: "admin@example.com", role: "admin" },
+  { id: "u2", name: "Evan Viewer", email: "viewer@example.com", role: "viewer" },
 ];
 
 const seedOrders: Order[] = [
-  { id: "SP-1001", customer: "Ayşe Yılmaz", total: 1249.9, status: "preparing" },
-  { id: "SP-1002", customer: "Mehmet Kaya", total: 389, status: "shipped" },
-  { id: "SP-1003", customer: "Zeynep Demir", total: 2150, status: "delivered" },
-  { id: "SP-1004", customer: "Can Öztürk", total: 74.5, status: "preparing" },
-  { id: "SP-1005", customer: "Elif Şahin", total: 999, status: "cancelled" },
-  { id: "SP-1006", customer: "Burak Arslan", total: 560, status: "shipped" },
+  { id: "SP-1001", customer: "Jane Miller", total: 1249.9, status: "preparing" },
+  { id: "SP-1002", customer: "Marco Rossi", total: 389, status: "shipped" },
+  { id: "SP-1003", customer: "Nina Kowalski", total: 2150, status: "delivered" },
+  { id: "SP-1004", customer: "Tom Baker", total: 74.5, status: "preparing" },
+  { id: "SP-1005", customer: "Clara Dubois", total: 999, status: "cancelled" },
+  { id: "SP-1006", customer: "Felix Wagner", total: 560, status: "shipped" },
 ];
 
 // Demo data layer: held in memory instead of a database. Each session starts with

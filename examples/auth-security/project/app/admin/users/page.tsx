@@ -13,7 +13,7 @@ export default async function UsersPage() {
       <table>
         <thead>
           <tr>
-            <th>E-posta</th>
+            <th>Email</th>
             <th>Rol</th>
           </tr>
         </thead>
@@ -32,7 +32,7 @@ export default async function UsersPage() {
                       <option value="editor">editor</option>
                       <option value="admin">admin</option>
                     </select>
-                    <button type="submit">Kaydet</button>
+                    <button type="submit">Save</button>
                   </form>
                 )}
               </td>

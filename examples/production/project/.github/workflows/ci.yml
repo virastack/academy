@@ -5,12 +5,12 @@ on:
   pull_request:
     branches: [main]
 
-# Aynı dal için yeni bir push geldiğinde pull request'teki eski çalıştırmayı iptal et.
+# When a new push arrives for the same branch, cancel the old run on the pull request.
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
-# GITHUB_TOKEN yalnızca depoyu okuyabilsin.
+# Let GITHUB_TOKEN only read the repository.
 permissions:
   contents: read
 

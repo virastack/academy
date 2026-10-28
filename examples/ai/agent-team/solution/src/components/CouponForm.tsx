@@ -26,7 +26,7 @@ export function CouponForm({ coupon, onApply, onRemove }: CouponFormProps) {
       }}
     >
       <label htmlFor="coupon" className="block text-sm font-medium">
-        Kupon kodu
+        Coupon code
       </label>
       <div className="flex gap-2">
         <input
@@ -37,7 +37,7 @@ export function CouponForm({ coupon, onApply, onRemove }: CouponFormProps) {
           className="flex-1 rounded border border-gray-300 px-2 py-1"
         />
         <button type="submit" className="rounded bg-gray-900 px-3 py-1 text-white">
-          Uygula
+          Apply
         </button>
       </div>
       {error && (
@@ -45,7 +45,7 @@ export function CouponForm({ coupon, onApply, onRemove }: CouponFormProps) {
       )}
       {coupon && (
         <p className="flex items-center justify-between text-sm">
-          <span>{coupon.code} uygulandı</span>
+          <span>{coupon.code} applied</span>
           <button type="button" onClick={onRemove} className="underline">Remove</button>
         </p>
       )}

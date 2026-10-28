@@ -54,7 +54,7 @@ test("the sign-in form is usable with the keyboard", async ({ page, loginPage })
   await page.keyboard.press("Tab");
   await expect(loginPage.password).toBeFocused();
 
-  await page.keyboard.type("parola123");
+  await page.keyboard.type("password123");
   await page.keyboard.press("Enter");
   await expect(page).toHaveURL("/orders");
 });
@@ -76,10 +76,10 @@ test("the table structure is as expected", async ({ ordersPage }) => {
       - rowgroup:
         - row "Order Customer Amount Status Action"
       - rowgroup:
-        - row /SP-1003 Zeynep Demir/:
+        - row /SP-1003 Nina Kowalski/:
           - cell "SP-1003"
-          - cell "Zeynep Demir"
-          - cell /2\\.150,00/
+          - cell "Nina Kowalski"
+          - cell /2,150\\.00/
           - cell "Delivered"
           - cell
   `);
@@ -91,7 +91,7 @@ Bu tek assertion tablonun bir başlığı olduğunu, sütunların sırasını, t
 Eşleştirme kuralları:[^2]
 
 - Şablon **kısmi** eşleşir: bir listenin yalnızca bazı elemanlarını yazarsanız diğerleri yok sayılır. Tam eşleşme için `/children: equal` kullanılır.
-- Adlar `/…/` arasında düzenli ifade olabilir. Para birimi gibi biçimi değişebilen değerler için idealdir. Şablon bir JavaScript dizesi olduğu için ters eğik çizgiyi iki kez yazın: `/2\\.150,00/`.
+- Adlar `/…/` arasında düzenli ifade olabilir. Para birimi gibi biçimi değişebilen değerler için idealdir. Şablon bir JavaScript dizesi olduğu için ters eğik çizgiyi iki kez yazın: `/2,150\\.00/`.
 - Bir özelliği *(`checked`, `disabled`)* yazmazsanız o özellik kontrol edilmez.
 
 Şablonu elle yazmak zorunda değilsiniz. Boş bir şablonla başlayın; Playwright ilk çalıştırmada üretir. Değişen yapıyı güncellemek için `-u` *(`--update-snapshots`)* kullanın; satır içi şablonlar için uygulanabilir bir yama dosyası oluşturulur:[^2]
@@ -142,7 +142,7 @@ Kırılganlığı azaltan ayarlar:[^3]
 
 ```ts
 await expect(page).toHaveScreenshot({
-  mask: [page.getByText(/Son güncelleme/)],
+  mask: [page.getByText(/Last updated/)],
   maxDiffPixels: 100,
 });
 ```

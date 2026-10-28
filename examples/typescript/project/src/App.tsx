@@ -17,7 +17,7 @@ export default function App() {
     case "loading":
       return <p>Loading...</p>;
     case "error":
-      return <p role="alert">Hata: {state.message}</p>;
+      return <p role="alert">Error: {state.message}</p>;
     case "success": {
       const products =
         category === "all"
@@ -28,7 +28,7 @@ export default function App() {
         <main>
           <p>
             Cart: {items.length} item types,{" "}
-            {totalPrice.toLocaleString("tr-TR")} TL
+            €{totalPrice.toLocaleString("en-US")}
           </p>
           <CategoryFilter value={category} onChange={setCategory} />
           {products.map((product) => (

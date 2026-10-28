@@ -6,7 +6,7 @@ Küçük bir Next.js uygulaması: giriş sayfası, oturum cookie'si, TanStack Qu
 
 Gerçek bir veritabanı yok. Siparişler sunucunun belleğinde tutulur ve her oturum kendi kopyasıyla başlar. Sunucuyu yeniden başlatınca her şey sıfırlanır.
 
-Demo hesaplar, parola `parola123`:
+Demo hesaplar, parola `password123`:
 
 | E-posta | Rol |
 | :-- | :-- |

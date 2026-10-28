@@ -17,6 +17,6 @@ test("no coupon means no discount", () => {
   expect(getDiscount(1000, null)).toBe(0);
 });
 
-test("rounds the discount to kuruş", () => {
+test("rounds the discount to cents", () => {
   expect(getDiscount(99.99, findCoupon("SALE10"))).toBe(10);
 });

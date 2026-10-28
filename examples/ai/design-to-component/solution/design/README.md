@@ -1,3 +1,3 @@
-# Tasarım
+# The design
 
-Bu çözüm Figma tasarımından değil, rehberdeki kurallardan türetildi. Kapak ve avatar görselleri yer tutucudur. Yalnızca testlerin geçtiği bir kart örneğidir.
+This solution was derived not from the Figma design but from the rules in the guide. The cover and avatar images are placeholders. It is only an example card whose tests pass.

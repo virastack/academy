@@ -8,8 +8,8 @@ export class LoginPage {
 
   constructor(private readonly page: Page) {
     const form = page.getByRole("form", { name: "Sign in" });
-    this.email = form.getByLabel("E-posta");
-    this.password = form.getByLabel("Parola");
+    this.email = form.getByLabel("Email");
+    this.password = form.getByLabel("Password");
     this.submit = form.getByRole("button", { name: "Sign in" });
     this.error = form.getByRole("alert");
   }
@@ -18,7 +18,7 @@ export class LoginPage {
     await this.page.goto("/login");
   }
 
-  async login(email: string, password = "parola123") {
+  async login(email: string, password = "password123") {
     await this.email.fill(email);
     await this.password.fill(password);
     await this.submit.click();

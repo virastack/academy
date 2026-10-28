@@ -3,7 +3,7 @@ import { getSession } from "@/lib/session";
 export async function POST(_request: Request, ctx: RouteContext<"/api/orders/[id]/cancel">) {
   const session = await getSession();
   if (!session) {
-    return Response.json({ error: "Oturum gerekli." }, { status: 401 });
+    return Response.json({ error: "A session is required." }, { status: 401 });
   }
   if (session.user.role !== "admin") {
     return Response.json({ error: "You are not authorized for this action." }, { status: 403 });

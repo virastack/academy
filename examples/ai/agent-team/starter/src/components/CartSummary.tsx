@@ -11,15 +11,15 @@ export function CartSummary({ items }: CartSummaryProps) {
   return (
     <section aria-labelledby="summary-title" className="rounded-lg border border-gray-200 p-4">
       <h2 id="summary-title" className="text-lg font-semibold">
-        Sipariş özeti
+        Order summary
       </h2>
       <dl className="mt-3 space-y-1">
         <div className="flex justify-between">
-          <dt>Ara toplam</dt>
+          <dt>Subtotal</dt>
           <dd>{formatPrice(subtotal)}</dd>
         </div>
         <div className="flex justify-between font-semibold">
-          <dt>Toplam</dt>
+          <dt>Total</dt>
           <dd data-testid="total">{formatPrice(subtotal)}</dd>
         </div>
       </dl>

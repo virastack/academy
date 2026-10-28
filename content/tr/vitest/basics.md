@@ -85,7 +85,7 @@ describe("ProductCard", () => {
     expect(
       screen.getByRole("heading", { name: "Wireless Headphones" }),
     ).toBeInTheDocument();
-    expect(screen.getByText("₺1.299,00")).toBeInTheDocument();
+    expect(screen.getByText("€1,299.00")).toBeInTheDocument();
   });
 });
 ```
@@ -146,10 +146,10 @@ Saf fonksiyonlar için `test.each` kullanın. Her veri satırı ayrı bir test o
 import { formatPrice } from "./format-price";
 
 test.each([
-  [0, "₺0,00"],
-  [899, "₺899,00"],
-  [1299, "₺1.299,00"],
-  [1299.5, "₺1.299,50"],
+  [0, "€0.00"],
+  [899, "€899.00"],
+  [1299, "€1,299.00"],
+  [1299.5, "€1,299.50"],
 ])("formats %s as '%s'", (price, expected) => {
   expect(formatPrice(price)).toBe(expected);
 });

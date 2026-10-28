@@ -44,7 +44,7 @@ async function ProductDetails({ params }: Pick<PageProps<"/products/[slug]">, "p
     "@type": "Product",
     name: product.name,
     description: product.description,
-    offers: { "@type": "Offer", price: product.price, priceCurrency: "TRY" },
+    offers: { "@type": "Offer", price: product.price, priceCurrency: "EUR" },
   };
 
   return (
@@ -55,8 +55,8 @@ async function ProductDetails({ params }: Pick<PageProps<"/products/[slug]">, "p
       />
       <h1>{product.name}</h1>
       <p>{product.description}</p>
-      <p>{product.price} TL</p>
-      <Suspense fallback={<p>Stok kontrol ediliyor...</p>}>
+      <p>€{product.price}</p>
+      <Suspense fallback={<p>Checking stock...</p>}>
         <Stock slug={product.slug} />
       </Suspense>
     </>

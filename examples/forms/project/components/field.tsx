@@ -39,7 +39,7 @@ export function Field({ name, label, description, children }: FieldProps) {
           {description}
         </p>
       )}
-      {/* Hata için yer ayrılır; mesaj gelince düğmeler kaymaz. */}
+      {/* Space is reserved for the error so the buttons do not shift when a message arrives. */}
       <p id={errorId} className="min-h-5 text-sm text-red-700">
         {error?.message}
       </p>

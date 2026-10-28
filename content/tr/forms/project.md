@@ -12,8 +12,8 @@ Bir pazaryeri için satıcı başvuru formu yazacaksınız. Form:
 - Üç adımdan oluşur: mağaza, iletişim ve ödeme. "Next" yalnızca o adımın alanlarını doğrular ve ilk hatalı alana odaklanır.
 - Kullanıcı geri dönünce önceki adımların değerlerini korur.
 - Mağaza adımında 1 ile 3 arasında örnek ürün ister; satır eklenir ve silinir.
-- Vergi numarası, telefon ve IBAN alanlarını maskeyle biçimlendirir; forma yalnızca rakamları yazar.
-- IBAN'ın sağlamasını Zod ile kontrol eder; fiyatı `249,90` ya da `249.90` biçiminde kabul eder.
+- VAT numarası, telefon ve IBAN alanlarını maskeyle biçimlendirir; forma yalnızca rakamları yazar.
+- IBAN'ın sağlamasını Zod ile kontrol eder; fiyatı `249.90` ya da `249,90` biçiminde kabul eder.
 - Hata mesajlarını alana `aria-describedby` ile bağlar; mesaj gelince düzen kaymaz.
 - Başvuruyu bir Server Action'a gönderir. Sunucu aynı şemayla tekrar doğrular; daha önce kullanılmış bir e-posta için alan hatası döndürür ve form o alanın adımına geri döner.
 
@@ -60,7 +60,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="tr">
+    <html lang="en">
       <body>{children}</body>
     </html>
   );
@@ -87,8 +87,8 @@ Tüm kurallar tek bir şemada durur. Hem form hem Server Action bu dosyayı kull
 import { z } from "zod";
 
 export const categories = [
-  { value: "fashion", label: "Moda" },
-  { value: "electronics", label: "Elektronik" },
+  { value: "fashion", label: "Fashion" },
+  { value: "electronics", label: "Electronics" },
   { value: "home", label: "Home and living" },
 ] as const;
 
@@ -100,14 +100,14 @@ const productSchema = z.object({
   price: z
     .string()
     .trim()
-    .min(1, "Fiyat girin.")
-    .regex(/^\d+([.,]\d{1,2})?$/, "Enter the price as 249,90.")
+    .min(1, "Enter a price.")
+    .regex(/^\d+([.,]\d{1,2})?$/, "Enter the price as 249.90.")
     .refine((value) => parsePrice(value) > 0, "The price must be greater than zero."),
 });
 
 export const applicationSchema = z.object({
   storeName: z.string().trim().min(2, "The store name must be at least 2 characters."),
-  taxNumber: z.string().regex(/^\d{10}$/, "A tax number must be 10 digits."),
+  taxNumber: z.string().regex(/^\d{9}$/, "A VAT number must be 9 digits after DE."),
   category: z.enum(["fashion", "electronics", "home"], { error: "Choose a category." }),
   products: z
     .array(productSchema)
@@ -115,12 +115,12 @@ export const applicationSchema = z.object({
     .max(3, "You can add at most 3 products."),
   contactName: z.string().trim().min(2, "The full name must be at least 2 characters."),
   email: z.email("Enter the email address as name@example.com."),
-  phone: z.string().regex(/^5\d{9}$/, "A phone number must be 10 digits starting with 5."),
+  phone: z.string().regex(/^\d{8,15}$/, "Enter the phone number with its country code."),
   // Maske yalnızca rakamları saklar; ülke kodunu ekleyip IBAN sağlamasını yapıyoruz.
   iban: z
     .string()
-    .regex(/^\d{24}$/, "An IBAN must have 24 digits after TR.")
-    .refine((value) => z.iban().validate(`TR${value}`), "The IBAN is invalid; check the number."),
+    .regex(/^\d{20}$/, "An IBAN must have 20 digits after DE.")
+    .refine((value) => z.iban().validate(`DE${value}`), "The IBAN is invalid; check the number."),
   acceptTerms: z.boolean().refine((value) => value, "Accept the terms to continue."),
 });
 
@@ -141,7 +141,7 @@ export const stepOf = (field: ApplicationField) =>
 Üç karar:
 
 - **Dönüşüm yok.** Fiyat şemada metin olarak kalır. `handleSubmit`'in verdiği değer sunucuda aynı şemayla tekrar doğrulanabilir. Sayıya çevirme sunucuda, doğrulamadan sonra yapılır *(bkz. [Server Actions ile form](/academy/forms/forms-with-server-actions))*.
-- **IBAN sağlaması ham değerle.** Maske forma `TR`'siz 24 rakam yazar; kontrol `TR` eklenerek `z.iban()` ile yapılır.[^4]
+- **IBAN sağlaması ham değerle.** Maske forma `DE`'siz 20 rakam yazar; kontrol `DE` eklenerek `z.iban()` ile yapılır.[^4]
 - **Adımlar şemanın yanında.** `steps` hangi alanın hangi adımda olduğunu söyler. `as const satisfies` listeyi daraltır ve alan adlarının şemada olduğunu derlemede kontrol eder; `stepOf` bir alanın adımını bulur.
 
 ## Adım 3: Server Action
@@ -263,7 +263,7 @@ export function Field({ name, label, description, children }: FieldProps) {
           {description}
         </p>
       )}
-      {/* Hata için yer ayrılır; mesaj gelince düğmeler kaymaz. */}
+      {/* Space is reserved for the error so the buttons do not shift when a message arrives. */}
       <p id={errorId} className="min-h-5 text-sm text-red-700">
         {error?.message}
       </p>
@@ -289,7 +289,7 @@ export function toInputProps({ rawValue, ...props }: MaskField): MaskInputProps 
 
 ## Adım 5: Mağaza adımı
 
-Mağaza adı, maskeli vergi numarası, kategori ve dinamik ürün listesi:[^8]
+Mağaza adı, maskeli VAT numarası, kategori ve dinamik ürün listesi:[^8]
 
 ```tsx
 // components/store-step.tsx
@@ -315,11 +315,11 @@ export function StoreStep({ taxNumber }: { taxNumber: MaskInputProps }) {
         {(a11y) => <input {...a11y} {...register("storeName")} className={inputClass} />}
       </Field>
 
-      <Field name="taxNumber" label="Tax number" description="10-digit tax identification number">
+      <Field name="taxNumber" label="VAT number" description="Country code and number, such as DE123456789">
         {(a11y) => <input {...taxNumber} {...a11y} className={inputClass} />}
       </Field>
 
-      <Field name="category" label="Kategori">
+      <Field name="category" label="Category">
         {(a11y) => (
           <select {...a11y} {...register("category")} className={inputClass}>
             <option value="">Choose</option>
@@ -341,7 +341,7 @@ export function StoreStep({ taxNumber }: { taxNumber: MaskInputProps }) {
                 <input {...a11y} {...register(`products.${index}.name`)} className={inputClass} />
               )}
             </Field>
-            <Field name={`products.${index}.price`} label={`Product ${index + 1} price (₺)`}>
+            <Field name={`products.${index}.price`} label={`Product ${index + 1} price (€)`}>
               {(a11y) => (
                 <input
                   {...a11y}
@@ -358,7 +358,7 @@ export function StoreStep({ taxNumber }: { taxNumber: MaskInputProps }) {
               aria-label={`Remove product ${index + 1}`}
               className="mt-7 rounded border px-2 py-2 disabled:opacity-40"
             >
-              Kaldır
+              Remove
             </button>
           </div>
         ))}
@@ -368,7 +368,7 @@ export function StoreStep({ taxNumber }: { taxNumber: MaskInputProps }) {
           disabled={fields.length >= 3}
           className="self-start rounded border px-3 py-2 disabled:opacity-40"
         >
-          Ürün ekle
+          Add product
         </button>
         {listError && (
           <p role="alert" className="text-sm text-red-700">
@@ -404,12 +404,12 @@ export function ContactStep({ phone }: { phone: MaskInputProps }) {
 
   return (
     <>
-      <Field name="contactName" label="Ad soyad">
+      <Field name="contactName" label="Full name">
         {(a11y) => (
           <input {...a11y} autoComplete="name" {...register("contactName")} className={inputClass} />
         )}
       </Field>
-      <Field name="email" label="E-posta">
+      <Field name="email" label="Email">
         {(a11y) => (
           <input
             {...a11y}
@@ -420,8 +420,8 @@ export function ContactStep({ phone }: { phone: MaskInputProps }) {
           />
         )}
       </Field>
-      <Field name="phone" label="Cep telefonu" description="Example: (532) 123 45 67">
-        {(a11y) => <input {...phone} {...a11y} autoComplete="tel-national" className={inputClass} />}
+      <Field name="phone" label="Mobile phone" description="Example: +49 30 12345678">
+        {(a11y) => <input {...phone} {...a11y} autoComplete="tel" className={inputClass} />}
       </Field>
     </>
   );
@@ -505,9 +505,9 @@ export function ApplicationForm() {
   const masks = useViraMask({
     form,
     schema: {
-      taxNumber: "taxNumber",
-      phone: { preset: "phone", mask: "(999) 999 99 99" },
-      iban: "iban",
+      taxNumber: { displayPrefix: "DE", mask: "999999999", allowedChars: /[0-9]/, inputMode: "numeric", type: "tel" },
+      phone: { preset: "phone", displayPrefix: "+", mask: "99 99 99999999" },
+      iban: { displayPrefix: "DE", mask: "99 9999 9999 9999 9999 99", allowedChars: /[0-9]/, inputMode: "numeric", type: "tel" },
     },
   });
 
@@ -576,7 +576,7 @@ export function ApplicationForm() {
         <div className="flex gap-2">
           {step > 0 && (
             <button type="button" onClick={() => setStep((s) => s - 1)} className="rounded border px-4 py-2">
-              Geri
+              Back
             </button>
           )}
           {isLastStep ? (
@@ -585,7 +585,7 @@ export function ApplicationForm() {
             </button>
           ) : (
             <button type="button" onClick={goNext} className="rounded bg-black px-4 py-2 text-white">
-              İleri
+              Next
             </button>
           )}
         </div>
@@ -598,7 +598,7 @@ export function ApplicationForm() {
 Adım adım:
 
 - **`defaultValues`.** `category` boş başlar ama şemadaki enum `""`'yu kabul etmez. Cast, formun başlangıçta seçimsiz olmasına izin verir; gönderimde şema boş seçimi reddeder.
-- **Maskeler.** `useViraMask` üç alanı forma kendisi kaydeder. Telefon maskesi `(999) 999 99 99` olarak değiştirildi.[^7]
+- **Maskeler.** `useViraMask` üç alanı forma kendisi kaydeder. Telefon maskesi uluslararası biçim için `displayPrefix: "+"` ve `99 99 99999999` ile verildi.[^7]
 - **`goNext`.** `trigger` yalnızca mevcut adımın alanlarını doğrular ve ilk hatalı alana odaklanır.[^9]
 - **`onSubmit`.** `handleSubmit` tüm şemayı doğrular ve action'ı bir transition içinde çağırır; `isPending` buton metnini değiştirir. `await`'ten sonraki state güncellemeleri de `startTransition` ile sarılır.[^10]
 - **Sunucu hatası.** Her alan hatası `setError` ile alana yazılır. Form, hatalı alanların en erken adımına döner; `root.server` genel mesajı gösterir.[^11]
@@ -615,7 +615,7 @@ export default function Home() {
   return (
     <main className="mx-auto max-w-2xl p-6">
       <h1 className="mb-6 text-2xl font-bold">Seller application</h1>
-      {/* useFieldArray satırlara crypto.randomUUID() ile id verir; form istek anında render edilmeli */}
+      {/* useFieldArray gives the rows an id with crypto.randomUUID(), so the form has to render at request time */}
       <Suspense fallback={<p>Loading form...</p>}>
         <ApplicationForm />
       </Suspense>
@@ -652,11 +652,11 @@ Testlerin nasıl yazıldığı Playwright rehberinde anlatılıyor.
 
 ## Kendin dene
 
-- Vergi numarası için sağlama fonksiyonu yazın ve şemaya `refine` ile ekleyin. `1234567890` geçerli mi?
+- VAT numarası için ülkeye göre uzunluk kontrolü yazın ve şemaya `refine` ile ekleyin. `DE12345678` geçerli mi?
 - Field'daki `min-h-5`'i silin ve testleri çalıştırın. Hangi testler neden düşüyor?
 - Kategori yerine bir yıldız puanı bileşeni ekleyin ve `Controller` ile bağlayın.
 - Başvuruyu adım adım `localStorage`'a kaydedin; sayfa yenilenince kaldığı yerden devam etsin. `subscribe` mi, `watch` mı?
-- Ödeme adımına bir T.C. kimlik numarası alanı ekleyin: `tckn` maskesi ve [Maskeleme ve regex](/academy/forms/masking-and-regex) dersindeki sağlama fonksiyonu.
+- Ödeme adımına bir kart numarası alanı ekleyin: `card` maskesi ve [Maskeleme ve regex](/academy/forms/masking-and-regex) dersindeki Luhn sağlaması.
 
 ## Kaynaklar
 

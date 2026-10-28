@@ -46,11 +46,11 @@ export default function Error({ error, retry }: { error: unknown; retry: () => v
         <p>An unexpected error occurred while loading the page. You can try again.</p>
         {digest && (
           <p>
-            Destek ekibine iletmek için hata kodu: <code>{digest}</code>
+            Error code to pass on to support: <code>{digest}</code>
           </p>
         )}
         <button type="button" onClick={() => retry()}>
-          Tekrar dene
+          Try again
         </button>
       </div>
     </main>

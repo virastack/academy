@@ -30,8 +30,8 @@ export async function getProducts(query = "") {
   cacheTag("products");
 
   await wait(300);
-  const q = query.toLocaleLowerCase("tr");
-  return products.filter((product) => product.name.toLocaleLowerCase("tr").includes(q));
+  const q = query.toLocaleLowerCase("en");
+  return products.filter((product) => product.name.toLocaleLowerCase("en").includes(q));
 }
 
 export async function getProduct(slug: string) {

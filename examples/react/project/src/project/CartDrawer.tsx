@@ -39,7 +39,7 @@ function CartDrawer() {
           ))}
         </ul>
       )}
-      <p>Total: {total.toLocaleString("tr-TR")} TL</p>
+      <p>Total: €{total.toLocaleString("en-US")}</p>
     </aside>
   );
 }

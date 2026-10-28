@@ -39,7 +39,7 @@ Argümansız çağrı tüm sayfayı, argümanlı çağrı yalnızca verdiğiniz 
 <details>
 <summary>Diğer debug araçları</summary>
 
-- `logRoles(container)`: bir elemanın içindeki tüm örtük (implicit) ARIA rollerini ve her rolü taşıyan elemanları yazar. `@testing-library/react` paketinden de import edilir.[^1], [^3]
+- `logRoles(container)`: bir elemanın içindeki tüm örtük (implicit) ARIA rollerini ve her rolü taşıyan elemanları yazar. `@testing-library/react` paketinden de import edilir.[^1][^3]
 - `screen.logTestingPlaygroundURL()`: o anki DOM için bir Testing Playground bağlantısı yazar. Bağlantıda en iyi sorguyu seçebilirsiniz.[^1]
 - Debug çıktısı varsayılan olarak 7000 karakterde kesilir. Uzun DOM'larda `DEBUG_PRINT_LIMIT` ortam değişkenini artırın: `DEBUG_PRINT_LIMIT=20000 pnpm vitest run` (macOS ve Linux; Windows'ta `cross-env` kullanın).[^1]
 
@@ -78,7 +78,7 @@ Here are the accessible roles:
 **Sebep:** Sorgu eleman bulamadı. Rol, isim veya yazım yanlış olabilir. Veya eleman henüz ekranda değildir.
 
 - Mesajdaki rol listesine bakın. Aradığınız rol listede var mı?[^2]
-- `name` değerini kontrol edin. Tam eşleşme gerekir: `"Keyboard"` değil `"Mechanical Keyboard"`. Kısmi eşleşme için regex kullanın: `/keyboard/i`.[^6], [^4]
+- `name` değerini kontrol edin. Tam eşleşme gerekir: `"Keyboard"` değil `"Mechanical Keyboard"`. Kısmi eşleşme için regex kullanın: `/keyboard/i`.[^4][^6]
 - Eleman sonradan geliyorsa `findBy` kullanın.[^4]
 
 ### 3. eleman henüz ekranda değil
@@ -114,8 +114,8 @@ An update to ProductList inside a test was not wrapped in act(...).
 | --- | --- |
 | Yokluğu `getBy` ile kontrol etmek | `queryBy` kullanın.[^4] |
 | `userEvent` çağrısına `await` yazmamak | Her `user.*` çağrısına `await` yazın.[^9] |
-| `vi.useFakeTimers()` sonrası `findBy` ile takılmak | `vi.useFakeTimers({ shouldAdvanceTime: true })`[^10], [^11] |
-| Göreli URL ile `fetch` çağırmak | Tam URL kullanın: `https://api.magaza.test/products`. Göreli URL, test ortamına göre `Failed to parse URL` hatası verebilir.[^12], [^13] |
+| `vi.useFakeTimers()` sonrası `findBy` ile takılmak | `vi.useFakeTimers({ shouldAdvanceTime: true })`[^10][^11] |
+| Göreli URL ile `fetch` çağırmak | Tam URL kullanın: `https://api.shop.test/products`. Göreli URL, test ortamına göre `Failed to parse URL` hatası verebilir.[^12][^13] |
 | Testin bir önceki testten kalan veriye bağlı olması | Her test kendi verisini kursun.[^14] |
 
 ## Tek testi çalıştırma

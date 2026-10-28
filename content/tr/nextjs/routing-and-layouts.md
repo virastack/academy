@@ -117,7 +117,7 @@ import Form from "next/form";
 
 <Form action="/products">
   <input name="q" aria-label="Search products" />
-  <button>Ara</button>
+  <button>Search</button>
 </Form>;
 ```
 

@@ -36,7 +36,7 @@ await page.route("**/api/orders?*", (route) =>
 
 ## Hata ve tekrar deneme
 
-Bu rehberin projesindeki sipariş listesi [!tanstack-query] ile yüklenir; hata olunca "Orders could not be loaded." ve "Tekrar dene" butonu gösterir. Testte önce hatayı üretir, sonra kuralı kaldırıp butona basarsınız:
+Bu rehberin projesindeki sipariş listesi [!tanstack-query] ile yüklenir; hata olunca "Orders could not be loaded." ve "Try again" butonu gösterir. Testte önce hatayı üretir, sonra kuralı kaldırıp butona basarsınız:
 
 ```ts
 test("error state and retry on a server error", async ({ page, ordersPage }) => {
@@ -48,7 +48,7 @@ test("error state and retry on a server error", async ({ page, ordersPage }) => 
   await expect(ordersPage.loadError).toBeVisible();
 
   await page.unroute("**/api/orders?*");
-  await ordersPage.loadError.getByRole("button", { name: "Tekrar dene" }).click();
+  await ordersPage.loadError.getByRole("button", { name: "Try again" }).click();
 
   await expect(ordersPage.rows).toHaveCount(6);
 });
@@ -67,7 +67,7 @@ test("a long customer name does not break the table", async ({ page, ordersPage 
   await page.route("**/api/orders?*", async (route) => {
     const response = await route.fetch();
     const { orders } = await response.json();
-    orders[0].customer = "Ayşe Nur Yılmaz Karadeniz Verylongsurname";
+    orders[0].customer = "Wilhelmina Fitzgerald-Montgomery Vandersteen Verylongsurname";
     await route.fulfill({ response, json: { orders } });
   });
 

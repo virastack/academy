@@ -9,7 +9,7 @@ test("error state and retry on a server error", async ({ page, ordersPage }) => 
   await expect(ordersPage.loadError).toBeVisible();
 
   await page.unroute("**/api/orders?*");
-  await ordersPage.loadError.getByRole("button", { name: "Tekrar dene" }).click();
+  await ordersPage.loadError.getByRole("button", { name: "Try again" }).click();
 
   await expect(ordersPage.rows).toHaveCount(6);
   await expect(ordersPage.loadError).toBeHidden();
@@ -26,12 +26,12 @@ test("overrides the response to try a long customer name", async ({ page, orders
   await page.route("**/api/orders?*", async (route) => {
     const response = await route.fetch();
     const { orders } = await response.json();
-    orders[0].customer = "Ayşe Nur Yılmaz Karadeniz Verylongsurname";
+    orders[0].customer = "Wilhelmina Fitzgerald-Montgomery Vandersteen Verylongsurname";
     await route.fulfill({ response, json: { orders } });
   });
 
   await ordersPage.goto();
-  await expect(ordersPage.row("SP-1001")).toContainText("Ayşe Nur Yılmaz Karadeniz Verylongsurname");
+  await expect(ordersPage.row("SP-1001")).toContainText("Wilhelmina Fitzgerald-Montgomery Vandersteen Verylongsurname");
 });
 
 test("the loading state is visible", async ({ page, ordersPage }) => {

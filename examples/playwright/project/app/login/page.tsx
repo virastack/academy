@@ -6,7 +6,7 @@ export default function LoginPage() {
       <h1 className="text-2xl font-semibold">Sign in to the order panel</h1>
       <LoginForm />
       <p className="text-sm text-gray-700">
-        Demo hesaplar: yonetici@example.com ve izleyici@example.com, parola: parola123
+        Demo accounts: admin@example.com and viewer@example.com, password: password123
       </p>
     </main>
   );

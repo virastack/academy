@@ -30,12 +30,12 @@ test("adding to cart opens the drawer and updates count and total", async ({ pag
   await page.getByRole("button", { name: "add Wool Beanie to cart" }).click();
   await cart.getByRole("button", { name: "increase Wool Beanie" }).click();
   await expect(page.getByRole("button", { name: "Cart (3)" })).toBeVisible();
-  await expect(cart.getByText("Total: 1.800 ₺")).toBeVisible();
+  await expect(cart.getByText("Total: €1,800")).toBeVisible();
 
   await cart.getByRole("button", { name: "decrease Wool Beanie" }).click();
   await cart.getByRole("button", { name: "decrease Wool Beanie" }).click();
   await expect(cart.getByText("Wool Beanie")).toHaveCount(0);
-  await expect(cart.getByText("Total: 1.200 ₺")).toBeVisible();
+  await expect(cart.getByText("Total: €1,200")).toBeVisible();
 });
 
 test("stock limits add buttons and sold out products", async ({ page }) => {

@@ -50,7 +50,7 @@ Bu adımdaki testler ürün listesini kullanır. Component'in tam kodunu **Ürü
     <li>
       <article aria-labelledby="product-2-title">
         <h2 id="product-2-title">Mechanical Keyboard</h2>
-        <p>₺2.199,00</p>
+        <p>€2,199.00</p>
         <button type="button">Add to cart</button>
       </article>
     </li>
@@ -89,7 +89,7 @@ test("finds the product by role, label and text", async () => {
     screen.getByRole("heading", { name: "Mechanical Keyboard" }),
   ).toBeInTheDocument();
   expect(screen.getByLabelText("Search products")).toBeInTheDocument();
-  expect(screen.getByText("₺2.199,00")).toBeInTheDocument();
+  expect(screen.getByText("€2,199.00")).toBeInTheDocument();
 });
 ```
 
@@ -188,7 +188,7 @@ HTML'iniz için en uygun sorguyu bu araç önerir. Aşağıdaki örnek bu derste
 {
   "title": "Testing Playground",
   "src": "https://testing-playground.com/embed?panes=markup,preview,query,result",
-  "markup": "<section aria-label=\"Products\">\n  <article aria-labelledby=\"product-2-title\">\n    <h2 id=\"product-2-title\">Mechanical Keyboard</h2>\n    <p>₺2.199,00</p>\n    <button type=\"button\">Add to cart</button>\n  </article>\n</section>",
+  "markup": "<section aria-label=\"Products\">\n  <article aria-labelledby=\"product-2-title\">\n    <h2 id=\"product-2-title\">Mechanical Keyboard</h2>\n    <p>€2,199.00</p>\n    <button type=\"button\">Add to cart</button>\n  </article>\n</section>",
   "query": "screen.getByRole(\"heading\", { name: \"Mechanical Keyboard\" });"
 }
 ```

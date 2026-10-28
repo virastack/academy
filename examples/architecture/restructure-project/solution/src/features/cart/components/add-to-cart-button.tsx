@@ -10,8 +10,8 @@ export function AddToCartButton(props: Props) {
   const { add } = useCart();
 
   return (
-    <Button onClick={() => add(props)} aria-label={`${props.name} sepete ekle`}>
-      Sepete ekle
+    <Button onClick={() => add(props)} aria-label={`Add ${props.name} to cart`}>
+      Add to cart
     </Button>
   );
 }

@@ -2,7 +2,7 @@ import { products } from "../data/products";
 import { CartItem } from "../types/types";
 
 export function formatPrice(value: number) {
-  return new Intl.NumberFormat("tr-TR", { style: "currency", currency: "TRY" }).format(value);
+  return new Intl.NumberFormat("en-US", { style: "currency", currency: "EUR" }).format(value);
 }
 
 export function getCartTotal(items: CartItem[]) {

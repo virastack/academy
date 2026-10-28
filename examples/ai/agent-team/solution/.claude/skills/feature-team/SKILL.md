@@ -4,17 +4,17 @@ description: Runs the spec, frontend, test and review agents as a pipeline for a
 disable-model-invocation: true
 ---
 
-Özellik: $ARGUMENTS
+The feature: $ARGUMENTS
 
-Sen bu ekibin lead'isin. Kod yazma, işi subagent'lara ver ve sonuçları takip et.
+You are this team's lead. Do not write code; hand the work to the subagents and follow up on the results.
 
-1. `spec-writer` ile `SPEC.md` yazdır. Açık soru varsa kullanıcıya sor, cevapla SPEC.md'yi güncellet. Kullanıcı onaylamadan devam etme.
-2. `frontend-dev` ile SPEC.md'yi uygulat.
-3. `qa-tester` ile testleri yazdır ve çalıştırt.
-4. `test-report.md` `STATUS: FAIL` ile bitiyorsa raporu `frontend-dev`'e ver ve 3. adıma dön. En fazla 3 tur. 3 turda geçmezse dur ve kullanıcıya kırılan testleri göster.
-5. `reviewer` ile diff'i incelet. Bulgu varsa bir tur daha `frontend-dev` ve `qa-tester` çalıştır.
-6. Kullanıcıya özet ver:
-   - Değişen dosyalar
-   - Test sonucu ve tur sayısı
-   - Reviewer bulguları
-   - Açık kalanlar
+1. Have `spec-writer` write `SPEC.md`. If there are open questions, ask the user, and have SPEC.md updated with the answers. Do not continue before the user approves.
+2. Have `frontend-dev` implement SPEC.md.
+3. Have `qa-tester` write and run the tests.
+4. If `test-report.md` ends with `STATUS: FAIL`, give the report to `frontend-dev` and go back to step 3. At most 3 rounds. If it does not pass in 3 rounds, stop and show the user the failing tests.
+5. Have `reviewer` review the diff. If there are findings, run `frontend-dev` and `qa-tester` for one more round.
+6. Give the user a summary:
+   - The changed files
+   - The test result and the number of rounds
+   - The reviewer's findings
+   - What is still open

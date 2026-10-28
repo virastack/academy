@@ -1,15 +1,15 @@
 # Cart coupon
 
 ## Goal
-Kullanıcı sepette kupon kodu girip indirim alabilsin.
+Let the user enter a coupon code in the cart and get a discount.
 
 ## Acceptance criteria
-1. `SALE10` girildiğinde ara toplamdan %10 düşülür. Sepette 1.000 TL varsa toplam 900 TL olur.
-2. Kod büyük/küçük harf ve baştaki/sondaki boşluklardan etkilenmez: ` sale10 ` de geçerlidir.
-3. Geçersiz kodda input altında "Kupon geçersiz" yazar, toplam değişmez.
-4. Geçerli kupon uygulanınca özette "İndirim (SALE10)" satırı görünür.
-5. Aynı anda tek kupon uygulanır. Yeni geçerli kod eskisinin yerine geçer.
-6. "Kaldır" butonu kuponu kaldırır, toplam ara toplama döner.
+1. Entering `SALE10` takes 10% off the subtotal. With €1,000 in the cart the total becomes €900.
+2. The code is unaffected by case and by leading or trailing spaces: ` sale10 ` is valid too.
+3. For an invalid code, "Invalid coupon" appears under the input and the total does not change.
+4. When a valid coupon is applied, a "Discount (SALE10)" line appears in the summary.
+5. Only one coupon applies at a time. A new valid code replaces the old one.
+6. The "Remove" button removes the coupon and the total goes back to the subtotal.
 
 ## Files
 - `src/lib/coupon.ts` (new): `applyCoupon(subtotal, code)`
@@ -18,12 +18,12 @@ Kullanıcı sepette kupon kodu girip indirim alabilsin.
 - `src/App.tsx`
 
 ## Out of scope
-- Kupon yönetim paneli, sunucudan kupon doğrulama, kullanıcı başına limit.
+- A coupon management panel, validating coupons on the server, a per-user limit.
 
 ## Boundaries
-- Always: hesapları `src/lib/` altında saf fonksiyonla yap, fiyatı `formatPrice` ile göster.
-- Ask first: yeni paket eklemeden önce sor.
-- Never: `getSubtotal`'ın davranışını değiştirme.
+- Always: do the calculations with pure functions under `src/lib/`, and show the price with `formatPrice`.
+- Ask first: ask before adding a new package.
+- Never: do not change `getSubtotal`'s behaviour.
 
 ## Verification
-`npm run test:unit` ve `npm run test:e2e` geçer. Playwright: `SALE10` ile toplam ₺1.000,00'dan ₺900,00'a düşer.
+`npm run test:unit` and `npm run test:e2e` pass. Playwright: with `SALE10` the total goes from €1,000.00 to €900.00.

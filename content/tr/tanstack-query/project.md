@@ -320,7 +320,7 @@ export function ProductTable({ selectedId, onSelect }: ProductTableProps) {
                     {product.name}
                   </button>
                 </td>
-                <td>{product.price} TL</td>
+                <td>€{product.price}</td>
                 <td>{product.stock} in stock</td>
               </tr>
             ))}
@@ -533,7 +533,7 @@ export function ProductDetail({ id }: { id: number }) {
   return (
     <article>
       <h2>{product.name}</h2>
-      <p>{product.price} TL</p>
+      <p>€{product.price}</p>
       <FavoriteButton product={product} />
       <StockForm key={product.id} product={product} />
       <Reviews productId={product.id} />

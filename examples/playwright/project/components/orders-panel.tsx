@@ -4,7 +4,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { isStatusFilter, statusLabels, type Order, type StatusFilter } from "@/lib/orders";
 
-const currency = new Intl.NumberFormat("tr-TR", { style: "currency", currency: "TRY" });
+const currency = new Intl.NumberFormat("en-US", { style: "currency", currency: "EUR" });
 
 async function fetchOrders(status: StatusFilter): Promise<Order[]> {
   const response = await fetch(`/api/orders?status=${status}`);
@@ -71,7 +71,7 @@ export function OrdersPanel({ canCancel }: { canCancel: boolean }) {
         <div role="alert" className="space-y-2 rounded border border-red-300 bg-red-50 p-4">
           <p>Orders could not be loaded.</p>
           <button type="button" onClick={() => orders.refetch()} className="underline">
-            Tekrar dene
+            Try again
           </button>
         </div>
       ) : orders.data.length === 0 ? (

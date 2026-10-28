@@ -12,7 +12,7 @@ npm test          # watch mode
 npm run test:run  # bir kez, CI için
 ```
 
-Demo sayfası için `npm run dev`. Gerçek API (`api.magaza.test`) yalnızca testlerde MSW ile var; demo sayfası aynı ürünleri yerelden yükler.
+Demo sayfası için `npm run dev`. Gerçek API (`api.shop.test`) yalnızca testlerde MSW ile var; demo sayfası aynı ürünleri yerelden yükler.
 
 ## Tip kontrolü
 

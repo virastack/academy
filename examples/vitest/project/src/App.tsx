@@ -3,7 +3,7 @@ import { CartProvider, useCart } from "./cart-context";
 import { ProductList } from "./ProductList";
 import type { Product } from "./types";
 
-// The real API (api.magaza.test) only exists in tests through MSW.
+// The real API (api.shop.test) only exists in tests through MSW.
 // The demo page loads the same products locally.
 const demoProducts: Product[] = [
   { id: 1, name: "Wireless Headphones", price: 1299, oldPrice: 1499, inStock: true },

@@ -82,8 +82,8 @@ export async function getProducts(query = "") {
   cacheTag("products");
 
   await wait(300);
-  const q = query.toLocaleLowerCase("tr");
-  return products.filter((product) => product.name.toLocaleLowerCase("tr").includes(q));
+  const q = query.toLocaleLowerCase("en");
+  return products.filter((product) => product.name.toLocaleLowerCase("en").includes(q));
 }
 
 export async function getProduct(slug: string) {
@@ -178,7 +178,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="tr">
+    <html lang="en">
       <body>
         <header>
           <nav>
@@ -203,7 +203,7 @@ import Link from "next/link";
 export default function HomePage() {
   return (
     <section>
-      <h1>Yeni sezon</h1>
+      <h1>New season</h1>
       <p>Shoes, bags and accessories.</p>
       <Link href="/products">See the products</Link>
     </section>
@@ -232,8 +232,8 @@ export default function ProductsPage({ searchParams }: PageProps<"/products">) {
     <>
       <h1>Products</h1>
       <Form action="/products">
-        <input name="q" aria-label="Search products" placeholder="Ara..." />
-        <button>Ara</button>
+        <input name="q" aria-label="Search products" placeholder="Search..." />
+        <button>Search</button>
       </Form>
       <Suspense fallback={<p>Loading products...</p>}>
         <ProductList searchParams={searchParams} />
@@ -264,7 +264,7 @@ export async function ProductList({
           <Link href={`/products/${product.slug}`} prefetch>
             {product.name}
           </Link>{" "}
-          {product.price} TL
+          €{product.price}
         </li>
       ))}
     </ul>
@@ -332,7 +332,7 @@ async function ProductDetails({ params }: Pick<PageProps<"/products/[slug]">, "p
     "@type": "Product",
     name: product.name,
     description: product.description,
-    offers: { "@type": "Offer", price: product.price, priceCurrency: "TRY" },
+    offers: { "@type": "Offer", price: product.price, priceCurrency: "EUR" },
   };
 
   return (
@@ -343,8 +343,8 @@ async function ProductDetails({ params }: Pick<PageProps<"/products/[slug]">, "p
       />
       <h1>{product.name}</h1>
       <p>{product.description}</p>
-      <p>{product.price} TL</p>
-      <Suspense fallback={<p>Stok kontrol ediliyor...</p>}>
+      <p>€{product.price}</p>
+      <Suspense fallback={<p>Checking stock...</p>}>
         <Stock slug={product.slug} />
       </Suspense>
     </>
@@ -508,7 +508,7 @@ export default function ProductsError({ retry }: { error: unknown; retry: () => 
   return (
     <>
       <h2>Products could not be loaded.</h2>
-      <button onClick={() => retry()}>Tekrar dene</button>
+      <button onClick={() => retry()}>Try again</button>
     </>
   );
 }
@@ -642,7 +642,7 @@ test("the product page opens instantly and stock arrives later", async ({ page }
     await page.waitForURL((url) => url.pathname === "/products/canvas-sneaker");
 
     await expect(page.getByRole("heading", { name: "Canvas Shoe" })).toBeVisible();
-    await expect(page.getByText("Stok kontrol ediliyor...")).toBeVisible();
+    await expect(page.getByText("Checking stock...")).toBeVisible();
   });
 
   await expect(page.getByText("12 left in stock")).toBeVisible();

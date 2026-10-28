@@ -16,7 +16,7 @@ async function postAuth(request: APIRequestContext, url: string, data: object) {
   return request.post(url, { data });
 }
 
-test.describe("admin oturumu", () => {
+test.describe("admin session", () => {
   test.use({ storageState: storageState("admin") });
 
   test("the product description is rendered sanitized", async ({ page }) => {
@@ -78,7 +78,7 @@ test("repeated sign-in attempts are rate limited", async ({ request }) => {
 
   for (let attempt = 0; attempt < 4; attempt++) {
     const response = await request.post("/api/auth/sign-in/email", {
-      data: { email: "admin@example.com", password: "yanlis-parola" },
+      data: { email: "admin@example.com", password: "wrong-password" },
     });
     statuses.push(response.status());
   }

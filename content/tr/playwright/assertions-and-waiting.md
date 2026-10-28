@@ -102,8 +102,8 @@ Test süresine `beforeEach` ve fixture hazırlığı da dahildir.[^5] Bir assert
 Normalde ilk başarısız assertion testi durdurur. `expect.soft` testi başarısız işaretler ama devam eder; bir formdaki beş alanı tek seferde kontrol etmek gibi durumlarda tüm hataları birden görürsünüz:[^3]
 
 ```ts
-await expect.soft(page.getByLabel("E-posta")).toHaveValue("admin@example.com");
-await expect.soft(page.getByLabel("Parola")).toHaveValue("");
+await expect.soft(page.getByLabel("Email")).toHaveValue("admin@example.com");
+await expect.soft(page.getByLabel("Password")).toHaveValue("");
 ```
 
 ## expect.poll ve toPass

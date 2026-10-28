@@ -82,7 +82,7 @@ Oluşturulan yapılandırma `"on-first-retry"` kullanır. CI'da `retries: 2` old
 Trace'ler HTML rapordan açılır ya da doğrudan:[^5]
 
 ```command
-npx playwright show-trace test-results/orders-duruma-göre-filtreler-chromium/trace.zip
+npx playwright show-trace test-results/orders-filters-by-status-chromium/trace.zip
 ```
 
 [trace.playwright.dev](https://trace.playwright.dev) aynı görüntüleyicinin web sürümüdür. Dosyayı sürükleyip bırakırsınız; trace tamamen tarayıcınızda açılır, hiçbir yere gönderilmez.[^5]

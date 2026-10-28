@@ -1,8 +1,8 @@
 import { z } from "zod";
 
 export const categories = [
-  { value: "fashion", label: "Moda" },
-  { value: "electronics", label: "Elektronik" },
+  { value: "fashion", label: "Fashion" },
+  { value: "electronics", label: "Electronics" },
   { value: "home", label: "Home and living" },
 ] as const;
 
@@ -14,14 +14,14 @@ const productSchema = z.object({
   price: z
     .string()
     .trim()
-    .min(1, "Fiyat girin.")
-    .regex(/^\d+([.,]\d{1,2})?$/, "Enter the price as 249,90.")
+    .min(1, "Enter a price.")
+    .regex(/^\d+([.,]\d{1,2})?$/, "Enter the price as 249.90.")
     .refine((value) => parsePrice(value) > 0, "The price must be greater than zero."),
 });
 
 export const applicationSchema = z.object({
   storeName: z.string().trim().min(2, "The store name must be at least 2 characters."),
-  taxNumber: z.string().regex(/^\d{10}$/, "A tax number must be 10 digits."),
+  taxNumber: z.string().regex(/^\d{9}$/, "A VAT number must be 9 digits after DE."),
   category: z.enum(["fashion", "electronics", "home"], { error: "Choose a category." }),
   products: z
     .array(productSchema)
@@ -29,12 +29,12 @@ export const applicationSchema = z.object({
     .max(3, "You can add at most 3 products."),
   contactName: z.string().trim().min(2, "The full name must be at least 2 characters."),
   email: z.email("Enter the email address as name@example.com."),
-  phone: z.string().regex(/^5\d{9}$/, "A phone number must be 10 digits starting with 5."),
+  phone: z.string().regex(/^\d{8,15}$/, "Enter the phone number with its country code."),
   // The mask stores digits only, so we prepend the country code and run the IBAN checksum.
   iban: z
     .string()
-    .regex(/^\d{24}$/, "An IBAN must have 24 digits after TR.")
-    .refine((value) => z.iban().validate(`TR${value}`), "The IBAN is invalid; check the number."),
+    .regex(/^\d{20}$/, "An IBAN must have 20 digits after DE.")
+    .refine((value) => z.iban().validate(`DE${value}`), "The IBAN is invalid; check the number."),
   acceptTerms: z.boolean().refine((value) => value, "Accept the terms to continue."),
 });
 

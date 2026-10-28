@@ -300,7 +300,7 @@ Fiyatı biçimlendiren küçük bir yardımcı:
 
 ```ts
 // src/project/format.ts
-export const formatPrice = (value: number) => `${value.toLocaleString("tr-TR")} ₺`;
+export const formatPrice = (value: number) => `€${value.toLocaleString("en-US")}`;
 ```
 
 Filtre paneli yalnızca filtre store'unu tanır:
@@ -372,7 +372,7 @@ function ProductCard({ product }: { product: Product }) {
         disabled={limitReached}
         aria-label={`add ${product.name} to cart`}
       >
-        Sepete ekle
+        Add to cart
       </button>
     </li>
   );
@@ -471,7 +471,7 @@ function CartLine({ id }: { id: number }) {
           +
         </button>
         <button onClick={() => removeItem(id)} aria-label={`remove ${item.name}`}>
-          Kaldır
+          Remove
         </button>
       </div>
       {overStock && <p role="alert">Only {stock} left in stock.</p>}
@@ -501,7 +501,7 @@ export function CartDrawer() {
       )}
       <p>Total: {formatPrice(total)}</p>
       <button onClick={clearCart} disabled={ids.length === 0}>
-        Sepeti boşalt
+        Clear cart
       </button>
       <button onClick={closeCart}>Close</button>
     </aside>

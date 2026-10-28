@@ -25,7 +25,7 @@ test("a signed-in user sees the orders and can sign out", async ({
   await loginPage.login("admin@example.com");
 
   await expect(page).toHaveURL("/orders");
-  await expect(page.getByText("Deniz Admin")).toBeVisible();
+  await expect(page.getByText("Dana Admin")).toBeVisible();
 
   await ordersPage.logout.click();
   await expect(page).toHaveURL("/login");

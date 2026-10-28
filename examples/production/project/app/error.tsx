@@ -17,11 +17,11 @@ export default function Error({ error, retry }: { error: unknown; retry: () => v
         <p>An unexpected error occurred while loading the page. You can try again.</p>
         {digest && (
           <p className="text-sm">
-            Destek ekibine iletmek için hata kodu: <code>{digest}</code>
+            Error code to pass on to support: <code>{digest}</code>
           </p>
         )}
         <button type="button" onClick={() => retry()} className="underline">
-          Tekrar dene
+          Try again
         </button>
       </div>
     </main>

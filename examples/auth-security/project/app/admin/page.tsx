@@ -21,7 +21,7 @@ export default async function ProductsPage() {
           <tr>
             <th>Product</th>
             <th>Description</th>
-            <th>Fiyat</th>
+            <th>Price</th>
             {canArchive && <th>Archive</th>}
           </tr>
         </thead>
@@ -40,7 +40,7 @@ export default async function ProductsPage() {
                     defaultValue={product.price}
                     aria-label={`${product.name} price`}
                   />
-                  <button type="submit">Kaydet</button>
+                  <button type="submit">Save</button>
                 </form>
               </td>
               {canArchive && (

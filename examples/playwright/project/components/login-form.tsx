@@ -10,7 +10,7 @@ export function LoginForm() {
     <form action={formAction} className="space-y-4" aria-label="Sign in">
       <div className="space-y-1">
         <label htmlFor="email" className="block text-sm font-medium">
-          E-posta
+          Email
         </label>
         <input
           id="email"
@@ -24,7 +24,7 @@ export function LoginForm() {
       </div>
       <div className="space-y-1">
         <label htmlFor="password" className="block text-sm font-medium">
-          Parola
+          Password
         </label>
         <input
           id="password"

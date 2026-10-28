@@ -1,1 +1,1 @@
-export const formatPrice = (value: number) => `${value.toLocaleString("tr-TR")} ₺`;
+export const formatPrice = (value: number) => `€${value.toLocaleString("en-US")}`;

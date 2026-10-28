@@ -10,7 +10,7 @@ export function ProductDetail({ id }: { id: number }) {
   return (
     <article>
       <h2>{product.name}</h2>
-      <p>{product.price} TL</p>
+      <p>€{product.price}</p>
       <FavoriteButton product={product} />
       <StockForm key={product.id} product={product} />
       <Reviews productId={product.id} />

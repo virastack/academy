@@ -12,7 +12,7 @@ test("shows the products from the API", async () => {
 
 test("shows the empty state when the API returns an empty list", async () => {
   server.use(
-    http.get("https://api.magaza.test/products", () => HttpResponse.json([])),
+    http.get("https://api.shop.test/products", () => HttpResponse.json([])),
   );
 
   render(<ProductList loadProducts={fetchProducts} onAddToCart={vi.fn()} />);

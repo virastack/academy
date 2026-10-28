@@ -10,5 +10,5 @@ test("returns 0 for an empty cart", () => {
 });
 
 test("formats prices as Turkish lira", () => {
-  expect(formatPrice(1000)).toBe("₺1.000,00");
+  expect(formatPrice(1000)).toBe("€1,000.00");
 });

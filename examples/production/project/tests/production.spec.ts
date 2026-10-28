@@ -21,7 +21,7 @@ test("security headers are sent and X-Powered-By is not", async ({ request }) =>
 test("a user with the flag on sees the order summary", async ({ page, ordersPage }) => {
   await ordersPage.goto();
 
-  await expect(page.getByText("6 orders, ₺5.422,40 in total")).toBeVisible();
+  await expect(page.getByText("6 orders, €5,422.40 in total")).toBeVisible();
 });
 
 test("on a server error the error boundary shows a digest", async ({ page }) => {
@@ -30,6 +30,6 @@ test("on a server error the error boundary shows a digest", async ({ page }) => 
   // Next.js's route announcer also carries role="alert", so we narrow by text.
   const alert = page.getByRole("alert").filter({ hasText: "Something went wrong" });
   await expect(alert).toBeVisible();
-  await expect(alert).toContainText(/hata kodu: \S+/);
+  await expect(alert).toContainText(/Error code to pass on to support: \S+/);
   await expect(alert).not.toContainText("thrown on purpose");
 });

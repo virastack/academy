@@ -17,7 +17,7 @@ describe("ProductCard", () => {
     expect(
       screen.getByRole("heading", { name: "Wireless Headphones" }),
     ).toBeInTheDocument();
-    expect(screen.getByText("₺1.299,00")).toBeInTheDocument();
+    expect(screen.getByText("€1,299.00")).toBeInTheDocument();
   });
 
   test("reports the product when Add to cart is clicked", async () => {
@@ -56,7 +56,7 @@ describe("ProductCard", () => {
       />,
     );
 
-    expect(screen.getByText("₺1.499,00")).toBeInTheDocument();
-    expect(screen.getByText("₺1.299,00")).toBeInTheDocument();
+    expect(screen.getByText("€1,499.00")).toBeInTheDocument();
+    expect(screen.getByText("€1,299.00")).toBeInTheDocument();
   });
 });

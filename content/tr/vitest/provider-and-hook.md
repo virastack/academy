@@ -114,7 +114,7 @@ export function CartSummary() {
             </span>
             <button
               type="button"
-              aria-label={`${product.name} from cart`}
+              aria-label={`Remove ${product.name} from cart`}
               onClick={() => removeFromCart(product.id)}
             >
               Remove
@@ -203,7 +203,7 @@ test("the summary shows the items and the total", () => {
   renderWithProviders(<CartSummary />, { initialItems: filledCart });
 
   expect(screen.getByText("Mechanical Keyboard × 2")).toBeInTheDocument();
-  expect(screen.getByText("Total: ₺5.297,00")).toBeInTheDocument();
+  expect(screen.getByText("Total: €5,297.00")).toBeInTheDocument();
 });
 
 test("the Remove button takes the product out of the cart", async () => {
@@ -218,7 +218,7 @@ test("the Remove button takes the product out of the cart", async () => {
   expect(
     within(summary).queryByText("Mechanical Keyboard × 2"),
   ).not.toBeInTheDocument();
-  expect(screen.getByText("Total: ₺899,00")).toBeInTheDocument();
+  expect(screen.getByText("Total: €899.00")).toBeInTheDocument();
 });
 ```
 
