@@ -1,0 +1,1461 @@
+{
+  "groups": [
+    {
+      "id": "temeller",
+      "title": "Before You Start",
+      "tracks": [
+        {
+          "slug": "web-fundamentals",
+          "title": "Web Fundamentals",
+          "description": "Short summaries of how the web works, the terminal, HTML, CSS, Tailwind, JavaScript and Git.",
+          "status": "published",
+          "lessonGroups": [
+            {
+              "id": "ozetler",
+              "title": "Short Summaries",
+              "lessons": [
+                {
+                  "slug": "how-the-web-works",
+                  "title": "How the web works",
+                  "description": "The browser, HTTP request/response and DevTools.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "terminal-and-npm",
+                  "title": "Terminal and npm",
+                  "description": "The basic commands, installing Node and managing packages.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "html",
+                  "title": "HTML",
+                  "description": "Semantic elements and page structure.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "css",
+                  "title": "CSS",
+                  "description": "Selectors, the box model and page layout.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "tailwind",
+                  "title": "Tailwind",
+                  "description": "Styling and responsive layout with utility classes.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "javascript",
+                  "title": "JavaScript",
+                  "description": "The basics of the language, the DOM and asynchronous flow.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "git",
+                  "title": "Git",
+                  "description": "Version control with commits, branches and a remote.",
+                  "status": "published",
+                  "kind": "lesson"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "react-ekosistemi",
+      "title": "Building with React",
+      "tracks": [
+        {
+          "slug": "typescript",
+          "title": "TypeScript",
+          "description": "Types, generics and type safety with React.",
+          "status": "published",
+          "lessonGroups": [
+            {
+              "id": "dersler",
+              "title": "Lessons",
+              "lessons": [
+                {
+                  "slug": "introduction-and-setup",
+                  "title": "Introduction and setup",
+                  "description": "What TypeScript is, why it is used and type checking in a first project.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "basic-types-and-inference",
+                  "title": "Basic types and inference",
+                  "description": "Primitive types, arrays, function types, any and unknown, with type inference.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "interfaces-types-and-unions",
+                  "title": "Interface, type and union",
+                  "description": "Object shapes, type aliases, unions and literal types.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "narrowing-and-type-guards",
+                  "title": "Narrowing and type guards",
+                  "description": "Narrowing a union, discriminated unions and safe type checks.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "generics",
+                  "title": "Generics",
+                  "description": "Reusable functions and types that work with whatever type they are given.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "utility-types",
+                  "title": "Utility types",
+                  "description": "Deriving types with keyof, typeof, Partial, Pick, Omit and Record.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "types-in-react",
+                  "title": "Types in React",
+                  "description": "Props, children, event, hook and context types.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "tsconfig-and-strict-mode",
+                  "title": "tsconfig and strict mode",
+                  "description": "Compiler settings, the strict flags and type checking in CI.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "project",
+                  "title": "Typed product catalogue",
+                  "description": "Building a product list, a filter and a cart with types end to end.",
+                  "status": "published",
+                  "kind": "project"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "slug": "react",
+          "title": "React",
+          "description": "Current React, from components, state and hooks to Suspense, Actions and View Transition.",
+          "status": "published",
+          "lessonGroups": [
+            {
+              "id": "temeller",
+              "title": "Fundamentals",
+              "lessons": [
+                {
+                  "slug": "setup-and-tooling",
+                  "title": "Setup and tooling",
+                  "description": "A framework or Vite, Strict Mode, lint rules and writing React with AI.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "components-and-jsx",
+                  "title": "Components and JSX",
+                  "description": "Splitting up the interface, JSX rules, lists and keys, pure components.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "props-and-composition",
+                  "title": "Props and composition",
+                  "description": "Passing data, children and slots, and not copying props into state.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "state",
+                  "title": "State",
+                  "description": "Snapshots and updaters, immutable updates, and structuring state well.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "effects",
+                  "title": "Effects and when you don't need one",
+                  "description": "Synchronising with an external system, cleanup, useEffectEvent and Effect-free solutions.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "refs-and-dom",
+                  "title": "Refs and the DOM",
+                  "description": "Reaching the DOM, the ref prop, ref callback cleanup and Fragment refs.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "context",
+                  "title": "Context",
+                  "description": "Sharing without prop drilling, using it with a reducer, and its limits.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "custom-hooks",
+                  "title": "Custom hooks",
+                  "description": "The rules of hooks, moving logic into a hook, and useSyncExternalStore.",
+                  "status": "published",
+                  "kind": "lesson"
+                }
+              ]
+            },
+            {
+              "id": "modern-react",
+              "title": "Modern React",
+              "lessons": [
+                {
+                  "slug": "suspense-and-error-boundaries",
+                  "title": "Suspense and error boundaries",
+                  "description": "The loading state, reading a promise with use, and the Error Boundary.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "actions",
+                  "title": "Actions and async updates",
+                  "description": "Form actions, useActionState, useFormStatus and useOptimistic.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "view-transitions-and-activity",
+                  "title": "View Transition and Activity",
+                  "description": "Animating transitions and keeping the state of a hidden screen.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "project",
+                  "title": "Product page",
+                  "description": "A product detail page with Suspense, Context, Actions, Activity and ViewTransition.",
+                  "status": "published",
+                  "kind": "project"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "slug": "nextjs",
+          "title": "Next.js",
+          "description": "Current Next.js with the App Router, Server Components, Cache Components and Server Actions.",
+          "status": "published",
+          "lessonGroups": [
+            {
+              "id": "temeller",
+              "title": "Fundamentals",
+              "lessons": [
+                {
+                  "slug": "setup-and-folder-structure",
+                  "title": "Setup and project structure",
+                  "description": "The create-next-app defaults, the app folder, the special files and where code goes.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "routing-and-layouts",
+                  "title": "Routing and layouts",
+                  "description": "Pages, layouts, dynamic segments, route groups and navigating with Link.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "server-and-client-components",
+                  "title": "Server and Client Components",
+                  "description": "The 'use client' boundary, composition, serialisation and server-only.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "data-fetching-and-streaming",
+                  "title": "Data fetching and streaming",
+                  "description": "Reading data on the server, streaming with Suspense, avoiding waterfalls and data on the client.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "caching-and-rendering",
+                  "title": "Cache and the rendering model",
+                  "description": "Cache Components, use cache, cacheLife, cacheTag and the static shell.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "server-actions",
+                  "title": "Server Actions",
+                  "description": "Forms and mutations, useActionState, updating the cache and security.",
+                  "status": "published",
+                  "kind": "lesson"
+                }
+              ]
+            },
+            {
+              "id": "uygulamayi-tamamlamak",
+              "title": "Finishing the Application",
+              "lessons": [
+                {
+                  "slug": "navigation-and-prefetching",
+                  "title": "Navigation and prefetching",
+                  "description": "Partial Prefetching, instant navigation, preserved state and useLinkStatus.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "error-handling",
+                  "title": "Error handling",
+                  "description": "Expected errors, error.tsx and retry, catchError and notFound.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "route-handlers-and-proxy",
+                  "title": "Route Handlers and the proxy",
+                  "description": "API endpoints, webhooks, proxy.ts and which one to use when.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "metadata-and-seo",
+                  "title": "Metadata and SEO",
+                  "description": "metadata, generateMetadata, OG images, sitemap, robots and JSON-LD.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "ai-agents",
+                  "title": "Next.js with AI agents",
+                  "description": "The bundled documentation, AGENTS.md, MCP, error prompts and the Next.js skills.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "project",
+                  "title": "Product catalogue",
+                  "description": "A product list, a detail page and a cart with caching, streaming, a Server Action and metadata.",
+                  "status": "published",
+                  "kind": "project"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "state-ve-veri-yonetimi",
+      "title": "State and Data",
+      "tracks": [
+        {
+          "slug": "tanstack-query",
+          "title": "TanStack Query",
+          "description": "Server state, caching, mutations, optimistic updates and prefetching with Next.js.",
+          "status": "published",
+          "lessonGroups": [
+            {
+              "id": "temeller",
+              "title": "Fundamentals",
+              "lessons": [
+                {
+                  "slug": "what-is-server-state",
+                  "title": "What server state is",
+                  "description": "How it differs from client state, the mistakes in fetching with useEffect, and when you don't need it.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "setup-and-devtools",
+                  "title": "Setup and devtools",
+                  "description": "The QueryClient, the defaults that surprise people, Devtools and the ESLint plugin.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "use-query-and-query-keys",
+                  "title": "useQuery and query keys",
+                  "description": "status against fetchStatus, building the key like a dependency array, and cancellation.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "query-options-and-select",
+                  "title": "queryOptions and select",
+                  "description": "Query factories, typed cache reads and reducing renders by selecting data.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "cache-and-stale-time",
+                  "title": "Cache and stale time",
+                  "description": "staleTime against gcTime, the refetch moments, polling and initialData.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "mutations-and-invalidation",
+                  "title": "Mutations and invalidation",
+                  "description": "useMutation, invalidation, updating from the response and where the callbacks belong.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "optimistic-updates",
+                  "title": "Optimistic updates",
+                  "description": "Optimistic updates through variables and through the cache, rolling back, and concurrency.",
+                  "status": "published",
+                  "kind": "lesson"
+                }
+              ]
+            },
+            {
+              "id": "ileri-kullanim",
+              "title": "Advanced Use",
+              "lessons": [
+                {
+                  "slug": "dependent-and-parallel-queries",
+                  "title": "Dependent and parallel queries",
+                  "description": "useQueries, enabled and skipToken, request waterfalls and prefetching on hover.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "pagination-and-infinite-lists",
+                  "title": "Pagination and infinite lists",
+                  "description": "keepPreviousData, preparing the next page and useInfiniteQuery.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "suspense-and-error-handling",
+                  "title": "Suspense and error handling",
+                  "description": "A global toast, throwOnError, useSuspenseQuery and retrying after an error.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "prefetch-with-nextjs",
+                  "title": "Prefetching with Next.js",
+                  "description": "Starting on the server and streaming, HydrationBoundary and who owns the data.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "project",
+                  "title": "Product admin panel",
+                  "description": "A panel with pagination, prefetching, Suspense, mutations and optimistic updates.",
+                  "status": "published",
+                  "kind": "project"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "slug": "zustand",
+          "title": "Zustand",
+          "description": "Small, fast client state: selectors, slices, persist and use alongside TanStack Query.",
+          "status": "published",
+          "lessonGroups": [
+            {
+              "id": "temeller",
+              "title": "Fundamentals",
+              "lessons": [
+                {
+                  "slug": "when-you-need-a-store",
+                  "title": "When you need a store",
+                  "description": "The kinds of state, local state, and where Context is not enough.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "first-store",
+                  "title": "Your first store",
+                  "description": "create, set, get, and reaching the store from outside React.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "selectors-and-rerenders",
+                  "title": "Selectors and re-renders",
+                  "description": "Atomic selectors, useShallow and custom hooks.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "actions-and-updates",
+                  "title": "Actions and updates",
+                  "description": "Actions as events, immer and resetting the store.",
+                  "status": "published",
+                  "kind": "lesson"
+                }
+              ]
+            },
+            {
+              "id": "ileri-kullanim",
+              "title": "Advanced Use",
+              "lessons": [
+                {
+                  "slug": "slice-pattern",
+                  "title": "The slice pattern",
+                  "description": "Splitting the store into small stores or into slices.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "persist-and-devtools",
+                  "title": "Persist and devtools",
+                  "description": "Persistent state, migrations, hydration and Redux DevTools.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "store-with-context",
+                  "title": "A store with Context",
+                  "description": "Initialising from props, reuse, testing and Next.js.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "with-tanstack-query",
+                  "title": "Using it with TanStack Query",
+                  "description": "Driving a query from a filter, and deriving state.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "project",
+                  "title": "Product catalogue and cart",
+                  "description": "A filter store, a persistent cart built from slices, and a derived stock warning.",
+                  "status": "published",
+                  "kind": "project"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "slug": "forms",
+          "title": "Forms",
+          "description": "Accessible forms validated with React Hook Form, Zod and masking, and kept safe on the server too.",
+          "status": "published",
+          "lessonGroups": [
+            {
+              "id": "temeller",
+              "title": "Fundamentals",
+              "lessons": [
+                {
+                  "slug": "controlled-and-uncontrolled-forms",
+                  "title": "Controlled and uncontrolled forms",
+                  "description": "Who holds the value, FormData and the common mistakes.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "react-hook-form-basics",
+                  "title": "React Hook Form basics",
+                  "description": "register, handleSubmit, formState and the validation mode.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "zod-schema-and-validation",
+                  "title": "Schemas and validation with Zod",
+                  "description": "Schemas, type inference, error messages and transforms.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "react-hook-form-with-zod",
+                  "title": "React Hook Form with Zod",
+                  "description": "The resolver, input and output types, and rules across fields.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "errors-and-accessibility",
+                  "title": "Showing errors and accessibility",
+                  "description": "Attaching the error to the field, focus and timing.",
+                  "status": "published",
+                  "kind": "lesson"
+                }
+              ]
+            },
+            {
+              "id": "ileri-kullanim",
+              "title": "Advanced Use",
+              "lessons": [
+                {
+                  "slug": "masking-and-regex",
+                  "title": "Masking and regex",
+                  "description": "The displayed value, the raw value and @virastack/mask.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "dynamic-and-multi-step-forms",
+                  "title": "Dynamic fields and multi-step forms",
+                  "description": "useFieldArray, Controller and validating step by step.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "forms-with-server-actions",
+                  "title": "Forms with Server Actions",
+                  "description": "useActionState, Zod on the server and server errors.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "project",
+                  "title": "Seller application form",
+                  "description": "A multi-step, masked form validated on the server.",
+                  "status": "published",
+                  "kind": "project"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "test-ve-kalite",
+      "title": "Testing, Quality and Shipping",
+      "tracks": [
+        {
+          "slug": "vitest",
+          "title": "Vitest",
+          "description": "Component testing with React Testing Library and MSW.",
+          "status": "published",
+          "lessonGroups": [
+            {
+              "id": "baslangic",
+              "title": "Getting Started",
+              "lessons": [
+                {
+                  "slug": "introduction",
+                  "title": "Introduction",
+                  "description": "What is frontend testing? Which tools are used?",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "setup",
+                  "title": "Setup",
+                  "description": "Installing Vitest, jsdom and React Testing Library.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "basics",
+                  "title": "Basics",
+                  "description": "The first test, render, expect and matchers.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "project-product-card",
+                  "title": "Product card",
+                  "description": "A step-by-step test for an e-commerce product card.",
+                  "status": "published",
+                  "kind": "project"
+                }
+              ]
+            },
+            {
+              "id": "component-testi",
+              "title": "Component Testing",
+              "lessons": [
+                {
+                  "slug": "queries",
+                  "title": "Queries",
+                  "description": "getBy, queryBy, findBy and query priority.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "user-interaction",
+                  "title": "User interaction",
+                  "description": "userEvent, a search box and a coupon form.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "async",
+                  "title": "Asynchronous tests",
+                  "description": "findBy, waitFor and fake timers.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "project-product-list",
+                  "title": "Product list",
+                  "description": "The loading, search and add-to-cart flow.",
+                  "status": "published",
+                  "kind": "project"
+                }
+              ]
+            },
+            {
+              "id": "ileri-seviye",
+              "title": "Advanced Use",
+              "lessons": [
+                {
+                  "slug": "mock",
+                  "title": "Mock",
+                  "description": "vi.fn, vi.mock and mocking an API with MSW.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "provider-and-hook",
+                  "title": "Provider and hook",
+                  "description": "The cart Provider, renderWithProviders and renderHook.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "debugging",
+                  "title": "Debugging",
+                  "description": "screen.debug, the common errors and coverage.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "project-cart-flow",
+                  "title": "Cart flow",
+                  "description": "A full flow test from the product list to the cart.",
+                  "status": "published",
+                  "kind": "project"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "slug": "playwright",
+          "title": "Playwright",
+          "description": "End-to-end tests, and checking in a real browser.",
+          "status": "published",
+          "lessonGroups": [
+            {
+              "id": "temeller",
+              "title": "Fundamentals",
+              "lessons": [
+                {
+                  "slug": "setup",
+                  "title": "Setup",
+                  "description": "Adding Playwright, the configuration and webServer.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "first-test-and-locators",
+                  "title": "The first test and locators",
+                  "description": "getByRole, strict mode, filtering and within().",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "assertions-and-waiting",
+                  "title": "Assertions and waiting",
+                  "description": "Auto-waiting, web-first assertions and hydration.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "debugging-with-trace",
+                  "title": "Debugging with a trace",
+                  "description": "UI Mode, the Inspector, traces and flaky tests.",
+                  "status": "published",
+                  "kind": "lesson"
+                }
+              ]
+            },
+            {
+              "id": "ileri-kullanim",
+              "title": "Advanced Use",
+              "lessons": [
+                {
+                  "slug": "page-objects",
+                  "title": "Page Object",
+                  "description": "Collecting locators and flows in page objects.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "auth-and-fixtures",
+                  "title": "Auth and fixtures",
+                  "description": "Writing fixtures, storageState, roles and isolation.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "api-mocking",
+                  "title": "API mocking",
+                  "description": "page.route, changing the response and the request fixture.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "accessibility-and-visual-tests",
+                  "title": "Accessibility and visual tests",
+                  "description": "axe, the keyboard, aria snapshots and screenshots.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "running-in-ci",
+                  "title": "Running in CI",
+                  "description": "GitHub Actions, sharding and flaky tests.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "project",
+                  "title": "Order panel tests",
+                  "description": "Testing a panel with sessions and roles end to end.",
+                  "status": "published",
+                  "kind": "project"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "slug": "performance-accessibility",
+          "title": "Performance and Accessibility",
+          "description": "Interfaces that are fast and usable by everyone, with Core Web Vitals, the bundle, WCAG and ARIA.",
+          "status": "published",
+          "lessonGroups": [
+            {
+              "id": "dersler",
+              "title": "Lessons",
+              "lessons": [
+                {
+                  "slug": "core-web-vitals",
+                  "title": "Core Web Vitals",
+                  "description": "What LCP, INP and CLS mean.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "measuring",
+                  "title": "Measuring (Lighthouse, DevTools)",
+                  "description": "Reading a Lighthouse score and what to look at in DevTools.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "render-performance",
+                  "title": "Render performance in React",
+                  "description": "Unnecessary renders and expensive updates.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "images-and-fonts",
+                  "title": "Images and fonts",
+                  "description": "Image size, format and font loading.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "bundle-size",
+                  "title": "Bundle size",
+                  "description": "Shrinking the bundle and seeing what gets loaded.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "wcag-and-aria",
+                  "title": "WCAG and ARIA",
+                  "description": "The rules to aim for, and ARIA where HTML is not enough.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "keyboard-and-focus",
+                  "title": "Keyboard and focus management",
+                  "description": "Navigating with the keyboard, and visible focus.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "color-contrast-and-motion",
+                  "title": "Colour, contrast and motion",
+                  "description": "Readable colours, zooming and reduced motion.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "accessibility-testing",
+                  "title": "Accessibility testing",
+                  "description": "Automated scanning and manual checking with a screen reader.",
+                  "status": "published",
+                  "kind": "lesson"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "slug": "production",
+          "title": "Getting Ready for Production",
+          "description": "Deploying, CI/CD and monitoring in production.",
+          "status": "published",
+          "lessonGroups": [
+            {
+              "id": "temeller",
+              "title": "Fundamentals",
+              "lessons": [
+                {
+                  "slug": "environment-variables",
+                  "title": "Environment variables",
+                  "description": "Separating configuration from code, NEXT_PUBLIC_ and validation with Zod.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "deployment-options",
+                  "title": "Deployment options",
+                  "description": "A Node.js server, Docker, static output and platform adapters.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "cicd",
+                  "title": "CI/CD (GitHub Actions)",
+                  "description": "A deploy pipeline with lint, test and Docker jobs, secrets and environments.",
+                  "status": "published",
+                  "kind": "lesson"
+                }
+              ]
+            },
+            {
+              "id": "canli-ortam",
+              "title": "Live Environment",
+              "lessons": [
+                {
+                  "slug": "error-monitoring",
+                  "title": "Error monitoring",
+                  "description": "onRequestError, the error code, Sentry and useful alerts.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "logging",
+                  "title": "Logging",
+                  "description": "Structured logs, what to log and what not to log.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "feature-flags-and-release-strategy",
+                  "title": "Feature flags and release strategy",
+                  "description": "The Flags SDK, a percentage rollout, canary and blue-green.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "pre-release-checklist",
+                  "title": "Pre-release checklist",
+                  "description": "What to look at before going live, and the release-day plan.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "project",
+                  "title": "Get the order panel ready for release",
+                  "description": "Validating the environment, logs, error screens, a feature flag, Docker and CI to get a panel ready for production.",
+                  "status": "published",
+                  "kind": "project"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ileri-seviye",
+      "title": "Advanced",
+      "tracks": [
+        {
+          "slug": "architecture",
+          "title": "Architecture and Scalability",
+          "description": "Feature boundaries, the folder structure, architectural patterns and a growing code base.",
+          "status": "published",
+          "lessonGroups": [
+            {
+              "id": "project-structure",
+              "title": "Project Structure",
+              "lessons": [
+                {
+                  "slug": "folder-structure",
+                  "title": "Folder structure and naming",
+                  "description": "A feature-based structure, file naming and import rules.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "component-organization",
+                  "title": "Component and code organisation",
+                  "description": "Splitting components, separating shared code and keeping the boundaries.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "restructure-project",
+                  "title": "Restructuring a project",
+                  "description": "Moving a messy e-commerce project to a feature-based structure.",
+                  "status": "published",
+                  "kind": "project"
+                }
+              ]
+            },
+            {
+              "id": "patterns",
+              "title": "Architectural Patterns",
+              "lessons": [
+                {
+                  "slug": "feature-sliced-design",
+                  "title": "Feature-Sliced Design",
+                  "description": "A frontend architecture with layers, slices and a one-way import rule.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "domain-driven-frontend",
+                  "title": "Domain-driven frontend",
+                  "description": "What to take from DDD into the frontend: the ubiquitous language and bounded contexts.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "component-driven-and-atomic-design",
+                  "title": "Component-driven and Atomic Design",
+                  "description": "Building an interface from the bottom up and classifying the shared UI parts.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "choosing-a-pattern",
+                  "title": "Choosing a pattern",
+                  "description": "FSD, DDD, component-driven and Atomic Design: which one answers which question.",
+                  "status": "published",
+                  "kind": "lesson"
+                }
+              ]
+            },
+            {
+              "id": "scale",
+              "title": "At Scale",
+              "lessons": [
+                {
+                  "slug": "monorepo",
+                  "title": "Monorepo",
+                  "description": "Shared packages and a common UI library with a pnpm workspace and Turborepo.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "micro-frontend",
+                  "title": "Micro frontend",
+                  "description": "When you need it, when you don't, and a basic setup with Vite and Module Federation.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "multi-package-project",
+                  "title": "A multi-package project",
+                  "description": "Setting up a shared UI package and two applications inside a monorepo.",
+                  "status": "published",
+                  "kind": "project"
+                }
+              ]
+            },
+            {
+              "id": "team-and-product",
+              "title": "Team and Product",
+              "lessons": [
+                {
+                  "slug": "code-quality",
+                  "title": "Code quality and team standards",
+                  "description": "ESLint, Prettier, commit rules and automated checks in CI.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "i18n",
+                  "title": "Multiple languages (i18n)",
+                  "description": "Translation, locale routing and date and currency formatting with next-intl.",
+                  "status": "coming_soon",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "multilingual-ci-project",
+                  "title": "A multilingual page and a CI pipeline",
+                  "description": "Translating an existing page into two languages and tying the lint, type and test checks to CI.",
+                  "status": "coming_soon",
+                  "kind": "project"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "slug": "principles",
+          "title": "Software Principles",
+          "description": "Clean Code, SOLID, composition, refactoring and TDD: the principles that help while writing frontend code.",
+          "status": "published",
+          "lessonGroups": [
+            {
+              "id": "dersler",
+              "title": "Lessons",
+              "lessons": [
+                {
+                  "slug": "clean-code",
+                  "title": "Clean Code and the basic principles",
+                  "description": "DRY, KISS and YAGNI: when they help and when they are overdone.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "solid-and-srp",
+                  "title": "SOLID and SRP",
+                  "description": "Separating responsibilities and managing dependencies, with React examples.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "composition",
+                  "title": "Composition over Inheritance",
+                  "description": "Why composition, not inheritance, is used in React.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "refactoring",
+                  "title": "Refactoring",
+                  "description": "Improving code in small steps while preserving its behaviour.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "tdd-and-testing",
+                  "title": "TDD and testing approaches",
+                  "description": "The Red-Green-Refactor cycle and the Testing Trophy.",
+                  "status": "published",
+                  "kind": "lesson"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "slug": "auth-security",
+          "title": "Auth and Security",
+          "description": "Authentication, authorisation and the common vulnerabilities.",
+          "status": "published",
+          "lessonGroups": [
+            {
+              "id": "dersler",
+              "title": "Lessons",
+              "lessons": [
+                {
+                  "slug": "sessions-cookies-and-jwt",
+                  "title": "Sessions, cookies and JWT",
+                  "description": "The difference between a server session and a JWT, the cookie flags, and where to store the token.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "passwords-passkeys-and-mfa",
+                  "title": "Passwords, passkeys and 2FA",
+                  "description": "The sign-in form, storing a password on the server, passkeys and two-step verification.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "oauth-and-oidc",
+                  "title": "OAuth and OIDC flows",
+                  "description": "The authorization code flow and PKCE, access and ID tokens, and how 'Sign in with Google' works.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "auth-in-nextjs",
+                  "title": "Auth in Next.js",
+                  "description": "Choosing an auth library, signing in, reading the session and redirecting with the proxy.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "authorization-and-roles",
+                  "title": "Authorisation and roles",
+                  "description": "Checking roles and permissions, and protecting pages, APIs and Server Actions.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "xss-and-csp",
+                  "title": "XSS and CSP",
+                  "description": "dangerouslySetInnerHTML, unsafe URLs and Content Security Policy.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "csrf-cors-and-headers",
+                  "title": "CSRF, CORS and the security headers",
+                  "description": "Preventing CSRF with SameSite, what CORS does, and the basic HTTP security headers.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "secrets-and-dependencies",
+                  "title": "Secret and dependency security",
+                  "description": "Keeping keys away from the client, .env and npm supply chain attacks.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "project",
+                  "title": "A protected admin panel",
+                  "description": "A small panel with sign-in, role checks and security headers.",
+                  "status": "published",
+                  "kind": "project"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "slug": "ai",
+          "title": "Frontend with AI",
+          "description": "Chat interfaces, agents, MCP and the AI-assisted development workflow.",
+          "status": "published",
+          "lessonGroups": [
+            {
+              "id": "ai-ile-gelistirme",
+              "title": "Building with AI",
+              "lessons": [
+                {
+                  "slug": "models-and-tools",
+                  "title": "Models and tools",
+                  "description": "Model types, their strengths and weaknesses; chat, editor and terminal-based tools.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "prompt-and-context-engineering",
+                  "title": "Prompt and context engineering",
+                  "description": "Writing a good request, giving the right context, CLAUDE.md/AGENTS.md and project rule files.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "agentic-coding",
+                  "title": "Agentic coding",
+                  "description": "The plan, code, test loop and subagents in tools like Claude Code and Cursor.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "skills",
+                  "title": "Skills",
+                  "description": "Turning repeated work into a skill and using ready-made frontend skills.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "mcp",
+                  "title": "MCP",
+                  "description": "What is MCP? Connecting servers like Figma, Playwright and Next.js DevTools to an agent.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "testing-evals-and-code-review",
+                  "title": "Testing, evals and code review",
+                  "description": "Having tests written, checking with Playwright MCP, measuring model output with evals and reviewing AI code.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "design-to-component",
+                  "title": "From design to component",
+                  "description": "Turning a Figma card design into a working, tested React component with an agent, a skill and MCP.",
+                  "status": "published",
+                  "kind": "project"
+                }
+              ]
+            },
+            {
+              "id": "ajan-takimlari",
+              "title": "Agent Teams",
+              "lessons": [
+                {
+                  "slug": "spec-driven-development",
+                  "title": "Spec-driven development",
+                  "description": "Having the agent write a spec and a task list first, then implementing task by task and keeping the spec current.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "hooks",
+                  "title": "Hooks and permission modes",
+                  "description": "Binding the agent to rules: format, lint and test gates, blocking dangerous commands, and permission modes.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "parallel-agents",
+                  "title": "Parallel agents",
+                  "description": "Running several agents at once with git worktree, without overwriting each other's files.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "agent-teams",
+                  "title": "Building an agent team",
+                  "description": "A line of spec, frontend, test and review subagents, the failure loop, the lead's summary and agent teams.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "unattended-agents",
+                  "title": "Unattended agents",
+                  "description": "Agents in the cloud and in the background, assigning work with @claude on GitHub, automatic PR review and verifying the result.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "agent-team-project",
+                  "title": "A feature with an AI team",
+                  "description": "Adding a cart coupon feature with a team of spec, frontend, test and review agents.",
+                  "status": "published",
+                  "kind": "project"
+                }
+              ]
+            },
+            {
+              "id": "uygulamaya-ai-ekleme",
+              "title": "Adding AI to an App",
+              "lessons": [
+                {
+                  "slug": "ai-sdk-and-streaming-chat",
+                  "title": "The AI SDK and streaming chat",
+                  "description": "useChat, streamText, choosing a model provider and reflecting a streaming response in the UI.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "tool-calling-and-structured-output",
+                  "title": "Tool calling and structured output",
+                  "description": "The model calling a function, structured output with a Zod schema, and user approval.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "generative-ui",
+                  "title": "Generative UI",
+                  "description": "Showing a tool result as a component, with its loading and error states.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "rag-and-embeddings",
+                  "title": "RAG and embeddings",
+                  "description": "Searching your own data with embeddings and giving it to the model as context: chunking, measuring search quality and security.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "security-and-cost",
+                  "title": "Security and cost",
+                  "description": "Prompt injection, protecting the API key, rate limiting and token cost.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "shopping-assistant",
+                  "title": "AI shopping assistant",
+                  "description": "A shopping assistant that works with tool calling, user approval, prompt injection protection and rate limiting.",
+                  "status": "published",
+                  "kind": "project"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takim-ve-sektor",
+      "title": "Team and Industry",
+      "tracks": [
+        {
+          "slug": "glossary",
+          "title": "Industry Glossary",
+          "description": "From Agile to tech debt: the concepts you hear most often on a team.",
+          "status": "published",
+          "lessonGroups": [
+            {
+              "id": "dersler",
+              "title": "Lessons",
+              "lessons": [
+                {
+                  "slug": "working-methods",
+                  "title": "Working methods",
+                  "description": "What Agile, Scrum and Kanban are, and why a team picks one over another.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "sprints-and-rituals",
+                  "title": "Sprints and rituals",
+                  "description": "What the sprint, daily, planning and retro meetings are for.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "work-tracking",
+                  "title": "Work tracking",
+                  "description": "Jira, writing a ticket, the backlog, prioritization and estimation.",
+                  "status": "published",
+                  "kind": "lesson"
+                },
+                {
+                  "slug": "code-and-team",
+                  "title": "Code and team",
+                  "description": "The PR and code review culture, tech debt, releases and versioning.",
+                  "status": "published",
+                  "kind": "lesson"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
