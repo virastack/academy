@@ -1,19 +1,19 @@
-# Ürün Yönetim Paneli
+# A product admin panel
 
-[TanStack Query rehberindeki](https://virastack.com/academy/tanstack-query/project) proje dersinin çalışan hali. Ders adım adım bu dosyaları yazdırır; takıldığınızda karşılaştırın.
+The working version of the project lesson in the [TanStack Query guide](https://virastack.com/academy/tanstack-query/project). The lesson has these files written step by step; compare against it when you get stuck.
 
-Gerçek bir sunucu yok. `src/project/api.ts` bellekte duran, gecikmeli sahte bir API'dir. Sayfa yenilenince veriler sıfırlanır.
+There is no real server. `src/project/api.ts` is a fake in-memory API with an artificial delay. Refresh the page and the data resets.
 
-## Çalıştırma
+## Running it
 
 ```bash
 npm install
 npm run dev
 ```
 
-http://localhost:5173 adresini açın. Sağ alttaki TanStack logosu Devtools panelini açar.
+Open http://localhost:5173. The TanStack logo at the bottom right opens the Devtools panel.
 
-## Kontrol
+## The checks
 
 ```bash
 npm run lint
@@ -22,4 +22,4 @@ npx playwright install chromium
 npm test
 ```
 
-`npm test`, Playwright ile listeleme, sayfalama, arama, stok güncelleme, sonsuz yorum listesi ve favori butonunun iyimser güncellemesini (başarılı ve geri alınan) tarayıcıda dener.
+`npm test` uses Playwright to exercise listing, pagination, search, a stock update, the infinite comment list and the favourite button's optimistic update (both the successful and the rolled-back one) in the browser.

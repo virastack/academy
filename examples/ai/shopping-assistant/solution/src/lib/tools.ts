@@ -9,7 +9,7 @@ export function createTools(userId: string) {
       description: 'Searches the product catalogue. Use it when the user names a product, a category or a price limit.',
       inputSchema: z.object({
         query: z.string().optional().describe('The term to search for, e.g. "running"'),
-        maxPrice: z.number().positive().optional().describe('The highest price in TL'),
+        maxPrice: z.number().positive().optional().describe('The highest price in EUR'),
         category: z.enum(['shoes', 'clothing', 'accessory']).optional(),
       }),
       // Give the model only the fields it needs: the seller-written description is untrusted text

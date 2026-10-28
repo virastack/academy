@@ -9,7 +9,7 @@ const viewports = [
   { width: 1280, height: 900 },
 ];
 
-test('konsolda hata yok', async ({ page }) => {
+test('no console errors', async ({ page }) => {
   const errors: string[] = [];
   page.on('pageerror', (e) => errors.push(e.message));
   page.on('console', (m) => m.type() === 'error' && errors.push(m.text()));
@@ -18,7 +18,7 @@ test('konsolda hata yok', async ({ page }) => {
   expect(errors).toEqual([]);
 });
 
-test('sayfada tek h1 var', async ({ page }) => {
+test('there is a single h1 on the page', async ({ page }) => {
   await page.goto('/');
   await expect(page.getByRole('heading', { level: 1 })).toHaveCount(1);
 });

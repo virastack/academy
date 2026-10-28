@@ -47,7 +47,7 @@ export default function UserCard({ profile }: { profile: Profile }) {
           <button
             type="button"
             aria-pressed={liked}
-            aria-label={`${profile.name} favorilere ekle`}
+            aria-label={`Add ${profile.name} to favourites`}
             onClick={() => setLiked((v) => !v)}
             className="grid size-11 shrink-0 place-items-center rounded-full"
           >

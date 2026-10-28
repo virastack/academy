@@ -1,9 +1,9 @@
-# Çok Dilli Sayfa ve CI Hattı
+# A multilingual page and a CI pipeline
 
-[Mimari rehberindeki](https://virastack.com/academy/architecture/multilingual-ci-project) proje dersinin dosyaları. Anlatım rehberde.
+The files for the project lesson in the [architecture guide](https://virastack.com/academy/architecture/multilingual-ci-project). The walkthrough is in the guide.
 
-- `starter/`: Buradan başlayın. Tek dilli, metinleri koda gömülü bir ürün sayfası.
-- `solution/`: Aynı sayfanın next-intl ile Türkçe ve İngilizce hali. ESLint, Prettier, tip kontrolü, çeviri anahtarı testi (Vitest), Playwright testleri ve `.github/workflows/ci.yml`.
+- `starter/`: start here. A single-language product page with its text hard-coded.
+- `solution/`: the same page in Turkish and English with next-intl. ESLint, Prettier, type checking, a translation key test (Vitest), Playwright tests and `.github/workflows/ci.yml`.
 
 ```bash
 cd solution
@@ -12,4 +12,4 @@ pnpm exec playwright install chromium
 pnpm lint && pnpm format:check && pnpm check-types && pnpm test && pnpm test:e2e
 ```
 
-`ci.yml` bu klasörde çalışmaz; GitHub yalnızca deponun kökündeki `.github/workflows` klasörünü okur. Kendi deponuzun köküne kopyalayın.
+`ci.yml` does not run from this folder; GitHub only reads the `.github/workflows` folder at the root of a repository. Copy it to the root of your own.

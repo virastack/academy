@@ -1,31 +1,31 @@
-# Sipariş Paneli: Yayına Hazır
+# The orders panel, ready to ship
 
-[Production'a Hazırlık rehberindeki](https://virastack.com/academy/production/project) proje dersinin çalışan hali. Ders, [Playwright rehberindeki](https://virastack.com/academy/playwright/project) sipariş panelini adım adım yayına hazırlatır; takıldığınızda karşılaştırın.
+The working version of the project lesson in the [Getting ready for production guide](https://virastack.com/academy/production/project). The lesson takes the orders panel from the [Playwright guide](https://virastack.com/academy/playwright/project) and gets it ready to ship step by step; compare against it when you get stuck.
 
-Uygulamanın kendisi aynıdır: giriş sayfası, oturum cookie'si, TanStack Query ile yüklenen sipariş tablosu ve yöneticinin sipariş iptali. Bu sürüme eklenenler:
+The application itself is the same: a sign-in page, a session cookie, an orders table loaded with TanStack Query and an admin cancelling an order. What this version adds:
 
-| Dosya | Ne öğretir |
+| File | What it teaches |
 | :-- | :-- |
-| `lib/env.ts`, `.env.example` | Ortam değişkenlerini Zod ile doğrulamak |
-| `instrumentation.ts`, `instrumentation-node.ts` | Açılışta doğrulama, `onRequestError` ile sunucu hatalarını loglamak |
-| `lib/logger.ts` | pino ile yapılandırılmış JSON log ve hassas alanları gizlemek |
-| `app/error.tsx`, `app/global-error.tsx` | Kullanıcıya hata kodu *(digest)* gösteren hata sınırları |
-| `app/debug/page.tsx` | Hata izleme hattını denemek için bilerek hata fırlatan sayfa *(production'da 404)* |
-| `app/api/health/route.ts` | Sağlık kontrolü, sürüm bilgisi |
-| `lib/flags.ts`, `lib/rollout.ts` | Flags SDK ile yüzdeli açılan bir özellik *(sipariş özeti)* |
-| `next.config.ts` | `output: "standalone"`, güvenlik başlıkları |
-| `Dockerfile`, `.dockerignore` | Çok aşamalı, root olmayan kullanıcıyla çalışan imaj |
-| `.github/workflows/ci.yml` | Lint, tip kontrolü, uçtan uca testler ve Docker smoke testi |
-| `tests/production.spec.ts`, `tests/rollout.spec.ts` | Yayına hazırlık testleri |
+| `lib/env.ts`, `.env.example` | Validating the environment variables with Zod |
+| `instrumentation.ts`, `instrumentation-node.ts` | Validating at startup, and logging server errors with `onRequestError` |
+| `lib/logger.ts` | Structured JSON logs with pino, and redacting sensitive fields |
+| `app/error.tsx`, `app/global-error.tsx` | Error boundaries that show the user an error code *(the digest)* |
+| `app/debug/page.tsx` | A page that throws on purpose, to exercise the error-tracking pipeline *(a 404 in production)* |
+| `app/api/health/route.ts` | The health check and the version information |
+| `lib/flags.ts`, `lib/rollout.ts` | A feature rolled out by percentage with the Flags SDK *(the order summary)* |
+| `next.config.ts` | `output: "standalone"`, the security headers |
+| `Dockerfile`, `.dockerignore` | A multi-stage image that runs as a non-root user |
+| `.github/workflows/ci.yml` | Lint, type checking, the end-to-end tests and a Docker smoke test |
+| `tests/production.spec.ts`, `tests/rollout.spec.ts` | The readiness tests |
 
-Demo hesaplar, parola `password123`:
+The demo accounts, with the password `password123`:
 
-| E-posta | Rol |
+| Email | Role |
 | :-- | :-- |
-| yonetici@example.com | Yönetici, hazırlanan siparişi iptal edebilir |
-| izleyici@example.com | İzleyici, yalnızca görüntüler |
+| admin@example.com | Admin, can cancel an order that is being prepared |
+| viewer@example.com | Viewer, can only look |
 
-## Çalıştırma
+## Running it
 
 ```bash
 npm install
@@ -33,25 +33,25 @@ cp .env.example .env.local
 npm run dev
 ```
 
-http://localhost:3000 adresini açın. Sipariş özetini görmek için `.env.local` içinde `ORDER_SUMMARY_ROLLOUT=100` yapın ve sunucuyu yeniden başlatın.
+Open http://localhost:3000. To see the order summary, set `ORDER_SUMMARY_ROLLOUT=100` in `.env.local` and restart the server.
 
-## Production build
+## The production build
 
 ```bash
 npm run build
 npm start
 ```
 
-`npm run build` sonrası `postbuild` betiği statik dosyaları `.next/standalone` içine kopyalar. `npm start` doğrudan `node .next/standalone/server.js` çalıştırır; `next start` kullanılmaz.
+After `npm run build`, the `postbuild` script copies the static files into `.next/standalone`. `npm start` runs `node .next/standalone/server.js` directly; `next start` is not used.
 
-## Testler
+## The tests
 
 ```bash
 npx playwright install chromium
 npm test
 ```
 
-Testler production build'e karşı çalışır. `playwright.config.ts` sunucuyu `ORDER_SUMMARY_ROLLOUT=100` ile başlatır.
+The tests run against the production build. `playwright.config.ts` starts the server with `ORDER_SUMMARY_ROLLOUT=100`.
 
 ## Docker
 
@@ -61,17 +61,17 @@ docker run --rm -p 3000:3000 -e APP_ENV=preview -e APP_VERSION=1.0.0 order-panel
 curl http://localhost:3000/api/health
 ```
 
-Aynı imaj farklı ortam değişkenleriyle her ortamda çalışır. Geçersiz bir değer verirseniz konteyner açılırken hangi değişkenin hatalı olduğunu yazıp kapanır:
+The same image runs in every environment with different environment variables. Give it an invalid value and the container writes which variable is wrong as it starts and exits:
 
 ```bash
 docker run --rm -e ORDER_SUMMARY_ROLLOUT=150 order-panel
 ```
 
-## Ortam değişkenleri
+## The environment variables
 
-| Değişken | Varsayılan | Açıklama |
+| Variable | Default | What it is |
 | :-- | :-- | :-- |
-| `APP_ENV` | `local` | `local`, `preview` ya da `production`. `production`'da `/debug` 404 döner |
-| `APP_VERSION` | `dev` | Sağlık uç noktasında ve her log satırında görünen sürüm |
-| `LOG_LEVEL` | `info` | `debug`, `info`, `warn` ya da `error` |
-| `ORDER_SUMMARY_ROLLOUT` | `0` | Sipariş özetini görecek kullanıcı yüzdesi |
+| `APP_ENV` | `local` | `local`, `preview` or `production`. In `production`, `/debug` returns a 404 |
+| `APP_VERSION` | `dev` | The version shown on the health endpoint and on every log line |
+| `LOG_LEVEL` | `info` | `debug`, `info`, `warn` or `error` |
+| `ORDER_SUMMARY_ROLLOUT` | `0` | The percentage of users who will see the order summary |

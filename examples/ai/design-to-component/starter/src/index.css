@@ -1,6 +1,6 @@
 @import 'tailwindcss';
 
-/* Tasarım token'ları buraya gelir (get_variable_defs çıktısı).
-   Örnek: --color-brand: #4f46e5; --font-sans: 'Inter', sans-serif; */
+/* The design tokens go here (the get_variable_defs output).
+   For example: --color-brand: #4f46e5; --font-sans: 'Inter', sans-serif; */
 @theme {
 }

@@ -1,15 +1,15 @@
-# Tasarımdan Bileşene
+# From design to component
 
-Bir Figma kart tasarımını agent, skill ve MCP ile çalışan, test edilmiş bir React bileşenine çevirme projesi. Anlatım rehberde, burada yalnızca dosyalar var.
+A project that turns a Figma card design into a working, tested React component with an agent, a skill and MCP. The walkthrough is in the guide; this folder holds only the files.
 
-- `starter/`: Buradan başlayın. Boş bir Vite + React + Tailwind projesi, örnek profil verisi, yer tutucu görseller, hazır testler ve `CLAUDE.md`.
-- `solution/`: Örnek çözüm. Kendi sonucunuzdan farklıdır, yalnızca testlerin geçtiği bir kartın nasıl göründüğünü gösterir.
+- `starter/`: start here. An empty Vite + React + Tailwind project, the sample profile data, placeholder images, the bundled tests and a `CLAUDE.md`.
+- `solution/`: an example solution. It differs from your own result and only shows what a card that passes the tests can look like.
 
 ```bash
 cd starter
 npm install
 npx playwright install chromium
-npm test        # başlangıçta 3 test kırmızı: kart yok
+npm test        # 3 tests are red at the start: there is no card
 ```
 
-Tasarım: [Modern Profile Card UI](https://www.figma.com/community/file/1625904675991451970/modern-profile-card-ui-free-figma-template), [@saifullah_nakih](https://www.figma.com/@saifullah_nakih), [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+The design: [Modern Profile Card UI](https://www.figma.com/community/file/1625904675991451970/modern-profile-card-ui-free-figma-template), [@saifullah_nakih](https://www.figma.com/@saifullah_nakih), [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).

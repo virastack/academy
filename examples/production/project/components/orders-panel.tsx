@@ -38,7 +38,7 @@ export function OrdersPanel({ canCancel, showSummary }: OrdersPanelProps) {
   const cancel = useMutation({
     mutationFn: cancelOrder,
     onSuccess: (order) => {
-      setMessage(`${order.id} iptal edildi.`);
+      setMessage(`${order.id} cancelled.`);
       return queryClient.invalidateQueries({ queryKey: ["orders"] });
     },
     onError: (error) => setMessage(error.message),

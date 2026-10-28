@@ -10,7 +10,7 @@ test("an admin cancels an order being prepared", async ({ loginPage, ordersPage 
 
   await ordersPage.cancel("SP-1001");
 
-  await expect(ordersPage.message).toHaveText("SP-1001 iptal edildi.");
+  await expect(ordersPage.message).toHaveText("SP-1001 cancelled.");
   await expect(ordersPage.row("SP-1001")).toContainText("Cancelled");
   await expect(ordersPage.row("SP-1001").getByRole("button")).toHaveCount(0);
 });

@@ -1,29 +1,29 @@
-# Ürün Kataloğu
+# A product catalogue
 
-[TypeScript rehberindeki](https://virastack.com/academy/typescript/project) proje dersinin çalışan hali. Takıldığınızda karşılaştırın.
+The working version of the project lesson in the [TypeScript guide](https://virastack.com/academy/typescript/project). Compare against it when you get stuck.
 
-Vite'ın `react-ts` şablonuyla kurulmuş küçük bir mağaza sayfası: ürünleri `public/products.json`'dan çeker, `isProduct` type guard'ından geçirir, kategoriye göre filtreler ve sepete ekler.
+A small store page set up with Vite's `react-ts` template: it fetches the products from `public/products.json`, puts them through the `isProduct` type guard, filters them by category and adds them to the cart.
 
-## Çalıştırma
+## Running it
 
 ```bash
 npm install
 npm run dev
 ```
 
-## Tip kontrolü ve build
+## Type checking and the build
 
 ```bash
 npm run build
 ```
 
-`npm run build` önce `tsc -b` ile tip kontrolü yapar, sonra Vite ile derler. Kök `tsconfig.json` yalnızca `references` içerdiği için `npx tsc --noEmit` hiçbir dosyayı kontrol etmez; `tsc -b` kullanın.
+`npm run build` type-checks with `tsc -b` first and then builds with Vite. Because the root `tsconfig.json` holds nothing but `references`, `npx tsc --noEmit` checks no files at all; use `tsc -b`.
 
-| Dosya | Ne öğretir |
+| File | What it teaches |
 | :-- | :-- |
-| `src/types.ts` | `as const` ile türetilen `Category`, `Product`, `CartItem`, `FetchState<T>` |
-| `src/api.ts` | `unknown` veriyi `isProduct` type guard'ıyla daraltmak |
-| `src/use-fetch.ts` | Generic `useFetch<T>` hook'u |
-| `src/components/` | Props tipleri ve `ChangeEvent` |
-| `src/cart-context.ts`, `src/CartProvider.tsx` | Tipli context ve `useReducer` |
-| `tsconfig.app.json` | `strict` ve `noUncheckedIndexedAccess` |
+| `src/types.ts` | `Category` derived with `as const`, `Product`, `CartItem`, `FetchState<T>` |
+| `src/api.ts` | Narrowing `unknown` data with the `isProduct` type guard |
+| `src/use-fetch.ts` | The generic `useFetch<T>` hook |
+| `src/components/` | Prop types and `ChangeEvent` |
+| `src/cart-context.ts`, `src/CartProvider.tsx` | A typed context and `useReducer` |
+| `tsconfig.app.json` | `strict` and `noUncheckedIndexedAccess` |

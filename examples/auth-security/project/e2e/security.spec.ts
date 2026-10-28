@@ -28,11 +28,11 @@ test.describe("admin session", () => {
     expect(await page.evaluate(() => "__xss" in window)).toBe(false);
   });
 
-  test("a cross-site form request is rejected", async ({ page }) => {
+  test("a cross-site form request is rejected", async ({ page, baseURL }) => {
     await page.route("https://evil.example/", (route) =>
       route.fulfill({
         contentType: "text/html",
-        body: `<form method="POST" action="http://localhost:3000/api/admin/products/mouse/archive"></form>
+        body: `<form method="POST" action="${baseURL}/api/admin/products/mouse/archive"></form>
                <script>document.forms[0].submit()</script>`,
       }),
     );

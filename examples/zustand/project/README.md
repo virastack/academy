@@ -1,19 +1,19 @@
-# Ürün Kataloğu ve Sepet
+# A product catalogue and cart
 
-[Zustand rehberindeki](https://virastack.com/academy/zustand/project) proje dersinin çalışan hali. Ders adım adım bu dosyaları yazdırır; takıldığınızda karşılaştırın.
+The working version of the project lesson in the [Zustand guide](https://virastack.com/academy/zustand/project). The lesson has these files written step by step; compare against it when you get stuck.
 
-Gerçek bir sunucu yok. `src/project/api.ts` gecikmeli, sahte bir API'dir. Sepet `localStorage`'da `shop-cart` anahtarıyla saklanır.
+There is no real server. `src/project/api.ts` is a fake API with an artificial delay. The cart is stored in `localStorage` under the `shop-cart` key.
 
-## Çalıştırma
+## Running it
 
 ```bash
 npm install
 npm run dev
 ```
 
-http://localhost:5173 adresini açın. Redux DevTools eklentisi kuruluysa store'u `ShopStore` adıyla görürsünüz.
+Open http://localhost:5173. With the Redux DevTools extension installed you see the store under the name `ShopStore`.
 
-## Kontrol
+## The checks
 
 ```bash
 npm run lint
@@ -22,4 +22,4 @@ npx playwright install chromium
 npm test
 ```
 
-`npm test`, Playwright ile filtrelerin sorguyu sürmesini, sepete ekleme ve toplamı, stok sınırını, sepetin sayfa yenilendikten sonra korunmasını ve stok uyarısının sunucu verisinden türetilmesini tarayıcıda dener.
+`npm test` uses Playwright to exercise the filters driving the query, adding to the cart and the total, the stock limit, the cart surviving a page refresh, and the stock warning being derived from the server data.

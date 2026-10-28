@@ -1,22 +1,22 @@
-# Çoklu Paket Projesi
+# A multi-package project
 
-[Mimari rehberindeki](https://virastack.com/academy/architecture/multi-package-project) proje dersinin çalışan hali. Takıldığınızda karşılaştırın.
+The working version of the project lesson in the [architecture guide](https://virastack.com/academy/architecture/multi-package-project). Compare against it when you get stuck.
 
-pnpm workspace ve Turborepo ile kurulmuş bir monorepo:
+A monorepo set up with a pnpm workspace and Turborepo:
 
-- `apps/store`: Next.js mağaza (port 3000)
-- `apps/admin`: Vite + React yönetim paneli (port 5173)
-- `packages/ui`: İki uygulamanın paylaştığı `@repo/ui` (Just-in-Time paket, Vitest testleri)
-- `packages/typescript-config`: Paylaşılan `tsconfig` dosyaları
+- `apps/store`: the Next.js store (port 3000)
+- `apps/admin`: the Vite + React admin panel (port 5173)
+- `packages/ui`: `@repo/ui`, shared by both applications (a Just-in-Time package, with Vitest tests)
+- `packages/typescript-config`: the shared `tsconfig` files
 
-## Çalıştırma
+## Running it
 
 ```bash
 pnpm install
 pnpm dev
 ```
 
-## Kontroller
+## The checks
 
 ```bash
 pnpm build
@@ -24,4 +24,4 @@ pnpm check-types
 pnpm test
 ```
 
-Aynı komutu ikinci kez çalıştırdığınızda Turborepo sonucu önbellekten getirir (`FULL TURBO`).
+Run the same command a second time and Turborepo serves the result from its cache (`FULL TURBO`).

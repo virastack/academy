@@ -1,34 +1,34 @@
-# Mağaza Testleri
+# Store tests
 
-[Vitest rehberindeki](https://virastack.com/academy/vitest) üç proje dersinin çalışan hali: Ürün Kartı, Ürün Listesi ve Sepet Akışı. Takıldığınızda karşılaştırın.
+The working version of the three project lessons in the [Vitest guide](https://virastack.com/academy/vitest): the Product Card, the Product List and the Cart Flow. Compare against it when you get stuck.
 
-Vite'ın `react-ts` şablonuyla kurulmuş, [Kurulum](https://virastack.com/academy/vitest/setup) dersindeki gibi Vitest, jsdom, React Testing Library ve MSW eklenmiş bir proje.
+A project set up with Vite's `react-ts` template, with Vitest, jsdom, React Testing Library and MSW added as in the [Setup](https://virastack.com/academy/vitest/setup) lesson.
 
-## Çalıştırma
+## Running it
 
 ```bash
 npm install
 npm test          # watch mode
-npm run test:run  # bir kez, CI için
+npm run test:run  # once, for CI
 ```
 
-Demo sayfası için `npm run dev`. Gerçek API (`api.shop.test`) yalnızca testlerde MSW ile var; demo sayfası aynı ürünleri yerelden yükler.
+For the demo page, `npm run dev`. The real API (`api.shop.test`) exists only in the tests, through MSW; the demo page loads the same products locally.
 
-## Tip kontrolü
+## Type checking
 
 ```bash
 npm run build
 ```
 
-`tsc -b` test dosyalarını da kontrol eder.
+`tsc -b` checks the test files too.
 
-| Dosya | Ders |
+| File | Lesson |
 | :-- | :-- |
-| `src/ProductCard.tsx`, `src/ProductCard.test.tsx` | Ürün Kartı |
-| `src/ProductList.tsx`, `src/ProductList.test.tsx` | Ürün Listesi |
-| `src/cart-context.tsx`, `src/cart-components.tsx`, `src/test-utils.tsx`, `src/cart.test.tsx` | Provider ve Hook |
-| `src/fetch-products.ts`, `src/mocks/`, `src/fetch-products.test.tsx` | Mock |
-| `src/ShopPage.tsx`, `src/ShopPage.test.tsx` | Sepet Akışı |
-| `vite.config.ts`, `src/vitest.setup.ts` | Kurulum ve Mock |
+| `src/ProductCard.tsx`, `src/ProductCard.test.tsx` | The Product Card |
+| `src/ProductList.tsx`, `src/ProductList.test.tsx` | The Product List |
+| `src/cart-context.tsx`, `src/cart-components.tsx`, `src/test-utils.tsx`, `src/cart.test.tsx` | Provider and hook |
+| `src/fetch-products.ts`, `src/mocks/`, `src/fetch-products.test.tsx` | Mocking |
+| `src/ShopPage.tsx`, `src/ShopPage.test.tsx` | The Cart Flow |
+| `vite.config.ts`, `src/vitest.setup.ts` | Setup and mocking |
 
-`cart.test.tsx`, Provider ve Hook dersindeki component testleriyle hook testini tek dosyada toplar; hook testi aynı `keyboard` verisini kullanır.
+`cart.test.tsx` gathers the component tests and the hook test from the Provider and hook lesson into one file; the hook test uses the same `keyboard` data.

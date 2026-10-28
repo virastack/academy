@@ -9,6 +9,6 @@ test("returns 0 for an empty cart", () => {
   expect(getSubtotal([])).toBe(0);
 });
 
-test("formats prices as Turkish lira", () => {
+test("formats prices in euros", () => {
   expect(formatPrice(1000)).toBe("€1,000.00");
 });

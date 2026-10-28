@@ -10,7 +10,7 @@ test("a signed-out user is sent to the sign-in page", async ({ page }) => {
 test.describe("customer", () => {
   test.use({ storageState: storageState("customer") });
 
-  test("panele giremez", async ({ page }) => {
+  test("cannot reach the panel", async ({ page }) => {
     await page.goto("/admin");
     await expect(page.getByRole("heading", { name: "You do not have access to this page" })).toBeVisible();
   });

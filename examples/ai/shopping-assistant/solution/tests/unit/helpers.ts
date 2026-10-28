@@ -33,7 +33,7 @@ export const streamText_ = (text: string) => ({
 });
 
 // A model that returns a fresh text stream on every call
-export const textModel = () => new MockLanguageModelV4({ doStream: async () => streamText_('Merhaba') });
+export const textModel = () => new MockLanguageModelV4({ doStream: async () => streamText_('Hello') });
 
 export function makeChat(model: MockLanguageModelV4, userId: string, opts: Partial<ChatHandlerOptions> = {}) {
   const handler = createChatHandler({ model, ...opts });

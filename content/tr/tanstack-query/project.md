@@ -305,7 +305,7 @@ export function ProductTable({ selectedId, onSelect }: ProductTableProps) {
       {isPending ? (
         <p>Loading...</p>
       ) : isError ? (
-        <p>Hata: {error.message}</p>
+        <p>Error: {error.message}</p>
       ) : (
         <table style={{ opacity: isPlaceholderData ? 0.5 : 1 }}>
           <tbody>

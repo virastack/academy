@@ -47,19 +47,19 @@ describe('tools', () => {
       doStream: [streamToolCall('addToCart', { productId: 'p-01', quantity: 50 }), streamText_('x')],
     });
     const chat = makeChat(model, 'u1');
-    await chat.sendMessage({ text: '50 tane ekle' });
+    await chat.sendMessage({ text: 'add 50 of them' });
     expect(toolPart(chat, 'addToCart').state).toBe('output-error');
     expect(getCart('u1')).toEqual([]);
   });
 });
 
-describe('onay ve yetki', () => {
+describe('approval and authorization', () => {
   it('addToCart does not run without approval and adds to the cart after it', async () => {
     const model = new MockLanguageModelV4({
-      doStream: [streamToolCall('addToCart', { productId: 'p-01', quantity: 1 }), streamText_('Ekledim.')],
+      doStream: [streamToolCall('addToCart', { productId: 'p-01', quantity: 1 }), streamText_('Added it.')],
     });
     const chat = makeChat(model, 'u2');
-    await chat.sendMessage({ text: 'p-01 sepete ekle' });
+    await chat.sendMessage({ text: 'add p-01 to cart' });
 
     const part = toolPart(chat, 'addToCart');
     expect(part.state).toBe('approval-requested');
@@ -72,10 +72,10 @@ describe('onay ve yetki', () => {
 
   it('the cart is unchanged when approval is refused', async () => {
     const model = new MockLanguageModelV4({
-      doStream: [streamToolCall('addToCart', { productId: 'p-01', quantity: 1 }), streamText_('Tamam.')],
+      doStream: [streamToolCall('addToCart', { productId: 'p-01', quantity: 1 }), streamText_('Done.')],
     });
     const chat = makeChat(model, 'u2');
-    await chat.sendMessage({ text: 'p-01 sepete ekle' });
+    await chat.sendMessage({ text: 'add p-01 to cart' });
     await chat.addToolApprovalResponse({ id: toolPart(chat, 'addToCart').approval.id, approved: false });
     await waitFor(() => toolPart(chat, 'addToCart').state === 'output-denied' && chat.status === 'ready');
     expect(getCart('u2')).toEqual([]);
@@ -97,7 +97,7 @@ describe('onay ve yetki', () => {
       doStream: [streamToolCall('addToCart', { productId: 'p-99', quantity: 1 }), streamText_('x')],
     });
     const chat = makeChat(model, 'u3');
-    await chat.sendMessage({ text: 'ekle' });
+    await chat.sendMessage({ text: 'add it' });
     await chat.addToolApprovalResponse({ id: toolPart(chat, 'addToCart').approval.id, approved: true });
     await waitFor(() => toolPart(chat, 'addToCart').state === 'output-error' && chat.status === 'ready');
     expect(getCart('u3')).toEqual([]);
@@ -107,10 +107,10 @@ describe('onay ve yetki', () => {
 
   it('the cart is private to the user', async () => {
     const model = new MockLanguageModelV4({
-      doStream: [streamToolCall('addToCart', { productId: 'p-01', quantity: 1 }), streamText_('Ekledim.')],
+      doStream: [streamToolCall('addToCart', { productId: 'p-01', quantity: 1 }), streamText_('Added it.')],
     });
     const chat = makeChat(model, 'ayse');
-    await chat.sendMessage({ text: 'ekle' });
+    await chat.sendMessage({ text: 'add it' });
     await chat.addToolApprovalResponse({ id: toolPart(chat, 'addToCart').approval.id, approved: true });
     await waitFor(() => toolPart(chat, 'addToCart').state === 'output-available' && chat.status === 'ready');
     expect(getCart('ayse')).toHaveLength(1);
@@ -159,7 +159,7 @@ describe('rate limit and input limit', () => {
   });
 });
 
-describe('maliyet', () => {
+describe('cost', () => {
   it('the call to the model carries a maxOutputTokens limit', async () => {
     const model = textModel();
     const res = await createChatHandler({ model })(chatRequest('a', [userMessage('selam')]));

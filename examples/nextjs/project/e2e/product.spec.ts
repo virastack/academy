@@ -9,7 +9,7 @@ test("the product page opens instantly and stock arrives later", async ({ page }
     await page.waitForURL((url) => url.pathname === "/products/canvas-sneaker");
 
     await expect(page.getByRole("heading", { name: "Canvas Shoe" })).toBeVisible();
-    await expect(page.getByText("Stok kontrol ediliyor...")).toBeVisible();
+    await expect(page.getByText("Checking stock...")).toBeVisible();
   });
 
   await expect(page.getByText("12 left in stock")).toBeVisible();

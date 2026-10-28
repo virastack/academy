@@ -1,10 +1,10 @@
-# Korumalı Yönetim Paneli
+# A protected admin panel
 
-[Auth ve Güvenlik rehberindeki](https://virastack.com/academy/auth-security/project) proje dersinin çalışan hali. Takıldığınızda karşılaştırın.
+The working version of the project lesson in the [Auth and security guide](https://virastack.com/academy/auth-security/project). Compare against it when you get stuck.
 
-Küçük bir mağaza yönetim paneli: e-posta ve parolayla giriş, `customer`, `editor` ve `admin` rolleri, rol ve izin kontrolü, temizlenmiş HTML, CSRF korumalı bir Route Handler, nonce'lu CSP ve güvenlik başlıkları.
+A small store admin panel: sign-in with an email and a password, the `customer`, `editor` and `admin` roles, role and permission checks, sanitized HTML, a CSRF-protected Route Handler, a CSP with a nonce and the security headers.
 
-## Çalıştırma
+## Running it
 
 ```bash
 npm install
@@ -14,15 +14,15 @@ npm run db:seed
 npm run dev
 ```
 
-`.env.local` içindeki `BETTER_AUTH_SECRET` değerini `openssl rand -base64 32` ile üretin. Seed üç kullanıcı açar; hepsinin parolası `parola-1234`:
+Generate the `BETTER_AUTH_SECRET` value in `.env.local` with `openssl rand -base64 32`. The seed creates three users, all with the password `password-1234`:
 
-| E-posta | Rol |
+| Email | Role |
 | :-- | :-- |
 | `admin@example.com` | admin |
 | `editor@example.com` | editor |
 | `customer@example.com` | customer |
 
-## Kontroller
+## The checks
 
 ```bash
 npm run lint
@@ -31,17 +31,17 @@ npx playwright install chromium
 npm run test:e2e
 ```
 
-Playwright testleri production build üzerinde çalışır; CSP ve Better Auth'un giriş sınırı yalnızca orada gerçek davranır. Testler başlamadan veritabanını seed ile sıfırlar.
+The Playwright tests run against a production build; the CSP and Better Auth's sign-in limit only behave for real there. The tests reset the database with the seed before they start.
 
-| Dosya | Ne öğretir |
+| File | What it teaches |
 | :-- | :-- |
-| `lib/auth.ts` | Better Auth, `input: false` ile kullanıcının değiştiremediği rol |
-| `lib/permissions.ts` | Rol ve izin listesi, `hasPermission` |
-| `lib/dal.ts` | Data Access Layer, `requirePermission` ve `forbidden()` |
-| `lib/products.ts`, `lib/users.ts` | DTO döndürmek, `isomorphic-dompurify` ile temizlenmiş HTML |
-| `app/admin/actions.ts` | Her Server Action'da izin kontrolü ve Zod doğrulaması |
-| `app/api/admin/products/[id]/archive/route.ts` | `Sec-Fetch-Site` ile CSRF kontrolü, 401 ve 403 |
-| `proxy.ts` | İyimser oturum yönlendirmesi ve nonce'lu CSP |
-| `next.config.ts` | Güvenlik başlıkları, `poweredByHeader`, `authInterrupts` |
-| `package.json` | npm 12 için `allowScripts` onayları |
-| `e2e/` | Rol başına oturum, XSS, CSRF, başlık, rol enjeksiyonu ve giriş sınırı testleri |
+| `lib/auth.ts` | Better Auth, and a role the user cannot change thanks to `input: false` |
+| `lib/permissions.ts` | The role and permission list, `hasPermission` |
+| `lib/dal.ts` | The Data Access Layer, `requirePermission` and `forbidden()` |
+| `lib/products.ts`, `lib/users.ts` | Returning DTOs, and HTML sanitized with `isomorphic-dompurify` |
+| `app/admin/actions.ts` | A permission check and Zod validation in every Server Action |
+| `app/api/admin/products/[id]/archive/route.ts` | A CSRF check with `Sec-Fetch-Site`, 401 and 403 |
+| `proxy.ts` | Optimistic session redirects and a CSP with a nonce |
+| `next.config.ts` | The security headers, `poweredByHeader`, `authInterrupts` |
+| `package.json` | The `allowScripts` approvals for npm 12 |
+| `e2e/` | A session per role, and tests for XSS, CSRF, the headers, role injection and the sign-in limit |

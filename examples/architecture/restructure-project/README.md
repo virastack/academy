@@ -1,18 +1,18 @@
-# Proje Yapısını Düzenleme
+# Restructuring a project
 
-[Mimari rehberindeki](https://virastack.com/academy/architecture/restructure-project) proje dersinin dosyaları. Anlatım rehberde.
+The files for the project lesson in the [architecture guide](https://virastack.com/academy/architecture/restructure-project). The walkthrough is in the guide.
 
-- `starter/`: Buradan başlayın. Türe göre dizilmiş bir mağaza: `components/`, `hooks/`, `utils/utils.ts`, `types/types.ts`, `../` import'ları ve `export *` barrel'ı.
-- `solution/`: Aynı uygulamanın feature-based hali. `src/features/products` ve `src/features/cart`, `@/` alias'ı ve sınırları zorlayan ESLint kuralları.
+- `starter/`: start here. A store organized by type: `components/`, `hooks/`, `utils/utils.ts`, `types/types.ts`, `../` imports and an `export *` barrel.
+- `solution/`: the same application in a feature-based layout. `src/features/products` and `src/features/cart`, the `@/` alias and ESLint rules that enforce the boundaries.
 
-İki klasörde de aynı Playwright testi var. Taşıma bitince test yine geçmeli; davranış değişmemeli.
+Both folders hold the same Playwright test. Once the move is done the test should still pass; the behaviour must not change.
 
 ```bash
 cd starter
 npm install
 npx playwright install chromium
-npm run test:e2e   # 2 test geçer
-npm run lint       # başta temiz; kuralları ekleyince 22 hata
+npm run test:e2e   # 2 tests pass
+npm run lint       # clean at first; 22 errors once you add the rules
 ```
 
-`solution/` içinde `npm run lint`, `npm run typecheck` ve `npm run test:e2e` hatasız geçer.
+In `solution/`, `npm run lint`, `npm run typecheck` and `npm run test:e2e` all pass.
