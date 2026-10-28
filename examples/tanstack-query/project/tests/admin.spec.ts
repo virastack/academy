@@ -42,7 +42,7 @@ test("adds a review and shows it while pending", async ({ page }) => {
 
 test("toggles favorite optimistically", async ({ page }) => {
   await page.addInitScript(() => {
-    // Favori isteği bu testte hiç başarısız olmasın
+    // The favourite request must never fail in this test
     Math.random = () => 0.9;
   });
   await page.goto("/");
@@ -50,7 +50,7 @@ test("toggles favorite optimistically", async ({ page }) => {
   const favorite = page.getByRole("button", { name: /favorit/i });
   await expect(favorite).toHaveText("☆ Add to favorites");
   await favorite.click();
-  // Sunucu 800 ms sonra cevap verir; metin hemen değişmeli
+  // The server answers after 800 ms; the text must change immediately
   await expect(favorite).toHaveText("★ Favorited", { timeout: 300 });
 });
 

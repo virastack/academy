@@ -2,7 +2,7 @@ export type RateLimiter = {
   check(id: string): { success: true } | { success: false; retryAfter: number };
 };
 
-// Bellek içi kayan pencere. Tek süreçte çalışır: canlıda sayacı Redis gibi dışarıda tutun.
+// An in-memory sliding window. Single-process only: in production keep the counter outside, in Redis or similar.
 export function createRateLimiter({ max, windowMs }: { max: number; windowMs: number }): RateLimiter {
   const hits = new Map<string, number[]>();
 

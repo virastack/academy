@@ -3,8 +3,8 @@ import { connection } from "next/server";
 import { Suspense } from "react";
 import { getEnv } from "@/lib/env";
 
-// Hata izleme hattını uçtan uca denemek için bilerek hata fırlatan sayfa.
-// Production'da 404 döner.
+// A page that throws on purpose, to exercise the error-tracking pipeline end to end.
+// Returns 404 in production.
 export default function DebugPage() {
   return (
     <Suspense fallback={<p>Loading...</p>}>

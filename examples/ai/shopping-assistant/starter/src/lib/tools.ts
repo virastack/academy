@@ -1,5 +1,5 @@
-// TODO: iki araç tanımlayın: searchProducts ve addToCart.
-// createTools(userId) içinde döndürün. userId, sepetin sahibini belirler.
+// TODO: define two tools: searchProducts and addToCart.
+// Return them from createTools(userId). userId decides who owns the cart.
 export function createTools(_userId: string) {
   return {};
 }

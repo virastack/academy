@@ -9,9 +9,9 @@ export function StockForm({ product }: { product: Product }) {
   const mutation = useMutation({
     mutationFn: updateStock,
     onSuccess: (updated) => {
-      // Detay: cevabı doğrudan cache'e yaz
+      // Detail: write the response straight into the cache
       queryClient.setQueryData(productQueries.detail(updated.id).queryKey, updated);
-      // Listeler: yeniden çek; Promise'i döndür ki buton beklesin
+      // Lists: refetch, and return the Promise so the button waits
       return queryClient.invalidateQueries({ queryKey: productQueries.lists() });
     },
   });

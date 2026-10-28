@@ -22,14 +22,14 @@ type StoredApplication = Omit<ApplicationValues, "products"> & {
   products: { name: string; price: number }[];
 };
 
-// Gerçek uygulamada veritabanına yazılır.
+// A real app would write this to a database.
 async function saveApplication(application: StoredApplication) {
   void application;
   await delay(400);
 }
 
 export async function submitApplication(values: unknown): Promise<ApplicationResult> {
-  // İstemci doğrulamış olsa bile sunucu girdiye güvenmez.
+  // Even when the client has validated, the server does not trust the input.
   const parsed = applicationSchema.safeParse(values);
   if (!parsed.success) {
     const { fieldErrors } = z.flattenError(parsed.error);
@@ -50,7 +50,7 @@ export async function submitApplication(values: unknown): Promise<ApplicationRes
     };
   }
 
-  // Fiyat metin olarak doğrulandı; sayıya doğrulamadan sonra, sunucuda çevrilir.
+  // The price is validated as text and converted to a number afterwards, on the server.
   const products = parsed.data.products.map((product) => ({
     ...product,
     price: parsePrice(product.price),

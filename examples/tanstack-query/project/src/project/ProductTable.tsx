@@ -17,7 +17,7 @@ export function ProductTable({ selectedId, onSelect }: ProductTableProps) {
     placeholderData: keepPreviousData,
   });
 
-  // Sonraki sayfayı arka planda hazırla
+  // Prepare the next page in the background
   useEffect(() => {
     if (!isPlaceholderData && data?.hasMore) {
       void queryClient.query(productQueries.list(page + 1, search)).catch(noop);

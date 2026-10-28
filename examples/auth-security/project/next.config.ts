@@ -9,7 +9,7 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
-  // Nonce'lu CSP, Partial Prerendering ile çalışmaz; panel zaten tamamen dinamik.
+  // A nonce-based CSP does not work with Partial Prerendering; the panel is fully dynamic anyway.
   cacheComponents: false,
   poweredByHeader: false,
   serverExternalPackages: ["better-sqlite3"],

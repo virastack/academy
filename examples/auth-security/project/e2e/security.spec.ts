@@ -3,7 +3,7 @@ import { expect, test, type APIRequestContext } from "@playwright/test";
 
 import { PASSWORD, storageState } from "./helpers";
 
-// Giriş sınırına takılırsa sunucunun söylediği kadar bekleyip bir kez daha dener
+// If it hits the sign-in limit, it waits as long as the server asks and tries once more
 async function postAuth(request: APIRequestContext, url: string, data: object) {
   const response = await request.post(url, { data });
 

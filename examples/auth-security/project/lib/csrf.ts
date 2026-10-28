@@ -5,7 +5,7 @@ export function isCrossSiteRequest(request: Request) {
     return site !== "same-origin";
   }
 
-  // Eski tarayıcı: Origin başlığına bak
+  // Older browser: fall back to the Origin header
   const origin = request.headers.get("origin");
   return origin !== null && origin !== new URL(request.url).origin;
 }

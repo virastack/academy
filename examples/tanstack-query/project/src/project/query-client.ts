@@ -7,7 +7,7 @@ export const queryClient = new QueryClient({
   },
   queryCache: new QueryCache({
     onError: (error, query) => {
-      // Ekranda veri varken başarısız olan arka plan yenilemesi
+      // A background refetch that fails while data is already on screen
       if (query.state.data !== undefined) {
         showToast(`Data could not be updated: ${error.message}`);
       }

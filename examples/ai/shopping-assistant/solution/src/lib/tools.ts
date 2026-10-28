@@ -12,7 +12,7 @@ export function createTools(userId: string) {
         maxPrice: z.number().positive().optional().describe('The highest price in TL'),
         category: z.enum(['shoes', 'clothing', 'accessory']).optional(),
       }),
-      // Modele yalnızca ihtiyacı olan alanları verin: satıcının yazdığı açıklama güvenilmeyen metindir
+      // Give the model only the fields it needs: the seller-written description is untrusted text
       execute: async (input) =>
         findProducts(input).map(({ id, name, category, price, inStock }) => ({ id, name, category, price, inStock })),
     }),
@@ -27,7 +27,7 @@ export function createTools(userId: string) {
         try {
           return addItem(userId, productId, quantity);
         } catch (error) {
-          console.error('[addToCart]', error); // gerçek hata yalnızca sunucu logunda
+          console.error('[addToCart]', error); // the real error stays in the server log only
           throw new Error('The product could not be added to the cart.');
         }
       },

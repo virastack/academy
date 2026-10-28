@@ -21,7 +21,7 @@ function buildCsp(nonce: string) {
 }
 
 export function proxy(request: NextRequest) {
-  // İyimser kontrol: yalnızca cookie var mı diye bakar
+  // An optimistic check: it only looks at whether the cookie exists
   if (request.nextUrl.pathname.startsWith("/admin") && !getSessionCookie(request)) {
     return NextResponse.redirect(new URL("/sign-in", request.url));
   }

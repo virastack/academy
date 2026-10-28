@@ -31,8 +31,8 @@ const seedOrders: Order[] = [
   { id: "SP-1006", customer: "Burak Arslan", total: 560, status: "shipped" },
 ];
 
-// Demo veri katmanı: veritabanı yerine bellekte tutulur. Her oturum siparişlerin
-// kendi kopyasıyla başlar; bir testin iptal ettiği sipariş diğer testleri etkilemez.
+// Demo data layer: held in memory instead of a database. Each session starts with
+// its own copy of the orders, so an order one test cancels does not affect the others.
 const store = globalThis as typeof globalThis & { sessions?: Map<string, Session> };
 const sessions = (store.sessions ??= new Map<string, Session>());
 

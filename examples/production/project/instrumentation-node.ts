@@ -1,10 +1,10 @@
 import { getEnv } from "./lib/env";
 
-// Yalnızca Node.js çalışma ortamında, sunucu açılırken bir kez çalışır.
+// Runs once as the server starts, and only on the Node.js runtime.
 try {
   getEnv();
 } catch (error) {
-  // Ortam değişkenleri hatalıysa sunucu hiç trafik almadan kapanır.
+  // If the environment variables are wrong the server exits before taking any traffic.
   console.error(error instanceof Error ? error.message : error);
   process.exit(1);
 }

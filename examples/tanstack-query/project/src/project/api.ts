@@ -76,7 +76,7 @@ export async function updateStock({ id, stock }: { id: number; stock: number }):
 
 export async function toggleFavorite(id: number): Promise<Product> {
   await delay(800);
-  // Yaklaşık dört istekten biri başarısız olsun; geri almayı görmek için
+  // Fail roughly one request in four, so the rollback is visible
   if (Math.random() < 0.25) throw new HttpError(500, "Favorite could not be saved");
   const product = products.find((p) => p.id === id);
   if (!product) throw new HttpError(404, "Product not found");

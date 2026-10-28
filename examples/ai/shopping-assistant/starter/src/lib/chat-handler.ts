@@ -9,8 +9,8 @@ export type ChatHandlerOptions = {
   onUsage?: (report: UsageReport) => void;
 };
 
-// TODO: POST isteğini işleyen fonksiyonu döndürün.
-// Kullanıcı kimliği: x-user-id başlığı (yoksa 'anon').
+// TODO: return the function that handles the POST request.
+// User id: the x-user-id header (falling back to 'anon').
 export function createChatHandler(_options: ChatHandlerOptions) {
   return async function POST(_req: Request): Promise<Response> {
     return new Response('Not written yet', { status: 501 });

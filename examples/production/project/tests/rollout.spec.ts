@@ -1,5 +1,5 @@
-// Tarayıcı gerektirmeyen saf fonksiyon testleri. Gerçek bir projede bunları
-// Vitest gibi bir birim test aracına taşıyın; burada tek araçla kalmak için Playwright'ta.
+// Pure function tests that need no browser. In a real project, move these
+// to a unit test runner such as Vitest; they live in Playwright here to keep one tool.
 import { expect, test } from "@playwright/test";
 import { isInRollout, rolloutBucket } from "../lib/rollout";
 

@@ -38,7 +38,7 @@ export default function Chat() {
             {message.parts.map((part, i) => {
               switch (part.type) {
                 case 'text':
-                  // Asistan metni düz metin olarak gösterilir: Markdown görseli ya da bağlantısı oluşmaz
+                  // The assistant text is rendered as plain text: no Markdown image or link is created
                   return (
                     <p key={i} className="whitespace-pre-wrap text-ink">
                       {part.text}

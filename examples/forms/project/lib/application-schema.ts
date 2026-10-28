@@ -10,7 +10,7 @@ export const parsePrice = (value: string) => Number(value.replace(",", "."));
 
 const productSchema = z.object({
   name: z.string().trim().min(2, "The product name must be at least 2 characters."),
-  // Fiyat metin olarak kalır; "249,90" de "249.90" de geçerlidir.
+  // The price stays text; both "249,90" and "249.90" are valid.
   price: z
     .string()
     .trim()
@@ -30,7 +30,7 @@ export const applicationSchema = z.object({
   contactName: z.string().trim().min(2, "The full name must be at least 2 characters."),
   email: z.email("Enter the email address as name@example.com."),
   phone: z.string().regex(/^5\d{9}$/, "A phone number must be 10 digits starting with 5."),
-  // Maske yalnızca rakamları saklar; ülke kodunu ekleyip IBAN sağlamasını yapıyoruz.
+  // The mask stores digits only, so we prepend the country code and run the IBAN checksum.
   iban: z
     .string()
     .regex(/^\d{24}$/, "An IBAN must have 24 digits after TR.")

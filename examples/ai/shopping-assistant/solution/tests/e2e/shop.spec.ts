@@ -1,7 +1,7 @@
 import { test, expect, type Page } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 
-// Her test kendi sepetini kullanır: sayfa ?user=<kimlik> ile açılır
+// Each test uses its own cart: the page is opened with ?user=<id>
 let n = 0;
 const open = (page: Page) => page.goto(`/?user=e2e-${Date.now()}-${n++}`);
 

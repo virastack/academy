@@ -6,7 +6,7 @@ const eslintConfig = defineConfig([
   ...nextVitals,
   ...nextTs,
   {
-    // Playwright fixture'larındaki use() bir React Hook değildir.
+    // use() in a Playwright fixture is not a React Hook.
     files: ["tests/**"],
     rules: { "react-hooks/rules-of-hooks": "off" },
   },

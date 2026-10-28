@@ -1,7 +1,7 @@
 import { expect, signedOut, test } from "./fixtures";
 
-// Veriyi değiştiren test paylaşılan oturumu kullanmaz; kendi oturumunu açar.
-// Böylece diğer testler iptal edilmiş bir sipariş görmez.
+// A test that mutates data does not use the shared session; it signs in on its own.
+// That way the other tests never see an already cancelled order.
 test.use({ storageState: signedOut });
 
 test("an admin cancels an order being prepared", async ({ loginPage, ordersPage }) => {

@@ -34,11 +34,11 @@ describe('tools', () => {
     await chat.sendMessage({ text: 'running products' });
 
     const items = toolPart(chat, 'searchProducts').output as Record<string, unknown>[];
-    expect(items.some((i) => i.id === 'p-07')).toBe(true); // içinde gizli talimat olan ürün de listede
+    expect(items.some((i) => i.id === 'p-07')).toBe(true); // the product carrying the hidden instruction is in the list too
     const allowed = ['id', 'name', 'category', 'price', 'inStock'];
     for (const item of items) expect(Object.keys(item).every((k) => allowed.includes(k))).toBe(true);
 
-    // 2. model çağrısına giden istemde gizli talimat bulunmamalı
+    // the prompt sent on the second model call must not contain the hidden instruction
     expect(JSON.stringify(model.doStreamCalls[1].prompt)).not.toContain('IGNORE ALL PREVIOUS');
   });
 
@@ -82,7 +82,7 @@ describe('onay ve yetki', () => {
   });
 
   it('even if the model is tricked, nothing enters the cart without the user approving', async () => {
-    // Model, ürün açıklamasındaki gizli talimata uymuş gibi davranıyor
+    // The model behaves as if it had followed the hidden instruction in the product description
     const model = new MockLanguageModelV4({
       doStream: [streamToolCall('addToCart', { productId: 'p-02', quantity: 5 }), streamText_('x')],
     });
@@ -101,7 +101,7 @@ describe('onay ve yetki', () => {
     await chat.addToolApprovalResponse({ id: toolPart(chat, 'addToCart').approval.id, approved: true });
     await waitFor(() => toolPart(chat, 'addToCart').state === 'output-error' && chat.status === 'ready');
     expect(getCart('u3')).toEqual([]);
-    // Sunucudaki iç hata mesajı modele gitmemeli
+    // The server's internal error message must not reach the model
     expect(JSON.stringify(model.doStreamCalls[1].prompt)).not.toContain('Product not found');
   });
 

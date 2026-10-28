@@ -1,5 +1,5 @@
-// Anahtar ve ücret gerektirmeyen sahte model. Gerçek bir model değildir:
-// son mesaja bakıp önceden belirlenmiş cevaplar üretir. Gerçek modele geçmek için src/lib/model.ts.
+// A fake model that needs no key and costs nothing. It is not a real model:
+// it looks at the last message and returns canned replies. See src/lib/model.ts for a real one.
 import { simulateReadableStream } from 'ai';
 import { MockLanguageModelV4 } from 'ai/test';
 

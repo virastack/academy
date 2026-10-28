@@ -1,6 +1,6 @@
 "use client";
 
-/** Sunucu hatalarında Next.js'in eklediği `digest` değerini güvenle okur. */
+/** Safely reads the `digest` value Next.js attaches to server errors. */
 function getDigest(error: unknown): string | undefined {
   if (typeof error === "object" && error !== null && "digest" in error) {
     return typeof error.digest === "string" ? error.digest : undefined;

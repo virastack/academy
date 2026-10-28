@@ -1,7 +1,7 @@
 "use client";
 
-// Kök layout'taki hataları yakalar. Kendi <html> ve <body> etiketlerini çizer;
-// globals.css burada yüklü değildir, bu yüzden stiller satır içidir.
+// Catches errors in the root layout. It renders its own <html> and <body>;
+// globals.css is not loaded here, which is why the styles are inline.
 export default function GlobalError({ retry }: { error: unknown; retry: () => void }) {
   return (
     <html lang="tr">

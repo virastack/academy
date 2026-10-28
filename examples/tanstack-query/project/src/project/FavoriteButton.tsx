@@ -25,7 +25,7 @@ export function FavoriteButton({ product }: { product: Product }) {
       showToast(error.message);
     },
     onSettled: (_data, _error, id, _onMutateResult, context) => {
-      // Yalnızca son favori isteği sunucuyla eşitlesin
+      // Only the latest favourite request should sync with the server
       if (context.client.isMutating({ mutationKey: favoriteKey }) === 1) {
         return context.client.invalidateQueries({
           queryKey: productQueries.detail(id).queryKey,

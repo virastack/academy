@@ -17,7 +17,7 @@ export async function login(_previous: LoginState, formData: FormData): Promise<
 
   const user = findUser(email, password);
   if (!user) {
-    // Parolayı asla loglamayın. E-posta, tekrar eden denemeleri fark etmek için yeterlidir.
+    // Never log the password. The email is enough to spot repeated attempts.
     logger.warn({ event: "login_failed", email }, "Sign-in failed");
     return { error: "Email or password is incorrect.", email };
   }

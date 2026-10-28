@@ -29,7 +29,7 @@ export const profiles: Profile[] = [
     liked: true,
   },
   {
-    // Uzun isim: kart taşmamalı
+    // A long name: the card must not overflow
     id: 'maria',
     name: 'Maria Fernanda Gutiérrez-Hernández de la Vega',
     role: 'Senior frontend developer',

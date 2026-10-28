@@ -1,6 +1,6 @@
 /**
- * Bir kimliği 0 ile 99 arasında sabit bir kovaya yerleştirir (FNV-1a).
- * Aynı kullanıcı her istekte aynı kovaya düşer; yüzde 10'luk açılışta hep aynı yüzde 10 görür.
+ * Places an id in a stable bucket between 0 and 99 (FNV-1a).
+ * The same user lands in the same bucket on every request, so a 10 percent rollout always reaches the same 10 percent.
  */
 export function rolloutBucket(id: string, salt: string): number {
   let hash = 0x811c9dc5;

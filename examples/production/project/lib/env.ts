@@ -13,8 +13,8 @@ export type Env = z.infer<typeof envSchema>;
 let cached: Env | undefined;
 
 /**
- * Ortam değişkenlerini bir kez doğrular ve önbelleğe alır.
- * Eksik ya da hatalı bir değer varsa hangi değişkenin neden geçersiz olduğunu söyleyerek hata fırlatır.
+ * Validates the environment variables once and caches them.
+ * If a value is missing or invalid it throws, naming the variable and why it failed.
  */
 export function getEnv(): Env {
   if (cached) return cached;

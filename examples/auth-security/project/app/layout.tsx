@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 };
 
 export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  // Nonce her istekte üretildiği için tüm sayfalar dinamik render edilir
+  // Because the nonce is generated per request, every page renders dynamically
   await connection();
 
   return (

@@ -11,7 +11,7 @@ export function StoreStep({ taxNumber }: { taxNumber: MaskInputProps }) {
   const { register, control } = useFormContext<ApplicationInput>();
   const { fields, append, remove } = useFieldArray({ control, name: "products" });
   const { errors } = useFormState({ control, name: "products" });
-  // Dizi düzeyindeki hata satırlar varken root'a, dizi boşken doğrudan alana yazılır.
+  // An array-level error goes to root while rows exist, and straight to the field when the array is empty.
   const listError = errors.products?.root?.message ?? errors.products?.message;
 
   return (

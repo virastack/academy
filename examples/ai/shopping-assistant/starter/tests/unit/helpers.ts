@@ -32,7 +32,7 @@ export const streamText_ = (text: string) => ({
   }),
 });
 
-// Her çağrıda yeni bir metin akışı döndüren model
+// A model that returns a fresh text stream on every call
 export const textModel = () => new MockLanguageModelV4({ doStream: async () => streamText_('Merhaba') });
 
 export function makeChat(model: MockLanguageModelV4, userId: string, opts: Partial<ChatHandlerOptions> = {}) {
@@ -47,7 +47,7 @@ export function makeChat(model: MockLanguageModelV4, userId: string, opts: Parti
   });
 }
 
-// Şemaya uymayan girdi 'tool-<ad>' yerine 'dynamic-tool' parçası olarak gelir, ikisini de arıyoruz
+// Input that fails the schema arrives as a 'dynamic-tool' part instead of 'tool-<name>', so we look for both
 export function toolPart(chat: Chat<any>, name: string) {
   return chat.messages
     .at(-1)

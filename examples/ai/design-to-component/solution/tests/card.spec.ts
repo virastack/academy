@@ -63,7 +63,7 @@ for (const vp of viewports) {
     );
     expect(pageOverflow).toBeLessThanOrEqual(0);
 
-    // Her kartın içindeki hiçbir öğe kartın dışına taşmamalı (uzun isim dahil)
+    // No element inside a card may spill outside it (long names included)
     const escaped = await page.evaluate(() => {
       const out: string[] = [];
       for (const card of document.querySelectorAll('article')) {
@@ -80,7 +80,7 @@ for (const vp of viewports) {
     });
     expect(escaped).toEqual([]);
 
-    // WCAG 2.2 AA: etkileşimli hedefler en az 24x24 CSS px
+    // WCAG 2.2 AA: interactive targets are at least 24x24 CSS px
     const small: string[] = [];
     for (const el of await page.locator('button, a[href]').all()) {
       const box = await el.boundingBox();

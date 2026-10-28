@@ -27,7 +27,7 @@ test("a user with the flag on sees the order summary", async ({ page, ordersPage
 test("on a server error the error boundary shows a digest", async ({ page }) => {
   await page.goto("/debug");
 
-  // Next.js'in sayfa geçişi duyurucusu da role="alert" taşır; metinle daraltıyoruz.
+  // Next.js's route announcer also carries role="alert", so we narrow by text.
   const alert = page.getByRole("alert").filter({ hasText: "Something went wrong" });
   await expect(alert).toBeVisible();
   await expect(alert).toContainText(/hata kodu: \S+/);

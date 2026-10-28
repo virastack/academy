@@ -111,6 +111,36 @@ npm install vitest
 ```
 ````
 
+## Language in code
+
+Lesson prose is Turkish. Code is not.
+
+Everything under `examples/` is English: identifiers, UI strings and
+comments. One example repo backs every language of a lesson, so Turkish in
+there would leave the other language's snippets out of step with the code
+its reader is told to compare against.
+
+Comments inside a lesson's own fenced code blocks stay Turkish. They are
+read as part of the Turkish paragraph around them, and each language's
+lesson keeps its own.
+
+```tsx
+// examples/ -> English
+<button onClick={addToCart}>Add to cart</button>   // the cart opens itself
+```
+
+```tsx
+// a lesson code block -> Turkish comment, English code
+<button onClick={addToCart}>Add to cart</button>   // sepet kendisi açılır
+```
+
+Some strings are domain data rather than interface copy, and they stay as
+they are in both places: `TRY` and `tr-TR` number and currency formatting,
+the Turkish ID, IBAN, tax-number and phone formats the forms track teaches,
+and people's names. The i18n lesson and the multilingual CI project are
+exempt altogether, since Turkish is one of the two locales they
+demonstrate.
+
 ## Edit links
 
 Published pages link to:

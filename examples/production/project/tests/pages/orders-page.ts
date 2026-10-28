@@ -17,7 +17,7 @@ export class OrdersPage {
     this.statusFilter = page.getByLabel("Status");
     this.table = page.getByRole("table", { name: "Order list" });
     this.rows = this.table.getByRole("row").filter({ has: page.getByRole("cell") });
-    // Her satırın dördüncü hücresi: nth(3) satırların içinde ayrı ayrı çözülür.
+    // The fourth cell of each row: nth(3) resolves separately within each row.
     this.statusCells = page.getByRole("cell").nth(3).within(this.rows);
     this.message = page.getByRole("main").getByRole("status");
     this.loading = page.getByText("Loading orders...");

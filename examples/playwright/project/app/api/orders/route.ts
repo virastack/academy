@@ -13,7 +13,7 @@ export async function GET(request: NextRequest) {
     return Response.json({ error: "Invalid status." }, { status: 400 });
   }
 
-  // Yavaş bir ağı taklit eder; yükleniyor durumu ekranda görünsün.
+  // Simulates a slow network so the loading state is visible on screen.
   await new Promise((resolve) => setTimeout(resolve, 300));
 
   const orders =
