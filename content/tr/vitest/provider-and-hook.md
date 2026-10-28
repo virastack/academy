@@ -78,7 +78,7 @@ export function useCart(): CartContextValue {
   const context = useContext(CartContext);
 
   if (!context) {
-    throw new Error("useCart, CartProvider içinde kullanılmalıdır.");
+    throw new Error("useCart must be used within CartProvider.");
   }
 
   return context;
@@ -94,18 +94,18 @@ import { formatPrice } from "./format-price";
 export function CartBadge() {
   const { totalCount } = useCart();
 
-  return <a href="/sepet">Sepet ({totalCount})</a>;
+  return <a href="/cart">Cart ({totalCount})</a>;
 }
 
 export function CartSummary() {
   const { items, totalPrice, removeFromCart } = useCart();
 
   if (items.length === 0) {
-    return <p>Sepetiniz boş.</p>;
+    return <p>Your cart is empty.</p>;
   }
 
   return (
-    <section aria-label="Sepet özeti">
+    <section aria-label="Cart summary">
       <ul>
         {items.map(({ product, quantity }) => (
           <li key={product.id}>
@@ -114,15 +114,15 @@ export function CartSummary() {
             </span>
             <button
               type="button"
-              aria-label={`${product.name} ürününü sepetten çıkar`}
+              aria-label={`${product.name} from cart`}
               onClick={() => removeFromCart(product.id)}
             >
-              Çıkar
+              Remove
             </button>
           </li>
         ))}
       </ul>
-      <p>Toplam: {formatPrice(totalPrice)}</p>
+      <p>Total: {formatPrice(totalPrice)}</p>
     </section>
   );
 }
@@ -171,13 +171,13 @@ import type { Product } from "./types";
 
 const keyboard: Product = {
   id: 2,
-  name: "Mekanik Klavye",
+  name: "Mechanical Keyboard",
   price: 2199,
   inStock: true,
 };
 const mouse: Product = {
   id: 3,
-  name: "Oyuncu Faresi",
+  name: "Gaming Mouse",
   price: 899,
   inStock: true,
 };
@@ -187,38 +187,38 @@ const filledCart: CartItem[] = [
   { product: mouse, quantity: 1 },
 ];
 
-test("rozet boş sepette sıfır gösterir", () => {
+test("the badge shows zero for an empty cart", () => {
   renderWithProviders(<CartBadge />);
 
-  expect(screen.getByRole("link", { name: "Sepet (0)" })).toBeInTheDocument();
+  expect(screen.getByRole("link", { name: "Cart (0)" })).toBeInTheDocument();
 });
 
-test("rozet toplam ürün adedini gösterir", () => {
+test("the badge shows the total item count", () => {
   renderWithProviders(<CartBadge />, { initialItems: filledCart });
 
-  expect(screen.getByRole("link", { name: "Sepet (3)" })).toBeInTheDocument();
+  expect(screen.getByRole("link", { name: "Cart (3)" })).toBeInTheDocument();
 });
 
-test("özet ürünleri ve toplam tutarı gösterir", () => {
+test("the summary shows the items and the total", () => {
   renderWithProviders(<CartSummary />, { initialItems: filledCart });
 
-  expect(screen.getByText("Mekanik Klavye × 2")).toBeInTheDocument();
-  expect(screen.getByText("Toplam: ₺5.297,00")).toBeInTheDocument();
+  expect(screen.getByText("Mechanical Keyboard × 2")).toBeInTheDocument();
+  expect(screen.getByText("Total: ₺5.297,00")).toBeInTheDocument();
 });
 
-test("Çıkar butonu ürünü sepetten kaldırır", async () => {
+test("the Remove button takes the product out of the cart", async () => {
   const user = userEvent.setup();
   renderWithProviders(<CartSummary />, { initialItems: filledCart });
 
   await user.click(
-    screen.getByRole("button", { name: "Mekanik Klavye ürününü sepetten çıkar" }),
+    screen.getByRole("button", { name: "Remove Mechanical Keyboard from cart" }),
   );
 
-  const summary = screen.getByRole("region", { name: "Sepet özeti" });
+  const summary = screen.getByRole("region", { name: "Cart summary" });
   expect(
-    within(summary).queryByText("Mekanik Klavye × 2"),
+    within(summary).queryByText("Mechanical Keyboard × 2"),
   ).not.toBeInTheDocument();
-  expect(screen.getByText("Toplam: ₺899,00")).toBeInTheDocument();
+  expect(screen.getByText("Total: ₺899,00")).toBeInTheDocument();
 });
 ```
 
@@ -237,7 +237,7 @@ function wrapper({ children }: { children: ReactNode }) {
   return <CartProvider>{children}</CartProvider>;
 }
 
-test("aynı ürünü ekleyince adedi artırır", () => {
+test("increments the quantity when the same product is added", () => {
   const { result } = renderHook(() => useCart(), { wrapper });
 
   act(() => {
@@ -249,9 +249,9 @@ test("aynı ürünü ekleyince adedi artırır", () => {
   expect(result.current.totalPrice).toBe(4398);
 });
 
-test("Provider dışında kullanılırsa hata fırlatır", () => {
+test("throws when used outside the provider", () => {
   expect(() => renderHook(() => useCart())).toThrow(
-    "useCart, CartProvider içinde kullanılmalıdır.",
+    "useCart must be used within CartProvider.",
   );
 });
 ```
@@ -274,8 +274,8 @@ test("Provider dışında kullanılırsa hata fırlatır", () => {
 `CartSummary` ve `CartBadge` aynı sepeti paylaşır. Bunu tek bir testte doğrulayın:
 
 - Aynı `renderWithProviders` çağrısında ikisini birlikte render edin: `<><CartBadge /><CartSummary /></>`. `initialItems` olarak `filledCart` verin.
-- **Mekanik Klavye** için **Çıkar** butonuna tıklayın.
-- Rozetin **Sepet (1)** olduğunu doğrulayın.
+- **Mechanical Keyboard** için **Remove** butonuna tıklayın.
+- Rozetin **Cart (1)** olduğunu doğrulayın.
 
 ## Kaynaklar
 

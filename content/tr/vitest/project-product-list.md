@@ -9,11 +9,11 @@ translationKey: "vitest/project-product-list"
 
 Mağaza ana sayfası ürünleri bir API'den yükler. Liste şunları yapar:
 
-- Yüklenirken **Ürünler yükleniyor...** mesajı gösterir.
-- Yükleme başarısız olursa **Ürünler yüklenemedi.** mesajı gösterir.
+- Yüklenirken **Loading products...** mesajı gösterir.
+- Yükleme başarısız olursa **Products could not be loaded.** mesajı gösterir.
 - Arama kutusuna yazılan metne göre ürünleri filtreler.
-- Eşleşme yoksa **Ürün bulunamadı.** mesajı gösterir.
-- Her ürün için **Sepete ekle** butonu sunar.
+- Eşleşme yoksa **No products found.** mesajı gösterir.
+- Her ürün için **Add to cart** butonu sunar.
 
 Projenin çalışan hali GitHub'da: [examples/vitest/project](https://github.com/virastack/academy/tree/main/examples/vitest/project). Takıldığınızda karşılaştırın.
 
@@ -58,11 +58,11 @@ export function ProductList({ loadProducts, onAddToCart }: ProductListProps) {
   }, [loadProducts]);
 
   if (status === "loading") {
-    return <p role="status">Ürünler yükleniyor...</p>;
+    return <p role="status">Loading products...</p>;
   }
 
   if (status === "error") {
-    return <p role="alert">Ürünler yüklenemedi.</p>;
+    return <p role="alert">Products could not be loaded.</p>;
   }
 
   const normalizedQuery = query.trim().toLocaleLowerCase("tr-TR");
@@ -71,8 +71,8 @@ export function ProductList({ loadProducts, onAddToCart }: ProductListProps) {
   );
 
   return (
-    <section aria-label="Ürünler">
-      <label htmlFor="product-search">Ürün ara</label>
+    <section aria-label="Products">
+      <label htmlFor="product-search">Search products</label>
       <input
         id="product-search"
         type="search"
@@ -80,7 +80,7 @@ export function ProductList({ loadProducts, onAddToCart }: ProductListProps) {
         onChange={(event) => setQuery(event.target.value)}
       />
       {visibleProducts.length === 0 ? (
-        <p>Ürün bulunamadı.</p>
+        <p>No products found.</p>
       ) : (
         <ul>
           {visibleProducts.map((product) => (
@@ -108,9 +108,9 @@ import { ProductList } from "./ProductList";
 import type { Product } from "./types";
 
 const products: Product[] = [
-  { id: 1, name: "Kablosuz Kulaklık", price: 1299, inStock: true },
-  { id: 2, name: "Mekanik Klavye", price: 2199, inStock: true },
-  { id: 3, name: "Oyuncu Faresi", price: 899, inStock: false },
+  { id: 1, name: "Wireless Headphones", price: 1299, inStock: true },
+  { id: 2, name: "Mechanical Keyboard", price: 2199, inStock: true },
+  { id: 3, name: "Gaming Mouse", price: 899, inStock: false },
 ];
 
 function renderList(
@@ -128,12 +128,12 @@ function renderList(
 Konu: [!getBy], [!findBy] ve [!queryBy].[^3]
 
 ```tsx
-test("yüklenirken bilgi mesajı, sonra ürünleri gösterir", async () => {
+test("shows a status message while loading, then the products", async () => {
   renderList();
 
-  expect(screen.getByText("Ürünler yükleniyor...")).toBeInTheDocument();
+  expect(screen.getByText("Loading products...")).toBeInTheDocument();
   expect(await screen.findAllByRole("article")).toHaveLength(3);
-  expect(screen.queryByText("Ürünler yükleniyor...")).not.toBeInTheDocument();
+  expect(screen.queryByText("Loading products...")).not.toBeInTheDocument();
 });
 ```
 
@@ -142,11 +142,11 @@ test("yüklenirken bilgi mesajı, sonra ürünleri gösterir", async () => {
 Konu: `Promise.reject` ve `findByRole("alert")`.
 
 ```tsx
-test("yükleme başarısız olursa hata mesajı gösterir", async () => {
-  renderList(() => Promise.reject(new Error("ağ hatası")));
+test("shows an error message when loading fails", async () => {
+  renderList(() => Promise.reject(new Error("network error")));
 
   expect(await screen.findByRole("alert")).toHaveTextContent(
-    "Ürünler yüklenemedi.",
+    "Products could not be loaded.",
   );
 });
 ```
@@ -156,25 +156,25 @@ test("yükleme başarısız olursa hata mesajı gösterir", async () => {
 Konu: `userEvent.type` ve `userEvent.clear`.
 
 ```tsx
-test("aramaya göre ürünleri filtreler", async () => {
+test("filters the products by search", async () => {
   const user = userEvent.setup();
   renderList();
 
-  await user.type(await screen.findByLabelText("Ürün ara"), "klavye");
+  await user.type(await screen.findByLabelText("Search products"), "keyboard");
 
   expect(screen.getAllByRole("article")).toHaveLength(1);
   expect(
-    screen.getByRole("heading", { name: "Mekanik Klavye" }),
+    screen.getByRole("heading", { name: "Mechanical Keyboard" }),
   ).toBeInTheDocument();
 });
 
-test("eşleşme yoksa boş durum mesajı gösterir", async () => {
+test("shows the empty state when nothing matches", async () => {
   const user = userEvent.setup();
   renderList();
 
-  await user.type(await screen.findByLabelText("Ürün ara"), "monitör");
+  await user.type(await screen.findByLabelText("Search products"), "monitor");
 
-  expect(screen.getByText("Ürün bulunamadı.")).toBeInTheDocument();
+  expect(screen.getByText("No products found.")).toBeInTheDocument();
 });
 ```
 
@@ -183,23 +183,23 @@ test("eşleşme yoksa boş durum mesajı gösterir", async () => {
 Konu: `within` ile kart içinde arama.[^4]
 
 ```tsx
-test("seçilen ürünü sepete ekler", async () => {
+test("adds the selected product to the cart", async () => {
   const user = userEvent.setup();
   const { onAddToCart } = renderList();
 
-  const card = await screen.findByRole("article", { name: "Mekanik Klavye" });
-  await user.click(within(card).getByRole("button", { name: "Sepete ekle" }));
+  const card = await screen.findByRole("article", { name: "Mechanical Keyboard" });
+  await user.click(within(card).getByRole("button", { name: "Add to cart" }));
 
   expect(onAddToCart).toHaveBeenCalledWith(products[1]);
 });
 
-test("stokta olmayan ürünün butonu devre dışıdır", async () => {
+test("the button of an out-of-stock product is disabled", async () => {
   renderList();
 
-  const card = await screen.findByRole("article", { name: "Oyuncu Faresi" });
+  const card = await screen.findByRole("article", { name: "Gaming Mouse" });
 
   expect(
-    within(card).getByRole("button", { name: "Sepete ekle" }),
+    within(card).getByRole("button", { name: "Add to cart" }),
   ).toBeDisabled();
 });
 ```
@@ -209,7 +209,7 @@ test("stokta olmayan ürünün butonu devre dışıdır", async () => {
 Konu: `waitFor` ve `queryByRole`.[^5]
 
 ```tsx
-test("yükleme bitince durum mesajı kaybolur", async () => {
+test("the status message disappears once loading finishes", async () => {
   renderList();
 
   await waitFor(() =>
@@ -236,9 +236,9 @@ test("yükleme bitince durum mesajı kaybolur", async () => {
 
 Listeye fiyat sıralaması ekleyin ve test edin:
 
-- `ProductList` içine **Sırala** etiketli bir `<select>` ekleyin. Seçenekler: **Önerilen** ve **Fiyat: artan**.
-- `user.selectOptions` ile **Fiyat: artan** seçeneğini seçin.
-- İlk kartın en ucuz ürün (**Oyuncu Faresi**) olduğunu test edin. İpucu: `getAllByRole("article")[0]`.
+- `ProductList` içine **Sort** etiketli bir `<select>` ekleyin. Seçenekler: **Recommended** ve **Price: ascending**.
+- `user.selectOptions` ile **Price: ascending** seçeneğini seçin.
+- İlk kartın en ucuz ürün (**Gaming Mouse**) olduğunu test edin. İpucu: `getAllByRole("article")[0]`.
 
 ## Kaynaklar
 

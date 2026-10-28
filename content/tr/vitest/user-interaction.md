@@ -52,7 +52,7 @@ Tüm `user.*` metotları Promise döndürür. Her çağrıya `await` yazın.[^3]
 Kullanıcı arama kutusuna yazdığında liste filtrelenir. Alanı temizleyince tüm ürünler geri gelir:
 
 ```tsx
-test("aramaya göre ürünleri filtreler", async () => {
+test("filters the products by search", async () => {
   const user = userEvent.setup();
   render(
     <ProductList
@@ -61,12 +61,12 @@ test("aramaya göre ürünleri filtreler", async () => {
     />,
   );
 
-  const search = await screen.findByLabelText("Ürün ara");
-  await user.type(search, "klavye");
+  const search = await screen.findByLabelText("Search products");
+  await user.type(search, "keyboard");
 
   expect(screen.getAllByRole("article")).toHaveLength(1);
   expect(
-    screen.queryByRole("heading", { name: "Oyuncu Faresi" }),
+    screen.queryByRole("heading", { name: "Gaming Mouse" }),
   ).not.toBeInTheDocument();
 
   await user.clear(search);
@@ -80,7 +80,7 @@ test("aramaya göre ürünleri filtreler", async () => {
 Kullanıcıların bir bölümü fare kullanmaz.[^7] Aynı işlemi klavye ile yapın. İlk `Tab` arama kutusuna, ikinci `Tab` ilk ürünün butonuna gider:[^3]
 
 ```tsx
-test("klavye ile ürünü sepete ekler", async () => {
+test("adds the product to the cart with the keyboard", async () => {
   const user = userEvent.setup();
   const onAddToCart = vi.fn();
   render(
@@ -152,7 +152,7 @@ export function CouponForm({ onApply }: CouponFormProps) {
 Başarılı gönderimi tıklama ve `Enter` ile test edin:
 
 ```tsx
-test("kullanıcı kodu yazıp gönderir", async () => {
+test("the user types a code and submits", async () => {
   const user = userEvent.setup();
   const onApply = vi.fn();
   render(<CouponForm onApply={onApply} />);
@@ -163,7 +163,7 @@ test("kullanıcı kodu yazıp gönderir", async () => {
   expect(onApply).toHaveBeenCalledWith("YAZ2026");
 });
 
-test("Enter tuşu formu gönderir", async () => {
+test("the Enter key submits the form", async () => {
   const user = userEvent.setup();
   const onApply = vi.fn();
   render(<CouponForm onApply={onApply} />);
@@ -181,7 +181,7 @@ test("Enter tuşu formu gönderir", async () => {
 Hata durumunu ve hatanın kaybolmasını test edin:
 
 ```tsx
-test("boş kod için hata gösterir ve göndermez", async () => {
+test("shows an error for an empty code and does not submit", async () => {
   const user = userEvent.setup();
   const onApply = vi.fn();
   render(<CouponForm onApply={onApply} />);
@@ -193,7 +193,7 @@ test("boş kod için hata gösterir ve göndermez", async () => {
   expect(onApply).not.toHaveBeenCalled();
 });
 
-test("geçerli kod girilince hata kaybolur", async () => {
+test("the error disappears once a valid code is entered", async () => {
   const user = userEvent.setup();
   render(<CouponForm onApply={vi.fn()} />);
 

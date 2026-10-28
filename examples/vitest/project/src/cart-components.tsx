@@ -4,18 +4,18 @@ import { formatPrice } from "./format-price";
 export function CartBadge() {
   const { totalCount } = useCart();
 
-  return <a href="/sepet">Sepet ({totalCount})</a>;
+  return <a href="/cart">Cart ({totalCount})</a>;
 }
 
 export function CartSummary() {
   const { items, totalPrice, removeFromCart } = useCart();
 
   if (items.length === 0) {
-    return <p>Sepetiniz boş.</p>;
+    return <p>Your cart is empty.</p>;
   }
 
   return (
-    <section aria-label="Sepet özeti">
+    <section aria-label="Cart summary">
       <ul>
         {items.map(({ product, quantity }) => (
           <li key={product.id}>
@@ -24,15 +24,15 @@ export function CartSummary() {
             </span>
             <button
               type="button"
-              aria-label={`${product.name} ürününü sepetten çıkar`}
+              aria-label={`Remove ${product.name} from cart`}
               onClick={() => removeFromCart(product.id)}
             >
-              Çıkar
+              Remove
             </button>
           </li>
         ))}
       </ul>
-      <p>Toplam: {formatPrice(totalPrice)}</p>
+      <p>Total: {formatPrice(totalPrice)}</p>
     </section>
   );
 }

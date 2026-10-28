@@ -10,8 +10,8 @@ translationKey: "vitest/project-product-card"
 Mağaza sayfasında her ürün bir kartta görünür. Kart şunları yapar:
 
 - Ürün adını ve fiyatını gösterir.
-- **Sepete ekle** butonuna tıklanınca ürünü bildirir.
-- Ürün stokta yoksa **Stokta yok** yazar ve butonu devre dışı bırakır.
+- **Add to cart** butonuna tıklanınca ürünü bildirir.
+- Ürün stokta yoksa **Out of stock** yazar ve butonu devre dışı bırakır.
 - Ürün indirimliyse eski fiyatı üstü çizili gösterir.
 
 Projenin çalışan hali GitHub'da: [examples/vitest/project](https://github.com/virastack/academy/tree/main/examples/vitest/project). Takıldığınızda karşılaştırın.
@@ -37,13 +37,13 @@ export function ProductCard({ product, onAddToCart }: ProductCardProps) {
       <h2 id={titleId}>{product.name}</h2>
       {product.oldPrice ? <s>{formatPrice(product.oldPrice)}</s> : null}
       <p>{formatPrice(product.price)}</p>
-      {product.inStock ? null : <p>Stokta yok</p>}
+      {product.inStock ? null : <p>Out of stock</p>}
       <button
         type="button"
         disabled={!product.inStock}
         onClick={() => onAddToCart(product)}
       >
-        Sepete ekle
+        Add to cart
       </button>
     </article>
   );
@@ -74,7 +74,7 @@ import type { Product } from "./types";
 
 const headphones: Product = {
   id: 1,
-  name: "Kablosuz Kulaklık",
+  name: "Wireless Headphones",
   price: 1299,
   inStock: true,
 };
@@ -84,11 +84,11 @@ const headphones: Product = {
 
 ```tsx
 describe("ProductCard", () => {
-  test("ürün adını ve fiyatını gösterir", () => {
+  test("shows the product name and price", () => {
     render(<ProductCard product={headphones} onAddToCart={vi.fn()} />);
 
     expect(
-      screen.getByRole("heading", { name: "Kablosuz Kulaklık" }),
+      screen.getByRole("heading", { name: "Wireless Headphones" }),
     ).toBeInTheDocument();
     expect(screen.getByText("₺1.299,00")).toBeInTheDocument();
   });
@@ -100,12 +100,12 @@ Sonraki üç testi aynı `describe` bloğunun içine ekleyin.
 ### Adım 2: Sepete ekleme
 
 ```tsx
-test("Sepete ekle butonuna tıklayınca ürünü bildirir", async () => {
+test("reports the product when Add to cart is clicked", async () => {
   const user = userEvent.setup();
   const onAddToCart = vi.fn();
   render(<ProductCard product={headphones} onAddToCart={onAddToCart} />);
 
-  await user.click(screen.getByRole("button", { name: "Sepete ekle" }));
+  await user.click(screen.getByRole("button", { name: "Add to cart" }));
 
   expect(onAddToCart).toHaveBeenCalledWith(headphones);
 });
@@ -114,7 +114,7 @@ test("Sepete ekle butonuna tıklayınca ürünü bildirir", async () => {
 ### Adım 3: Stokta olmayan ürün
 
 ```tsx
-test("stokta olmayan ürün için butonu devre dışı bırakır", async () => {
+test("disables the button for an out-of-stock product", async () => {
   const user = userEvent.setup();
   const onAddToCart = vi.fn();
   render(
@@ -124,10 +124,10 @@ test("stokta olmayan ürün için butonu devre dışı bırakır", async () => {
     />,
   );
 
-  expect(screen.getByText("Stokta yok")).toBeVisible();
-  expect(screen.getByRole("button", { name: "Sepete ekle" })).toBeDisabled();
+  expect(screen.getByText("Out of stock")).toBeVisible();
+  expect(screen.getByRole("button", { name: "Add to cart" })).toBeDisabled();
 
-  await user.click(screen.getByRole("button", { name: "Sepete ekle" }));
+  await user.click(screen.getByRole("button", { name: "Add to cart" }));
 
   expect(onAddToCart).not.toHaveBeenCalled();
 });
@@ -136,7 +136,7 @@ test("stokta olmayan ürün için butonu devre dışı bırakır", async () => {
 ### Adım 4: İndirimli fiyat
 
 ```tsx
-test("indirimli üründe eski fiyatı gösterir", () => {
+test("shows the old price for a discounted product", () => {
   render(
     <ProductCard
       product={{ ...headphones, oldPrice: 1499 }}

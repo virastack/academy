@@ -14,13 +14,13 @@ export function ProductCard({ product, onAddToCart }: ProductCardProps) {
       <h2 id={titleId}>{product.name}</h2>
       {product.oldPrice ? <s>{formatPrice(product.oldPrice)}</s> : null}
       <p>{formatPrice(product.price)}</p>
-      {product.inStock ? null : <p>Stokta yok</p>}
+      {product.inStock ? null : <p>Out of stock</p>}
       <button
         type="button"
         disabled={!product.inStock}
         onClick={() => onAddToCart(product)}
       >
-        Sepete ekle
+        Add to cart
       </button>
     </article>
   );

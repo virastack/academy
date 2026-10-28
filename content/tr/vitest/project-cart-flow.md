@@ -61,35 +61,35 @@ Konu: MSW, `within`,[^2] `findByRole`,[^3] `userEvent`, Context.
 
 ```tsx
 describe("ShopPage", () => {
-  test("kullanıcı ürünleri sepete ekler ve toplamı görür", async () => {
+  test("the user adds products to the cart and sees the total", async () => {
     const user = userEvent.setup();
     renderWithProviders(<ShopPage />);
 
     const keyboard = await screen.findByRole("article", {
-      name: "Mekanik Klavye",
+      name: "Mechanical Keyboard",
     });
     await user.click(
-      within(keyboard).getByRole("button", { name: "Sepete ekle" }),
+      within(keyboard).getByRole("button", { name: "Add to cart" }),
     );
     await user.click(
-      within(keyboard).getByRole("button", { name: "Sepete ekle" }),
+      within(keyboard).getByRole("button", { name: "Add to cart" }),
     );
 
     const headphones = screen.getByRole("article", {
-      name: "Kablosuz Kulaklık",
+      name: "Wireless Headphones",
     });
     await user.click(
-      within(headphones).getByRole("button", { name: "Sepete ekle" }),
+      within(headphones).getByRole("button", { name: "Add to cart" }),
     );
 
-    expect(screen.getByRole("link", { name: "Sepet (3)" })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Cart (3)" })).toBeInTheDocument();
 
-    const summary = screen.getByRole("region", { name: "Sepet özeti" });
-    expect(within(summary).getByText("Mekanik Klavye × 2")).toBeInTheDocument();
+    const summary = screen.getByRole("region", { name: "Cart summary" });
+    expect(within(summary).getByText("Mechanical Keyboard × 2")).toBeInTheDocument();
     expect(
-      within(summary).getByText("Kablosuz Kulaklık × 1"),
+      within(summary).getByText("Wireless Headphones × 1"),
     ).toBeInTheDocument();
-    expect(within(summary).getByText("Toplam: ₺5.697,00")).toBeInTheDocument();
+    expect(within(summary).getByText("Total: ₺5.697,00")).toBeInTheDocument();
   });
 ```
 
@@ -104,24 +104,24 @@ Hesabı kontrol edin: 2 × 2.199 + 1.299 = 5.697. Beklenen değeri elle hesaplay
 Konu: erişilebilir isim (`aria-label`) ve sepetin boşalması.
 
 ```tsx
-  test("kullanıcı ürünü sepetten çıkarır", async () => {
+  test("the user removes a product from the cart", async () => {
     const user = userEvent.setup();
     renderWithProviders(<ShopPage />);
 
     const keyboard = await screen.findByRole("article", {
-      name: "Mekanik Klavye",
+      name: "Mechanical Keyboard",
     });
     await user.click(
-      within(keyboard).getByRole("button", { name: "Sepete ekle" }),
+      within(keyboard).getByRole("button", { name: "Add to cart" }),
     );
     await user.click(
       screen.getByRole("button", {
-        name: "Mekanik Klavye ürününü sepetten çıkar",
+        name: "Remove Mechanical Keyboard from cart",
       }),
     );
 
-    expect(screen.getByText("Sepetiniz boş.")).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: "Sepet (0)" })).toBeInTheDocument();
+    expect(screen.getByText("Your cart is empty.")).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Cart (0)" })).toBeInTheDocument();
   });
 ```
 
@@ -130,14 +130,14 @@ Konu: erişilebilir isim (`aria-label`) ve sepetin boşalması.
 Konu: `toBeVisible` ve `toBeDisabled`.[^5]
 
 ```tsx
-  test("stokta olmayan ürün sepete eklenemez", async () => {
+  test("an out-of-stock product cannot be added to the cart", async () => {
     renderWithProviders(<ShopPage />);
 
-    const mouse = await screen.findByRole("article", { name: "Oyuncu Faresi" });
+    const mouse = await screen.findByRole("article", { name: "Gaming Mouse" });
 
-    expect(within(mouse).getByText("Stokta yok")).toBeVisible();
+    expect(within(mouse).getByText("Out of stock")).toBeVisible();
     expect(
-      within(mouse).getByRole("button", { name: "Sepete ekle" }),
+      within(mouse).getByRole("button", { name: "Add to cart" }),
     ).toBeDisabled();
   });
 ```
@@ -147,7 +147,7 @@ Konu: `toBeVisible` ve `toBeDisabled`.[^5]
 Konu: `server.use` ile tek test için farklı yanıt.[^6]
 
 ```tsx
-  test("API hata verirse sepet çalışmaya devam eder", async () => {
+  test("the cart keeps working when the API fails", async () => {
     server.use(
       http.get(
         "https://api.magaza.test/products",
@@ -158,10 +158,10 @@ Konu: `server.use` ile tek test için farklı yanıt.[^6]
     renderWithProviders(<ShopPage />);
 
     expect(await screen.findByRole("alert")).toHaveTextContent(
-      "Ürünler yüklenemedi.",
+      "Products could not be loaded.",
     );
-    expect(screen.getByRole("link", { name: "Sepet (0)" })).toBeInTheDocument();
-    expect(screen.getByText("Sepetiniz boş.")).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Cart (0)" })).toBeInTheDocument();
+    expect(screen.getByText("Your cart is empty.")).toBeInTheDocument();
   });
 });
 ```
@@ -189,11 +189,11 @@ Konu: `server.use` ile tek test için farklı yanıt.[^6]
 
 ## Kendin dene
 
-Sepete **Azalt** butonu ekleyin. Önce testi yazın:
+Sepete **Decrease** butonu ekleyin. Önce testi yazın:
 
 - `CartProvider` içine `decreaseQuantity(productId)` fonksiyonu ekleyin. Adet 1 ise ürünü sepetten çıkarsın.
-- `CartSummary` içinde her ürün için erişilebilir adı **"<ürün adı> adedini azalt"** olan bir buton gösterin.
-- Test: Sepette 2 adet **Mekanik Klavye** varken **Azalt** tıklanınca **Mekanik Klavye × 1** görünür. İkinci tıklamada ürün listeden kalkar ve **Sepetiniz boş.** görünür.
+- `CartSummary` içinde her ürün için erişilebilir adı **"decrease <product name> quantity"** olan bir buton gösterin.
+- Test: Sepette 2 adet **Mechanical Keyboard** varken **Decrease** tıklanınca **Mechanical Keyboard × 1** görünür. İkinci tıklamada ürün listeden kalkar ve **Your cart is empty.** görünür.
 
 ## Kaynaklar
 

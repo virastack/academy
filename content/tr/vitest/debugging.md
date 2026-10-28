@@ -19,14 +19,14 @@ Hata mesajını okuyun. Testing Library, bir sorgu başarısız olunca o anki DO
 `screen.debug()` o andaki DOM'u konsola yazar.[^1] Testin geçtiği veya kırıldığı noktada ekranda ne olduğunu görürsünüz.
 
 ```tsx
-test("ürün listesi", async () => {
+test("product list", async () => {
   render(<ProductList loadProducts={loadProducts} onAddToCart={vi.fn()} />);
 
   screen.debug();
 
   await screen.findAllByRole("article");
 
-  screen.debug(screen.getByRole("article", { name: "Mekanik Klavye" }));
+  screen.debug(screen.getByRole("article", { name: "Mechanical Keyboard" }));
 });
 ```
 
@@ -50,23 +50,23 @@ Argümansız çağrı tüm sayfayı, argümanlı çağrı yalnızca verdiğiniz 
 ### 1. found multiple elements
 
 ```bash
-TestingLibraryElementError: Found multiple elements with the role "button" and name "Sepete ekle"
+TestingLibraryElementError: Found multiple elements with the role "button" and name "Add to cart"
 ```
 
-**Sebep:** Sayfada aynı sorguya uyan birden fazla eleman var. Her ürün kartında bir **Sepete ekle** butonu bulunur.[^4]
+**Sebep:** Sayfada aynı sorguya uyan birden fazla eleman var. Her ürün kartında bir **Add to cart** butonu bulunur.[^4]
 
 **Çözüm:** Aramayı `within` ile bir karta daraltın.[^5] Tüm elemanlar gerekiyorsa `getAllByRole` kullanın.[^4]
 
 ```tsx
-const card = screen.getByRole("article", { name: "Mekanik Klavye" });
+const card = screen.getByRole("article", { name: "Mechanical Keyboard" });
 
-within(card).getByRole("button", { name: "Sepete ekle" });
+within(card).getByRole("button", { name: "Add to cart" });
 ```
 
 ### 2. unable to find an accessible element
 
 ```bash
-TestingLibraryElementError: Unable to find an accessible element with the role "heading" and name "Klavye"
+TestingLibraryElementError: Unable to find an accessible element with the role "heading" and name "Keyboard"
 Here are the accessible roles:
   region:
   searchbox:
@@ -78,7 +78,7 @@ Here are the accessible roles:
 **Sebep:** Sorgu eleman bulamadı. Rol, isim veya yazım yanlış olabilir. Veya eleman henüz ekranda değildir.
 
 - Mesajdaki rol listesine bakın. Aradığınız rol listede var mı?[^2]
-- `name` değerini kontrol edin. Tam eşleşme gerekir: `"Klavye"` değil `"Mekanik Klavye"`. Kısmi eşleşme için regex kullanın: `/klavye/i`.[^6], [^4]
+- `name` değerini kontrol edin. Tam eşleşme gerekir: `"Keyboard"` değil `"Mechanical Keyboard"`. Kısmi eşleşme için regex kullanın: `/keyboard/i`.[^6], [^4]
 - Eleman sonradan geliyorsa `findBy` kullanın.[^4]
 
 ### 3. eleman henüz ekranda değil
@@ -125,7 +125,7 @@ Tüm testleri çalıştırmayın. Üzerinde çalıştığınız testi seçin:
 ```bash
 pnpm vitest run src/ProductList.test.tsx
 
-pnpm vitest run src/ProductList.test.tsx -t "aramaya göre"
+pnpm vitest run src/ProductList.test.tsx -t "by search"
 ```
 
 `-t` seçeneği, adı verilen ifadeyle eşleşen testleri çalıştırır (ifade regex olarak okunur). Geliştirme sırasında `pnpm vitest` (izleme modu) kullanın. Dosya değişince testler yeniden çalışır.[^15]
@@ -159,7 +159,7 @@ test: {
 Aşağıdaki test kırılıyor. Hata mesajını okuyarak düzeltin:
 
 ```tsx
-test("ürünü sepete ekler", async () => {
+test("adds the product to the cart", async () => {
   const user = userEvent.setup();
   const onAddToCart = vi.fn();
   render(
@@ -169,7 +169,7 @@ test("ürünü sepete ekler", async () => {
     />,
   );
 
-  await user.click(screen.getByRole("button", { name: "Sepete ekle" }));
+  await user.click(screen.getByRole("button", { name: "Add to cart" }));
 
   expect(onAddToCart).toHaveBeenCalledTimes(1);
 });
@@ -177,7 +177,7 @@ test("ürünü sepete ekler", async () => {
 
 - Testi çalıştırın ve ilk hata mesajını okuyun.
 - Hata mesajındaki rol listesine bakın.
-- Önce yüklenmeyi bekleyin. Sonra **Mekanik Klavye** kartında `within` ile butonu bulun.
+- Önce yüklenmeyi bekleyin. Sonra **Mechanical Keyboard** kartında `within` ile butonu bulun.
 
 ## Kaynaklar
 

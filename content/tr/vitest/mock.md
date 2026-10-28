@@ -74,7 +74,7 @@ export function AddToCartButton({ product, onAdd }: AddToCartButtonProps) {
 
   return (
     <button type="button" onClick={handleClick}>
-      Sepete ekle
+      Add to cart
     </button>
   );
 }
@@ -93,17 +93,17 @@ vi.mock(import("./analytics"));
 
 const keyboard: Product = {
   id: 2,
-  name: "Mekanik Klavye",
+  name: "Mechanical Keyboard",
   price: 2199,
   inStock: true,
 };
 
-test("ürünü ekler ve analitik olayı gönderir", async () => {
+test("adds the product and sends the analytics event", async () => {
   const user = userEvent.setup();
   const onAdd = vi.fn();
   render(<AddToCartButton product={keyboard} onAdd={onAdd} />);
 
-  await user.click(screen.getByRole("button", { name: "Sepete ekle" }));
+  await user.click(screen.getByRole("button", { name: "Add to cart" }));
 
   expect(onAdd).toHaveBeenCalledWith(keyboard);
   expect(trackEvent).toHaveBeenCalledWith("add_to_cart", { productId: 2 });
@@ -142,7 +142,7 @@ export async function fetchProducts(): Promise<Product[]> {
   const response = await fetch("https://api.magaza.test/products");
 
   if (!response.ok) {
-    throw new Error("Ürünler yüklenemedi.");
+    throw new Error("Products could not be loaded.");
   }
 
   return response.json();
@@ -166,9 +166,9 @@ import { http, HttpResponse } from "msw/http";
 import type { Product } from "../types";
 
 export const products: Product[] = [
-  { id: 1, name: "Kablosuz Kulaklık", price: 1299, oldPrice: 1499, inStock: true },
-  { id: 2, name: "Mekanik Klavye", price: 2199, inStock: true },
-  { id: 3, name: "Oyuncu Faresi", price: 899, inStock: false },
+  { id: 1, name: "Wireless Headphones", price: 1299, oldPrice: 1499, inStock: true },
+  { id: 2, name: "Mechanical Keyboard", price: 2199, inStock: true },
+  { id: 3, name: "Gaming Mouse", price: 899, inStock: false },
 ];
 
 export const handlers = [
@@ -216,20 +216,20 @@ import { fetchProducts } from "./fetch-products";
 import { server } from "./mocks/server";
 import { ProductList } from "./ProductList";
 
-test("API'den gelen ürünleri gösterir", async () => {
+test("shows the products from the API", async () => {
   render(<ProductList loadProducts={fetchProducts} onAddToCart={vi.fn()} />);
 
   expect(await screen.findAllByRole("article")).toHaveLength(3);
 });
 
-test("API boş liste dönerse boş durum gösterir", async () => {
+test("shows the empty state when the API returns an empty list", async () => {
   server.use(
     http.get("https://api.magaza.test/products", () => HttpResponse.json([])),
   );
 
   render(<ProductList loadProducts={fetchProducts} onAddToCart={vi.fn()} />);
 
-  expect(await screen.findByText("Ürün bulunamadı.")).toBeInTheDocument();
+  expect(await screen.findByText("No products found.")).toBeInTheDocument();
 });
 ```
 
@@ -254,7 +254,7 @@ API 500 hatası döndürdüğünde ne olur? Bunu test edin:
 
 - `server.use` ile `https://api.magaza.test/products` adresine `new HttpResponse(null, { status: 500 })` döndüren bir handler ekleyin.
 - `ProductList` bileşenini `fetchProducts` ile render edin.
-- `findByRole("alert")` ile **Ürünler yüklenemedi.** mesajını doğrulayın.
+- `findByRole("alert")` ile **Products could not be loaded.** mesajını doğrulayın.
 
 ## Kaynaklar
 

@@ -27,7 +27,7 @@ Testiniz bu değişikliği **beklemelidir**. Beklemezseniz test, arayüz güncel
 [!findBy] elemanı bulana kadar bekler. Süre dolarsa hata fırlatır. Varsayılan süre **1000 ms**.[^3]
 
 ```tsx
-test("yüklenirken bilgi mesajı, sonra ürünleri gösterir", async () => {
+test("shows a status message while loading, then the products", async () => {
   render(
     <ProductList
       loadProducts={() => Promise.resolve(products)}
@@ -35,7 +35,7 @@ test("yüklenirken bilgi mesajı, sonra ürünleri gösterir", async () => {
     />,
   );
 
-  expect(screen.getByText("Ürünler yükleniyor...")).toBeInTheDocument();
+  expect(screen.getByText("Loading products...")).toBeInTheDocument();
   expect(await screen.findAllByRole("article")).toHaveLength(3);
 });
 ```
@@ -50,7 +50,7 @@ Bir elemanın **kaybolmasını** beklerken [!queryBy] kullanın:[^3]
 
 ```tsx
 await waitFor(() =>
-  expect(screen.queryByText("Ürünler yükleniyor...")).not.toBeInTheDocument(),
+  expect(screen.queryByText("Loading products...")).not.toBeInTheDocument(),
 );
 ```
 
@@ -92,7 +92,7 @@ export function AddedToast({ productName }: { productName: string }) {
     return () => clearTimeout(id);
   }, []);
 
-  return visible ? <div role="status">{productName} sepete eklendi.</div> : null;
+  return visible ? <div role="status">{productName} added to cart.</div> : null;
 }
 ```
 
@@ -108,11 +108,11 @@ afterEach(() => {
   vi.useRealTimers();
 });
 
-test("3 saniye sonra bildirim kaybolur", async () => {
-  render(<AddedToast productName="Kablosuz Kulaklık" />);
+test("the notification disappears after 3 seconds", async () => {
+  render(<AddedToast productName="Wireless Headphones" />);
 
   expect(await screen.findByRole("status")).toHaveTextContent(
-    "Kablosuz Kulaklık sepete eklendi.",
+    "Wireless Headphones added to cart.",
   );
 
   act(() => {
@@ -146,9 +146,9 @@ test("3 saniye sonra bildirim kaybolur", async () => {
 
 API çağrısı başarısız olunca ne görünür? Bunu test edin:
 
-- `loadProducts` fonksiyonu `Promise.reject(new Error("ağ hatası"))` döndürür.
-- `findByRole("alert")` ile **Ürünler yüklenemedi.** mesajını bulun.
-- [!queryBy] ile **Ürünler yükleniyor...** mesajının kaybolduğunu doğrulayın.
+- `loadProducts` fonksiyonu `Promise.reject(new Error("network error"))` döndürür.
+- `findByRole("alert")` ile **Products could not be loaded.** mesajını bulun.
+- [!queryBy] ile **Loading products...** mesajının kaybolduğunu doğrulayın.
 
 ## Kaynaklar
 

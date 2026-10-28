@@ -15,7 +15,7 @@ Bir test üç adımdan oluşur. Bu yapıya **Arrange – Act – Assert (AAA)** 
 | Act (uygula) | Kullanıcı işlemini yap. | `await user.click(button)` |
 | Assert (doğrula) | Sonucu kontrol et. | `expect(...).toHaveBeenCalledWith(...)` |
 
-Bu adımda `ProductCard` component'ine bir **Sepete ekle** butonu ekleyin:
+Bu adımda `ProductCard` component'ine bir **Add to cart** butonu ekleyin:
 
 ```tsx
 import { formatPrice } from "./format-price";
@@ -31,13 +31,13 @@ export function ProductCard({ product, onAddToCart }: ProductCardProps) {
     <article>
       <h2>{product.name}</h2>
       <p>{formatPrice(product.price)}</p>
-      {product.inStock ? null : <p>Stokta yok</p>}
+      {product.inStock ? null : <p>Out of stock</p>}
       <button
         type="button"
         disabled={!product.inStock}
         onClick={() => onAddToCart(product)}
       >
-        Sepete ekle
+        Add to cart
       </button>
     </article>
   );
@@ -51,15 +51,15 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { ProductCard } from "./ProductCard";
 
-test("Sepete ekle butonuna tıklayınca ürünü bildirir", async () => {
+test("reports the product when Add to cart is clicked", async () => {
   // Arrange
   const user = userEvent.setup();
-  const product = { id: 1, name: "Kablosuz Kulaklık", price: 1299, inStock: true };
+  const product = { id: 1, name: "Wireless Headphones", price: 1299, inStock: true };
   const onAddToCart = vi.fn();
   render(<ProductCard product={product} onAddToCart={onAddToCart} />);
 
   // Act
-  await user.click(screen.getByRole("button", { name: "Sepete ekle" }));
+  await user.click(screen.getByRole("button", { name: "Add to cart" }));
 
   // Assert
   expect(onAddToCart).toHaveBeenCalledWith(product);
@@ -76,14 +76,14 @@ test("Sepete ekle butonuna tıklayınca ürünü bildirir", async () => {
 - `describe` aynı component'in testlerini gruplar.
 
 ```tsx
-const headphones = { id: 1, name: "Kablosuz Kulaklık", price: 1299, inStock: true };
+const headphones = { id: 1, name: "Wireless Headphones", price: 1299, inStock: true };
 
 describe("ProductCard", () => {
-  test("ürün adını ve fiyatını gösterir", () => {
+  test("shows the product name and price", () => {
     render(<ProductCard product={headphones} onAddToCart={vi.fn()} />);
 
     expect(
-      screen.getByRole("heading", { name: "Kablosuz Kulaklık" }),
+      screen.getByRole("heading", { name: "Wireless Headphones" }),
     ).toBeInTheDocument();
     expect(screen.getByText("₺1.299,00")).toBeInTheDocument();
   });
@@ -150,7 +150,7 @@ test.each([
   [899, "₺899,00"],
   [1299, "₺1.299,00"],
   [1299.5, "₺1.299,50"],
-])("%s için '%s' döndürür", (price, expected) => {
+])("formats %s as '%s'", (price, expected) => {
   expect(formatPrice(price)).toBe(expected);
 });
 ```
@@ -175,8 +175,8 @@ Her test *kendi başına* çalışmalıdır. Her testte component'i yeniden rend
 
 `ProductCard` için bir test yazın. Ürün stokta yoksa kullanıcı şunları görmelidir:
 
-- **Stokta yok** yazısı görünür.
-- **Sepete ekle** butonu devre dışıdır.
+- **Out of stock** yazısı görünür.
+- **Add to cart** butonu devre dışıdır.
 
 ## Kaynaklar
 

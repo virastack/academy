@@ -146,15 +146,15 @@ export function ProductCard({ product }: { product: Product }) {
 import { render, screen } from "@testing-library/react";
 import { ProductCard } from "./ProductCard";
 
-test("ürün adını ve fiyatını gösterir", () => {
+test("shows the product name and price", () => {
   render(
     <ProductCard
-      product={{ id: 1, name: "Kablosuz Kulaklık", price: 1299, inStock: true }}
+      product={{ id: 1, name: "Wireless Headphones", price: 1299, inStock: true }}
     />,
   );
 
   expect(
-    screen.getByRole("heading", { name: "Kablosuz Kulaklık" }),
+    screen.getByRole("heading", { name: "Wireless Headphones" }),
   ).toBeInTheDocument();
   expect(screen.getByText("₺1.299,00")).toBeInTheDocument();
 });

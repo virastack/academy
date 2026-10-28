@@ -4,9 +4,9 @@ import { ProductList } from "./ProductList";
 import type { Product } from "./types";
 
 const products: Product[] = [
-  { id: 1, name: "Kablosuz Kulaklık", price: 1299, inStock: true },
-  { id: 2, name: "Mekanik Klavye", price: 2199, inStock: true },
-  { id: 3, name: "Oyuncu Faresi", price: 899, inStock: false },
+  { id: 1, name: "Wireless Headphones", price: 1299, inStock: true },
+  { id: 2, name: "Mechanical Keyboard", price: 2199, inStock: true },
+  { id: 3, name: "Gaming Mouse", price: 899, inStock: false },
 ];
 
 function renderList(
@@ -18,64 +18,64 @@ function renderList(
   return { onAddToCart };
 }
 
-test("yüklenirken bilgi mesajı, sonra ürünleri gösterir", async () => {
+test("shows a status message while loading, then the products", async () => {
   renderList();
 
-  expect(screen.getByText("Ürünler yükleniyor...")).toBeInTheDocument();
+  expect(screen.getByText("Loading products...")).toBeInTheDocument();
   expect(await screen.findAllByRole("article")).toHaveLength(3);
-  expect(screen.queryByText("Ürünler yükleniyor...")).not.toBeInTheDocument();
+  expect(screen.queryByText("Loading products...")).not.toBeInTheDocument();
 });
 
-test("yükleme başarısız olursa hata mesajı gösterir", async () => {
-  renderList(() => Promise.reject(new Error("ağ hatası")));
+test("shows an error message when loading fails", async () => {
+  renderList(() => Promise.reject(new Error("network error")));
 
   expect(await screen.findByRole("alert")).toHaveTextContent(
-    "Ürünler yüklenemedi.",
+    "Products could not be loaded.",
   );
 });
 
-test("aramaya göre ürünleri filtreler", async () => {
+test("filters the products by search", async () => {
   const user = userEvent.setup();
   renderList();
 
-  await user.type(await screen.findByLabelText("Ürün ara"), "klavye");
+  await user.type(await screen.findByLabelText("Search products"), "keyboard");
 
   expect(screen.getAllByRole("article")).toHaveLength(1);
   expect(
-    screen.getByRole("heading", { name: "Mekanik Klavye" }),
+    screen.getByRole("heading", { name: "Mechanical Keyboard" }),
   ).toBeInTheDocument();
 });
 
-test("eşleşme yoksa boş durum mesajı gösterir", async () => {
+test("shows the empty state when nothing matches", async () => {
   const user = userEvent.setup();
   renderList();
 
-  await user.type(await screen.findByLabelText("Ürün ara"), "monitör");
+  await user.type(await screen.findByLabelText("Search products"), "monitor");
 
-  expect(screen.getByText("Ürün bulunamadı.")).toBeInTheDocument();
+  expect(screen.getByText("No products found.")).toBeInTheDocument();
 });
 
-test("seçilen ürünü sepete ekler", async () => {
+test("adds the selected product to the cart", async () => {
   const user = userEvent.setup();
   const { onAddToCart } = renderList();
 
-  const card = await screen.findByRole("article", { name: "Mekanik Klavye" });
-  await user.click(within(card).getByRole("button", { name: "Sepete ekle" }));
+  const card = await screen.findByRole("article", { name: "Mechanical Keyboard" });
+  await user.click(within(card).getByRole("button", { name: "Add to cart" }));
 
   expect(onAddToCart).toHaveBeenCalledWith(products[1]);
 });
 
-test("stokta olmayan ürünün butonu devre dışıdır", async () => {
+test("the button of an out-of-stock product is disabled", async () => {
   renderList();
 
-  const card = await screen.findByRole("article", { name: "Oyuncu Faresi" });
+  const card = await screen.findByRole("article", { name: "Gaming Mouse" });
 
   expect(
-    within(card).getByRole("button", { name: "Sepete ekle" }),
+    within(card).getByRole("button", { name: "Add to cart" }),
   ).toBeDisabled();
 });
 
-test("yükleme bitince durum mesajı kaybolur", async () => {
+test("the status message disappears once loading finishes", async () => {
   renderList();
 
   await waitFor(() =>

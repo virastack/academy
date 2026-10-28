@@ -34,11 +34,11 @@ export function ProductList({ loadProducts, onAddToCart }: ProductListProps) {
   }, [loadProducts]);
 
   if (status === "loading") {
-    return <p role="status">Ürünler yükleniyor...</p>;
+    return <p role="status">Loading products...</p>;
   }
 
   if (status === "error") {
-    return <p role="alert">Ürünler yüklenemedi.</p>;
+    return <p role="alert">Products could not be loaded.</p>;
   }
 
   const normalizedQuery = query.trim().toLocaleLowerCase("tr-TR");
@@ -47,8 +47,8 @@ export function ProductList({ loadProducts, onAddToCart }: ProductListProps) {
   );
 
   return (
-    <section aria-label="Ürünler">
-      <label htmlFor="product-search">Ürün ara</label>
+    <section aria-label="Products">
+      <label htmlFor="product-search">Search products</label>
       <input
         id="product-search"
         type="search"
@@ -56,7 +56,7 @@ export function ProductList({ loadProducts, onAddToCart }: ProductListProps) {
         onChange={(event) => setQuery(event.target.value)}
       />
       {visibleProducts.length === 0 ? (
-        <p>Ürün bulunamadı.</p>
+        <p>No products found.</p>
       ) : (
         <ul>
           {visibleProducts.map((product) => (

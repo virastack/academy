@@ -43,15 +43,15 @@ Tam sıra şöyledir: `getByRole`, `getByLabelText`, `getByPlaceholderText`, `ge
 Bu adımdaki testler ürün listesini kullanır. Component'in tam kodunu **Ürün Listesi** projesinde görürsünüz. Liste şu HTML'i üretir:
 
 ```tsx
-<section aria-label="Ürünler">
-  <label htmlFor="product-search">Ürün ara</label>
+<section aria-label="Products">
+  <label htmlFor="product-search">Search products</label>
   <input id="product-search" type="search" />
   <ul>
     <li>
       <article aria-labelledby="product-2-title">
-        <h2 id="product-2-title">Mekanik Klavye</h2>
+        <h2 id="product-2-title">Mechanical Keyboard</h2>
         <p>₺2.199,00</p>
-        <button type="button">Sepete ekle</button>
+        <button type="button">Add to cart</button>
       </article>
     </li>
     {/* ... diğer ürünler */}
@@ -66,9 +66,9 @@ import { render, screen } from "@testing-library/react";
 import { ProductList } from "./ProductList";
 
 const products = [
-  { id: 1, name: "Kablosuz Kulaklık", price: 1299, inStock: true },
-  { id: 2, name: "Mekanik Klavye", price: 2199, inStock: true },
-  { id: 3, name: "Oyuncu Faresi", price: 899, inStock: false },
+  { id: 1, name: "Wireless Headphones", price: 1299, inStock: true },
+  { id: 2, name: "Mechanical Keyboard", price: 2199, inStock: true },
+  { id: 3, name: "Gaming Mouse", price: 899, inStock: false },
 ];
 
 async function renderList() {
@@ -82,13 +82,13 @@ async function renderList() {
   await screen.findAllByRole("article");
 }
 
-test("ürünü rol, label ve metin ile bulur", async () => {
+test("finds the product by role, label and text", async () => {
   await renderList();
 
   expect(
-    screen.getByRole("heading", { name: "Mekanik Klavye" }),
+    screen.getByRole("heading", { name: "Mechanical Keyboard" }),
   ).toBeInTheDocument();
-  expect(screen.getByLabelText("Ürün ara")).toBeInTheDocument();
+  expect(screen.getByLabelText("Search products")).toBeInTheDocument();
   expect(screen.getByText("₺2.199,00")).toBeInTheDocument();
 });
 ```
@@ -112,10 +112,10 @@ test("ürünü rol, label ve metin ile bulur", async () => {
 `name` seçeneği erişilebilir adı belirtir. Aynı roldeki elemanları ayırmak için bunu kullanın:[^5]
 
 ```tsx
-screen.getByRole("button", { name: "Sepete ekle" });
-screen.getByRole("heading", { name: "Mekanik Klavye", level: 2 });
-screen.getByRole("article", { name: "Mekanik Klavye" });
-screen.getByRole("region", { name: "Ürünler" });
+screen.getByRole("button", { name: "Add to cart" });
+screen.getByRole("heading", { name: "Mechanical Keyboard", level: 2 });
+screen.getByRole("article", { name: "Mechanical Keyboard" });
+screen.getByRole("region", { name: "Products" });
 ```
 
 `getByRole`, erişilebilirlik ağacından çıkarılan elemanları (`hidden`, `display: none`, `visibility: hidden`, `aria-hidden="true"`) varsayılan olarak yoksayar. Bu elemanları bulmak için `hidden: true` ekleyin.[^5]
@@ -137,12 +137,12 @@ Her sorgunun üç ön eki vardır. Ön ek, elemanın şu anda DOM'da olup olmad�
 Birden fazla eleman bekliyorsanız `All` sürümünü kullanın: `getAllBy`, `queryAllBy`, `findAllBy`. Tekil sorgular birden fazla eşleşmede hata fırlatır.
 
 ```tsx
-test("sorgu ailesi", async () => {
+test("query families", async () => {
   await renderList();
 
   expect(screen.getAllByRole("article")).toHaveLength(3);
 
-  expect(screen.queryByText("Ürün bulunamadı.")).not.toBeInTheDocument();
+  expect(screen.queryByText("No products found.")).not.toBeInTheDocument();
 });
 ```
 
@@ -156,26 +156,26 @@ Metin sorguları varsayılan olarak **tam eşleşme** ve **büyük/küçük harf
 
 | Kod | Sonuç |
 | --- | --- |
-| `getByText("Mekanik Klavye")` | Yalnızca tam olarak bu metni bulur. |
+| `getByText("Mechanical Keyboard")` | Yalnızca tam olarak bu metni bulur. |
 | `getByText("klavye")` | Bulamaz. Eşleşme tam değil. |
 | `getByText(/klavye/i)` | Bulur. Regex kısmi ve büyük/küçük harf duyarsız eşleşir. |
 
-Metin sık değişiyorsa `/sepete ekle/i` gibi regex kullanabilirsiniz. Regex büyük/küçük harf farkından doğan kırılmaları azaltır. Çok geniş bir regex ise yanlış elemanı da yakalayabilir. Rol sorgusuyla birlikte kullanıp `name` ile daraltın.
+Metin sık değişiyorsa `/add to cart/i` gibi regex kullanabilirsiniz. Regex büyük/küçük harf farkından doğan kırılmaları azaltır. Çok geniş bir regex ise yanlış elemanı da yakalayabilir. Rol sorgusuyla birlikte kullanıp `name` ile daraltın.
 
 ## Alan daraltma: within
 
-Listede üç **Sepete ekle** butonu vardır. `getByRole("button", { name: "Sepete ekle" })` hata verir. Aramayı bir kartla sınırlayın:[^8]
+Listede üç **Add to cart** butonu vardır. `getByRole("button", { name: "Add to cart" })` hata verir. Aramayı bir kartla sınırlayın:[^8]
 
 ```tsx
 import { screen, within } from "@testing-library/react";
 
-test("klavye kartındaki butonu bulur", async () => {
+test("finds the button on the keyboard card", async () => {
   await renderList();
 
-  const card = screen.getByRole("article", { name: "Mekanik Klavye" });
+  const card = screen.getByRole("article", { name: "Mechanical Keyboard" });
 
   expect(
-    within(card).getByRole("button", { name: "Sepete ekle" }),
+    within(card).getByRole("button", { name: "Add to cart" }),
   ).toBeEnabled();
 });
 ```
@@ -188,16 +188,16 @@ HTML'iniz için en uygun sorguyu bu araç önerir. Aşağıdaki örnek bu derste
 {
   "title": "Testing Playground",
   "src": "https://testing-playground.com/embed?panes=markup,preview,query,result",
-  "markup": "<section aria-label=\"Ürünler\">\n  <article aria-labelledby=\"product-2-title\">\n    <h2 id=\"product-2-title\">Mekanik Klavye</h2>\n    <p>₺2.199,00</p>\n    <button type=\"button\">Sepete ekle</button>\n  </article>\n</section>",
-  "query": "screen.getByRole(\"heading\", { name: \"Mekanik Klavye\" });"
+  "markup": "<section aria-label=\"Products\">\n  <article aria-labelledby=\"product-2-title\">\n    <h2 id=\"product-2-title\">Mechanical Keyboard</h2>\n    <p>₺2.199,00</p>\n    <button type=\"button\">Add to cart</button>\n  </article>\n</section>",
+  "query": "screen.getByRole(\"heading\", { name: \"Mechanical Keyboard\" });"
 }
 ```
 
 ## Kendin dene
 
-- **Oyuncu Faresi** kartını `getByRole("article", ...)` ile bulun.
-- `within` ile kartın içindeki **Stokta yok** yazısının görünür olduğunu test edin.
-- **Mekanik Klavye** kartında **Stokta yok** yazısının bulunmadığını `queryByText` ile test edin.
+- **Gaming Mouse** kartını `getByRole("article", ...)` ile bulun.
+- `within` ile kartın içindeki **Out of stock** yazısının görünür olduğunu test edin.
+- **Mechanical Keyboard** kartında **Out of stock** yazısının bulunmadığını `queryByText` ile test edin.
 
 ## Kaynaklar
 
