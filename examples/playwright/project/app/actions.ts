@@ -16,7 +16,7 @@ export async function login(_previous: LoginState, formData: FormData): Promise<
 
   const user = findUser(email, password);
   if (!user) {
-    return { error: "E-posta veya parola hatalı.", email };
+    return { error: "Email or password is incorrect.", email };
   }
 
   (await cookies()).set(SESSION_COOKIE, createSession(user), {

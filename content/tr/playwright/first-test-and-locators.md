@@ -13,14 +13,14 @@ Her test bir başlık ve async bir fonksiyondan oluşur. Fonksiyon ihtiyaç duyd
 // tests/login.spec.ts
 import { test, expect } from "@playwright/test";
 
-test("hatalı parola hata mesajı gösterir", async ({ page }) => {
+test("a wrong password shows an error message", async ({ page }) => {
   await page.goto("/login");
 
-  await page.getByLabel("E-posta").fill("yonetici@example.com");
-  await page.getByLabel("Parola").fill("yanlis");
-  await page.getByRole("button", { name: "Giriş yap" }).click();
+  await page.getByLabel("E-posta").fill("admin@example.com");
+  await page.getByLabel("Parola").fill("wrongpass");
+  await page.getByRole("button", { name: "Sign in" }).click();
 
-  await expect(page.getByRole("alert")).toHaveText("E-posta veya parola hatalı.");
+  await expect(page.getByRole("alert")).toHaveText("Email or password is incorrect.");
 });
 ```
 
@@ -29,12 +29,12 @@ test("hatalı parola hata mesajı gösterir", async ({ page }) => {
 Ortak hazırlığı `test.beforeEach` ile, ilgili testleri `test.describe` ile gruplayın:[^1]
 
 ```ts
-test.describe("sipariş listesi", () => {
+test.describe("order list", () => {
   test.beforeEach(async ({ page }) => {
     await page.goto("/orders");
   });
 
-  test("tüm siparişleri listeler", async ({ page }) => {
+  test("lists all orders", async ({ page }) => {
     // ...
   });
 });
@@ -45,7 +45,7 @@ test.describe("sipariş listesi", () => {
 Locator, sayfada bir elementi **bulmanın tarifidir**; elementin kendisi değil. Locator oluşturmak sayfaya dokunmaz. Element ancak bir eylem *(`click`, `fill`)* ya da assertion sırasında aranır ve her seferinde yeniden aranır. Sayfa yeniden render olsa da locator güncel elementi bulur.[^3]
 
 ```ts
-const submit = page.getByRole("button", { name: "Giriş yap" }); // henüz arama yok
+const submit = page.getByRole("button", { name: "Sign in" }); // henüz arama yok
 await submit.click(); // şimdi aranır, görünür ve tıklanabilir olması beklenir
 ```
 
@@ -66,16 +66,16 @@ Playwright dokümanı kullanıcının gördüğü özellikleri ve açık sözle�
 `getByRole` elementin erişilebilirlik ağacındaki rolünü ve **erişilebilir adını** kullanır. Yani ekran okuyucunun gördüğünü görür.[^3] Bir buton `getByRole` ile bulunamıyorsa çoğu zaman bir erişilebilirlik sorunu vardır *(bkz. [Erişilebilirlik testi](/academy/performance-accessibility/accessibility-testing))*.
 
 ```ts
-page.getByRole("heading", { name: "Siparişler" });
-page.getByRole("link", { name: "Çıkış yap" });
-page.getByRole("checkbox", { name: "Beni hatırla" });
-page.getByRole("table", { name: "Sipariş listesi" }); // <caption> adı verir
+page.getByRole("heading", { name: "Orders" });
+page.getByRole("link", { name: "Sign out" });
+page.getByRole("checkbox", { name: "Remember me" });
+page.getByRole("table", { name: "Order list" }); // <caption> adı verir
 ```
 
-`name` varsayılan olarak **büyük küçük harf duyarsız ve parça eşleşmesi** yapar. `"Giriş"`, "Giriş yap" butonunu da bulur. Tam eşleşme için `exact: true` verin ya da düzenli ifade kullanın:[^5]
+`name` varsayılan olarak **büyük küçük harf duyarsız ve parça eşleşmesi** yapar. `"Sign in"`, "Sign in" butonunu da bulur. Tam eşleşme için `exact: true` verin ya da düzenli ifade kullanın:[^5]
 
 ```ts
-page.getByRole("button", { name: "Giriş yap", exact: true });
+page.getByRole("button", { name: "Sign in", exact: true });
 page.getByRole("button", { name: /^giriş yap$/i });
 ```
 
@@ -91,7 +91,7 @@ page.getByRole("button", { name: /^giriş yap$/i });
 > [!DO]
 >
 > ```ts
-> page.getByRole("button", { name: "Giriş yap" });
+> page.getByRole("button", { name: "Sign in" });
 > ```
 
 ## Strict mod
@@ -99,8 +99,8 @@ page.getByRole("button", { name: /^giriş yap$/i });
 Locator'lar katıdır: bir eylem tek element bekler. Locator birden fazla elemente uyuyorsa Playwright tahmin etmez, "strict mode violation" hatası verir.[^3]
 
 ```ts
-// Sayfada iki "İptal et" butonu varsa hata verir
-await page.getByRole("button", { name: "İptal et" }).click();
+// Sayfada iki "Cancel" butonu varsa hata verir
+await page.getByRole("button", { name: "Cancel" }).click();
 ```
 
 Çözüm `first()` değil, aramayı daraltmaktır. `first()` bugün doğru elementi bulur; yarın sıralama değişince sessizce yanlışına tıklar.
@@ -108,8 +108,8 @@ await page.getByRole("button", { name: "İptal et" }).click();
 [!nextjs] uygulamalarında sık bir tuzak: sayfada kendi `role="alert"` mesajınızın yanında Next'in yönlendirme duyurucusu da olabilir. `page.getByRole("alert")` iki element bulur. Aramayı formun içine daraltın:
 
 ```ts
-const form = page.getByRole("form", { name: "Giriş" });
-await expect(form.getByRole("alert")).toHaveText("E-posta veya parola hatalı.");
+const form = page.getByRole("form", { name: "Sign in" });
+await expect(form.getByRole("alert")).toHaveText("Email or password is incorrect.");
 ```
 
 `<form>` yalnızca erişilebilir bir adı varsa `form` rolü alır; adı `aria-label` ya da `aria-labelledby` ile verin.
@@ -119,7 +119,7 @@ await expect(form.getByRole("alert")).toHaveText("E-posta veya parola hatalı.")
 Locator'lar zincirlenebilir. Her halka aramayı bir öncekinin içine daraltır:[^3]
 
 ```ts
-page.getByRole("table", { name: "Sipariş listesi" }).getByRole("row");
+page.getByRole("table", { name: "Order list" }).getByRole("row");
 ```
 
 `filter` bir listeyi metne ya da içerdiği başka bir locator'a göre süzer. Tablodaki belirli bir satırın butonuna basmanın en okunur yolu budur:[^3][^4]
@@ -128,7 +128,7 @@ page.getByRole("table", { name: "Sipariş listesi" }).getByRole("row");
 await page
   .getByRole("row")
   .filter({ hasText: "SP-1001" })
-  .getByRole("button", { name: "İptal et" })
+  .getByRole("button", { name: "Cancel" })
   .click();
 ```
 
@@ -156,7 +156,7 @@ Asıl gücü sütun sorgularıdır. `nth()` ve `first()` her ebeveynin içinde a
 const rows = page.getByRole("row").filter({ has: page.getByRole("cell") });
 const statusCells = page.getByRole("cell").nth(3).within(rows);
 
-await expect(statusCells).toHaveText(["Kargoda", "Kargoda"]);
+await expect(statusCells).toHaveText(["Shipped", "Shipped"]);
 ```
 
 > [!WARNING]
@@ -168,7 +168,7 @@ await expect(statusCells).toHaveText(["Kargoda", "Kargoda"]);
 `visible()` *(1.63)* yalnızca görünür elementlere uyan bir locator döndürür. Eski `:visible` CSS sözde sınıfının önerilen yerine geçenidir.[^7] `getByRole` zaten gizli elementleri atlar; `visible()` daha çok `locator()` ve `getByText` ile işe yarar.
 
 ```ts
-await page.getByText("Kaydedildi").visible().click();
+await page.getByText("Saved").visible().click();
 ```
 
 ## Codegen ile locator bulmak

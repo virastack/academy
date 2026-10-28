@@ -7,10 +7,10 @@ export class LoginPage {
   readonly error: Locator;
 
   constructor(private readonly page: Page) {
-    const form = page.getByRole("form", { name: "Giriş" });
+    const form = page.getByRole("form", { name: "Sign in" });
     this.email = form.getByLabel("E-posta");
     this.password = form.getByLabel("Parola");
-    this.submit = form.getByRole("button", { name: "Giriş yap" });
+    this.submit = form.getByRole("button", { name: "Sign in" });
     this.error = form.getByRole("alert");
   }
 

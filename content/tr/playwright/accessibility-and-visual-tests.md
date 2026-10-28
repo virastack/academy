@@ -28,7 +28,7 @@ npm install -D @axe-core/playwright
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "./fixtures";
 
-test("siparişler sayfasında erişilebilirlik ihlali yok", async ({ page, ordersPage }) => {
+test("no accessibility violations on the orders page", async ({ page, ordersPage }) => {
   await ordersPage.goto();
   await expect(ordersPage.rows).toHaveCount(6);
 
@@ -46,11 +46,11 @@ JSDOM'da çalışmayan renk kontrastı kuralı gerçek tarayıcıda çalışır;
 axe'ın göremediği şeylerden biri akıştır: klavyeyle formu doldurup gönderebiliyor musunuz, odak doğru yere gidiyor mu? Bunu kullanıcı gibi test edin:
 
 ```ts
-test("giriş formu klavyeyle kullanılabilir", async ({ page, loginPage }) => {
+test("the sign-in form is usable with the keyboard", async ({ page, loginPage }) => {
   await loginPage.goto();
 
   await loginPage.email.focus();
-  await page.keyboard.type("yonetici@example.com");
+  await page.keyboard.type("admin@example.com");
   await page.keyboard.press("Tab");
   await expect(loginPage.password).toBeFocused();
 
@@ -67,20 +67,20 @@ test("giriş formu klavyeyle kullanılabilir", async ({ page, loginPage }) => {
 Aria snapshot, bir elementin erişilebilirlik ağacının YAML ile yazılmış halidir: roller, erişilebilir adlar, durumlar ve hiyerarşi. Ekran okuyucunun sayfayı nasıl gördüğünü tek bakışta gösterir.[^2]
 
 ```ts
-test("tablo yapısı beklenen gibi", async ({ ordersPage }) => {
+test("the table structure is as expected", async ({ ordersPage }) => {
   await ordersPage.goto();
-  await ordersPage.filterBy("Teslim edildi");
+  await ordersPage.filterBy("Delivered");
 
   await expect(ordersPage.table).toMatchAriaSnapshot(`
-    - table "Sipariş listesi":
+    - table "Order list":
       - rowgroup:
-        - row "Sipariş Müşteri Tutar Durum İşlem"
+        - row "Order Customer Amount Status Action"
       - rowgroup:
         - row /SP-1003 Zeynep Demir/:
           - cell "SP-1003"
           - cell "Zeynep Demir"
           - cell /2\\.150,00/
-          - cell "Teslim edildi"
+          - cell "Delivered"
           - cell
   `);
 });
@@ -118,7 +118,7 @@ Aria snapshot ve assertion birbirinin yerine geçmez. Doküman ikisini birlikte 
 // tests/orders.visual.ts
 import { expect, test } from "./fixtures";
 
-test("sipariş tablosu görünümü", async ({ ordersPage }) => {
+test("order table appearance", async ({ ordersPage }) => {
   await ordersPage.goto();
   await expect(ordersPage.rows).toHaveCount(6);
 

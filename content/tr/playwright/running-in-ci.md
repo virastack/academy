@@ -161,7 +161,7 @@ Bir test bazen geçip bazen düşüyorsa kırılgandır. Google'ın test ekibi 2
 [Martin Fowler](https://martinfowler.com/) kırılgan testleri bir **karantinaya** almayı önerir: ana hattan çıkarın ki sağlam testlere duyulan güven bozulmasın, ama karantinayı küçük tutun ve testleri hızla düzeltin; karantinadaki test hiçbir hatayı yakalamaz.[^9] Playwright'ta bunu bir etiket ve `--grep-invert` ile yapabilirsiniz:
 
 ```ts
-test("ara sıra düşen test", { tag: "@quarantine" }, async ({ page }) => {
+test("an occasionally failing test", { tag: "@quarantine" }, async ({ page }) => {
   // ...
 });
 ```

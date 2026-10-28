@@ -7,7 +7,7 @@ translationKey: "playwright/page-objects"
 
 ## Sorun: Tekrar eden locator'lar
 
-Giriş akışını test eden on test düşünün. Her biri e-posta alanını, parola alanını ve butonu kendisi bulur. Buton metni "Giriş yap"tan "Oturum aç"a değişince on dosyayı düzeltirsiniz.
+Giriş akışını test eden on test düşünün. Her biri e-posta alanını, parola alanını ve butonu kendisi bulur. Buton metni "Sign in"tan "Oturum aç"a değişince on dosyayı düzeltirsiniz.
 
 **Page Object** bu tekrarı bir sınıfta toplar. Playwright dokümanı iki faydasını sayar: uygulamanıza uygun, üst seviye bir API ile testi **yazmayı kolaylaştırır**; locator'ları tek yerde toplayarak **bakımı kolaylaştırır**.[^1]
 
@@ -26,10 +26,10 @@ export class LoginPage {
   readonly error: Locator;
 
   constructor(private readonly page: Page) {
-    const form = page.getByRole("form", { name: "Giriş" });
+    const form = page.getByRole("form", { name: "Sign in" });
     this.email = form.getByLabel("E-posta");
     this.password = form.getByLabel("Parola");
-    this.submit = form.getByRole("button", { name: "Giriş yap" });
+    this.submit = form.getByRole("button", { name: "Sign in" });
     this.error = form.getByRole("alert");
   }
 
@@ -57,13 +57,13 @@ Test artık niyeti okur:
 import { test, expect } from "@playwright/test";
 import { LoginPage } from "./pages/login-page";
 
-test("hatalı parola hata mesajı gösterir ve e-postayı korur", async ({ page }) => {
+test("a wrong password shows an error and keeps the email", async ({ page }) => {
   const loginPage = new LoginPage(page);
   await loginPage.goto();
-  await loginPage.login("yonetici@example.com", "yanlis");
+  await loginPage.login("admin@example.com", "wrongpass");
 
-  await expect(loginPage.error).toHaveText("E-posta veya parola hatalı.");
-  await expect(loginPage.email).toHaveValue("yonetici@example.com");
+  await expect(loginPage.error).toHaveText("Email or password is incorrect.");
+  await expect(loginPage.email).toHaveValue("admin@example.com");
 });
 ```
 
@@ -79,9 +79,9 @@ export class OrdersPage {
   readonly statusFilter: Locator;
 
   constructor(private readonly page: Page) {
-    this.table = page.getByRole("table", { name: "Sipariş listesi" });
+    this.table = page.getByRole("table", { name: "Order list" });
     this.rows = this.table.getByRole("row").filter({ has: page.getByRole("cell") });
-    this.statusFilter = page.getByLabel("Durum");
+    this.statusFilter = page.getByLabel("Status");
   }
 
   row(orderId: string) {
@@ -93,7 +93,7 @@ export class OrdersPage {
   }
 
   async cancel(orderId: string) {
-    await this.row(orderId).getByRole("button", { name: "İptal et" }).click();
+    await this.row(orderId).getByRole("button", { name: "Cancel" }).click();
   }
 }
 ```
@@ -101,7 +101,7 @@ export class OrdersPage {
 `row("SP-1001")` hem eylemde *(`cancel`)* hem assertion'da kullanılır:
 
 ```ts
-await expect(ordersPage.row("SP-1001")).toContainText("İptal edildi");
+await expect(ordersPage.row("SP-1001")).toContainText("Cancelled");
 ```
 
 ## Assertion Page Object'e girer mi?
@@ -128,7 +128,7 @@ export class DatePicker {
   constructor(private readonly root: Locator) {}
 
   async pick(day: number) {
-    await this.root.getByRole("button", { name: "Takvimi aç" }).click();
+    await this.root.getByRole("button", { name: "Open the calendar" }).click();
     await this.root.getByRole("gridcell", { name: String(day), exact: true }).click();
   }
 }
@@ -155,7 +155,7 @@ Playwright dokümanı da basit testlerde biraz tekrarın kabul edilebilir olduğ
 Her testin başında `new LoginPage(page)` yazmak da bir tekrardır. Bir sonraki derste Page Object'leri **fixture** olarak vereceğiz; test parametresinde hazır gelecekler:
 
 ```ts
-test("hatalı parola", async ({ loginPage }) => {
+test("wrong password", async ({ loginPage }) => {
   await loginPage.goto();
 });
 ```

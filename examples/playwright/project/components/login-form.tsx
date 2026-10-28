@@ -7,7 +7,7 @@ export function LoginForm() {
   const [state, formAction, isPending] = useActionState<LoginState, FormData>(login, {});
 
   return (
-    <form action={formAction} className="space-y-4" aria-label="Giriş">
+    <form action={formAction} className="space-y-4" aria-label="Sign in">
       <div className="space-y-1">
         <label htmlFor="email" className="block text-sm font-medium">
           E-posta
@@ -43,7 +43,7 @@ export function LoginForm() {
         disabled={isPending}
         className="w-full rounded bg-gray-900 px-4 py-2 font-medium text-white disabled:opacity-60"
       >
-        {isPending ? "Giriş yapılıyor..." : "Giriş yap"}
+        {isPending ? "Signing in..." : "Sign in"}
       </button>
     </form>
   );

@@ -16,7 +16,7 @@ Playwright dokümanı kontrol etmediğiniz üçüncü parti servisleri test etme
 `page.route` bir URL kalıbı ve bir işleyici alır. `route.fulfill` isteği sunucuya hiç göndermeden yanıtlar:[^1]
 
 ```ts
-test("boş liste mesajı", async ({ page, ordersPage }) => {
+test("empty list message", async ({ page, ordersPage }) => {
   await page.route("**/api/orders?*", (route) => route.fulfill({ json: { orders: [] } }));
 
   await ordersPage.goto();
@@ -30,18 +30,18 @@ Kuralı **sayfaya gitmeden önce** kurun. Sayfa yüklenirken giden ilk istek de 
 
 ```ts
 await page.route("**/api/orders?*", (route) =>
-  route.fulfill({ status: 500, json: { error: "Sunucu hatası" } }),
+  route.fulfill({ status: 500, json: { error: "Server error" } }),
 );
 ```
 
 ## Hata ve tekrar deneme
 
-Bu rehberin projesindeki sipariş listesi [!tanstack-query] ile yüklenir; hata olunca "Siparişler yüklenemedi." ve "Tekrar dene" butonu gösterir. Testte önce hatayı üretir, sonra kuralı kaldırıp butona basarsınız:
+Bu rehberin projesindeki sipariş listesi [!tanstack-query] ile yüklenir; hata olunca "Orders could not be loaded." ve "Tekrar dene" butonu gösterir. Testte önce hatayı üretir, sonra kuralı kaldırıp butona basarsınız:
 
 ```ts
-test("sunucu hatasında hata durumu ve tekrar deneme", async ({ page, ordersPage }) => {
+test("error state and retry on a server error", async ({ page, ordersPage }) => {
   await page.route("**/api/orders?*", (route) =>
-    route.fulfill({ status: 500, json: { error: "Sunucu hatası" } }),
+    route.fulfill({ status: 500, json: { error: "Server error" } }),
   );
 
   await ordersPage.goto();
@@ -63,16 +63,16 @@ test("sunucu hatasında hata durumu ve tekrar deneme", async ({ page, ordersPage
 Bazen yanıtın çoğu gerçek kalsın, tek bir alan değişsin istersiniz. `route.fetch` isteği gerçekten yapar; yanıtı değiştirip `fulfill` ile verirsiniz:[^1]
 
 ```ts
-test("uzun müşteri adı tabloyu bozmaz", async ({ page, ordersPage }) => {
+test("a long customer name does not break the table", async ({ page, ordersPage }) => {
   await page.route("**/api/orders?*", async (route) => {
     const response = await route.fetch();
     const { orders } = await response.json();
-    orders[0].customer = "Ayşe Nur Yılmaz Karadeniz Uzunsoyadlı";
+    orders[0].customer = "Ayşe Nur Yılmaz Karadeniz Verylongsurname";
     await route.fulfill({ response, json: { orders } });
   });
 
   await ordersPage.goto();
-  await expect(ordersPage.row("SP-1001")).toContainText("Uzunsoyadlı");
+  await expect(ordersPage.row("SP-1001")).toContainText("Verylongsurname");
 });
 ```
 
@@ -83,7 +83,7 @@ test("uzun müşteri adı tabloyu bozmaz", async ({ page, ordersPage }) => {
 Yükleniyor ekranı çoğu zaman o kadar kısa sürer ki assertion yakalayamaz. `page.waitForTimeout` ile gecikme eklemek yerine yanıtı bir sözle *(Promise)* tutun ve testin kendisi bıraksın:
 
 ```ts
-test("yükleniyor durumu görünür", async ({ page, ordersPage }) => {
+test("the loading state is visible", async ({ page, ordersPage }) => {
   let release!: () => void;
   const gate = new Promise<void>((resolve) => (release = resolve));
 
@@ -135,14 +135,14 @@ const response = await responsePromise;
 expect(response.status()).toBe(200);
 ```
 
-Çoğu durumda bunu yapmanız gerekmez. Ekrandaki sonucu doğrulamak *(satır "İptal edildi" oldu mu)* hem kullanıcının gördüğünü test eder hem de yanıtı dolaylı olarak bekler.
+Çoğu durumda bunu yapmanız gerekmez. Ekrandaki sonucu doğrulamak *(satır "Cancelled" oldu mu)* hem kullanıcının gördüğünü test eder hem de yanıtı dolaylı olarak bekler.
 
 ## Tarayıcısız API testi
 
 `request` fixture'ı tarayıcı açmadan HTTP isteği atar. Yetki kurallarını hızlıca denemek ya da teste veri hazırlamak için idealdir.[^5]
 
 ```ts
-test("oturumsuz istek 401 döner", async ({ request }) => {
+test("a request without a session returns 401", async ({ request }) => {
   const response = await request.get("/api/orders");
   expect(response.status()).toBe(401);
 });
@@ -180,7 +180,7 @@ Bu rehberin projesinde sipariş listesi tarayıcıda, TanStack Query ile yüklen
 ## Kendin dene
 
 - Sipariş listesine 500 döndürün ve hata mesajını doğrulayın. `retry` ayarını kaldırıp testin ne kadar sürdüğüne bakın.
-- `route.fetch` ile gerçek yanıtı alıp bir siparişin durumunu "Kargoda" yapın. Tablonun buna göre güncellendiğini doğrulayın.
+- `route.fetch` ile gerçek yanıtı alıp bir siparişin durumunu "Shipped" yapın. Tablonun buna göre güncellendiğini doğrulayın.
 - `"**/api/orders"` kalıbının neden uymadığını görmek için bir test yazın, sonra `"**/api/orders?*"` ile düzeltin.
 - `request` fixture'ıyla oturumsuz ve izleyici rolüyle iptal isteği atıp durum kodlarını doğrulayın.
 

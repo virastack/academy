@@ -33,8 +33,8 @@ Playwright bu ikinci yolu kendisi yapar. Eylemlerden önce elementin hazır olma
 `expect(locator)` ile başlayan assertion'lar koşul sağlanana kadar elementi tekrar tekrar bulur ve kontrol eder. Varsayılan bekleme süresi 5 saniyedir.[^3]
 
 ```ts
-await page.getByRole("button", { name: "İptal et" }).click();
-await expect(page.getByRole("status")).toHaveText("SP-1001 iptal edildi.");
+await page.getByRole("button", { name: "Cancel" }).click();
+await expect(page.getByRole("status")).toHaveText("SP-1001 cancelled.");
 ```
 
 Mesaj yarım saniye sonra gelse de test geçer. Bu assertion'lar asenkron olduğu için **mutlaka `await`** gerekir.
@@ -42,7 +42,7 @@ Mesaj yarım saniye sonra gelse de test geçer. Bu assertion'lar asenkron olduğ
 > [!DONT]
 >
 > ```ts
-> expect(await page.getByText("Kaydedildi").isVisible()).toBe(true);
+> expect(await page.getByText("Saved").isVisible()).toBe(true);
 > ```
 >
 > `isVisible()` o anki durumu döndürür ve beklemez. Mesaj 100 milisaniye sonra gelirse test düşer.[^4]
@@ -50,7 +50,7 @@ Mesaj yarım saniye sonra gelse de test geçer. Bu assertion'lar asenkron olduğ
 > [!DO]
 >
 > ```ts
-> await expect(page.getByText("Kaydedildi")).toBeVisible();
+> await expect(page.getByText("Saved")).toBeVisible();
 > ```
 
 Sık kullanılan web-first assertion'lar:[^3]
@@ -71,13 +71,13 @@ Sık kullanılan web-first assertion'lar:[^3]
 `toHaveText` bir dizi alırsa locator'ın uyduğu elementlerin sayısı ve sırası da eşleşmelidir. Liste testleri için idealdir:
 
 ```ts
-await expect(page.getByRole("cell").nth(3).within(rows)).toHaveText(["Kargoda", "Kargoda"]);
+await expect(page.getByRole("cell").nth(3).within(rows)).toHaveText(["Shipped", "Shipped"]);
 ```
 
 Değillemek için `not` kullanın. `not` da bekler; koşulun **ortadan kalkmasını** bekler:[^3]
 
 ```ts
-await expect(page.getByText("Siparişler yükleniyor...")).not.toBeVisible();
+await expect(page.getByText("Loading orders...")).not.toBeVisible();
 ```
 
 `expect(value)` ile başlayan genel assertion'lar *(`toBe`, `toEqual`, `toContain`)* ise beklemez; zaten elinizde olan bir değeri kontrol eder.[^3]
@@ -102,7 +102,7 @@ Test süresine `beforeEach` ve fixture hazırlığı da dahildir.[^5] Bir assert
 Normalde ilk başarısız assertion testi durdurur. `expect.soft` testi başarısız işaretler ama devam eder; bir formdaki beş alanı tek seferde kontrol etmek gibi durumlarda tüm hataları birden görürsünüz:[^3]
 
 ```ts
-await expect.soft(page.getByLabel("E-posta")).toHaveValue("yonetici@example.com");
+await expect.soft(page.getByLabel("E-posta")).toHaveValue("admin@example.com");
 await expect.soft(page.getByLabel("Parola")).toHaveValue("");
 ```
 

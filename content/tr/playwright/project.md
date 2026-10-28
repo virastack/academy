@@ -72,10 +72,10 @@ export type Order = {
 };
 
 export const statusLabels: Record<OrderStatus, string> = {
-  preparing: "Hazırlanıyor",
-  shipped: "Kargoda",
-  delivered: "Teslim edildi",
-  cancelled: "İptal edildi",
+  preparing: "Preparing",
+  shipped: "Shipped",
+  delivered: "Delivered",
+  cancelled: "Cancelled",
 };
 
 export type StatusFilter = OrderStatus | "all";
@@ -107,8 +107,8 @@ type Session = {
 const PASSWORD = "parola123";
 
 const users: User[] = [
-  { id: "u1", name: "Deniz Yönetici", email: "yonetici@example.com", role: "admin" },
-  { id: "u2", name: "Ece İzleyici", email: "izleyici@example.com", role: "viewer" },
+  { id: "u1", name: "Deniz Admin", email: "admin@example.com", role: "admin" },
+  { id: "u2", name: "Ece Viewer", email: "viewer@example.com", role: "viewer" },
 ];
 
 const seedOrders: Order[] = [
@@ -190,7 +190,7 @@ export async function login(_previous: LoginState, formData: FormData): Promise<
 
   const user = findUser(email, password);
   if (!user) {
-    return { error: "E-posta veya parola hatalı.", email };
+    return { error: "Email or password is incorrect.", email };
   }
 
   (await cookies()).set(SESSION_COOKIE, createSession(user), {
@@ -221,12 +221,12 @@ import { getSession } from "@/lib/session";
 export async function GET(request: NextRequest) {
   const session = await getSession();
   if (!session) {
-    return Response.json({ error: "Oturum gerekli." }, { status: 401 });
+    return Response.json({ error: "A session is required." }, { status: 401 });
   }
 
   const status = request.nextUrl.searchParams.get("status") ?? "all";
   if (!isStatusFilter(status)) {
-    return Response.json({ error: "Geçersiz durum." }, { status: 400 });
+    return Response.json({ error: "Invalid status." }, { status: 400 });
   }
 
   // Yavaş bir ağı taklit eder; yükleniyor durumu ekranda görünsün.
@@ -245,20 +245,20 @@ import { getSession } from "@/lib/session";
 export async function POST(_request: Request, ctx: RouteContext<"/api/orders/[id]/cancel">) {
   const session = await getSession();
   if (!session) {
-    return Response.json({ error: "Oturum gerekli." }, { status: 401 });
+    return Response.json({ error: "A session is required." }, { status: 401 });
   }
   if (session.user.role !== "admin") {
-    return Response.json({ error: "Bu işlem için yetkiniz yok." }, { status: 403 });
+    return Response.json({ error: "You are not authorized for this action." }, { status: 403 });
   }
 
   const { id } = await ctx.params;
   const order = session.orders.find((item) => item.id === id);
   if (!order) {
-    return Response.json({ error: "Sipariş bulunamadı." }, { status: 404 });
+    return Response.json({ error: "Order not found." }, { status: 404 });
   }
   if (order.status !== "preparing") {
     return Response.json(
-      { error: "Yalnızca hazırlanan siparişler iptal edilebilir." },
+      { error: "Only orders being prepared can be cancelled." },
       { status: 409 },
     );
   }
@@ -296,7 +296,7 @@ export function LoginForm() {
   const [state, formAction, isPending] = useActionState<LoginState, FormData>(login, {});
 
   return (
-    <form action={formAction} className="space-y-4" aria-label="Giriş">
+    <form action={formAction} className="space-y-4" aria-label="Sign in">
       <div className="space-y-1">
         <label htmlFor="email" className="block text-sm font-medium">
           E-posta
@@ -332,7 +332,7 @@ export function LoginForm() {
         disabled={isPending}
         className="w-full rounded bg-gray-900 px-4 py-2 font-medium text-white disabled:opacity-60"
       >
-        {isPending ? "Giriş yapılıyor..." : "Giriş yap"}
+        {isPending ? "Signing in..." : "Sign in"}
       </button>
     </form>
   );
@@ -359,7 +359,7 @@ async function fetchOrders(status: StatusFilter): Promise<Order[]> {
 async function cancelOrder(id: string): Promise<Order> {
   const response = await fetch(`/api/orders/${id}/cancel`, { method: "POST" });
   const data: { order?: Order; error?: string } = await response.json();
-  if (!response.ok || !data.order) throw new Error(data.error ?? "Sipariş iptal edilemedi.");
+  if (!response.ok || !data.order) throw new Error(data.error ?? "The order could not be cancelled.");
   return data.order;
 }
 
@@ -376,7 +376,7 @@ export function OrdersPanel({ canCancel }: { canCancel: boolean }) {
   const cancel = useMutation({
     mutationFn: cancelOrder,
     onSuccess: (order) => {
-      setMessage(`${order.id} iptal edildi.`);
+      setMessage(`${order.id} cancelled.`);
       return queryClient.invalidateQueries({ queryKey: ["orders"] });
     },
     onError: (error) => setMessage(error.message),
@@ -397,7 +397,7 @@ export function OrdersPanel({ canCancel }: { canCancel: boolean }) {
           }}
           className="rounded border border-gray-400 px-2 py-1"
         >
-          <option value="all">Tümü</option>
+          <option value="all">All</option>
           {Object.entries(statusLabels).map(([value, label]) => (
             <option key={value} value={value}>
               {label}
@@ -411,26 +411,26 @@ export function OrdersPanel({ canCancel }: { canCancel: boolean }) {
       </p>
 
       {orders.isPending ? (
-        <p>Siparişler yükleniyor...</p>
+        <p>Loading orders...</p>
       ) : orders.isError ? (
         <div role="alert" className="space-y-2 rounded border border-red-300 bg-red-50 p-4">
-          <p>Siparişler yüklenemedi.</p>
+          <p>Orders could not be loaded.</p>
           <button type="button" onClick={() => orders.refetch()} className="underline">
             Tekrar dene
           </button>
         </div>
       ) : orders.data.length === 0 ? (
-        <p>Bu filtrede sipariş yok.</p>
+        <p>No orders in this filter.</p>
       ) : (
         <table className="w-full text-left text-sm">
-          <caption className="sr-only">Sipariş listesi</caption>
+          <caption className="sr-only">Order list</caption>
           <thead>
             <tr className="border-b">
-              <th scope="col" className="py-2">Sipariş</th>
-              <th scope="col">Müşteri</th>
-              <th scope="col">Tutar</th>
-              <th scope="col">Durum</th>
-              {canCancel && <th scope="col">İşlem</th>}
+              <th scope="col" className="py-2">Order</th>
+              <th scope="col">Customer</th>
+              <th scope="col">Amount</th>
+              <th scope="col">Status</th>
+              {canCancel && <th scope="col">Action</th>}
             </tr>
           </thead>
           <tbody>
@@ -464,7 +464,7 @@ export function OrdersPanel({ canCancel }: { canCancel: boolean }) {
 }
 ```
 
-Tablonun `<caption>`'ı ona erişilebilir bir ad verir; testte `getByRole("table", { name: "Sipariş listesi" })` ile bulunur. Durum mesajı için `role="status"` alanı baştan sayfadadır; içerik sonradan değişince ekran okuyucu duyurur.
+Tablonun `<caption>`'ı ona erişilebilir bir ad verir; testte `getByRole("table", { name: "Order list" })` ile bulunur. Durum mesajı için `role="status"` alanı baştan sayfadadır; içerik sonradan değişince ekran okuyucu duyurur.
 
 ```tsx
 // app/layout.tsx
@@ -473,8 +473,8 @@ import { Providers } from "@/components/providers";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Sipariş paneli",
-  description: "Playwright ile uçtan uca test edilen küçük bir sipariş paneli.",
+  title: "Order panel",
+  description: "A small order panel tested end to end with Playwright.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -513,7 +513,7 @@ import { LoginForm } from "@/components/login-form";
 export default function LoginPage() {
   return (
     <main className="mx-auto max-w-sm space-y-6 px-4 py-16">
-      <h1 className="text-2xl font-semibold">Sipariş paneline giriş</h1>
+      <h1 className="text-2xl font-semibold">Sign in to the order panel</h1>
       <LoginForm />
       <p className="text-sm text-gray-700">
         Demo hesaplar: yonetici@example.com ve izleyici@example.com, parola: parola123
@@ -530,12 +530,12 @@ import { logout } from "@/app/actions";
 import { OrdersPanel } from "@/components/orders-panel";
 import { getCurrentUser } from "@/lib/session";
 
-const roleLabels = { admin: "Yönetici", viewer: "İzleyici" } as const;
+const roleLabels = { admin: "Admin", viewer: "Viewer" } as const;
 
 export default function OrdersPage() {
   return (
     <main className="mx-auto max-w-3xl space-y-6 px-4 py-10">
-      <h1 className="text-2xl font-semibold">Siparişler</h1>
+      <h1 className="text-2xl font-semibold">Orders</h1>
       <Suspense fallback={<p>Oturum kontrol ediliyor...</p>}>
         <OrdersSection />
       </Suspense>
@@ -660,10 +660,10 @@ export class LoginPage {
   readonly error: Locator;
 
   constructor(private readonly page: Page) {
-    const form = page.getByRole("form", { name: "Giriş" });
+    const form = page.getByRole("form", { name: "Sign in" });
     this.email = form.getByLabel("E-posta");
     this.password = form.getByLabel("Parola");
-    this.submit = form.getByRole("button", { name: "Giriş yap" });
+    this.submit = form.getByRole("button", { name: "Sign in" });
     this.error = form.getByRole("alert");
   }
 
@@ -696,17 +696,17 @@ export class OrdersPage {
   readonly logout: Locator;
 
   constructor(private readonly page: Page) {
-    this.heading = page.getByRole("heading", { name: "Siparişler" });
-    this.statusFilter = page.getByLabel("Durum");
-    this.table = page.getByRole("table", { name: "Sipariş listesi" });
+    this.heading = page.getByRole("heading", { name: "Orders" });
+    this.statusFilter = page.getByLabel("Status");
+    this.table = page.getByRole("table", { name: "Order list" });
     this.rows = this.table.getByRole("row").filter({ has: page.getByRole("cell") });
     // Her satırın dördüncü hücresi: nth(3) satırların içinde ayrı ayrı çözülür.
     this.statusCells = page.getByRole("cell").nth(3).within(this.rows);
     this.message = page.getByRole("main").getByRole("status");
-    this.loading = page.getByText("Siparişler yükleniyor...");
-    this.empty = page.getByText("Bu filtrede sipariş yok.");
-    this.loadError = page.getByRole("alert").filter({ hasText: "Siparişler yüklenemedi." });
-    this.logout = page.getByRole("button", { name: "Çıkış yap" });
+    this.loading = page.getByText("Loading orders...");
+    this.empty = page.getByText("No orders in this filter.");
+    this.loadError = page.getByRole("alert").filter({ hasText: "Orders could not be loaded." });
+    this.logout = page.getByRole("button", { name: "Sign out" });
   }
 
   async goto() {
@@ -722,7 +722,7 @@ export class OrdersPage {
   }
 
   async cancel(orderId: string) {
-    await this.row(orderId).getByRole("button", { name: "İptal et" }).click();
+    await this.row(orderId).getByRole("button", { name: "Cancel" }).click();
   }
 }
 ```
@@ -763,12 +763,12 @@ Setup iki rolle giriş yapar ve her birinin durumunu ayrı dosyaya kaydeder. `to
 import { expect, test as setup } from "./fixtures";
 
 const accounts = [
-  { email: "yonetici@example.com", file: "playwright/.auth/admin.json" },
-  { email: "izleyici@example.com", file: "playwright/.auth/viewer.json" },
+  { email: "admin@example.com", file: "playwright/.auth/admin.json" },
+  { email: "viewer@example.com", file: "playwright/.auth/viewer.json" },
 ];
 
 for (const { email, file } of accounts) {
-  setup(`${email} ile oturum aç`, async ({ page, loginPage }) => {
+  setup(`sign in as ${email}`, async ({ page, loginPage }) => {
     await loginPage.goto();
     await loginPage.login(email);
     await expect(page).toHaveURL("/orders");
@@ -787,30 +787,30 @@ import { expect, signedOut, test } from "./fixtures";
 
 test.use({ storageState: signedOut });
 
-test("oturum yoksa siparişler sayfası girişe yönlendirir", async ({ page }) => {
+test("without a session the orders page redirects to sign-in", async ({ page }) => {
   await page.goto("/orders");
   await expect(page).toHaveURL("/login");
 });
 
-test("hatalı parola hata mesajı gösterir ve e-postayı korur", async ({ page, loginPage }) => {
+test("a wrong password shows an error and keeps the email", async ({ page, loginPage }) => {
   await loginPage.goto();
-  await loginPage.login("yonetici@example.com", "yanlis");
+  await loginPage.login("admin@example.com", "wrongpass");
 
-  await expect(loginPage.error).toHaveText("E-posta veya parola hatalı.");
-  await expect(loginPage.email).toHaveValue("yonetici@example.com");
+  await expect(loginPage.error).toHaveText("Email or password is incorrect.");
+  await expect(loginPage.email).toHaveValue("admin@example.com");
   await expect(page).toHaveURL("/login");
 });
 
-test("giriş yapan kullanıcı siparişleri görür ve çıkış yapabilir", async ({
+test("a signed-in user sees the orders and can sign out", async ({
   page,
   loginPage,
   ordersPage,
 }) => {
   await loginPage.goto();
-  await loginPage.login("yonetici@example.com");
+  await loginPage.login("admin@example.com");
 
   await expect(page).toHaveURL("/orders");
-  await expect(page.getByText("Deniz Yönetici")).toBeVisible();
+  await expect(page.getByText("Deniz Admin")).toBeVisible();
 
   await ordersPage.logout.click();
   await expect(page).toHaveURL("/login");
@@ -828,19 +828,19 @@ import { expect, test } from "./fixtures";
 
 test.use({ storageState: "playwright/.auth/viewer.json" });
 
-test("izleyici iptal düğmesini görmez", async ({ page, ordersPage }) => {
+test("a viewer does not see the cancel button", async ({ page, ordersPage }) => {
   await ordersPage.goto();
 
-  await expect(page.getByText("Ece İzleyici")).toBeVisible();
+  await expect(page.getByText("Ece Viewer")).toBeVisible();
   await expect(ordersPage.rows).toHaveCount(6);
-  await expect(ordersPage.table.getByRole("button", { name: "İptal et" })).toHaveCount(0);
+  await expect(ordersPage.table.getByRole("button", { name: "Cancel" })).toHaveCount(0);
 });
 
-test("izleyici API ile de iptal edemez", async ({ page }) => {
+test("a viewer cannot cancel through the API either", async ({ page }) => {
   const response = await page.request.post("/api/orders/SP-1001/cancel");
 
   expect(response.status()).toBe(403);
-  expect(await response.json()).toEqual({ error: "Bu işlem için yetkiniz yok." });
+  expect(await response.json()).toEqual({ error: "You are not authorized for this action." });
 });
 ```
 
@@ -856,32 +856,32 @@ test.beforeEach(async ({ ordersPage }) => {
   await ordersPage.goto();
 });
 
-test("tüm siparişleri listeler", async ({ ordersPage }) => {
+test("lists all orders", async ({ ordersPage }) => {
   await expect(ordersPage.rows).toHaveCount(6);
   await expect(ordersPage.row("SP-1001")).toContainText("Ayşe Yılmaz");
   await expect(ordersPage.row("SP-1001")).toContainText("₺1.249,90");
 });
 
-test("duruma göre filtreler", async ({ ordersPage }) => {
-  await ordersPage.filterBy("Kargoda");
+test("filters by status", async ({ ordersPage }) => {
+  await ordersPage.filterBy("Shipped");
 
   await expect(ordersPage.rows).toHaveCount(2);
-  await expect(ordersPage.statusCells).toHaveText(["Kargoda", "Kargoda"]);
+  await expect(ordersPage.statusCells).toHaveText(["Shipped", "Shipped"]);
 });
 
-test("tablo yapısı beklenen gibi", async ({ ordersPage }) => {
-  await ordersPage.filterBy("Teslim edildi");
+test("the table structure is as expected", async ({ ordersPage }) => {
+  await ordersPage.filterBy("Delivered");
 
   await expect(ordersPage.table).toMatchAriaSnapshot(`
-    - table "Sipariş listesi":
+    - table "Order list":
       - rowgroup:
-        - row "Sipariş Müşteri Tutar Durum İşlem"
+        - row "Order Customer Amount Status Action"
       - rowgroup:
         - row /SP-1003 Zeynep Demir/:
           - cell "SP-1003"
           - cell "Zeynep Demir"
           - cell /2\\.150,00/
-          - cell "Teslim edildi"
+          - cell "Delivered"
           - cell
   `);
 });
@@ -897,20 +897,20 @@ import { expect, signedOut, test } from "./fixtures";
 // Böylece diğer testler iptal edilmiş bir sipariş görmez.
 test.use({ storageState: signedOut });
 
-test("yönetici hazırlanan siparişi iptal eder", async ({ loginPage, ordersPage }) => {
+test("an admin cancels an order being prepared", async ({ loginPage, ordersPage }) => {
   await loginPage.goto();
-  await loginPage.login("yonetici@example.com");
+  await loginPage.login("admin@example.com");
 
   await ordersPage.cancel("SP-1001");
 
-  await expect(ordersPage.message).toHaveText("SP-1001 iptal edildi.");
-  await expect(ordersPage.row("SP-1001")).toContainText("İptal edildi");
+  await expect(ordersPage.message).toHaveText("SP-1001 cancelled.");
+  await expect(ordersPage.row("SP-1001")).toContainText("Cancelled");
   await expect(ordersPage.row("SP-1001").getByRole("button")).toHaveCount(0);
 });
 
-test("yönetici kargodaki siparişi iptal edemez", async ({ page, loginPage }) => {
+test("an admin cannot cancel a shipped order", async ({ page, loginPage }) => {
   await loginPage.goto();
-  await loginPage.login("yonetici@example.com");
+  await loginPage.login("admin@example.com");
   await expect(page).toHaveURL("/orders");
 
   const response = await page.request.post("/api/orders/SP-1002/cancel");
@@ -931,9 +931,9 @@ Sipariş listesi tarayıcıda yüklendiği için `page.route` ile yakalanabilir.
 // tests/mocking.spec.ts
 import { expect, test } from "./fixtures";
 
-test("sunucu hatasında hata durumu ve tekrar deneme", async ({ page, ordersPage }) => {
+test("error state and retry on a server error", async ({ page, ordersPage }) => {
   await page.route("**/api/orders?*", (route) =>
-    route.fulfill({ status: 500, json: { error: "Sunucu hatası" } }),
+    route.fulfill({ status: 500, json: { error: "Server error" } }),
   );
 
   await ordersPage.goto();
@@ -946,26 +946,26 @@ test("sunucu hatasında hata durumu ve tekrar deneme", async ({ page, ordersPage
   await expect(ordersPage.loadError).toBeHidden();
 });
 
-test("boş liste mesajı", async ({ page, ordersPage }) => {
+test("empty list message", async ({ page, ordersPage }) => {
   await page.route("**/api/orders?*", (route) => route.fulfill({ json: { orders: [] } }));
 
   await ordersPage.goto();
   await expect(ordersPage.empty).toBeVisible();
 });
 
-test("yanıtı değiştirerek uzun müşteri adını dener", async ({ page, ordersPage }) => {
+test("overrides the response to try a long customer name", async ({ page, ordersPage }) => {
   await page.route("**/api/orders?*", async (route) => {
     const response = await route.fetch();
     const { orders } = await response.json();
-    orders[0].customer = "Ayşe Nur Yılmaz Karadeniz Uzunsoyadlı";
+    orders[0].customer = "Ayşe Nur Yılmaz Karadeniz Verylongsurname";
     await route.fulfill({ response, json: { orders } });
   });
 
   await ordersPage.goto();
-  await expect(ordersPage.row("SP-1001")).toContainText("Ayşe Nur Yılmaz Karadeniz Uzunsoyadlı");
+  await expect(ordersPage.row("SP-1001")).toContainText("Ayşe Nur Yılmaz Karadeniz Verylongsurname");
 });
 
-test("yükleniyor durumu görünür", async ({ page, ordersPage }) => {
+test("the loading state is visible", async ({ page, ordersPage }) => {
   let release!: () => void;
   const gate = new Promise<void>((resolve) => (release = resolve));
   await page.route("**/api/orders?*", async (route) => {
@@ -990,20 +990,20 @@ axe taraması sayfa hazır olunca yapılır. Klavye testi formun yalnızca klavy
 import AxeBuilder from "@axe-core/playwright";
 import { expect, signedOut, test } from "./fixtures";
 
-test.describe("giriş sayfası", () => {
+test.describe("sign-in page", () => {
   test.use({ storageState: signedOut });
 
-  test("erişilebilirlik ihlali yok", async ({ page, loginPage }) => {
+  test("no accessibility violations", async ({ page, loginPage }) => {
     await loginPage.goto();
     const results = await new AxeBuilder({ page }).analyze();
     expect(results.violations).toEqual([]);
   });
 
-  test("form klavyeyle kullanılabilir", async ({ page, loginPage }) => {
+  test("the form is usable with the keyboard", async ({ page, loginPage }) => {
     await loginPage.goto();
 
     await loginPage.email.focus();
-    await page.keyboard.type("yonetici@example.com");
+    await page.keyboard.type("admin@example.com");
     await page.keyboard.press("Tab");
     await expect(loginPage.password).toBeFocused();
 
@@ -1013,7 +1013,7 @@ test.describe("giriş sayfası", () => {
   });
 });
 
-test("siparişler sayfasında erişilebilirlik ihlali yok", async ({ page, ordersPage }) => {
+test("no accessibility violations on the orders page", async ({ page, ordersPage }) => {
   await ordersPage.goto();
   await expect(ordersPage.rows).toHaveCount(6);
 
@@ -1028,7 +1028,7 @@ Görsel test `visual` projesindedir ve `npm test` ile çalışmaz.[^6][^13]
 // tests/orders.visual.ts
 import { expect, test } from "./fixtures";
 
-test("sipariş tablosu görünümü", async ({ ordersPage }) => {
+test("order table appearance", async ({ ordersPage }) => {
   await ordersPage.goto();
   await expect(ordersPage.rows).toHaveCount(6);
 
@@ -1100,7 +1100,7 @@ jobs:
 
 ## Kendin dene
 
-- Yönetici için "Kargoda" filtresinde iptal butonunun hiç görünmediğini doğrulayan bir test ekleyin.
+- Yönetici için "Shipped" filtresinde iptal butonunun hiç görünmediğini doğrulayan bir test ekleyin.
 - `cancel-order.spec.ts`'i `orders.spec.ts`'e geri taşıyıp `--shuffle --repeat-each=5` ile çalıştırın. Hatayı yakalayın ve trace'inde iki gezinmeyi bulun.
 - İptal isteğine `page.route` ile 409 döndürün ve kullanıcıya gösterilen mesajı doğrulayın.
 - Bir sütun ekleyin *(örneğin tarih)* ve aria snapshot'ın nasıl düştüğüne bakın. Snapshot'ı `-u` ile güncellemeden önce farkı okuyun.

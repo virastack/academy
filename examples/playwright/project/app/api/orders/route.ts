@@ -5,12 +5,12 @@ import { getSession } from "@/lib/session";
 export async function GET(request: NextRequest) {
   const session = await getSession();
   if (!session) {
-    return Response.json({ error: "Oturum gerekli." }, { status: 401 });
+    return Response.json({ error: "A session is required." }, { status: 401 });
   }
 
   const status = request.nextUrl.searchParams.get("status") ?? "all";
   if (!isStatusFilter(status)) {
-    return Response.json({ error: "Geçersiz durum." }, { status: 400 });
+    return Response.json({ error: "Invalid status." }, { status: 400 });
   }
 
   // Yavaş bir ağı taklit eder; yükleniyor durumu ekranda görünsün.

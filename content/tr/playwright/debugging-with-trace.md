@@ -12,13 +12,13 @@ Başarısız bir testin çıktısı çoğu zaman sorunu söyler. Bu rehberin pro
 ```bash
 Error: expect(locator).toHaveCount(expected) failed
 
-Locator:  getByRole('table', { name: 'Sipariş listesi' }).getByRole('row').filter({ has: getByRole('cell') })
+Locator:  getByRole('table', { name: 'Order list' }).getByRole('row').filter({ has: getByRole('cell') })
 Expected: 7
 Received: 6
 Timeout:  2000ms
 
 Call log:
-  - waiting for getByRole('table', { name: 'Sipariş listesi' }).getByRole('row')...
+  - waiting for getByRole('table', { name: 'Order list' }).getByRole('row')...
     6 × locator resolved to 0 elements
     14 × locator resolved to 6 elements
 ```
@@ -117,13 +117,13 @@ use: {
 Uzun testlerde `test.step` raporu ve trace'i okunur kılar. Adımlar raporda ve Trace Viewer'da başlıklarıyla görünür.[^7]
 
 ```ts
-test("yönetici siparişi iptal eder", async ({ loginPage, ordersPage }) => {
-  await test.step("giriş yap", async () => {
+test("an admin cancels the order", async ({ loginPage, ordersPage }) => {
+  await test.step("sign in", async () => {
     await loginPage.goto();
-    await loginPage.login("yonetici@example.com");
+    await loginPage.login("admin@example.com");
   });
 
-  await test.step("SP-1001'i iptal et", async () => {
+  await test.step("Cancel SP-1001", async () => {
     await ordersPage.cancel("SP-1001");
   });
 });

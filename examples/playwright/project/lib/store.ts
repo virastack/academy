@@ -18,8 +18,8 @@ type Session = {
 const PASSWORD = "parola123";
 
 const users: User[] = [
-  { id: "u1", name: "Deniz Yönetici", email: "yonetici@example.com", role: "admin" },
-  { id: "u2", name: "Ece İzleyici", email: "izleyici@example.com", role: "viewer" },
+  { id: "u1", name: "Deniz Admin", email: "admin@example.com", role: "admin" },
+  { id: "u2", name: "Ece Viewer", email: "viewer@example.com", role: "viewer" },
 ];
 
 const seedOrders: Order[] = [

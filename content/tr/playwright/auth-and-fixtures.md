@@ -53,10 +53,10 @@ Testler `test`'i artık bu dosyadan alır ve Page Object'ler parametrede hazır 
 ```ts
 import { test, expect } from "./fixtures";
 
-test("hatalı parola", async ({ loginPage }) => {
+test("wrong password", async ({ loginPage }) => {
   await loginPage.goto();
-  await loginPage.login("yonetici@example.com", "yanlis");
-  await expect(loginPage.error).toHaveText("E-posta veya parola hatalı.");
+  await loginPage.login("admin@example.com", "wrongpass");
+  await expect(loginPage.error).toHaveText("Email or password is incorrect.");
 });
 ```
 
@@ -93,9 +93,9 @@ Oturum gerektiren her test giriş formunu doldurursa test paketi yavaşlar ve gi
 // tests/auth.setup.ts
 import { expect, test as setup } from "./fixtures";
 
-setup("yönetici olarak oturum aç", async ({ page, loginPage }) => {
+setup("sign in as an admin", async ({ page, loginPage }) => {
   await loginPage.goto();
-  await loginPage.login("yonetici@example.com");
+  await loginPage.login("admin@example.com");
   await expect(page).toHaveURL("/orders");
   await page.context().storageState({ path: "playwright/.auth/admin.json" });
 });
@@ -128,12 +128,12 @@ Uygulamanızda yönetici ve izleyici gibi roller varsa setup her biri için ayr�
 ```ts
 // tests/auth.setup.ts
 const accounts = [
-  { email: "yonetici@example.com", file: "playwright/.auth/admin.json" },
-  { email: "izleyici@example.com", file: "playwright/.auth/viewer.json" },
+  { email: "admin@example.com", file: "playwright/.auth/admin.json" },
+  { email: "viewer@example.com", file: "playwright/.auth/viewer.json" },
 ];
 
 for (const { email, file } of accounts) {
-  setup(`${email} ile oturum aç`, async ({ page, loginPage }) => {
+  setup(`sign in as ${email}`, async ({ page, loginPage }) => {
     await loginPage.goto();
     await loginPage.login(email);
     await expect(page).toHaveURL("/orders");
@@ -150,16 +150,16 @@ import { expect, test } from "./fixtures";
 
 test.use({ storageState: "playwright/.auth/viewer.json" });
 
-test("izleyici iptal düğmesini görmez", async ({ ordersPage }) => {
+test("a viewer does not see the cancel button", async ({ ordersPage }) => {
   await ordersPage.goto();
-  await expect(ordersPage.table.getByRole("button", { name: "İptal et" })).toHaveCount(0);
+  await expect(ordersPage.table.getByRole("button", { name: "Cancel" })).toHaveCount(0);
 });
 ```
 
 Arayüzde butonun gizlenmesi yetki kontrolü değildir. Aynı testte sunucunun da reddettiğini doğrulayın. `page.request` sayfanın cookie'lerini kullanır:
 
 ```ts
-test("izleyici API ile de iptal edemez", async ({ page }) => {
+test("a viewer cannot cancel through the API either", async ({ page }) => {
   const response = await page.request.post("/api/orders/SP-1001/cancel");
   expect(response.status()).toBe(403);
 });
@@ -191,12 +191,12 @@ import { expect, signedOut, test } from "./fixtures";
 
 test.use({ storageState: signedOut });
 
-test("yönetici hazırlanan siparişi iptal eder", async ({ loginPage, ordersPage }) => {
+test("an admin cancels an order being prepared", async ({ loginPage, ordersPage }) => {
   await loginPage.goto();
-  await loginPage.login("yonetici@example.com");
+  await loginPage.login("admin@example.com");
 
   await ordersPage.cancel("SP-1001");
-  await expect(ordersPage.row("SP-1001")).toContainText("İptal edildi");
+  await expect(ordersPage.row("SP-1001")).toContainText("Cancelled");
 });
 ```
 
@@ -205,7 +205,7 @@ test("yönetici hazırlanan siparişi iptal eder", async ({ loginPage, ordersPag
 Bazı kaynaklar gerçekten paylaşılır: tek bir dış servis, hesabın genel bir ayarı. Playwright 1.63 ile testlere adlandırılmış bir **kilit** verebilirsiniz. Aynı kilidi taşıyan testler dosya, işçi ve proje fark etmeksizin asla aynı anda çalışmaz; diğer testler paralel devam eder.[^5]
 
 ```ts
-test("bildirim ayarını kapatır", { lock: "account-settings" }, async ({ page }) => {
+test("turns the notification setting off", { lock: "account-settings" }, async ({ page }) => {
   // ...
 });
 ```

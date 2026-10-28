@@ -13,17 +13,17 @@ export class OrdersPage {
   readonly logout: Locator;
 
   constructor(private readonly page: Page) {
-    this.heading = page.getByRole("heading", { name: "Siparişler" });
-    this.statusFilter = page.getByLabel("Durum");
-    this.table = page.getByRole("table", { name: "Sipariş listesi" });
+    this.heading = page.getByRole("heading", { name: "Orders" });
+    this.statusFilter = page.getByLabel("Status");
+    this.table = page.getByRole("table", { name: "Order list" });
     this.rows = this.table.getByRole("row").filter({ has: page.getByRole("cell") });
     // Her satırın dördüncü hücresi: nth(3) satırların içinde ayrı ayrı çözülür.
     this.statusCells = page.getByRole("cell").nth(3).within(this.rows);
     this.message = page.getByRole("main").getByRole("status");
-    this.loading = page.getByText("Siparişler yükleniyor...");
-    this.empty = page.getByText("Bu filtrede sipariş yok.");
-    this.loadError = page.getByRole("alert").filter({ hasText: "Siparişler yüklenemedi." });
-    this.logout = page.getByRole("button", { name: "Çıkış yap" });
+    this.loading = page.getByText("Loading orders...");
+    this.empty = page.getByText("No orders in this filter.");
+    this.loadError = page.getByRole("alert").filter({ hasText: "Orders could not be loaded." });
+    this.logout = page.getByRole("button", { name: "Sign out" });
   }
 
   async goto() {
@@ -39,6 +39,6 @@ export class OrdersPage {
   }
 
   async cancel(orderId: string) {
-    await this.row(orderId).getByRole("button", { name: "İptal et" }).click();
+    await this.row(orderId).getByRole("button", { name: "Cancel" }).click();
   }
 }
