@@ -24,7 +24,7 @@ export function getEnv(): Env {
     const problems = result.error.issues
       .map((issue) => `- ${issue.path.join(".")}: ${issue.message}`)
       .join("\n");
-    throw new Error(`Geçersiz ortam değişkenleri:\n${problems}`);
+    throw new Error(`Invalid environment variables:\n${problems}`);
   }
 
   cached = result.data;

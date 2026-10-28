@@ -45,7 +45,7 @@ function Dialog({ title, children }: { title: string; children: React.ReactNode 
 function ConfirmDeleteDialog() {
   return (
     <Dialog title="Silinsin mi?">
-      <p>Bu işlem geri alınamaz.</p>
+      <p>This action cannot be undone.</p>
     </Dialog>
   )
 }

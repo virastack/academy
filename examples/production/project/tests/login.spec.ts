@@ -2,30 +2,30 @@ import { expect, signedOut, test } from "./fixtures";
 
 test.use({ storageState: signedOut });
 
-test("oturum yoksa siparişler sayfası girişe yönlendirir", async ({ page }) => {
+test("without a session the orders page redirects to sign-in", async ({ page }) => {
   await page.goto("/orders");
   await expect(page).toHaveURL("/login");
 });
 
-test("hatalı parola hata mesajı gösterir ve e-postayı korur", async ({ page, loginPage }) => {
+test("a wrong password shows an error and keeps the email", async ({ page, loginPage }) => {
   await loginPage.goto();
-  await loginPage.login("yonetici@example.com", "yanlis");
+  await loginPage.login("admin@example.com", "wrongpass");
 
-  await expect(loginPage.error).toHaveText("E-posta veya parola hatalı.");
-  await expect(loginPage.email).toHaveValue("yonetici@example.com");
+  await expect(loginPage.error).toHaveText("Email or password is incorrect.");
+  await expect(loginPage.email).toHaveValue("admin@example.com");
   await expect(page).toHaveURL("/login");
 });
 
-test("giriş yapan kullanıcı siparişleri görür ve çıkış yapabilir", async ({
+test("a signed-in user sees the orders and can sign out", async ({
   page,
   loginPage,
   ordersPage,
 }) => {
   await loginPage.goto();
-  await loginPage.login("yonetici@example.com");
+  await loginPage.login("admin@example.com");
 
   await expect(page).toHaveURL("/orders");
-  await expect(page.getByText("Deniz Yönetici")).toBeVisible();
+  await expect(page.getByText("Deniz Admin")).toBeVisible();
 
   await ordersPage.logout.click();
   await expect(page).toHaveURL("/login");

@@ -54,8 +54,8 @@ import Link from "next/link";
 export default function ProductNotFound() {
   return (
     <>
-      <h1>Ürün bulunamadı</h1>
-      <Link href="/products">Tüm ürünler</Link>
+      <h1>Product not found</h1>
+      <Link href="/products">All products</Link>
     </>
   );
 }
@@ -92,7 +92,7 @@ export default function ProductsError({
 
   return (
     <>
-      <h2>Ürünler yüklenemedi.</h2>
+      <h2>Products could not be loaded.</h2>
       <button onClick={() => retry()}>Tekrar dene</button>
     </>
   );

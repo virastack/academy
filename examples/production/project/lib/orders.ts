@@ -8,10 +8,10 @@ export type Order = {
 };
 
 export const statusLabels: Record<OrderStatus, string> = {
-  preparing: "Hazırlanıyor",
-  shipped: "Kargoda",
-  delivered: "Teslim edildi",
-  cancelled: "İptal edildi",
+  preparing: "Preparing",
+  shipped: "Shipped",
+  delivered: "Delivered",
+  cancelled: "Cancelled",
 };
 
 export type StatusFilter = OrderStatus | "all";

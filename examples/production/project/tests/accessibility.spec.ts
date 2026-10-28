@@ -1,20 +1,20 @@
 import AxeBuilder from "@axe-core/playwright";
 import { expect, signedOut, test } from "./fixtures";
 
-test.describe("giriş sayfası", () => {
+test.describe("sign-in page", () => {
   test.use({ storageState: signedOut });
 
-  test("erişilebilirlik ihlali yok", async ({ page, loginPage }) => {
+  test("no accessibility violations", async ({ page, loginPage }) => {
     await loginPage.goto();
     const results = await new AxeBuilder({ page }).analyze();
     expect(results.violations).toEqual([]);
   });
 
-  test("form klavyeyle kullanılabilir", async ({ page, loginPage }) => {
+  test("the form is usable with the keyboard", async ({ page, loginPage }) => {
     await loginPage.goto();
 
     await loginPage.email.focus();
-    await page.keyboard.type("yonetici@example.com");
+    await page.keyboard.type("admin@example.com");
     await page.keyboard.press("Tab");
     await expect(loginPage.password).toBeFocused();
 
@@ -24,7 +24,7 @@ test.describe("giriş sayfası", () => {
   });
 });
 
-test("siparişler sayfasında erişilebilirlik ihlali yok", async ({ page, ordersPage }) => {
+test("no accessibility violations on the orders page", async ({ page, ordersPage }) => {
   await ordersPage.goto();
   await expect(ordersPage.rows).toHaveCount(6);
 

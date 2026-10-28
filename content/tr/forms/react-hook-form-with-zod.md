@@ -29,8 +29,8 @@ import { z } from "zod";
 
 export const signUpSchema = z
   .object({
-    name: z.string().trim().min(2, "Ad en az 2 karakter olmalı."),
-    email: z.email("E-posta adresini ad@ornek.com biçiminde girin."),
+    name: z.string().trim().min(2, "The name must be at least 2 characters."),
+    email: z.email("Enter the email address as name@example.com."),
     password: z.string().min(8, "Şifre en az 8 karakter olmalı."),
     confirmPassword: z.string(),
   })
@@ -128,7 +128,7 @@ const productSchema = z.object({
   title: z.string().trim().min(1, "Ürün adı girin."),
   price: z
     .string()
-    .regex(/^\d+(,\d{1,2})?$/, "Fiyatı 1250,50 biçiminde girin.")
+    .regex(/^\d+(,\d{1,2})?$/, "Enter the price as 1250,50.")
     .transform((value) => Number(value.replace(",", "."))),
 });
 

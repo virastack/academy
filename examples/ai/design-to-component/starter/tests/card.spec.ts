@@ -23,7 +23,7 @@ test('sayfada tek h1 var', async ({ page }) => {
   await expect(page.getByRole('heading', { level: 1 })).toHaveCount(1);
 });
 
-test('her profil için bir kart var: isim, avatar, favori ve eylem', async ({ page }) => {
+test('there is a card for each profile: name, avatar, favourite and action', async ({ page }) => {
   await page.goto('/');
   const cards = page.getByRole('article');
   await expect(cards).toHaveCount(profiles.length);
@@ -40,7 +40,7 @@ test('her profil için bir kart var: isim, avatar, favori ve eylem', async ({ pa
   }
 });
 
-test('favori butonu açılıp kapanıyor ve adı var', async ({ page }) => {
+test('the favourite button toggles and has a name', async ({ page }) => {
   await page.goto('/');
   for (const [i, p] of profiles.entries()) {
     const heart = page.getByRole('article').nth(i).locator('button[aria-pressed]');
@@ -54,7 +54,7 @@ test('favori butonu açılıp kapanıyor ve adı var', async ({ page }) => {
 });
 
 for (const vp of viewports) {
-  test(`${vp.width}px: kart ve içeriği taşmıyor, hedefler yeterince büyük`, async ({ page }) => {
+  test(`${vp.width}px: the card and its content do not overflow and the targets are large enough`, async ({ page }) => {
     await page.setViewportSize({ width: vp.width, height: vp.height });
     await page.goto('/');
 
@@ -90,19 +90,19 @@ for (const vp of viewports) {
   });
 }
 
-test('ekran görüntüleri alınıyor', async ({ page }) => {
+test('screenshots are captured', async ({ page }) => {
   await page.goto('/');
   mkdirSync('screenshots', { recursive: true });
   await page.getByRole('article').first().screenshot({ path: 'screenshots/card-1.png' });
   await page.screenshot({ path: 'screenshots/page-1280.png', fullPage: true });
 });
 
-test('tüm görsellerde alt özniteliği var', async ({ page }) => {
+test('every image has an alt attribute', async ({ page }) => {
   await page.goto('/');
   expect(await page.locator('img:not([alt])').count()).toBe(0);
 });
 
-test('erişilebilirlikte ciddi ihlal yok (axe)', async ({ page }) => {
+test('no serious accessibility violations (axe)', async ({ page }) => {
   await page.goto('/');
   const { violations } = await new AxeBuilder({ page })
     .withTags(['wcag2a', 'wcag2aa', 'wcag22aa'])
@@ -111,7 +111,7 @@ test('erişilebilirlikte ciddi ihlal yok (axe)', async ({ page }) => {
   expect(serious.map((v) => `${v.id}: ${v.help}`)).toEqual([]);
 });
 
-test('bileşenlerde sabit renk yok, renkler token üzerinden geliyor', () => {
+test('components carry no hard-coded colours; colours come through tokens', () => {
   const files: string[] = [];
   const walk = (dir: string) => {
     for (const name of readdirSync(dir)) {

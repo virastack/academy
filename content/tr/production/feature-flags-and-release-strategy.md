@@ -52,11 +52,11 @@ type Entities = { user?: { id: string } };
 
 export const orderSummaryFlag = flag<boolean, Entities>({
   key: "order-summary",
-  description: "Sipariş listesinin üstünde adet ve toplam tutar özeti",
+  description: "A count and total-amount summary above the order list",
   defaultValue: false,
   options: [
-    { value: false, label: "Kapalı" },
-    { value: true, label: "Açık" },
+    { value: false, label: "Off" },
+    { value: true, label: "On" },
   ],
   identify({ cookies }) {
     const session = readSession(cookies.get(SESSION_COOKIE)?.value);
@@ -155,7 +155,7 @@ Flag'ler özellik düzeyinde çalışır. Bir de **deploy düzeyinde** stratejil
 Yüzdeyi artırmadan önce sorun: hata oranı arttı mı? Gecikme değişti mi? Hata izleme ve loglarda flag'in açık olduğu kullanıcıları ayırabilmek için flag değerini kayıtlara ekleyin:
 
 ```ts
-logger.info({ event: "orders_viewed", userId: user.id, orderSummary: showSummary }, "Siparişler görüntülendi");
+logger.info({ event: "orders_viewed", userId: user.id, orderSummary: showSummary }, "Orders viewed");
 ```
 
 Tipik bir açılış takvimi: iç ekip, yüzde 1, yüzde 10, yüzde 50, yüzde 100. Her adımda metriklere bakın; bir sonraki adıma geçmek bir karardır, otomatik değildir.

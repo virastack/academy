@@ -27,7 +27,7 @@ export async function generateMetadata({
 export default function ProductPage({ params }: PageProps<"/products/[slug]">) {
   return (
     <article>
-      <Suspense fallback={<p>Ürün yükleniyor...</p>}>
+      <Suspense fallback={<p>Loading product...</p>}>
         <ProductDetails params={params} />
       </Suspense>
     </article>
@@ -65,11 +65,11 @@ async function ProductDetails({ params }: Pick<PageProps<"/products/[slug]">, "p
 
 async function Stock({ slug }: { slug: string }) {
   const count = await getStock(slug);
-  if (count === 0) return <p>Tükendi</p>;
+  if (count === 0) return <p>Sold out</p>;
 
   return (
     <>
-      <p>Stokta {count} adet</p>
+      <p>{count} left in stock</p>
       <AddToCartForm slug={slug} />
     </>
   );

@@ -76,7 +76,7 @@ export function Drawer({ children }: { children: React.ReactNode }) {
 
   return (
     <>
-      <button onClick={() => setOpen(!open)}>Sepet</button>
+      <button onClick={() => setOpen(!open)}>Cart</button>
       {open && <div role="dialog">{children}</div>}
     </>
   );

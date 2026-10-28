@@ -6,10 +6,10 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   return (
     <>
       <nav>
-        <Link href="/admin">Ürünler</Link>
-        <Link href="/admin/users">Kullanıcılar</Link>
+        <Link href="/admin">Products</Link>
+        <Link href="/admin/users">Users</Link>
         <form action={signOut}>
-          <button type="submit">Çıkış yap</button>
+          <button type="submit">Sign out</button>
         </form>
       </nav>
       {children}

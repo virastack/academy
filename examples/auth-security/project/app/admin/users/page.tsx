@@ -9,7 +9,7 @@ export default async function UsersPage() {
 
   return (
     <main>
-      <h1>Kullanıcılar</h1>
+      <h1>Users</h1>
       <table>
         <thead>
           <tr>
@@ -27,7 +27,7 @@ export default async function UsersPage() {
                 ) : (
                   <form action={setRoleAction}>
                     <input type="hidden" name="id" value={user.id} />
-                    <select name="role" defaultValue={user.role} aria-label={`${user.email} rolü`}>
+                    <select name="role" defaultValue={user.role} aria-label={`${user.email} role`}>
                       <option value="customer">customer</option>
                       <option value="editor">editor</option>
                       <option value="admin">admin</option>

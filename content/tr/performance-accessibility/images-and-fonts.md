@@ -27,7 +27,7 @@ Birden fazla format sunmanın yolu `<picture>`'dır. Tarayıcı `type`'ını des
 <picture>
   <source srcset="kapak.avif" type="image/avif" />
   <source srcset="kapak.webp" type="image/webp" />
-  <img src="kapak.jpg" width="1200" height="800" alt="Sahilde gün batımı" />
+  <img src="kapak.jpg" width="1200" height="800" alt="Sunset on the beach" />
 </picture>
 ```
 
@@ -42,7 +42,7 @@ Telefona 2000 piksellik masaüstü görselini göndermek, kullanıcının hiç g
   sizes="(min-width: 768px) 500px, 100vw"
   width="1000"
   height="667"
-  alt="Sahilde gün batımı"
+  alt="Sunset on the beach"
 />
 ```
 
@@ -75,7 +75,7 @@ Tuzak, ilk ekranda görünen görseli de lazy yapmaktır. Tarayıcı görselin e
 Tarayıcı ekrandaki bir görselin önceliğini normalde sayfayı yerleştirdikten sonra yükseltir. `fetchpriority="high"` LCP görselinin bunu beklemeden, baştan yüksek öncelikle istenmesini sağlar.[^10] Google Flights'ta LCP arka plan görseline yüksek öncelik vermek LCP'yi 2,6 saniyeden 1,9 saniyeye indirdi.[^10]
 
 ```html
-<img src="hero.avif" fetchpriority="high" width="1200" height="600" alt="Kampanya görseli" />
+<img src="hero.avif" fetchpriority="high" width="1200" height="600" alt="Campaign image" />
 ```
 
 Bu bir ipucudur, emir değil; tarayıcı yine kendi kararını verebilir.[^10] Bir carousel'de yalnızca ilk görsele `high` verin; her şeye yüksek öncelik vermek hiçbirini öne çıkarmaz.[^11] Chrome DevTools'taki "LCP request discovery" insight'ı tam olarak üç şeye bakar: LCP görseli HTML'de doğrudan bulunabiliyor mu, `fetchpriority=high` var mı ve lazy yüklenmiyor mu.[^12]
@@ -92,7 +92,7 @@ export function Hero() {
   return (
     <Image
       src={hero}
-      alt="Kampanya görseli"
+      alt="Campaign image"
       sizes="100vw"
       loading="eager"
     />

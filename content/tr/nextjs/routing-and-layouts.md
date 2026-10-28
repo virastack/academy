@@ -116,7 +116,7 @@ Arama gibi URL'ye parametre yazan formlar için `next/form` var. `<form>` gibi d
 import Form from "next/form";
 
 <Form action="/products">
-  <input name="q" aria-label="Ürün ara" />
+  <input name="q" aria-label="Search products" />
   <button>Ara</button>
 </Form>;
 ```

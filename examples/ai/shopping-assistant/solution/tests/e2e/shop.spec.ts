@@ -6,8 +6,8 @@ let n = 0;
 const open = (page: Page) => page.goto(`/?user=e2e-${Date.now()}-${n++}`);
 
 async function ask(page: Page, text: string) {
-  await page.getByLabel('Mesajınız').fill(text);
-  await page.getByRole('button', { name: 'Gönder' }).click();
+  await page.getByLabel('Your message').fill(text);
+  await page.getByRole('button', { name: 'Send' }).click();
 }
 
 test('konsolda hata yok, tek h1 var', async ({ page }) => {
@@ -20,9 +20,9 @@ test('konsolda hata yok, tek h1 var', async ({ page }) => {
   expect(errors).toEqual([]);
 });
 
-test('ürün sorulunca ürün kartları gelir', async ({ page }) => {
+test('asking about a product returns product cards', async ({ page }) => {
   await open(page);
-  await ask(page, 'koşu ayakkabısı göster');
+  await ask(page, 'show me running shoes');
 
   const cards = page.getByRole('article');
   await expect(cards.first()).toBeVisible();
@@ -32,35 +32,35 @@ test('ürün sorulunca ürün kartları gelir', async ({ page }) => {
   await expect(cards.first().getByRole('button', { name: /sepete ekle/i })).toBeVisible();
 });
 
-test('sepete ekleme onay ister, onaylayınca sepet 1 olur', async ({ page }) => {
+test('adding to cart asks for approval and the cart becomes 1 after approving', async ({ page }) => {
   await open(page);
-  await ask(page, 'koşu ayakkabısı göster');
+  await ask(page, 'show me running shoes');
   await page.getByRole('article').first().getByRole('button', { name: /sepete ekle/i }).click();
 
   await expect(page.getByRole('button', { name: 'Onayla' })).toBeVisible();
-  await expect(page.getByText('Sepet: 0 ürün')).toBeVisible();
+  await expect(page.getByText('Cart: 0 items')).toBeVisible();
 
   await page.getByRole('button', { name: 'Onayla' }).click();
-  await expect(page.getByText('Sepet: 1 ürün')).toBeVisible();
+  await expect(page.getByText('Cart: 1 item')).toBeVisible();
 });
 
-test('vazgeçince sepet değişmez', async ({ page }) => {
+test('dismissing leaves the cart unchanged', async ({ page }) => {
   await open(page);
-  await ask(page, 'koşu ayakkabısı göster');
+  await ask(page, 'show me running shoes');
   await page.getByRole('article').first().getByRole('button', { name: /sepete ekle/i }).click();
-  await page.getByRole('button', { name: 'Vazgeç' }).click();
+  await page.getByRole('button', { name: 'Dismiss' }).click();
   await expect(page.getByRole('button', { name: 'Onayla' })).toHaveCount(0);
-  await expect(page.getByText('Sepet: 0 ürün')).toBeVisible();
+  await expect(page.getByText('Cart: 0 items')).toBeVisible();
 });
 
-test('asistan metnindeki dış görsel için istek atılmaz', async ({ page }) => {
+test('no request is made for an external image in the assistant text', async ({ page }) => {
   let hits = 0;
   await page.route('https://evil.example/**', (route) => {
     hits++;
     return route.abort();
   });
   await open(page);
-  await ask(page, 'özet geç');
+  await ask(page, 'skip the summary');
   await expect(page.getByText(/Özet hazır/)).toBeVisible();
   await page.waitForTimeout(500);
 
@@ -68,9 +68,9 @@ test('asistan metnindeki dış görsel için istek atılmaz', async ({ page }) =
   expect(await page.locator('img[src*="evil.example"]').count()).toBe(0);
 });
 
-test('erişilebilirlikte ciddi ihlal yok (axe)', async ({ page }) => {
+test('no serious accessibility violations (axe)', async ({ page }) => {
   await open(page);
-  await ask(page, 'koşu ayakkabısı göster');
+  await ask(page, 'show me running shoes');
   await expect(page.getByRole('article').first()).toBeVisible();
   const { violations } = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag22aa']).analyze();
   const serious = violations.filter((v) => v.impact === 'serious' || v.impact === 'critical');

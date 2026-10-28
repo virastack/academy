@@ -138,9 +138,9 @@ export function DeleteDialog() {
         Hesabı sil
       </button>
       <dialog ref={dialogRef} aria-labelledby="delete-title">
-        <h2 id="delete-title">Hesabınız silinsin mi?</h2>
+        <h2 id="delete-title">Delete your account?</h2>
         <form method="dialog">
-          <button autoFocus>Vazgeç</button>
+          <button autoFocus>Dismiss</button>
           <button value="confirm">Sil</button>
         </form>
       </dialog>
@@ -149,7 +149,7 @@ export function DeleteDialog() {
 }
 ```
 
-İlk odağın nereye gideceği için tek bir doğru yok. Kısa bir bilgi mesajında kapatma butonu uygundur; geri dönüşü olmayan bir işlemde en zararsız seçeneğe (örnekteki "Vazgeç") odak verin ki kullanıcı refleksle Enter'a basıp onaylamasın. Uzun içerikte dialog'un kendisine ya da başlığına odak vermek kullanıcının önce ne olduğunu anlamasını sağlar.[^13][^10]
+İlk odağın nereye gideceği için tek bir doğru yok. Kısa bir bilgi mesajında kapatma butonu uygundur; geri dönüşü olmayan bir işlemde en zararsız seçeneğe (örnekteki "Dismiss") odak verin ki kullanıcı refleksle Enter'a basıp onaylamasın. Uzun içerikte dialog'un kendisine ya da başlığına odak vermek kullanıcının önce ne olduğunu anlamasını sağlar.[^13][^10]
 
 Kendi overlay'inizi (yan menü, çekmece) yazıyorsanız arkadaki içeriğe `inert` attribute'u verin. `inert` bir alt ağacı Tab sırasından, tıklamalardan ve erişilebilirlik ağacından çıkarır ve Nisan 2023'ten beri tarayıcılar arasında yaygın olarak destekleniyor.[^14] Görsel olarak bir şey değişmediği için inert kısmı ayrıca belli etmek size kalır.[^14]
 

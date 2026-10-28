@@ -50,7 +50,7 @@ AI SDK'da onay mekanizması hazır. İade, silme, e-posta gönderme gibi araçla
 ```ts
 // Yetkiyi araçta, sunucuda kontrol edin
 cancelOrder: tool({
-  description: 'Siparişi iptal eder',
+  description: 'Cancels the order',
   inputSchema: z.object({ orderId: z.string() }),
   execute: async ({ orderId }) => {
     const user = await requireUser(); // oturum, modelden gelmez
@@ -144,7 +144,7 @@ import 'server-only';
 
 export function getAiKey() {
   const key = process.env.AI_API_KEY;
-  if (!key) throw new Error('AI_API_KEY tanımlı değil');
+  if (!key) throw new Error('AI_API_KEY is not set');
   return key;
 }
 ```
@@ -212,7 +212,7 @@ const ratelimit = new Ratelimit({
 export async function POST(req: Request) {
   const user = await requireUser();
   const { success } = await ratelimit.limit(user.id);
-  if (!success) return new Response('Çok fazla istek', { status: 429 });
+  if (!success) return new Response('Too many requests', { status: 429 });
   // ... streamText
 }
 ```

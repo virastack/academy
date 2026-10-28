@@ -5,13 +5,13 @@ import { removeFromCart } from "@/app/actions";
 import { getCart } from "@/lib/cart";
 import { getProduct } from "@/lib/products";
 
-export const metadata: Metadata = { title: "Sepet", robots: { index: false } };
+export const metadata: Metadata = { title: "Cart", robots: { index: false } };
 
 export default function CartPage() {
   return (
     <>
-      <h1>Sepet</h1>
-      <Suspense fallback={<p>Sepet yükleniyor...</p>}>
+      <h1>Cart</h1>
+      <Suspense fallback={<p>Loading cart...</p>}>
         <CartItems />
       </Suspense>
     </>
@@ -29,7 +29,7 @@ async function CartItems() {
     )
   ).flat();
 
-  if (lines.length === 0) return <p>Sepetiniz boş.</p>;
+  if (lines.length === 0) return <p>Your cart is empty.</p>;
 
   return (
     <ul>
@@ -37,7 +37,7 @@ async function CartItems() {
         <li key={product.slug}>
           {product.name} x {quantity}
           <form action={removeFromCart.bind(null, product.slug)}>
-            <button>Kaldır</button>
+            <button>Remove</button>
           </form>
         </li>
       ))}

@@ -45,7 +45,7 @@ export async function POST(req: Request) {
 
   const result = streamText({
     model: 'anthropic/claude-sonnet-5.5',
-    instructions: 'Kısa ve net cevap veren bir asistansın.',
+    instructions: 'You are an assistant that answers briefly and clearly.',
     messages: await convertToModelMessages(messages),
   });
 
@@ -176,7 +176,7 @@ toUIMessageStream({
   stream: result.stream,
   onError: error => {
     console.error(error); // gerçek hatayı sunucuda loglayın
-    return 'Bir şeyler ters gitti. Lütfen tekrar deneyin.';
+    return 'Something went wrong. Please try again.';
   },
 });
 ```
@@ -313,7 +313,7 @@ const model = new MockLanguageModelV4({
         { type: 'stream-start', warnings: [] },
         { type: 'text-start', id: 't1' },
         { type: 'text-delta', id: 't1', delta: 'Merhaba, ' },
-        { type: 'text-delta', id: 't1', delta: 'dünya!' },
+        { type: 'text-delta', id: 't1', delta: 'world!' },
         { type: 'text-end', id: 't1' },
         {
           type: 'finish',
@@ -340,7 +340,7 @@ data: {"type":"text-start","id":"t1"}
 
 data: {"type":"text-delta","id":"t1","delta":"Merhaba, "}
 
-data: {"type":"text-delta","id":"t1","delta":"dünya!"}
+data: {"type":"text-delta","id":"t1","delta":"world!"}
 
 data: {"type":"text-end","id":"t1"}
 

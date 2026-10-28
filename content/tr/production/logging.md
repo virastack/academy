@@ -26,7 +26,7 @@ Kullanıcı yonetici@example.com SP-1001 siparişini iptal etti
 Aynı olay, makine için:
 
 ```json
-{"level":30,"time":1792639224970,"service":"order-panel","env":"production","version":"a1b2c3d","event":"order_cancelled","orderId":"SP-1001","userId":"u1","msg":"Sipariş iptal edildi"}
+{"level":30,"time":1792639224970,"service":"order-panel","env":"production","version":"a1b2c3d","event":"order_cancelled","orderId":"SP-1001","userId":"u1","msg":"Order cancelled"}
 ```
 
 İkincisinde "son bir saatte `order_cancelled` olaylarını say", "`version` a1b2c3d olan hataları getir" gibi sorgular yazabilirsiniz. Log arama sistemleri JSON alanlarını ayrı ayrı indeksler.
@@ -66,9 +66,9 @@ export const logger = pino({
 Kullanım: ilk argüman alanlar, ikincisi mesaj.
 
 ```ts
-logger.info({ event: "login_succeeded", userId: user.id }, "Giriş başarılı");
-logger.warn({ event: "login_failed", email }, "Giriş başarısız");
-logger.error({ event: "request_error", err: error, digest }, "İstek işlenirken hata oluştu");
+logger.info({ event: "login_succeeded", userId: user.id }, "Sign-in succeeded");
+logger.warn({ event: "login_failed", email }, "Sign-in failed");
+logger.error({ event: "request_error", err: error, digest }, "An error occurred while handling the request");
 ```
 
 `err` alanına bir `Error` verdiğinizde pino onu `type`, `message` ve `stack` alanlarına ayırır.
@@ -91,8 +91,8 @@ Bir istek boyunca yazılan her satıra aynı alanları *(istek kimliği, kullan�
 ```ts
 const requestLogger = logger.child({ requestId: crypto.randomUUID(), userId: user.id });
 
-requestLogger.info({ event: "order_cancel_requested", orderId }, "İptal istendi");
-requestLogger.info({ event: "order_cancelled", orderId }, "Sipariş iptal edildi");
+requestLogger.info({ event: "order_cancel_requested", orderId }, "Cancellation requested");
+requestLogger.info({ event: "order_cancelled", orderId }, "Order cancelled");
 ```
 
 İki satır da `requestId` ve `userId` taşır. Loglarda bir istek kimliğini aratınca o isteğin bütün hikâyesini sırayla görürsünüz.
@@ -114,11 +114,11 @@ Bu rehberin projesinde giriş Server Action'ı iki olayı yazar:
 const user = findUser(email, password);
 if (!user) {
   // Parolayı asla loglamayın. E-posta, tekrar eden denemeleri fark etmek için yeterlidir.
-  logger.warn({ event: "login_failed", email }, "Giriş başarısız");
-  return { error: "E-posta veya parola hatalı.", email };
+  logger.warn({ event: "login_failed", email }, "Sign-in failed");
+  return { error: "Email or password is incorrect.", email };
 }
 
-logger.info({ event: "login_succeeded", userId: user.id }, "Giriş başarılı");
+logger.info({ event: "login_succeeded", userId: user.id }, "Sign-in succeeded");
 ```
 
 ## Ne loglanmaz?
@@ -166,7 +166,7 @@ logger.info({ user: { email: "a@example.com", password: "x" }, headers: { cookie
 [Hata izleme](/academy/production/error-monitoring) dersindeki `onRequestError` her sunucu hatasını `digest` alanıyla loglar. Kullanıcı ekranda gördüğü hata kodunu destek ekibine iletir, ekip loglarda `digest` ile arar:
 
 ```json
-{"level":50,"event":"request_error","digest":"403643587","path":"/debug","routeType":"render","msg":"İstek işlenirken hata oluştu"}
+{"level":50,"event":"request_error","digest":"403643587","path":"/debug","routeType":"render","msg":"An error occurred while handling the request"}
 ```
 
 Aynı fikir genelleşir: her log satırına bir istek kimliği, sürüm ve ortam eklerseniz, birbirinden bağımsız kayıtları birbirine bağlayabilirsiniz.

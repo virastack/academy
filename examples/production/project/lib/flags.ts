@@ -9,11 +9,11 @@ type Entities = { user?: { id: string } };
 
 export const orderSummaryFlag = flag<boolean, Entities>({
   key: "order-summary",
-  description: "Sipariş listesinin üstünde adet ve toplam tutar özeti",
+  description: "A count and total-amount summary above the order list",
   defaultValue: false,
   options: [
-    { value: false, label: "Kapalı" },
-    { value: true, label: "Açık" },
+    { value: false, label: "Off" },
+    { value: true, label: "On" },
   ],
   identify({ cookies }) {
     const session = readSession(cookies.get(SESSION_COOKIE)?.value);

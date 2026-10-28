@@ -3,8 +3,8 @@ import { Providers } from "@/components/providers";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Sipariş paneli",
-  description: "Yayına hazırlanmış küçük bir sipariş paneli.",
+  title: "Order panel",
+  description: "A small order panel prepared for release.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

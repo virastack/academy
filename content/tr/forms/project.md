@@ -9,7 +9,7 @@ translationKey: "forms/project"
 
 Bir pazaryeri için satıcı başvuru formu yazacaksınız. Form:
 
-- Üç adımdan oluşur: mağaza, iletişim ve ödeme. "İleri" yalnızca o adımın alanlarını doğrular ve ilk hatalı alana odaklanır.
+- Üç adımdan oluşur: mağaza, iletişim ve ödeme. "Next" yalnızca o adımın alanlarını doğrular ve ilk hatalı alana odaklanır.
 - Kullanıcı geri dönünce önceki adımların değerlerini korur.
 - Mağaza adımında 1 ile 3 arasında örnek ürün ister; satır eklenir ve silinir.
 - Vergi numarası, telefon ve IBAN alanlarını maskeyle biçimlendirir; forma yalnızca rakamları yazar.
@@ -54,8 +54,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Satıcı başvurusu",
-  description: "Çok adımlı, maskeli ve sunucuda doğrulanan bir başvuru formu.",
+  title: "Seller application",
+  description: "A multi-step application form with masking and server-side validation.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -89,39 +89,39 @@ import { z } from "zod";
 export const categories = [
   { value: "fashion", label: "Moda" },
   { value: "electronics", label: "Elektronik" },
-  { value: "home", label: "Ev ve yaşam" },
+  { value: "home", label: "Home and living" },
 ] as const;
 
 export const parsePrice = (value: string) => Number(value.replace(",", "."));
 
 const productSchema = z.object({
-  name: z.string().trim().min(2, "Ürün adı en az 2 karakter olmalı."),
+  name: z.string().trim().min(2, "The product name must be at least 2 characters."),
   // Fiyat metin olarak kalır; "249,90" de "249.90" de geçerlidir.
   price: z
     .string()
     .trim()
     .min(1, "Fiyat girin.")
-    .regex(/^\d+([.,]\d{1,2})?$/, "Fiyatı 249,90 biçiminde girin.")
-    .refine((value) => parsePrice(value) > 0, "Fiyat sıfırdan büyük olmalı."),
+    .regex(/^\d+([.,]\d{1,2})?$/, "Enter the price as 249,90.")
+    .refine((value) => parsePrice(value) > 0, "The price must be greater than zero."),
 });
 
 export const applicationSchema = z.object({
-  storeName: z.string().trim().min(2, "Mağaza adı en az 2 karakter olmalı."),
-  taxNumber: z.string().regex(/^\d{10}$/, "Vergi numarası 10 haneli olmalı."),
-  category: z.enum(["fashion", "electronics", "home"], { error: "Bir kategori seçin." }),
+  storeName: z.string().trim().min(2, "The store name must be at least 2 characters."),
+  taxNumber: z.string().regex(/^\d{10}$/, "A tax number must be 10 digits."),
+  category: z.enum(["fashion", "electronics", "home"], { error: "Choose a category." }),
   products: z
     .array(productSchema)
-    .min(1, "En az bir ürün ekleyin.")
-    .max(3, "En fazla 3 ürün ekleyebilirsiniz."),
-  contactName: z.string().trim().min(2, "Ad soyad en az 2 karakter olmalı."),
-  email: z.email("E-posta adresini ad@ornek.com biçiminde girin."),
-  phone: z.string().regex(/^5\d{9}$/, "Telefon numarası 5 ile başlayan 10 haneli olmalı."),
+    .min(1, "Add at least one product.")
+    .max(3, "You can add at most 3 products."),
+  contactName: z.string().trim().min(2, "The full name must be at least 2 characters."),
+  email: z.email("Enter the email address as name@example.com."),
+  phone: z.string().regex(/^5\d{9}$/, "A phone number must be 10 digits starting with 5."),
   // Maske yalnızca rakamları saklar; ülke kodunu ekleyip IBAN sağlamasını yapıyoruz.
   iban: z
     .string()
-    .regex(/^\d{24}$/, "IBAN, TR'den sonra 24 haneli olmalı.")
-    .refine((value) => z.iban().validate(`TR${value}`), "IBAN hatalı; numarayı kontrol edin."),
-  acceptTerms: z.boolean().refine((value) => value, "Devam etmek için koşulları kabul edin."),
+    .regex(/^\d{24}$/, "An IBAN must have 24 digits after TR.")
+    .refine((value) => z.iban().validate(`TR${value}`), "The IBAN is invalid; check the number."),
+  acceptTerms: z.boolean().refine((value) => value, "Accept the terms to continue."),
 });
 
 export type ApplicationInput = z.input<typeof applicationSchema>;
@@ -129,9 +129,9 @@ export type ApplicationValues = z.output<typeof applicationSchema>;
 export type ApplicationField = keyof ApplicationValues;
 
 export const steps = [
-  { title: "Mağaza", fields: ["storeName", "taxNumber", "category", "products"] },
-  { title: "İletişim", fields: ["contactName", "email", "phone"] },
-  { title: "Ödeme", fields: ["iban", "acceptTerms"] },
+  { title: "Store", fields: ["storeName", "taxNumber", "category", "products"] },
+  { title: "Contact", fields: ["contactName", "email", "phone"] },
+  { title: "Payment", fields: ["iban", "acceptTerms"] },
 ] as const satisfies { title: string; fields: ApplicationField[] }[];
 
 export const stepOf = (field: ApplicationField) =>
@@ -187,7 +187,7 @@ export async function submitApplication(values: unknown): Promise<ApplicationRes
     const { fieldErrors } = z.flattenError(parsed.error);
     return {
       status: "error",
-      message: "Başvuru doğrulanamadı.",
+      message: "The application could not be validated.",
       fieldErrors: Object.fromEntries(
         Object.entries(fieldErrors).map(([field, messages]) => [field, messages?.[0]]),
       ),
@@ -197,8 +197,8 @@ export async function submitApplication(values: unknown): Promise<ApplicationRes
   if (parsed.data.email === "taken@example.com") {
     return {
       status: "error",
-      message: "Bu e-posta ile daha önce başvuru yapılmış.",
-      fieldErrors: { email: "Bu e-posta ile daha önce başvuru yapılmış." },
+      message: "An application with this email already exists.",
+      fieldErrors: { email: "An application with this email already exists." },
     };
   }
 
@@ -311,18 +311,18 @@ export function StoreStep({ taxNumber }: { taxNumber: MaskInputProps }) {
 
   return (
     <>
-      <Field name="storeName" label="Mağaza adı">
+      <Field name="storeName" label="Store name">
         {(a11y) => <input {...a11y} {...register("storeName")} className={inputClass} />}
       </Field>
 
-      <Field name="taxNumber" label="Vergi numarası" description="10 haneli vergi kimlik numarası">
+      <Field name="taxNumber" label="Tax number" description="10-digit tax identification number">
         {(a11y) => <input {...taxNumber} {...a11y} className={inputClass} />}
       </Field>
 
       <Field name="category" label="Kategori">
         {(a11y) => (
           <select {...a11y} {...register("category")} className={inputClass}>
-            <option value="">Seçin</option>
+            <option value="">Choose</option>
             {categories.map((c) => (
               <option key={c.value} value={c.value}>
                 {c.label}
@@ -333,15 +333,15 @@ export function StoreStep({ taxNumber }: { taxNumber: MaskInputProps }) {
       </Field>
 
       <fieldset className="flex flex-col gap-3">
-        <legend className="font-medium">Örnek ürünler</legend>
+        <legend className="font-medium">Sample products</legend>
         {fields.map((field, index) => (
           <div key={field.id} className="flex items-start gap-2">
-            <Field name={`products.${index}.name`} label={`Ürün ${index + 1} adı`}>
+            <Field name={`products.${index}.name`} label={`Product ${index + 1} name`}>
               {(a11y) => (
                 <input {...a11y} {...register(`products.${index}.name`)} className={inputClass} />
               )}
             </Field>
-            <Field name={`products.${index}.price`} label={`Ürün ${index + 1} fiyatı (₺)`}>
+            <Field name={`products.${index}.price`} label={`Product ${index + 1} price (₺)`}>
               {(a11y) => (
                 <input
                   {...a11y}
@@ -355,7 +355,7 @@ export function StoreStep({ taxNumber }: { taxNumber: MaskInputProps }) {
               type="button"
               onClick={() => remove(index)}
               disabled={fields.length === 1}
-              aria-label={`Ürün ${index + 1} kaldır`}
+              aria-label={`Remove product ${index + 1}`}
               className="mt-7 rounded border px-2 py-2 disabled:opacity-40"
             >
               Kaldır
@@ -383,7 +383,7 @@ export function StoreStep({ taxNumber }: { taxNumber: MaskInputProps }) {
 
 - Satırlar `field.id` ile anahtarlanır; `append` tam bir satır nesnesi alır.
 - Son satır silinemez, dördüncü satır eklenemez. Şemadaki `min(1)` ve `max(3)` yine de sunucuyu korur.
-- Her "Kaldır" butonunun `aria-label`'ı satır numarasını içerir.
+- Her "Remove" butonunun `aria-label`'ı satır numarasını içerir.
 - Fiyat alanı `type="number"` değil; `inputMode="decimal"` ile metin alanıdır *(bkz. [Maskeleme ve regex](/academy/forms/masking-and-regex))*.
 
 ## Adım 6: İletişim ve ödeme adımları
@@ -420,7 +420,7 @@ export function ContactStep({ phone }: { phone: MaskInputProps }) {
           />
         )}
       </Field>
-      <Field name="phone" label="Cep telefonu" description="Örnek: (532) 123 45 67">
+      <Field name="phone" label="Cep telefonu" description="Example: (532) 123 45 67">
         {(a11y) => <input {...phone} {...a11y} autoComplete="tel-national" className={inputClass} />}
       </Field>
     </>
@@ -444,10 +444,10 @@ export function PaymentStep({ iban }: { iban: MaskInputProps }) {
 
   return (
     <>
-      <Field name="iban" label="IBAN" description="Ödemeler bu hesaba yapılır.">
+      <Field name="iban" label="IBAN" description="Payments are sent to this account.">
         {(a11y) => <input {...iban} {...a11y} className={inputClass} />}
       </Field>
-      <Field name="acceptTerms" label="Satıcı sözleşmesini okudum ve kabul ediyorum.">
+      <Field name="acceptTerms" label="I have read and accept the seller agreement.">
         {(a11y) => <input {...a11y} type="checkbox" {...register("acceptTerms")} className="size-5" />}
       </Field>
     </>
@@ -540,15 +540,15 @@ export function ApplicationForm() {
   if (applicationId) {
     return (
       <div role="status" className="rounded border border-green-700 p-4">
-        <h2 className="text-xl font-semibold">Başvurunuz alındı</h2>
-        <p>Başvuru numaranız: {applicationId}</p>
+        <h2 className="text-xl font-semibold">Your application was received</h2>
+        <p>Your application number: {applicationId}</p>
       </div>
     );
   }
 
   return (
     <FormProvider {...form}>
-      <ol className="mb-6 flex gap-4" aria-label="Adımlar">
+      <ol className="mb-6 flex gap-4" aria-label="Steps">
         {steps.map((s, index) => (
           <li
             key={s.title}
@@ -581,7 +581,7 @@ export function ApplicationForm() {
           )}
           {isLastStep ? (
             <button type="submit" disabled={isPending} className="rounded bg-black px-4 py-2 text-white">
-              {isPending ? "Gönderiliyor..." : "Başvuruyu gönder"}
+              {isPending ? "Submitting..." : "Submit the application"}
             </button>
           ) : (
             <button type="button" onClick={goNext} className="rounded bg-black px-4 py-2 text-white">
@@ -614,9 +614,9 @@ import { ApplicationForm } from "@/components/application-form";
 export default function Home() {
   return (
     <main className="mx-auto max-w-2xl p-6">
-      <h1 className="mb-6 text-2xl font-bold">Satıcı başvurusu</h1>
+      <h1 className="mb-6 text-2xl font-bold">Seller application</h1>
       {/* useFieldArray satırlara crypto.randomUUID() ile id verir; form istek anında render edilmeli */}
-      <Suspense fallback={<p>Form yükleniyor...</p>}>
+      <Suspense fallback={<p>Loading form...</p>}>
         <ApplicationForm />
       </Suspense>
     </main>

@@ -28,7 +28,7 @@ Sıfırdan yazmak yerine önce işi bir kez normal şekilde yaptırın. Anthropi
 ```markdown
 ---
 name: new-component
-description: Projeye yeni React bileşeni ekler. Kullanıcı "yeni bileşen" veya "component ekle" dediğinde ya da src/components altına yeni dosya gerektiğinde kullan.
+description: Projeye yeni React bileşeni ekler. Kullanıcı "new component" veya "component ekle" dediğinde ya da src/components altına yeni dosya gerektiğinde kullan.
 ---
 
 1. `src/components/<Ad>/` klasörü aç: `<Ad>.tsx`, `<Ad>.test.tsx`, `index.ts`.

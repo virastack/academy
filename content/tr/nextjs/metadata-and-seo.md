@@ -21,14 +21,14 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://shop.example.com"),
-  title: { default: "Mağaza", template: "%s | Mağaza" },
-  description: "Next.js ile kurulmuş küçük bir ürün kataloğu.",
+  title: { default: "Store", template: "%s | Store" },
+  description: "A small product catalogue built with Next.js.",
 };
 ```
 
 ```tsx
 // app/products/page.tsx
-export const metadata: Metadata = { title: "Ürünler" }; // → "Ürünler | Mağaza"
+export const metadata: Metadata = { title: "Products" }; // → "Products | Store"
 ```
 
 - `title.template` alt segmentlerdeki başlığa ek yapar. Template kullanıyorsanız `default` zorunludur.[^5]
@@ -118,7 +118,7 @@ export default async function Image({ params }: { params: Promise<{ slug: string
 
   return new ImageResponse(
     <div style={{ display: "flex", width: "100%", height: "100%", alignItems: "center", justifyContent: "center", fontSize: 96, background: "white" }}>
-      {product?.name ?? "Mağaza"}
+      {product?.name ?? "Store"}
     </div>,
     size,
   );

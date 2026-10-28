@@ -11,14 +11,14 @@ export async function addToCart(
 ): Promise<AddToCartState> {
   const slug = String(formData.get("slug"));
   const product = await getProduct(slug);
-  if (!product) return { message: "Ürün bulunamadı." };
+  if (!product) return { message: "Product not found." };
 
   const cart = await getCart();
   const quantity = (cart[slug] ?? 0) + 1;
-  if (quantity > (await getStock(slug))) return { message: "Stokta yeterli ürün yok." };
+  if (quantity > (await getStock(slug))) return { message: "Not enough stock." };
 
   await saveCart({ ...cart, [slug]: quantity });
-  return { message: `${product.name} sepete eklendi.` };
+  return { message: `${product.name} added to cart.` };
 }
 
 export async function removeFromCart(slug: string) {

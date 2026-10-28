@@ -77,15 +77,15 @@ export function ApplicationForm() {
   if (applicationId) {
     return (
       <div role="status" className="rounded border border-green-700 p-4">
-        <h2 className="text-xl font-semibold">Başvurunuz alındı</h2>
-        <p>Başvuru numaranız: {applicationId}</p>
+        <h2 className="text-xl font-semibold">Your application was received</h2>
+        <p>Your application number: {applicationId}</p>
       </div>
     );
   }
 
   return (
     <FormProvider {...form}>
-      <ol className="mb-6 flex gap-4" aria-label="Adımlar">
+      <ol className="mb-6 flex gap-4" aria-label="Steps">
         {steps.map((s, index) => (
           <li
             key={s.title}
@@ -118,12 +118,10 @@ export function ApplicationForm() {
           )}
           {isLastStep ? (
             <button type="submit" disabled={isPending} className="rounded bg-black px-4 py-2 text-white">
-              {isPending ? "Gönderiliyor..." : "Başvuruyu gönder"}
+              {isPending ? "Submitting..." : "Submit the application"}
             </button>
           ) : (
-            <button type="button" onClick={goNext} className="rounded bg-black px-4 py-2 text-white">
-              İleri
-            </button>
+            <button type="button" onClick={goNext} className="rounded bg-black px-4 py-2 text-white">Next</button>
           )}
         </div>
       </form>

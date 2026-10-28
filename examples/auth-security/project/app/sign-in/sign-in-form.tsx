@@ -16,7 +16,7 @@ export function SignInForm() {
     });
 
     if (error) {
-      setError("E-posta ya da parola hatalı.");
+      setError("Email or password is incorrect.");
       return;
     }
 
@@ -34,7 +34,7 @@ export function SignInForm() {
         <input id="password" name="password" type="password" autoComplete="current-password" required />
       </p>
       {error && <p role="alert">{error}</p>}
-      <button type="submit">Giriş yap</button>
+      <button type="submit">Sign in</button>
     </form>
   );
 }

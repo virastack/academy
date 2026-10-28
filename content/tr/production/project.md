@@ -76,7 +76,7 @@ export function getEnv(): Env {
     const problems = result.error.issues
       .map((issue) => `- ${issue.path.join(".")}: ${issue.message}`)
       .join("\n");
-    throw new Error(`Geçersiz ortam değişkenleri:\n${problems}`);
+    throw new Error(`Invalid environment variables:\n${problems}`);
   }
 
   cached = result.data;
@@ -145,7 +145,7 @@ try {
 }
 
 const { logger } = await import("./lib/logger");
-logger.info({ event: "server_started" }, "Sunucu başladı");
+logger.info({ event: "server_started" }, "Server started");
 ```
 
 Aynı dosyada `onRequestError`, sunucudaki her hatayı `digest` ile birlikte loglar:[^5]
@@ -179,7 +179,7 @@ export const onRequestError: Instrumentation.onRequestError = async (error, requ
       routePath: context.routePath,
       routeType: context.routeType,
     },
-    "İstek işlenirken hata oluştu",
+    "An error occurred while handling the request",
   );
 };
 ```
@@ -207,8 +207,8 @@ export default function Error({ error, retry }: { error: unknown; retry: () => v
   return (
     <main className="mx-auto max-w-3xl px-4 py-10">
       <div role="alert" className="space-y-3 rounded border border-red-300 bg-red-50 p-4">
-        <h1 className="text-xl font-semibold">Bir şeyler ters gitti</h1>
-        <p>Sayfa yüklenirken beklenmeyen bir hata oluştu. Tekrar deneyebilirsiniz.</p>
+        <h1 className="text-xl font-semibold">Something went wrong</h1>
+        <p>An unexpected error occurred while loading the page. You can try again.</p>
         {digest && (
           <p className="text-sm">
             Destek ekibine iletmek için hata kodu: <code>{digest}</code>
@@ -237,10 +237,10 @@ export default function GlobalError({ retry }: { error: unknown; retry: () => vo
   return (
     <html lang="tr">
       <body style={{ fontFamily: "system-ui, sans-serif", padding: "2.5rem 1rem" }}>
-        <title>Hata | Sipariş paneli</title>
+        <title>Error | Order panel</title>
         <main role="alert" style={{ maxWidth: "48rem", margin: "0 auto" }}>
-          <h1>Uygulama yüklenemedi</h1>
-          <p>Beklenmeyen bir hata oluştu. Sayfayı yeniden yüklemeyi deneyin.</p>
+          <h1>The app could not be loaded</h1>
+          <p>An unexpected error occurred. Try reloading the page.</p>
           <button type="button" onClick={() => retry()}>
             Tekrar dene
           </button>
@@ -264,7 +264,7 @@ import { getEnv } from "@/lib/env";
 // Production'da 404 döner.
 export default function DebugPage() {
   return (
-    <Suspense fallback={<p>Yükleniyor...</p>}>
+    <Suspense fallback={<p>Loading...</p>}>
       <FailingSection />
     </Suspense>
   );
@@ -273,7 +273,7 @@ export default function DebugPage() {
 async function FailingSection(): Promise<never> {
   await connection();
   if (getEnv().APP_ENV === "production") notFound();
-  throw new Error("Test hatası: hata izleme hattını denemek için bilerek fırlatıldı.");
+  throw new Error("Test error: thrown on purpose to exercise the error-tracking pipeline.");
 }
 ```
 
@@ -305,11 +305,11 @@ export async function login(_previous: LoginState, formData: FormData): Promise<
   const user = findUser(email, password);
   if (!user) {
     // Parolayı asla loglamayın. E-posta, tekrar eden denemeleri fark etmek için yeterlidir.
-    logger.warn({ event: "login_failed", email }, "Giriş başarısız");
-    return { error: "E-posta veya parola hatalı.", email };
+    logger.warn({ event: "login_failed", email }, "Sign-in failed");
+    return { error: "Email or password is incorrect.", email };
   }
 
-  logger.info({ event: "login_succeeded", userId: user.id }, "Giriş başarılı");
+  logger.info({ event: "login_succeeded", userId: user.id }, "Sign-in succeeded");
   (await cookies()).set(SESSION_COOKIE, createSession(user), {
     httpOnly: true,
     sameSite: "lax",
@@ -388,11 +388,11 @@ type Entities = { user?: { id: string } };
 
 export const orderSummaryFlag = flag<boolean, Entities>({
   key: "order-summary",
-  description: "Sipariş listesinin üstünde adet ve toplam tutar özeti",
+  description: "A count and total-amount summary above the order list",
   defaultValue: false,
   options: [
-    { value: false, label: "Kapalı" },
-    { value: true, label: "Açık" },
+    { value: false, label: "Off" },
+    { value: true, label: "On" },
   ],
   identify({ cookies }) {
     const session = readSession(cookies.get(SESSION_COOKIE)?.value);
@@ -415,12 +415,12 @@ import { OrdersPanel } from "@/components/orders-panel";
 import { orderSummaryFlag } from "@/lib/flags";
 import { getCurrentUser } from "@/lib/session";
 
-const roleLabels = { admin: "Yönetici", viewer: "İzleyici" } as const;
+const roleLabels = { admin: "Admin", viewer: "Viewer" } as const;
 
 export default function OrdersPage() {
   return (
     <main className="mx-auto max-w-3xl space-y-6 px-4 py-10">
-      <h1 className="text-2xl font-semibold">Siparişler</h1>
+      <h1 className="text-2xl font-semibold">Orders</h1>
       <Suspense fallback={<p>Oturum kontrol ediliyor...</p>}>
         <OrdersSection />
       </Suspense>
@@ -470,7 +470,7 @@ function OrdersSummary({ orders }: { orders: Order[] }) {
 
   return (
     <p className="text-sm text-gray-700">
-      {orders.length} sipariş, toplam {currency.format(total)}
+      {orders.length} orders, {currency.format(total)} in total
     </p>
   );
 }
@@ -598,7 +598,7 @@ Yayına hazırlığı doğrulayan testler: sağlık uç noktası, güvenlik baş
 // tests/production.spec.ts
 import { expect, test } from "./fixtures";
 
-test("sağlık uç noktası ortamı ve sürümü döner", async ({ request }) => {
+test("the health endpoint returns the environment and version", async ({ request }) => {
   const response = await request.get("/api/health");
 
   expect(response.status()).toBe(200);
@@ -606,7 +606,7 @@ test("sağlık uç noktası ortamı ve sürümü döner", async ({ request }) =>
   expect(await response.json()).toEqual({ status: "ok", env: "local", version: "test" });
 });
 
-test("güvenlik başlıkları gönderilir, X-Powered-By gönderilmez", async ({ request }) => {
+test("security headers are sent and X-Powered-By is not", async ({ request }) => {
   const response = await request.get("/login");
   const headers = response.headers();
 
@@ -616,20 +616,20 @@ test("güvenlik başlıkları gönderilir, X-Powered-By gönderilmez", async ({ 
   expect(headers["x-powered-by"]).toBeUndefined();
 });
 
-test("flag açık olan kullanıcı sipariş özetini görür", async ({ page, ordersPage }) => {
+test("a user with the flag on sees the order summary", async ({ page, ordersPage }) => {
   await ordersPage.goto();
 
-  await expect(page.getByText("6 sipariş, toplam ₺5.422,40")).toBeVisible();
+  await expect(page.getByText("6 orders, ₺5.422,40 in total")).toBeVisible();
 });
 
-test("sunucu hatasında hata sınırı digest gösterir", async ({ page }) => {
+test("on a server error the error boundary shows a digest", async ({ page }) => {
   await page.goto("/debug");
 
   // Next.js'in sayfa geçişi duyurucusu da role="alert" taşır; metinle daraltıyoruz.
-  const alert = page.getByRole("alert").filter({ hasText: "Bir şeyler ters gitti" });
+  const alert = page.getByRole("alert").filter({ hasText: "Something went wrong" });
   await expect(alert).toBeVisible();
   await expect(alert).toContainText(/hata kodu: \S+/);
-  await expect(alert).not.toContainText("bilerek fırlatıldı");
+  await expect(alert).not.toContainText("thrown on purpose");
 });
 ```
 
@@ -646,23 +646,23 @@ import { isInRollout, rolloutBucket } from "../lib/rollout";
 
 const ids = Array.from({ length: 10_000 }, (_, index) => `user-${index}`);
 
-test("aynı kullanıcı her zaman aynı kovaya düşer", () => {
+test("the same user always lands in the same bucket", () => {
   expect(rolloutBucket("u1", "order-summary")).toBe(rolloutBucket("u1", "order-summary"));
 });
 
-test("yüzde 0 kimseyi, yüzde 100 herkesi içerir", () => {
+test("0 percent includes nobody and 100 percent everybody", () => {
   expect(ids.some((id) => isInRollout(id, "order-summary", 0))).toBe(false);
   expect(ids.every((id) => isInRollout(id, "order-summary", 100))).toBe(true);
 });
 
-test("yüzde 30 kullanıcıların yaklaşık yüzde 30'unu içerir", () => {
+test("30 percent includes roughly 30 percent of users", () => {
   const share = ids.filter((id) => isInRollout(id, "order-summary", 30)).length / ids.length;
 
   expect(share).toBeGreaterThan(0.27);
   expect(share).toBeLessThan(0.33);
 });
 
-test("yüzde artınca önceden dahil olan kimse dışarıda kalmaz", () => {
+test("raising the percentage never drops anyone already included", () => {
   const at10 = ids.filter((id) => isInRollout(id, "order-summary", 10));
 
   expect(at10.every((id) => isInRollout(id, "order-summary", 30))).toBe(true);

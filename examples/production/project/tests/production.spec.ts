@@ -1,6 +1,6 @@
 import { expect, test } from "./fixtures";
 
-test("sağlık uç noktası ortamı ve sürümü döner", async ({ request }) => {
+test("the health endpoint returns the environment and version", async ({ request }) => {
   const response = await request.get("/api/health");
 
   expect(response.status()).toBe(200);
@@ -8,7 +8,7 @@ test("sağlık uç noktası ortamı ve sürümü döner", async ({ request }) =>
   expect(await response.json()).toEqual({ status: "ok", env: "local", version: "test" });
 });
 
-test("güvenlik başlıkları gönderilir, X-Powered-By gönderilmez", async ({ request }) => {
+test("security headers are sent and X-Powered-By is not", async ({ request }) => {
   const response = await request.get("/login");
   const headers = response.headers();
 
@@ -18,18 +18,18 @@ test("güvenlik başlıkları gönderilir, X-Powered-By gönderilmez", async ({ 
   expect(headers["x-powered-by"]).toBeUndefined();
 });
 
-test("flag açık olan kullanıcı sipariş özetini görür", async ({ page, ordersPage }) => {
+test("a user with the flag on sees the order summary", async ({ page, ordersPage }) => {
   await ordersPage.goto();
 
-  await expect(page.getByText("6 sipariş, toplam ₺5.422,40")).toBeVisible();
+  await expect(page.getByText("6 orders, ₺5.422,40 in total")).toBeVisible();
 });
 
-test("sunucu hatasında hata sınırı digest gösterir", async ({ page }) => {
+test("on a server error the error boundary shows a digest", async ({ page }) => {
   await page.goto("/debug");
 
   // Next.js'in sayfa geçişi duyurucusu da role="alert" taşır; metinle daraltıyoruz.
-  const alert = page.getByRole("alert").filter({ hasText: "Bir şeyler ters gitti" });
+  const alert = page.getByRole("alert").filter({ hasText: "Something went wrong" });
   await expect(alert).toBeVisible();
   await expect(alert).toContainText(/hata kodu: \S+/);
-  await expect(alert).not.toContainText("bilerek fırlatıldı");
+  await expect(alert).not.toContainText("thrown on purpose");
 });

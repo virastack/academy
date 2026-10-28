@@ -36,7 +36,7 @@ Projede bir Playwright testi hazır. Ürünleri sepete ekliyor ve başlıktaki �
 // e2e/cart.spec.ts
 await page.getByRole("button", { name: "Mekanik Klavye sepete ekle" }).click();
 await page.getByRole("button", { name: "Kablosuz Mouse sepete ekle" }).click();
-await expect(summary).toHaveText("Sepet: 2 ürün, ₺3.398,00");
+await expect(summary).toHaveText("Cart: 2 items, ₺3.398,00");
 ```
 
 ```command

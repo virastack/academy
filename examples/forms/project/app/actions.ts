@@ -35,7 +35,7 @@ export async function submitApplication(values: unknown): Promise<ApplicationRes
     const { fieldErrors } = z.flattenError(parsed.error);
     return {
       status: "error",
-      message: "Başvuru doğrulanamadı.",
+      message: "The application could not be validated.",
       fieldErrors: Object.fromEntries(
         Object.entries(fieldErrors).map(([field, messages]) => [field, messages?.[0]]),
       ),
@@ -45,8 +45,8 @@ export async function submitApplication(values: unknown): Promise<ApplicationRes
   if (parsed.data.email === "taken@example.com") {
     return {
       status: "error",
-      message: "Bu e-posta ile daha önce başvuru yapılmış.",
-      fieldErrors: { email: "Bu e-posta ile daha önce başvuru yapılmış." },
+      message: "An application with this email already exists.",
+      fieldErrors: { email: "An application with this email already exists." },
     };
   }
 

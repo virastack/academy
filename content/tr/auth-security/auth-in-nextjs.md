@@ -99,7 +99,7 @@ export default function SignInPage() {
     });
 
     if (error) {
-      setError("E-posta ya da parola hatalı.");
+      setError("Email or password is incorrect.");
       return;
     }
 
@@ -110,7 +110,7 @@ export default function SignInPage() {
     <form action={handleSubmit}>
       <input name="email" type="email" autoComplete="username" required />
       <input name="password" type="password" autoComplete="current-password" required />
-      <button type="submit">Giriş yap</button>
+      <button type="submit">Sign in</button>
       {error ? <p role="alert">{error}</p> : null}
     </form>
   );
@@ -172,7 +172,7 @@ async function Welcome() {
     <>
       <h1>Hoş geldin, {user.email}</h1>
       <form action={signOut}>
-        <button type="submit">Çıkış yap</button>
+        <button type="submit">Sign out</button>
       </form>
     </>
   );

@@ -23,11 +23,11 @@ db.exec(`
 const insertProduct = db.prepare(
   "INSERT INTO product (id, name, price, description) VALUES (?, ?, ?, ?)",
 );
-insertProduct.run("keyboard", "Mekanik Klavye", 2499, "<b>Türkçe Q</b> düzen");
-insertProduct.run("mouse", "Kablosuz Mouse", 899, "<i>Sessiz</i> tıklama");
+insertProduct.run("keyboard", "Mekanik Klavye", 2499, "<b>Turkish Q</b> layout");
+insertProduct.run("mouse", "Kablosuz Mouse", 899, "<i>Silent</i> click");
 insertProduct.run(
   "monitor",
-  "27 inç Monitör",
+  "27-inch Monitor",
   7999,
   '<b>4K</b> panel<img src="x" onerror="window.__xss = true">',
 );

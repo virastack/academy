@@ -178,7 +178,7 @@ import { createRoot } from 'react-dom/client'
 const CartWidget = lazy(() => import('cart/CartWidget'))
 
 createRoot(document.getElementById('root')!).render(
-  <Suspense fallback="Yükleniyor...">
+  <Suspense fallback="Loading...">
     <CartWidget count={2} />
   </Suspense>,
 )

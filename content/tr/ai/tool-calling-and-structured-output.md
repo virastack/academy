@@ -28,9 +28,9 @@ import { z } from 'zod';
 
 export const tools = {
   getOrderStatus: tool({
-    description: 'Bir siparişin kargo durumunu döndürür.',
+    description: 'Returns an order's shipping status.',
     inputSchema: z.object({
-      orderId: z.string().describe('Sipariş numarası, örn. TR-1042'),
+      orderId: z.string().describe('The order number, e.g. TR-1042'),
     }),
     execute: async ({ orderId }) => ({
       orderId,
@@ -40,7 +40,7 @@ export const tools = {
   }),
 
   cancelOrder: tool({
-    description: 'Bir siparişi iptal eder. Geri alınamaz.',
+    description: 'Cancels an order. This cannot be undone.',
     inputSchema: z.object({ orderId: z.string() }),
     execute: async ({ orderId }) => {
       // Gerçekte: await orderService.cancel(orderId)
@@ -74,7 +74,7 @@ export async function POST(req: Request) {
 
   const result = streamText({
     model: 'anthropic/claude-sonnet-5.5',
-    instructions: 'Sipariş asistanısın. Sipariş iptali istenirse cancelOrder aracını çağır.',
+    instructions: 'You are an order assistant. If a cancellation is requested, call the cancelOrder tool.',
     messages: await convertToModelMessages(messages),
     tools,
     toolApproval: { cancelOrder: 'user-approval' },
@@ -112,7 +112,7 @@ execute: async ({ orderId }) => {
     return await fetchOrderStatus(orderId);
   } catch (error) {
     console.error('[getOrderStatus]', error); // gerçek hata yalnızca sunucu logunda
-    throw new Error('Sipariş servisine şu an ulaşılamıyor.');
+    throw new Error('The order service cannot be reached right now.');
   }
 },
 ```
@@ -164,11 +164,11 @@ export function MessageParts({
             switch (part.state) {
               case 'input-streaming':
               case 'input-available':
-                return <p key={i}>Sipariş sorgulanıyor…</p>;
+                return <p key={i}>Querying the order…</p>;
               case 'output-available':
                 return <p key={i}>{part.output.orderId}: {part.output.status}</p>;
               case 'output-error':
-                return <p key={i}>Sipariş sorgulanamadı.</p>;
+                return <p key={i}>The order could not be queried.</p>;
               default:
                 return null;
             }
@@ -188,11 +188,11 @@ export function MessageParts({
                   </div>
                 );
               case 'output-available':
-                return <p key={i}>Sipariş iptal edildi.</p>;
+                return <p key={i}>The order was cancelled.</p>;
               case 'output-denied':
-                return <p key={i}>İptal edilmedi.</p>;
+                return <p key={i}>Not cancelled.</p>;
               case 'output-error':
-                return <p key={i}>İptal işlemi başarısız oldu.</p>;
+                return <p key={i}>The cancellation failed.</p>;
               default:
                 return null;
             }
@@ -270,8 +270,8 @@ Kullanıcıdan bir seçim almak istediğinizde aracı `execute` olmadan tanımla
 
 ```ts
 pickSize: tool({
-  description: 'Kullanıcıya beden seçtirir.',
-  inputSchema: z.object({ options: z.array(z.string()).describe('Seçilebilir bedenler') }),
+  description: 'Lets the user pick a size.',
+  inputSchema: z.object({ options: z.array(z.string()).describe('Selectable sizes') }),
   outputSchema: z.string(), // execute yok: addToolOutput'un tipini bu belirler
 }),
 ```
@@ -360,7 +360,7 @@ export async function streamRecipe() {
   const result = streamText({
     model: 'anthropic/claude-sonnet-5.5',
     output: Output.object({ schema: recipeSchema }),
-    prompt: 'Mercimek çorbası tarifi ver.',
+    prompt: 'Give me a lentil soup recipe.',
   });
 
   for await (const partial of result.partialOutputStream) {

@@ -8,8 +8,8 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://shop.example.com"),
-  title: { default: "Mağaza", template: "%s | Mağaza" },
-  description: "Next.js ile kurulmuş küçük bir ürün kataloğu.",
+  title: { default: "Store", template: "%s | Store" },
+  description: "A small product catalogue built with Next.js.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -18,9 +18,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body>
         <header>
           <nav>
-            <Link href="/">Mağaza</Link>
-            <Link href="/products">Ürünler</Link>
-            <Suspense fallback={<span>Sepet</span>}>
+            <Link href="/">Store</Link>
+            <Link href="/products">Products</Link>
+            <Suspense fallback={<span>Cart</span>}>
               <CartLink />
             </Suspense>
           </nav>

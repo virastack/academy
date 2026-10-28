@@ -29,7 +29,7 @@ Tarayıcı ve parola yöneticisi formunuzu ancak doğru işaretlerseniz tanır. 
     required
   />
 
-  <button type="submit">Giriş yap</button>
+  <button type="submit">Sign in</button>
 </form>
 ```
 
@@ -117,7 +117,7 @@ const isValid = await verify(passwordHash, attempt);
 
 Parola kontrol eden her uç noktaya **rate limit** koyun. OWASP başarısız deneme sayacını IP adresine değil hesaba bağlamayı önerir. Hesabı tamamen kilitlemek ise saldırganın kullanıcıyı dışarıda bırakmasına yol açabilir.[^5] [Pilcrow](https://pilcrowonpaper.com/) başlangıç noktası olarak kullanıcı başına dakikada bir denemeyi önerir.[^6]
 
-OWASP, giriş hatasında hesabın var olup olmadığını belli etmeyen tek bir mesaj ister: "E-posta ya da parola hatalı." Aksi halde saldırgan hangi e-postaların kayıtlı olduğunu öğrenir *(user enumeration)*.[^5]
+OWASP, giriş hatasında hesabın var olup olmadığını belli etmeyen tek bir mesaj ister: "Email or password is incorrect." Aksi halde saldırgan hangi e-postaların kayıtlı olduğunu öğrenir *(user enumeration)*.[^5]
 
 ## İki adımlı doğrulama
 

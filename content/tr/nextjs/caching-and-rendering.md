@@ -69,8 +69,8 @@ import { Suspense } from "react";
 export default function Page() {
   return (
     <>
-      <h1>Mağaza</h1>
-      <Suspense fallback={<span>Sepet</span>}>
+      <h1>Store</h1>
+      <Suspense fallback={<span>Cart</span>}>
         <CartCount />
       </Suspense>
     </>

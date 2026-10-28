@@ -13,8 +13,8 @@ export default function Error({ error, retry }: { error: unknown; retry: () => v
   return (
     <main className="mx-auto max-w-3xl px-4 py-10">
       <div role="alert" className="space-y-3 rounded border border-red-300 bg-red-50 p-4">
-        <h1 className="text-xl font-semibold">Bir şeyler ters gitti</h1>
-        <p>Sayfa yüklenirken beklenmeyen bir hata oluştu. Tekrar deneyebilirsiniz.</p>
+        <h1 className="text-xl font-semibold">Something went wrong</h1>
+        <p>An unexpected error occurred while loading the page. You can try again.</p>
         {digest && (
           <p className="text-sm">
             Destek ekibine iletmek için hata kodu: <code>{digest}</code>

@@ -135,14 +135,14 @@ export function isValidTckn(value: string) {
 export const paymentSchema = z.object({
   tckn: z
     .string()
-    .regex(/^\d{11}$/, "T.C. kimlik numarası 11 haneli olmalı.")
-    .refine(isValidTckn, "T.C. kimlik numarası hatalı; numarayı kontrol edin."),
-  card: z.creditCard("Kart numarası hatalı; numarayı kontrol edin."),
+    .regex(/^\d{11}$/, "A Turkish ID number must be 11 digits.")
+    .refine(isValidTckn, "The Turkish ID number is invalid; check the number."),
+  card: z.creditCard("The card number is invalid; check the number."),
   iban: z
     .string()
-    .regex(/^\d{24}$/, "IBAN, TR'den sonra 24 haneli olmalı.")
-    .refine((digits) => z.iban().validate(`TR${digits}`), "IBAN hatalı; numarayı kontrol edin."),
-  phone: z.string().regex(/^5\d{9}$/, "Telefon numarası 5 ile başlayan 10 haneli olmalı."),
+    .regex(/^\d{24}$/, "An IBAN must have 24 digits after TR.")
+    .refine((digits) => z.iban().validate(`TR${digits}`), "The IBAN is invalid; check the number."),
+  phone: z.string().regex(/^5\d{9}$/, "A phone number must be 10 digits starting with 5."),
 });
 
 export type PaymentValues = z.infer<typeof paymentSchema>;

@@ -23,7 +23,7 @@ App Shell bütün linklerde ortak olduğu için tek bir URL'ye ait veri taşıya
 // app/products/[slug]/page.tsx
 export default function ProductPage({ params }: PageProps<"/products/[slug]">) {
   return (
-    <Suspense fallback={<p>Ürün yükleniyor...</p>}>
+    <Suspense fallback={<p>Loading product...</p>}>
       <ProductDetails params={params} />
     </Suspense>
   );
@@ -48,7 +48,7 @@ async function ProductDetails({ params }: Pick<PageProps<"/products/[slug]">, "p
 </Link>
 ```
 
-Bu rehberin proje uygulamasında `prefetch` olmadan ürün sayfasına geçişte yalnızca *"Ürün yükleniyor..."* göründü. `prefetch` ve `"use cache"`'li `getProduct` ile ürün adı tıklama anında geldi. Bunu koruyan `instant()` testi [Ürün kataloğu](/academy/nextjs/project) projesinde.
+Bu rehberin proje uygulamasında `prefetch` olmadan ürün sayfasına geçişte yalnızca *"Loading product..."* göründü. `prefetch` ve `"use cache"`'li `getProduct` ile ürün adı tıklama anında geldi. Bunu koruyan `instant()` testi [Ürün kataloğu](/academy/nextjs/project) projesinde.
 
 ## Anında navigasyon
 

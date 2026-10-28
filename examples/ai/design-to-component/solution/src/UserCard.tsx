@@ -33,7 +33,7 @@ export default function UserCard({ profile }: { profile: Profile }) {
         <img src={profile.cover} alt="" className="h-48 w-full rounded-3xl object-cover" />
         <img
           src={profile.avatar}
-          alt={`${profile.name} profil fotoğrafı`}
+          alt={`${profile.name} profile photo`}
           className="absolute -bottom-10 left-4 size-20 rounded-full border-4 border-card object-cover"
         />
       </div>

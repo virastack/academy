@@ -47,7 +47,7 @@ Kullanıcı sepette kupon kodu girip indirim alabilsin.
 
 ## Acceptance criteria
 - `SALE10` girildiğinde ara toplamdan %10 düşülür.
-- Geçersiz kodda input altında "Kupon geçersiz" yazar, toplam değişmez.
+- Geçersiz kodda input altında "Invalid coupon" yazar, toplam değişmez.
 - Aynı anda tek kupon uygulanır; yenisi eskisinin yerine geçer.
 
 ## Files

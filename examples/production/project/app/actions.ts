@@ -18,11 +18,11 @@ export async function login(_previous: LoginState, formData: FormData): Promise<
   const user = findUser(email, password);
   if (!user) {
     // Parolayı asla loglamayın. E-posta, tekrar eden denemeleri fark etmek için yeterlidir.
-    logger.warn({ event: "login_failed", email }, "Giriş başarısız");
-    return { error: "E-posta veya parola hatalı.", email };
+    logger.warn({ event: "login_failed", email }, "Sign-in failed");
+    return { error: "Email or password is incorrect.", email };
   }
 
-  logger.info({ event: "login_succeeded", userId: user.id }, "Giriş başarılı");
+  logger.info({ event: "login_succeeded", userId: user.id }, "Sign-in succeeded");
   (await cookies()).set(SESSION_COOKIE, createSession(user), {
     httpOnly: true,
     sameSite: "lax",

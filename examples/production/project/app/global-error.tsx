@@ -6,10 +6,10 @@ export default function GlobalError({ retry }: { error: unknown; retry: () => vo
   return (
     <html lang="tr">
       <body style={{ fontFamily: "system-ui, sans-serif", padding: "2.5rem 1rem" }}>
-        <title>Hata | Sipariş paneli</title>
+        <title>Error | Order panel</title>
         <main role="alert" style={{ maxWidth: "48rem", margin: "0 auto" }}>
-          <h1>Uygulama yüklenemedi</h1>
-          <p>Beklenmeyen bir hata oluştu. Sayfayı yeniden yüklemeyi deneyin.</p>
+          <h1>The app could not be loaded</h1>
+          <p>An unexpected error occurred. Try reloading the page.</p>
           <button type="button" onClick={() => retry()}>
             Tekrar dene
           </button>

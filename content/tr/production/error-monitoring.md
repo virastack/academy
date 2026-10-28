@@ -42,8 +42,8 @@ export default function Error({ error, retry }: { error: unknown; retry: () => v
   return (
     <main>
       <div role="alert">
-        <h1>Bir şeyler ters gitti</h1>
-        <p>Sayfa yüklenirken beklenmeyen bir hata oluştu. Tekrar deneyebilirsiniz.</p>
+        <h1>Something went wrong</h1>
+        <p>An unexpected error occurred while loading the page. You can try again.</p>
         {digest && (
           <p>
             Destek ekibine iletmek için hata kodu: <code>{digest}</code>
@@ -91,7 +91,7 @@ export const onRequestError: Instrumentation.onRequestError = async (error, requ
       routePath: context.routePath,
       routeType: context.routeType,
     },
-    "İstek işlenirken hata oluştu",
+    "An error occurred while handling the request",
   );
 };
 ```
@@ -107,7 +107,7 @@ Fonksiyon üç argüman alır:[^2]
 Bu rehberin projesinde `/debug` sayfası bilerek hata fırlatır. Tarayıcıda görünen hata kodu ile sunucu logundaki `digest` aynıdır:
 
 ```json
-{"level":50,"env":"local","version":"abc123","event":"request_error","digest":"403643587","method":"GET","path":"/debug","routePath":"/debug","routeType":"render","msg":"İstek işlenirken hata oluştu"}
+{"level":50,"env":"local","version":"abc123","event":"request_error","digest":"403643587","method":"GET","path":"/debug","routePath":"/debug","routeType":"render","msg":"An error occurred while handling the request"}
 ```
 
 > [!CAUTION]
@@ -237,7 +237,7 @@ import { getEnv } from "@/lib/env";
 
 export default function DebugPage() {
   return (
-    <Suspense fallback={<p>Yükleniyor...</p>}>
+    <Suspense fallback={<p>Loading...</p>}>
       <FailingSection />
     </Suspense>
   );
@@ -246,7 +246,7 @@ export default function DebugPage() {
 async function FailingSection(): Promise<never> {
   await connection();
   if (getEnv().APP_ENV === "production") notFound();
-  throw new Error("Test hatası: hata izleme hattını denemek için bilerek fırlatıldı.");
+  throw new Error("Test error: thrown on purpose to exercise the error-tracking pipeline.");
 }
 ```
 

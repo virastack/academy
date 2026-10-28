@@ -16,18 +16,18 @@ export function StoreStep({ taxNumber }: { taxNumber: MaskInputProps }) {
 
   return (
     <>
-      <Field name="storeName" label="Mağaza adı">
+      <Field name="storeName" label="Store name">
         {(a11y) => <input {...a11y} {...register("storeName")} className={inputClass} />}
       </Field>
 
-      <Field name="taxNumber" label="Vergi numarası" description="10 haneli vergi kimlik numarası">
+      <Field name="taxNumber" label="Tax number" description="10-digit tax identification number">
         {(a11y) => <input {...taxNumber} {...a11y} className={inputClass} />}
       </Field>
 
       <Field name="category" label="Kategori">
         {(a11y) => (
           <select {...a11y} {...register("category")} className={inputClass}>
-            <option value="">Seçin</option>
+            <option value="">Choose</option>
             {categories.map((c) => (
               <option key={c.value} value={c.value}>
                 {c.label}
@@ -38,15 +38,15 @@ export function StoreStep({ taxNumber }: { taxNumber: MaskInputProps }) {
       </Field>
 
       <fieldset className="flex flex-col gap-3">
-        <legend className="font-medium">Örnek ürünler</legend>
+        <legend className="font-medium">Sample products</legend>
         {fields.map((field, index) => (
           <div key={field.id} className="flex items-start gap-2">
-            <Field name={`products.${index}.name`} label={`Ürün ${index + 1} adı`}>
+            <Field name={`products.${index}.name`} label={`Product ${index + 1} name`}>
               {(a11y) => (
                 <input {...a11y} {...register(`products.${index}.name`)} className={inputClass} />
               )}
             </Field>
-            <Field name={`products.${index}.price`} label={`Ürün ${index + 1} fiyatı (₺)`}>
+            <Field name={`products.${index}.price`} label={`Product ${index + 1} price (₺)`}>
               {(a11y) => (
                 <input
                   {...a11y}
@@ -60,11 +60,9 @@ export function StoreStep({ taxNumber }: { taxNumber: MaskInputProps }) {
               type="button"
               onClick={() => remove(index)}
               disabled={fields.length === 1}
-              aria-label={`Ürün ${index + 1} kaldır`}
+              aria-label={`Remove product ${index + 1}`}
               className="mt-7 rounded border px-2 py-2 disabled:opacity-40"
-            >
-              Kaldır
-            </button>
+            >Remove</button>
           </div>
         ))}
         <button
@@ -72,9 +70,7 @@ export function StoreStep({ taxNumber }: { taxNumber: MaskInputProps }) {
           onClick={() => append({ name: "", price: "" })}
           disabled={fields.length >= 3}
           className="self-start rounded border px-3 py-2 disabled:opacity-40"
-        >
-          Ürün ekle
-        </button>
+        >Add product</button>
         {listError && (
           <p role="alert" className="text-sm text-red-700">
             {listError}

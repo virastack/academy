@@ -34,16 +34,16 @@ export function createChatHandler({ model, limiter, onUsage }: ChatHandlerOption
     if (limiter) {
       const result = limiter.check(userId);
       if (!result.success) {
-        return new Response('Çok fazla istek', { status: 429, headers: { 'retry-after': String(result.retryAfter) } });
+        return new Response('Too many requests', { status: 429, headers: { 'retry-after': String(result.retryAfter) } });
       }
     }
 
     const body = (await req.json().catch(() => null)) as { messages?: UIMessage[] } | null;
-    if (!body || !Array.isArray(body.messages)) return new Response('Geçersiz istek', { status: 400 });
+    if (!body || !Array.isArray(body.messages)) return new Response('Invalid request', { status: 400 });
 
     const { messages } = body;
     const tooLong = messages.some((m) => m.parts.some((p) => p.type === 'text' && p.text.length > MAX_TEXT_LENGTH));
-    if (messages.length > MAX_MESSAGES || tooLong) return new Response('İstek çok büyük', { status: 413 });
+    if (messages.length > MAX_MESSAGES || tooLong) return new Response('Request too large', { status: 413 });
 
     const result = streamText({
       model,

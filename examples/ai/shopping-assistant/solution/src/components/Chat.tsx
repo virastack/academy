@@ -56,9 +56,9 @@ export default function Chat() {
                         </div>
                       );
                     case 'output-error':
-                      return <p key={i}>Arama yapılamadı.</p>;
+                      return <p key={i}>The search could not be run.</p>;
                     default:
-                      return <p key={i}>Aranıyor…</p>;
+                      return <p key={i}>Searching…</p>;
                   }
 
                 case 'tool-addToCart':
@@ -81,14 +81,12 @@ export default function Chat() {
                               type="button"
                               onClick={() => addToolApprovalResponse({ id: part.approval.id, approved: false })}
                               className="h-11 rounded-lg border border-line px-4 text-sm font-semibold text-ink"
-                            >
-                              Vazgeç
-                            </button>
+                            >Dismiss</button>
                           </div>
                         </div>
                       );
                     case 'output-error':
-                      return <p key={i}>Ürün sepete eklenemedi.</p>;
+                      return <p key={i}>The product could not be added to the cart.</p>;
                     default:
                       return null;
                   }
@@ -116,23 +114,19 @@ export default function Chat() {
           setInput('');
         }}
       >
-        <label htmlFor="msg" className="sr-only">
-          Mesajınız
-        </label>
+        <label htmlFor="msg" className="sr-only">Your message</label>
         <input
           id="msg"
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          placeholder="Örn. 3000 TL altı koşu ayakkabısı"
+          placeholder="e.g. running shoes under 3000 TL"
           className="h-11 flex-1 rounded-lg border border-line bg-card px-3 text-ink"
         />
         <button
           type="submit"
           disabled={status !== 'ready'}
           className="h-11 rounded-lg bg-brand px-4 text-sm font-semibold text-brand-ink disabled:opacity-60"
-        >
-          Gönder
-        </button>
+        >Send</button>
       </form>
     </div>
   );

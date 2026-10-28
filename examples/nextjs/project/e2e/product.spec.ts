@@ -1,24 +1,24 @@
 import { instant } from "@next/playwright";
 import { expect, test } from "@playwright/test";
 
-test("ürün sayfası anında açılır, stok sonra gelir", async ({ page }) => {
+test("the product page opens instantly and stock arrives later", async ({ page }) => {
   await page.goto("/products");
 
   await instant(page, async () => {
-    await page.getByRole("link", { name: "Kanvas Ayakkabı" }).click();
+    await page.getByRole("link", { name: "Canvas Shoe" }).click();
     await page.waitForURL((url) => url.pathname === "/products/canvas-sneaker");
 
-    await expect(page.getByRole("heading", { name: "Kanvas Ayakkabı" })).toBeVisible();
+    await expect(page.getByRole("heading", { name: "Canvas Shoe" })).toBeVisible();
     await expect(page.getByText("Stok kontrol ediliyor...")).toBeVisible();
   });
 
-  await expect(page.getByText("Stokta 12 adet")).toBeVisible();
+  await expect(page.getByText("12 left in stock")).toBeVisible();
 });
 
-test("sepete ekleme sepet sayısını günceller", async ({ page }) => {
+test("adding to cart updates the cart count", async ({ page }) => {
   await page.goto("/products/canvas-sneaker");
-  await page.getByRole("button", { name: "Sepete ekle" }).click();
+  await page.getByRole("button", { name: "Add to cart" }).click();
 
-  await expect(page.getByRole("status")).toHaveText("Kanvas Ayakkabı sepete eklendi.");
-  await expect(page.getByRole("link", { name: "Sepet (1)" })).toBeVisible();
+  await expect(page.getByRole("status")).toHaveText("Canvas Shoe added to cart.");
+  await expect(page.getByRole("link", { name: "Cart (1)" })).toBeVisible();
 });

@@ -28,7 +28,7 @@ export function ContactStep({ phone }: { phone: MaskInputProps }) {
           />
         )}
       </Field>
-      <Field name="phone" label="Cep telefonu" description="Örnek: (532) 123 45 67">
+      <Field name="phone" label="Cep telefonu" description="Example: (532) 123 45 67">
         {(a11y) => <input {...phone} {...a11y} autoComplete="tel-national" className={inputClass} />}
       </Field>
     </>

@@ -24,8 +24,8 @@ En sade yol React'in kendi form desteğidir. Action önceki durumu ve `FormData`
 import { z } from "zod";
 
 const subscribeSchema = z.object({
-  name: z.string().trim().min(2, "Adınız en az 2 karakter olmalı."),
-  email: z.email("E-posta adresini ad@ornek.com biçiminde girin."),
+  name: z.string().trim().min(2, "Your name must be at least 2 characters."),
+  email: z.email("Enter the email address as name@example.com."),
 });
 
 export type SubscribeState = {
@@ -85,7 +85,7 @@ export function SubscribeForm() {
 
       {/* name alanı aynı kalıpla */}
 
-      <button disabled={isPending}>{isPending ? "Gönderiliyor..." : "Abone ol"}</button>
+      <button disabled={isPending}>{isPending ? "Submitting..." : "Abone ol"}</button>
       <p aria-live="polite">{state.message}</p>
     </form>
   );
@@ -196,7 +196,7 @@ React Hook Form'un beta durumdaki `Form` component'i de `action` prop'una Server
 ```ts
 export async function submitApplication(values: unknown): Promise<ApplicationResult> {
   const session = await auth();
-  if (!session) return { status: "error", message: "Oturum açın.", fieldErrors: {} };
+  if (!session) return { status: "error", message: "Sign in.", fieldErrors: {} };
 
   const parsed = applicationSchema.safeParse(values);
   if (!parsed.success) {
@@ -213,7 +213,7 @@ export async function submitApplication(values: unknown): Promise<ApplicationRes
 
 ## Hata hangi adımda?
 
-Çok adımlı bir formda sunucu, ilk adımdaki bir alan için hata döndürebilir *(ör. "Bu e-posta ile daha önce başvuru yapılmış.")*. Kullanıcı son adımdadır ve hatayı görmez. Hatanın düştüğü en erken adıma dönün:
+Çok adımlı bir formda sunucu, ilk adımdaki bir alan için hata döndürebilir *(ör. "An application with this email already exists.")*. Kullanıcı son adımdadır ve hatayı görmez. Hatanın düştüğü en erken adıma dönün:
 
 ```ts
 const fields = Object.keys(result.fieldErrors) as ApplicationField[];

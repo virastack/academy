@@ -148,7 +148,7 @@ export async function setRoleAction(formData: FormData) {
   const { id, role } = roleSchema.parse(Object.fromEntries(formData));
 
   if (id === currentUser.id) {
-    throw new Error("Kendi rolünüzü değiştiremezsiniz.");
+    throw new Error("You cannot change your own role.");
   }
 
   setRole(id, role);

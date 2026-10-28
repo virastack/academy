@@ -57,7 +57,7 @@ export function toolPart(chat: Chat<any>, name: string) {
 export async function waitFor(check: () => boolean, ms = 3000) {
   const start = Date.now();
   while (!check()) {
-    if (Date.now() - start > ms) throw new Error('waitFor zaman aşımı');
+    if (Date.now() - start > ms) throw new Error('waitFor timeout');
     await new Promise((r) => setTimeout(r, 20));
   }
 }

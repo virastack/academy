@@ -16,7 +16,7 @@ async function fetchOrders(status: StatusFilter): Promise<Order[]> {
 async function cancelOrder(id: string): Promise<Order> {
   const response = await fetch(`/api/orders/${id}/cancel`, { method: "POST" });
   const data: { order?: Order; error?: string } = await response.json();
-  if (!response.ok || !data.order) throw new Error(data.error ?? "Sipariş iptal edilemedi.");
+  if (!response.ok || !data.order) throw new Error(data.error ?? "The order could not be cancelled.");
   return data.order;
 }
 
@@ -47,9 +47,7 @@ export function OrdersPanel({ canCancel, showSummary }: OrdersPanelProps) {
   return (
     <section className="space-y-4">
       <div className="flex items-center gap-2">
-        <label htmlFor="status" className="text-sm font-medium">
-          Durum
-        </label>
+        <label htmlFor="status" className="text-sm font-medium">Status</label>
         <select
           id="status"
           value={status}
@@ -59,7 +57,7 @@ export function OrdersPanel({ canCancel, showSummary }: OrdersPanelProps) {
           }}
           className="rounded border border-gray-400 px-2 py-1"
         >
-          <option value="all">Tümü</option>
+          <option value="all">All</option>
           {Object.entries(statusLabels).map(([value, label]) => (
             <option key={value} value={value}>
               {label}
@@ -73,30 +71,28 @@ export function OrdersPanel({ canCancel, showSummary }: OrdersPanelProps) {
       </p>
 
       {orders.isPending ? (
-        <p>Siparişler yükleniyor...</p>
+        <p>Loading orders...</p>
       ) : orders.isError ? (
         <div role="alert" className="space-y-2 rounded border border-red-300 bg-red-50 p-4">
-          <p>Siparişler yüklenemedi.</p>
+          <p>Orders could not be loaded.</p>
           <button type="button" onClick={() => orders.refetch()} className="underline">
             Tekrar dene
           </button>
         </div>
       ) : orders.data.length === 0 ? (
-        <p>Bu filtrede sipariş yok.</p>
+        <p>No orders in this filter.</p>
       ) : (
         <>
           {showSummary && <OrdersSummary orders={orders.data} />}
           <table className="w-full text-left text-sm">
-            <caption className="sr-only">Sipariş listesi</caption>
+            <caption className="sr-only">Order list</caption>
             <thead>
               <tr className="border-b">
-                <th scope="col" className="py-2">
-                  Sipariş
-                </th>
-                <th scope="col">Müşteri</th>
-                <th scope="col">Tutar</th>
-                <th scope="col">Durum</th>
-                {canCancel && <th scope="col">İşlem</th>}
+                <th scope="col" className="py-2">Order</th>
+                <th scope="col">Customer</th>
+                <th scope="col">Amount</th>
+                <th scope="col">Status</th>
+                {canCancel && <th scope="col">Action</th>}
               </tr>
             </thead>
             <tbody>
@@ -114,9 +110,7 @@ export function OrdersPanel({ canCancel, showSummary }: OrdersPanelProps) {
                           onClick={() => cancel.mutate(order.id)}
                           disabled={cancel.isPending}
                           className="text-red-700 underline disabled:opacity-60"
-                        >
-                          İptal et
-                        </button>
+                        >Cancel</button>
                       )}
                     </td>
                   )}
@@ -135,7 +129,7 @@ function OrdersSummary({ orders }: { orders: Order[] }) {
 
   return (
     <p className="text-sm text-gray-700">
-      {orders.length} sipariş, toplam {currency.format(total)}
+      {orders.length} orders, {currency.format(total)} in total
     </p>
   );
 }

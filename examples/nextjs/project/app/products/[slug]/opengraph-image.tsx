@@ -11,7 +11,7 @@ export default async function Image({ params }: { params: Promise<{ slug: string
 
   return new ImageResponse(
     <div style={{ display: "flex", width: "100%", height: "100%", alignItems: "center", justifyContent: "center", fontSize: 96, background: "white" }}>
-      {product?.name ?? "Mağaza"}
+      {product?.name ?? "Store"}
     </div>,
     size,
   );

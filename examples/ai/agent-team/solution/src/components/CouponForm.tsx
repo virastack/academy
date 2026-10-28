@@ -41,16 +41,12 @@ export function CouponForm({ coupon, onApply, onRemove }: CouponFormProps) {
         </button>
       </div>
       {error && (
-        <p id="coupon-error" role="alert" className="text-sm text-red-700">
-          Kupon geçersiz
-        </p>
+        <p id="coupon-error" role="alert" className="text-sm text-red-700">Invalid coupon</p>
       )}
       {coupon && (
         <p className="flex items-center justify-between text-sm">
           <span>{coupon.code} uygulandı</span>
-          <button type="button" onClick={onRemove} className="underline">
-            Kaldır
-          </button>
+          <button type="button" onClick={onRemove} className="underline">Remove</button>
         </p>
       )}
     </form>

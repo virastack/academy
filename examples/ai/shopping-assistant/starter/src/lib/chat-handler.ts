@@ -13,6 +13,6 @@ export type ChatHandlerOptions = {
 // Kullanıcı kimliği: x-user-id başlığı (yoksa 'anon').
 export function createChatHandler(_options: ChatHandlerOptions) {
   return async function POST(_req: Request): Promise<Response> {
-    return new Response('Henüz yazılmadı', { status: 501 });
+    return new Response('Not written yet', { status: 501 });
   };
 }

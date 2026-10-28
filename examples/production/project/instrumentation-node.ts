@@ -10,4 +10,4 @@ try {
 }
 
 const { logger } = await import("./lib/logger");
-logger.info({ event: "server_started" }, "Sunucu başladı");
+logger.info({ event: "server_started" }, "Server started");

@@ -128,7 +128,7 @@ Tarayıcı HTML'i okuyup bir ağaç yapısına çevirir; buna **DOM** *(Document
 
 ```js
 const heading = document.querySelector("h1");
-heading.textContent = "Yeni başlık";
+heading.textContent = "New title";
 heading.classList.add("active");
 ```
 
@@ -139,7 +139,7 @@ const form = document.querySelector("form");
 
 form.addEventListener("submit", (e) => {
   e.preventDefault(); // sayfanın yeniden yüklenmesini engeller
-  console.log("Form gönderildi");
+  console.log("Form submitted");
 });
 ```
 

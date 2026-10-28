@@ -11,20 +11,20 @@ Bir satıcı başvurusunda "örnek ürünler" listesi düşünün: kullanıcı s
 
 ```ts
 const productSchema = z.object({
-  name: z.string().trim().min(2, "Ürün adı en az 2 karakter olmalı."),
+  name: z.string().trim().min(2, "The product name must be at least 2 characters."),
   price: z
     .string()
     .trim()
     .min(1, "Fiyat girin.")
-    .regex(/^\d+([.,]\d{1,2})?$/, "Fiyatı 249,90 biçiminde girin."),
+    .regex(/^\d+([.,]\d{1,2})?$/, "Enter the price as 249,90."),
 });
 
 const storeSchema = z.object({
-  storeName: z.string().trim().min(2, "Mağaza adı en az 2 karakter olmalı."),
+  storeName: z.string().trim().min(2, "The store name must be at least 2 characters."),
   products: z
     .array(productSchema)
-    .min(1, "En az bir ürün ekleyin.")
-    .max(3, "En fazla 3 ürün ekleyebilirsiniz."),
+    .min(1, "Add at least one product.")
+    .max(3, "You can add at most 3 products."),
 });
 ```
 
@@ -39,7 +39,7 @@ const { fields, append, remove } = useFieldArray({ control, name: "products" });
 
 return (
   <fieldset>
-    <legend>Örnek ürünler</legend>
+    <legend>Sample products</legend>
     {fields.map((field, index) => (
       <div key={field.id}>
         <label htmlFor={`products-${index}-name`}>Ürün {index + 1} adı</label>
@@ -56,7 +56,7 @@ return (
           type="button"
           onClick={() => remove(index)}
           disabled={fields.length === 1}
-          aria-label={`Ürün ${index + 1} kaldır`}
+          aria-label={`Remove product ${index + 1}`}
         >
           Kaldır
         </button>
@@ -80,7 +80,7 @@ Dokümanın kuralları:[^2]
 - **Aynı olayda işlem yığmayın.** Bir tıklamada hem `append` hem `remove` çağırmayın.
 - **Butonların `type="button"`'ı unutulmasın.** Formun içindeki her `<button>` varsayılan olarak gönderir.
 
-`append` yeni satırın ilk alanına odaklanır. Klavye ve ekran okuyucu kullanıcısı için doğrudur; istemezseniz `append(value, { shouldFocus: false })`.[^2] Silme butonundaki `aria-label` her satırın butonunu ayırt eder; yalnızca "Kaldır" yazan beş buton ekran okuyucuda aynı duyulur.
+`append` yeni satırın ilk alanına odaklanır. Klavye ve ekran okuyucu kullanıcısı için doğrudur; istemezseniz `append(value, { shouldFocus: false })`.[^2] Silme butonundaki `aria-label` her satırın butonunu ayırt eder; yalnızca "Remove" yazan beş buton ekran okuyucuda aynı duyulur.
 
 ## Dizinin kendi hatası
 
@@ -167,9 +167,9 @@ React Hook Form dokümanı ayrı sayfalı akışlar için ikinci yolu bir state 
 
 ```ts
 export const steps = [
-  { title: "Mağaza", fields: ["storeName", "taxNumber", "category", "products"] },
-  { title: "İletişim", fields: ["contactName", "email", "phone"] },
-  { title: "Ödeme", fields: ["iban", "acceptTerms"] },
+  { title: "Store", fields: ["storeName", "taxNumber", "category", "products"] },
+  { title: "Contact", fields: ["contactName", "email", "phone"] },
+  { title: "Payment", fields: ["iban", "acceptTerms"] },
 ] as const satisfies { title: string; fields: ApplicationField[] }[];
 ```
 
@@ -193,7 +193,7 @@ async function goNext() {
 **Adım göstergesi.** Mevcut adımı `aria-current="step"` ile işaretleyin ve her adımın başlığını bir `<h2>` yapın. Ekran okuyucu kullanıcısı nerede olduğunu duyar.
 
 ```tsx
-<ol aria-label="Adımlar">
+<ol aria-label="Steps">
   {steps.map((s, index) => (
     <li key={s.title} aria-current={index === step ? "step" : undefined}>
       {index + 1}. {s.title}
@@ -212,8 +212,8 @@ async function goNext() {
 export default function Page() {
   return (
     <main>
-      <h1>Satıcı başvurusu</h1>
-      <Suspense fallback={<p>Form yükleniyor...</p>}>
+      <h1>Seller application</h1>
+      <Suspense fallback={<p>Loading form...</p>}>
         <ApplicationForm />
       </Suspense>
     </main>
@@ -226,7 +226,7 @@ export default function Page() {
 - `key={field.id}`'yi `key={index}` yapın. Üç satıra farklı adlar yazıp ortadakini silin. Ne oluyor?
 - `append({ name: "" })` yazın. TypeScript ne diyor?
 - `StoreStep`'i `FormProvider` olmadan, `register` ve `control`'ü prop geçerek yazın.
-- `goNext`'teki `shouldFocus`'u silip boş formla "İleri"ye basın. Odak nerede?
+- `goNext`'teki `shouldFocus`'u silip boş formla "Next"ye basın. Odak nerede?
 - İkinci adıma geçin, geri dönün. Ürün satırları ve değerleri duruyor mu? `useForm({ shouldUnregister: true })` ile tekrar deneyin.
 
 ## Detaylı öğrenmek için

@@ -8,13 +8,13 @@ import { chatRequest, makeChat, streamText_, streamToolCall, textModel, toolPart
 
 beforeEach(() => resetCarts());
 
-describe('araçlar', () => {
-  it('searchProducts doğru argümanla çalışır ve filtreyi uygular', async () => {
+describe('tools', () => {
+  it('searchProducts runs with the right argument and applies the filter', async () => {
     const model = new MockLanguageModelV4({
-      doStream: [streamToolCall('searchProducts', { query: 'ayakkabı', maxPrice: 3000 }), streamText_('Buldum.')],
+      doStream: [streamToolCall('searchProducts', { query: 'shoes', maxPrice: 3000 }), streamText_('Buldum.')],
     });
     const chat = makeChat(model, 'u1');
-    await chat.sendMessage({ text: '3000 TL altı ayakkabı' });
+    await chat.sendMessage({ text: 'shoes under 3000 TL' });
 
     const part = toolPart(chat, 'searchProducts');
     expect(part.state).toBe('output-available');
@@ -22,16 +22,16 @@ describe('araçlar', () => {
     expect(items.length).toBeGreaterThan(0);
     for (const item of items) {
       expect(item.price).toBeLessThanOrEqual(3000);
-      expect(item.category).toBe('ayakkabı');
+      expect(item.category).toBe('shoes');
     }
   });
 
-  it('searchProducts yalnızca izin verilen alanları döndürür, güvenilmeyen açıklama modele gitmez', async () => {
+  it('searchProducts returns only the allowed fields and the untrusted description never reaches the model', async () => {
     const model = new MockLanguageModelV4({
-      doStream: [streamToolCall('searchProducts', { query: 'koşu' }), streamText_('Buldum.')],
+      doStream: [streamToolCall('searchProducts', { query: 'running' }), streamText_('Buldum.')],
     });
     const chat = makeChat(model, 'u1');
-    await chat.sendMessage({ text: 'koşu ürünleri' });
+    await chat.sendMessage({ text: 'running products' });
 
     const items = toolPart(chat, 'searchProducts').output as Record<string, unknown>[];
     expect(items.some((i) => i.id === 'p-07')).toBe(true); // içinde gizli talimat olan ürün de listede
@@ -42,7 +42,7 @@ describe('araçlar', () => {
     expect(JSON.stringify(model.doStreamCalls[1].prompt)).not.toContain('IGNORE ALL PREVIOUS');
   });
 
-  it('addToCart giriş şeması adedi 1-5 ile sınırlar', async () => {
+  it('the addToCart input schema limits the quantity to 1-5', async () => {
     const model = new MockLanguageModelV4({
       doStream: [streamToolCall('addToCart', { productId: 'p-01', quantity: 50 }), streamText_('x')],
     });
@@ -54,7 +54,7 @@ describe('araçlar', () => {
 });
 
 describe('onay ve yetki', () => {
-  it('addToCart onay olmadan çalışmaz, onaydan sonra sepete ekler', async () => {
+  it('addToCart does not run without approval and adds to the cart after it', async () => {
     const model = new MockLanguageModelV4({
       doStream: [streamToolCall('addToCart', { productId: 'p-01', quantity: 1 }), streamText_('Ekledim.')],
     });
@@ -70,7 +70,7 @@ describe('onay ve yetki', () => {
     expect(getCart('u2')).toEqual([{ productId: 'p-01', quantity: 1 }]);
   });
 
-  it('onay reddedilirse sepet değişmez', async () => {
+  it('the cart is unchanged when approval is refused', async () => {
     const model = new MockLanguageModelV4({
       doStream: [streamToolCall('addToCart', { productId: 'p-01', quantity: 1 }), streamText_('Tamam.')],
     });
@@ -81,18 +81,18 @@ describe('onay ve yetki', () => {
     expect(getCart('u2')).toEqual([]);
   });
 
-  it('model kandırılsa bile kullanıcı onaylamadan sepete ürün eklenmez', async () => {
+  it('even if the model is tricked, nothing enters the cart without the user approving', async () => {
     // Model, ürün açıklamasındaki gizli talimata uymuş gibi davranıyor
     const model = new MockLanguageModelV4({
       doStream: [streamToolCall('addToCart', { productId: 'p-02', quantity: 5 }), streamText_('x')],
     });
     const chat = makeChat(model, 'u3');
-    await chat.sendMessage({ text: 'koşu tayt var mı?' });
+    await chat.sendMessage({ text: 'do you have running tights?' });
     expect(toolPart(chat, 'addToCart').state).toBe('approval-requested');
     expect(getCart('u3')).toEqual([]);
   });
 
-  it('olmayan ürün onaylansa bile sepete girmez', async () => {
+  it('a non-existent product never enters the cart even if approved', async () => {
     const model = new MockLanguageModelV4({
       doStream: [streamToolCall('addToCart', { productId: 'p-99', quantity: 1 }), streamText_('x')],
     });
@@ -102,10 +102,10 @@ describe('onay ve yetki', () => {
     await waitFor(() => toolPart(chat, 'addToCart').state === 'output-error' && chat.status === 'ready');
     expect(getCart('u3')).toEqual([]);
     // Sunucudaki iç hata mesajı modele gitmemeli
-    expect(JSON.stringify(model.doStreamCalls[1].prompt)).not.toContain('Ürün bulunamadı');
+    expect(JSON.stringify(model.doStreamCalls[1].prompt)).not.toContain('Product not found');
   });
 
-  it('sepet kullanıcıya özeldir', async () => {
+  it('the cart is private to the user', async () => {
     const model = new MockLanguageModelV4({
       doStream: [streamToolCall('addToCart', { productId: 'p-01', quantity: 1 }), streamText_('Ekledim.')],
     });
@@ -118,8 +118,8 @@ describe('onay ve yetki', () => {
   });
 });
 
-describe('rate limit ve girdi sınırı', () => {
-  it('kullanıcı başına sınırı aşınca 429 ve retry-after döner', async () => {
+describe('rate limit and input limit', () => {
+  it('exceeding the per-user limit returns 429 and retry-after', async () => {
     const handler = createChatHandler({ model: textModel(), limiter: createRateLimiter({ max: 3, windowMs: 60_000 }) });
     const statuses: number[] = [];
     let last: Response | undefined;
@@ -135,7 +135,7 @@ describe('rate limit ve girdi sınırı', () => {
     expect(other.status).toBe(200);
   });
 
-  it('pencere dolunca sayaç sıfırlanır', () => {
+  it('the counter resets once the window elapses', () => {
     vi.useFakeTimers();
     try {
       const limiter = createRateLimiter({ max: 2, windowMs: 1000 });
@@ -149,7 +149,7 @@ describe('rate limit ve girdi sınırı', () => {
     }
   });
 
-  it('çok uzun geçmiş ve çok uzun mesaj reddedilir, model çağrılmaz', async () => {
+  it('an over-long history and an over-long message are rejected and the model is not called', async () => {
     const model = textModel();
     const handler = createChatHandler({ model });
     const many = Array.from({ length: 51 }, (_, i) => userMessage('selam', `m${i}`));
@@ -160,7 +160,7 @@ describe('rate limit ve girdi sınırı', () => {
 });
 
 describe('maliyet', () => {
-  it('modele giden çağrıda maxOutputTokens sınırı var', async () => {
+  it('the call to the model carries a maxOutputTokens limit', async () => {
     const model = textModel();
     const res = await createChatHandler({ model })(chatRequest('a', [userMessage('selam')]));
     await res.text();
@@ -169,7 +169,7 @@ describe('maliyet', () => {
     expect(limit!).toBeLessThanOrEqual(1024);
   });
 
-  it('estimateCost token kalemlerini fiyatla çarpar', () => {
+  it('estimateCost multiplies the token line items by the price', () => {
     const cost = estimateCost({
       inputTokens: 1000,
       inputTokenDetails: { noCacheTokens: 200, cacheReadTokens: 700, cacheWriteTokens: 100 },
@@ -180,7 +180,7 @@ describe('maliyet', () => {
     expect(cost).toBeCloseTo(0.00372, 8);
   });
 
-  it('her istek bittiğinde kullanım ve maliyet raporlanır', async () => {
+  it('usage and cost are reported when each request finishes', async () => {
     const onUsage = vi.fn();
     const res = await createChatHandler({ model: textModel(), onUsage })(chatRequest('u9', [userMessage('selam')]));
     await res.text();

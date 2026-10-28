@@ -45,7 +45,7 @@ export function ContactForm() {
         type="email"
         {...register("email", {
           required: "E-posta zorunlu.",
-          pattern: { value: /^\S+@\S+\.\S+$/, message: "E-posta adresini ad@ornek.com biçiminde girin." },
+          pattern: { value: /^\S+@\S+\.\S+$/, message: "Enter the email address as name@example.com." },
         })}
       />
       {errors.email && <p>{errors.email.message}</p>}
@@ -57,7 +57,7 @@ export function ContactForm() {
       />
       {errors.message && <p>{errors.message.message}</p>}
 
-      <button disabled={isSubmitting}>{isSubmitting ? "Gönderiliyor..." : "Gönder"}</button>
+      <button disabled={isSubmitting}>{isSubmitting ? "Submitting..." : "Gönder"}</button>
     </form>
   );
 }

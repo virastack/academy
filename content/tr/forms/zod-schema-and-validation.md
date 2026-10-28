@@ -59,8 +59,8 @@ if (signUpSchema.validate(input)) {
 Zod 4'te mesaj, `error` parametresiyle ya da doğrudan metinle verilir:[^6]
 
 ```ts
-z.string().min(2, "Ad en az 2 karakter olmalı.");
-z.string().min(2, { error: "Ad en az 2 karakter olmalı." });
+z.string().min(2, "The name must be at least 2 characters.");
+z.string().min(2, { error: "The name must be at least 2 characters." });
 z.number({ error: "Yaşınızı girin." }); // tip hatası için
 ```
 
@@ -107,7 +107,7 @@ const passwordSchema = z
 ```ts
 const priceSchema = z
   .string()
-  .regex(/^\d+(,\d{1,2})?$/, "Fiyatı 1250,50 biçiminde girin.")
+  .regex(/^\d+(,\d{1,2})?$/, "Enter the price as 1250,50.")
   .transform((value) => Number(value.replace(",", ".")));
 
 type PriceInput = z.input<typeof priceSchema>; // string
@@ -120,7 +120,7 @@ type PriceOutput = z.output<typeof priceSchema>; // number
 const ibanSchema = z
   .string()
   .transform((digits) => `TR${digits}`)
-  .pipe(z.iban("IBAN hatalı; numarayı kontrol edin."));
+  .pipe(z.iban("The IBAN is invalid; check the number."));
 ```
 
 Girdi ve çıktı tipinin ayrılması formlarda önemlidir: form **girdi** tipini tutar, gönderim **çıktı** tipini alır *(bkz. [React Hook Form ile Zod](/academy/forms/react-hook-form-with-zod))*.
@@ -137,7 +137,7 @@ Formdan gelen değer çoğu zaman metindir ve boş alan `""`'dır, `undefined` d
 
 ```ts
 // Boş bırakılabilir URL
-website: z.union([z.url("Web sitesini https://ornek.com biçiminde girin."), z.literal("")]),
+website: z.union([z.url("Enter the website as https://example.com."), z.literal("")]),
 
 // Zorunlu sayı: boş metni önce yakalayın
 age: z.string().min(1, "Yaşınızı girin.").pipe(z.coerce.number<string>().int().min(18)),

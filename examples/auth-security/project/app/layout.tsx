@@ -4,7 +4,7 @@ import { connection } from "next/server";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Mağaza Yönetimi",
+  title: "Store Administration",
 };
 
 export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

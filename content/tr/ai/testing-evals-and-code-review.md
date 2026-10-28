@@ -107,14 +107,14 @@ import { expect, it } from 'vitest';
 import { CartItem } from './cart-item';
 
 it('renders', () => {
-  const { container } = render(<CartItem name="Kulaklık" price={100} stock={3} />);
+  const { container } = render(<CartItem name="Headphones" price={100} stock={3} />);
   expect(container).toBeTruthy();
   expect(container.querySelector('li')).not.toBeNull();
 });
 
 it('increases quantity', () => {
-  render(<CartItem name="Kulaklık" price={100} stock={3} />);
-  fireEvent.click(screen.getByText('Artır'));
+  render(<CartItem name="Headphones" price={100} stock={3} />);
+  fireEvent.click(screen.getByText('Increase'));
   expect(screen.getByText('2 adet')).toBeTruthy();
 });
 ```
@@ -128,29 +128,29 @@ import userEvent from '@testing-library/user-event';
 import { expect, it } from 'vitest';
 import { CartItem } from './cart-item';
 
-it('adet arttıkça tutarı günceller', async () => {
+it('updates the amount as the quantity grows', async () => {
   const user = userEvent.setup();
-  render(<CartItem name="Kulaklık" price={100} stock={3} />);
+  render(<CartItem name="Headphones" price={100} stock={3} />);
 
-  await user.click(screen.getByRole('button', { name: 'Artır' }));
+  await user.click(screen.getByRole('button', { name: 'Increase' }));
 
   expect(screen.getByText('2 adet')).toBeInTheDocument();
   expect(screen.getByText('₺200,00')).toBeInTheDocument();
 });
 
-it('stok bitince Artır butonunu kapatır', async () => {
+it('disables the Increase button when stock runs out', async () => {
   const user = userEvent.setup();
-  render(<CartItem name="Kulaklık" price={100} stock={3} />);
+  render(<CartItem name="Headphones" price={100} stock={3} />);
 
-  await user.click(screen.getByRole('button', { name: 'Artır' }));
-  await user.click(screen.getByRole('button', { name: 'Artır' }));
+  await user.click(screen.getByRole('button', { name: 'Increase' }));
+  await user.click(screen.getByRole('button', { name: 'Increase' }));
 
   expect(screen.getByText('3 adet')).toBeInTheDocument();
-  expect(screen.getByRole('button', { name: 'Artır' })).toBeDisabled();
+  expect(screen.getByRole('button', { name: 'Increase' })).toBeDisabled();
 });
 
-it('1 adetin altına inmez', () => {
-  render(<CartItem name="Kulaklık" price={100} stock={3} />);
+it('never goes below a quantity of 1', () => {
+  render(<CartItem name="Headphones" price={100} stock={3} />);
   expect(screen.getByRole('button', { name: 'Azalt' })).toBeDisabled();
 });
 ```
@@ -192,10 +192,10 @@ Aşağıdaki sayfa `CartItem`'ın düz HTML karşılığı:
   <h1>Sepet</h1>
   <ul>
     <li>
-      <span>Kulaklık</span>
+      <span>Headphones</span>
       <button type="button" id="dec">Azalt</button>
       <span id="qty">1 adet</span>
-      <button type="button" id="inc">Artır</button>
+      <button type="button" id="inc">Increase</button>
       <strong id="total">₺100,00</strong>
     </li>
   </ul>
@@ -239,10 +239,10 @@ Burada demo sayfayı statik sunucuyla açıyoruz. Kendi projenizde `command` ala
 // e2e/cart.spec.ts
 import { expect, test } from '@playwright/test';
 
-test('stok bitince Artır butonu kapanır', async ({ page }) => {
+test('the Increase button is disabled when stock runs out', async ({ page }) => {
   await page.goto('/');
 
-  const inc = page.getByRole('button', { name: 'Artır' });
+  const inc = page.getByRole('button', { name: 'Increase' });
   await inc.click();
   await inc.click();
 
@@ -279,20 +279,20 @@ Demo sayfada `browser_navigate` ve `browser_snapshot` çağrılınca şu çıkt�
     - text: Kulaklık
     - button "Azalt" [disabled] [ref=e5]
     - text: 1 adet
-    - button "Artır" [ref=e6]
+    - button "Increase" [ref=e6]
     - strong [ref=e7]: ₺100,00
 ```
 
-`browser_click` iki kez `Artır` butonuyla çağrılınca anlık görüntü şuna döndü:
+`browser_click` iki kez `Increase` butonuyla çağrılınca anlık görüntü şuna döndü:
 
 ```yaml
     - button "Azalt" [ref=e5]
     - text: 3 adet
-    - button "Artır" [disabled] [ref=e6]
+    - button "Increase" [disabled] [ref=e6]
     - strong [ref=e7]: ₺300,00
 ```
 
-Anlık görüntüdeki rol ve isimler (`button "Artır"`), testte kullandığınız `getByRole('button', { name: 'Artır' })` ile eşleşiyor. `browser_click` ayrıca çalıştırdığı Playwright kodunu da döndürüyor, bu satırı doğrudan teste taşıyabilirsiniz.
+Anlık görüntüdeki rol ve isimler (`button "Increase"`), testte kullandığınız `getByRole('button', { name: 'Artır' })` ile eşleşiyor. `browser_click` ayrıca çalıştırdığı Playwright kodunu da döndürüyor, bu satırı doğrudan teste taşıyabilirsiniz.
 
 [Willison](https://simonwillison.net)'ın önerdiği akış şu: önce değişikliği çalışırken görün, sonra geri alınınca kırılan bir otomatik test yazın.[^7] Playwright MCP ile bu kısalıyor:
 
@@ -356,10 +356,10 @@ Aşağıdaki örnek, kullanıcı cümlesinden en yüksek fiyatı çıkaran bir g
 type Case = { input: string; expected: number | null };
 
 const cases: Case[] = [
-  { input: 'koşu ayakkabısı 1500 TL altı', expected: 1500 },
-  { input: '2.500 TL bütçem var', expected: 2500 },
+  { input: 'running shoes under 1500 TL', expected: 1500 },
+  { input: 'I have a budget of 2,500 TL', expected: 2500 },
   { input: 'en fazla 800 tl', expected: 800 },
-  { input: 'koşu ayakkabısı göster', expected: null }, // fiyat yok
+  { input: 'show me running shoes', expected: null }, // fiyat yok
   { input: '', expected: null },                       // boş girdi
 ];
 
@@ -388,7 +388,7 @@ node eval.ts
 
 ```text
 v1: 4/5
-  ✗ "2.500 TL bütçem var" → 500 (beklenen 2500)
+  ✗ "I have a budget of 2,500 TL" → 500 (beklenen 2500)
 v2: 5/5
 ```
 
@@ -423,7 +423,7 @@ Bunları kısa bir kontrol listesine çevirebilirsiniz:
 İkinci bir göz için modele şunu yazdırabilirsiniz (yeni bir oturumda):
 
 ```text
-Bu diff'i incele. Yanlış varsayım, gereksiz soyutlama, ölü kod ve kullanıcı girdisiyle ilgili güvenlik sorunu ara. Her bulgu için dosya ve satır ver. Sorun yoksa "sorun bulamadım" de.
+Bu diff'i incele. Yanlış varsayım, gereksiz soyutlama, ölü kod ve kullanıcı girdisiyle ilgili güvenlik sorunu ara. Her bulgu için dosya ve satır ver. Sorun yoksa "found no problems" de.
 ```
 
 > [!NOTE]

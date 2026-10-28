@@ -8,7 +8,7 @@ export async function ProductList({
   const { q } = await searchParams;
   const products = await getProducts(typeof q === "string" ? q : "");
 
-  if (products.length === 0) return <p>Sonuç yok.</p>;
+  if (products.length === 0) return <p>No results.</p>;
 
   return (
     <ul>

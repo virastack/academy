@@ -1,8 +1,8 @@
 import { expect, test as setup } from "./fixtures";
 
 const accounts = [
-  { email: "yonetici@example.com", file: "playwright/.auth/admin.json" },
-  { email: "izleyici@example.com", file: "playwright/.auth/viewer.json" },
+  { email: "admin@example.com", file: "playwright/.auth/admin.json" },
+  { email: "viewer@example.com", file: "playwright/.auth/viewer.json" },
 ];
 
 for (const { email, file } of accounts) {

@@ -14,10 +14,10 @@ translationKey: "web-fundamentals/html"
 <html lang="tr">
   <head>
     <meta charset="utf-8" />
-    <title>Sayfa başlığı</title>
+    <title>Page title</title>
   </head>
   <body>
-    <p>Merhaba <strong>dünya</strong>.</p>
+    <p>Merhaba <strong>world</strong>.</p>
     <img src="kedi.jpg" alt="Pencerede uyuyan gri bir kedi" />
   </body>
 </html>
@@ -54,10 +54,10 @@ Bir sayfayı bölmek için kullanılan başlıca etiketler şunlardır:[^4]
   </header>
   <main>
     <article>
-      <h1>Yazının başlığı</h1>
+      <h1>Post title</h1>
       <p>…</p>
     </article>
-    <aside>İlgili yazılar</aside>
+    <aside>Related posts</aside>
   </main>
   <footer>…</footer>
 </body>
@@ -90,8 +90,8 @@ HTML Standard'a göre `<section>` genel amaçlı bir kutu değildir; yalnızca s
 Link bir **başka yere götürür**, buton **bulunduğunuz sayfada bir işlem yapar** (menü açmak, formu göndermek gibi).[^9]
 
 ```html
-<a href="/fiyatlar">Fiyatları gör</a>
-<button type="button">Menüyü aç</button>
+<a href="/fiyatlar">See the prices</a>
+<button type="button">Open the menu</button>
 ```
 
 `<div onclick="…">` ile buton yapmak kolay görünür ama klavyeyle odaklanma, Enter ve Space ile çalışma gibi tarayıcının bedavaya verdiği her şeyi kaybettirir; sonra hepsini elle yazmanız gerekir.[^7][^10]

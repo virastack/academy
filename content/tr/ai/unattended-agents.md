@@ -20,7 +20,7 @@ translationKey: "ai/unattended-agents"
 Bulut oturumu, sizin makineniz yerine sağlayıcının yönettiği bir sanal makinede çalışan ajan oturumudur. Laptopunuzu kapatsanız da çalışmaya devam eder, ona her cihazdan bakabilirsiniz.[^1] [!claudeCode]'da [claude.ai/code](https://claude.ai/code) adresinden, mobil uygulamanın Code sekmesinden ya da terminalden başlatılır:[^1]
 
 ```bash
-claude --cloud "Ürün listesindeki sayfalama hatasını düzelt, testleri çalıştır"
+claude --cloud "Fix the pagination bug in the product list and run the tests"
 ```
 
 Sanal makine repoyu GitHub'dan klonlar, yerel klasörünüzü değil. Yerel commit'leriniz varsa önce push edin.[^1] Her `--cloud` komutu ayrı bir oturum açar, yani birkaç işi aynı anda başlatabilirsiniz.[^1] İş bitince PR açarsınız ya da `claude --teleport` ile oturumu branch'iyle birlikte terminalinize çekip devam edersiniz.[^1]
@@ -85,7 +85,7 @@ Maliyet iki kalemden oluşur: GitHub Actions dakikaları ve token. `claude_args`
 `claude -p` ajanı sohbet açmadan tek bir komutla çalıştırır. Bir script'in, pre-commit hook'unun ya da CI adımının parçası olur:[^4]
 
 ```bash
-claude -p "Değişen dosyalardaki lint hatalarını düzelt" \
+claude -p "Fix the lint errors in the changed files" \
   --allowedTools "Edit,Bash(pnpm lint *)"
 ```
 

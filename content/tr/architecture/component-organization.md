@@ -134,7 +134,7 @@ Yazılı kural ihlal edilir, lint kuralı edilmez. İki sınırı korumanız ger
     'no-restricted-imports': ['error', {
       patterns: [{
         group: ['@/features/*/*'],
-        message: "Özelliğe yalnızca kökünden erişin: '@/features/<ad>'",
+        message: "Access a feature only through its root: '@/features/<name>'",
       }],
     }],
   },

@@ -11,7 +11,7 @@ Küçük bir mağaza kuracaksınız. Uygulama:
 
 - `/products` adresinde ürünleri listeler; arama kutusu aramayı URL'ye yazar.
 - Ürün sayfasında adı ve fiyatı cache'ten anında, stoğu istek anında akıtarak gösterir.
-- **Sepete ekle** stoğu sunucuda kontrol eder, sepeti cookie'ye yazar; üstteki sepet sayısı aynı yanıtta güncellenir.
+- **Add to cart** stoğu sunucuda kontrol eder, sepeti cookie'ye yazar; üstteki sepet sayısı aynı yanıtta güncellenir.
 - `/cart` sepeti listeler ve ürün kaldırır.
 - Bir CMS ürün değişince webhook'u çağırır, ilgili cache yenilenir.
 - Her ürünün başlığı, canonical adresi, paylaşım görseli ve JSON-LD'si olur; site haritası ve `robots.txt` üretilir.
@@ -63,9 +63,9 @@ export type Product = {
 };
 
 const products: Product[] = [
-  { slug: "canvas-sneaker", name: "Kanvas Ayakkabı", price: 1499, description: "Günlük kullanım için hafif kanvas ayakkabı." },
-  { slug: "leather-backpack", name: "Deri Sırt Çantası", price: 2899, description: "Laptop bölmeli, el yapımı deri çanta." },
-  { slug: "wool-beanie", name: "Yün Bere", price: 449, description: "Yumuşak merinos yünden bere." },
+  { slug: "canvas-sneaker", name: "Canvas Shoe", price: 1499, description: "A light canvas shoe for everyday wear." },
+  { slug: "leather-backpack", name: "Leather Backpack", price: 2899, description: "A handmade leather bag with a laptop compartment." },
+  { slug: "wool-beanie", name: "Wool Beanie", price: 449, description: "A beanie in soft merino wool." },
 ];
 
 const stock: Record<string, number> = {
@@ -156,7 +156,7 @@ export async function CartLink() {
   const cart = await getCart();
   const count = Object.values(cart).reduce((sum, quantity) => sum + quantity, 0);
 
-  return <Link href="/cart">Sepet ({count})</Link>;
+  return <Link href="/cart">Cart ({count})</Link>;
 }
 ```
 
@@ -172,8 +172,8 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://shop.example.com"),
-  title: { default: "Mağaza", template: "%s | Mağaza" },
-  description: "Next.js ile kurulmuş küçük bir ürün kataloğu.",
+  title: { default: "Store", template: "%s | Store" },
+  description: "A small product catalogue built with Next.js.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -182,9 +182,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body>
         <header>
           <nav>
-            <Link href="/">Mağaza</Link>
-            <Link href="/products">Ürünler</Link>
-            <Suspense fallback={<span>Sepet</span>}>
+            <Link href="/">Store</Link>
+            <Link href="/products">Products</Link>
+            <Suspense fallback={<span>Cart</span>}>
               <CartLink />
             </Suspense>
           </nav>
@@ -204,8 +204,8 @@ export default function HomePage() {
   return (
     <section>
       <h1>Yeni sezon</h1>
-      <p>Ayakkabı, çanta ve aksesuarlar.</p>
-      <Link href="/products">Ürünleri gör</Link>
+      <p>Shoes, bags and accessories.</p>
+      <Link href="/products">See the products</Link>
     </section>
   );
 }
@@ -225,17 +225,17 @@ import { Suspense } from "react";
 
 import { ProductList } from "@/components/product-list";
 
-export const metadata: Metadata = { title: "Ürünler" };
+export const metadata: Metadata = { title: "Products" };
 
 export default function ProductsPage({ searchParams }: PageProps<"/products">) {
   return (
     <>
-      <h1>Ürünler</h1>
+      <h1>Products</h1>
       <Form action="/products">
-        <input name="q" aria-label="Ürün ara" placeholder="Ara..." />
+        <input name="q" aria-label="Search products" placeholder="Ara..." />
         <button>Ara</button>
       </Form>
-      <Suspense fallback={<p>Ürünler yükleniyor...</p>}>
+      <Suspense fallback={<p>Loading products...</p>}>
         <ProductList searchParams={searchParams} />
       </Suspense>
     </>
@@ -255,7 +255,7 @@ export async function ProductList({
   const { q } = await searchParams;
   const products = await getProducts(typeof q === "string" ? q : "");
 
-  if (products.length === 0) return <p>Sonuç yok.</p>;
+  if (products.length === 0) return <p>No results.</p>;
 
   return (
     <ul>
@@ -280,9 +280,9 @@ Sayfanın üç katmanı var:
 
 | Katman | İçerik | Ne zaman gelir |
 | :-- | :-- | :-- |
-| App Shell | `<article>` ve *"Ürün yükleniyor..."* | Tüm ürün linkleri için ortak, hemen |
+| App Shell | `<article>` ve *"Loading product..."* | Tüm ürün linkleri için ortak, hemen |
 | Cache'li detay | Ad, açıklama, fiyat, JSON-LD | `prefetch` ile tıklamadan önce |
-| İstek anı | Stok ve **Sepete ekle** | Tıkladıktan sonra akarak |
+| İstek anı | Stok ve **Add to cart** | Tıkladıktan sonra akarak |
 
 ```tsx
 // app/products/[slug]/page.tsx
@@ -315,7 +315,7 @@ export async function generateMetadata({
 export default function ProductPage({ params }: PageProps<"/products/[slug]">) {
   return (
     <article>
-      <Suspense fallback={<p>Ürün yükleniyor...</p>}>
+      <Suspense fallback={<p>Loading product...</p>}>
         <ProductDetails params={params} />
       </Suspense>
     </article>
@@ -353,11 +353,11 @@ async function ProductDetails({ params }: Pick<PageProps<"/products/[slug]">, "p
 
 async function Stock({ slug }: { slug: string }) {
   const count = await getStock(slug);
-  if (count === 0) return <p>Tükendi</p>;
+  if (count === 0) return <p>Sold out</p>;
 
   return (
     <>
-      <p>Stokta {count} adet</p>
+      <p>{count} left in stock</p>
       <AddToCartForm slug={slug} />
     </>
   );
@@ -368,7 +368,7 @@ async function Stock({ slug }: { slug: string }) {
 - `generateStaticParams` üç ürünü build'de prerender eder. Ürüne doğrudan gelen ziyaretçi adı statik HTML'de görür.[^7]
 - `generateMetadata` ve `ProductDetails` aynı `getProduct`'ı çağırıyor; `"use cache"` sayesinde veri bir kez okunur.[^8]
 
-## Adım 7: Sepete ekle
+## Adım 7: Add to cart
 
 Server Action stoğu ve ürünü sunucuda doğrular. İstemciden gelen `slug`'a güvenmez.[^9]
 
@@ -387,14 +387,14 @@ export async function addToCart(
 ): Promise<AddToCartState> {
   const slug = String(formData.get("slug"));
   const product = await getProduct(slug);
-  if (!product) return { message: "Ürün bulunamadı." };
+  if (!product) return { message: "Product not found." };
 
   const cart = await getCart();
   const quantity = (cart[slug] ?? 0) + 1;
-  if (quantity > (await getStock(slug))) return { message: "Stokta yeterli ürün yok." };
+  if (quantity > (await getStock(slug))) return { message: "Not enough stock." };
 
   await saveCart({ ...cart, [slug]: quantity });
-  return { message: `${product.name} sepete eklendi.` };
+  return { message: `${product.name} added to cart.` };
 }
 
 export async function removeFromCart(slug: string) {
@@ -418,14 +418,14 @@ export function AddToCartForm({ slug }: { slug: string }) {
   return (
     <form action={formAction}>
       <input type="hidden" name="slug" value={slug} />
-      <button disabled={isPending}>{isPending ? "Ekleniyor..." : "Sepete ekle"}</button>
+      <button disabled={isPending}>{isPending ? "Adding..." : "Add to cart"}</button>
       {state.message && <p role="status">{state.message}</p>}
     </form>
   );
 }
 ```
 
-Header'daki **Sepet (1)** için hiçbir şey yazmadınız. Bir Server Action cookie yazınca Next.js o sayfayı sunucuda yeniden render eder ve yeni arayüzü action'ın yanıtıyla aynı turda gönderir.[^4][^9] Stok kontrolü bir hata değil, beklenen bir durum; bu yüzden `throw` yerine mesaj dönüyor.
+Header'daki **Cart (1)** için hiçbir şey yazmadınız. Bir Server Action cookie yazınca Next.js o sayfayı sunucuda yeniden render eder ve yeni arayüzü action'ın yanıtıyla aynı turda gönderir.[^4][^9] Stok kontrolü bir hata değil, beklenen bir durum; bu yüzden `throw` yerine mesaj dönüyor.
 
 ## Adım 8: Sepet sayfası
 
@@ -438,13 +438,13 @@ import { removeFromCart } from "@/app/actions";
 import { getCart } from "@/lib/cart";
 import { getProduct } from "@/lib/products";
 
-export const metadata: Metadata = { title: "Sepet", robots: { index: false } };
+export const metadata: Metadata = { title: "Cart", robots: { index: false } };
 
 export default function CartPage() {
   return (
     <>
-      <h1>Sepet</h1>
-      <Suspense fallback={<p>Sepet yükleniyor...</p>}>
+      <h1>Cart</h1>
+      <Suspense fallback={<p>Loading cart...</p>}>
         <CartItems />
       </Suspense>
     </>
@@ -462,7 +462,7 @@ async function CartItems() {
     )
   ).flat();
 
-  if (lines.length === 0) return <p>Sepetiniz boş.</p>;
+  if (lines.length === 0) return <p>Your cart is empty.</p>;
 
   return (
     <ul>
@@ -470,7 +470,7 @@ async function CartItems() {
         <li key={product.slug}>
           {product.name} x {quantity}
           <form action={removeFromCart.bind(null, product.slug)}>
-            <button>Kaldır</button>
+            <button>Remove</button>
           </form>
         </li>
       ))}
@@ -493,8 +493,8 @@ import Link from "next/link";
 export default function ProductNotFound() {
   return (
     <>
-      <h1>Ürün bulunamadı</h1>
-      <Link href="/products">Tüm ürünler</Link>
+      <h1>Product not found</h1>
+      <Link href="/products">All products</Link>
     </>
   );
 }
@@ -507,7 +507,7 @@ export default function ProductNotFound() {
 export default function ProductsError({ retry }: { error: unknown; retry: () => void }) {
   return (
     <>
-      <h2>Ürünler yüklenemedi.</h2>
+      <h2>Products could not be loaded.</h2>
       <button onClick={() => retry()}>Tekrar dene</button>
     </>
   );
@@ -593,7 +593,7 @@ export default async function Image({ params }: { params: Promise<{ slug: string
 
   return new ImageResponse(
     <div style={{ display: "flex", width: "100%", height: "100%", alignItems: "center", justifyContent: "center", fontSize: 96, background: "white" }}>
-      {product?.name ?? "Mağaza"}
+      {product?.name ?? "Store"}
     </div>,
     size,
   );
@@ -634,26 +634,26 @@ export default defineConfig({
 import { instant } from "@next/playwright";
 import { expect, test } from "@playwright/test";
 
-test("ürün sayfası anında açılır, stok sonra gelir", async ({ page }) => {
+test("the product page opens instantly and stock arrives later", async ({ page }) => {
   await page.goto("/products");
 
   await instant(page, async () => {
-    await page.getByRole("link", { name: "Kanvas Ayakkabı" }).click();
+    await page.getByRole("link", { name: "Canvas Shoe" }).click();
     await page.waitForURL((url) => url.pathname === "/products/canvas-sneaker");
 
-    await expect(page.getByRole("heading", { name: "Kanvas Ayakkabı" })).toBeVisible();
+    await expect(page.getByRole("heading", { name: "Canvas Shoe" })).toBeVisible();
     await expect(page.getByText("Stok kontrol ediliyor...")).toBeVisible();
   });
 
-  await expect(page.getByText("Stokta 12 adet")).toBeVisible();
+  await expect(page.getByText("12 left in stock")).toBeVisible();
 });
 
-test("sepete ekleme sepet sayısını günceller", async ({ page }) => {
+test("adding to cart updates the cart count", async ({ page }) => {
   await page.goto("/products/canvas-sneaker");
-  await page.getByRole("button", { name: "Sepete ekle" }).click();
+  await page.getByRole("button", { name: "Add to cart" }).click();
 
-  await expect(page.getByRole("status")).toHaveText("Kanvas Ayakkabı sepete eklendi.");
-  await expect(page.getByRole("link", { name: "Sepet (1)" })).toBeVisible();
+  await expect(page.getByRole("status")).toHaveText("Canvas Shoe added to cart.");
+  await expect(page.getByRole("link", { name: "Cart (1)" })).toBeVisible();
 });
 ```
 
@@ -685,7 +685,7 @@ npm run build
 ├ ƒ /api/revalidate
 ```
 
-`npm start` ile açın ve şu sırayı deneyin: arama, ürün sayfası, **Sepete ekle**, stoğu 0 olan **Deri Sırt Çantası**, sepetten kaldırma, `/products/nope`, `/sitemap.xml` ve `/products/canvas-sneaker/opengraph-image`.
+`npm start` ile açın ve şu sırayı deneyin: arama, ürün sayfası, **Add to cart**, stoğu 0 olan **Leather Backpack**, sepetten kaldırma, `/products/nope`, `/sitemap.xml` ve `/products/canvas-sneaker/opengraph-image`.
 
 > [!TIP]
 >
@@ -693,7 +693,7 @@ npm run build
 
 ## Kendin dene
 
-- DevTools'tan `cart` cookie'sini `{"canvas-sneaker":99}` yapın. Sepet ne gösteriyor? **Sepete ekle**'ye basınca ne oluyor? Gerçek bir mağazada sepetin neden veritabanında tutulduğunu düşünün.
+- DevTools'tan `cart` cookie'sini `{"canvas-sneaker":99}` yapın. Sepet ne gösteriyor? **Add to cart**'ye basınca ne oluyor? Gerçek bir mağazada sepetin neden veritabanında tutulduğunu düşünün.
 - `getProduct`'tan `"use cache"`, `cacheLife` ve `cacheTag` satırlarını silip `instant()` testini çalıştırın. Neden başarısız oldu? *(Yalnızca `"use cache"`'i silerseniz `cacheLife` hata verir.)*
 - `getProduct`'ın döndürdüğü açıklamaya `new Date().toISOString()` koyun. `npm run build && npm start` ile açıp webhook'u `curl -X POST -H "x-revalidate-secret: change-me" -H "content-type: application/json" -d '{"slug":"canvas-sneaker"}' localhost:3000/api/revalidate` ile çağırın; sayfayı iki kez yenileyin.
 - Ürün sayfasına öneriler bölümü ekleyin ve [Hata yönetimi](/academy/nextjs/error-handling) dersindeki `SectionBoundary` ile sarın. Öneriler hata verince sayfanın geri kalanı yerinde kalıyor mu?

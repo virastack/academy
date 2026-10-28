@@ -1,8 +1,8 @@
 import { expect, test } from "./fixtures";
 
-test("sunucu hatasında hata durumu ve tekrar deneme", async ({ page, ordersPage }) => {
+test("error state and retry on a server error", async ({ page, ordersPage }) => {
   await page.route("**/api/orders?*", (route) =>
-    route.fulfill({ status: 500, json: { error: "Sunucu hatası" } }),
+    route.fulfill({ status: 500, json: { error: "Server error" } }),
   );
 
   await ordersPage.goto();
@@ -15,26 +15,26 @@ test("sunucu hatasında hata durumu ve tekrar deneme", async ({ page, ordersPage
   await expect(ordersPage.loadError).toBeHidden();
 });
 
-test("boş liste mesajı", async ({ page, ordersPage }) => {
+test("empty list message", async ({ page, ordersPage }) => {
   await page.route("**/api/orders?*", (route) => route.fulfill({ json: { orders: [] } }));
 
   await ordersPage.goto();
   await expect(ordersPage.empty).toBeVisible();
 });
 
-test("yanıtı değiştirerek uzun müşteri adını dener", async ({ page, ordersPage }) => {
+test("overrides the response to try a long customer name", async ({ page, ordersPage }) => {
   await page.route("**/api/orders?*", async (route) => {
     const response = await route.fetch();
     const { orders } = await response.json();
-    orders[0].customer = "Ayşe Nur Yılmaz Karadeniz Uzunsoyadlı";
+    orders[0].customer = "Ayşe Nur Yılmaz Karadeniz Verylongsurname";
     await route.fulfill({ response, json: { orders } });
   });
 
   await ordersPage.goto();
-  await expect(ordersPage.row("SP-1001")).toContainText("Ayşe Nur Yılmaz Karadeniz Uzunsoyadlı");
+  await expect(ordersPage.row("SP-1001")).toContainText("Ayşe Nur Yılmaz Karadeniz Verylongsurname");
 });
 
-test("yükleniyor durumu görünür", async ({ page, ordersPage }) => {
+test("the loading state is visible", async ({ page, ordersPage }) => {
   let release!: () => void;
   const gate = new Promise<void>((resolve) => (release = resolve));
   await page.route("**/api/orders?*", async (route) => {

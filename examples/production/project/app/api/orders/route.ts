@@ -10,7 +10,7 @@ export async function GET(request: NextRequest) {
 
   const status = request.nextUrl.searchParams.get("status") ?? "all";
   if (!isStatusFilter(status)) {
-    return Response.json({ error: "Geçersiz durum." }, { status: 400 });
+    return Response.json({ error: "Invalid status." }, { status: 400 });
   }
 
   // Yavaş bir ağı taklit eder; yükleniyor durumu ekranda görünsün.

@@ -7,7 +7,7 @@ import { getEnv } from "@/lib/env";
 // Production'da 404 döner.
 export default function DebugPage() {
   return (
-    <Suspense fallback={<p>Yükleniyor...</p>}>
+    <Suspense fallback={<p>Loading...</p>}>
       <FailingSection />
     </Suspense>
   );
@@ -16,5 +16,5 @@ export default function DebugPage() {
 async function FailingSection(): Promise<never> {
   await connection();
   if (getEnv().APP_ENV === "production") notFound();
-  throw new Error("Test hatası: hata izleme hattını denemek için bilerek fırlatıldı.");
+  throw new Error("Test error: thrown on purpose to exercise the error-tracking pipeline.");
 }

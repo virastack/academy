@@ -12,17 +12,17 @@ export default async function ProductsPage() {
 
   return (
     <main>
-      <h1>Ürünler</h1>
+      <h1>Products</h1>
       <p>
         {user.email} ({user.role})
       </p>
       <table>
         <thead>
           <tr>
-            <th>Ürün</th>
-            <th>Açıklama</th>
+            <th>Product</th>
+            <th>Description</th>
             <th>Fiyat</th>
-            {canArchive && <th>Arşiv</th>}
+            {canArchive && <th>Archive</th>}
           </tr>
         </thead>
         <tbody>
@@ -38,7 +38,7 @@ export default async function ProductsPage() {
                     type="number"
                     step="0.01"
                     defaultValue={product.price}
-                    aria-label={`${product.name} fiyatı`}
+                    aria-label={`${product.name} price`}
                   />
                   <button type="submit">Kaydet</button>
                 </form>

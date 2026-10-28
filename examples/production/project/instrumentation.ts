@@ -25,6 +25,6 @@ export const onRequestError: Instrumentation.onRequestError = async (error, requ
       routePath: context.routePath,
       routeType: context.routeType,
     },
-    "İstek işlenirken hata oluştu",
+    "An error occurred while handling the request",
   );
 };

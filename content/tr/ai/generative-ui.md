@@ -35,9 +35,9 @@ import { orderService } from './orders'; // sizin servis katmanınız
 
 export const tools = {
   getOrderStatus: tool({
-    description: 'Bir siparişin kargo durumunu kart olarak gösterir.',
+    description: 'Shows an order's shipping status as a card.',
     inputSchema: z.object({
-      orderId: z.string().describe('Sipariş numarası, örn. TR-1042'),
+      orderId: z.string().describe('The order number, e.g. TR-1042'),
     }),
     outputSchema: z.object({
       orderId: z.string(),
@@ -57,7 +57,7 @@ import { Component, type ReactNode } from 'react';
 import type { Order } from './orders';
 
 const STATUS: Record<Order['status'], string> = {
-  hazirlaniyor: 'Hazırlanıyor',
+  hazirlaniyor: 'Preparing',
   kargoda: 'Kargoda',
   'teslim-edildi': 'Teslim edildi',
 };
@@ -74,7 +74,7 @@ export function OrderCard({ orderId, status, eta }: Order) {
 export function OrderCardSkeleton({ orderId }: { orderId?: string }) {
   return (
     <div data-ui="skeleton" aria-busy="true">
-      {orderId ? `${orderId} sorgulanıyor…` : 'Sipariş sorgulanıyor…'}
+      {orderId ? `${orderId} sorgulanıyor…` : 'Querying the order…'}
     </div>
   );
 }
@@ -97,7 +97,7 @@ export class ToolBoundary extends Component<{ children: ReactNode }, { failed: b
     console.error('[ToolBoundary]', error);
   }
   render() {
-    return this.state.failed ? <ToolError>Bu sonuç gösterilemiyor.</ToolError> : this.props.children;
+    return this.state.failed ? <ToolError>This result cannot be shown.</ToolError> : this.props.children;
   }
 }
 ```
@@ -136,7 +136,7 @@ export function MessageParts({ message, live }: { message: GenMessage; live: boo
                 return live ? (
                   <OrderCardSkeleton key={i} orderId={part.input?.orderId} />
                 ) : (
-                  <ToolError key={i}>Sorgu tamamlanamadı.</ToolError>
+                  <ToolError key={i}>The query could not be completed.</ToolError>
                 );
               case 'output-available':
                 return (
@@ -145,7 +145,7 @@ export function MessageParts({ message, live }: { message: GenMessage; live: boo
                   </ToolBoundary>
                 );
               case 'output-error':
-                return <ToolError key={i}>Sipariş bilgisi alınamadı.</ToolError>;
+                return <ToolError key={i}>The order details could not be fetched.</ToolError>;
               default:
                 return null;
             }
@@ -164,13 +164,13 @@ export function MessageParts({ message, live }: { message: GenMessage; live: boo
 }
 ```
 
-- **İskelet, kısmi girdiyle beslenir:** `input-streaming`'de `part.input` kısmidir ve alanlar yarım gelebilir. Etiket önce "Sipariş sorgulanıyor…", sonra `TR`, sonra `TR-1042` olur. Kısmi değeri yalnızca etiket için kullanın, işlem için kullanmayın.
+- **İskelet, kısmi girdiyle beslenir:** `input-streaming`'de `part.input` kısmidir ve alanlar yarım gelebilir. Etiket önce "Querying the order…", sonra `TR`, sonra `TR-1042` olur. Kısmi değeri yalnızca etiket için kullanın, işlem için kullanmayın.
 - **`ToolBoundary`:** Çıktı bileşeni çökerse yalnızca o kart düşer. Nedenini aşağıdaki "Kaydedilen mesajlar" bölümünde göreceksiniz.
 - **`default` kolu:** `isToolUIPart` statik ve dinamik araç parçalarını yakalar. Bu kol olmazsa istemcinin tanımadığı bir araç hiçbir şey çizmez ve parça sessizce kaybolur.
 
 ## Yükleme durumları
 
-Yükleme göstergesi tasarımı için Cloudscape Design System kılavuzu işe yarar. İçerik (liste, tablo, kod bloğu) akarken içeriğin geleceği yerde yükleme çubuğu ve yanında yükleme metni göstermeyi, 1 saniyeden kısa beklemelerde yükleme durumu göstermemeyi (titreme yapar) ve göstergeyi görünür bir metinle eşlemeyi öneriyor.[^5] Bu rehberdeki iskelet de "Sipariş sorgulanıyor…" metniyle gelir.
+Yükleme göstergesi tasarımı için Cloudscape Design System kılavuzu işe yarar. İçerik (liste, tablo, kod bloğu) akarken içeriğin geleceği yerde yükleme çubuğu ve yanında yükleme metni göstermeyi, 1 saniyeden kısa beklemelerde yükleme durumu göstermemeyi (titreme yapar) ve göstergeyi görünür bir metinle eşlemeyi öneriyor.[^5] Bu rehberdeki iskelet de "Querying the order…" metniyle gelir.
 
 ### Ara sonuçlar
 
@@ -178,18 +178,18 @@ Yükleme göstergesi tasarımı için Cloudscape Design System kılavuzu işe ya
 
 ```ts
 trackShipment: tool({
-  description: 'Kargo hareketlerini adım adım getirir.',
+  description: 'Fetches the shipping events step by step.',
   inputSchema: z.object({ orderId: z.string() }),
   outputSchema: z.object({ stage: z.enum(['carrier', 'done']), message: z.string() }),
   async *execute({ orderId }) {
-    yield { stage: 'carrier' as const, message: 'Kargo firması sorgulanıyor…' };
+    yield { stage: 'carrier' as const, message: 'Querying the carrier…' };
     const order = await orderService.getStatus(orderId);
     yield { stage: 'done' as const, message: `${order.orderId}: ${order.status}` };
   },
 }),
 ```
 
-İstemcide ara sonuç da `output-available` olarak gelir. Ayırt etmek için `part.preliminary` bayrağına bakın: ara sonuçta `true`, kesin sonuçta `false` olur. Ekranda sıra şöyle akar: iskelet, "Kargo firması sorgulanıyor…" (ara sonuç), "TR-5: kargoda" (kesin sonuç).
+İstemcide ara sonuç da `output-available` olarak gelir. Ayırt etmek için `part.preliminary` bayrağına bakın: ara sonuçta `true`, kesin sonuçta `false` olur. Ekranda sıra şöyle akar: iskelet, "Querying the carrier…" (ara sonuç), "TR-5: kargoda" (kesin sonuç).
 
 ```tsx
 case 'tool-trackShipment':
@@ -201,11 +201,11 @@ case 'tool-trackShipment':
     );
   }
   return part.state === 'output-error' ? (
-    <ToolError key={i}>Kargo hareketleri alınamadı.</ToolError>
+    <ToolError key={i}>The shipping events could not be fetched.</ToolError>
   ) : live ? (
     <OrderCardSkeleton key={i} />
   ) : (
-    <ToolError key={i}>Sorgu tamamlanamadı.</ToolError>
+    <ToolError key={i}>The query could not be completed.</ToolError>
   );
 ```
 
@@ -241,7 +241,7 @@ return messages.map((message, index) => (
 | Akış yarıda kesildi | `stop()` | `live` bayrağı |
 
 - **`output-error`:** Doküman `part.errorText`'i gösteriyor.[^1] `toUIMessageStream`'e `onError` vermezseniz bu metin `An error occurred.` olur, verirseniz sizin metniniz gelir.[^4] Şemaya uymayan girdide `part.input` modelin ham, geçersiz girdisidir ve tipine güvenilmemelidir. Bileşene vermeyin.
-- **Bileşen çökmesi:** Kayıtlı çıktı bileşenin beklediği şekilde değilse (ör. `status` enum'unda artık olmayan bir değer) `STATUS[status].toUpperCase()` hata fırlatır. `ToolBoundary` olmadan bu hata tüm sohbeti düşürür. Sınır varsa yalnızca o kart "Bu sonuç gösterilemiyor." olur ve mesajın metni görünmeye devam eder.
+- **Bileşen çökmesi:** Kayıtlı çıktı bileşenin beklediği şekilde değilse (ör. `status` enum'unda artık olmayan bir değer) `STATUS[status].toUpperCase()` hata fırlatır. `ToolBoundary` olmadan bu hata tüm sohbeti düşürür. Sınır varsa yalnızca o kart "This result cannot be shown." olur ve mesajın metni görünmeye devam eder.
 
 > [!DONT]
 >
@@ -249,7 +249,7 @@ return messages.map((message, index) => (
 
 > [!DO]
 >
-> Araç başına sabit, anlaşılır bir mesaj yazın ("Sipariş bilgisi alınamadı.") ve ayrıntıyı sunucuda loglayın.
+> Araç başına sabit, anlaşılır bir mesaj yazın ("The order details could not be fetched.") ve ayrıntıyı sunucuda loglayın.
 
 ## Kaydedilen mesajlar
 
@@ -268,7 +268,7 @@ export async function loadValidated(stored: unknown[]): Promise<GenMessage[]> {
     return await validateUIMessages<GenMessage>({ messages: stored, tools });
   } catch (error) {
     if (TypeValidationError.isInstance(error)) {
-      console.error('Kayıtlı mesajlar güncel şemalarla uyuşmuyor', error);
+      console.error('Stored messages do not match the current schemas', error);
       return []; // ya da mesajları taşıyın veya süzün
     }
     throw error;

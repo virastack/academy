@@ -64,7 +64,7 @@ const MarkdownPreview = lazy(() => import("./MarkdownPreview"));
 
 export function Editor() {
   return (
-    <Suspense fallback={<p>Yükleniyor...</p>}>
+    <Suspense fallback={<p>Loading...</p>}>
       <MarkdownPreview />
     </Suspense>
   );
@@ -82,14 +82,14 @@ import { useState } from "react";
 import dynamic from "next/dynamic";
 
 const Chart = dynamic(() => import("./Chart"), {
-  loading: () => <p>Grafik yükleniyor...</p>,
+  loading: () => <p>Loading chart...</p>,
 });
 
 export function Report() {
   const [open, setOpen] = useState(false);
   return (
     <>
-      <button onClick={() => setOpen(true)}>Grafiği göster</button>
+      <button onClick={() => setOpen(true)}>Show the chart</button>
       {open && <Chart />} {/* kod yalnızca tıklayınca iner */}
     </>
   );

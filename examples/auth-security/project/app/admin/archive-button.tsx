@@ -14,8 +14,6 @@ export function ArchiveButton({ productId }: { productId: string }) {
   }
 
   return (
-    <button type="button" onClick={archive}>
-      Arşivle
-    </button>
+    <button type="button" onClick={archive}>Archive</button>
   );
 }

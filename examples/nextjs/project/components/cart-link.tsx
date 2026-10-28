@@ -6,5 +6,5 @@ export async function CartLink() {
   const cart = await getCart();
   const count = Object.values(cart).reduce((sum, quantity) => sum + quantity, 0);
 
-  return <Link href="/cart">Sepet ({count})</Link>;
+  return <Link href="/cart">Cart ({count})</Link>;
 }

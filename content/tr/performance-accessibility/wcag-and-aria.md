@@ -86,7 +86,7 @@ Görünür metni olmayan bir element için isim tanımlar. Tipik örnek yalnızc
 İsme ek olarak daha uzun bir **açıklama** bağlar: ipucu, kural ya da hata mesajı. İsim kısa olmalı, açıklama ayrıntıyı taşır.[^15]
 
 ```tsx
-<label htmlFor="sifre">Şifre</label>
+<label htmlFor="sifre">Password</label>
 <input id="sifre" type="password" aria-describedby="sifre-ipucu" />
 <p id="sifre-ipucu">En az 12 karakter.</p>
 ```
@@ -140,7 +140,7 @@ Sayfa yenilenmeden değişen içerik (sepete eklendi, kaydedildi, 3 sonuç bulun
 - **`role="status"`:** Örtük olarak `aria-live="polite"` taşır; kesmeden bilgi veren durum mesajları içindir. Mesaj gelince odağı oraya taşımayın.[^22]
 
 ```tsx
-<p role="status">{saved ? "Değişiklikler kaydedildi." : ""}</p>
+<p role="status">{saved ? "Changes saved." : ""}</p>
 ```
 
 > [!WARNING]

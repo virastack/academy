@@ -1,6 +1,6 @@
 import { expect, test } from "./fixtures";
 
-test("sipariş tablosu görünümü", async ({ ordersPage }) => {
+test("order table appearance", async ({ ordersPage }) => {
   await ordersPage.goto();
   await expect(ordersPage.rows).toHaveCount(6);
 

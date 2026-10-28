@@ -10,7 +10,7 @@ export function AddToCartForm({ slug }: { slug: string }) {
   return (
     <form action={formAction}>
       <input type="hidden" name="slug" value={slug} />
-      <button disabled={isPending}>{isPending ? "Ekleniyor..." : "Sepete ekle"}</button>
+      <button disabled={isPending}>{isPending ? "Adding..." : "Add to cart"}</button>
       {state.message && <p role="status">{state.message}</p>}
     </form>
   );
