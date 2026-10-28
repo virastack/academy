@@ -11,8 +11,14 @@ workflow runs `node scripts/sync-curriculum.mjs`, which marks a lesson
 `draft: true` to the frontmatter to keep a written lesson unpublished. Run the
 script locally to see the result before pushing.
 
-Do not add Markdown or `curriculum.json` under `content/en`. English copies are
-not maintained yet.
+`content/en` is empty for now, and English pages fall back to the Turkish tree
+until `content/en/curriculum.json` exists. Adding that file is what switches
+them over, so add it together with the lessons it lists rather than on its own.
+
+The sync script walks every locale under `content/` that has a
+`curriculum.json`, so a new translation needs no change to it or to the deploy
+workflow. `node scripts/sync-curriculum.mjs --locale en` syncs one locale on its
+own, and `--check` reports what would be published without writing anything.
 
 ## Frontmatter
 
