@@ -35,12 +35,12 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
 export function useCartItems() {
   const items = use(CartContext);
-  if (items === null) throw new Error("useCartItems, CartProvider içinde kullanılmalı.");
+  if (items === null) throw new Error("useCartItems must be used within CartProvider.");
   return items;
 }
 
 export function useCartDispatch() {
   const dispatch = use(CartDispatchContext);
-  if (dispatch === null) throw new Error("useCartDispatch, CartProvider içinde kullanılmalı.");
+  if (dispatch === null) throw new Error("useCartDispatch must be used within CartProvider.");
   return dispatch;
 }

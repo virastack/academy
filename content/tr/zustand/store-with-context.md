@@ -73,7 +73,7 @@ export function SelectionProvider({
 function useSelectionStore<T>(selector: (state: SelectionState) => T): T {
   const store = use(SelectionStoreContext);
   if (!store) {
-    throw new Error("useSelectionStore, SelectionProvider içinde kullanılmalı.");
+    throw new Error("useSelectionStore must be used within SelectionProvider.");
   }
   return useStore(store, selector);
 }

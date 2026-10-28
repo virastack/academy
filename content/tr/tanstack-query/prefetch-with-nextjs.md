@@ -93,8 +93,8 @@ import { ProductList } from "./product-list";
 export default function ProductsPage() {
   return (
     <main>
-      <h1>Ürünler</h1>
-      <Suspense fallback={<p>Ürünler yükleniyor...</p>}>
+      <h1>Products</h1>
+      <Suspense fallback={<p>Loading products...</p>}>
         <PrefetchedProductList />
       </Suspense>
     </main>

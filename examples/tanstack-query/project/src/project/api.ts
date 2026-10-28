@@ -42,7 +42,7 @@ const reviews: Review[] = products.flatMap((product) =>
   Array.from({ length: 7 }, (_, index) => ({
     id: product.id * 100 + index,
     productId: product.id,
-    text: `${product.name} için yorum ${index + 1}`,
+    text: `Review ${index + 1} for ${product.name}`,
   })),
 );
 

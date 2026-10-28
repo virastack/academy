@@ -52,8 +52,8 @@ Birden fazla boşluk gerekiyorsa JSX'i adlandırılmış prop olarak geçin. Bu 
 
 ```tsx
 <Dialog
-  title="Sepeti boşalt"
-  actions={<Button onClick={clearCart}>Boşalt</Button>}
+  title="Clear cart"
+  actions={<Button onClick={clearCart}>Clear</Button>}
 >
   Sepetteki 3 ürün silinecek.
 </Dialog>

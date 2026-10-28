@@ -35,7 +35,7 @@ export const useCartActions = () => useCartStore((state) => state.actions);
 ```tsx
 function RemoveButton({ id }: { id: number }) {
   const { removeProduct } = useCartActions();
-  return <button onClick={() => removeProduct(id)}>Kaldır</button>;
+  return <button onClick={() => removeProduct(id)}>Remove</button>;
 }
 ```
 

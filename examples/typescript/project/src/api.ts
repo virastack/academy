@@ -25,7 +25,7 @@ export async function fetchProducts(): Promise<Product[]> {
   }
   const data: unknown = await response.json();
   if (!Array.isArray(data) || !data.every(isProduct)) {
-    throw new Error("Ürün verisi beklenen biçimde değil.");
+    throw new Error("Product data is not in the expected shape.");
   }
   return data;
 }

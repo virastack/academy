@@ -29,8 +29,8 @@ Sepet toplamını hesaplayan basit bir JavaScript kodu düşünün. Fiyatlardan 
 
 ```js
 const cart = [
-  { name: "Kablosuz Kulaklık", price: 1299 },
-  { name: "Telefon Kılıfı", price: "249" },
+  { name: "Wireless Headphones", price: 1299 },
+  { name: "Phone Case", price: "249" },
 ];
 
 const total = cart.reduce((sum, item) => sum + item.price, 0);
@@ -46,8 +46,8 @@ type CartItem = {
 };
 
 const cart: CartItem[] = [
-  { name: "Kablosuz Kulaklık", price: 1299 },
-  { name: "Telefon Kılıfı", price: "249" },
+  { name: "Wireless Headphones", price: 1299 },
+  { name: "Phone Case", price: "249" },
   // Hata: Type 'string' is not assignable to type 'number'.
 ];
 ```

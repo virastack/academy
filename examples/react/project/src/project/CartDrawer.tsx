@@ -9,7 +9,7 @@ export function CartButton() {
   return (
     <>
       <button type="button" onClick={() => startTransition(() => setIsOpen(!isOpen))}>
-        Sepet ({count})
+        Cart ({count})
       </button>
       {isOpen && (
         <ViewTransition enter="slide-in" exit="slide-out">
@@ -26,22 +26,20 @@ function CartDrawer() {
   const total = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
   return (
-    <aside className="cart-drawer" aria-label="Sepet">
+    <aside className="cart-drawer" aria-label="Cart">
       {items.length === 0 ? (
-        <p>Sepetiniz boş.</p>
+        <p>Your cart is empty.</p>
       ) : (
         <ul>
           {items.map((item) => (
             <li key={item.id}>
               {item.name} × {item.quantity}
-              <button type="button" onClick={() => dispatch({ type: "remove", id: item.id })}>
-                Kaldır
-              </button>
+              <button type="button" onClick={() => dispatch({ type: "remove", id: item.id })}>Remove</button>
             </li>
           ))}
         </ul>
       )}
-      <p>Toplam: {total.toLocaleString("tr-TR")} TL</p>
+      <p>Total: {total.toLocaleString("tr-TR")} TL</p>
     </aside>
   );
 }

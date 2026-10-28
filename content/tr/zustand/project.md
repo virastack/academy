@@ -11,7 +11,7 @@ Bir mağazanın ürün kataloğunu ve sepetini kuracaksınız. Uygulama:
 
 - Kategori ve arama filtrelerini bir Zustand store'unda tutar; filtre değişince ürün sorgusu kendiliğinden yeniden çalışır.
 - Ürünleri [!tanstack-query] ile çeker; filtre değişirken eski liste soluk olarak ekranda kalır.
-- Sepeti ve sepet çekmecesini slice'lardan oluşan tek bir store'da tutar. "Sepete ekle" hem ürünü ekler hem çekmeceyi açar.
+- Sepeti ve sepet çekmecesini slice'lardan oluşan tek bir store'da tutar. "Add to cart" hem ürünü ekler hem çekmeceyi açar.
 - Sepeti `localStorage`'a yazar; sayfa yenilenince sepet geri gelir, çekmece kapalı açılır.
 - Her değişikliği adıyla Redux DevTools'a gönderir.
 - Sepet listesini yalnızca ürün `id`'lerini okuyarak çizer; bir ürünün adedi değişince yalnızca o satır render olur.
@@ -51,7 +51,7 @@ npm install -D @redux-devtools/extension
 
 ## Adım 2: Sahte API ve sorgu
 
-Gerçek bir sunucu yerine gecikmeli bir fonksiyon kullanın. Bir ürünün stoğu `0`; "Sepete ekle" butonunun kapandığını görmek için.
+Gerçek bir sunucu yerine gecikmeli bir fonksiyon kullanın. Bir ürünün stoğu `0`; "Add to cart" butonunun kapandığını görmek için.
 
 ```ts
 // src/project/api.ts
@@ -311,10 +311,10 @@ import type { ProductFilters } from "./api";
 import { useCategory, useFilterActions, useSearch } from "./filter-store";
 
 const categories: { value: ProductFilters["category"]; label: string }[] = [
-  { value: "all", label: "Tümü" },
-  { value: "shoes", label: "Ayakkabı" },
-  { value: "clothing", label: "Giyim" },
-  { value: "accessories", label: "Aksesuar" },
+  { value: "all", label: "All" },
+  { value: "shoes", label: "Shoes" },
+  { value: "clothing", label: "Clothing" },
+  { value: "accessories", label: "Accessories" },
 ];
 
 export function Filters() {
@@ -325,13 +325,13 @@ export function Filters() {
   return (
     <div style={{ display: "flex", gap: 8, marginBottom: 16 }}>
       <input
-        aria-label="Ürün ara"
-        placeholder="Ürün ara"
+        aria-label="Search products"
+        placeholder="Search products"
         value={search}
         onChange={(event) => setSearch(event.target.value)}
       />
       <select
-        aria-label="Kategori"
+        aria-label="Category"
         value={category}
         onChange={(event) => setCategory(event.target.value as ProductFilters["category"])}
       >
@@ -341,7 +341,7 @@ export function Filters() {
           </option>
         ))}
       </select>
-      <button onClick={reset}>Filtreleri temizle</button>
+      <button onClick={reset}>Clear filters</button>
     </div>
   );
 }
@@ -366,11 +366,11 @@ function ProductCard({ product }: { product: Product }) {
     <li style={{ border: "1px solid #ccc", padding: 12 }}>
       <h3>{product.name}</h3>
       <p>{formatPrice(product.price)}</p>
-      <p>{soldOut ? "Tükendi" : `Stok: ${product.stock}`}</p>
+      <p>{soldOut ? "Sold out" : `Stock: ${product.stock}`}</p>
       <button
         onClick={() => addToCart(product)}
         disabled={limitReached}
-        aria-label={`${product.name} sepete ekle`}
+        aria-label={`add ${product.name} to cart`}
       >
         Sepete ekle
       </button>
@@ -381,13 +381,13 @@ function ProductCard({ product }: { product: Product }) {
 export function ProductGrid() {
   const { data: products, isPending, isError, isPlaceholderData } = useFilteredProducts();
 
-  if (isPending) return <p>Ürünler yükleniyor...</p>;
-  if (isError) return <p>Ürünler yüklenemedi.</p>;
-  if (products.length === 0) return <p>Ürün bulunamadı.</p>;
+  if (isPending) return <p>Loading products...</p>;
+  if (isError) return <p>Products could not be loaded.</p>;
+  if (products.length === 0) return <p>No products found.</p>;
 
   return (
     <ul
-      aria-label="Ürünler"
+      aria-label="Products"
       style={{
         listStyle: "none",
         padding: 0,
@@ -417,7 +417,7 @@ export function CartButton() {
   const count = useCartCount();
   const { openCart } = useShopActions();
 
-  return <button onClick={openCart}>Sepet ({count})</button>;
+  return <button onClick={openCart}>Cart ({count})</button>;
 }
 ```
 
@@ -458,23 +458,23 @@ function CartLine({ id }: { id: number }) {
       <div>
         <button
           onClick={() => setQuantity(id, item.quantity - 1)}
-          aria-label={`${item.name} azalt`}
+          aria-label={`decrease ${item.name}`}
         >
           −
         </button>
-        <span aria-label={`${item.name} adet`}> {item.quantity} </span>
+        <span aria-label={`${item.name} quantity`}> {item.quantity} </span>
         <button
           onClick={() => setQuantity(id, item.quantity + 1)}
           disabled={stock !== undefined && item.quantity >= stock}
-          aria-label={`${item.name} artır`}
+          aria-label={`increase ${item.name}`}
         >
           +
         </button>
-        <button onClick={() => removeItem(id)} aria-label={`${item.name} kaldır`}>
+        <button onClick={() => removeItem(id)} aria-label={`remove ${item.name}`}>
           Kaldır
         </button>
       </div>
-      {overStock && <p role="alert">Stokta yalnızca {stock} adet var.</p>}
+      {overStock && <p role="alert">Only {stock} left in stock.</p>}
     </li>
   );
 }
@@ -488,10 +488,10 @@ export function CartDrawer() {
   if (!isOpen) return null;
 
   return (
-    <aside aria-label="Sepet" style={{ borderLeft: "1px solid #ccc", padding: 16 }}>
-      <h2>Sepet</h2>
+    <aside aria-label="Cart" style={{ borderLeft: "1px solid #ccc", padding: 16 }}>
+      <h2>Cart</h2>
       {ids.length === 0 ? (
-        <p>Sepetiniz boş.</p>
+        <p>Your cart is empty.</p>
       ) : (
         <ul style={{ listStyle: "none", padding: 0 }}>
           {ids.map((id) => (
@@ -499,11 +499,11 @@ export function CartDrawer() {
           ))}
         </ul>
       )}
-      <p>Toplam: {formatPrice(total)}</p>
+      <p>Total: {formatPrice(total)}</p>
       <button onClick={clearCart} disabled={ids.length === 0}>
         Sepeti boşalt
       </button>
-      <button onClick={closeCart}>Kapat</button>
+      <button onClick={closeCart}>Close</button>
     </aside>
   );
 }
@@ -532,7 +532,7 @@ export function App() {
     <div style={{ display: "flex", gap: 24, padding: 24, fontFamily: "sans-serif" }}>
       <main style={{ flex: 1 }}>
         <header style={{ display: "flex", justifyContent: "space-between" }}>
-          <h1>Mağaza</h1>
+          <h1>Store</h1>
           <CartButton />
         </header>
         <Filters />
@@ -563,8 +563,8 @@ createRoot(document.getElementById("root")!).render(
 
 `npm run dev` ile açın ve şu akışları deneyin:
 
-1. Kategoriyi "Ayakkabı" yapın ve aramaya "run" yazın. Liste her değişiklikte güncelleniyor; "Filtreleri temizle" hepsini sıfırlıyor.
-2. Bir ürünü sepete ekleyin. Çekmece açılıyor, buton "Sepet (1)" oluyor.
+1. Kategoriyi "Shoes" yapın ve aramaya "run" yazın. Liste her değişiklikte güncelleniyor; "Clear filters" hepsini sıfırlıyor.
+2. Bir ürünü sepete ekleyin. Çekmece açılıyor, buton "Cart (1)" oluyor.
 3. Silk Scarf'ı ekleyin. Stoğu `1` olduğu için buton kapanıyor.
 4. Sayfayı yenileyin. Sepet duruyor, çekmece kapalı.
 5. Redux DevTools'u açın ve bir ürünün adedini değiştirin. Panelde `cart/setQuantity` görünüyor.

@@ -36,7 +36,7 @@ export function FavoriteButton({ product }: { product: Product }) {
 
   return (
     <button onClick={() => mutation.mutate(product.id)} aria-pressed={product.isFavorite}>
-      {product.isFavorite ? "★ Favoride" : "☆ Favorilere ekle"}
+      {product.isFavorite ? "★ Favorited" : "☆ Add to favorites"}
     </button>
   );
 }

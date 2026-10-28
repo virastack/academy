@@ -62,7 +62,7 @@ const CartContext = createContext<CartContextValue | null>(null);
 export function useCart() {
   const cart = use(CartContext);
   if (cart === null) {
-    throw new Error("useCart, CartProvider içinde kullanılmalı.");
+    throw new Error("useCart must be used within CartProvider.");
   }
   return cart;
 }
@@ -88,7 +88,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 }
 ```
 
-`dispatch` hiç değişmez. Yalnızca "Sepete ekle" butonu gibi `dispatch`'e ihtiyaç duyan component'ler sepet değiştiğinde render olmaz.[^5][^6]
+`dispatch` hiç değişmez. Yalnızca "Add to cart" butonu gibi `dispatch`'e ihtiyaç duyan component'ler sepet değiştiğinde render olmaz.[^5][^6]
 
 ## Performans ve sınırlar
 

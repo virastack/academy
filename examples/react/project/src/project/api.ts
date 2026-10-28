@@ -11,15 +11,15 @@ export type Review = { id: number; author: string; text: string };
 const products: Record<string, Product> = {
   "1": {
     id: "1",
-    name: "Kablosuz kulaklık",
+    name: "Wireless headphones",
     price: 1499,
-    description: "40 saat pil, aktif gürültü engelleme.",
+    description: "40 hours of battery, active noise cancelling.",
     isFavorite: false,
   },
 };
 
 const reviews: Record<string, Review[]> = {
-  "1": [{ id: 1, author: "Ayşe", text: "Sesi çok net." }],
+  "1": [{ id: 1, author: "Ayşe", text: "The sound is very clear." }],
 };
 
 function wait(ms: number) {
@@ -29,7 +29,7 @@ function wait(ms: number) {
 export async function getProduct(id: string): Promise<Product> {
   await wait(800);
   const product = products[id];
-  if (!product) throw new Error("Ürün bulunamadı.");
+  if (!product) throw new Error("No products found.");
   return { ...product };
 }
 

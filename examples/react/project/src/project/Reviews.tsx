@@ -11,9 +11,9 @@ export function Reviews({ productId }: { productId: string }) {
   const [state, dispatchReview] = useActionState(
     async (previous: ReviewState, text: string): Promise<ReviewState> => {
       if (text.length < 3) {
-        return { ...previous, error: "Yorum en az 3 karakter olmalı." };
+        return { ...previous, error: "The review must be at least 3 characters." };
       }
-      const saved = await postReview(productId, { author: "Siz", text });
+      const saved = await postReview(productId, { author: "You", text });
       return { reviews: [...previous.reviews, saved], error: null };
     },
     { reviews: initialReviews, error: null },
@@ -27,7 +27,7 @@ export function Reviews({ productId }: { productId: string }) {
   function submitReview(formData: FormData) {
     const text = String(formData.get("text")).trim();
     if (text.length >= 3) {
-      addOptimisticReview({ id: -1, author: "Siz", text });
+      addOptimisticReview({ id: -1, author: "You", text });
     }
     dispatchReview(text);
   }
@@ -42,7 +42,7 @@ export function Reviews({ productId }: { productId: string }) {
         ))}
       </ul>
       <form action={submitReview}>
-        <textarea name="text" aria-label="Yorumunuz" />
+        <textarea name="text" aria-label="Your review" />
         {state.error && <p role="alert">{state.error}</p>}
         <SubmitButton />
       </form>
@@ -52,5 +52,5 @@ export function Reviews({ productId }: { productId: string }) {
 
 function SubmitButton() {
   const { pending } = useFormStatus();
-  return <button disabled={pending}>{pending ? "Gönderiliyor..." : "Yorum yap"}</button>;
+  return <button disabled={pending}>{pending ? "Submitting..." : "Write a review"}</button>;
 }

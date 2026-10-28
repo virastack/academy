@@ -15,7 +15,7 @@ export default function App() {
 
   switch (state.status) {
     case "loading":
-      return <p>Yükleniyor...</p>;
+      return <p>Loading...</p>;
     case "error":
       return <p role="alert">Hata: {state.message}</p>;
     case "success": {
@@ -27,7 +27,7 @@ export default function App() {
       return (
         <main>
           <p>
-            Sepet: {items.length} çeşit ürün,{" "}
+            Cart: {items.length} item types,{" "}
             {totalPrice.toLocaleString("tr-TR")} TL
           </p>
           <CategoryFilter value={category} onChange={setCategory} />

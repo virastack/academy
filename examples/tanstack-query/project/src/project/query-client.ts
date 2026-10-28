@@ -9,7 +9,7 @@ export const queryClient = new QueryClient({
     onError: (error, query) => {
       // Ekranda veri varken başarısız olan arka plan yenilemesi
       if (query.state.data !== undefined) {
-        showToast(`Veri güncellenemedi: ${error.message}`);
+        showToast(`Data could not be updated: ${error.message}`);
       }
     },
   }),

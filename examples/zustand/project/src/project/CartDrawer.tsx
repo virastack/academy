@@ -28,23 +28,21 @@ function CartLine({ id }: { id: number }) {
       <div>
         <button
           onClick={() => setQuantity(id, item.quantity - 1)}
-          aria-label={`${item.name} azalt`}
+          aria-label={`decrease ${item.name}`}
         >
           −
         </button>
-        <span aria-label={`${item.name} adet`}> {item.quantity} </span>
+        <span aria-label={`${item.name} quantity`}> {item.quantity} </span>
         <button
           onClick={() => setQuantity(id, item.quantity + 1)}
           disabled={stock !== undefined && item.quantity >= stock}
-          aria-label={`${item.name} artır`}
+          aria-label={`increase ${item.name}`}
         >
           +
         </button>
-        <button onClick={() => removeItem(id)} aria-label={`${item.name} kaldır`}>
-          Kaldır
-        </button>
+        <button onClick={() => removeItem(id)} aria-label={`remove ${item.name}`}>Remove</button>
       </div>
-      {overStock && <p role="alert">Stokta yalnızca {stock} adet var.</p>}
+      {overStock && <p role="alert">Only {stock} left in stock.</p>}
     </li>
   );
 }
@@ -58,10 +56,10 @@ export function CartDrawer() {
   if (!isOpen) return null;
 
   return (
-    <aside aria-label="Sepet" style={{ borderLeft: "1px solid #ccc", padding: 16 }}>
-      <h2>Sepet</h2>
+    <aside aria-label="Cart" style={{ borderLeft: "1px solid #ccc", padding: 16 }}>
+      <h2>Cart</h2>
       {ids.length === 0 ? (
-        <p>Sepetiniz boş.</p>
+        <p>Your cart is empty.</p>
       ) : (
         <ul style={{ listStyle: "none", padding: 0 }}>
           {ids.map((id) => (
@@ -69,11 +67,9 @@ export function CartDrawer() {
           ))}
         </ul>
       )}
-      <p>Toplam: {formatPrice(total)}</p>
-      <button onClick={clearCart} disabled={ids.length === 0}>
-        Sepeti boşalt
-      </button>
-      <button onClick={closeCart}>Kapat</button>
+      <p>Total: {formatPrice(total)}</p>
+      <button onClick={clearCart} disabled={ids.length === 0}>Clear cart</button>
+      <button onClick={closeCart}>Close</button>
     </aside>
   );
 }

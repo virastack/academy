@@ -37,12 +37,12 @@ export function ProductTable({ selectedId, onSelect }: ProductTableProps) {
           setPage(1);
         }}
       >
-        <input name="search" placeholder="Ürün ara" defaultValue={search} />
-        <button>Ara</button>
+        <input name="search" placeholder="Search products" defaultValue={search} />
+        <button>Search</button>
       </form>
 
       {isPending ? (
-        <p>Yükleniyor...</p>
+        <p>Loading...</p>
       ) : isError ? (
         <p>Hata: {error.message}</p>
       ) : (
@@ -60,7 +60,7 @@ export function ProductTable({ selectedId, onSelect }: ProductTableProps) {
                   </button>
                 </td>
                 <td>{product.price} TL</td>
-                <td>{product.stock} adet</td>
+                <td>{product.stock} in stock</td>
               </tr>
             ))}
           </tbody>
@@ -77,7 +77,7 @@ export function ProductTable({ selectedId, onSelect }: ProductTableProps) {
       >
         Sonraki
       </button>
-      {isFetching && <span> Güncelleniyor...</span>}
+      {isFetching && <span>Updating...</span>}
     </section>
   );
 }

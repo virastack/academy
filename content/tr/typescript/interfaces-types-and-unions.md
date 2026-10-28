@@ -19,7 +19,7 @@ type Product = {
   description?: string;
 };
 
-const headset: Product = { id: 1, name: "Kablosuz Kulaklık", price: 1299.9 };
+const headset: Product = { id: 1, name: "Wireless Headphones", price: 1299.9 };
 ```
 
 **Interface** de bir object tipine isim vermenin yoludur. Eşittir işareti ve sondaki noktalı virgül yoktur; geri kalanı aynıdır.[^1]
@@ -177,7 +177,7 @@ Bir object literal'ı doğrudan tipli bir değişkene atadığınızda ya da fon
 ```ts
 const product: Product = {
   id: 1,
-  name: "Kablosuz Kulaklık",
+  name: "Wireless Headphones",
   price: 1299.9,
   colour: "siyah",
   // Hata: Object literal may only specify known properties, and 'colour' does not exist in type 'Product'.

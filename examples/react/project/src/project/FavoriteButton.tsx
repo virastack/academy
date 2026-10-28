@@ -18,7 +18,7 @@ export function FavoriteButton({ productId, initialFavorite }: FavoriteButtonPro
 
   return (
     <button type="button" aria-pressed={optimisticFavorite} onClick={toggle}>
-      {optimisticFavorite ? "♥ Favorilerde" : "♡ Favorilere ekle"}
+      {optimisticFavorite ? "♥ In favorites" : "♡ Add to favorites"}
     </button>
   );
 }

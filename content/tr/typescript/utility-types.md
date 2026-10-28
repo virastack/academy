@@ -167,14 +167,14 @@ type Route = { path: string; title: string };
 // Tip annotation: tip kazanır
 const routes: Record<string, Route> = {
   home: { path: "/", title: "Ana sayfa" },
-  cart: { path: "/cart", title: "Sepet" },
+  cart: { path: "/cart", title: "Cart" },
 };
 routes.wishlist.path; // hata yok, çalışırken patlar
 
 // satisfies: değer kazanır
 const checkedRoutes = {
   home: { path: "/", title: "Ana sayfa" },
-  cart: { path: "/cart", title: "Sepet" },
+  cart: { path: "/cart", title: "Cart" },
 } satisfies Record<string, Route>;
 checkedRoutes.wishlist;
 // Hata: Property 'wishlist' does not exist on type '{ home: { path: string; title: string; }; cart: { path: string; title: string; }; }'.

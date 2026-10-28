@@ -48,7 +48,7 @@ function showStock(stock: number | undefined) {
   if (stock === undefined) {
     return "Bilgi yok";
   }
-  return stock === 0 ? "Tükendi" : `${stock} adet`; // stock: number
+  return stock === 0 ? "Sold out" : `${stock} adet`; // stock: number
 }
 ```
 
@@ -64,7 +64,7 @@ function shippingLabel(product: PhysicalProduct | DigitalProduct) {
   if ("weight" in product) {
     return `${product.weight} kg`; // PhysicalProduct
   }
-  return "İndirme linki e-postayla gönderilir"; // DigitalProduct
+  return "A download link is sent by email"; // DigitalProduct
 }
 ```
 
@@ -83,7 +83,7 @@ type ProductsState =
 function renderProducts(state: ProductsState): string {
   switch (state.status) {
     case "loading":
-      return "Yükleniyor...";
+      return "Loading...";
     case "success":
       return `${state.data.length} ürün bulundu`; // yalnızca burada data var
     case "error":
@@ -192,7 +192,7 @@ async function fetchProducts(): Promise<Product[]> {
   const data: unknown = await response.json();
 
   if (!Array.isArray(data) || !data.every(isProduct)) {
-    throw new Error("Beklenmeyen ürün verisi");
+    throw new Error("Unexpected product data");
   }
   return data; // data: Product[]
 }

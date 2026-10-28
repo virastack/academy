@@ -4,5 +4,5 @@ export function CartButton() {
   const count = useCartCount();
   const { openCart } = useShopActions();
 
-  return <button onClick={openCart}>Sepet ({count})</button>;
+  return <button onClick={openCart}>Cart ({count})</button>;
 }

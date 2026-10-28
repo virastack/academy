@@ -2,10 +2,10 @@ import type { ProductFilters } from "./api";
 import { useCategory, useFilterActions, useSearch } from "./filter-store";
 
 const categories: { value: ProductFilters["category"]; label: string }[] = [
-  { value: "all", label: "Tümü" },
-  { value: "shoes", label: "Ayakkabı" },
-  { value: "clothing", label: "Giyim" },
-  { value: "accessories", label: "Aksesuar" },
+  { value: "all", label: "All" },
+  { value: "shoes", label: "Shoes" },
+  { value: "clothing", label: "Clothing" },
+  { value: "accessories", label: "Accessories" },
 ];
 
 export function Filters() {
@@ -16,13 +16,13 @@ export function Filters() {
   return (
     <div style={{ display: "flex", gap: 8, marginBottom: 16 }}>
       <input
-        aria-label="Ürün ara"
-        placeholder="Ürün ara"
+        aria-label="Search products"
+        placeholder="Search products"
         value={search}
         onChange={(event) => setSearch(event.target.value)}
       />
       <select
-        aria-label="Kategori"
+        aria-label="Category"
         value={category}
         onChange={(event) => setCategory(event.target.value as ProductFilters["category"])}
       >
@@ -32,7 +32,7 @@ export function Filters() {
           </option>
         ))}
       </select>
-      <button onClick={reset}>Filtreleri temizle</button>
+      <button onClick={reset}>Clear filters</button>
     </div>
   );
 }

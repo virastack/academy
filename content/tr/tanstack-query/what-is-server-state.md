@@ -73,7 +73,7 @@ function ProductList({ category }: { category: string }) {
     },
   });
 
-  if (isPending) return <p>Yükleniyor...</p>;
+  if (isPending) return <p>Loading...</p>;
   if (error) return <p>Hata: {error.message}</p>;
 
   return <ul>{data.map((p) => <li key={p.id}>{p.name}</li>)}</ul>;

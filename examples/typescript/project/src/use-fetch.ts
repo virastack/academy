@@ -12,7 +12,7 @@ export function useFetch<T>(load: () => Promise<T>): FetchState<T> {
       })
       .catch((error: unknown) => {
         const message =
-          error instanceof Error ? error.message : "Bilinmeyen hata";
+          error instanceof Error ? error.message : "Unknown error";
         if (!ignore) setState({ status: "error", message });
       });
     return () => {

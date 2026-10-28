@@ -87,7 +87,7 @@ export function Button({ variant = "primary", ...rest }: ButtonProps) {
   return <button className={`btn btn-${variant}`} {...rest} />;
 }
 
-<Button type="submit" onClick={() => console.log("tık")}>
+<Button type="submit" onClick={() => console.log("click")}>
   Siparişi tamamla
 </Button>;
 ```
@@ -175,7 +175,7 @@ function focusInput() {
   inputRef.current?.focus(); // current: HTMLInputElement | null
 }
 
-<input ref={inputRef} placeholder="Ürün ara" />;
+<input ref={inputRef} placeholder="Search products" />;
 ```
 
 `current` ilk render'da `null`'dır, bu yüzden `?.` ile erişilir.[^10] Ref'i bir alt component'e iletmek için yukarıdaki `ref` prop'u yeterlidir.
@@ -195,7 +195,7 @@ const CartContext = createContext<CartContextValue | null>(null);
 export function useCart() {
   const cart = useContext(CartContext);
   if (cart === null) {
-    throw new Error("useCart, CartProvider içinde kullanılmalı.");
+    throw new Error("useCart must be used within CartProvider.");
   }
   return cart; // tip: CartContextValue, null yok
 }

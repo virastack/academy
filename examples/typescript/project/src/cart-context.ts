@@ -12,7 +12,7 @@ export const CartContext = createContext<CartContextValue | null>(null);
 export function useCart(): CartContextValue {
   const cart = useContext(CartContext);
   if (cart === null) {
-    throw new Error("useCart, CartProvider içinde kullanılmalı.");
+    throw new Error("useCart must be used within CartProvider.");
   }
   return cart;
 }

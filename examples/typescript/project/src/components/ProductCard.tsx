@@ -15,7 +15,7 @@ export function ProductCard({ product, onAddToCart }: ProductCardProps) {
         disabled={!product.inStock}
         onClick={() => onAddToCart(product)}
       >
-        {product.inStock ? "Sepete ekle" : "Stokta yok"}
+        {product.inStock ? "Add to cart" : "Out of stock"}
       </button>
     </article>
   );

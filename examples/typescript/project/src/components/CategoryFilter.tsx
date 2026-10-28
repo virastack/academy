@@ -3,10 +3,10 @@ import { CATEGORIES, type Category } from "../types";
 export type CategoryFilterValue = Category | "all";
 
 const LABELS: Record<CategoryFilterValue, string> = {
-  all: "Tümü",
-  audio: "Ses",
-  computer: "Bilgisayar",
-  accessory: "Aksesuar",
+  all: "All",
+  audio: "Audio",
+  computer: "Computers",
+  accessory: "Accessories",
 };
 
 function isCategoryFilterValue(value: string): value is CategoryFilterValue {

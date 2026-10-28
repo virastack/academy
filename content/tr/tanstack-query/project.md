@@ -102,7 +102,7 @@ const reviews: Review[] = products.flatMap((product) =>
   Array.from({ length: 7 }, (_, index) => ({
     id: product.id * 100 + index,
     productId: product.id,
-    text: `${product.name} için yorum ${index + 1}`,
+    text: `Review ${index + 1} for ${product.name}`,
   })),
 );
 
@@ -246,7 +246,7 @@ export const queryClient = new QueryClient({
     onError: (error, query) => {
       // Ekranda veri varken başarısız olan arka plan yenilemesi
       if (query.state.data !== undefined) {
-        showToast(`Veri güncellenemedi: ${error.message}`);
+        showToast(`Data could not be updated: ${error.message}`);
       }
     },
   }),
@@ -298,12 +298,12 @@ export function ProductTable({ selectedId, onSelect }: ProductTableProps) {
           setPage(1);
         }}
       >
-        <input name="search" placeholder="Ürün ara" defaultValue={search} />
-        <button>Ara</button>
+        <input name="search" placeholder="Search products" defaultValue={search} />
+        <button>Search</button>
       </form>
 
       {isPending ? (
-        <p>Yükleniyor...</p>
+        <p>Loading...</p>
       ) : isError ? (
         <p>Hata: {error.message}</p>
       ) : (
@@ -321,7 +321,7 @@ export function ProductTable({ selectedId, onSelect }: ProductTableProps) {
                   </button>
                 </td>
                 <td>{product.price} TL</td>
-                <td>{product.stock} adet</td>
+                <td>{product.stock} in stock</td>
               </tr>
             ))}
           </tbody>
@@ -338,7 +338,7 @@ export function ProductTable({ selectedId, onSelect }: ProductTableProps) {
       >
         Sonraki
       </button>
-      {isFetching && <span> Güncelleniyor...</span>}
+      {isFetching && <span>Updating...</span>}
     </section>
   );
 }
@@ -381,15 +381,15 @@ export function StockForm({ product }: { product: Product }) {
         const stock = Number(new FormData(event.currentTarget).get("stock"));
         mutation.mutate(
           { id: product.id, stock },
-          { onSuccess: () => showToast("Stok güncellendi") },
+          { onSuccess: () => showToast("Stock updated") },
         );
       }}
     >
       <label>
-        Stok <input name="stock" type="number" defaultValue={product.stock} />
+        Stock <input name="stock" type="number" defaultValue={product.stock} />
       </label>
       <button disabled={mutation.isPending}>
-        {mutation.isPending ? "Kaydediliyor..." : "Kaydet"}
+        {mutation.isPending ? "Saving..." : "Save"}
       </button>
       {mutation.isError && <p role="alert">{mutation.error.message}</p>}
     </form>
@@ -443,7 +443,7 @@ export function FavoriteButton({ product }: { product: Product }) {
 
   return (
     <button onClick={() => mutation.mutate(product.id)} aria-pressed={product.isFavorite}>
-      {product.isFavorite ? "★ Favoride" : "☆ Favorilere ekle"}
+      {product.isFavorite ? "★ Favorited" : "☆ Add to favorites"}
     </button>
   );
 }
@@ -474,7 +474,7 @@ export function Reviews({ productId }: { productId: number }) {
 
   return (
     <section>
-      <h3>Yorumlar</h3>
+      <h3>Reviews</h3>
       <form
         onSubmit={(event) => {
           event.preventDefault();
@@ -484,29 +484,29 @@ export function Reviews({ productId }: { productId: number }) {
           mutation.mutate({ productId, text }, { onSuccess: () => form.reset() });
         }}
       >
-        <input name="text" placeholder="Yorumunuz" />
-        <button disabled={mutation.isPending}>Gönder</button>
+        <input name="text" placeholder="Your review" />
+        <button disabled={mutation.isPending}>Submit</button>
       </form>
 
       {mutation.isPending && <p style={{ opacity: 0.5 }}>{mutation.variables.text}</p>}
       {mutation.isError && (
         <p>
-          {mutation.variables.text} gönderilemedi.{" "}
-          <button onClick={() => mutation.mutate(mutation.variables)}>Tekrar dene</button>
+          {mutation.variables.text} could not be sent.{" "}
+          <button onClick={() => mutation.mutate(mutation.variables)}>Try again</button>
         </p>
       )}
 
       {status === "pending" ? (
-        <p>Yorumlar yükleniyor...</p>
+        <p>Loading reviews...</p>
       ) : status === "error" ? (
-        <p>Yorumlar yüklenemedi.</p>
+        <p>Reviews could not be loaded.</p>
       ) : (
         <>
           {data.pages.flatMap((page) => page.items).map((review) => (
             <p key={review.id}>{review.text}</p>
           ))}
           <button onClick={() => fetchNextPage()} disabled={!hasNextPage || isFetching}>
-            {isFetchingNextPage ? "Yükleniyor..." : hasNextPage ? "Daha fazla" : "Hepsi bu kadar"}
+            {isFetchingNextPage ? "Loading..." : hasNextPage ? "Load more" : "That's all"}
           </button>
         </>
       )}
@@ -569,7 +569,7 @@ export function App() {
 
       <div style={{ opacity: isSwitching ? 0.5 : 1 }}>
         {selectedId === null ? (
-          <p>Bir ürün seçin.</p>
+          <p>Select a product.</p>
         ) : (
           <QueryErrorResetBoundary>
             {({ reset }) => (
@@ -578,12 +578,12 @@ export function App() {
                 resetKeys={[selectedId]}
                 fallbackRender={({ resetErrorBoundary }) => (
                   <div>
-                    <p>Ürün yüklenemedi.</p>
-                    <button onClick={() => resetErrorBoundary()}>Tekrar dene</button>
+                    <p>Product could not be loaded.</p>
+                    <button onClick={() => resetErrorBoundary()}>Try again</button>
                   </div>
                 )}
               >
-                <Suspense fallback={<p>Ürün yükleniyor...</p>}>
+                <Suspense fallback={<p>Loading product...</p>}>
                   <ProductDetail id={selectedId} />
                 </Suspense>
               </ErrorBoundary>

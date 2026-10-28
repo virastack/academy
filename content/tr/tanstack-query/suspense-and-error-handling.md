@@ -31,7 +31,7 @@ const queryClient = new QueryClient({
     onError: (error, query) => {
       // Yalnızca arka plan yenilemesi başarısız olduysa toast göster
       if (query.state.data !== undefined) {
-        toast.error(`Veri güncellenemedi: ${error.message}`);
+        toast.error(`Data could not be updated: ${error.message}`);
       }
     },
   }),
@@ -63,8 +63,8 @@ import { ErrorBoundary } from "react-error-boundary";
       onReset={reset}
       fallbackRender={({ resetErrorBoundary }) => (
         <div>
-          <p>Ürün yüklenemedi.</p>
-          <button onClick={() => resetErrorBoundary()}>Tekrar dene</button>
+          <p>Product could not be loaded.</p>
+          <button onClick={() => resetErrorBoundary()}>Try again</button>
         </div>
       )}
     >

@@ -10,7 +10,7 @@ translationKey: "typescript/basic-types-and-inference"
 [!typescript]'te bir değişkenin, parametrenin ya da dönüş değerinin tipi, adından sonra iki nokta üst üste ile yazılır. Buna **type annotation** denir.[^1]
 
 ```ts
-let productName: string = "Kablosuz Kulaklık";
+let productName: string = "Wireless Headphones";
 let price: number = 1299.9;
 let inStock: boolean = true;
 
@@ -66,7 +66,7 @@ ids.push("4");
 // Hata: Argument of type 'string' is not assignable to parameter of type 'number'.
 
 const mixed = [1, "iki", null]; // (string | number | null)[]
-const entry: [string, number] = ["Kablosuz Kulaklık", 2]; // tuple
+const entry: [string, number] = ["Wireless Headphones", 2]; // tuple
 ```
 
 ## Fonksiyonlar
@@ -197,7 +197,7 @@ function printProduct(product: { name: string; price: number }) {
   console.log(`${product.name}: ${product.price} TL`);
 }
 
-printProduct({ name: "Kablosuz Kulaklık" });
+printProduct({ name: "Wireless Headphones" });
 // Hata: Property 'price' is missing in type '{ name: string; }' but required in type '{ name: string; price: number; }'.
 ```
 

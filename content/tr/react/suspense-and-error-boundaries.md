@@ -105,8 +105,8 @@ import { ErrorBoundary } from "react-error-boundary";
 <ErrorBoundary
   fallbackRender={({ resetErrorBoundary }) => (
     <div role="alert">
-      <p>Ürün yüklenemedi.</p>
-      <button onClick={resetErrorBoundary}>Tekrar dene</button>
+      <p>Product could not be loaded.</p>
+      <button onClick={resetErrorBoundary}>Try again</button>
     </div>
   )}
   resetKeys={[productId]}

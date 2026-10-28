@@ -29,7 +29,7 @@ function CartSummary({ productIds }: { productIds: number[] }) {
     }),
   });
 
-  if (total.isPending) return <p>Hesaplanıyor...</p>;
+  if (total.isPending) return <p>Calculating...</p>;
   return <p>Toplam: {total.price} TL</p>;
 }
 ```

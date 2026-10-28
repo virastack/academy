@@ -34,8 +34,8 @@ export function SearchBox() {
 
   return (
     <>
-      <input ref={inputRef} type="search" placeholder="Ürün ara" />
-      <button onClick={() => inputRef.current?.focus()}>Ara</button>
+      <input ref={inputRef} type="search" placeholder="Search products" />
+      <button onClick={() => inputRef.current?.focus()}>Search</button>
     </>
   );
 }
@@ -68,7 +68,7 @@ Ebeveynin DOM elemanının tamamına değil, yalnızca birkaç metoda erişmesin
 ```tsx
 function measure(node: HTMLElement) {
   const observer = new ResizeObserver(([entry]) => {
-    console.log("Kart genişliği:", entry.contentRect.width);
+    console.log("Card width:", entry.contentRect.width);
   });
   observer.observe(node);
   return () => observer.disconnect();

@@ -17,12 +17,12 @@ export default function App() {
         onReset={() => clearProduct(PRODUCT_ID)}
         fallbackRender={({ resetErrorBoundary }) => (
           <div role="alert">
-            <p>Ürün yüklenemedi.</p>
-            <button onClick={resetErrorBoundary}>Tekrar dene</button>
+            <p>Product could not be loaded.</p>
+            <button onClick={resetErrorBoundary}>Try again</button>
           </div>
         )}
       >
-        <Suspense fallback={<p>Ürün yükleniyor...</p>}>
+        <Suspense fallback={<p>Loading product...</p>}>
           <ProductPage id={PRODUCT_ID} />
         </Suspense>
       </ErrorBoundary>

@@ -11,7 +11,7 @@ Küçük bir mağaza sayfası kuracaksınız. Sayfa:
 
 - Ürünleri bir JSON dosyasından çeker; veri bozuksa hata gösterir.
 - Ürünleri kategoriye göre filtreler.
-- **Sepete ekle** butonuyla ürünü sepete ekler; sepetteki ürün çeşidini ve toplam tutarı gösterir.
+- **Add to cart** butonuyla ürünü sepete ekler; sepetteki ürün çeşidini ve toplam tutarı gösterir.
 - Stokta olmayan üründe butonu devre dışı bırakır.
 
 Amaç tasarım değil, tiplerin uçtan uca akmasıdır: JSON'dan gelen `unknown` veri bir type guard'dan geçer, `Product` olarak component'lere iner, sepette `CartItem`'a dönüşür.
@@ -87,9 +87,9 @@ export type FetchState<T> =
 
 ```json
 [
-  { "id": 1, "name": "Kablosuz Kulaklık", "price": 1299, "category": "audio", "inStock": true },
-  { "id": 2, "name": "Bluetooth Hoparlör", "price": 899, "category": "audio", "inStock": false },
-  { "id": 3, "name": "Dizüstü Bilgisayar", "price": 32999, "category": "computer", "inStock": true },
+  { "id": 1, "name": "Wireless Headphones", "price": 1299, "category": "audio", "inStock": true },
+  { "id": 2, "name": "Bluetooth Speaker", "price": 899, "category": "audio", "inStock": false },
+  { "id": 3, "name": "Laptop", "price": 32999, "category": "computer", "inStock": true },
   { "id": 4, "name": "USB-C Kablo", "price": 149, "category": "accessory", "inStock": true }
 ]
 ```
@@ -125,7 +125,7 @@ export async function fetchProducts(): Promise<Product[]> {
   }
   const data: unknown = await response.json();
   if (!Array.isArray(data) || !data.every(isProduct)) {
-    throw new Error("Ürün verisi beklenen biçimde değil.");
+    throw new Error("Product data is not in the expected shape.");
   }
   return data;
 }
@@ -153,7 +153,7 @@ export function useFetch<T>(load: () => Promise<T>): FetchState<T> {
       })
       .catch((error: unknown) => {
         const message =
-          error instanceof Error ? error.message : "Bilinmeyen hata";
+          error instanceof Error ? error.message : "Unknown error";
         if (!ignore) setState({ status: "error", message });
       });
     return () => {
@@ -192,7 +192,7 @@ export function ProductCard({ product, onAddToCart }: ProductCardProps) {
         disabled={!product.inStock}
         onClick={() => onAddToCart(product)}
       >
-        {product.inStock ? "Sepete ekle" : "Stokta yok"}
+        {product.inStock ? "Add to cart" : "Out of stock"}
       </button>
     </article>
   );
@@ -208,10 +208,10 @@ import { CATEGORIES, type Category } from "../types";
 export type CategoryFilterValue = Category | "all";
 
 const LABELS: Record<CategoryFilterValue, string> = {
-  all: "Tümü",
-  audio: "Ses",
-  computer: "Bilgisayar",
-  accessory: "Aksesuar",
+  all: "All",
+  audio: "Audio",
+  computer: "Computers",
+  accessory: "Accessories",
 };
 
 function isCategoryFilterValue(value: string): value is CategoryFilterValue {
@@ -268,7 +268,7 @@ export const CartContext = createContext<CartContextValue | null>(null);
 export function useCart(): CartContextValue {
   const cart = useContext(CartContext);
   if (cart === null) {
-    throw new Error("useCart, CartProvider içinde kullanılmalı.");
+    throw new Error("useCart must be used within CartProvider.");
   }
   return cart;
 }
@@ -349,7 +349,7 @@ export default function App() {
 
   switch (state.status) {
     case "loading":
-      return <p>Yükleniyor...</p>;
+      return <p>Loading...</p>;
     case "error":
       return <p role="alert">Hata: {state.message}</p>;
     case "success": {
@@ -361,7 +361,7 @@ export default function App() {
       return (
         <main>
           <p>
-            Sepet: {items.length} çeşit ürün,{" "}
+            Cart: {items.length} item types,{" "}
             {totalPrice.toLocaleString("tr-TR")} TL
           </p>
           <CategoryFilter value={category} onChange={setCategory} />

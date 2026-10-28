@@ -24,7 +24,7 @@ function AddToCartButton({ productId }: { productId: string }) {
         });
       }}
     >
-      {isPending ? "Ekleniyor..." : "Sepete ekle"}
+      {isPending ? "Ekleniyor..." : "Add to cart"}
     </button>
   );
 }
@@ -58,7 +58,7 @@ import { useFormStatus } from "react-dom";
 
 function SubmitButton() {
   const { pending } = useFormStatus();
-  return <button disabled={pending}>{pending ? "Gönderiliyor..." : "Abone ol"}</button>;
+  return <button disabled={pending}>{pending ? "Submitting..." : "Abone ol"}</button>;
 }
 ```
 
@@ -75,7 +75,7 @@ type CouponState = { error: string | null; discount: number };
 
 async function applyCoupon(_prev: CouponState, formData: FormData): Promise<CouponState> {
   const result = await checkCoupon(String(formData.get("code")));
-  if (!result.ok) return { error: "Kupon geçersiz.", discount: 0 };
+  if (!result.ok) return { error: "Invalid coupon.", discount: 0 };
   return { error: null, discount: result.discount };
 }
 
@@ -119,7 +119,7 @@ function FavoriteButton({ isFavorite, action }: FavoriteButtonProps) {
         });
       }}
     >
-      {optimisticFavorite ? "Favorilerde" : "Favorilere ekle"}
+      {optimisticFavorite ? "In favorites" : "Add to favorites"}
     </button>
   );
 }

@@ -36,7 +36,7 @@ function ProductTable() {
     placeholderData: keepPreviousData,
   });
 
-  if (isPending) return <p>Yükleniyor...</p>;
+  if (isPending) return <p>Loading...</p>;
   if (isError) return <p>Hata: {error.message}</p>;
 
   return (
@@ -54,7 +54,7 @@ function ProductTable() {
       >
         Sonraki
       </button>
-      {isFetching && <span> Güncelleniyor...</span>}
+      {isFetching && <span>Updating...</span>}
     </>
   );
 }
@@ -108,8 +108,8 @@ function Reviews({ productId }: { productId: number }) {
   const { data, fetchNextPage, hasNextPage, isFetching, isFetchingNextPage, status } =
     useInfiniteQuery(reviewQueries.infinite(productId));
 
-  if (status === "pending") return <p>Yükleniyor...</p>;
-  if (status === "error") return <p>Yorumlar yüklenemedi.</p>;
+  if (status === "pending") return <p>Loading...</p>;
+  if (status === "error") return <p>Reviews could not be loaded.</p>;
 
   return (
     <>
@@ -120,7 +120,7 @@ function Reviews({ productId }: { productId: number }) {
         onClick={() => fetchNextPage()}
         disabled={!hasNextPage || isFetching}
       >
-        {isFetchingNextPage ? "Yükleniyor..." : hasNextPage ? "Daha fazla" : "Hepsi bu kadar"}
+        {isFetchingNextPage ? "Loading..." : hasNextPage ? "Load more" : "That's all"}
       </button>
     </>
   );

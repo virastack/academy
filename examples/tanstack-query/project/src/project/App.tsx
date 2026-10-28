@@ -19,7 +19,7 @@ export function App() {
 
       <div style={{ opacity: isSwitching ? 0.5 : 1 }}>
         {selectedId === null ? (
-          <p>Bir ürün seçin.</p>
+          <p>Select a product.</p>
         ) : (
           <QueryErrorResetBoundary>
             {({ reset }) => (
@@ -28,12 +28,12 @@ export function App() {
                 resetKeys={[selectedId]}
                 fallbackRender={({ resetErrorBoundary }) => (
                   <div>
-                    <p>Ürün yüklenemedi.</p>
-                    <button onClick={() => resetErrorBoundary()}>Tekrar dene</button>
+                    <p>Product could not be loaded.</p>
+                    <button onClick={() => resetErrorBoundary()}>Try again</button>
                   </div>
                 )}
               >
-                <Suspense fallback={<p>Ürün yükleniyor...</p>}>
+                <Suspense fallback={<p>Loading product...</p>}>
                   <ProductDetail id={selectedId} />
                 </Suspense>
               </ErrorBoundary>

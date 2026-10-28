@@ -32,7 +32,7 @@ function getFirst<T>(items: T[]): T | undefined {
 }
 
 const firstProduct = getFirst(products); // Product | undefined
-const firstName = getFirst(["Kulaklık", "Klavye"]); // string | undefined
+const firstName = getFirst(["Headphones", "Klavye"]); // string | undefined
 
 firstProduct?.nmae;
 // Hata: Property 'nmae' does not exist on type 'Product'.
@@ -91,7 +91,7 @@ function sortByPrice<T extends { price: number }>(items: T[]): T[] {
 const sortedProducts = sortByPrice(products); // Product[]
 const sortedCart = sortByPrice(cartItems); // CartItem[]
 
-sortByPrice(["Kulaklık"]);
+sortByPrice(["Headphones"]);
 // Hata: Type 'string' is not assignable to type '{ price: number; }'.
 ```
 
@@ -183,7 +183,7 @@ async function fetchJson<T>(
   }
   const data: unknown = await response.json();
   if (!isValid(data)) {
-    throw new Error("Beklenmeyen yanıt");
+    throw new Error("Unexpected response");
   }
   return data;
 }

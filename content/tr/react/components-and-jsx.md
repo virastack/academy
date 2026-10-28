@@ -23,8 +23,8 @@ Bir component, büyük harfle başlayan ve JSX döndüren bir JavaScript fonksiy
 export function ProductCard() {
   return (
     <article className="product-card">
-      <img src="/headphones.jpg" alt="Kablosuz kulaklık" />
-      <h2>Kablosuz kulaklık</h2>
+      <img src="/headphones.jpg" alt="Wireless headphones" />
+      <h2>Wireless headphones</h2>
     </article>
   );
 }
@@ -45,7 +45,7 @@ JSX, JavaScript içinde HTML'e benzeyen bir sözdizimidir; build sırasında fon
 Süslü parantez `{}` içine her JavaScript **ifadesi** yazılabilir: değişken, fonksiyon çağrısı, ternary. `if` ya da `for` gibi **deyimler** yazılamaz.[^3]
 
 ```tsx
-const product = { name: "Kulaklık", price: 1499, inStock: true };
+const product = { name: "Headphones", price: 1499, inStock: true };
 
 <p className={product.inStock ? "price" : "price muted"}>
   {product.name}: {product.price.toLocaleString("tr-TR")} TL
@@ -58,7 +58,7 @@ const product = { name: "Kulaklık", price: 1499, inStock: true };
 
 ```tsx
 {cartCount > 0 && <Badge count={cartCount} />}
-{product.inStock ? <AddToCartButton /> : <p>Stokta yok</p>}
+{product.inStock ? <AddToCartButton /> : <p>Out of stock</p>}
 ```
 
 > [!WARNING]

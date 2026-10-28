@@ -10,9 +10,9 @@ translationKey: "react/project"
 Bir mağazanın ürün detay sayfasını kuracaksınız. Sayfa:
 
 - Ürünü sahte bir API'den yükler; yüklenirken iskelet, hata olursa "Tekrar dene" gösterir.
-- **Sepete ekle** ile ürünü sepete koyar; üstteki **Sepet** butonu kayarak açılan bir çekmece gösterir.
-- **Favorilere ekle** butonu sunucuyu beklemeden kalbi doldurur.
-- **Açıklama** ve **Yorumlar** sekmeleri arasında geçerken yazılan yorum taslağı kaybolmaz.
+- **Add to cart** ile ürünü sepete koyar; üstteki **Cart** butonu kayarak açılan bir çekmece gösterir.
+- **Add to favorites** butonu sunucuyu beklemeden kalbi doldurur.
+- **Açıklama** ve **Reviews** sekmeleri arasında geçerken yazılan yorum taslağı kaybolmaz.
 - Yorum formu hata mesajı gösterir; gönderilen yorum cevap gelmeden listede soluk olarak belirir.
 
 Amaç tasarım değil, derslerdeki parçaların birlikte çalışmasıdır. Her parçanın hangi dersten geldiği:
@@ -62,15 +62,15 @@ export type Review = { id: number; author: string; text: string };
 const products: Record<string, Product> = {
   "1": {
     id: "1",
-    name: "Kablosuz kulaklık",
+    name: "Wireless headphones",
     price: 1499,
-    description: "40 saat pil, aktif gürültü engelleme.",
+    description: "40 hours of battery, active noise cancelling.",
     isFavorite: false,
   },
 };
 
 const reviews: Record<string, Review[]> = {
-  "1": [{ id: 1, author: "Ayşe", text: "Sesi çok net." }],
+  "1": [{ id: 1, author: "Ayşe", text: "The sound is very clear." }],
 };
 
 function wait(ms: number) {
@@ -80,7 +80,7 @@ function wait(ms: number) {
 export async function getProduct(id: string): Promise<Product> {
   await wait(800);
   const product = products[id];
-  if (!product) throw new Error("Ürün bulunamadı.");
+  if (!product) throw new Error("No products found.");
   return { ...product };
 }
 
@@ -137,7 +137,7 @@ export function clearProduct(id: string) {
 
 ## Adım 3: Sepet context'i
 
-Sepet, sayfanın her yerinden okunan ve seyrek değişen bir veri; Context için iyi bir aday. State ve `dispatch` ayrı context'lerde duruyor, böylece yalnızca `dispatch` kullanan "Sepete ekle" butonu sepet değişince render olmuyor.[^3]
+Sepet, sayfanın her yerinden okunan ve seyrek değişen bir veri; Context için iyi bir aday. State ve `dispatch` ayrı context'lerde duruyor, böylece yalnızca `dispatch` kullanan "Add to cart" butonu sepet değişince render olmuyor.[^3]
 
 ```tsx
 // src/project/cart.tsx
@@ -178,13 +178,13 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
 export function useCartItems() {
   const items = use(CartContext);
-  if (items === null) throw new Error("useCartItems, CartProvider içinde kullanılmalı.");
+  if (items === null) throw new Error("useCartItems must be used within CartProvider.");
   return items;
 }
 
 export function useCartDispatch() {
   const dispatch = use(CartDispatchContext);
-  if (dispatch === null) throw new Error("useCartDispatch, CartProvider içinde kullanılmalı.");
+  if (dispatch === null) throw new Error("useCartDispatch must be used within CartProvider.");
   return dispatch;
 }
 ```
@@ -215,7 +215,7 @@ export function FavoriteButton({ productId, initialFavorite }: FavoriteButtonPro
 
   return (
     <button type="button" aria-pressed={optimisticFavorite} onClick={toggle}>
-      {optimisticFavorite ? "♥ Favorilerde" : "♡ Favorilere ekle"}
+      {optimisticFavorite ? "♥ In favorites" : "♡ Add to favorites"}
     </button>
   );
 }
@@ -245,9 +245,9 @@ export function Reviews({ productId }: { productId: string }) {
   const [state, dispatchReview] = useActionState(
     async (previous: ReviewState, text: string): Promise<ReviewState> => {
       if (text.length < 3) {
-        return { ...previous, error: "Yorum en az 3 karakter olmalı." };
+        return { ...previous, error: "The review must be at least 3 characters." };
       }
-      const saved = await postReview(productId, { author: "Siz", text });
+      const saved = await postReview(productId, { author: "You", text });
       return { reviews: [...previous.reviews, saved], error: null };
     },
     { reviews: initialReviews, error: null },
@@ -261,7 +261,7 @@ export function Reviews({ productId }: { productId: string }) {
   function submitReview(formData: FormData) {
     const text = String(formData.get("text")).trim();
     if (text.length >= 3) {
-      addOptimisticReview({ id: -1, author: "Siz", text });
+      addOptimisticReview({ id: -1, author: "You", text });
     }
     dispatchReview(text);
   }
@@ -276,7 +276,7 @@ export function Reviews({ productId }: { productId: string }) {
         ))}
       </ul>
       <form action={submitReview}>
-        <textarea name="text" aria-label="Yorumunuz" />
+        <textarea name="text" aria-label="Your review" />
         {state.error && <p role="alert">{state.error}</p>}
         <SubmitButton />
       </form>
@@ -286,7 +286,7 @@ export function Reviews({ productId }: { productId: string }) {
 
 function SubmitButton() {
   const { pending } = useFormStatus();
-  return <button disabled={pending}>{pending ? "Gönderiliyor..." : "Yorum yap"}</button>;
+  return <button disabled={pending}>{pending ? "Submitting..." : "Write a review"}</button>;
 }
 ```
 
@@ -338,7 +338,7 @@ export function ProductPage({ id }: { id: string }) {
         <p>{product.description}</p>
       </Activity>
       <Activity mode={tab === "reviews" ? "visible" : "hidden"}>
-        <Suspense fallback={<p>Yorumlar yükleniyor...</p>}>
+        <Suspense fallback={<p>Loading reviews...</p>}>
           <Reviews productId={product.id} />
         </Suspense>
       </Activity>
@@ -367,7 +367,7 @@ export function CartButton() {
   return (
     <>
       <button type="button" onClick={() => startTransition(() => setIsOpen(!isOpen))}>
-        Sepet ({count})
+        Cart ({count})
       </button>
       {isOpen && (
         <ViewTransition enter="slide-in" exit="slide-out">
@@ -384,9 +384,9 @@ function CartDrawer() {
   const total = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
   return (
-    <aside className="cart-drawer" aria-label="Sepet">
+    <aside className="cart-drawer" aria-label="Cart">
       {items.length === 0 ? (
-        <p>Sepetiniz boş.</p>
+        <p>Your cart is empty.</p>
       ) : (
         <ul>
           {items.map((item) => (
@@ -399,7 +399,7 @@ function CartDrawer() {
           ))}
         </ul>
       )}
-      <p>Toplam: {total.toLocaleString("tr-TR")} TL</p>
+      <p>Total: {total.toLocaleString("tr-TR")} TL</p>
     </aside>
   );
 }
@@ -453,12 +453,12 @@ export default function App() {
         onReset={() => clearProduct(PRODUCT_ID)}
         fallbackRender={({ resetErrorBoundary }) => (
           <div role="alert">
-            <p>Ürün yüklenemedi.</p>
-            <button onClick={resetErrorBoundary}>Tekrar dene</button>
+            <p>Product could not be loaded.</p>
+            <button onClick={resetErrorBoundary}>Try again</button>
           </div>
         )}
       >
-        <Suspense fallback={<p>Ürün yükleniyor...</p>}>
+        <Suspense fallback={<p>Loading product...</p>}>
           <ProductPage id={PRODUCT_ID} />
         </Suspense>
       </ErrorBoundary>
@@ -474,7 +474,7 @@ import App from "./project/App.tsx";
 import "./project/styles.css";
 ```
 
-`npm run dev` ile açın. Şu sırayı deneyin: sayfa yüklenirken iskelet, iki kez "Sepete ekle", sepeti aç, favori, yorumlar sekmesi, iki harflik bir yorum *(hata)*, sonra gerçek bir yorum *(önce soluk, sonra normal)*.
+`npm run dev` ile açın. Şu sırayı deneyin: sayfa yüklenirken iskelet, iki kez "Add to cart", sepeti aç, favori, yorumlar sekmesi, iki harflik bir yorum *(hata)*, sonra gerçek bir yorum *(önce soluk, sonra normal)*.
 
 Son olarak kontrol edin:
 

@@ -15,7 +15,7 @@ export function Reviews({ productId }: { productId: number }) {
 
   return (
     <section>
-      <h3>Yorumlar</h3>
+      <h3>Reviews</h3>
       <form
         onSubmit={(event) => {
           event.preventDefault();
@@ -25,29 +25,29 @@ export function Reviews({ productId }: { productId: number }) {
           mutation.mutate({ productId, text }, { onSuccess: () => form.reset() });
         }}
       >
-        <input name="text" placeholder="Yorumunuz" />
-        <button disabled={mutation.isPending}>Gönder</button>
+        <input name="text" placeholder="Your review" />
+        <button disabled={mutation.isPending}>Submit</button>
       </form>
 
       {mutation.isPending && <p style={{ opacity: 0.5 }}>{mutation.variables.text}</p>}
       {mutation.isError && (
         <p>
-          {mutation.variables.text} gönderilemedi.{" "}
-          <button onClick={() => mutation.mutate(mutation.variables)}>Tekrar dene</button>
+          {mutation.variables.text} could not be sent.{" "}
+          <button onClick={() => mutation.mutate(mutation.variables)}>Try again</button>
         </p>
       )}
 
       {status === "pending" ? (
-        <p>Yorumlar yükleniyor...</p>
+        <p>Loading reviews...</p>
       ) : status === "error" ? (
-        <p>Yorumlar yüklenemedi.</p>
+        <p>Reviews could not be loaded.</p>
       ) : (
         <>
           {data.pages.flatMap((page) => page.items).map((review) => (
             <p key={review.id}>{review.text}</p>
           ))}
           <button onClick={() => fetchNextPage()} disabled={!hasNextPage || isFetching}>
-            {isFetchingNextPage ? "Yükleniyor..." : hasNextPage ? "Daha fazla" : "Hepsi bu kadar"}
+            {isFetchingNextPage ? "Loading..." : hasNextPage ? "Load more" : "That's all"}
           </button>
         </>
       )}

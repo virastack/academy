@@ -26,7 +26,7 @@ export function ProductList() {
     queryFn: fetchProducts,
   });
 
-  if (isPending) return <p>Yükleniyor...</p>;
+  if (isPending) return <p>Loading...</p>;
   if (isError) return <p>Hata: {error.message}</p>;
 
   return <ul>{data.map((p) => <li key={p.id}>{p.name}</li>)}</ul>;
@@ -62,7 +62,7 @@ Sonuç nesnesinde iki ayrı durum var. `status` **veriyle** ilgilidir: elinizde 
 ```tsx
 if (data) return <ProductTable products={data} />;
 if (error) return <p>Hata: {error.message}</p>;
-return <p>Yükleniyor...</p>;
+return <p>Loading...</p>;
 ```
 
 Hangi sıranın doğru olduğu ekrana bağlıdır. Önemli olan, `error`'un "veri yok" demek olmadığını bilmektir.

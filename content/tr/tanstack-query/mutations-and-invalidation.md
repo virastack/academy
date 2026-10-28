@@ -36,7 +36,7 @@ export function StockForm({ productId }: { productId: number }) {
       }}
     >
       <input name="stock" type="number" min={0} />
-      <button disabled={mutation.isPending}>Kaydet</button>
+      <button disabled={mutation.isPending}>Save</button>
       {mutation.isError && <p>Hata: {mutation.error.message}</p>}
     </form>
   );
@@ -118,7 +118,7 @@ Callback'leri hem `useMutation`'a hem `mutate`'e verebilirsiniz. Önce `useMutat
 ```ts
 mutation.mutate(
   { productId, stock },
-  { onSuccess: () => toast.success("Stok güncellendi") },
+  { onSuccess: () => toast.success("Stock updated") },
 );
 ```
 

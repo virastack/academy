@@ -23,15 +23,15 @@ export function StockForm({ product }: { product: Product }) {
         const stock = Number(new FormData(event.currentTarget).get("stock"));
         mutation.mutate(
           { id: product.id, stock },
-          { onSuccess: () => showToast("Stok güncellendi") },
+          { onSuccess: () => showToast("Stock updated") },
         );
       }}
     >
       <label>
-        Stok <input name="stock" type="number" defaultValue={product.stock} />
+        Stock <input name="stock" type="number" defaultValue={product.stock} />
       </label>
       <button disabled={mutation.isPending}>
-        {mutation.isPending ? "Kaydediliyor..." : "Kaydet"}
+        {mutation.isPending ? "Saving..." : "Save"}
       </button>
       {mutation.isError && <p role="alert">{mutation.error.message}</p>}
     </form>

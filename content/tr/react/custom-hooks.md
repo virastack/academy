@@ -84,7 +84,7 @@ export function useOnlineStatus() {
 ```tsx
 function CheckoutButton() {
   const isOnline = useOnlineStatus();
-  return <button disabled={!isOnline}>{isOnline ? "Ödemeye geç" : "Bağlantı yok"}</button>;
+  return <button disabled={!isOnline}>{isOnline ? "Go to checkout" : "No connection"}</button>;
 }
 ```
 

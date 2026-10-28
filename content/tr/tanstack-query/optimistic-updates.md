@@ -40,7 +40,7 @@ function ReviewList({ productId }: { productId: number }) {
       {addReview.isError && (
         <li>
           {addReview.variables}{" "}
-          <button onClick={() => addReview.mutate(addReview.variables)}>Tekrar dene</button>
+          <button onClick={() => addReview.mutate(addReview.variables)}>Try again</button>
         </li>
       )}
     </ul>
