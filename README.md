@@ -10,7 +10,7 @@
 
 *Up-to-date React frontend roadmap: curated sources, no unnecessary detail*
 
-[![ViraStack Academy](https://img.shields.io/badge/ViraStack-Academy-%2300c950)](https://virastack.com/academy)
+[![ViraStack Academy](https://img.shields.io/badge/ViraStack-Academy-%2300a6f4)](https://virastack.com/academy)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/virastack/academy/blob/main/LICENSE)
 [![@virastack](https://img.shields.io/badge/-%40virastack-black?logo=x&logoColor=white)](https://x.com/virastack)
 
