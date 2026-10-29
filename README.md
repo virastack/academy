@@ -1,18 +1,14 @@
 <div align="center">
 
 <a href="https://github.com/virastack/academy" target="_blank" rel="noreferrer">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/virastack/academy/main/assets/logo-dark.png">
-    <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/virastack/academy/main/assets/logo-light.png">
-    <img src="https://raw.githubusercontent.com/virastack/academy/main/assets/logo-light.png" alt="ViraStack Academy" height="120" style="max-width: 100%;" />
-  </picture>
+  <img src="https://raw.githubusercontent.com/virastack/academy/main/assets/logo.png" alt="ViraStack Academy" height="120" style="max-width: 100%;" />
 </a>
 
 *Up-to-date React frontend roadmap: curated sources, no unnecessary detail*
 
 [![ViraStack Academy](https://img.shields.io/badge/ViraStack-Academy-%2300a6f4)](https://virastack.com/academy)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/virastack/academy/blob/main/LICENSE)
-[![@virastack](https://img.shields.io/badge/-%40virastack-black?logo=x&logoColor=white)](https://x.com/virastack)
+[![License: MIT](https://img.shields.io/github/license/virastack/academy)](https://github.com/virastack/academy/blob/main/LICENSE)
+[![@virastack](https://img.shields.io/badge/-%40virastack-555?logo=x&logoColor=white)](https://x.com/virastack)
 
 </div>
 
