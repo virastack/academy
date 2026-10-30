@@ -68,8 +68,8 @@ Hata ekranındaki **Copy prompt** butonu seçtiğiniz çözümü agent'a yapış
 
 Agent'ın değişikliğini doğrulaması için hem framework'ün hem tarayıcının gördüğünü bilmesi gerekir:[^1][^6]
 
-- `next dev`, tarayıcı konsolundaki hata ve uyarıları terminale de yazar; agent zaten okuduğu çıktıda istemci hatalarını görür.
-- Dev sunucusu `/_next/mcp` adresinde bir MCP uç noktası açar. `next-devtools-mcp` ile bağlanan agent rotaları, hataları ve derleme sorunlarını okur; `next build` çalıştırmadan kodun derlenip derlenmediğini sorabilir. Kurulumu [MCP](/academy/ai/mcp) dersinde.
+- `next dev`, tarayıcı konsolundaki hata ve uyarıları terminale de yazar; agent zaten okuduğu çıktıda client hatalarını görür.
+- Dev server'ı `/_next/mcp` adresinde bir MCP uç noktası açar. `next-devtools-mcp` ile bağlanan agent rotaları, hataları ve derleme sorunlarını okur; `next build` çalıştırmadan kodun derlenip derlenmediğini sorabilir. Kurulumu [MCP](/academy/ai/mcp) dersinde.
 - `next-dev-loop` skill'i, `agent-browser` CLI'ı ile tarayıcının DOM, konsol ve ağ görünümünü ekler. React DevTools açık başlatıldığı için component ağacını ve bekleyen Suspense sınırlarını da okur.
 
 ## Next.js skill'leri
@@ -82,7 +82,7 @@ Doküman bilgiyi verir, skill'ler ise **çok adımlı işleri** sıralar. Next.j
 | `next-cache-components-adoption` | Mevcut bir uygulamayı Cache Components'e taşır, her adımda size danışır |
 | `next-cache-components-optimizer` | Bir sayfanın statik kabuğunu büyütür; önce başarısız bir `instant()` testi yazar |
 | `next-partial-prefetching-adoption` | Uygulamayı Partial Prefetching'e taşır |
-| `next-bundle-optimizer` | Turbopack'in bundle analizine bakıp istemci paketini küçültür *(16.4)* |
+| `next-bundle-optimizer` | Turbopack'in bundle analizine bakıp client paketini küçültür *(16.4)* |
 
 ```command
 npx skills add vercel/next.js --skill next-dev-loop

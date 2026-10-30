@@ -88,7 +88,7 @@ Neden taşınır? Çünkü özellikler birbirinden import etmez. Özellikleri bi
 | --- | --- |
 | `features/cart/components/cart-summary.tsx` | `components/ui/button.tsx` |
 | Sepet toplamını hesaplayan fonksiyon | Para birimi formatlayan fonksiyon (`helpers/`) |
-| Sepet API hook'ları | Paylaşılan API istemcisi (`lib/api.ts`) |
+| Sepet API hook'ları | Paylaşılan API client'ı (`lib/api.ts`) |
 
 `helpers/` paket import'u içermeyen saf fonksiyonlara, paket kullanan yapılandırılmış örnekler ise `lib/` altına gider.[^7]
 
@@ -162,7 +162,7 @@ Feature-based yapılarda her özelliğin köküne genellikle bir `index.ts` konu
 
 > [!TIP]
 >
-> Bu yapıyı ajana her seferinde anlatmayın, kural dosyasına yazın. `create-next-app` kodlama ajanları için `AGENTS.md` dosyasını kendisi ekliyor.[^14] `../` yasağı gibi lint kuralları ajan için de bir kontrol işlevi görür, bunu [Agentic Kodlama](/academy/ai/agentic-coding) rehberinde anlatmıştık.
+> Bu yapıyı agent'a her seferinde anlatmayın, kural dosyasına yazın. `create-next-app` kodlama agent'ları için `AGENTS.md` dosyasını kendisi ekliyor.[^14] `../` yasağı gibi lint kuralları agent için de bir kontrol işlevi görür, bunu [Agentic Kodlama](/academy/ai/agentic-coding) rehberinde anlatmıştık.
 
 ## Kendin dene
 
@@ -180,7 +180,7 @@ Feature-based yapılarda her özelliğin köküne genellikle bir `index.ts` konu
 4. [Feature-Sliced Design: Layers](https://feature-sliced.design/docs/reference/layers) *(doc)* — Katman, dilim ve dilimler arası import kuralı.
 5. [Aleksandr Guzenko: Preventing architectural debt with Feature-Sliced Design (Conf42 JavaScript 2024)](https://conf42.com/JavaScript_2024_Aleksandr_Guzenko_3_architecturaldebt_featuresliceddesign_cleancode) *(video)* — Karışık bağımlılıkların mimari borca dönüşmesi ve Feature-Sliced Design ile bunu sınırlama. Slaytlar sayfada.
 6. [Alexander Morgunov: Getting to Grips with Feature-Sliced Design (HolyJS 2024 Autumn)](https://holyjs.ru/en/archive/2024%20Autumn/talks/20005543/) *(video)* — Kavramlar, public API ve çapraz import, zayıf dokümantasyon gibi sık görülen sorunlar.
-7. [ViraStack AI: architecture.mdc](https://github.com/virastack/ai/blob/main/templates/rules/architecture.mdc) *(repo)* — Bu rehberdeki dizin yapısının ve kuralların ajan kuralı olarak yazılmış hali.
+7. [ViraStack AI: architecture.mdc](https://github.com/virastack/ai/blob/main/templates/rules/architecture.mdc) *(repo)* — Bu rehberdeki dizin yapısının ve kuralların agent kuralı olarak yazılmış hali.
 8. [Next.js: Project structure and organization](https://nextjs.org/docs/app/getting-started/project-structure) *(doc)* — Dosya kuralları, `src` klasörü, private folder'lar ve proje organizasyon stratejileri.
 9. [TanStack Router: File Naming Conventions](https://tanstack.com/router/latest/docs/routing/file-naming-conventions) *(doc)* — `__root`, `$`, `_` ve `-` önekleri, rota ağacından dosya hariç tutma.
 10. [Justin Weiss: I Dry-ed Up My Code and Now It's Hard to Work With](https://www.justinweiss.com/articles/i-dry-ed-up-my-code-and-now-its-hard-to-work-with-what-happened/) *(article)* — "Üç vuruş" kuralı, gerekli ve tesadüfi tekrar ayrımı.

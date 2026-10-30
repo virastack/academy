@@ -193,7 +193,7 @@ npm run lint && npm run typecheck && npm run test:e2e
 
 > [!TIP]
 >
-> Bu işi bir kodlama ajanına verecekseniz önce Adım 1 ve 2'yi siz yapın. Test ve lint, ajanın işini kendi kontrol edebileceği bir hedef olur.
+> Bu işi bir kodlama agent'ına verecekseniz önce Adım 1 ve 2'yi siz yapın. Test ve lint, agent'ın işini kendi kontrol edebileceği bir hedef olur.
 
 ## Kendin dene
 

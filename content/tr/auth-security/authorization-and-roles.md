@@ -72,7 +72,7 @@ Testte kayıt isteğine `"role": "admin"` eklendi. İstek başarılı oldu ama v
 
 > [!DONT]
 >
-> - Rolü `localStorage`'da, URL'de *(`?isAdmin=true`)* ya da istemcinin gönderdiği bir alanda tutup ona güvenmeyin.[^5]
+> - Rolü `localStorage`'da, URL'de *(`?isAdmin=true`)* ya da client'ın gönderdiği bir alanda tutup ona güvenmeyin.[^5]
 > - Yalnızca butonu gizleyip işlemi korumasız bırakmayın.
 
 ## Kontrolü tek yerde toplamak
@@ -184,7 +184,7 @@ Testte giriş yapmamış istek `401`, müşteri `403`, yönetici `200` aldı.
 
 ## Arayüzde göstermek
 
-Kullanıcının yapamayacağı bir butonu göstermemek iyi bir deneyimdir, ama **güvenlik değildir**. OWASP istemci tarafındaki erişim kontrolüne asla güvenilmemesini söyler.[^3] React Summit 2025'teki "Security meets Usability" konuşması da aynı ayrımı yapar: frontend'deki izin kontrolü kullanıcı deneyimi içindir, asıl kontrol backend'de olmalıdır.[^8]
+Kullanıcının yapamayacağı bir butonu göstermemek iyi bir deneyimdir, ama **güvenlik değildir**. OWASP client tarafındaki erişim kontrolüne asla güvenilmemesini söyler.[^3] React Summit 2025'teki "Security meets Usability" konuşması da aynı ayrımı yapar: frontend'deki izin kontrolü kullanıcı deneyimi içindir, asıl kontrol backend'de olmalıdır.[^8]
 
 ```tsx
 async function OrderActions({ orderId }: { orderId: string }) {
@@ -217,7 +217,7 @@ Bu bileşen butonu gizler. Asıl koruma `cancelOrder` içindeki kontroldür.
 
 1. [OWASP Top 10:2025 — A01 Broken Access Control](https://top10.owasp.org/2025/A01_2025-Broken_Access_Control/) *(doc)* — Birinci sıra, test edilen uygulamaların %100'ü, IDOR, yetki yükseltme ve önlemler.
 2. [MDN: 403 Forbidden](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/403) *(doc)* — 401 ile farkı ve 403 yerine 404 dönme seçeneği.
-3. [OWASP: Authorization Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html) *(doc)* — En az yetki, varsayılan olarak reddetme, her istekte kontrol, RBAC ve ABAC/ReBAC, istemci tarafı kontrole güvenmeme.
+3. [OWASP: Authorization Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html) *(doc)* — En az yetki, varsayılan olarak reddetme, her istekte kontrol, RBAC ve ABAC/ReBAC, client tarafı kontrole güvenmeme.
 4. [Better Auth: Database — Extending core schema](https://www.better-auth.com/docs/concepts/database#extending-core-schema) *(doc)* — `additionalFields`, `defaultValue` ve rolü kullanıcının belirleyememesi için `input: false`.
 5. [Next.js: How to think about data security](https://nextjs.org/docs/app/guides/data-security) *(doc)* — Server Action'ların doğrudan POST ile çağrılabilmesi, her action'da yeniden kontrol, IDOR örneği, `searchParams`'a güvenmeme ve DAL ile mutasyon.
 6. [OWASP: Insecure Direct Object Reference Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Insecure_Direct_Object_Reference_Prevention_Cheat_Sheet.html) *(doc)* — IDOR tanımı, örneği ve rastgele kimliklerin tek başına yetmemesi.

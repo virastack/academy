@@ -103,7 +103,7 @@ OWASP'ın loglama rehberi güvenlik açısından mutlaka kaydedilmesi gereken ol
 
 - Kimlik doğrulama başarıları ve **başarısızlıkları**: tekrar eden başarısız girişler kaba kuvvet ve kimlik bilgisi doldurma *(credential stuffing)* saldırılarının erken işaretidir.
 - Yetkilendirme başarısızlıkları: izleyici rolündeki birinin iptal isteği atması *(bkz. [Yetkilendirme ve roller](/academy/auth-security/authorization-and-roles))*.
-- Girdi doğrulama hataları: geçersiz parametreler. OWASP bunları saldırı kanıtı değil, şüpheli olay olarak değerlendirmeyi söyler; hatalı bir istemci de aynı izi bırakır.
+- Girdi doğrulama hataları: geçersiz parametreler. OWASP bunları saldırı kanıtı değil, şüpheli olay olarak değerlendirmeyi söyler; hatalı bir client de aynı izi bırakır.
 - Oturum yönetimi hataları: değiştirilmiş bir oturum cookie'si, doğrulanamayan bir token.
 - Uygulama hataları ve sistem olayları: başlama, kapanma, yapılandırma hataları.
 

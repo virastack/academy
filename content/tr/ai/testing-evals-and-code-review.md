@@ -13,7 +13,7 @@ AI test yazmakta hızlıdır. Ama geçen test, işe yarayan test demek değildir
 
 ## Önce testleri çalıştırın
 
-[Simon Willison](https://simonwillison.net), mevcut bir projede oturumu şu cümleyle açmayı öneriyor: *"First run the tests"*. Ajan testlerin nasıl çalıştığını öğrenir, değişiklikten sonra tekrar çalıştırma ihtimali artar ve test yazma moduna girer.[^2]
+[Simon Willison](https://simonwillison.net), mevcut bir projede oturumu şu cümleyle açmayı öneriyor: *"First run the tests"*. Agent testlerin nasıl çalıştığını öğrenir, değişiklikten sonra tekrar çalıştırma ihtimali artar ve test yazma moduna girer.[^2]
 
 Claude Code dokümanındaki test tarifi dört adımdan oluşuyor.[^3] Aynı sırayı `CartItem` için şöyle yazabilirsiniz:
 
@@ -308,13 +308,13 @@ Ardından yukarıdaki gibi kodu bozup testin kırıldığını görün.
 
 > [!CAUTION]
 >
-> Playwright MCP bir güvenlik sınırı değil. Proje bunu kendi README'sinde açıkça yazıyor. `browser_run_code_unsafe` aracı sunucu sürecinde rastgele JavaScript çalıştırıyor ve README bunu uzaktan kod çalıştırmaya eşdeğer sayıyor. `--allowed-origins` ve `--blocked-origins` da güvenlik sınırı değil.[^1] Güvenmediğiniz sitelerde kullanmayın ve ajanın araç iznini gözden geçirin.
+> Playwright MCP bir güvenlik sınırı değil. Proje bunu kendi README'sinde açıkça yazıyor. `browser_run_code_unsafe` aracı sunucu sürecinde rastgele JavaScript çalıştırıyor ve README bunu uzaktan kod çalıştırmaya eşdeğer sayıyor. `--allowed-origins` ve `--blocked-origins` da güvenlik sınırı değil.[^1] Güvenmediğiniz sitelerde kullanmayın ve agent'ın araç iznini gözden geçirin.
 
 ## Playwright test agents
 
-Playwright'ın kendi içinde üç hazır ajan var:[^9]
+Playwright'ın kendi içinde üç hazır agent var:[^9]
 
-| Ajan | Ne yapar |
+| Agent | Ne yapar |
 | --- | --- |
 | Planner | Uygulamayı gezer ve `specs/` altına Markdown test planı yazar. Bir seed test ister |
 | Generator | Planı `tests/` altında Playwright testlerine çevirir ve seçicileri canlı doğrular. İlk çıktıda hata olabilir |
@@ -326,7 +326,7 @@ Kurulum tek komut. Claude Code için şöyle çalıştı:
 npx playwright init-agents --loop=claude
 ```
 
-Komut `.claude/agents/` altına üç ajan tanımını, bir `.mcp.json` dosyasını ve `e2e/seed.spec.ts` seed testini oluşturdu. Playwright'ı güncelleyince ajan tanımlarını yeniden üretmeniz öneriliyor.[^9]
+Komut `.claude/agents/` altına üç agent tanımını, bir `.mcp.json` dosyasını ve `e2e/seed.spec.ts` seed testini oluşturdu. Playwright'ı güncelleyince agent tanımlarını yeniden üretmeniz öneriliyor.[^9]
 
 > [!TIP]
 >
@@ -441,14 +441,14 @@ Bu diff'i incele. Yanlış varsayım, gereksiz soyutlama, ölü kod ve kullanıc
 ## Kaynaklar
 
 1. [Playwright MCP](https://github.com/microsoft/playwright-mcp) *(repo)* — Erişilebilirlik anlık görüntüsü, kurulum ayarı, seçenekler ve güvenlik notları.
-2. [Simon Willison: First run the tests](https://simonwillison.net/guides/agentic-engineering-patterns/first-run-the-tests/) *(article)* — Ajanla çalışırken oturumu testleri çalıştırarak başlatma.
+2. [Simon Willison: First run the tests](https://simonwillison.net/guides/agentic-engineering-patterns/first-run-the-tests/) *(article)* — Agent'la çalışırken oturumu testleri çalıştırarak başlatma.
 3. [Claude Code: Common workflows](https://code.claude.com/docs/en/common-workflows) *(doc)* — "Work with tests" tarifi: test edilmemiş kodu bulma, test yazdırma, sınır durumları ve çalıştırıp doğrulama.
 4. [Kent C. Dodds: Testing Implementation Details](https://kentcdodds.com/blog/testing-implementation-details) *(article)* — İç ayrıntıları test etmenin yanlış negatif ve yanlış pozitif üretmesi (Ağustos 2020).
 5. [Testing Library: About Queries](https://testing-library.com/docs/queries/about/#priority) *(doc)* — Sorgu öncelik sırası ve `getByRole` önerisi.
 6. [Testing Library: React Testing Library Setup](https://testing-library.com/docs/react-testing-library/setup/) *(doc)* — Otomatik temizlik ve Vitest için `globals` ya da elle `cleanup`.
-7. [Simon Willison: Your job is to deliver code you have proven to work](https://simonwillison.net/2025/Dec/18/code-proven-to-work) *(article)* — Elle test, geri alınca kırılan otomatik test ve ajanlardan kanıt isteme (18 Aralık 2025).
+7. [Simon Willison: Your job is to deliver code you have proven to work](https://simonwillison.net/2025/Dec/18/code-proven-to-work) *(article)* — Elle test, geri alınca kırılan otomatik test ve agent'lardan kanıt isteme (18 Aralık 2025).
 8. [Playwright: Best Practices](https://playwright.dev/docs/best-practices) *(doc)* — Kullanıcı davranışını test etme, locator'lar, web-first assertion ve izolasyon.
-9. [Playwright: Test Agents](https://playwright.dev/docs/test-agents) *(doc)* — Planner, generator ve healer ajanları ve `init-agents` kurulumu.
+9. [Playwright: Test Agents](https://playwright.dev/docs/test-agents) *(doc)* — Planner, generator ve healer agent'ları ve `init-agents` kurulumu.
 10. [Anthropic: Demystifying evals for AI agents](https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents) *(article)* — Küçük başlama, üç notlandırıcı türü, kayıt okuma ve `pass^k` (9 Ocak 2026).
 11. [Anthropic: Define success criteria and build evaluations](https://platform.claude.com/docs/en/test-and-evaluate/develop-tests) *(doc)* — Ölçülebilir kriterler, kenar durumlar, notlandırma yöntemleri ve LLM notlandırıcı ipuçları.
 12. [Hamel Husain: Your AI Product Needs Evals](https://hamel.dev/blog/posts/evals/) *(article)* — Hızlı assertion'lar, kayıtları okuma ve modelle notlandırıcıyı insan etiketiyle hizalama (29 Mart 2024).

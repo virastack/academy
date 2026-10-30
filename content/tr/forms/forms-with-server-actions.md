@@ -189,9 +189,9 @@ export function ProfileForm() {
 
 React Hook Form'un beta durumdaki `Form` component'i de `action` prop'una Server Action alabilir ve progressive enhancement'ı kendisi kurar.[^9]
 
-## Sunucu her zaman tekrar doğrular
+## Server her zaman tekrar doğrular
 
-İstemci doğrulaması kullanıcı içindir; sunucu doğrulaması güvenlik içindir. Action'a gelen değer `unknown`'dır; tipini TypeScript değil şema garanti eder:[^5][^1]
+Client doğrulaması kullanıcı içindir; server doğrulaması güvenlik içindir. Action'a gelen değer `unknown`'dır; tipini TypeScript değil şema garanti eder:[^5][^1]
 
 ```ts
 export async function submitApplication(values: unknown): Promise<ApplicationResult> {
@@ -241,7 +241,7 @@ if (fields.length > 0) {
 ## Kaynaklar
 
 1. [Next.js: How to create forms with Server Actions](https://nextjs.org/docs/app/guides/forms) *(doc)* — `FormData`, sunucuda Zod, `useActionState`, `useFormStatus`, `$ACTION_` alanları ve her action'da yetki kontrolü.
-2. [React: Server Functions](https://react.dev/reference/rsc/server-functions) *(doc)* — `"use server"` ve sunucu fonksiyonlarını istemciden çağırmak.
+2. [React: Server Functions](https://react.dev/reference/rsc/server-functions) *(doc)* — `"use server"` ve server fonksiyonlarını client'tan çağırmak.
 3. [React: useActionState](https://react.dev/reference/react/useActionState) *(doc)* — Dönen değerler, transition içinde çağırmak ve progressive enhancement.
 4. [React: Issue #29034](https://github.com/react/react/issues/29034) *(repo)* — Form action sonrası otomatik sıfırlama ve değerleri `defaultValue` ile korumak.
 5. [GOV.UK Design System: Validation](https://design-system.service.gov.uk/patterns/validation/) *(doc)* — Sunucuda her zaman doğrulamak ve hata sonrası değerleri korumak.

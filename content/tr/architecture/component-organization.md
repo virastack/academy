@@ -147,7 +147,7 @@ Zone listesi yetmemeye başlarsa **eslint-plugin-boundaries** mimariyi tek yerde
 
 > [!TIP]
 >
-> Lint hatası ajan için de geri bildirimdir: sınırı ihlal eden kod hemen kırmızıya düşer ve ajan kendini düzeltir. Bu, [Agentic Kodlama](/academy/ai/agentic-coding) rehberindeki *"ajanın kullanabileceği bir kontrol"* fikrinin mimari karşılığı.
+> Lint hatası agent için de geri bildirimdir: sınırı ihlal eden kod hemen kırmızıya düşer ve agent kendini düzeltir. Bu, [Agentic Kodlama](/academy/ai/agentic-coding) rehberindeki *"agent'ın kullanabileceği bir kontrol"* fikrinin mimari karşılığı.
 
 ## Kendin dene
 

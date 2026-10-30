@@ -18,7 +18,7 @@ FSD, frontend uygulamaları için bir mimari yöntemdir: projeyi iş gereksiniml
 | **widgets** | Birden fazla sayfada kullanılan büyük, bağımsız arayüz blokları |
 | **features** | Kullanıcıya iş değeri veren etkileşimler |
 | **entities** | Ürünün çalıştığı iş kavramları *(kullanıcı, ürün)* |
-| **shared** | İş mantığı taşımayan temel kod: API istemcisi, UI kiti, yardımcılar, yapılandırma |
+| **shared** | İş mantığı taşımayan temel kod: API client'ı, UI kiti, yardımcılar, yapılandırma |
 
 Eski bir **processes** katmanı da vardı. Spesifikasyon artık kullanılmamasını ve içeriğinin `features` ile `app`'e taşınmasını öneriyor.[^2] Katmanların hepsi zorunlu değil: çoğu proje en az `shared`, `pages` ve `app` kullanır, `widgets` ile `entities` isteğe bağlıdır.[^2]
 
@@ -56,7 +56,7 @@ src/
   _app/  _pages/  widgets/  features/  entities/  shared/
 ```
 
-Bir dilim hem istemci hem yalnızca sunucuda çalışan modül içeriyorsa, sunucuya özel dışa aktarımları `index.ts` yerine `index.server.ts`'e koymanız önerilir.[^4]
+Bir dilim hem client hem yalnızca server'da çalışan modül içeriyorsa, server'a özel dışa aktarımları `index.ts` yerine `index.server.ts`'e koymanız önerilir.[^4]
 
 ## ViraStack Start'ta
 

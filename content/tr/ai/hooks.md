@@ -1,15 +1,15 @@
 ---
 title: "Hooks ve izin modları"
-description: "Ajanı kurala bağlama: format, lint ve test kapısı, tehlikeli işlemleri engelleme ve izin modları."
+description: "Agent'ı kurala bağlama: format, lint ve test kapısı, tehlikeli işlemleri engelleme ve izin modları."
 lastVerified: "2026-10-26"
 translationKey: "ai/hooks"
 ---
 
-`CLAUDE.md`'ye *"her değişiklikten sonra testleri çalıştır"* yazdınız, ajan yine de bazen atlıyor. Bu bir hata değil. Kural dosyası modele bağlam olarak gider ve uyulması garanti değildir *(bkz. [Prompt ve context engineering](/academy/ai/prompt-and-context-engineering))*. Her seferinde, istisnasız olması gereken bir şey için hook kullanılır.[^1]
+`CLAUDE.md`'ye *"her değişiklikten sonra testleri çalıştır"* yazdınız, agent yine de bazen atlıyor. Bu bir hata değil. Kural dosyası modele bağlam olarak gider ve uyulması garanti değildir *(bkz. [Prompt ve context engineering](/academy/ai/prompt-and-context-engineering))*. Her seferinde, istisnasız olması gereken bir şey için hook kullanılır.[^1]
 
 ## Hook nedir?
 
-**Hook, ajanın çalışmasındaki belirli anlarda otomatik çalışan bir shell komutudur.**[^2] Ajan bir dosyayı düzenledikten sonra, bir komutu çalıştırmadan önce ya da işi bitirdiğini söylediğinde devreye girer. Model karar vermez, komut her seferinde çalışır.[^2]
+**Hook, agent'ın çalışmasındaki belirli anlarda otomatik çalışan bir shell komutudur.**[^2] Agent bir dosyayı düzenledikten sonra, bir komutu çalıştırmadan önce ya da işi bitirdiğini söylediğinde devreye girer. Model karar vermez, komut her seferinde çalışır.[^2]
 
 Frontend'de en çok işe yarayan üç an:
 
@@ -17,13 +17,13 @@ Frontend'de en çok işe yarayan üç an:
 | :-- | :-- | :-- | :-- |
 | **Araç çalışmadan önce** | `PreToolUse` | `preToolUse`, `beforeShellExecution` | `.env`'e yazmayı engelle |
 | **Dosya düzenlendikten sonra** | `PostToolUse` | `afterFileEdit` | Prettier ile formatla |
-| **Ajan bitirdiğinde** | `Stop` | `stop` | Testler geçmeden bitirtme |
+| **Agent bitirdiğinde** | `Stop` | `stop` | Testler geçmeden bitirtme |
 
-İki araçta da hook'lar proje klasörüne yazılır ve repoya commit edilebilir: [!claudeCode]'da `.claude/settings.json`, [!cursor]'da `.cursor/hooks.json`.[^2][^3] Böylece takımdaki herkesin ajanı aynı kurallarla çalışır.
+İki araçta da hook'lar proje klasörüne yazılır ve repoya commit edilebilir: [!claudeCode]'da `.claude/settings.json`, [!cursor]'da `.cursor/hooks.json`.[^2][^3] Böylece takımdaki herkesin agent'ı aynı kurallarla çalışır.
 
 ## Her düzenlemeden sonra formatla
 
-Ajanın yazdığı kodu format kurallarınıza uydurmak için `PostToolUse` kullanın. `matcher`, hook'un yalnızca dosya düzenleyen araçlardan sonra çalışmasını sağlar:[^2]
+Agent'ın yazdığı kodu format kurallarınıza uydurmak için `PostToolUse` kullanın. `matcher`, hook'un yalnızca dosya düzenleyen araçlardan sonra çalışmasını sağlar:[^2]
 
 ```json
 {
@@ -47,7 +47,7 @@ Hook çalışırken olayın bilgisi komuta stdin'den JSON olarak gelir. Düzenle
 
 ## Tehlikeli işlemi engelle
 
-`PreToolUse` hook'u araç çalışmadan önce devreye girer ve işlemi durdurabilir. Kural basittir: script **çıkış kodu 2** ile biterse işlem engellenir ve stderr'e yazdığınız mesaj ajana geri bildirim olarak gider.[^2] Ajan nedenini okur ve başka bir yol dener.
+`PreToolUse` hook'u araç çalışmadan önce devreye girer ve işlemi durdurabilir. Kural basittir: script **çıkış kodu 2** ile biterse işlem engellenir ve stderr'e yazdığınız mesaj agent'a geri bildirim olarak gider.[^2] Agent nedenini okur ve başka bir yol dener.
 
 ```bash
 #!/bin/bash
@@ -68,7 +68,7 @@ Script'i `chmod +x` ile çalıştırılabilir yapın ve `PreToolUse` altında `E
 
 ## Testler geçmeden bitirtme
 
-`Stop` hook'u ajan cevabını bitirdiğinde çalışır. Çıkış kodu 2 burada *"henüz bitmedi"* demektir: ajan durmaz ve stderr'deki mesajla çalışmaya devam eder.[^1][^2] Böylece *"testler geçene kadar düzelt"* bir rica olmaktan çıkar, kural olur:
+`Stop` hook'u agent cevabını bitirdiğinde çalışır. Çıkış kodu 2 burada *"henüz bitmedi"* demektir: agent durmaz ve stderr'deki mesajla çalışmaya devam eder.[^1][^2] Böylece *"testler geçene kadar düzelt"* bir rica olmaktan çıkar, kural olur:
 
 ```bash
 #!/bin/bash
@@ -89,13 +89,13 @@ fi
 
 > [!WARNING]
 >
-> `Stop` hook'u yalnızca iş bittiğinde değil, ajan **her cevabını** bitirdiğinde çalışır.[^2] Ajana yalnızca soru sorduğunuzda da test koşar. Uzun bir test paketiniz varsa yalnızca değişen dosyaların testlerini çalıştırın.
+> `Stop` hook'u yalnızca iş bittiğinde değil, agent **her cevabını** bitirdiğinde çalışır.[^2] Agent'a yalnızca soru sorduğunuzda da test koşar. Uzun bir test paketiniz varsa yalnızca değişen dosyaların testlerini çalıştırın.
 
 ## İzin modları
 
-Hook'lar kuralı zorlar. İzin modları ise ajanın **ne kadar sormadan** çalışacağını belirler. [!claudeCode]'da `Shift+Tab` ile modlar arasında geçersiniz:[^4]
+Hook'lar kuralı zorlar. İzin modları ise agent'ın **ne kadar sormadan** çalışacağını belirler. [!claudeCode]'da `Shift+Tab` ile modlar arasında geçersiniz:[^4]
 
-| Mod | Ajan ne yapar | Ne zaman |
+| Mod | Agent ne yapar | Ne zaman |
 | :-- | :-- | :-- |
 | **Manual** *(default)* | Düzenleme ve komutlardan önce sorar | Tanımadığınız kod tabanı |
 | **acceptEdits** | Dosyaları sormadan düzenler, komutlar için sorar | Plan onaylandıktan sonra |
@@ -128,15 +128,15 @@ Sürekli onay vermek yorucudur. Onuncu onaydan sonra okumadan tıklamaya başlar
 | Tercih, stil, mimari kararı | `CLAUDE.md` / `AGENTS.md` |
 | Tekrar eden bir iş akışı | Skill *(bkz. [Skills](/academy/ai/skills))* |
 | Her seferinde, istisnasız olması gereken | Hook |
-| Ajanın neye dokunabileceği | İzin kuralları ve izin modu |
+| Agent'ın neye dokunabileceği | İzin kuralları ve izin modu |
 
-Kural dosyanızdaki bir satıra ajan sürekli uymuyorsa ve satır gerçekten şartsa, onu hook'a taşıyın.[^1]
+Kural dosyanızdaki bir satıra agent sürekli uymuyorsa ve satır gerçekten şartsa, onu hook'a taşıyın.[^1]
 
 ## Kendin dene
 
-- Prettier hook'unu ekleyin ve ajandan tek tırnaklı string içeren bir dosya yazmasını isteyin. Dosya kaydedildiğinde tırnaklar ne oluyor?
-- `.env` koruma hook'unu ekleyip ajana *".env'e bir yorum satırı ekle"* deyin. Ajan engellenince ne yapıyor?
-- Bir testi kasıtlı olarak bozun ve `Stop` hook'unu açın. Ajan kaç turda testi düzeltip duruyor?
+- Prettier hook'unu ekleyin ve agent'tan tek tırnaklı string içeren bir dosya yazmasını isteyin. Dosya kaydedildiğinde tırnaklar ne oluyor?
+- `.env` koruma hook'unu ekleyip agent'a *".env'e bir yorum satırı ekle"* deyin. Agent engellenince ne yapıyor?
+- Bir testi kasıtlı olarak bozun ve `Stop` hook'unu açın. Agent kaç turda testi düzeltip duruyor?
 - [!claudeCode]'da `/hooks` komutunu çalıştırın. Hangi hook'lar hangi olaya bağlı görünüyor?
 
 ## Detaylı öğrenmek için

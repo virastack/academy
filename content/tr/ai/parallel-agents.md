@@ -1,17 +1,17 @@
 ---
-title: "Paralel ajanlar"
-description: "Git worktree ile birden çok ajanı aynı anda, birbirinin dosyasını ezmeden çalıştırma."
+title: "Paralel agent'lar"
+description: "Git worktree ile birden çok agent'ı aynı anda, birbirinin dosyasını ezmeden çalıştırma."
 lastVerified: "2026-10-26"
 translationKey: "ai/parallel-agents"
 ---
 
-Ajan bir özellik üzerinde çalışırken onu izlemek zorunda değilsiniz. Aynı sürede ikinci bir ajana bir hata düzeltmesi, üçüncüsüne bir araştırma verebilirsiniz. Sorun şu: hepsi aynı klasörde çalışırsa birbirinin dosyasını ezer. Çözüm, her ajana kendi çalışma kopyasını vermektir.
+Agent bir özellik üzerinde çalışırken onu izlemek zorunda değilsiniz. Aynı sürede ikinci bir agent'a bir hata düzeltmesi, üçüncüsüne bir araştırma verebilirsiniz. Sorun şu: hepsi aynı klasörde çalışırsa birbirinin dosyasını ezer. Çözüm, her agent'a kendi çalışma kopyasını vermektir.
 
 ## Worktree nedir?
 
-**Git worktree, aynı repoya bağlı ikinci bir çalışma klasörüdür.** Kendi dosyaları ve kendi branch'i vardır, ama commit geçmişi ve remote ortaktır.[^1][^2] Bir ajan `feature/coupon` worktree'sinde kupon özelliğini yazarken diğeri `fix/cart-total` worktree'sinde sepet toplamını düzeltir. İkisi birbirinin değişikliğini görmez.
+**Git worktree, aynı repoya bağlı ikinci bir çalışma klasörüdür.** Kendi dosyaları ve kendi branch'i vardır, ama commit geçmişi ve remote ortaktır.[^1][^2] Bir agent `feature/coupon` worktree'sinde kupon özelliğini yazarken diğeri `fix/cart-total` worktree'sinde sepet toplamını düzeltir. İkisi birbirinin değişikliğini görmez.
 
-Ajan kullanmadan da worktree açabilirsiniz:[^1]
+Agent kullanmadan da worktree açabilirsiniz:[^1]
 
 ```bash
 git worktree add ../shop-coupon -b feature/coupon
@@ -46,7 +46,7 @@ Subagent'lar da kendi worktree'lerinde çalışabilir. Subagent dosyasının fro
 
 ## Cursor'da worktree
 
-[!cursor]'da Agents penceresinden bir ajanı worktree'de başlatırsınız. Editörde `/worktree` komutu aynı işi yapar, `/apply-worktree` değişiklikleri ana klasöre getirir.[^3] Kurulum adımlarını `.cursor/worktrees.json`'a yazarsınız:[^3]
+[!cursor]'da Agents penceresinden bir agent'ı worktree'de başlatırsınız. Editörde `/worktree` komutu aynı işi yapar, `/apply-worktree` değişiklikleri ana klasöre getirir.[^3] Kurulum adımlarını `.cursor/worktrees.json`'a yazarsınız:[^3]
 
 ```json
 {
@@ -62,7 +62,7 @@ Subagent'lar da kendi worktree'lerinde çalışabilir. Subagent dosyasının fro
 
 ## Ne paralellenir?
 
-Paralel çalışmanın sınırı ajan sayısı değil, **sizin inceleme hızınızdır**. [Simon Willison](https://simonwillison.net) büyük değişikliklerden aynı anda yalnızca birini düzgün inceleyip birleştirebildiğini yazıyor.[^4] Bu yüzden yanına az dikkat isteyen işler ekliyor:[^4]
+Paralel çalışmanın sınırı agent sayısı değil, **sizin inceleme hızınızdır**. [Simon Willison](https://simonwillison.net) büyük değişikliklerden aynı anda yalnızca birini düzgün inceleyip birleştirebildiğini yazıyor.[^4] Bu yüzden yanına az dikkat isteyen işler ekliyor:[^4]
 
 | Paralel iyi gider | Ana işte kalsın |
 | :-- | :-- |
@@ -71,9 +71,9 @@ Paralel çalışmanın sınırı ajan sayısı değil, **sizin inceleme hızın�
 | Deprecation uyarısı gibi küçük bakım | Sizin karar vermeniz gereken tasarım işi |
 | Spec'i net yazılmış, incelemesi kolay görev | Belirsiz, sık soru gerektiren iş |
 
-Net bir spec incelemeyi hızlandırır.[^4] Paralel ajana vereceğiniz işi [Spec-driven geliştirme](/academy/ai/spec-driven-development) dersindeki gibi önce yazın.
+Net bir spec incelemeyi hızlandırır.[^4] Paralel agent'a vereceğiniz işi [Spec-driven geliştirme](/academy/ai/spec-driven-development) dersindeki gibi önce yazın.
 
-Willison'ın bir önerisi daha var: zor bir iş için bir ajanı **keşif** amacıyla çalıştırın. Kodunu birleştirmeyi düşünmeyin. Amaç hangi dosyaların zor olduğunu ve sorunun nasıl çözülebileceğini görmek.[^4]
+Willison'ın bir önerisi daha var: zor bir iş için bir agent'ı **keşif** amacıyla çalıştırın. Kodunu birleştirmeyi düşünmeyin. Amaç hangi dosyaların zor olduğunu ve sorunun nasıl çözülebileceğini görmek.[^4]
 
 ## Birleştirme
 
@@ -89,7 +89,7 @@ Aynı anda iki uygulamayı çalıştıracaksanız portları ayırın: biri `pnpm
 
 - İki terminalde iki worktree açın: birinde ürün listesine sıralama, diğerinde footer metni değişikliği. `git worktree list` ne gösteriyor?
 - `.worktreeinclude` olmadan bir worktree açıp uygulamayı çalıştırın. `.env` eksik olduğu için ne kırılıyor?
-- Aynı küçük hatayı iki ajana ayrı worktree'lerde verin. İki çözüm aynı mı? Hangisini incelemek daha kolay?
+- Aynı küçük hatayı iki agent'a ayrı worktree'lerde verin. İki çözüm aynı mı? Hangisini incelemek daha kolay?
 - Bir worktree'yi değişiklik yapmadan kapatın. Branch hâlâ duruyor mu?
 
 ## Detaylı öğrenmek için
@@ -103,4 +103,4 @@ Aynı anda iki uygulamayı çalıştıracaksanız portları ayırın: biri `pnpm
 1. [Claude Code: Run parallel sessions with worktrees](https://code.claude.com/docs/en/worktrees) *(doc)* — `--worktree`, worktree'nin yeri, temizlik, `.worktreeinclude` ve `isolation: worktree`.
 2. [Git: git-worktree](https://git-scm.com/docs/git-worktree) *(doc)* — Worktree ekleme, listeleme ve silme komutları.
 3. [Cursor: Worktrees](https://cursor.com/docs/configuration/worktrees) *(doc)* — `/worktree`, `/apply-worktree`, `.cursor/worktrees.json` ve `/best-of-n`.
-4. [Simon Willison](https://simonwillison.net): [Embracing the parallel coding agent lifestyle](https://simonwillison.net/2025/Oct/5/parallel-coding-agents/) *(article)* — 5 Ekim 2025. Paralel giden iş türleri, inceleme darboğazı ve keşif ajanı.
+4. [Simon Willison](https://simonwillison.net): [Embracing the parallel coding agent lifestyle](https://simonwillison.net/2025/Oct/5/parallel-coding-agents/) *(article)* — 5 Ekim 2025. Paralel giden iş türleri, inceleme darboğazı ve keşif agent'ı.

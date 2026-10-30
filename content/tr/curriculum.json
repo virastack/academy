@@ -7,12 +7,12 @@
         {
           "slug": "web-fundamentals",
           "title": "Web Temelleri",
-          "description": "Web nasıl çalışır, terminal, HTML, CSS, Tailwind, JavaScript ve Git için kısa özetler.",
+          "description": "Web'in işleyişinden Git'e yedi temel başlık.",
           "status": "published",
           "lessonGroups": [
             {
               "id": "ozetler",
-              "title": "Kısa Özetler",
+              "title": "Temel Konular",
               "lessons": [
                 {
                   "slug": "how-the-web-works",
@@ -93,7 +93,7 @@
                 {
                   "slug": "basic-types-and-inference",
                   "title": "Temel tipler ve çıkarım",
-                  "description": "Primitive tipler, array, fonksiyon tipleri, any ve unknown ile type inference.",
+                  "description": "Primitive tipler, array, fonksiyon tipleri, any, unknown ve tip çıkarımı.",
                   "status": "published",
                   "kind": "lesson"
                 },
@@ -184,7 +184,7 @@
                 {
                   "slug": "state",
                   "title": "State",
-                  "description": "Snapshot ve updater, immutable güncelleme, state'i doğru kurmak.",
+                  "description": "Snapshot ve updater, immutable güncelleme, state yapısını doğru kurma.",
                   "status": "published",
                   "kind": "lesson"
                 },
@@ -225,7 +225,7 @@
                 {
                   "slug": "suspense-and-error-boundaries",
                   "title": "Suspense ve hata sınırları",
-                  "description": "Yükleme durumu, use ile Promise okuma ve Error Boundary.",
+                  "description": "Yükleme durumu, use ile Promise okuma ve hata sınırı.",
                   "status": "published",
                   "kind": "lesson"
                 },
@@ -288,7 +288,7 @@
                 {
                   "slug": "data-fetching-and-streaming",
                   "title": "Veri çekme ve streaming",
-                  "description": "Sunucuda veri okuma, Suspense ile akış, şelaleyi önleme ve istemcide veri.",
+                  "description": "Server'da veri okuma, Suspense ile akış, şelaleyi önleme ve client'ta veri.",
                   "status": "published",
                   "kind": "lesson"
                 },
@@ -984,7 +984,7 @@
                 },
                 {
                   "slug": "project",
-                  "title": "Sipariş panelini yayına hazırla",
+                  "title": "Sipariş panelini yayına hazırlama",
                   "description": "Ortam doğrulama, log, hata ekranları, feature flag, Docker ve CI ile bir paneli canlıya hazırlamak.",
                   "status": "published",
                   "kind": "project"
@@ -1233,7 +1233,7 @@
                 {
                   "slug": "secrets-and-dependencies",
                   "title": "Secret ve bağımlılık güvenliği",
-                  "description": "Anahtarı istemciden uzak tutma, .env ve npm tedarik zinciri saldırıları.",
+                  "description": "Anahtarı client'tan uzak tutma, .env ve npm tedarik zinciri saldırıları.",
                   "status": "published",
                   "kind": "lesson"
                 },
@@ -1311,47 +1311,47 @@
             },
             {
               "id": "ajan-takimlari",
-              "title": "Ajan Takımları",
+              "title": "Agent Takımları",
               "lessons": [
                 {
                   "slug": "spec-driven-development",
                   "title": "Spec-driven geliştirme",
-                  "description": "Ajana önce spec ve görev listesi yazdırma, sonra görev görev uygulatma ve spec'i güncel tutma.",
+                  "description": "Agent'a önce spec ve görev listesi yazdırma, sonra görev görev uygulatma ve spec'i güncel tutma.",
                   "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "hooks",
                   "title": "Hooks ve izin modları",
-                  "description": "Ajanı kurala bağlama: format, lint ve test kapısı, tehlikeli işlemleri engelleme ve izin modları.",
+                  "description": "Agent'ı kurala bağlama: format, lint ve test kapısı, tehlikeli işlemleri engelleme ve izin modları.",
                   "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "parallel-agents",
-                  "title": "Paralel ajanlar",
-                  "description": "Git worktree ile birden çok ajanı aynı anda, birbirinin dosyasını ezmeden çalıştırma.",
+                  "title": "Paralel agent'lar",
+                  "description": "Git worktree ile birden çok agent'ı aynı anda, birbirinin dosyasını ezmeden çalıştırma.",
                   "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "agent-teams",
-                  "title": "Ajan takımı kurmak",
+                  "title": "Agent takımı kurmak",
                   "description": "Spec, frontend, test ve inceleme rollerinde subagent'larla hat kurma, hata döngüsü, lead özeti ve agent teams.",
                   "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "unattended-agents",
-                  "title": "Gözetimsiz ajan",
-                  "description": "Bulutta ve arka planda çalışan ajanlar, GitHub'da @claude ile iş verme, otomatik PR incelemesi ve sonucu doğrulama.",
+                  "title": "Gözetimsiz agent",
+                  "description": "Bulutta ve arka planda çalışan agent'lar, GitHub'da @claude ile iş verme, otomatik PR incelemesi ve sonucu doğrulama.",
                   "status": "published",
                   "kind": "lesson"
                 },
                 {
                   "slug": "agent-team-project",
                   "title": "AI ekibiyle özellik",
-                  "description": "Spec, frontend, test ve inceleme ajanlarından oluşan bir ekiple sepete kupon özelliği ekleme.",
+                  "description": "Spec, frontend, test ve inceleme agent'larından oluşan bir ekiple sepete kupon özelliği ekleme.",
                   "status": "published",
                   "kind": "project"
                 }

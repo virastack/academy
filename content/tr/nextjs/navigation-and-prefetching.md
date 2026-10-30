@@ -7,11 +7,11 @@ translationKey: "nextjs/navigation-and-prefetching"
 
 ## Hızlı navigasyonun üç parçası
 
-Sayfalar sunucuda render edilir. Yani bir linke tıklayınca istemci sunucuyu beklemek zorunda kalabilir. Next.js bu beklemeyi üç şeyle gizler:[^1]
+Sayfalar server'da render edilir. Yani bir linke tıklayınca client server'ı beklemek zorunda kalabilir. Next.js bu beklemeyi üç şeyle gizler:[^1]
 
 - **Prefetch:** `<Link>` ekrana girince hedefi arka planda yükler.
 - **Streaming:** Hazır olan kısım hemen gelir, gerisi `<Suspense>` fallback'inin yerine akar.
-- **İstemci tarafı geçiş:** Ortak layout'lar yerinde kalır, yalnızca değişen kısım yenilenir.
+- **Client tarafı geçiş:** Ortak layout'lar yerinde kalır, yalnızca değişen kısım yenilenir.
 
 ## Partial prefetching
 
@@ -144,11 +144,11 @@ Geçişleri canlandırmak için React 19.3'te kararlı hâle gelen `<ViewTransit
 
 ## Kaynaklar
 
-1. [Next.js: Linking and Navigating](https://nextjs.org/docs/app/getting-started/linking-and-navigating) *(doc)* — Prefetch, streaming, istemci tarafı geçiş, yavaş ağ, `useLinkStatus` ve prefetch'i kapatmak.
+1. [Next.js: Linking and Navigating](https://nextjs.org/docs/app/getting-started/linking-and-navigating) *(doc)* — Prefetch, streaming, client tarafı geçiş, yavaş ağ, `useLinkStatus` ve prefetch'i kapatmak.
 2. [Next.js: partialPrefetching](https://nextjs.org/docs/app/api-reference/config/next-config-js/partialPrefetching) *(doc)* — Rota başına App Shell, `prefetch={true}` ile link bazlı prefetch ve sürüm geçmişi.
 3. [Next.js Blog: Next.js 16.3, Instant Navigations](https://nextjs.org/blog/next-16-3-instant-navigations) *(doc)* — Partial Prefetching, Instant Insights, Navigation Inspector ve `instant()` yardımcısı.
 4. [Next.js: Adopting Partial Prefetching](https://nextjs.org/docs/app/guides/adopting-partial-prefetching) *(doc)* — URL verisinin App Shell'e girmemesi, `params`'ı `<Suspense>` içine taşımak ve `prefetch={true}` ile URL verisini önceden getirmek.
-5. [Next.js: Instant Navigation](https://nextjs.org/docs/app/guides/instant-navigation) *(doc)* — "Anında"nın tanımı, doğrudan açılış ile istemci geçişi farkı, doğrulama, inceleme ve e2e testleri.
+5. [Next.js: Instant Navigation](https://nextjs.org/docs/app/guides/instant-navigation) *(doc)* — "Anında"nın tanımı, doğrudan açılış ile client geçişi farkı, doğrulama, inceleme ve e2e testleri.
 6. [Next.js: instant](https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config/instant) *(doc)* — `instant` export'u, doğrulama seviyeleri ve Navigation Inspector.
 7. [Next.js: ensureStatic](https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config/ensureStatic) *(doc)* — 16.4. App Shell, prefetch ya da tüm rotanın statik kalmasını zorunlu kılmak.
 8. [Next.js: Preserving UI state](https://nextjs.org/docs/app/guides/preserving-ui-state) *(doc)* — Activity ile korunan state, sıfırlama kalıpları ve görünürlüğe duyarlı test seçicileri.

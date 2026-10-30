@@ -94,7 +94,7 @@ OAuth 2.0 güvenlik önerilerini toplayan RFC 9700 *(Ocak 2025)* bazı eski akı
 | :-- | :-- |
 | Implicit *(`response_type=token`)* | Kullanmayın; token URL'de döner ve sızabilir |
 | Resource Owner Password Credentials | Kullanılmamalı *(MUST NOT)*; uygulama yine kullanıcının parolasını görür |
-| Authorization code + PKCE | Tarayıcı ve mobil uygulamalar dahil her istemci için önerilen akış |
+| Authorization code + PKCE | Tarayıcı ve mobil uygulamalar dahil her client için önerilen akış |
 
 RFC 9700 ayrıca `redirect_uri`'nin tam eşleşmeyle kontrol edilmesini ve access token'ın belirli bir API'ye *(audience)* bağlanmasını ister.[^3] Bu değişiklikleri tek belgede toplayan OAuth 2.1 hâlâ taslak aşamasında.[^6]
 
@@ -127,13 +127,13 @@ Kullanıcıyı veritabanınızda e-postayla değil, `iss` + `sub` ikilisiyle eş
 
 ### Access token ve ID token
 
-İki token sık karıştırılır. oauth.net'teki kural kısa: ID token API'ye gönderilmez, access token'ı da istemci okumaz.[^9]
+İki token sık karıştırılır. oauth.net'teki kural kısa: ID token API'ye gönderilmez, access token'ı da client okumaz.[^9]
 
 | | Access token | ID token |
 | :-- | :-- | :-- |
 | Kimin için | API *(resource server)* | Uygulamanız *(client)* |
 | Ne söyler | "Bu istek şu kapsamda yetkili" | "Bu kullanıcı şu anda giriş yaptı" |
-| Formatı | Sağlayıcıya göre değişir; istemci için opak | Her zaman JWT |
+| Formatı | Sağlayıcıya göre değişir; client için opak | Her zaman JWT |
 
 ## Token nerede durmalı
 
@@ -143,7 +143,7 @@ Ağustos 2026'da yayımlanan RFC 10017, tarayıcı uygulamaları için üç mima
 | :-- | :-- | :-- |
 | Backend for Frontend *(BFF)* | OAuth akışını sunucu yürütür; token'lar sunucuda kalır, tarayıcıda yalnızca `HttpOnly` oturum cookie'si olur | İş uygulamaları ve kişisel veri işleyen uygulamalar için güçlü şekilde önerilir |
 | Token-mediating backend | Token'ı sunucu alır ama access token'ı tarayıcıya verir | Yalnızca BFF mümkün değilse |
-| Tarayıcıda OAuth istemcisi | Tüm akış ve token'lar tarayıcıda | Belgede anlatılan saldırıların hepsine açık |
+| Tarayıcıda OAuth client'ı | Tüm akış ve token'lar tarayıcıda | Belgede anlatılan saldırıların hepsine açık |
 
 Gerekçe basit: sayfada çalışan kötü niyetli bir script, uygulamanın kendi kodu ile aynı yetkilere sahiptir. Token tarayıcıdaysa onu çalabilir ya da yenisini alabilir.[^10] [!nextjs] Next.js gibi sunucusu olan bir framework'te BFF zaten doğal yapıdır. Auth.js ya da Better Auth gibi kütüphaneler OAuth akışını sunucuda yürütür ve tarayıcıya yalnızca oturum cookie'si verir.
 
@@ -174,5 +174,5 @@ Gerekçe basit: sayfada çalışan kötü niyetli bir script, uygulamanın kendi
 6. [IETF Datatracker: The OAuth 2.1 Authorization Framework](https://datatracker.ietf.org/doc/draft-ietf-oauth-v2-1/) *(doc)* — Taslağın güncel sürümü ve durumu.
 7. [OpenID Foundation: How OpenID Connect Works](https://openid.net/developers/how-connect-works/) *(doc)* — OIDC'nin OAuth 2.0 üzerindeki kimlik katmanı, ID token ve UserInfo.
 8. [OpenID Connect Core 1.0](https://openid.net/specs/openid-connect-core-1_0.html) *(doc)* — ID token tanımı, zorunlu claim'ler, `nonce` ve `openid` scope'u.
-9. [oauth.net: ID Tokens vs Access Tokens](https://oauth.net/id-tokens-vs-access-tokens/) *(article)* — ID token'ın API'ye gönderilmemesi, access token'ın istemci tarafından okunmaması.
-10. [RFC 10017: OAuth 2.0 for Browser-Based Applications](https://datatracker.ietf.org/doc/html/rfc10017) *(doc)* — BFF, token-mediating backend ve tarayıcı istemcisi mimarileri; kötü niyetli JavaScript senaryoları.
+9. [oauth.net: ID Tokens vs Access Tokens](https://oauth.net/id-tokens-vs-access-tokens/) *(article)* — ID token'ın API'ye gönderilmemesi, access token'ın client tarafından okunmaması.
+10. [RFC 10017: OAuth 2.0 for Browser-Based Applications](https://datatracker.ietf.org/doc/html/rfc10017) *(doc)* — BFF, token-mediating backend ve tarayıcı client'ı mimarileri; kötü niyetli JavaScript senaryoları.

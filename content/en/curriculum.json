@@ -7,12 +7,12 @@
         {
           "slug": "web-fundamentals",
           "title": "Web Fundamentals",
-          "description": "Short summaries of how the web works, the terminal, HTML, CSS, Tailwind, JavaScript and Git.",
+          "description": "Seven core topics, from how the web works to Git.",
           "status": "published",
           "lessonGroups": [
             {
               "id": "ozetler",
-              "title": "Short Summaries",
+              "title": "Core Topics",
               "lessons": [
                 {
                   "slug": "how-the-web-works",
@@ -984,7 +984,7 @@
                 },
                 {
                   "slug": "project",
-                  "title": "Get the order panel ready for release",
+                  "title": "Preparing the order panel for release",
                   "description": "Validating the environment, logs, error screens, a feature flag, Docker and CI to get a panel ready for production.",
                   "status": "published",
                   "kind": "project"

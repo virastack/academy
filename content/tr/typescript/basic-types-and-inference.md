@@ -1,6 +1,6 @@
 ---
 title: "Temel tipler ve çıkarım"
-description: "Primitive tipler, array, fonksiyon tipleri, any ve unknown ile type inference."
+description: "Primitive tipler, array, fonksiyon tipleri, any, unknown ve tip çıkarımı."
 lastVerified: "2026-10-17"
 translationKey: "typescript/basic-types-and-inference"
 ---

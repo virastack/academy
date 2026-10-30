@@ -5,7 +5,7 @@ lastVerified: "2026-10-26"
 translationKey: "ai/prompt-and-context-engineering"
 ---
 
-Yapay zekadan aldığınız kodun kalitesi iki şeye bağlı: modele **ne dediğiniz** (prompt) ve modelin **o an neleri gördüğü** (context). Bu rehber önce ikisini, sonra projeniz için bir kez yazıp her konuşmada kullanacağınız kural dosyalarını anlatıyor.
+Yapay zekâdan aldığınız kodun kalitesi iki şeye bağlı: modele **ne dediğiniz** (prompt) ve modelin **o an neleri gördüğü** (context). Bu rehber önce ikisini, sonra projeniz için bir kez yazıp her konuşmada kullanacağınız kural dosyalarını anlatıyor.
 
 ## Prompt: tarif edin, tahmin ettirmeyin
 
@@ -94,7 +94,7 @@ Pencere dolmaya yaklaşınca [!claudeCode] konuşmayı kendiliğinden **özetler
 
 `CLAUDE.md`'ye *"özetlerken değişen dosyaların listesini ve test komutlarını koru"* gibi bir satır ekleyerek özetin neyi tutacağını da belirleyebilirsiniz.[^4]
 
-Her oturum boş bir bağlamla başlar. Oturumlar arasında bilgiyi iki şey taşır: sizin yazdığınız `CLAUDE.md` ve ajanın kendi tuttuğu **otomatik hafıza**.[^5] Ajana *"her zaman pnpm kullan"* dediğinizde bunu `~/.claude/projects/<proje>/memory/` altına not eder. Her oturumda bu notların dizini olan `MEMORY.md`'nin ilk 200 satırı yüklenir.[^5] `/memory` ile notları görüp düzenleyebilirsiniz.[^5]
+Her oturum boş bir bağlamla başlar. Oturumlar arasında bilgiyi iki şey taşır: sizin yazdığınız `CLAUDE.md` ve agent'ın kendi tuttuğu **otomatik hafıza**.[^5] Agent'a *"her zaman pnpm kullan"* dediğinizde bunu `~/.claude/projects/<proje>/memory/` altına not eder. Her oturumda bu notların dizini olan `MEMORY.md`'nin ilk 200 satırı yüklenir.[^5] `/memory` ile notları görüp düzenleyebilirsiniz.[^5]
 
 > [!WARNING]
 >
@@ -106,7 +106,7 @@ Her oturum boş bir bağlamla başlar. Oturumlar arasında bilgiyi iki şey taş
 
 ## Kural dosyası: AGENTS.md ve CLAUDE.md
 
-Model her oturuma projeniz hakkında hiçbir şey bilmeden başlar: hangi paket yöneticisini kullandığınızı, testi nasıl çalıştıracağınızı bilmez. Bunları bir dosyaya yazarsanız araç dosyayı her oturumun başında bağlama ekler[^5]. `AGENTS.md`, ajanlar için bir README gibidir. Düz Markdown'dır, zorunlu alanı yoktur[^6].
+Model her oturuma projeniz hakkında hiçbir şey bilmeden başlar: hangi paket yöneticisini kullandığınızı, testi nasıl çalıştıracağınızı bilmez. Bunları bir dosyaya yazarsanız araç dosyayı her oturumun başında bağlama ekler[^5]. `AGENTS.md`, agent'lar için bir README gibidir. Düz Markdown'dır, zorunlu alanı yoktur[^6].
 
 | Araç | Dosya | Not |
 | --- | --- | --- |
@@ -123,11 +123,11 @@ Next.js'e özel kurulum *(paketle gelen doküman, `AGENTS.md` içeriği)* [AI ag
 ### İyi bir kural dosyası nasıl yazılır?
 
 - **Kısa tutun.** [!claudeCode] 200, [!cursor] 500 satırın altını öneriyor[^5], [^7]. Her satır için sorun: "Bunu silersem model hata yapar mı?" Yapmazsa silin[^4].
-- **Yalnızca koddan anlaşılmayanı yazın.** Klasör yapısını ve teknoloji listesini model ilk taramada kendi buluyor. ETH Zürih'in çalışmasında repo özetleri başarıyı artırmadı[^8]. Ama "paket yöneticisi `uv`" gibi bir bilgiyi kendi bulamaz. `uv`, Python için bir paket yöneticisi. Çalışma Python projeleriyle yapıldı. Frontend'deki karşılığı `pnpm`, `npm`, `yarn` ya da `bun`. Aynı çalışmada kural dosyasında `uv` geçince ajan onu görev başına ortalama 1,6 kez kullandı, geçmeyince neredeyse hiç[^9].
-- **Ajanın tahmin edemeyeceği komutları yazın.** `git` ve `npm` gibi bildiği araçları anlatmayın[^7].
+- **Yalnızca koddan anlaşılmayanı yazın.** Klasör yapısını ve teknoloji listesini model ilk taramada kendi buluyor. ETH Zürih'in çalışmasında repo özetleri başarıyı artırmadı[^8]. Ama "paket yöneticisi `uv`" gibi bir bilgiyi kendi bulamaz. `uv`, Python için bir paket yöneticisi. Çalışma Python projeleriyle yapıldı. Frontend'deki karşılığı `pnpm`, `npm`, `yarn` ya da `bun`. Aynı çalışmada kural dosyasında `uv` geçince agent onu görev başına ortalama 1,6 kez kullandı, geçmeyince neredeyse hiç[^9].
+- **Agent'ın tahmin edemeyeceği komutları yazın.** `git` ve `npm` gibi bildiği araçları anlatmayın[^7].
 - **Stil kurallarını linter'a bırakın.** Style guide'ı kopyalamak yerine linter kullanın[^7].
 - **Uzun anlatma, işaret et.** Kodu kopyalamak yerine dosyayı gösterin, böylece dosya şişmez ve eskimez[^7].
-- **Her satıra bir ipucu gibi bakın.** Ajan sürekli yanlış klasöre dosya koyuyorsa kural eklemek yerine yapıyı düzeltmek daha kalıcı[^9].
+- **Her satıra bir ipucu gibi bakın.** Agent sürekli yanlış klasöre dosya koyuyorsa kural eklemek yerine yapıyı düzeltmek daha kalıcı[^9].
 - **Şu altı alanı kapsayın:** komutlar, test, proje yapısı, kod stili, git akışı ve sınırlar. Sınırları üçe bölün: her zaman yap, önce sor, asla yapma[^10].
 
 Örnek bir frontend `AGENTS.md`:

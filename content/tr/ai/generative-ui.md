@@ -166,7 +166,7 @@ export function MessageParts({ message, live }: { message: GenMessage; live: boo
 
 - **İskelet, kısmi girdiyle beslenir:** `input-streaming`'de `part.input` kısmidir ve alanlar yarım gelebilir. Etiket önce "Querying the order…", sonra `TR`, sonra `TR-1042` olur. Kısmi değeri yalnızca etiket için kullanın, işlem için kullanmayın.
 - **`ToolBoundary`:** Çıktı bileşeni çökerse yalnızca o kart düşer. Nedenini aşağıdaki "Kaydedilen mesajlar" bölümünde göreceksiniz.
-- **`default` kolu:** `isToolUIPart` statik ve dinamik araç parçalarını yakalar. Bu kol olmazsa istemcinin tanımadığı bir araç hiçbir şey çizmez ve parça sessizce kaybolur.
+- **`default` kolu:** `isToolUIPart` statik ve dinamik araç parçalarını yakalar. Bu kol olmazsa client'ın tanımadığı bir araç hiçbir şey çizmez ve parça sessizce kaybolur.
 
 ## Yükleme durumları
 
@@ -189,7 +189,7 @@ trackShipment: tool({
 }),
 ```
 
-İstemcide ara sonuç da `output-available` olarak gelir. Ayırt etmek için `part.preliminary` bayrağına bakın: ara sonuçta `true`, kesin sonuçta `false` olur. Ekranda sıra şöyle akar: iskelet, "Querying the carrier…" (ara sonuç), "TR-5: kargoda" (kesin sonuç).
+Client'ta ara sonuç da `output-available` olarak gelir. Ayırt etmek için `part.preliminary` bayrağına bakın: ara sonuçta `true`, kesin sonuçta `false` olur. Ekranda sıra şöyle akar: iskelet, "Querying the carrier…" (ara sonuç), "TR-5: kargoda" (kesin sonuç).
 
 ```tsx
 case 'tool-trackShipment':
@@ -237,7 +237,7 @@ return messages.map((message, index) => (
 | --- | --- | --- |
 | `output-error` | `execute` hata verdi ya da model şemaya uymayan girdi gönderdi | Sabit, anlaşılır bir hata kartı |
 | Bileşen çökmesi | Çıktı bileşenin beklediği şekilde değil | `ToolBoundary` |
-| Tanınmayan araç | İstemci bu aracı bilmiyor | `default` koldaki yedek kart |
+| Tanınmayan araç | Client bu aracı bilmiyor | `default` koldaki yedek kart |
 | Akış yarıda kesildi | `stop()` | `live` bayrağı |
 
 - **`output-error`:** Doküman `part.errorText`'i gösteriyor.[^1] `toUIMessageStream`'e `onError` vermezseniz bu metin `An error occurred.` olur, verirseniz sizin metniniz gelir.[^4] Şemaya uymayan girdide `part.input` modelin ham, geçersiz girdisidir ve tipine güvenilmemelidir. Bileşene vermeyin.

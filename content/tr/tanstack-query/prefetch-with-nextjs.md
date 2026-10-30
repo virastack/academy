@@ -12,14 +12,14 @@ translationKey: "tanstack-query/prefetch-with-nextjs"
 Birlikte kullanmanın anlamlı olduğu durumlar:[^1][^2]
 
 - TanStack Query kullanan bir uygulamayı veri katmanını baştan yazmadan App Router'a taşımak.
-- İlk sayfası sunucuda, sonraki sayfaları istemcide yüklenen sonsuz listeler.
-- Polling, iyimser güncelleme, odaklanınca yenileme gibi istemci tarafı davranışlar.
+- İlk sayfası server'da, sonraki sayfaları client'ta yüklenen sonsuz listeler.
+- Polling, iyimser güncelleme, odaklanınca yenileme gibi client tarafı davranışlar.
 
 Bu derste Server Component, sorguyu **başlatan** yerdir; veriyi kullanan ve güncel tutan Client Component'tir.
 
 ## Kurulum
 
-`QueryClient`'ı oluşturan fonksiyonu ayrı bir dosyaya koyun; hem sunucuda hem istemcide kullanacaksınız:[^1]
+`QueryClient`'ı oluşturan fonksiyonu ayrı bir dosyaya koyun; hem server'da hem client'ta kullanacaksınız:[^1]
 
 ```ts
 // app/get-query-client.ts
@@ -77,9 +77,9 @@ export function Providers({ children }: { children: React.ReactNode }) {
 
 Burada `useState(() => new QueryClient())` yerine modül düzeyinde bir değişken kullanılıyor. Sebep: Provider ile onun altında askıya alan bir component arasında `<Suspense>` yoksa React ilk render'ı atar ve `useState` ile oluşturulan client kaybolur.[^1] `environmentManager.isServer()`, eski örneklerde gördüğünüz `isServer` sabitinin yerini aldı; sabit kodda kullanımdan kalkmış olarak işaretli.[^3]
 
-## Sunucuda başlat, istemcide kullan
+## Server'da başlat, client'ta kullan
 
-Server Component sorguyu başlatır, cache'i `dehydrate` ile serileştirir ve `HydrationBoundary` ile istemciye verir:[^1]
+Server Component sorguyu başlatır, cache'i `dehydrate` ile serileştirir ve `HydrationBoundary` ile client'a verir:[^1]
 
 ```tsx
 // app/products/page.tsx
@@ -129,7 +129,7 @@ export function ProductList() {
 }
 ```
 
-Sorgu henüz bitmediği için `dehydrate` onu `pending` haliyle, içindeki Promise'le birlikte gönderir. React Promise'leri Client Component'lere aktarabildiği için istemcideki `useSuspenseQuery` aynı Promise'i bekler; veri hazır olunca Next.js o `<Suspense>` sınırını akıtır.[^1] Bu davranış v5.40'tan beri var; öncesinde her prefetch'in `await` edilmesi gerekiyordu.[^1]
+Sorgu henüz bitmediği için `dehydrate` onu `pending` haliyle, içindeki Promise'le birlikte gönderir. React Promise'leri Client Component'lere aktarabildiği için client'taki `useSuspenseQuery` aynı Promise'i bekler; veri hazır olunca Next.js o `<Suspense>` sınırını akıtır.[^1] Bu davranış v5.40'tan beri var; öncesinde her prefetch'in `await` edilmesi gerekiyordu.[^1]
 
 > [!NOTE]
 >
@@ -139,10 +139,10 @@ Sorgu henüz bitmediği için `dehydrate` onu `pending` haliyle, içindeki Promi
 
 ## queryFn iki yerde çalışır
 
-Aynı `queryOptions` hem sunucuda hem tarayıcıda çalışır. Sorgu eskidiğinde istemci `queryFn`'i kendisi çağırır. Bu yüzden `queryFn`:
+Aynı `queryOptions` hem server'da hem tarayıcıda çalışır. Sorgu eskidiğinde client `queryFn`'i kendisi çağırır. Bu yüzden `queryFn`:
 
 - Doğrudan veritabanına giden `server-only` bir fonksiyon **olamaz**; tarayıcıda çalışmaz. Bir Route Handler'ı ya da dış API'yi çağırın *(bkz. [Route Handler ve proxy](/academy/nextjs/route-handlers-and-proxy))*.
-- Server Action **olmamalı**. Doküman bunu açıkça önermez: istemciden çağrılan Server Action'lar sırayla çalışır, paralel değil. TanStack Query'nin paralel istek ve yenileme modeliyle çakışır; sorgular `pending`'de takılı kalabilir.[^1]
+- Server Action **olmamalı**. Doküman bunu açıkça önermez: client'tan çağrılan Server Action'lar sırayla çalışır, paralel değil. TanStack Query'nin paralel istek ve yenileme modeliyle çakışır; sorgular `pending`'de takılı kalabilir.[^1]
 
 Server Actions mutation için uygundur. `useMutation`'ın `mutationFn`'i olarak bir Server Action verebilirsiniz.[^1]
 
@@ -159,7 +159,7 @@ useMutation({
 
 ## Veri kimin
 
-Sunucuda `await queryClient.query(...)` ile sonucu alıp Server Component'te göstermek caziptir. Doküman bunun bir tuzak olduğunu anlatır: istemci sorguyu yenilediğinde Client Component güncellenir, ama TanStack Query Server Component'i yenilemeyi bilmez. Ekranda aynı verinin iki farklı hali kalır.[^1]
+Sunucuda `await queryClient.query(...)` ile sonucu alıp Server Component'te göstermek caziptir. Doküman bunun bir tuzak olduğunu anlatır: client sorguyu yenilediğinde Client Component güncellenir, ama TanStack Query Server Component'i yenilemeyi bilmez. Ekranda aynı verinin iki farklı hali kalır.[^1]
 
 ```tsx
 // ❌ Sunucudaki sayı istemcideki listeyle senkron kalmaz
@@ -178,7 +178,7 @@ Tek bir istek kapsamında tek client isterseniz `React.cache(() => new QueryClie
 ## Kendin dene
 
 - Ürünler sayfasını yukarıdaki gibi kurun. Network sekmesinde ilk yüklemede tarayıcıdan ürün isteği gidiyor mu?
-- `staleTime`'ı `0` yapın ve tekrar bakın. İstemci veriyi neden hemen yeniden istiyor?
+- `staleTime`'ı `0` yapın ve tekrar bakın. Client veriyi neden hemen yeniden istiyor?
 - `await connection()` satırını silip `npm run build` çalıştırın. Hata mesajı ne diyor?
 - `void` satırını silin. `ProductList` artık nereden veri getiriyor ve sayfa sunucuda neyi render ediyor?
 - `queryFn`'e `server-only` bir fonksiyon verin, sonra sekmeden çıkıp dönün. Hata nerede çıkıyor?

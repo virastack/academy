@@ -11,16 +11,16 @@ Canlıda bir sayfa çöktüğünde kullanıcıların çoğu size yazmaz; sekmeyi
 
 Hata izleme bu boşluğu kapatır: her hata yığın izi *(stack trace)*, sürüm, ortam ve isteğin bilgisiyle birlikte bir yere kaydedilir, benzer hatalar gruplanır ve gerektiğinde ekip uyarılır.
 
-Bu dersin iki katmanı var: önce [!nextjs]'in kendi kancaları, sonra bunları bir hata izleme servisine bağlamak.
+Bu dersin iki katmanı var: önce [!nextjs]'in kendi hook'ları, sonra bunları bir hata izleme servisine bağlamak.
 
 ## İki tarafta hata
 
 | Nerede | Örnek | Kim yakalar |
 | :-- | :-- | :-- |
 | Sunucu | Server Component'te veritabanı hatası, Route Handler, Server Action, proxy | `instrumentation.ts`'teki `onRequestError` |
-| Tarayıcı | Client Component'te render hatası, olay işleyicide hata | `error.tsx`, `global-error.tsx`, istemci tarafı SDK |
+| Tarayıcı | Client Component'te render hatası, olay işleyicide hata | `error.tsx`, `global-error.tsx`, client tarafı SDK |
 
-Sunucudaki hata tarayıcıya **ayrıntısız** gider. Next.js dokümanına göre Server Component'ten gelen hatalarda kullanıcı yalnızca genel bir mesaj ve bir kimlik görür; asıl mesaj hassas bilgi sızdırmasın diye gizlenir.[^1] Bu kimliğe **digest** denir ve sunucu loglarındaki hatayla eşleştirmek için vardır.
+Server'daki hata tarayıcıya **ayrıntısız** gider. Next.js dokümanına göre Server Component'ten gelen hatalarda kullanıcı yalnızca genel bir mesaj ve bir kimlik görür; asıl mesaj hassas bilgi sızdırmasın diye gizlenir.[^1] Bu kimliğe **digest** denir ve sunucu loglarındaki hatayla eşleştirmek için vardır.
 
 ## error.tsx ve digest
 
@@ -171,7 +171,7 @@ export const onRequestError: Instrumentation.onRequestError = async (...args) =>
 };
 ```
 
-İstemcideki render hatalarını yakalamak için `global-error.tsx` ve `error.tsx`'te hatayı Sentry'ye bildirin:[^3]
+Client'taki render hatalarını yakalamak için `global-error.tsx` ve `error.tsx`'te hatayı Sentry'ye bildirin:[^3]
 
 ```tsx
 useEffect(() => {
@@ -256,7 +256,7 @@ async function FailingSection(): Promise<never> {
 
 - Projenize `onRequestError` ekleyin. Bir Server Component'te hata fırlatın, tarayıcıdaki hata kodunu sunucu logunda bulun.
 - `error.tsx`'te hata kodunu gösterin. Geliştirme ve production build'inde mesajın nasıl değiştiğini karşılaştırın.
-- Ücretsiz bir Sentry hesabıyla sihirbazı çalıştırın. Bir istemci ve bir sunucu hatası üretip ikisinin de geldiğini görün.
+- Ücretsiz bir Sentry hesabıyla sihirbazı çalıştırın. Bir client ve bir server hatası üretip ikisinin de geldiğini görün.
 - Source map yüklemeden ve yükledikten sonra aynı hatanın yığın izini karşılaştırın.
 
 ## Detaylı öğrenmek için

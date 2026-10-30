@@ -1,15 +1,15 @@
 ---
-title: "Ajan takımı kurmak"
+title: "Agent takımı kurmak"
 description: "Spec, frontend, test ve inceleme rollerinde subagent'larla hat kurma, hata döngüsü, lead özeti ve agent teams."
 lastVerified: "2026-10-26"
 translationKey: "ai/agent-teams"
 ---
 
-Hedef şu: bir ajan spec'i yazar, ikincisi kodu yazar, üçüncüsü test eder. Test kırılırsa iş kod yazan ajana geri döner. En sonda bir **lead** *(yönetici ajan)* ne yapıldığını size özetler. Önce hangi işin takım gerektirdiğine bakalım.
+Hedef şu: bir agent spec'i yazar, ikincisi kodu yazar, üçüncüsü test eder. Test kırılırsa iş kod yazan agent'a geri döner. En sonda bir **lead** *(yönetici agent)* ne yapıldığını size özetler. Önce hangi işin takım gerektirdiğine bakalım.
 
 ## Önce desen, sonra araç
 
-[!anthropic]'in ajan rehberi iki şeyi ayırıyor. **Workflow**, adımları önceden belli olan, kodla ya da prompt'la sabitlenmiş bir akıştır. **Ajan** ise adımlarına kendisi karar verir.[^1] Ajan takımı da bilinen birkaç desenin birleşimidir:[^1]
+[!anthropic]'in agent rehberi iki şeyi ayırıyor. **Workflow**, adımları önceden belli olan, kodla ya da prompt'la sabitlenmiş bir akıştır. **Agent** ise adımlarına kendisi karar verir.[^1] Agent takımı da bilinen birkaç desenin birleşimidir:[^1]
 
 | Desen | Ne yapar | Frontend örneği |
 | :-- | :-- | :-- |
@@ -18,7 +18,7 @@ Hedef şu: bir ajan spec'i yazar, ikincisi kodu yazar, üçüncüsü test eder. 
 | **Orkestratör-işçi** | Lead işi böler, işçilere dağıtır, sonucu birleştirir | Lead'in görevleri rollere vermesi |
 | **Değerlendirici döngüsü** | Biri üretir, diğeri kontrol edip geri bildirim verir | Test kırılınca frontend'e geri dönmek |
 
-Rehberin ana tavsiyesi: işe yarayan en basit çözümü bulun, karmaşıklığı ancak sonucu ölçülebilir şekilde iyileştiriyorsa ekleyin.[^1] Tek ajanın plan modu ve bir test komutu çoğu işe yeter.
+Rehberin ana tavsiyesi: işe yarayan en basit çözümü bulun, karmaşıklığı ancak sonucu ölçülebilir şekilde iyileştiriyorsa ekleyin.[^1] Tek agent'ın plan modu ve bir test komutu çoğu işe yeter.
 
 ## Rolleri yazmak
 
@@ -57,11 +57,11 @@ Diğer iki rol aynı kalıpla yazılır:
 | `qa-tester` | `Read, Write, Bash` | Testler ve `test-report.md` |
 | `reviewer` | `Read, Grep, Glob` | Bulgular *(yalnızca rapor)* |
 
-Rollerin birbirine dosya üzerinden iş vermesi önemlidir. Ajanlar konuşmaları değil `SPEC.md` ve `test-report.md`'yi paylaşır, böylece her biri temiz bir bağlamla başlar.
+Rollerin birbirine dosya üzerinden iş vermesi önemlidir. Agent'lar konuşmaları değil `SPEC.md` ve `test-report.md`'yi paylaşır, böylece her biri temiz bir bağlamla başlar.
 
 ## Lead: hattı kurmak
 
-Lead ayrı bir dosya değildir, ana oturumunuzdur. Subagent'lar sonucu ona döner, o da bir sonrakine aktarır.[^2] [!anthropic]'in kendi çoklu ajan sistemindeki ders: lead her işçiye **amacı, çıktı biçimini, kullanacağı araçları ve sınırları** açıkça vermeli. Belirsiz talimat, aynı işin iki kez yapılmasına ya da boşluk kalmasına yol açıyor.[^3]
+Lead ayrı bir dosya değildir, ana oturumunuzdur. Subagent'lar sonucu ona döner, o da bir sonrakine aktarır.[^2] [!anthropic]'in kendi çoklu agent sistemindeki ders: lead her işçiye **amacı, çıktı biçimini, kullanacağı araçları ve sınırları** açıkça vermeli. Belirsiz talimat, aynı işin iki kez yapılmasına ya da boşluk kalmasına yol açıyor.[^3]
 
 ```text
 Sepete kupon kodu özelliğini şu hatla yap:
@@ -76,7 +76,7 @@ Sepete kupon kodu özelliğini şu hatla yap:
 6. Bana özet ver: değişen dosyalar, test sonucu, tur sayısı, açık kalanlar.
 ```
 
-Tur sınırı döngünün sonsuza gitmesini önler. İnceleyiciye *"yalnızca doğruluğu etkileyenleri raporla"* demek de gereksiz düzeltme turlarını keser.[^4] Testlerin gerçekten geçtiğini ajanın sözüne bırakmak istemiyorsanız [Hooks ve izin modları](/academy/ai/hooks) dersindeki `Stop` hook'unu ekleyin.
+Tur sınırı döngünün sonsuza gitmesini önler. İnceleyiciye *"yalnızca doğruluğu etkileyenleri raporla"* demek de gereksiz düzeltme turlarını keser.[^4] Testlerin gerçekten geçtiğini agent'ın sözüne bırakmak istemiyorsanız [Hooks ve izin modları](/academy/ai/hooks) dersindeki `Stop` hook'unu ekleyin.
 
 > [!TIP]
 >
@@ -107,9 +107,9 @@ Bulgularını birbirine sorgulatıp bana tek liste ver.
 
 ## Ne zaman gerekmez?
 
-[!anthropic]'in ölçümünde ajanlar sohbetin yaklaşık 4 katı, çoklu ajan sistemleri yaklaşık 15 katı token harcıyor.[^3] Aynı yazı, ajanlar arasında çok bağımlılık olan ve az paralelleşen işlerin çoklu ajana uygun olmadığını, çoğu kodlama işinin de bu gruba girdiğini söylüyor.[^3]
+[!anthropic]'in ölçümünde agent'lar sohbetin yaklaşık 4 katı, çoklu agent sistemleri yaklaşık 15 katı token harcıyor.[^3] Aynı yazı, agent'lar arasında çok bağımlılık olan ve az paralelleşen işlerin çoklu agent'a uygun olmadığını, çoğu kodlama işinin de bu gruba girdiğini söylüyor.[^3]
 
-| Takım kurun | Tek ajan yeter |
+| Takım kurun | Tek agent yeter |
 | :-- | :-- |
 | Rolleri ayrı dosyalara dokunan, uzun bir özellik | Birkaç dosyalık değişiklik |
 | Yazan ile kontrol edenin ayrı olması gereken iş | Hızlı bir hata düzeltmesi |
@@ -127,14 +127,14 @@ Bulgularını birbirine sorgulatıp bana tek liste ver.
 ## Detaylı öğrenmek için
 
 - **Yazı:** [!anthropic], "Building effective agents"; zincir, yönlendirme, paralel, orkestratör-işçi ve değerlendirici desenleri.[^1]
-- **Yazı:** [!anthropic], "How we built our multi-agent research system"; lead'in görev dağıtması, token maliyeti ve çoklu ajanın sınırları.[^3]
+- **Yazı:** [!anthropic], "How we built our multi-agent research system"; lead'in görev dağıtması, token maliyeti ve çoklu agent'ın sınırları.[^3]
 - **Resmi doküman:** [!claudeCode] "Agent teams"; üyeleri yönetme, görev listesi, kalite hook'ları ve sınırlamalar.[^5]
 
 ## Kaynaklar
 
-1. [Anthropic: Building effective agents](https://www.anthropic.com/research/building-effective-agents) *(article)* — Erik Schluntz ve Barry Zhang, 19 Aralık 2024. Workflow ile ajan farkı ve beş temel desen.
+1. [Anthropic: Building effective agents](https://www.anthropic.com/research/building-effective-agents) *(article)* — Erik Schluntz ve Barry Zhang, 19 Aralık 2024. Workflow ile agent farkı ve beş temel desen.
 2. [Claude Code: Subagents](https://code.claude.com/docs/en/sub-agents) *(doc)* — Subagent dosyası, `tools` alanı ve subagent'ları zincirleme.
-3. [Anthropic: How we built our multi-agent research system](https://www.anthropic.com/engineering/multi-agent-research-system) *(article)* — 13 Haziran 2025. Lead ve işçi ajanlar, görev tarifi, token maliyeti ve uygun olmayan işler.
+3. [Anthropic: How we built our multi-agent research system](https://www.anthropic.com/engineering/multi-agent-research-system) *(article)* — 13 Haziran 2025. Lead ve işçi agent'lar, görev tarifi, token maliyeti ve uygun olmayan işler.
 4. [Claude Code: Best practices](https://code.claude.com/docs/en/best-practices) *(doc)* — Bağımsız inceleyici ve inceleyiciyi doğruluğu etkileyen bulgularla sınırlamak.
 5. [Claude Code: Orchestrate teams of Claude Code sessions](https://code.claude.com/docs/en/agent-teams) *(doc)* — Agent teams'i açma, subagent'larla farkı, kullanım örnekleri ve sınırlamalar.
 6. [Cursor: Subagents](https://cursor.com/docs/subagents) *(doc)* — Cursor'da subagent dosyaları ve `.claude/agents/` desteği.

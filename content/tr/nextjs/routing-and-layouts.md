@@ -73,12 +73,12 @@ export default async function ProductPage({ params }: PageProps<"/products/[slug
 >
 > Bu ve sonraki birkaç dersteki örnekler kısa olsun diye `params`'ı sayfanın en üstünde okuyor. Partial Prefetching açıkken Next.js geliştirmede bunu bir uyarıyla işaretler; çünkü bir rotaya giden bütün linkler tek bir kabuğu paylaşır. Gerçek projede `params`'ı `<Suspense>` içindeki bir child'da okuyun. Nedeni [Navigasyon ve prefetch](/academy/nextjs/navigation-and-prefetching) dersinde.[^5]
 
-## searchParams: Sayfada mı, istemcide mi
+## searchParams: Sayfada mı, client'ta mı
 
 | İhtiyaç | Kullanın |
 | :-- | :-- |
-| Filtre ve sayfalamayla sunucudan veri çekmek | Sayfanın `searchParams` prop'u |
-| Zaten yüklenmiş bir listeyi istemcide süzmek | `useSearchParams` hook'u |
+| Filtre ve sayfalamayla server'dan veri çekmek | Sayfanın `searchParams` prop'u |
+| Zaten yüklenmiş bir listeyi client'ta süzmek | `useSearchParams` hook'u |
 
 `searchParams` okumak sayfanın o kısmını istek anına bağlar. Cache Components ile bunu bir `<Suspense>` içinde yapmanız gerekir; nedenini [Cache ve render modeli](/academy/nextjs/caching-and-rendering) dersinde göreceksiniz.[^1]
 
@@ -110,7 +110,7 @@ import Link from "next/link";
 
 Kodla yönlendirme için `useRouter` kullanılır. Doğru import yeri `next/navigation`'dır. `next/router` eski Pages Router'a aittir ve App Router'da çalışmaz.[^8] AI araçları bu ikisini sık karıştırır.
 
-Arama gibi URL'ye parametre yazan formlar için `next/form` var. `<form>` gibi davranır ama gönderimi istemci tarafı gezinmeye çevirir ve JavaScript yüklenmeden de çalışır:[^9]
+Arama gibi URL'ye parametre yazan formlar için `next/form` var. `<form>` gibi davranır ama gönderimi client tarafı gezinmeye çevirir ve JavaScript yüklenmeden de çalışır:[^9]
 
 ```tsx
 import Form from "next/form";
@@ -143,7 +143,7 @@ import Form from "next/form";
 
 ## Detaylı öğrenmek için
 
-- **Resmi doküman:** "Layouts and Pages" ve "Linking and Navigating" sayfaları; prefetch, streaming ve istemci tarafı geçişin birlikte nasıl çalıştığını anlatır.[^1][^7]
+- **Resmi doküman:** "Layouts and Pages" ve "Linking and Navigating" sayfaları; prefetch, streaming ve client tarafı geçişin birlikte nasıl çalıştığını anlatır.[^1][^7]
 - **Resmi doküman:** `layout.js` referansının "Caveats" bölümü; layout'un neden `searchParams` ve `pathname` almadığını örneklerle gösterir.[^2]
 - **Resmi doküman:** Next.js Learn kursunun layout ve navigasyon bölümleri.[^13]
 
@@ -155,9 +155,9 @@ import Form from "next/form";
 4. [Next.js: Upgrading to Version 15](https://nextjs.org/docs/app/guides/upgrading/version-15) *(doc)* — `params`, `searchParams`, `cookies` ve `headers`'ın async olması.
 5. [Next.js: Adopting Partial Prefetching](https://nextjs.org/docs/app/guides/adopting-partial-prefetching) *(doc)* — URL verisinin paylaşılan App Shell'e girmemesi ve `params`'ı `<Suspense>` içine taşımak.
 6. [Next.js: Route Groups](https://nextjs.org/docs/app/api-reference/file-conventions/route-groups) *(doc)* — URL'yi etkilemeden gruplama, gruba özel layout ve birden fazla kök layout.
-7. [Next.js: Linking and Navigating](https://nextjs.org/docs/app/getting-started/linking-and-navigating) *(doc)* — Prefetch, streaming, istemci tarafı geçiş ve yavaş geçişin nedenleri.
+7. [Next.js: Linking and Navigating](https://nextjs.org/docs/app/getting-started/linking-and-navigating) *(doc)* — Prefetch, streaming, client tarafı geçiş ve yavaş geçişin nedenleri.
 8. [Next.js: useRouter](https://nextjs.org/docs/app/api-reference/functions/use-router) *(doc)* — `next/navigation`'dan import, `push`, `replace`, `refresh` ve Pages Router farkı.
-9. [Next.js: Form Component](https://nextjs.org/docs/app/api-reference/components/form) *(doc)* — URL parametresi yazan formlar, istemci tarafı gezinme ve progressive enhancement.
+9. [Next.js: Form Component](https://nextjs.org/docs/app/api-reference/components/form) *(doc)* — URL parametresi yazan formlar, client tarafı gezinme ve progressive enhancement.
 10. [Next.js: TypeScript](https://nextjs.org/docs/app/api-reference/config/typescript) *(doc)* — `typedRoutes` ile tip güvenli linkler.
 11. [Next.js: Parallel Routes](https://nextjs.org/docs/app/api-reference/file-conventions/parallel-routes) *(doc)* — `@slot` klasörleri ve `default.tsx`.
 12. [Next.js: Intercepting Routes](https://nextjs.org/docs/app/api-reference/file-conventions/intercepting-routes) *(doc)* — `(.)`, `(..)` kalıpları ve modal örneği.

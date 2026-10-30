@@ -1,6 +1,6 @@
 ---
 title: "State"
-description: "Snapshot ve updater, immutable güncelleme, state'i doğru kurmak."
+description: "Snapshot ve updater, immutable güncelleme, state yapısını doğru kurma."
 lastVerified: "2026-10-21"
 translationKey: "react/state"
 ---

@@ -5,7 +5,7 @@ lastVerified: "2026-10-15"
 translationKey: "ai/ai-sdk-and-streaming-chat"
 ---
 
-Yapay zeka yanıtının tamamını beklemek yerine, model ürettikçe parça parça göstermek sohbet arayüzünün temelidir: kullanıcı yanıtı hazır olur olmaz görmeye başlar.[^1] AI SDK bu işi ikiye böler. Sunucuda `streamText` modeli çağırır, istemcide `useChat` gelen akışı mesaj durumuna çevirir.[^1]
+Yapay zekâ yanıtının tamamını beklemek yerine, model ürettikçe parça parça göstermek sohbet arayüzünün temelidir: kullanıcı yanıtı hazır olur olmaz görmeye başlar.[^1] AI SDK bu işi ikiye böler. Server'da `streamText` modeli çağırır, client'ta `useChat` gelen akışı mesaj durumuna çevirir.[^1]
 
 > [!NOTE]
 >
@@ -15,8 +15,8 @@ Yapay zeka yanıtının tamamını beklemek yerine, model ürettikçe parça par
 | --- | --- | --- |
 | `streamText` | Sunucu | Modeli çağırır ve yanıtı akış olarak üretir |
 | `toUIMessageStream` + `createUIMessageStreamResponse` | Sunucu | Akışı `useChat`'in anladığı mesaj parçalarına ve HTTP yanıtına çevirir |
-| `DefaultChatTransport` | İstemci | Mesajları varsayılan olarak `/api/chat` adresine POST eder[^1] |
-| `useChat` | İstemci | `messages`, `status` ve `error` durumunu tutar[^1] |
+| `DefaultChatTransport` | Client | Mesajları varsayılan olarak `/api/chat` adresine POST eder[^1] |
+| `useChat` | Client | `messages`, `status` ve `error` durumunu tutar[^1] |
 
 ## Kurulum
 
@@ -55,7 +55,7 @@ export async function POST(req: Request) {
 }
 ```
 
-- **`UIMessage[]`:** İstemci, `parts` taşıyan UI mesajları gönderir. `convertToModelMessages` bunları modelin anladığı biçime çevirir. Fonksiyon asenkron olduğu için `await` gerekir.[^1]
+- **`UIMessage[]`:** Client, `parts` taşıyan UI mesajları gönderir. `convertToModelMessages` bunları modelin anladığı biçime çevirir. Fonksiyon asenkron olduğu için `await` gerekir.[^1]
 - **`instructions`:** Sistem talimatıdır. Eski adı `system`; v7'de `system` hâlâ çalışır ama deprecated.
 - **`result.stream`:** Modelin ürettiği parçaların akışıdır. `toUIMessageStream` onu UI mesaj parçalarına, `createUIMessageStreamResponse` da SSE yanıtına çevirir.
 - **`maxDuration`:** Next.js'te akışın kesilmeden sürebileceği süreyi saniye olarak belirler.[^1] Başka bir çatı kullanıyorsanız kendi karşılığını kullanın.
@@ -64,7 +64,7 @@ export async function POST(req: Request) {
 >
 > Eski öğreticilerde `result.toUIMessageStreamResponse()` görürsünüz. v7'de metot çalışıyor ama deprecated ve bir sonraki major sürümde kaldırılacak. Yeni kodda yukarıdaki iki yardımcıyı kullanın.
 
-## İstemci: useChat
+## Client: useChat
 
 ```tsx
 // app/chat.tsx
@@ -169,7 +169,7 @@ export default function Chat() {
 
 ### Hata mesajı
 
-Sunucuda bir hata olursa istemciye varsayılan olarak gizlenmiş bir mesaj gider: `An error occurred.`[^1] Kendi mesajınızı `toUIMessageStream` içindeki `onError` ile verin:
+Server'da bir hata olursa client'a varsayılan olarak gizlenmiş bir mesaj gider: `An error occurred.`[^1] Kendi mesajınızı `toUIMessageStream` içindeki `onError` ile verin:
 
 ```ts
 toUIMessageStream({
@@ -181,7 +181,7 @@ toUIMessageStream({
 });
 ```
 
-İstemcide hata `useChat`'in döndürdüğü `error` nesnesinde görünür ve `status` `error` olur. `regenerate()` ile tekrar deneyebilirsiniz.[^1]
+Client'ta hata `useChat`'in döndürdüğü `error` nesnesinde görünür ve `status` `error` olur. `regenerate()` ile tekrar deneyebilirsiniz.[^1]
 
 > [!DONT]
 >
@@ -225,7 +225,7 @@ streamText({ model: 'gpt-6-astra', messages });
 
 > [!TIP]
 >
-> Modeli kullanıcı seçecekse istemciden yalnızca bir anahtar gönderin ve sunucuda izin listesiyle eşleştirin. İstemciden gelen model adını doğrudan `streamText`'e vermeyin. İstek başına ek alan göndermek için `sendMessage`'ın ikinci parametresi olan `body` kullanılır.[^1]
+> Modeli kullanıcı seçecekse client'tan yalnızca bir anahtar gönderin ve server'da izin listesiyle eşleştirin. Client'tan gelen model adını doğrudan `streamText`'e vermeyin. İstek başına ek alan göndermek için `sendMessage`'ın ikinci parametresi olan `body` kullanılır.[^1]
 
 ```tsx
 sendMessage({ text: input }, { body: { model: 'claude' } });
@@ -254,7 +254,7 @@ const result = streamText({
 
 ## Akan yanıtı arayüze yansıtma
 
-`parts` dizisini `part.type`'a göre render edin. Modelin düşünme (reasoning) çıktısını göstermek istiyorsanız sunucuda `sendReasoning: true` verin, istemcide `reasoning` parçasını render edin:[^1]
+`parts` dizisini `part.type`'a göre render edin. Modelin düşünme (reasoning) çıktısını göstermek istiyorsanız server'da `sendReasoning: true` verin, client'ta `reasoning` parçasını render edin:[^1]
 
 ```ts
 toUIMessageStream({ stream: result.stream, sendReasoning: true });
@@ -371,7 +371,7 @@ data: [DONE]
 
 1. Route handler ile `Chat` bileşenini kurun. Önce sahte modelle çalıştırıp Ağ sekmesinde SSE akışını inceleyin, sonra gerçek bir modele geçin.
 2. `status` değerine göre spinner, Durdur ve Tekrar dene butonlarını ekleyin. Uzun bir yanıt sırasında Durdur'a basıp ekranda kalan metne ve `status`'a bakın.
-3. `onError` ile genel bir hata mesajı verin. Sağlayıcı anahtarını bilerek bozup istemcide ne göründüğünü, sunucu loglarında ne göründüğünü karşılaştırın.
+3. `onError` ile genel bir hata mesajı verin. Sağlayıcı anahtarını bilerek bozup client'ta ne göründüğünü, server loglarında ne göründüğünü karşılaştırın.
 4. Aynı route'ta Gateway dizesinden sağlayıcı paketine geçin ve değişen tek satırı not edin. Model kimliğinin yazımının neden değiştiğine dikkat edin.
 
 ## Kaynaklar

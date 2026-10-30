@@ -160,7 +160,7 @@ Son yöneticinin kendini `customer` yapıp paneli sahipsiz bırakmasını bu kon
 
 ## Adım 6: Arşivleme Route Handler'ı
 
-Arşivleme bir istemci bileşeninden `fetch` ile çağrılır. Route Handler önce isteğin nereden geldiğine, sonra oturuma, en son izne bakar:
+Arşivleme bir client bileşeninden `fetch` ile çağrılır. Route Handler önce isteğin nereden geldiğine, sonra oturuma, en son izne bakar:
 
 ```ts
 // app/api/admin/products/[id]/archive/route.ts

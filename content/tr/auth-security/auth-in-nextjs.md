@@ -57,7 +57,7 @@ export const auth = betterAuth({
 >
 > TypeScript `better-sqlite3` için tip bulamazsa `npm install -D @types/better-sqlite3` ekleyin. Gerçek projede SQLite yerine Drizzle ya da Prisma adaptörüyle Postgres kullanabilirsiniz.
 
-Ardından auth isteklerini karşılayan route handler ve tarayıcı tarafı istemci eklenir:[^5]
+Ardından auth isteklerini karşılayan route handler ve tarayıcı tarafı client eklenir:[^5]
 
 ```ts
 // app/api/auth/[...all]/route.ts
@@ -77,7 +77,7 @@ export const authClient = createAuthClient();
 
 ## Giriş formu
 
-Giriş, istemci tarafında `authClient.signIn.email` ile yapılır.[^6] Hata mesajı, [Parola, passkey ve 2FA](/academy/auth-security/passwords-passkeys-and-mfa) dersinde gördüğümüz gibi hesabın var olup olmadığını belli etmez:
+Giriş, client tarafında `authClient.signIn.email` ile yapılır.[^6] Hata mesajı, [Parola, passkey ve 2FA](/academy/auth-security/passwords-passkeys-and-mfa) dersinde gördüğümüz gibi hesabın var olup olmadığını belli etmez:
 
 ```tsx
 // app/sign-in/page.tsx
@@ -143,7 +143,7 @@ export async function getCurrentUser() {
 }
 ```
 
-Fonksiyon tüm oturum nesnesi yerine yalnızca gereken alanları döndürür. Böylece token gibi bir değerin istemciye gitme riski azalır.[^1]
+Fonksiyon tüm oturum nesnesi yerine yalnızca gereken alanları döndürür. Böylece token gibi bir değerin client'a gitme riski azalır.[^1]
 
 `create-next-app` 16.4'ün ürettiği `next.config.ts` dosyasında `cacheComponents: true` hazır geldi. Bu modda `headers()` ya da `cookies()` okuyan bir bileşen `<Suspense>` içinde olmalıdır; aksi halde Next.js "runtime data during prerendering" hatası verir.[^8] Sayfanın geri kalanı statik kalır, kullanıcıya özel kısım akarak gelir:
 

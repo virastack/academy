@@ -1,13 +1,13 @@
 ---
 title: "AI ekibiyle özellik"
-description: "Spec, frontend, test ve inceleme ajanlarından oluşan bir ekiple sepete kupon özelliği ekleme."
+description: "Spec, frontend, test ve inceleme agent'larından oluşan bir ekiple sepete kupon özelliği ekleme."
 lastVerified: "2026-10-26"
 translationKey: "ai/agent-team-project"
 ---
 
 ## Senaryo
 
-Elinizde kuponsuz bir sepet var. Kupon özelliğini kendiniz yazmayacaksınız. Dört ajanlık bir ekip kuracak ve işi bir lead'e yönettireceksiniz:
+Elinizde kuponsuz bir sepet var. Kupon özelliğini kendiniz yazmayacaksınız. Dört agent'lık bir ekip kuracak ve işi bir lead'e yönettireceksiniz:
 
 - **spec-writer** isteği test edilebilir kriterlerle `SPEC.md`'ye çevirir ve sizin onayınızı bekler.
 - **frontend-dev** spec'i uygular, test dosyalarına dokunmaz.
@@ -22,8 +22,8 @@ Amaç kuponun kendisi değil, ekibin kurallara bağlı çalışmasıdır. Her pa
 | :-- | :-- | :-- |
 | Test edilebilir kriterler, kapsam dışı, sınırlar | `SPEC.md` | Spec-driven geliştirme |
 | Korunan dosyalar, testler geçmeden bitirmeme | `.claude/settings.json`, `.claude/hooks/` | Hooks ve izin modları |
-| Rol başına araç kısıtı | `.claude/agents/*.md` | Ajan takımı kurmak |
-| Hat, hata döngüsü, tur sınırı, özet | `.claude/skills/feature-team/SKILL.md` | Ajan takımı kurmak, Skills |
+| Rol başına araç kısıtı | `.claude/agents/*.md` | Agent takımı kurmak |
+| Hat, hata döngüsü, tur sınırı, özet | `.claude/skills/feature-team/SKILL.md` | Agent takımı kurmak, Skills |
 | Proje kuralları | `CLAUDE.md` | Prompt ve context engineering |
 
 Projenin başlangıç ve çözüm hâli GitHub'da: [examples/ai/agent-team](https://github.com/virastack/academy/tree/main/examples/ai/agent-team). Çözümdeki testler ve `test-report.md` ile kendi sonucunuzu karşılaştırın.
@@ -50,14 +50,14 @@ Başlangıçta 3 birim testi ve 1 Playwright testi geçer. Hook'lar JSON okumak 
 | `qa-tester` | `Read, Glob, Grep, Write, Bash` | Uygulama kodu |
 | `reviewer` | `Read, Glob, Grep, Bash` | Hiçbir dosya *(yalnızca rapor)* |
 
-`qa-tester`'ın raporu her zaman `STATUS: PASS` veya `STATUS: FAIL` ile biter. Lead döngüye devam edip etmeyeceğine bu satıra bakarak karar verir. Ajanlar arasında net bir çıktı biçimi olması, işin iki kez yapılmasını ve boşluk kalmasını önler.[^3]
+`qa-tester`'ın raporu her zaman `STATUS: PASS` veya `STATUS: FAIL` ile biter. Lead döngüye devam edip etmeyeceğine bu satıra bakarak karar verir. Agent'lar arasında net bir çıktı biçimi olması, işin iki kez yapılmasını ve boşluk kalmasını önler.[^3]
 
 ## Adım 3: Kuralları hook'a bağlayın
 
 `.claude/settings.json` iki hook kaydeder:
 
 - `PreToolUse`: `package-lock.json`, `.env` ve `.git/` altına yazmayı engeller.
-- `Stop`: birim testleri kırıksa ajanın bitirmesine izin vermez, hata çıktısını geri verir.[^1]
+- `Stop`: birim testleri kırıksa agent'ın bitirmesine izin vermez, hata çıktısını geri verir.[^1]
 
 ```json
 "Stop": [
@@ -67,7 +67,7 @@ Başlangıçta 3 birim testi ve 1 Playwright testi geçer. Hook'lar JSON okumak 
 ]
 ```
 
-Aynı dosyada test, build ve `git diff` komutlarına önceden izin verilir. `npm install` ise yasaktır, ajan yeni paket ekleyemez.[^4] Böylece ekip her komut için sizi beklemez ama sınırın dışına da çıkamaz.
+Aynı dosyada test, build ve `git diff` komutlarına önceden izin verilir. `npm install` ise yasaktır, agent yeni paket ekleyemez.[^4] Böylece ekip her komut için sizi beklemez ama sınırın dışına da çıkamaz.
 
 ## Adım 4: Ekibi çalıştırın
 
@@ -104,7 +104,7 @@ Lead "bitti" dediğinde kanıta bakın:[^6]
 
 ## Kendin dene
 
-- `frontend-dev`'in tanımından "Test dosyalarına dokunma" satırını silin ve bir testi kasıtlı olarak kırın. Ajan testi mi düzeltiyor, kodu mu?
+- `frontend-dev`'in tanımından "Test dosyalarına dokunma" satırını silin ve bir testi kasıtlı olarak kırın. Agent testi mi düzeltiyor, kodu mu?
 - Tur sınırını 1'e indirin ve bir kriteri zorlaştırın *(örneğin kuruş yuvarlama)*. Lead sınıra gelince ne yapıyor?
 - `reviewer`'ı çalıştırmadan önce `frontend-dev`'e "Files" dışında bir dosyayı değiştirtin. Reviewer bunu yakalıyor mu?
 - Aynı özelliği ekipsiz, tek bir oturumda isteyin. Hangisi daha az token harcadı, hangisinin sonucunu incelemek daha kolaydı?

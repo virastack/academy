@@ -16,7 +16,7 @@ SOLID, nesne yönelimli tasarımdan gelen beş prensip. Frontend geliştirici ol
 | **S** | Single Responsibility | Bir fonksiyonun, sınıfın ya da component'in yalnızca tek bir sorumluluğu, yani değişmek için tek bir nedeni olmalıdır[^2] |
 | **O** | Open-Closed | Mevcut kodu değiştirmeden yeni davranış eklenebilmeli. Martin'e göre sade kod hem açık hem kapalıdır[^3][^1] |
 | **L** | Liskov Substitution | Alt tip, üst tipin yerine geçebilmeli. Arayüzü kullananı şaşırtan uygulama `if`/`switch` çoğaltır[^1] |
-| **I** | Interface Segregation | İstemci kullanmadığı şeye bağımlı olmamalı. Martin'e göre en çok derlemeli dillerde önemli[^1] |
+| **I** | Interface Segregation | Client kullanmadığı şeye bağımlı olmamalı. Martin'e göre en çok derlemeli dillerde önemli[^1] |
 | **D** | Dependency Inversion | Üst seviye kurallar alt seviye ayrıntılara bağımlı olmamalı[^1] |
 
 Bu rehber SRP ve DIP'i açıyor. Diğerleri için tablo yeterli.

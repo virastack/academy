@@ -1,13 +1,13 @@
 ---
 title: "Veri çekme ve streaming"
-description: "Sunucuda veri okuma, Suspense ile akış, şelaleyi önleme ve istemcide veri."
+description: "Server'da veri okuma, Suspense ile akış, şelaleyi önleme ve client'ta veri."
 lastVerified: "2026-10-21"
 translationKey: "nextjs/data-fetching-and-streaming"
 ---
 
 ## Veriyi component'te okumak
 
-Server Component `async` olabilir. Veriyi `fetch` ile, bir ORM ile ya da doğrudan veritabanından okursunuz. Arada bir API katmanı gerekmez ve kimlik bilgileri istemciye gitmez.[^1]
+Server Component `async` olabilir. Veriyi `fetch` ile, bir ORM ile ya da doğrudan veritabanından okursunuz. Arada bir API katmanı gerekmez ve kimlik bilgileri client'a gitmez.[^1]
 
 ```tsx
 // app/products/page.tsx
@@ -92,9 +92,9 @@ Daha iyi bir yol çoğu zaman veriyi **ayrı component'lere bölmektir**. `<Prod
 
 İkinci istek birincinin sonucuna bağlıysa *(önce sanatçı, sonra albümleri)* şelale kaçınılmazdır. Bu durumda ilk isteğin hızlı olduğundan emin olun ya da sonucunu cache'leyin.[^1]
 
-## Promise'i istemciye akıtmak
+## Promise'i client'a akıtmak
 
-Bir Client Component sunucu verisine ihtiyaç duyuyorsa Promise'i `await` etmeden prop olarak verin; istemcide React'in `use`'uyla okuyun:[^1][^6]
+Bir Client Component server verisine ihtiyaç duyuyorsa Promise'i `await` etmeden prop olarak verin; client'ta React'in `use`'uyla okuyun:[^1][^6]
 
 ```tsx
 // app/products/[slug]/page.tsx
@@ -121,11 +121,11 @@ export function ReviewList({ reviews }: { reviews: Promise<Review[]> }) {
 }
 ```
 
-## İstemcide veri: Kütüphane ne zaman gerekir
+## Client'ta veri: Kütüphane ne zaman gerekir
 
 Çoğu sayfa için Server Component'ler yeter. Dokümana göre bir Client Component sunucu verisini bir kez okuyacaksa Promise + `use` yeterli; tarayıcıda paylaşılan bir cache gerektiğinde *(odaklanınca yenileme, polling, sonsuz liste, iyimser güncelleme)* SWR ya da [!tanstack-query] kullanılır.[^7]
 
-TanStack Query'nin maintainer'ı [Dominik Dorfmeister](https://tkdodo.eu/) da Server Component'lerle aynı sonuca varır: veri çoğunlukla sunucuda okunuyor ve etkileşim azsa kütüphaneye gerek kalmayabilir; ama istemcide sık değişen veri olan ekranlarda hâlâ değerlidir.[^8] Sunucuda sorguyu önceden doldurmak [TanStack Query](/academy/tanstack-query) rehberinde.
+TanStack Query'nin maintainer'ı [Dominik Dorfmeister](https://tkdodo.eu/) da Server Component'lerle aynı sonuca varır: veri çoğunlukla server'da okunuyor ve etkileşim azsa kütüphaneye gerek kalmayabilir; ama client'ta sık değişen veri olan ekranlarda hâlâ değerlidir.[^8] Server'da sorguyu önceden doldurmak [TanStack Query](/academy/tanstack-query) rehberinde.
 
 ## Kendin dene
 
@@ -138,8 +138,8 @@ TanStack Query'nin maintainer'ı [Dominik Dorfmeister](https://tkdodo.eu/) da Se
 
 - **Resmi doküman:** "Streaming" rehberi; HTML akışının nasıl çalıştığı, Core Web Vitals'a etkisi ve proxy, CDN gibi akışı bozan katmanlar.[^5]
 - **Yazı:** [Lee Robinson](https://leerob.com/), "Common mistakes with the Next.js App Router"; Route Handler'ı gereksiz çağırmaktan Suspense'i yanlış yere koymaya kadar on hata.[^2]
-- **Yazı:** [Dominik Dorfmeister](https://tkdodo.eu/), "You Might Not Need React Query"; Server Component'lerin istemci veri kütüphanelerine etkisi.[^8]
-- **Resmi doküman:** "Client-side data fetching" rehberi; sunucudan ilk veriyi verip istemci cache'iyle devam etmek.[^7]
+- **Yazı:** [Dominik Dorfmeister](https://tkdodo.eu/), "You Might Not Need React Query"; Server Component'lerin client veri kütüphanelerine etkisi.[^8]
+- **Resmi doküman:** "Client-side data fetching" rehberi; server'dan ilk veriyi verip client cache'iyle devam etmek.[^7]
 
 ## Kaynaklar
 
@@ -148,6 +148,6 @@ TanStack Query'nin maintainer'ı [Dominik Dorfmeister](https://tkdodo.eu/) da Se
 3. [React: cache](https://react.dev/reference/react/cache) *(doc)* — İstek kapsamlı memoization ve sınırları.
 4. [Next.js: Caching](https://nextjs.org/docs/app/getting-started/caching) *(doc)* — Cache'lenmemiş verinin Suspense içinde akması ve blocking route uyarısındaki çözümler.
 5. [Next.js: Streaming](https://nextjs.org/docs/app/guides/streaming) *(doc)* — Kardeş ve iç içe Suspense sınırları, botlar, HTTP durum kodları ve Web Vitals.
-6. [React: use](https://react.dev/reference/react/use) *(doc)* — Promise'i istemcide okumak ve sunucuda mı istemcide mi çözüleceği.
+6. [React: use](https://react.dev/reference/react/use) *(doc)* — Promise'i client'ta okumak ve server'da mı client'ta mı çözüleceği.
 7. [Next.js: Client-side data fetching](https://nextjs.org/docs/app/guides/client-side-data-fetching) *(doc)* — Kütüphane ne zaman gerekir, sunucudan ilk veri ve cache katmanlarını koordine etmek.
 8. [Dominik Dorfmeister](https://tkdodo.eu/): [You Might Not Need React Query](https://tkdodo.eu/blog/you-might-not-need-react-query) *(article)* — 2023. Server Component'ler ve React Query'nin yeri.

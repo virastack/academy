@@ -1,6 +1,6 @@
 ---
 title: "Secret ve bağımlılık güvenliği"
-description: "Anahtarı istemciden uzak tutma, .env ve npm tedarik zinciri saldırıları."
+description: "Anahtarı client'tan uzak tutma, .env ve npm tedarik zinciri saldırıları."
 lastVerified: "2026-10-22"
 translationKey: "auth-security/secrets-and-dependencies"
 ---
@@ -13,7 +13,7 @@ Bir uygulama iki yoldan, kendi kodunuzda hiçbir hata yokken de ele geçirilebil
 
 ## Secret nereden sızar
 
-**1. İstemci paketi.** `NEXT_PUBLIC_` önekli her değişken derleme anında JavaScript paketine yazılır ve herkes okuyabilir.[^1] Secret okuyan modülün başına `import "server-only"` ekleyin; bir Client Component onu import ederse derleme hata verir.[^1]
+**1. Client paketi.** `NEXT_PUBLIC_` önekli her değişken derleme anında JavaScript paketine yazılır ve herkes okuyabilir.[^1] Secret okuyan modülün başına `import "server-only"` ekleyin; bir Client Component onu import ederse derleme hata verir.[^1]
 
 **2. Props.** Server Component'ten Client Component'e verilen her değer tarayıcıya gider. Veritabanından gelen kullanıcı nesnesini olduğu gibi aktarırsanız parola özeti ya da e-posta gibi alanlar da gider. Next.js bu yüzden yalnızca gereken alanları taşıyan küçük nesneler *(DTO)* döndürmeyi önerir:[^1]
 
@@ -46,7 +46,7 @@ Saldırıların çoğu üç kapıdan girer:[^4][^6]
 | :-- | :-- |
 | Ele geçirilmiş paket | Popüler bir paketin yeni sürümüne kötü kod eklenir |
 | Typosquatting | `cross-env` yerine `crossenv` gibi benzer isimli sahte paket |
-| Slopsquatting | Yapay zekanın uydurduğu paket adıyla önceden yayınlanmış sahte paket |
+| Slopsquatting | Yapay zekânın uydurduğu paket adıyla önceden yayınlanmış sahte paket |
 
 ## Kurulumu sıkılaştırmak
 
@@ -106,7 +106,7 @@ updates:
 
 > [!DO]
 >
-> - Yapay zekanın önerdiği bir paketi kurmadan önce `npm view <paket>` ile var olduğunu, indirme sayısını ve deposunu kontrol edin.[^6]
+> - Yapay zekânın önerdiği bir paketi kurmadan önce `npm view <paket>` ile var olduğunu, indirme sayısını ve deposunu kontrol edin.[^6]
 > - npm ve GitHub hesabınızda kimlik avına dayanıklı iki adımlı doğrulama *(passkey ya da güvenlik anahtarı)* kullanın.[^5]
 > - Paket yayınlıyorsanız uzun ömürlü token yerine **trusted publishing** kullanın.[^6]
 
@@ -124,7 +124,7 @@ updates:
 
 ## Kaynaklar
 
-1. [Next.js: How to think about data security](https://nextjs.org/docs/app/guides/data-security) *(doc)* — DTO döndürmek, `server-only`, `NEXT_PUBLIC_` değişkenlerinin istemciye gitmesi ve taint API'leri.
+1. [Next.js: How to think about data security](https://nextjs.org/docs/app/guides/data-security) *(doc)* — DTO döndürmek, `server-only`, `NEXT_PUBLIC_` değişkenlerinin client'a gitmesi ve taint API'leri.
 2. [OWASP: Secrets Management Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html) *(doc)* — Sızıntıda iptal, döndürme ve silme sırası; git geçmişini yeniden yazmanın sonuçları.
 3. [GitHub Docs: About push protection](https://docs.github.com/en/code-security/concepts/secret-security/about-push-protection) *(doc)* — Push sırasında anahtar engelleme, kullanıcı ve depo düzeyindeki varsayılanlar.
 4. [Liran Tal](https://lirantal.com/): [Security Controls in the JavaScript Supply Chain](https://gitnation.com/contents/security-controls-in-the-javascript-supply-chain) *(video)* — JSNation 2022. Bağımlılıklara duyulan güven, lockfile'a gizlenen kod, kurulum script'leri ve güncellemeleri geciktirmek.

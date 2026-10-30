@@ -199,7 +199,7 @@ export default function Page() {
 
 ## Server Components ve client bundle
 
-Server Component'te kullanılan kütüphaneler istemciye gönderilmez; tarayıcıya yalnızca üretilen HTML gider. Bu yüzden syntax highlighting, markdown işleme ya da grafik hazırlama gibi tarayıcı API'si ve etkileşim gerektirmeyen ağır işleri Server Component'e taşımak, client bundle'ı küçültmenin etkili bir yoludur.[^1]
+Server Component'te kullanılan kütüphaneler client'a gönderilmez; tarayıcıya yalnızca üretilen HTML gider. Bu yüzden syntax highlighting, markdown işleme ya da grafik hazırlama gibi tarayıcı API'si ve etkileşim gerektirmeyen ağır işleri Server Component'e taşımak, client bundle'ı küçültmenin etkili bir yoludur.[^1]
 
 ## Detaylı öğrenmek için
 

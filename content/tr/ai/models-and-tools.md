@@ -5,16 +5,16 @@ lastVerified: "2026-10-26"
 translationKey: "ai/models-and-tools"
 ---
 
-Frontend geliştirmesinde yapay zeka iki katmandan oluşur:
+Frontend geliştirmesinde yapay zekâ iki katmandan oluşur:
 
-- **Model:** Kodu üreten yapay zekadır *(örn: [!claude], [!gpt], [!gemini] sürümleri)*.
+- **Model:** Kodu üreten yapay zekâdır *(örn: [!claude], [!gpt], [!gemini] sürümleri)*.
 - **Araç:** Dosyaları okuyan, projeyi anlayan ve komut çalıştıran arayüzdür *(örn: [!cursor], [!claudeCode])*.
 
 Yazılan kodun kalitesini büyük ölçüde seçilen model belirler. Araç da fark yaratır: aynı model farklı araçlarda farklı sonuç verebilir, çünkü her araç modele farklı bağlam gönderir. Bunu [Prompt ve Context Engineering](/academy/ai/prompt-and-context-engineering) rehberinde göreceksiniz.
 
-Araç tarafındaki asıl ayrım sohbet ile ajan arasındadır. `useCart` hook'unu bir sohbet aracına yazdırırsanız kodu kendiniz kopyalayıp projeye eklersiniz. Bir ajan *([!claudeCode], [!cursor]'ın agent modu)* aynı hook'u doğrudan dosyaya yazar, testi çalıştırır ve hata çıkarsa kendisi düzeltir[^1].
+Araç tarafındaki asıl ayrım sohbet ile agent arasındadır. `useCart` hook'unu bir sohbet aracına yazdırırsanız kodu kendiniz kopyalayıp projeye eklersiniz. Bir agent *([!claudeCode], [!cursor]'ın agent modu)* aynı hook'u doğrudan dosyaya yazar, testi çalıştırır ve hata çıkarsa kendisi düzeltir[^1].
 
-## Yapay zeka şirketleri ve model sıralaması
+## Yapay zekâ şirketleri ve model sıralaması
 
 Aşağıdaki sıralama tabloları, Arena AI sitesinin WebDev sıralamasındaki Frontend filtresinden 16 Ekim 2026 tarihindeki veriler alınarak hazırlanmıştır[^2]. Arena, kullanıcıların iki modelin yaptığı arayüzü karşılaştırıp oy verdiği bir kodlama sıralamasıdır. Yeni testler ve oylamalarla sıralama günlük değişebilir; en güncel sonuçlar için siteyi kontrol edin.
 
@@ -92,7 +92,7 @@ Araçlar genelde çalıştıkları yere göre üçe ayrılır. Sınırlar bulan�
 
 > [!WARNING]
 >
-> API anahtarını, `.env` içeriğini ve müşteri verisini sohbete yapıştırmayın. İş yerinde şirketin yapay zeka politikasına uyun.
+> API anahtarını, `.env` içeriğini ve müşteri verisini sohbete yapıştırmayın. İş yerinde şirketin yapay zekâ politikasına uyun.
 
 ## Gerçek hayat senaryosu: e-ticaret sepet akışı
 
@@ -121,7 +121,7 @@ Model ne kadar güçlü olursa olsun dört sınırı vardır. Bunları bilmek, �
 
 ## Kaynaklar
 
-1. [Addy Osmani: AI Coding Agent](https://addyosmani.com/agentic-engineering/ai-coding-agent/) *(article)* — Kodu yalnızca öneren sohbet ile kodu yazıp çalıştıran ve düzelten kodlama ajanı arasındaki fark.
+1. [Addy Osmani: AI Coding Agent](https://addyosmani.com/agentic-engineering/ai-coding-agent/) *(article)* — Kodu yalnızca öneren sohbet ile kodu yazıp çalıştıran ve düzelten kodlama agent'ı arasındaki fark.
 2. [Arena: Code Arena | WebDev, Frontend](https://arena.ai/leaderboard/code/webdev/frontend) *(research)* — Şirket ve model sıralamalarının alındığı frontend kodlama sıralaması.
 3. [Anthropic: Claude Sonnet 5.5](https://www.anthropic.com/claude-sonnet-5-5) *(article)* — Sonnet 5.5'in Opus 5.5 karşısındaki yeri: hız, maliyet ve günlük görevler.
 4. [OpenAI: Prompt engineering](https://developers.openai.com/api/docs/guides/prompt-engineering) *(doc)* — Düşünen, büyük ve küçük modeller arasındaki ödünler ("Choosing a model" bölümü).

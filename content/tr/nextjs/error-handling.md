@@ -63,7 +63,7 @@ export default function ProductNotFound() {
 
 > [!NOTE]
 >
-> Sayfa akmaya başladıysa sunucu `200` durum koduna bağlanmıştır; sonradan çağrılan `notFound()` bunu `404`'e çeviremez. Next.js bu durumda sayfaya `<meta name="robots" content="noindex">` ekler, arama motoru sayfayı dizine almaz. Aynı şekilde akış sırasında `redirect()` bir HTTP yönlendirmesi değil istemci tarafı yönlendirme olur.[^2] Bu rehberin proje uygulamasında `/products/nope` tam olarak böyle davrandı.
+> Sayfa akmaya başladıysa sunucu `200` durum koduna bağlanmıştır; sonradan çağrılan `notFound()` bunu `404`'e çeviremez. Next.js bu durumda sayfaya `<meta name="robots" content="noindex">` ekler, arama motoru sayfayı dizine almaz. Aynı şekilde akış sırasında `redirect()` bir HTTP yönlendirmesi değil client tarafı yönlendirme olur.[^2] Bu rehberin proje uygulamasında `/products/nope` tam olarak böyle davrandı.
 
 > [!WARNING]
 >

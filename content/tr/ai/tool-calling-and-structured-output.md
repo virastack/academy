@@ -16,7 +16,7 @@ Araçlar `execute` fonksiyonunun olup olmamasına ve onay gerekip gerekmediğine
 | Araç türü | `execute` | Kim çalıştırır | Örnek |
 | --- | --- | --- | --- |
 | Sunucu aracı | Var | Sunucu, model çağırınca | `getOrderStatus` |
-| İstemci aracı | Yok | Arayüz, kullanıcı etkileşimiyle[^1][^2] | `pickSize` |
+| Client aracı | Yok | Arayüz, kullanıcı etkileşimiyle[^1][^2] | `pickSize` |
 | Onaylı araç | Var, ayrıca `toolApproval` | Sunucu, kullanıcı onayladıktan sonra[^2] | `cancelOrder` |
 
 ## Araç tanımlama
@@ -100,7 +100,7 @@ Bir adım (step), modelin bir kez üretmesi ve çağırdığı yerel araçların
 | Model şemaya uymayan girdi gönderir | Hata fırlatılmaz, `tool-error` parçası oluşur ve döngü sürer |
 | `execute` hata fırlatır | Aynı şekilde `tool-error` olur, model bir tur daha çalışıp durumu açıklayabilir[^1] |
 
-`tool-error` arayüzde `output-error` durumu olarak görünür. Ayrıntısı aşağıdaki istemci bölümünde.
+`tool-error` arayüzde `output-error` durumu olarak görünür. Ayrıntısı aşağıdaki client bölümünde.
 
 > [!WARNING]
 >
@@ -117,7 +117,7 @@ execute: async ({ orderId }) => {
 },
 ```
 
-## İstemci: aracı arayüzde göstermek
+## Client: aracı arayüzde göstermek
 
 Araç çağrıları `message.parts` içinde `tool-<araç adı>` türünde parçalar olarak gelir. Her parça bir `state` taşır ve arayüzü bu duruma göre çizersiniz:[^2]
 
@@ -210,7 +210,7 @@ export function MessageParts({
 
 ## Kullanıcı onayı
 
-Onay, modelin geri alınamaz veya maliyetli bir aracı kullanıcıya sormadan çalıştırmasını engeller. Sunucuda `toolApproval` ile hangi aracın onay istediğini belirtirsiniz (route'taki `toolApproval: { cancelOrder: 'user-approval' }` satırı). İstemcide iki şey gerekir: bir onay arayüzü ve `sendAutomaticallyWhen`.[^2]
+Onay, modelin geri alınamaz veya maliyetli bir aracı kullanıcıya sormadan çalıştırmasını engeller. Sunucuda `toolApproval` ile hangi aracın onay istediğini belirtirsiniz (route'taki `toolApproval: { cancelOrder: 'user-approval' }` satırı). Client'ta iki şey gerekir: bir onay arayüzü ve `sendAutomaticallyWhen`.[^2]
 
 ```tsx
 // app/assistant/panel.tsx
@@ -258,13 +258,13 @@ toolApproval: {
 
 > [!DONT]
 >
-> Yetki kontrolünü onay butonuna bırakmayın. Onay kararı istemcide verilir. Kullanıcının o siparişin sahibi olduğunu `execute` içinde sunucu tarafında doğrulamıyorsanız onay bir güvenlik önlemi değildir.
+> Yetki kontrolünü onay butonuna bırakmayın. Onay kararı client'ta verilir. Kullanıcının o siparişin sahibi olduğunu `execute` içinde server tarafında doğrulamıyorsanız onay bir güvenlik önlemi değildir.
 
 > [!DO]
 >
 > Onayı "kullanıcı bunu gerçekten istiyor mu?" sorusu için, yetkiyi ise sunucuda kontrol edin. Hassas araçlar için doküman `experimental_toolApprovalSecret` seçeneğini öneriyor: sunucu, onayı kendisinin verdiğini doğrular. Seçenek deneysel olduğu için bu rehberdeki örneklerde çalıştırılmadı.[^2]
 
-## İstemci araçları
+## Client araçları
 
 Kullanıcıdan bir seçim almak istediğinizde aracı `execute` olmadan tanımlayın. Çağrı sunucuda çalışmaz, arayüze düşer ve kullanıcı seçince sonucu siz geri verirsiniz.[^1][^2]
 
@@ -373,7 +373,7 @@ export async function streamRecipe() {
 
 - **Yarım değerler:** `partialOutputStream` her an eldeki parçalı nesneyi verir. Doğrulanmadığı için `ingredients: ['mercimek', 's']` gibi yarım değerler içerebilir.[^4] Bunu yalnızca önizleme için kullanın, kaydetmek veya işlemek için `await result.output`'u bekleyin.
 - **Eleman eleman:** `Output.array` ile `elementStream` yalnızca tamamlanmış ve doğrulanmış elemanları verir.[^4] Liste türü sonuçları ekrana kart kart eklemek için uygundur.
-- **İstemcide:** Akan nesneyi doğrudan hook'a bağlamak için `@ai-sdk/react` içinde `useObject` var.[^4]
+- **Client'ta:** Akan nesneyi doğrudan hook'a bağlamak için `@ai-sdk/react` içinde `useObject` var.[^4]
 
 ### Şema açıklamaları ve sınırları
 
@@ -391,8 +391,8 @@ Format kısıtı akıl yürütmeyi de etkileyebilir. Tam ve arkadaşlarının ç
 
 | İhtiyaç | Yol |
 | --- | --- |
-| Model gerçek bir sistemden veri alsın veya yan etki yaratsın | Sunucu aracı |
-| Kullanıcıdan seçim veya bilgi alınsın | İstemci aracı (`execute` yok) |
+| Model gerçek bir sistemden veri alsın veya yan etki yaratsın | Server aracı |
+| Kullanıcıdan seçim veya bilgi alınsın | Client aracı (`execute` yok) |
 | Geri alınamaz veya maliyetli işlem | Sunucu aracı ve `toolApproval` |
 | Cevap bir şemaya uyan veri olsun (sınıflandırma, form doldurma) | `Output.object` |
 | Cevap önceden belli seçeneklerden biri olsun | `Output.choice` |

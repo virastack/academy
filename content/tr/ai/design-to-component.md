@@ -68,13 +68,13 @@ Renkleri yalnızca src/index.css token'larından al.
 Kart bir <article> olsun. İsim h2, avatar alt metinli img, kalp aria-pressed'li bir button, cta metniyle de bir button olsun.
 ```
 
-`get_design_context` ana araçtır. Varsayılan çıktısı React ve Tailwind'dir.[^2] Skills rehberindeki `frontend-design` kuruluysa arayüz kararlarında ajana yön verir.
+`get_design_context` ana araçtır. Varsayılan çıktısı React ve Tailwind'dir.[^2] Skills rehberindeki `frontend-design` kuruluysa arayüz kararlarında agent'a yön verir.
 
-Başlangıç klasöründeki `CLAUDE.md` bu kuralları ajana zaten söylüyor. Tasarımdaki fotoğrafları kullanmak zorunda değilsiniz, `public/` içindeki yer tutucu görseller yeter.
+Başlangıç klasöründeki `CLAUDE.md` bu kuralları agent'a zaten söylüyor. Tasarımdaki fotoğrafları kullanmak zorunda değilsiniz, `public/` içindeki yer tutucu görseller yeter.
 
 > [!TIP]
 >
-> Çıktıda `bg-[#111111]` gibi sabit renkler görürseniz ajana "bunları token'a çevir" deyin. Hazır test bunu da yakalar.
+> Çıktıda `bg-[#111111]` gibi sabit renkler görürseniz agent'a "bunları token'a çevir" deyin. Hazır test bunu da yakalar.
 
 ## Adım 3: Tarayıcıda karşılaştırın
 
@@ -86,7 +86,7 @@ Farkları düzelt.
 
 Playwright MCP sayfayı erişilebilirlik ağacından okur, ekran görüntüsü de alabilir.[^6] Figma tarafında `get_screenshot` çerçevenin görüntüsünü verir.[^2]
 
-**Kontrol:** İki görüntüyü kendiniz de yan yana bakın. Ajanın "aynı" demesi yetmez.
+**Kontrol:** İki görüntüyü kendiniz de yan yana bakın. Agent'ın "aynı" demesi yetmez.
 
 ## Adım 4: Testleri çalıştırın
 
@@ -110,7 +110,7 @@ On test şunları denetler:
 
 Sabit renk testi, 24 piksel hedef sınırı ve axe etiketleri bu projeye özel seçimler. 24x24 sınırı WCAG 2.2 AA kriteridir (SC 2.5.8).[^7] axe yalnızca bir kısım sorunu yakalar, geri kalanı elle kontrol ister.[^8]
 
-Test kırılırsa çıktıyı ajana yapıştırın: *"Bu test kırıldı, sebebini bul ve düzelt. Testi değiştirme."* Son cümle önemli. Ajan testi gevşeterek de geçirebilir.
+Test kırılırsa çıktıyı agent'a yapıştırın: *"Bu test kırıldı, sebebini bul ve düzelt. Testi değiştirme."* Son cümle önemli. Agent testi gevşeterek de geçirebilir.
 
 ## Bitti sayılır
 

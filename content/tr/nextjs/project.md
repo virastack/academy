@@ -215,7 +215,7 @@ export default function HomePage() {
 
 ## Adım 5: Ürün listesi ve arama
 
-`next/form`, `action` bir adres olduğunda aramayı `?q=` olarak URL'ye yazar ve istemci tarafında geçiş yapar.[^5] `searchParams` istek anında bilinir; okuyan kısım `<Suspense>` içinde olmalı.[^2]
+`next/form`, `action` bir adres olduğunda aramayı `?q=` olarak URL'ye yazar ve client tarafında geçiş yapar.[^5] `searchParams` istek anında bilinir; okuyan kısım `<Suspense>` içinde olmalı.[^2]
 
 ```tsx
 // app/products/page.tsx
@@ -370,7 +370,7 @@ async function Stock({ slug }: { slug: string }) {
 
 ## Adım 7: Add to cart
 
-Server Action stoğu ve ürünü sunucuda doğrular. İstemciden gelen `slug`'a güvenmez.[^9]
+Server Action stoğu ve ürünü server'da doğrular. Client'tan gelen `slug`'a güvenmez.[^9]
 
 ```ts
 // app/actions.ts
@@ -697,7 +697,7 @@ npm run build
 - `getProduct`'tan `"use cache"`, `cacheLife` ve `cacheTag` satırlarını silip `instant()` testini çalıştırın. Neden başarısız oldu? *(Yalnızca `"use cache"`'i silerseniz `cacheLife` hata verir.)*
 - `getProduct`'ın döndürdüğü açıklamaya `new Date().toISOString()` koyun. `npm run build && npm start` ile açıp webhook'u `curl -X POST -H "x-revalidate-secret: change-me" -H "content-type: application/json" -d '{"slug":"canvas-sneaker"}' localhost:3000/api/revalidate` ile çağırın; sayfayı iki kez yenileyin.
 - Ürün sayfasına öneriler bölümü ekleyin ve [Hata yönetimi](/academy/nextjs/error-handling) dersindeki `SectionBoundary` ile sarın. Öneriler hata verince sayfanın geri kalanı yerinde kalıyor mu?
-- Sepet sayfasına toplam fiyatı ekleyin. Hesabı sunucuda mı istemcide mi yaptınız, neden?
+- Sepet sayfasına toplam fiyatı ekleyin. Hesabı server'da mı client'ta mı yaptınız, neden?
 - `next.config.ts`'e `/sepet` → `/cart` yönlendirmesini `redirects` ile ekleyin.
 
 ## Kaynaklar
@@ -706,7 +706,7 @@ npm run build
 2. [Next.js: Caching](https://nextjs.org/docs/app/getting-started/caching) *(doc)* — `"use cache"`, `cacheLife`, `connection()`, runtime veriyi `<Suspense>` içinde okumak ve statik kabuk.
 3. [Next.js: revalidateTag](https://nextjs.org/docs/app/api-reference/functions/revalidateTag) *(doc)* — Etiketle yenileme, `"max"` profili ve stale-while-revalidate davranışı.
 4. [Next.js: cookies](https://nextjs.org/docs/app/api-reference/functions/cookies) *(doc)* — Cookie'nin yalnızca Server Function ya da Route Handler'da yazılması ve aynı turda güncellenen arayüz.
-5. [Next.js: Form Component](https://nextjs.org/docs/app/api-reference/components/form) *(doc)* — Aramayı URL'ye yazan form ve istemci tarafı geçiş.
+5. [Next.js: Form Component](https://nextjs.org/docs/app/api-reference/components/form) *(doc)* — Aramayı URL'ye yazan form ve client tarafı geçiş.
 6. [Next.js: Adopting Partial Prefetching](https://nextjs.org/docs/app/guides/adopting-partial-prefetching) *(doc)* — URL verisini `<Suspense>` içine taşımak ve `prefetch={true}` ile cache'li içeriği önceden getirmek.
 7. [Next.js: generateStaticParams](https://nextjs.org/docs/app/api-reference/functions/generate-static-params) *(doc)* — Dinamik segmentleri build'de prerender etmek.
 8. [Next.js: Metadata and OG images](https://nextjs.org/docs/app/getting-started/metadata-and-og-images) *(doc)* — `generateMetadata` ve sayfanın aynı veriyi tekrar okumaması.

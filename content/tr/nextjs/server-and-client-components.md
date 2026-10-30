@@ -19,7 +19,7 @@ App Router'da layout ve sayfalar varsayılan olarak **Server Component**'tir. Su
 
 ## 'use client' bir kapıdır
 
-`"use client"`, bir component'i değil bir **modül sınırını** işaretler. Dosyanın en üstüne yazılır; o dosya, import ettiği her şey ve doğrudan render ettiği component'ler istemci paketine girer.[^1]
+`"use client"`, bir component'i değil bir **modül sınırını** işaretler. Dosyanın en üstüne yazılır; o dosya, import ettiği her şey ve doğrudan render ettiği component'ler client paketine girer.[^1]
 
 ```tsx
 // components/like-button.tsx
@@ -55,15 +55,15 @@ export default async function ProductPage({ params }: PageProps<"/products/[slug
 > [!DO]
 >
 > - `"use client"`'ı ağacın **yapraklarına** koyun: arama kutusu, beğeni butonu, sepet çekmecesi.
-> - Sayfanın geri kalanını Server Component bırakın; istemci paketi küçük kalır.[^1]
+> - Sayfanın geri kalanını Server Component bırakın; client paketi küçük kalır.[^1]
 
 > [!DONT]
 >
-> - Bir hook hatası aldınız diye `page.tsx`'in en üstüne `"use client"` yazmak. Tüm sayfa ve import ettikleri istemciye taşınır.
+> - Bir hook hatası aldınız diye `page.tsx`'in en üstüne `"use client"` yazmak. Tüm sayfa ve import ettikleri client'a taşınır.
 
 ## Composition: Server'ı client'ın içine koymak
 
-Bir Client Component, bir Server Component'i **import edemez**; import ettiği her şey istemci olur. Ama onu `children` ya da başka bir prop olarak **alabilir**. Server Component sunucuda render edilir, Client Component yalnızca hazır sonucu yerleştirir.[^1]
+Bir Client Component, bir Server Component'i **import edemez**; import ettiği her şey client olur. Ama onu `children` ya da başka bir prop olarak **alabilir**. Server Component sunucuda render edilir, Client Component yalnızca hazır sonucu yerleştirir.[^1]
 
 ```tsx
 // components/drawer.tsx
@@ -90,7 +90,7 @@ export function Drawer({ children }: { children: React.ReactNode }) {
 </Drawer>
 ```
 
-[Aurora Scharff](https://aurorascharff.no/) bunu tasarım kuralı olarak önerir: etkileşimi *(açma-kapama, animasyon, scroll)* küçük client sarmalayıcılara taşıyın, veriyi ve içeriği server tarafında bırakın. Sarmalayıcı yeniden kullanılabilir olur, veri çekme istemciye kaymaz.[^4]
+[Aurora Scharff](https://aurorascharff.no/) bunu tasarım kuralı olarak önerir: etkileşimi *(açma-kapama, animasyon, scroll)* küçük client sarmalayıcılara taşıyın, veriyi ve içeriği server tarafında bırakın. Sarmalayıcı yeniden kullanılabilir olur, veri çekme client'a kaymaz.[^4]
 
 ## Sınırdan ne geçer
 
@@ -101,7 +101,7 @@ Server'dan Client'a giden prop'lar ağ üzerinden gider, bu yüzden **serileşti
 | string, number, boolean, `null` | Sıradan fonksiyon *(`onClick={() => ...}`)* |
 | Düz nesne ve dizi, `Map`, `Set`, `Date` | Class örneği |
 | JSX *(component sonucu)* | `Symbol()` |
-| Promise *(istemcide `use` ile okunur)* | |
+| Promise *(client'ta `use` ile okunur)* | |
 | Server Function *(`"use server"`)* | |
 
 Fonksiyon geçemediği için event handler'ları Client Component'in içinde yazarsınız. Sunucuda çalışacak bir işlem gerekiyorsa [Server Actions](/academy/nextjs/server-actions) kullanılır.
@@ -127,7 +127,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 
 ## Sunucu kodunu sunucuda tutmak
 
-Aynı modül iki ortamda da import edilebilir. API anahtarı okuyan bir fonksiyonun yanlışlıkla istemciye girmemesi için dosyanın başına `server-only` yazın; bir Client Component import ederse build hata verir.[^1]
+Aynı modül iki ortamda da import edilebilir. API anahtarı okuyan bir fonksiyonun yanlışlıkla client'a girmemesi için dosyanın başına `server-only` yazın; bir Client Component import ederse build hata verir.[^1]
 
 ```ts
 // lib/products.ts
@@ -138,11 +138,11 @@ export async function getProduct(slug: string) {
 }
 ```
 
-Ortam değişkenleri de aynı kuralla çalışır: yalnızca `NEXT_PUBLIC_` ile başlayanlar istemci paketine girer, diğerleri istemcide boş string olur.[^1]
+Ortam değişkenleri de aynı kuralla çalışır: yalnızca `NEXT_PUBLIC_` ile başlayanlar client paketine girer, diğerleri client'ta boş string olur.[^1]
 
 > [!CAUTION]
 >
-> Server Component'ten Client Component'e veritabanı satırının tamamını prop olarak vermeyin. Prop'lar sayfanın kaynağında görünür. Next.js'in güvenlik rehberi, istemciye yalnızca gereken alanları taşıyan küçük nesneler *(DTO)* döndürmeyi önerir.[^6]
+> Server Component'ten Client Component'e veritabanı satırının tamamını prop olarak vermeyin. Prop'lar sayfanın kaynağında görünür. Next.js'in güvenlik rehberi, client'a yalnızca gereken alanları taşıyan küçük nesneler *(DTO)* döndürmeyi önerir.[^6]
 
 ## Kendin dene
 
@@ -166,6 +166,6 @@ Ortam değişkenleri de aynı kuralla çalışır: yalnızca `NEXT_PUBLIC_` ile 
 3. [Dan Abramov](https://overreacted.io/): [What Does "use client" Do?](https://overreacted.io/what-does-use-client-do/) *(article)* — 25 Nisan 2025. `"use client"` ve `"use server"`'ın modül sistemi açısından anlamı.
 4. [Aurora Scharff](https://aurorascharff.no/): [Server and Client Component Composition in Practice](https://aurorascharff.no/posts/server-client-component-composition-in-practice/) *(article)* — 5 Ağustos 2025. Client sarmalayıcılar ve Suspense ile composition kalıpları.
 5. [React: 'use client'](https://react.dev/reference/rsc/use-client) *(doc)* — Modül sınırı ve serileştirilebilir prop tipleri.
-6. [Next.js: Data Security](https://nextjs.org/docs/app/guides/data-security) *(doc)* — Data Access Layer, DTO, tainting ve istemciye veri sızdırmamak.
-7. [Dan Abramov](https://overreacted.io/): [Impossible Components](https://overreacted.io/impossible-components/) *(article)* — 22 Nisan 2025. Sunucu verisini ve istemci etkileşimini tek component'te birleştirmek.
+6. [Next.js: Data Security](https://nextjs.org/docs/app/guides/data-security) *(doc)* — Data Access Layer, DTO, tainting ve client'a veri sızdırmamak.
+7. [Dan Abramov](https://overreacted.io/): [Impossible Components](https://overreacted.io/impossible-components/) *(article)* — 22 Nisan 2025. Server verisini ve client etkileşimini tek component'te birleştirmek.
 8. [Next.js: The Server and Client Boundary](https://nextjs.org/docs/app/guides/server-and-client-boundary) *(doc)* — Component türlerinin nerede çalıştığı ve sınırın işleyişi.

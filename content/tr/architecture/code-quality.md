@@ -240,7 +240,7 @@ Otomasyon biçimi çözdükten sonra insan incelemesi tasarıma bakar. Google'ı
 
 > [!TIP]
 >
-> Lint hatası kodlama ajanı için de geri bildirimdir: kural ihlali hemen kırmızıya düşer ve ajan kendini düzeltir. Bunu [Agentic Kodlama](/academy/ai/agentic-coding) rehberinde "ajanın kullanabileceği bir kontrol" olarak anlatmıştık.
+> Lint hatası kodlama agent'ı için de geri bildirimdir: kural ihlali hemen kırmızıya düşer ve agent kendini düzeltir. Bunu [Agentic Kodlama](/academy/ai/agentic-coding) rehberinde "agent'ın kullanabileceği bir kontrol" olarak anlatmıştık.
 
 ## Kendin dene
 

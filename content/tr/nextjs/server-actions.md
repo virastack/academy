@@ -9,7 +9,7 @@ translationKey: "nextjs/server-actions"
 
 React rehberindeki [Actions](/academy/react/actions) dersinde Action'ı tarayıcıda çalıştırdınız. **Server Function**, `"use server"` ile işaretlenmiş ve sunucuda çalışan async bir fonksiyondur. Bir form'a ya da transition'a bağlandığında adı **Server Action** olur.[^1]
 
-İstemci onu bir ağ isteğiyle çağırır. Next.js bu isteği sizin yerinize kurar: bir API route, `fetch` ya da JSON ayrıştırma yazmazsınız.[^1]
+Client onu bir ağ isteğiyle çağırır. Next.js bu isteği sizin yerinize kurar: bir API route, `fetch` ya da JSON parse kodu yazmazsınız.[^1]
 
 ```ts
 // app/actions.ts
@@ -108,8 +108,8 @@ Next.js kendi tarafında birkaç koruma sağlar: `Origin` ile `Host`'u karşıla
 >
 > - Her Action'ın içinde **kimlik ve yetki** kontrolü yapın.
 > - `FormData`'yı güvenilmeyen girdi sayın ve doğrulayın.
-> - İstemciden yalnızca **kimlik** *(id)* ve değişikliği alın; sahiplik gibi bilgileri oturumdan ve veritabanından okuyun.
-> - İstemciye yalnızca arayüzün göstereceği alanları döndürün.
+> - Client'tan yalnızca **kimlik** *(id)* ve değişikliği alın; sahiplik gibi bilgileri oturumdan ve veritabanından okuyun.
+> - Client'a yalnızca arayüzün göstereceği alanları döndürün.
 
 ```ts
 "use server";
@@ -131,7 +131,7 @@ Rol kontrolünü tek yerde toplamak [Yetkilendirme ve roller](/academy/auth-secu
 
 ## Ne zaman action, ne zaman başka bir şey
 
-Next.js bir istemcideki Action'ları **sırayla** çalıştırır; ikincisi birincinin bitmesini bekler. `Promise.all` ile Action'ları paralel çağırmak işe yaramaz.[^4]
+Next.js bir client'taki Action'ları **sırayla** çalıştırır; ikincisi birincinin bitmesini bekler. `Promise.all` ile Action'ları paralel çağırmak işe yaramaz.[^4]
 
 | İhtiyaç | Kullanın |
 | :-- | :-- |

@@ -155,7 +155,7 @@ Sonuç uygulamaya göre değişir:
 Bu rehberdeki [Formlar](/academy/forms/project) projesinin testleri tam bu yüzden ara sıra düşüyordu. Üç çözüm var:
 
 1. **Formu JavaScript'siz de çalışır yapın.** `action` prop'una Server Action verilen form hidrasyondan önce de gönderilir *(bkz. [Server Actions ile form](/academy/forms/forms-with-server-actions))*. Hem test kararlı olur hem yavaş bağlantıdaki kullanıcı kazanır.
-2. **Yalnızca istemci kodu çalışınca görünen bir şeyi bekleyin.** Örneğin TanStack Query ile tarayıcıda yüklenen bir liste. Satırlar göründüyse React çalışıyordur.
+2. **Yalnızca client kodu çalışınca görünen bir şeyi bekleyin.** Örneğin TanStack Query ile tarayıcıda yüklenen bir liste. Satırlar göründüyse React çalışıyordur.
 3. **Son çare `networkidle`.** Çalışır ama yavaştır ve doküman önermez.
 
 Bu rehberin projesinde giriş formu Server Action kullanır; sipariş testleri de filtreye dokunmadan önce satırların yüklenmesini bekler.

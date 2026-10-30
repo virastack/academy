@@ -110,7 +110,7 @@ const product = queryClient.getQueryData(productQueries.detail(1).queryKey);
 
 > [!TIP]
 >
-> Tip çıkarımının çalışması için `useQuery`'ye generic vermeyin. `queryFn`'in dönüş tipini doğru yazın, gerisini kütüphane çıkarır. `axios` gibi `any` döndüren istemcileri tipli bir fonksiyona sarın.[^5][^6]
+> Tip çıkarımının çalışması için `useQuery`'ye generic vermeyin. `queryFn`'in dönüş tipini doğru yazın, gerisini kütüphane çıkarır. `axios` gibi `any` döndüren client'ları tipli bir fonksiyona sarın.[^5][^6]
 
 ## select ile seçmek
 

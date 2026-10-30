@@ -21,25 +21,25 @@ Yani hedef "saldırıyı engellemek" olmamalı. Hedef, saldırı işe yarasa bil
 
 ### Ölümcül üçlü
 
-[Simon Willison](https://simonwillison.net), ajan sistemlerinde tehlikeyi üç özelliğin birleşimi olarak tarif ediyor:[^4]
+[Simon Willison](https://simonwillison.net), agent sistemlerinde tehlikeyi üç özelliğin birleşimi olarak tarif ediyor:[^4]
 
 1. Özel verilere erişim
 2. Güvenilmeyen içeriğe maruz kalma
 3. Dışarıyla iletişim kurabilme (veri sızdırma yolu)
 
-Üçü aynı ajandaysa saldırgan, okuduğu içeriğe yazdığı talimatla özel veriyi dışarı yollatabilir. [Willison](https://simonwillison.net)'ın önerisi bu üçlüyü bir arada vermemek. "Saldırıyı yakalarız" diyen guardrail ürünlerine de güvenmiyor.[^4]
+Üçü aynı agent'taysa saldırgan, okuduğu içeriğe yazdığı talimatla özel veriyi dışarı yollatabilir. [Willison](https://simonwillison.net)'ın önerisi bu üçlüyü bir arada vermemek. "Saldırıyı yakalarız" diyen guardrail ürünlerine de güvenmiyor.[^4]
 
-Meta'nın "Agents Rule of Two" kuralı aynı fikri şöyle söylüyor. Bir ajan oturumunda şu üç özellikten en fazla ikisi olsun:[^5]
+Meta'nın "Agents Rule of Two" kuralı aynı fikri şöyle söylüyor. Bir agent oturumunda şu üç özellikten en fazla ikisi olsun:[^5]
 
 - **A:** Güvenilmeyen girdi işlemek
 - **B:** Hassas sisteme ya da özel veriye erişmek
 - **C:** Durum değiştirmek ya da dışarıyla iletişim kurmak
 
-Üçü de gerekiyorsa ajan otonom çalışmamalı. İnsan onayı ya da başka güvenilir bir doğrulama şart.[^5]
+Üçü de gerekiyorsa agent otonom çalışmamalı. İnsan onayı ya da başka güvenilir bir doğrulama şart.[^5]
 
 > [!DO]
 >
-> Her araç eklerken üç soru sorun. Bu araç özel veri okuyor mu? Güvenilmeyen metin bu ajana ulaşıyor mu? Dışarı bir şey gönderebiliyor mu? Üçüne de "evet" ise araçlardan birini çıkarın ya da onaya bağlayın.
+> Her araç eklerken üç soru sorun. Bu araç özel veri okuyor mu? Güvenilmeyen metin bu agent'a ulaşıyor mu? Dışarı bir şey gönderebiliyor mu? Üçüne de "evet" ise araçlardan birini çıkarın ya da onaya bağlayın.
 
 ### Etkiyi küçültmek
 
@@ -394,7 +394,7 @@ Vercel AI Gateway kullanıyorsanız bütçeleri ekip, proje, API anahtarı ve ku
 2. [OWASP: LLM01 Prompt Injection](https://genai.owasp.org/llmrisk/llm01-prompt-injection/) *(doc)* — Doğrudan ve dolaylı prompt injection, etkiler ve azaltma yöntemleri.
 3. [NCSC: Prompt injection is not SQL injection (it may be worse)](https://www.ncsc.gov.uk/blog-post/prompt-injection-is-not-sql-injection) *(article)* — Talimat ile veri arasında sınır olmaması ve etkiyi azaltma önerileri (8 Aralık 2025).
 4. [Simon Willison: The lethal trifecta for AI agents](https://simonwillison.net/2025/Jun/16/the-lethal-trifecta/) *(article)* — Özel veri, güvenilmeyen içerik ve dışarıyla iletişimin birleşimi (16 Haziran 2025).
-5. [Meta: Agents Rule of Two](https://ai.meta.com/blog/practical-ai-agent-security/) *(article)* — Ajan oturumunda üç özellikten en fazla ikisini verme kuralı (31 Ekim 2025).
+5. [Meta: Agents Rule of Two](https://ai.meta.com/blog/practical-ai-agent-security/) *(article)* — Agent oturumunda üç özellikten en fazla ikisini verme kuralı (31 Ekim 2025).
 6. [OWASP: LLM05 Improper Output Handling](https://genai.owasp.org/llmrisk/llm052025-improper-output-handling/) *(doc)* — Model çıktısına sıfır güven, kodlama ve CSP.
 7. [Simon Willison: Google NotebookLM Data Exfiltration](https://simonwillison.net/2024/Apr/16/google-notebooklm-data-exfiltration/) *(article)* — Markdown görsel adresiyle veri sızdırma (16 Nisan 2024).
 8. [Next.js: Environment Variables](https://nextjs.org/docs/app/guides/environment-variables) *(doc)* — `NEXT_PUBLIC_` önekinin tarayıcı paketine girmesi.

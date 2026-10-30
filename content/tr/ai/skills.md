@@ -9,7 +9,7 @@ Aynı talimatı üçüncü kez sohbete yapıştırıyorsanız, o iş skill olmak
 
 ## Skill nedir?
 
-Skill, içinde `SKILL.md` dosyası olan bir klasördür. Dosyanın başında `name` ve `description`, altında ajanın izleyeceği talimatlar bulunur. İsterseniz yanına script ve referans dosyaları koyarsınız. Biçim açık bir standarttır (Agent Skills) ve birden fazla araçta çalışır.[^1]
+Skill, içinde `SKILL.md` dosyası olan bir klasördür. Dosyanın başında `name` ve `description`, altında agent'ın izleyeceği talimatlar bulunur. İsterseniz yanına script ve referans dosyaları koyarsınız. Biçim açık bir standarttır (Agent Skills) ve birden fazla araçta çalışır.[^1]
 
 Kural dosyasından farkı yüklenme zamanı: `AGENTS.md` her oturumda bağlamdadır, skill'in ise yalnızca açıklaması bağlamda durur, gövdesi skill kullanıldığında yüklenir.[^1] Uzun referans malzeme, kullanılana kadar neredeyse maliyetsizdir.
 
@@ -21,7 +21,7 @@ Kural dosyasından farkı yüklenme zamanı: `AGENTS.md` her oturumda bağlamdad
 
 ## Tekrar eden işi skill'e dönüştürün
 
-Sıfırdan yazmak yerine önce işi bir kez normal şekilde yaptırın. Anthropic'in önerdiği yöntem bu: görevi ajanla normal istekle bitirin, bu sırada verdiğiniz bağlama (tercihleriniz, kurallarınız, izlediğiniz adımlar) dikkat edin, sonra aynı ajana *"bu işte verdiğim bağlamı bir skill'e dönüştür"* deyin. Çıkan skill'i yeni bir konuşmada gerçek bir işte deneyin, ajanın takıldığı yeri not edip skill'i düzeltin.[^2]
+Sıfırdan yazmak yerine önce işi bir kez normal şekilde yaptırın. Anthropic'in önerdiği yöntem bu: görevi agent'la normal istekle bitirin, bu sırada verdiğiniz bağlama (tercihleriniz, kurallarınız, izlediğiniz adımlar) dikkat edin, sonra aynı agent'a *"bu işte verdiğim bağlamı bir skill'e dönüştür"* deyin. Çıkan skill'i yeni bir konuşmada gerçek bir işte deneyin, agent'ın takıldığı yeri not edip skill'i düzeltin.[^2]
 
 Örnek bir frontend skill'i (`.claude/skills/new-component/SKILL.md`):
 
@@ -40,15 +40,15 @@ description: Projeye yeni React bileşeni ekler. Kullanıcı "new component" vey
 
 İyi bir skill için beş kural:
 
-- **Yalnızca ajanın bilmediğini yazın.** Yapay zeka React'i zaten biliyor, projenize özgü olanı yazın. Her paragraf için *"bu, token maliyetini hak ediyor mu?"* diye sorun. `SKILL.md` 500 satırın altında kalsın, fazlasını ayrı dosyalara bölüp `SKILL.md`'den doğrudan bağlayın.[^2]
-- **description'a hem "ne yapar" hem "ne zaman" yazın.** Ajan skill'i yalnızca `description`'a bakarak seçer. *"Belgelerle ilgilenir"* gibi muğlak bir ifade işe yaramaz. Metni üçüncü şahıs yazın (*"ekler"*), *"ekleyebilirim"* yazmayın.[^2] [!claudeCode] listede `description` metnini en fazla 1.536 karakter gösterir, önemli kullanım durumunu başa koyun.[^1]
+- **Yalnızca agent'ın bilmediğini yazın.** Yapay zekâ React'i zaten biliyor, projenize özgü olanı yazın. Her paragraf için *"bu, token maliyetini hak ediyor mu?"* diye sorun. `SKILL.md` 500 satırın altında kalsın, fazlasını ayrı dosyalara bölüp `SKILL.md`'den doğrudan bağlayın.[^2]
+- **description'a hem "ne yapar" hem "ne zaman" yazın.** Agent skill'i yalnızca `description`'a bakarak seçer. *"Belgelerle ilgilenir"* gibi muğlak bir ifade işe yaramaz. Metni üçüncü şahıs yazın (*"ekler"*), *"ekleyebilirim"* yazmayın.[^2] [!claudeCode] listede `description` metnini en fazla 1.536 karakter gösterir, önemli kullanım durumunu başa koyun.[^1]
 - **Katılığı işe göre seçin.** Kod incelemesi gibi bağlama bağlı işlerde genel yönerge yeter. Veritabanı migration'ı gibi kırılgan işlerde tam komutu yazın ve *"değiştirme"* deyin. Seçenek sıralamayın, tek bir varsayılan verin (*"Vitest kullan; E2E gerekiyorsa Playwright"*).[^2]
 - **Kontrol döngüsü ekleyin.** *"Doğrula, hata varsa düzelt, tekrar doğrula"* kalıbı çıktı kalitesini artırır. Frontend'de bu lint, tip kontrolü ve testtir.[^2]
 - **Tarihe bağlı bilgi yazmayın.** *"Şu tarihten önce eski yöntemi kullan"* yerine güncel yöntemi yazın, eskisini ayrı bir "eski kalıplar" bölümüne koyun.[^2]
 
 > [!TIP]
 >
-> **Kimin tetikleyeceğini seçin.** Varsayılan olarak hem siz `/skill-adı` yazarak hem ajan uygun görünce skill'i çalıştırır. `deploy` ve `commit` gibi yan etkisi olan işlerde `disable-model-invocation: true` yazın, böylece yalnızca siz tetiklersiniz. Yalnızca ajanın bilmesi gereken arka plan bilgisi için `user-invocable: false` kullanın.[^1] Skill'in yalnızca belirli dosyalarla çalışırken öne çıkması için `paths: "**/*.tsx"` yazabilirsiniz.[^1][^3]
+> **Kimin tetikleyeceğini seçin.** Varsayılan olarak hem siz `/skill-adı` yazarak hem agent uygun görünce skill'i çalıştırır. `deploy` ve `commit` gibi yan etkisi olan işlerde `disable-model-invocation: true` yazın, böylece yalnızca siz tetiklersiniz. Yalnızca agent'ın bilmesi gereken arka plan bilgisi için `user-invocable: false` kullanın.[^1] Skill'in yalnızca belirli dosyalarla çalışırken öne çıkması için `paths: "**/*.tsx"` yazabilirsiniz.[^1][^3]
 
 ## Nereye konur?
 
@@ -67,15 +67,15 @@ description: Projeye yeni React bileşeni ekler. Kullanıcı "new component" vey
 
 Neden gerekli? Anthropic'in frontend yazısı sorunu adlandırıyor: talimat vermezseniz model, eğitim verisinin ortasındaki güvenli seçimlere (Inter yazı tipi, beyaz üstüne mor gradyan, az animasyon) yaslanır. Bunu sistem prompt'una yazarsanız her konuşma, alakasız işlerde bile tasarım talimatı taşır. Skill ise yalnızca arayüz işinde yüklenir.[^4]
 
-[Emil Kowalski](https://emilkowal.ski) aynı sorunu animasyon tarafında çözüyor: ajanlar "iyi hissettiren"in ne olduğunu bilmiyor, o yüzden arayüzün her yönü için bir skill dosyası yazıyor.[^5] Yöntemi kendi skill'iniz için de işe yarar: *"güzel animasyon yap"* yerine karar kuralları yazın. Örneğin giren eleman `ease-out` kullanır, UI animasyonları 300 ms altında kalır, bir eleman `scale(0)` yerine `scale(0.95)`'ten başlar. Her kuralın nedenini yazın, karar noktalarını tablo ya da akış şemasına çevirin ki ajan tahmin etmesin.[^5]
+[Emil Kowalski](https://emilkowal.ski) aynı sorunu animasyon tarafında çözüyor: agent'lar "iyi hissettiren"in ne olduğunu bilmiyor, o yüzden arayüzün her yönü için bir skill dosyası yazıyor.[^5] Yöntemi kendi skill'iniz için de işe yarar: *"güzel animasyon yap"* yerine karar kuralları yazın. Örneğin giren eleman `ease-out` kullanır, UI animasyonları 300 ms altında kalır, bir eleman `scale(0)` yerine `scale(0.95)`'ten başlar. Her kuralın nedenini yazın, karar noktalarını tablo ya da akış şemasına çevirin ki agent tahmin etmesin.[^5]
 
 | Skill | Ne işe yarar? |
 | --- | --- |
 | [**Anthropic frontend-design**](https://github.com/anthropics/claude-plugins-official/tree/main/plugins/frontend-design) | Yaklaşık 400 token'lık yönerge; tipografi, renk, hareket ve arka planı kapsayıp jenerik "AI estetiğini" bastırır.[^4] |
-| [**emilkowalski/skills**](https://github.com/emilkowalski/skills) | Animasyon ve arayüz ince ayarı (`emil-design-eng`, `review-animations`, `animation-performance`). `break-ui` arayüzü en kötü senaryo verisiyle (çok uzun isim, boş liste) kırmaya çalışır. `pick-ui-library` ajanın elle toast bileşeni yazmak yerine güvenilir bir kütüphane seçmesini sağlar.[^6] Kurulum: `npx skills@latest add emilkowalski/skills` |
+| [**emilkowalski/skills**](https://github.com/emilkowalski/skills) | Animasyon ve arayüz ince ayarı (`emil-design-eng`, `review-animations`, `animation-performance`). `break-ui` arayüzü en kötü senaryo verisiyle (çok uzun isim, boş liste) kırmaya çalışır. `pick-ui-library` agent'ın elle toast bileşeni yazmak yerine güvenilir bir kütüphane seçmesini sağlar.[^6] Kurulum: `npx skills@latest add emilkowalski/skills` |
 | [**jakubkrehel/skills**](https://github.com/jakubkrehel/skills) | `better-ui` (iç içe köşe yuvarlaklığı, optik hizalama, tıklama alanı, animasyon), `better-typography`, `better-colors`, `better-accessibility`, `better-layout`. `interface-review` değişikliklerinizi bu başlıklara göre inceler.[^7] Kurulum: `npx skills add jakubkrehel/skills` |
 | [**vercel-labs/agent-skills**](https://github.com/vercel-labs/agent-skills) | `react-best-practices`: React ve Next.js performansı için 40'tan fazla kural, etkisine göre sıralı (önce asenkron waterfall'lar ve bundle boyutu, en sonda mikro iyileştirmeler). Her kuralda yanlış ve doğru kod örneği var.[^8] Aynı repoda `web-design-guidelines` ile 100'den fazla erişilebilirlik, performans ve UX kuralıyla [arayüz denetleyebilirsiniz](https://github.com/vercel-labs/agent-skills). |
-| [**mattpocock/skills**](https://github.com/mattpocock/skills) | Dört ajan hatasının etrafında kurulu: istenmeyeni yapmak, gereksiz uzun konuşmak, çalışmayan kod, dağılan mimari. `grill-me` planın her dalı netleşene kadar sizi sorguya çeker, `tdd` kırmızı-yeşil-refactor döngüsüyle ilerler, `code-review` farkı hem proje standartlarına hem spec'e göre ayrı ajanlarla inceler.[^9] |
+| [**mattpocock/skills**](https://github.com/mattpocock/skills) | Dört agent hatasının etrafında kurulu: istenmeyeni yapmak, gereksiz uzun konuşmak, çalışmayan kod, dağılan mimari. `grill-me` planın her dalı netleşene kadar sizi sorguya çeker, `tdd` kırmızı-yeşil-refactor döngüsüyle ilerler, `code-review` farkı hem proje standartlarına hem spec'e göre ayrı agent'larla inceler.[^9] |
 
 `npx skills add` komutu [!claudeCode], [!cursor] ve diğer araçlara kurulum yapar.[^8] [Matt Pocock](https://www.mattpocock.com) skill'lerin küçük, uyarlanabilir ve birleştirilebilir olmasını savunuyor, yani süreci sahiplenen büyük çerçeveler yerine kendi hâlinize getirmenizi istiyor.[^9]
 
@@ -83,11 +83,11 @@ Neden gerekli? Anthropic'in frontend yazısı sorunu adlandırıyor: talimat ver
 >
 > Hepsini kurmayın. Her skill'in açıklaması her konuşmada bağlamda durur. Çok skill olunca [!claudeCode] bazı açıklamaları kırpar, `/skill-doctor` hiç kullanmadığınız skill'leri gösterir.[^1]
 
-**Skill işe yarıyor mu?** Tek denemeyle karar vermeyin. Anthropic'e göre önce ajanın skill'siz nerede takıldığını görün, skill'i yalnızca o boşluğu kapatacak kadar yazın.[^2] Sonra aynı isteği yeni bir konuşmada skill'li ve skill'siz çalıştırıp karşılaştırın.[^1] [!claudeCode]'daki `skill-creator` eklentisi bu karşılaştırmayı otomatikleştiriyor.[^1]
+**Skill işe yarıyor mu?** Tek denemeyle karar vermeyin. Anthropic'e göre önce agent'ın skill'siz nerede takıldığını görün, skill'i yalnızca o boşluğu kapatacak kadar yazın.[^2] Sonra aynı isteği yeni bir konuşmada skill'li ve skill'siz çalıştırıp karşılaştırın.[^1] [!claudeCode]'daki `skill-creator` eklentisi bu karşılaştırmayı otomatikleştiriyor.[^1]
 
 ## Kendin dene
 
-1. Son haftada ajana üç kez aynı şekilde anlattığınız bir işi seçin (örneğin yeni bileşen ekleme). Normal istekle yaptırın, bitince *"bu işte verdiğim bağlamı bir skill'e dönüştür"* deyin.
+1. Son haftada agent'a üç kez aynı şekilde anlattığınız bir işi seçin (örneğin yeni bileşen ekleme). Normal istekle yaptırın, bitince *"bu işte verdiğim bağlamı bir skill'e dönüştür"* deyin.
 2. Çıkan `SKILL.md`'yi kısaltın: [!claude]'un zaten bildiği her şeyi silin, `description`'a "ne zaman" cümlesini ekleyin.
 3. Yeni bir konuşmada aynı işi skill'li ve skill'siz isteyin, kaç düzeltme turu gerektiğini karşılaştırın.
 4. Hazır bir skill kurun (örneğin `react-best-practices`). Kurmadan önce `SKILL.md`'sini okuyun, sonra bir bileşene *"performans açısından incele"* dedirtin.

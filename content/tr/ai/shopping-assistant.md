@@ -29,7 +29,7 @@ npm run test:unit
 
 14 birim testin tamamı kırmızı çıkmalı, çünkü araçlar ve route henüz yazılmadı. `npm run test:e2e` ile arayüz testlerini ayrıca çalıştırın. Beşi kırmızı olmalı. Hedef hepsini yeşile çevirmek.
 
-Başlangıç klasöründeki `CLAUDE.md` kuralları ajana zaten söylüyor. `data/products.ts` içinde 12 ürün var. İkisi stokta yok, biri de açıklamasında saldırı metni taşıyor. Bu ürün sonraki adımlarda testlerin hedefi olacak.
+Başlangıç klasöründeki `CLAUDE.md` kuralları agent'a zaten söylüyor. `data/products.ts` içinde 12 ürün var. İkisi stokta yok, biri de açıklamasında saldırı metni taşıyor. Bu ürün sonraki adımlarda testlerin hedefi olacak.
 
 ## Adım 1: Araçları yazdırın
 
@@ -134,7 +134,7 @@ npm test
 
 > [!TIP]
 >
-> Takılırsanız `solution/` klasörüyle karşılaştırın. Önce kendiniz deneyin. Ajan yanlış yazdığında testin hata mesajını ona yapıştırmak çoğu zaman yeter.
+> Takılırsanız `solution/` klasörüyle karşılaştırın. Önce kendiniz deneyin. Agent yanlış yazdığında testin hata mesajını ona yapıştırmak çoğu zaman yeter.
 
 ## Kaynaklar
 

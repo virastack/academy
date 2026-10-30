@@ -14,7 +14,7 @@ translationKey: "tanstack-query/optimistic-updates"
 - Mutation **nadiren** başarısız olmalı. Geri alma kullanıcı için kötü bir deneyimdir.
 - Anında geri bildirim **gerçekten** gerekmeli. Favori butonu, yapılacaklar kutucuğu gibi küçük değişiklikler iyi adaylardır.
 
-Kapanan bir dialog ya da başka sayfaya yönlendiren bir form iyimser yapılırsa hata durumunda geri almak çok zordur. Sunucunun mantığını istemcide taklit etmek de kolay değildir: yeni eklenen kaydın id'si nereden gelecek, sıralı listede nereye girecek?[^2] Çoğu durumda butonu devre dışı bırakıp yükleme göstermek yeter.
+Kapanan bir dialog ya da başka sayfaya yönlendiren bir form iyimser yapılırsa hata durumunda geri almak çok zordur. Server'ın mantığını client'ta taklit etmek de kolay değildir: yeni eklenen kaydın id'si nereden gelecek, sıralı listede nereye girecek?[^2] Çoğu durumda butonu devre dışı bırakıp yükleme göstermek yeter.
 
 Doküman iki yol önerir: arayüz üzerinden ve cache üzerinden.[^1]
 

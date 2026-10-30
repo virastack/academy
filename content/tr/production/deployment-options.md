@@ -179,7 +179,7 @@ Next.js'in kendi sunucunuzda barındırma rehberi şunları ister:[^9]
 | Ters vekil *(reverse proxy)* | Sunucuyu doğrudan internete açmayın; önüne nginx gibi bir ters vekil koyun. Hatalı istekleri, yavaş bağlantı saldırılarını, gövde boyutu sınırlarını ve hız sınırlamayı o karşılasın |
 | Streaming | nginx yanıtları tamponlar. Streaming'in çalışması için `X-Accel-Buffering: no` başlığıyla tamponlamayı kapatın; yük dengeleyicinin de parça parça yanıtı desteklediğinden emin olun |
 | Birden fazla sunucu | Server Function şifreleme anahtarını `NEXT_SERVER_ACTIONS_ENCRYPTION_KEY` ile sabitleyin; yoksa bir sunucunun şifrelediğini diğeri çözemez |
-| Sürüm farkı *(version skew)* | Kademeli deploy'da eski istemci yeni sunucuya gelebilir. `deploymentId` tanımlarsanız Next.js uyuşmazlığı fark eder ve tam sayfa yenilemesi yapar |
+| Sürüm farkı *(version skew)* | Kademeli deploy'da eski client yeni server'a gelebilir. `deploymentId` tanımlarsanız Next.js uyuşmazlığı fark eder ve tam sayfa yenilemesi yapar |
 | Önbellek | Önbellek varsayılan olarak her sunucunun kendi diskindedir. Birden fazla sunucuda paylaşılan bir önbellek işleyicisi gerekir |
 | Kapanış | `SIGTERM` gönderip bekleyin. Sunucu süren istekleri ve bekleyen `after()` işlerini bitirip kapanır; doküman 10-30 saniyelik bir bekleme süresi önerir |
 

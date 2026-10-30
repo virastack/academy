@@ -107,7 +107,7 @@ Next.js App Router gibi Server Component destekli bir framework'te veri çoğunl
 Kütüphane şu durumlarda hâlâ değerlidir:[^9]
 
 - Yalnızca tarayıcıda çalışan bir SPA *(panel, iç araç)*.
-- İlk sayfası sunucuda, sonraki sayfaları istemcide yüklenen sonsuz listeler.
+- İlk sayfası server'da, sonraki sayfaları client'ta yüklenen sonsuz listeler.
 - Polling, odaklanınca yenileme, offline çalışma gibi sürekli güncel veri isteyen ekranlar.
 - React Native ya da Server Component kullanmayan projeler.
 
