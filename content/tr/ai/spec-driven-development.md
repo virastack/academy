@@ -1,7 +1,7 @@
 ---
 title: "Spec-driven geliştirme"
 description: "Agent'a önce spec ve görev listesi yazdırma, sonra görev görev uygulatma ve spec'i güncel tutma."
-lastVerified: "2026-10-26"
+lastVerified: "2026-10-31"
 translationKey: "ai/spec-driven-development"
 ---
 
@@ -37,7 +37,7 @@ Spec'i boş sayfadan yazmanıza gerek yok. [Prompt ve context engineering](/acad
 
 ## İyi bir spec'te ne olur
 
-[!claudeCode] dokümanına göre en işe yarayan spec kendi başına yeterlidir: ilgili dosyaları ve arayüzleri adıyla yazar, **kapsam dışını** açıkça söyler ve özelliğin çalıştığını kanıtlayan uçtan uca bir kontrolle biter.[^3] Kupon özelliği için kısa bir örnek:
+Spec, yeni oturumdaki işin yazılı bitiş tanımıdır.[^3] Bu yüzden kendi başına yeterli olmalı: ilgili dosyaları ve arayüzleri adıyla yazın, **kapsam dışını** açıkça söyleyin ve özelliğin çalıştığını kanıtlayan bir kontrolle bitirin. Kupon özelliği için kısa bir örnek:
 
 ```md
 # Cart coupon
@@ -98,7 +98,7 @@ Spec bir araçtır, tören değil. martinfowler.com'daki bir incelemede yazar, k
 
 | Spec yazın | Doğrudan isteyin |
 | :-- | :-- |
-| Birden çok oturuma yayılan özellik | Tek cümleyle anlatılabilen değişiklik[^3] |
+| Birden çok oturuma yayılan özellik | Tek cümleyle anlatılabilen değişiklik |
 | Takımla paylaşılacak, incelenecek kararlar | Metin, stil veya küçük hata düzeltmesi |
 | Tanımadığınız bir kod tabanında yeni özellik | Daha önce defalarca yaptığınız iş |
 
@@ -135,7 +135,7 @@ Araç şart değil. Bir `SPEC.md`, bir görev listesi ve plan modu aynı akış�
 
 1. [GitHub Blog: Spec-driven development with AI: Get started with a new open source toolkit](https://github.blog/ai-and-ml/generative-ai/spec-driven-development-with-ai-get-started-with-a-new-open-source-toolkit/) *(article)* — Den Delimarsky, 2 Eylül 2025. Spec, plan, görevler ve uygulama adımları, spec'in neden ortak kaynak olduğu.
 2. [martinfowler.com: Understanding Spec-Driven-Development: Kiro, spec-kit, and Tessl](https://martinfowler.com/articles/exploring-gen-ai/sdd-3-tools.html) *(article)* — Birgitta Böckeler, 15 Ekim 2025. Spec-first ve spec-anchored ayrımı, küçük işte aşırı süreç ve agent'ın spec'i görmezden gelmesi.
-3. [Claude Code: Best practices](https://code.claude.com/docs/en/best-practices) *(doc)* — Agent'ın sizi sorgulayıp `SPEC.md` yazması, iyi spec'in özellikleri ve yeni oturumda uygulama.
+3. [Claude Code: Best practices](https://code.claude.com/docs/en/best-practices) *(doc)* — Agent'ın sizi sorgulayıp `SPEC.md` yazması, yeni oturumda uygulama ve spec'e göre inceleme.
 4. [Addy Osmani](https://addyosmani.com): [How to write a good spec for AI agents](https://addyosmani.com/blog/good-spec/) *(article)* — 13 Ocak 2026. Spec bölümleri, üç katmanlı sınırlar, modüler görevler ve spec'e karşı kontrol.
 5. [GitHub: Spec Kit](https://github.com/github/spec-kit) *(repo)* — Kurulum, constitution ve spec adımlarının güncel komutları.
 6. [Kiro: Specs](https://kiro.dev/docs/specs/) *(doc)* — `requirements.md`, `design.md`, `tasks.md` ve hata düzeltme spec'i.

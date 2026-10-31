@@ -1,7 +1,7 @@
 ---
 title: "Agentic kodlama"
 description: "Claude Code ve Cursor gibi araçlarla planla, kodla, test et döngüsü ve subagent'lar."
-lastVerified: "2026-10-26"
+lastVerified: "2026-10-31"
 translationKey: "ai/agentic-coding"
 ---
 
@@ -15,13 +15,13 @@ Agent'la çalışmak, sohbetteki *"soruyu sor, cevabı kopyala"* düzenine benze
 
 ## Planla, uygula, test et, commit et
 
-[!claudeCode]'un önerdiği akış dört adım: keşfet, planla, uygula, commit.[^2] [!cursor] ekibi de aynı yerden başlıyor: yapabileceğiniz en etkili değişiklik, kodlamadan önce planlamak.[^3]
+[!cursor] ekibi işe şuradan başlıyor: yapabileceğiniz en etkili değişiklik, kodlamadan önce planlamak.[^2]
 
 ### 1. planla
 
-Her iş için plan gerekmez. [!claudeCode] dokümanı pratik bir ölçüt veriyor: değişikliği tek cümleyle anlatabiliyorsanız planı atlayın.[^2]
+Her iş için plan gerekmez. Plan modu, değişikliği diske yazılmadan önce gözden geçirmek istediğiniz işler içindir.[^3]
 
-`Shift+Tab` ile Plan moduna geçin (iki araçta da aynı kısayol). Agent dosyalara dokunmadan projeyi okur, gerekirse size soru sorar ve bir plan çıkarır.[^2][^3] Planı düzenleyebilirsiniz.
+`Shift+Tab` ile Plan moduna geçin *(iki araçta da aynı kısayol)*. Agent dosyalara dokunmadan projeyi okur, gerekirse size soru sorar ve bir plan çıkarır.[^2][^3] Planı düzenleyebilirsiniz.
 
 | Plan gerekir | Plan gerekmez |
 | --- | --- |
@@ -31,11 +31,13 @@ Her iş için plan gerekmez. [!claudeCode] dokümanı pratik bir ölçüt veriyo
 
 ### 2. uygula
 
-Planı onaylayıp agent'a planı izleyerek kodlatın. Sonuç beklediğiniz gibi çıkmadıysa takip mesajlarıyla düzeltmeye çalışmayın: değişiklikleri geri alın, planı daha net yazın ve yeniden çalıştırın. [!cursor] bunun çoğu zaman daha hızlı ve daha temiz sonuç verdiğini söylüyor.[^3]
+Planı onaylayıp agent'a planı izleyerek kodlatın. Sonuç beklediğiniz gibi çıkmadıysa takip mesajlarıyla düzeltmeye çalışmayın: değişiklikleri geri alın, planı daha net yazın ve yeniden çalıştırın. [!cursor] bunun çoğu zaman daha hızlı ve daha temiz sonuç verdiğini söylüyor.[^2]
+
+Agent bazen istemediğiniz dosya, soyutlama veya esneklik ekler. Bunu görürseniz sınır koyun: *"Yalnızca istenen değişikliği yap. Başka özellik, refactor veya soyutlama ekleme."*[^4]
 
 ### 3. test et
 
-Agent "bitti" dediğinde kanıt isteyin: test çıktısı, çalıştırdığı komut, ekran görüntüsü. Kanıtı okumak, doğrulamayı baştan yapmaktan hızlıdır.[^2] Testleri önce yazdırmak da iyi çalışıyor ([!cursor]'ın TDD akışı):[^3]
+Agent "bitti" dediğinde kanıt isteyin: test çıktısı, çalıştırdığı komut, ekran görüntüsü. Kanıtı okumak, doğrulamayı baştan yapmaktan hızlıdır.[^5] Testleri önce yazdırmak da iyi çalışıyor ([!cursor]'ın TDD akışı):[^2]
 
 1. Agent'a beklenen girdi-çıktı çiftlerine göre test yazdırın. Henüz olmayan kod için sahte uygulama yazmamasını söyleyin.
 2. Testleri çalıştırıp başarısız olduklarını görün. Bu aşamada uygulama kodu yazmasın.
@@ -45,21 +47,25 @@ Agent "bitti" dediğinde kanıt isteyin: test çıktısı, çalıştırdığı k
 
 Frontend'de bu, [Vitest ile Component Testi](/academy/vitest) rehberinde yazdığınız component testlerini agent'a hedef olarak vermek demektir.
 
+**Hedef yalnızca testi geçirmek olmasın.** Agent bazen genel bir çözüm yerine yalnızca test girdilerine uyan kod yazar. *"Test girdilerine özel çözüm yazma, değer gömme. Test yanlışsa bana söyle."* deyin.[^4]
+
 ### 4. commit et
 
-Küçük ve sık commit atın. Her commit, agent'ın bir sonraki hatasında geri dönebileceğiniz bir kayıt noktasıdır. [Addy Osmani](https://addyosmani.com)'nin kuralı net: açıklayamadığınız kodu commit etmeyin.[^4]
+Küçük ve sık commit atın. Her commit, agent'ın bir sonraki hatasında geri dönebileceğiniz bir kayıt noktasıdır. [Addy Osmani](https://addyosmani.com)'nin kuralı net: açıklayamadığınız kodu commit etmeyin.[^6]
 
-[!claudeCode]'un checkpoint'leri git'in yerini tutmaz. Yalnızca agent'ın dosya düzenleme araçlarıyla yaptığı değişiklikleri kapsar, terminal komutlarıyla yapılanları ve uzak sistemlerdeki işlemleri (deploy, veritabanı) kapsamaz.[^1][^2]
+`/rewind` kodu, konuşmayı veya ikisini önceki bir isteğe geri alır. Bu yüzden cesur bir yaklaşımı denemek ucuzdur.[^5] Yine de [!claudeCode]'un checkpoint'leri git'in yerini tutmaz. Yalnızca agent'ın dosya düzenleme araçlarıyla yaptığı değişiklikleri kapsar, terminal komutlarıyla yapılanları ve uzak sistemlerdeki işlemleri *(deploy, veritabanı)* kapsamaz.[^1][^5]
 
 > [!TIP]
 >
-> Agent hızlandıkça incelemeniz daha önemli hale gelir.[^3] Diff'i okuyun, yanlış yöne gidiyorsa durdurun. Agent'ı gözetimsiz bırakıp kusursuz sonuç beklemeyin. [Addy Osmani](https://addyosmani.com) da agent'ı denetimli kullandığını, her adımı izleyip gerektiğinde müdahale ettiğini yazıyor.[^4]
+> Agent hızlandıkça incelemeniz daha önemli hale gelir.[^2] Diff'i okuyun, yanlış yöne gidiyorsa durdurun. Agent'ı gözetimsiz bırakıp kusursuz sonuç beklemeyin. [Addy Osmani](https://addyosmani.com) da agent'ı denetimli kullandığını, her adımı izleyip gerektiğinde müdahale ettiğini yazıyor.[^6]
 
 ## Subagent'lar
 
-Subagent, **kendi context penceresi olan yardımcı bir agent'tır**. Ağır işi orada yapar, ana konuşmaya yalnızca özet döner.[^5][^6] Böylece ana konuşmanızın bağlamı şişmez (bkz. [Prompt ve Context Engineering](/academy/ai/prompt-and-context-engineering)).
+Subagent, **kendi context penceresi olan yardımcı bir agent'tır**. Ağır işi orada yapar, ana konuşmaya yalnızca özet döner.[^7][^8] Böylece ana konuşmanızın bağlamı şişmez (bkz. [Prompt ve Context Engineering](/academy/ai/prompt-and-context-engineering)).
 
 Örnek: *"Projedeki tüm `fetch` çağrılarına bak, hangilerinde hata yönetimi yok raporla."* Agent onlarca dosya okuyacak. Bunu subagent'a verirseniz o dosyaların içeriği ana konuşmaya girmez, yalnızca *"şu dört dosyada eksik"* özeti gelir.
+
+Subagent aynı işte daha iyi cevap vermez, aynı model ya da daha küçüğü çalışır. Kazancınız paralellik, uzun çıktıyı ana konuşmanın dışında tutmak, taze gözle inceleme ve araçları kısıtlamaktır. Bedeli token'dır. Temiz başlayan bir subagent bağlamı yeniden toplarken işi doğrudan yapmaktan yavaş da kalabilir.[^5] Güncel modeller kendiliğinden devreder, bazen gereğinden sık. Basit işlerde ana konuşmada çalışmasını söyleyin.[^4]
 
 ### Ne zaman subagent, ne zaman ana konuşma?
 
@@ -69,9 +75,9 @@ Subagent, **kendi context penceresi olan yardımcı bir agent'tır**. Ağır iş
 | Birbirinden bağımsız araştırmalar (auth, API, veri katmanı) | Planlama, uygulama ve testin aynı bağlamı paylaştığı işler |
 | Yapılan işi bağımsız biriyle doğrulatmak | Hızlı, küçük değişiklikler |
 
-**Hazır olanlar:** [!claudeCode]'da salt okunur ve hızlı arama yapan **Explore** ile plan modunda araştırma yapan **Plan** kendiliğinden devreye girer. [!cursor]'da **Explore** ve tarayıcıyı kontrol edip gürültülü DOM çıktısını özetleyen **Browser** var.[^5][^6] Bunları ayarlamanız gerekmez.
+**Hazır olanlar:** [!claudeCode]'da salt okunur ve hızlı arama yapan **Explore** ile plan modunda araştırma yapan **Plan** kendiliğinden devreye girer. [!cursor]'da **Explore** ve tarayıcıyı kontrol edip gürültülü DOM çıktısını özetleyen **Browser** var.[^7][^8] Bunları ayarlamanız gerekmez.
 
-**Kendi subagent'ınızı yazmak:** Aynı işi aynı talimatla tekrar tekrar veriyorsanız subagent'ı bir Markdown dosyasına yazın. [!claudeCode]'da `.claude/agents/`, [!cursor]'da `.cursor/agents/` klasörüne konur ([!cursor] `.claude/agents/` klasörünü de okur).[^5][^6] En önemli alan `description`: agent ne zaman devredeceğine bunu okuyarak karar verir.[^5][^6]
+**Kendi subagent'ınızı yazmak:** Aynı işi aynı talimatla tekrar tekrar veriyorsanız subagent'ı bir Markdown dosyasına yazın. [!claudeCode]'da `.claude/agents/`, [!cursor]'da `.cursor/agents/` klasörüne konur ([!cursor] `.claude/agents/` klasörünü de okur).[^7][^8] En önemli alan `description`: agent ne zaman devredeceğine bunu okuyarak karar verir.[^7][^8]
 
 ```markdown
 ---
@@ -86,30 +92,30 @@ olmayan görseller, klavyeyle erişilemeyen etkileşimler, yetersiz kontrast.
 Dosyalara yazma, bulduklarını dosya ve satır numarasıyla raporla.
 ```
 
-[!claudeCode]'da `tools` ile araçları kısıtlarsınız. [!cursor]'da karşılığı `readonly: true`.[^5][^6]
+[!claudeCode]'da `tools` ile araçları kısıtlarsınız. [!cursor]'da karşılığı `readonly: true`.[^7][^8]
 
 > [!TIP]
 >
-> **Yazan ile kontrol eden ayrı olsun.** [!claudeCode] dokümanı yazar/inceleyici düzenini öneriyor: bir oturum kodu yazar, başka bir oturum (ya da subagent) temiz bağlamda inceler. Temiz bağlam, az önce yazılan koda yatkın olmaz.[^2] [!cursor]'ın `verifier` örneği de aynı fikir: agent "bitti" dediği işi şüpheyle test eder, iddiayı olduğu gibi kabul etmez.[^6]
+> **Yazan ile kontrol eden ayrı olsun.** Bir oturum kodu yazar, başka bir oturum ya da subagent temiz bağlamda inceler. Temiz bağlam, az önce yazılan koda yatkın olmaz.[^5] Terminalde `/code-review` diff'i konuşmayı görmemiş yeni bir subagent'la inceler.[^5] [!cursor]'ın `verifier` örneği de aynı fikir: agent "bitti" dediği işi şüpheyle test eder, iddiayı olduğu gibi kabul etmez.[^8]
 
 > [!WARNING]
 >
-> *"Boşluk bul"* diye yönlendirilen inceleyici sağlam işte bile bir şeyler bulur, peşine düşmek de gereksiz soyutlama ve savunmacı kod üretir. İnceleyiciye yalnızca doğruluğu veya belirtilen gereksinimleri etkileyen boşlukları raporlamasını söyleyin.[^2]
+> *"Boşluk bul"* diye yönlendirilen inceleyici sağlam işte bile bir şeyler bulur, peşine düşmek de gereksiz soyutlama ve savunmacı kod üretir. İnceleyiciye yalnızca doğruluğu veya belirtilen gereksinimleri etkileyen boşlukları raporlamasını söyleyin.[^5]
 
-Birden çok agent'ı aynı anda çalıştırmak [Paralel agent'lar](/academy/ai/parallel-agents), spec, kod ve test rollerini bir hatta bağlamak [Agent takımı kurmak](/academy/ai/agent-teams) dersinde. Her subagent kendi token'ını harcar. İki-üç odaklı subagent'la başlayın, *"yardımcı"* diye onlarca genel subagent açmayın.[^6]
+Birden çok agent'ı aynı anda çalıştırmak [Paralel agent'lar](/academy/ai/parallel-agents), spec, kod ve test rollerini bir hatta bağlamak [Agent takımı kurmak](/academy/ai/agent-teams) dersinde. Her subagent kendi token'ını harcar. İki-üç odaklı subagent'la başlayın, *"yardımcı"* diye onlarca genel subagent açmayın.[^8]
 
 <details>
 <summary>Hata ayıklama modu ([!cursor])</summary>
 
 <ul>
-<li>[!cursor]'ın Debug Mode'u tahminle düzeltme yapmaz. Önce birkaç hipotez üretir, koda log ekler, sizden hatayı yeniden üretmenizi ister, çalışma anı verisine bakarak kök nedeni bulur ve ona göre düzeltir. Yarış durumları, performans sorunları ve *"eskiden çalışıyordu"* türü hatalarda işe yarıyor.[^3]</li>
+<li>[!cursor]'ın Debug Mode'u tahminle düzeltme yapmaz. Önce birkaç hipotez üretir, koda log ekler, sizden hatayı yeniden üretmenizi ister, çalışma anı verisine bakarak kök nedeni bulur ve ona göre düzeltir. Yarış durumları, performans sorunları ve *"eskiden çalışıyordu"* türü hatalarda işe yarıyor.[^2]</li>
 </ul>
 
 </details>
 
 > [!TIP]
 >
-> [!claudeCode]'u geliştiren Cat Wu ve [Boris Cherny](https://borischerny.com)'nin plan modunu ve subagent'ları kendi iş akışlarında nasıl kullandığını anlattığı sohbeti izleyebilirsiniz.[^7]
+> [!claudeCode]'u geliştiren Cat Wu ve [Boris Cherny](https://borischerny.com)'nin plan modunu ve subagent'ları kendi iş akışlarında nasıl kullandığını anlattığı sohbeti izleyebilirsiniz.[^9]
 
 ## Kendin dene
 
@@ -120,9 +126,11 @@ Birden çok agent'ı aynı anda çalıştırmak [Paralel agent'lar](/academy/ai/
 ## Kaynaklar
 
 1. [Claude Code: How Claude Code works](https://code.claude.com/docs/en/how-claude-code-works) *(doc)* — Agent döngüsü, araçlar, izin modları ve checkpoint'ler.
-2. [Claude Code: Best practices](https://code.claude.com/docs/en/best-practices) *(doc)* — Keşfet-planla-uygula-commit akışı, doğrulama ve yazar/inceleyici düzeni.
-3. [Cursor: Best practices for coding with agents](https://cursor.com/blog/agent-best-practices) *(article)* — Plan modu, TDD akışı, paralel agent'lar ve Debug Mode. Lee Robinson, 9 Ocak 2026.
-4. [Addy Osmani: My LLM coding workflow going into 2026](https://addyosmani.com/blog/ai-coding-workflow/) *(article)* — Sık commit, açıklayamadığın kodu commit etmeme ve agent'ı denetimli kullanma.
-5. [Claude Code: Subagents](https://code.claude.com/docs/en/sub-agents) *(doc)* — Subagent nedir, ne zaman kullanılır, nasıl yazılır.
-6. [Cursor: Subagents](https://cursor.com/docs/subagents) *(doc)* — Cursor'da subagent'lar, paralel çalışma ve maliyet.
-7. [Every: How to Use Claude Code Like the People Who Built It](https://every.to/podcast/how-to-use-claude-code-like-the-people-who-built-it) *(video)* — Claude Code'un geliştiricilerinin plan modu, subagent ve kod incelemesi kullanımı.
+2. [Cursor: Best practices for coding with agents](https://cursor.com/blog/agent-best-practices) *(article)* — 9 Ocak 2026. Lee Robinson. Plan modu, TDD akışı, paralel agent'lar ve Debug Mode.
+3. [Claude Code: Common workflows](https://code.claude.com/docs/en/common-workflows) *(doc)* — Plan modu ve değişikliği diske yazılmadan önce gözden geçirmek.
+4. [Anthropic: Prompting best practices](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices) *(doc)* — Fazla mühendislik, testi geçirmeye odaklanma ve subagent'ların gereksiz kullanımı.
+5. [Claude Code: Best practices](https://code.claude.com/docs/en/best-practices) *(doc)* — Kanıt istemek, `/rewind`, `/code-review`, subagent maliyeti ve bağımsız inceleme.
+6. [Addy Osmani: My LLM coding workflow going into 2026](https://addyosmani.com/blog/ai-coding-workflow/) *(article)* — Sık commit, açıklayamadığın kodu commit etmeme ve agent'ı denetimli kullanma.
+7. [Claude Code: Subagents](https://code.claude.com/docs/en/sub-agents) *(doc)* — Subagent nedir, ne zaman kullanılır, nasıl yazılır.
+8. [Cursor: Subagents](https://cursor.com/docs/subagents) *(doc)* — Cursor'da subagent'lar, paralel çalışma ve maliyet.
+9. [Every: How to Use Claude Code Like the People Who Built It](https://every.to/podcast/how-to-use-claude-code-like-the-people-who-built-it) *(video)* — Claude Code'un geliştiricilerinin plan modu, subagent ve kod incelemesi kullanımı.

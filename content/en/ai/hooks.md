@@ -1,7 +1,7 @@
 ---
 title: "Hooks and permission modes"
 description: "Binding the agent to rules: format, lint and test gates, blocking dangerous commands, and permission modes."
-lastVerified: "2026-10-26"
+lastVerified: "2026-10-31"
 translationKey: "ai/hooks"
 ---
 
@@ -9,7 +9,7 @@ You wrote *"run the tests after every change"* in `CLAUDE.md`, and the agent sti
 
 ## What is a hook?
 
-**A hook is a shell command that runs automatically at particular moments in the agent's work.**[^2] It kicks in after the agent edits a file, before it runs a command, or when it says it is finished. The model does not decide; the command runs every time.[^2]
+**A hook is a shell command that runs automatically at particular moments in the agent's work.**[^2] It kicks in after the agent edits a file, before it runs a command, or when it says it is finished. The model does not decide; the command runs every time.[^2] For calls that take judgment there are also `prompt` and `agent` hooks, which ask a model, so they don't give you the same certainty.[^1]
 
 The three moments that help most in frontend work:
 
@@ -85,7 +85,7 @@ if ! OUTPUT=$(pnpm test --run 2>&1); then
 fi
 ```
 
-The `stop_hook_active` check prevents an infinite loop. [!claudeCode] ignores a `Stop` hook once it has blocked eight times in a row.[^2]
+The `stop_hook_active` check prevents an infinite loop. [!claudeCode] overrides a `Stop` hook once it has blocked eight times in a row with no tool call in between.[^2]
 
 > [!WARNING]
 >
@@ -97,11 +97,13 @@ Hooks enforce a rule. Permission modes decide **how much the agent does without 
 
 | Mode | What the agent does | When |
 | :-- | :-- | :-- |
-| **Manual** *(default)* | Asks before edits and commands | A codebase you don't know |
+| **auto** *(the starting mode in the terminal and VS Code)* | Works without asking, while a separate model blocks risky operations | Everyday work and long tasks |
+| **Manual** *(the starting mode for `claude -p`)* | Asks before edits and commands | When you want to see every step |
 | **acceptEdits** | Edits files without asking, asks for commands | After the plan is approved |
 | **plan** | Only reads and proposes a plan | Before a large change |
-| **auto** | Does everything, with a separate model blocking risky operations | Long, unattended work |
 | **bypassPermissions** | Asks nothing | Only in an isolated container or VM |
+
+Auto has been the starting mode in the terminal and VS Code since v2.1.283.[^4] It's still a model making a judgment call, and it can be wrong. Anything you'd call a "never" belongs in a `deny` rule or a hook.[^1]
 
 Approving things constantly is tiring. After the tenth approval you start clicking without reading.[^1] Instead, allow the commands you trust up front and forbid the dangerous ones:[^4][^5]
 
@@ -117,6 +119,8 @@ Approving things constantly is tiring. After the tenth approval you start clicki
 
 The `deny` rules hold in every mode, `bypassPermissions` included.[^4] A block from a `PreToolUse` hook cannot be worked around by changing the mode either.[^2]
 
+Rules match tool calls, not intent. `Read(./.env)` also catches `cat .env`, but not a script that opens the file.[^1] `Bash(rm *)` likewise misses forms like `/bin/rm` and `bash -c 'rm -rf build/'`.[^5] For security, turn on the sandbox with `/sandbox`, which enforces limits at the OS level, and use it alongside your `deny` rules.[^1][^5]
+
 > [!CAUTION]
 >
 > Hooks are shell commands that run with your own user permissions. Read the script before running a hook that came from a plugin or someone else's repository.
@@ -130,7 +134,7 @@ The `deny` rules hold in every mode, `bypassPermissions` included.[^4] A block f
 | Something that has to happen every time, without exception | A hook |
 | What the agent is allowed to touch | Permission rules and the permission mode |
 
-If the agent keeps ignoring a line in your rule file and that line really is a requirement, move it into a hook.[^1]
+If the agent keeps ignoring a line in your rule file and that line really is a requirement, move it into a hook. The reverse holds too: if a hook only enforces a preference, delete it. Keep the enforced set small, because every rule occasionally fires when it shouldn't and someone has to maintain it.[^1]
 
 ## Try it yourself
 
@@ -147,8 +151,8 @@ If the agent keeps ignoring a line in your rule file and that line really is a r
 
 ## Sources
 
-1. [Claude Code: Best practices](https://code.claude.com/docs/en/best-practices) *(doc)* — A rule file is advice, a hook is definite; verification with a Stop hook, and approval fatigue.
+1. [Claude Code: Best practices](https://code.claude.com/docs/en/best-practices) *(doc)* — A rule file is advice, a hook is definite; the Stop hook, the limits of permission rules, where auto mode fits, and keeping the enforced set small.
 2. [Claude Code: Automate actions with hooks](https://code.claude.com/docs/en/hooks-guide) *(doc)* — The events, the stdin JSON, exit code 2, the Prettier and file-protection examples, and the Stop hook limit.
 3. [Cursor: Hooks](https://cursor.com/docs/agent/hooks) *(doc)* — `.cursor/hooks.json`, the event list and what the exit codes mean.
 4. [Claude Code: Permission modes](https://code.claude.com/docs/en/permission-modes) *(doc)* — The manual, acceptEdits, plan, auto, dontAsk and bypassPermissions modes.
-5. [Claude Code: Configure permissions](https://code.claude.com/docs/en/permissions) *(doc)* — How to write `allow`, `ask` and `deny` rules, and their precedence.
+5. [Claude Code: Configure permissions](https://code.claude.com/docs/en/permissions) *(doc)* — How to write `allow`, `ask` and `deny` rules, their precedence and limits, and how they work with the sandbox.

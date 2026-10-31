@@ -1,7 +1,7 @@
 ---
 title: "Agentic coding"
 description: "The plan, code, test loop and subagents in tools like Claude Code and Cursor."
-lastVerified: "2026-10-26"
+lastVerified: "2026-10-31"
 translationKey: "ai/agentic-coding"
 ---
 
@@ -15,13 +15,13 @@ When you say *"the cart total is coming out wrong, fix it"*, the agent moves lik
 
 ## Plan, implement, test, commit
 
-The flow [!claudeCode] recommends has four steps: explore, plan, implement, commit.[^2] The [!cursor] team starts from the same place: the most effective change you can make is to plan before you code.[^3]
+The [!cursor] team starts here: the most effective change you can make is to plan before you code.[^2]
 
 ### 1. plan
 
-Not every job needs a plan. The [!claudeCode] docs give a practical test: if you can describe the change in one sentence, skip the plan.[^2]
+Not every job needs a plan. Plan mode is for changes you want to review before they reach the disk.[^3]
 
-Switch to Plan mode with `Shift+Tab` (the same shortcut in both tools). The agent reads the project without touching any files, asks you questions where it needs to, and produces a plan.[^2][^3] You can edit the plan.
+Switch to Plan mode with `Shift+Tab` *(the same shortcut in both tools)*. The agent reads the project without touching any files, asks you questions where it needs to, and produces a plan.[^2][^3] You can edit the plan.
 
 | A plan helps | A plan is overkill |
 | --- | --- |
@@ -31,11 +31,13 @@ Switch to Plan mode with `Shift+Tab` (the same shortcut in both tools). The agen
 
 ### 2. implement
 
-Approve the plan and have the agent write the code by following it. If the result is not what you expected, don't try to patch it with follow-up messages: undo the changes, write the plan more clearly and run it again. [!cursor] says this usually gives a faster and cleaner result.[^3]
+Approve the plan and have the agent write the code by following it. If the result is not what you expected, don't try to patch it with follow-up messages: undo the changes, write the plan more clearly and run it again. [!cursor] says this usually gives a faster and cleaner result.[^2]
+
+Sometimes the agent adds files, abstractions or flexibility you didn't ask for. When you see that, draw the line: *"Make only the requested change. Don't add features, refactors or abstractions."*[^4]
 
 ### 3. test
 
-When the agent says "done", ask for proof: the test output, the command it ran, a screenshot. Reading the proof is faster than verifying everything from scratch.[^2] Having the tests written first also works well ([!cursor]'s TDD flow):[^3]
+When the agent says "done", ask for proof: the test output, the command it ran, a screenshot. Reading the proof is faster than verifying everything from scratch.[^5] Having the tests written first also works well ([!cursor]'s TDD flow):[^2]
 
 1. Have the agent write tests from the expected input-output pairs. Tell it not to write a fake implementation for code that does not exist yet.
 2. Run the tests and watch them fail. It should not write application code at this stage.
@@ -45,21 +47,25 @@ When the agent says "done", ask for proof: the test output, the command it ran, 
 
 In frontend work this means giving the agent the component tests you wrote in the [Component testing with Vitest](/academy/vitest) guide as its target.
 
+**Passing the tests isn't the goal by itself.** The agent sometimes writes code that fits the test inputs instead of a general solution. Say *"Don't special-case the test inputs or hard-code values. If a test is wrong, tell me."*[^4]
+
 ### 4. commit
 
-Commit small and often. Every commit is a checkpoint you can return to the next time the agent gets something wrong. [Addy Osmani](https://addyosmani.com)'s rule is clear: do not commit code you cannot explain.[^4]
+Commit small and often. Every commit is a checkpoint you can return to the next time the agent gets something wrong. [Addy Osmani](https://addyosmani.com)'s rule is clear: do not commit code you cannot explain.[^6]
 
-[!claudeCode]'s checkpoints are not a substitute for git. They only cover the changes the agent made with its file-editing tools, not the ones made with terminal commands or operations on remote systems (a deploy, a database).[^1][^2]
+`/rewind` rolls the code, the conversation or both back to an earlier request, which makes the bolder approach cheap to try.[^5] [!claudeCode]'s checkpoints still don't replace git, though. They cover only the changes the agent made with its file-editing tools, not terminal commands or operations on remote systems *(a deploy, a database)*.[^1][^5]
 
 > [!TIP]
 >
-> The faster the agent gets, the more your review matters.[^3] Read the diff, and stop it when it heads the wrong way. Don't leave the agent unattended and expect a flawless result. [Addy Osmani](https://addyosmani.com) also writes that he uses the agent under supervision, watching every step and intervening where he has to.[^4]
+> The faster the agent gets, the more your review matters.[^2] Read the diff, and stop it when it heads the wrong way. Don't leave the agent unattended and expect a flawless result. [Addy Osmani](https://addyosmani.com) also writes that he uses the agent under supervision, watching every step and intervening where he has to.[^6]
 
 ## Subagents
 
-A subagent is **a helper agent with its own context window**. It does the heavy work there and returns only a summary to the main conversation.[^5][^6] That keeps your main conversation's context from filling up (see [Prompt and context engineering](/academy/ai/prompt-and-context-engineering)).
+A subagent is **a helper agent with its own context window**. It does the heavy work there and returns only a summary to the main conversation.[^7][^8] That keeps your main conversation's context from filling up (see [Prompt and context engineering](/academy/ai/prompt-and-context-engineering)).
 
 For example: *"Look at every `fetch` call in the project and report which ones have no error handling."* The agent is going to read dozens of files. If you hand that to a subagent, the contents of those files never enter the main conversation; only the summary *"these four are missing it"* comes back.
+
+Handing a job to a subagent doesn't get you a better answer, since it runs the same model or a smaller one. What you get is parallelism, long output kept out of the main conversation, a fresh pair of eyes and a restricted set of tools. The price is tokens, and a subagent starting from nothing has to gather context first, so it can end up slower than doing the job directly.[^5] Current models delegate on their own, sometimes more than they should. For simple work, tell them to stay in the main conversation.[^4]
 
 ### When a subagent, when the main conversation?
 
@@ -69,9 +75,9 @@ For example: *"Look at every `fetch` call in the project and report which ones h
 | Independent pieces of research (auth, API, the data layer) | Work where planning, implementing and testing share the same context |
 | Having the finished work verified by someone independent | Fast, small changes |
 
-**The ready-made ones:** in [!claudeCode], **Explore**, which is read-only and searches fast, and **Plan**, which researches in plan mode, kick in on their own. [!cursor] has **Explore** and **Browser**, which drives the browser and summarizes the noisy DOM output.[^5][^6] You don't have to set these up.
+**The ready-made ones:** in [!claudeCode], **Explore**, which is read-only and searches fast, and **Plan**, which researches in plan mode, kick in on their own. [!cursor] has **Explore** and **Browser**, which drives the browser and summarizes the noisy DOM output.[^7][^8] You don't have to set these up.
 
-**Writing your own subagent:** if you keep giving the same job with the same instruction, write the subagent into a Markdown file. It goes under `.claude/agents/` in [!claudeCode] and `.cursor/agents/` in [!cursor] ([!cursor] reads the `.claude/agents/` folder too).[^5][^6] The most important field is `description`: the agent reads it to decide when to hand over.[^5][^6]
+**Writing your own subagent:** if you keep giving the same job with the same instruction, write the subagent into a Markdown file. It goes under `.claude/agents/` in [!claudeCode] and `.cursor/agents/` in [!cursor] ([!cursor] reads the `.claude/agents/` folder too).[^7][^8] The most important field is `description`: the agent reads it to decide when to hand over.[^7][^8]
 
 ```markdown
 ---
@@ -87,30 +93,30 @@ insufficient contrast. Do not write to files; report what you find with
 the file and line number.
 ```
 
-In [!claudeCode] you restrict the tools with `tools`. In [!cursor] the equivalent is `readonly: true`.[^5][^6]
+In [!claudeCode] you restrict the tools with `tools`. In [!cursor] the equivalent is `readonly: true`.[^7][^8]
 
 > [!TIP]
 >
-> **Keep the writer and the checker separate.** The [!claudeCode] docs suggest an author/reviewer setup: one session writes the code, and another session (or a subagent) reviews it in a clean context. A clean context has no attachment to the code that was just written.[^2] [!cursor]'s `verifier` example is the same idea: it tests the work the agent called "done" with suspicion, instead of taking the claim at face value.[^6]
+> **Keep the writer and the checker separate.** One session writes the code, and another session or a subagent reviews it in a clean context, with no attachment to what was just written.[^5] In the terminal, `/code-review` reviews the diff in a fresh subagent that never saw the conversation.[^5] [!cursor]'s `verifier` example is the same idea: it tests the work the agent called "done" with suspicion instead of taking the claim at face value.[^8]
 
 > [!WARNING]
 >
-> A reviewer told to *"find the gaps"* will find something even in solid work, and chasing it produces needless abstraction and defensive code. Tell the reviewer to report only the gaps that affect correctness or the stated requirements.[^2]
+> A reviewer told to *"find the gaps"* will find something even in solid work, and chasing it produces needless abstraction and defensive code. Tell the reviewer to report only the gaps that affect correctness or the stated requirements.[^5]
 
-Running several agents at once is in [Parallel agents](/academy/ai/parallel-agents), and connecting the spec, code and test roles into one line is in [Building an agent team](/academy/ai/agent-teams). Every subagent spends its own tokens. Start with two or three focused subagents; don't open dozens of general *"helper"* ones.[^6]
+Running several agents at once is in [Parallel agents](/academy/ai/parallel-agents), and connecting the spec, code and test roles into one line is in [Building an agent team](/academy/ai/agent-teams). Every subagent spends its own tokens. Start with two or three focused subagents; don't open dozens of general *"helper"* ones.[^8]
 
 <details>
 <summary>Debug Mode ([!cursor])</summary>
 
 <ul>
-<li>[!cursor]'s Debug Mode does not fix things by guessing. It produces a few hypotheses first, adds logs to the code, asks you to reproduce the bug, looks at the runtime data to find the root cause and fixes it accordingly. It helps with race conditions, performance problems and *"it used to work"* bugs.[^3]</li>
+<li>[!cursor]'s Debug Mode does not fix things by guessing. It produces a few hypotheses first, adds logs to the code, asks you to reproduce the bug, looks at the runtime data to find the root cause and fixes it accordingly. It helps with race conditions, performance problems and *"it used to work"* bugs.[^2]</li>
 </ul>
 
 </details>
 
 > [!TIP]
 >
-> You can watch Cat Wu and [Boris Cherny](https://borischerny.com), who build [!claudeCode], talk about how they use plan mode and subagents in their own workflows.[^7]
+> You can watch Cat Wu and [Boris Cherny](https://borischerny.com), who build [!claudeCode], talk about how they use plan mode and subagents in their own workflows.[^9]
 
 ## Try it yourself
 
@@ -121,9 +127,11 @@ Running several agents at once is in [Parallel agents](/academy/ai/parallel-agen
 ## Sources
 
 1. [Claude Code: How Claude Code works](https://code.claude.com/docs/en/how-claude-code-works) *(doc)* — The agent loop, tools, permission modes and checkpoints.
-2. [Claude Code: Best practices](https://code.claude.com/docs/en/best-practices) *(doc)* — The explore-plan-implement-commit flow, verification and the author/reviewer setup.
-3. [Cursor: Best practices for coding with agents](https://cursor.com/blog/agent-best-practices) *(article)* — Plan mode, the TDD flow, parallel agents and Debug Mode. Lee Robinson, January 9, 2026.
-4. [Addy Osmani: My LLM coding workflow going into 2026](https://addyosmani.com/blog/ai-coding-workflow/) *(article)* — Frequent commits, not committing code you cannot explain, and using the agent under supervision.
-5. [Claude Code: Subagents](https://code.claude.com/docs/en/sub-agents) *(doc)* — What a subagent is, when to use one, how to write one.
-6. [Cursor: Subagents](https://cursor.com/docs/subagents) *(doc)* — Subagents in Cursor, running them in parallel and their cost.
-7. [Every: How to Use Claude Code Like the People Who Built It](https://every.to/podcast/how-to-use-claude-code-like-the-people-who-built-it) *(video)* — How Claude Code's own developers use plan mode, subagents and code review.
+2. [Cursor: Best practices for coding with agents](https://cursor.com/blog/agent-best-practices) *(article)* — January 9, 2026. Lee Robinson. Plan mode, the TDD flow, parallel agents and Debug Mode.
+3. [Claude Code: Common workflows](https://code.claude.com/docs/en/common-workflows) *(doc)* — Plan mode and reviewing a change before it reaches the disk.
+4. [Anthropic: Prompting best practices](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices) *(doc)* — Overengineering, fixating on passing tests, and overusing subagents.
+5. [Claude Code: Best practices](https://code.claude.com/docs/en/best-practices) *(doc)* — Asking for proof, `/rewind`, `/code-review`, what subagents cost, and independent review.
+6. [Addy Osmani: My LLM coding workflow going into 2026](https://addyosmani.com/blog/ai-coding-workflow/) *(article)* — Frequent commits, not committing code you cannot explain, and using the agent under supervision.
+7. [Claude Code: Subagents](https://code.claude.com/docs/en/sub-agents) *(doc)* — What a subagent is, when to use one, how to write one.
+8. [Cursor: Subagents](https://cursor.com/docs/subagents) *(doc)* — Subagents in Cursor, running them in parallel and their cost.
+9. [Every: How to Use Claude Code Like the People Who Built It](https://every.to/podcast/how-to-use-claude-code-like-the-people-who-built-it) *(video)* — How Claude Code's own developers use plan mode, subagents and code review.

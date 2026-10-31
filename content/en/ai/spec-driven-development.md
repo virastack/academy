@@ -1,7 +1,7 @@
 ---
 title: "Spec-driven development"
 description: "Having the agent write a spec and a task list first, then implementing task by task and keeping the spec current."
-lastVerified: "2026-10-26"
+lastVerified: "2026-10-31"
 translationKey: "ai/spec-driven-development"
 ---
 
@@ -37,7 +37,7 @@ You don't have to write the spec from a blank page. As in the [Prompt and contex
 
 ## What goes into a good spec
 
-According to the [!claudeCode] docs, the most useful spec stands on its own: it names the relevant files and interfaces, states what is **out of scope** explicitly, and ends with an end-to-end check that proves the feature works.[^3] A short example for the coupon feature:
+A spec is the written definition of done for the session that builds from it.[^3] So it has to stand on its own: name the relevant files and interfaces, state what is **out of scope**, and end with a check that proves the feature works. A short example for the coupon feature:
 
 ```md
 # Cart coupon
@@ -98,7 +98,7 @@ A spec is a tool, not a ceremony. In a review on martinfowler.com, the author de
 
 | Write a spec | Just ask |
 | :-- | :-- |
-| A feature spanning several sessions | A change you can describe in one sentence[^3] |
+| A feature spanning several sessions | A change you can describe in one sentence |
 | Decisions that will be shared with and reviewed by the team | Copy, styling or a small bug fix |
 | A new feature in a codebase you don't know | Work you have done many times before |
 
@@ -135,7 +135,7 @@ A tool is not required. A `SPEC.md`, a task list and plan mode set up the same f
 
 1. [GitHub Blog: Spec-driven development with AI: Get started with a new open source toolkit](https://github.blog/ai-and-ml/generative-ai/spec-driven-development-with-ai-get-started-with-a-new-open-source-toolkit/) *(article)* — Den Delimarsky, September 2, 2025. The spec, plan, tasks and implementation steps, and why the spec is the shared source.
 2. [martinfowler.com: Understanding Spec-Driven-Development: Kiro, spec-kit, and Tessl](https://martinfowler.com/articles/exploring-gen-ai/sdd-3-tools.html) *(article)* — Birgitta Böckeler, October 15, 2025. The spec-first and spec-anchored distinction, too much process for small work, and the agent ignoring the spec.
-3. [Claude Code: Best practices](https://code.claude.com/docs/en/best-practices) *(doc)* — Having the agent question you and write `SPEC.md`, what makes a good spec, and implementing in a new session.
+3. [Claude Code: Best practices](https://code.claude.com/docs/en/best-practices) *(doc)* — Having the agent question you and write `SPEC.md`, building in a new session, and reviewing against the spec.
 4. [Addy Osmani](https://addyosmani.com): [How to write a good spec for AI agents](https://addyosmani.com/blog/good-spec/) *(article)* — January 13, 2026. The sections of a spec, three-tier boundaries, modular tasks and checking against the spec.
 5. [GitHub: Spec Kit](https://github.com/github/spec-kit) *(repo)* — Installation, the constitution and the current commands for the spec steps.
 6. [Kiro: Specs](https://kiro.dev/docs/specs/) *(doc)* — `requirements.md`, `design.md`, `tasks.md` and the bug-fix spec.

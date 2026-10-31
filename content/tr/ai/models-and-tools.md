@@ -1,7 +1,7 @@
 ---
 title: "Modeller ve araçlar"
 description: "Model türleri, güçlü ve zayıf yönleri; sohbet, editör ve terminal tabanlı araçlar."
-lastVerified: "2026-10-26"
+lastVerified: "2026-10-31"
 translationKey: "ai/models-and-tools"
 ---
 
@@ -78,11 +78,13 @@ Sonuç yanlış çıktıysa kendinize şunu sorun: model bilmiyor mu, yeterince 
 - Model ilgili dosyayı okumadan yüzeysel bir yama yapıp bıraktıysa sorun **effort**'tur. Effort'u artırın.
 - Dosyaları okuyup testi çalıştırdığı hâlde hâlâ yanlış çözüyorsa sorun **modeldir**. Bir üst katmana geçin[^6].
 
-Google'ın [!gemini] 3 rehberi de benzer bir şey söylüyor: model zaten kendi içinde düşünüyor. "Çok iyi düşün" demek performansı artırabilir ama fazladan düşünme token'ı harcatır[^7].
+[!claudeCode]'da effort'u `/effort` ile değiştirirsiniz. Gözden kaçması kolay işlerde *(başkasının kodundaki hata, kararsız test)* `high` veya `xhigh`, hızlı taslak ve küçük yeniden adlandırmalarda `low` seçin. `max` zor bir problem içindir, sıradan işte fazla düşünür.[^7] *"İyice düşün"* gibi ifadeler effort ayarının üstüne çıkarmaz. Tek bir mesaj için derin düşünme istiyorsanız o mesaja `ultrathink` yazın.[^7]
+
+Google'ın [!gemini] 3 rehberi de benzer bir şey söylüyor: model zaten kendi içinde düşünüyor. "Çok iyi düşün" demek performansı artırabilir ama fazladan düşünme token'ı harcatır[^8].
 
 ## Araç türleri
 
-Araçlar genelde çalıştıkları yere göre üçe ayrılır. Sınırlar bulanıklaşıyor: [!claudeCode] terminalin yanında IDE eklentisi, masaüstü ve web olarak da çalışır[^8].
+Araçlar genelde çalıştıkları yere göre üçe ayrılır. Sınırlar bulanıklaşıyor: [!claudeCode] terminalin yanında IDE eklentisi, masaüstü ve web olarak da çalışır[^9].
 
 | Araç türü | Nasıl çalışır | Örnek | Ne zaman |
 | --- | --- | --- | --- |
@@ -109,8 +111,8 @@ Bu katman mantığını ve model tercihlerini, bir e-ticaret sitesinin sepet ve 
 Model ne kadar güçlü olursa olsun dört sınırı vardır. Bunları bilmek, çıktıya ne kadar güveneceğinizi belirler.
 
 - **Bilgisi eğitim tarihinde kalır.** Kurulu kütüphane modelin bildiğinden yeniyse eski API'yi önerir. Next.js'teki örnekleri [AI agent'larla Next.js](/academy/nextjs/ai-agents) dersinde gördünüz. Çözüm, güncel dokümanı bağlama vermektir.
-- **Uydurabilir.** Var olmayan bir prop, fonksiyon ya da paket önerebilir. 16 modelle üretilen 576.000 kod örneğini inceleyen bir çalışmada ticari modeller en az %5,2, açık modeller %21,7 oranında var olmayan paket önerdi.[^9] Saldırganlar bu isimlerle sahte paket yayınlayabilir *(bkz. [Secret ve bağımlılık güvenliği](/academy/auth-security/secrets-and-dependencies))*. Önerilen her paketi kurmadan önce npm'de kontrol edin.
-- **Emin görünmek doğru olmak demek değildir.** Model yanlış cevabı da aynı tonla yazar. [!anthropic], modele *"emin değilsen bilmiyorum de"* izni vermenin ve iddialarına kaynak istemenin uydurmayı belirgin şekilde azalttığını söylüyor.[^10]
+- **Uydurabilir.** Var olmayan bir prop, fonksiyon ya da paket önerebilir. 16 modelle üretilen 576.000 kod örneğini inceleyen bir çalışmada ticari modeller en az %5,2, açık modeller %21,7 oranında var olmayan paket önerdi.[^10] Saldırganlar bu isimlerle sahte paket yayınlayabilir *(bkz. [Secret ve bağımlılık güvenliği](/academy/auth-security/secrets-and-dependencies))*. Önerilen her paketi kurmadan önce npm'de kontrol edin.
+- **Emin görünmek doğru olmak demek değildir.** Model yanlış cevabı da aynı tonla yazar. [!anthropic], modele *"emin değilsen bilmiyorum de"* izni vermenin ve iddialarına kaynak istemenin uydurmayı belirgin şekilde azalttığını söylüyor.[^11]
 - **Çalışan uygulamayı görmez.** Tarayıcı, test ya da ekran görüntüsü vermezseniz arayüzün gerçekte nasıl göründüğünü bilemez. Ona kendi işini kontrol edebileceği bir yol verin *(bkz. [Test, eval ve code review](/academy/ai/testing-evals-and-code-review))*.
 
 > [!DONT]
@@ -127,7 +129,8 @@ Model ne kadar güçlü olursa olsun dört sınırı vardır. Bunları bilmek, �
 4. [OpenAI: Prompt engineering](https://developers.openai.com/api/docs/guides/prompt-engineering) *(doc)* — Düşünen, büyük ve küçük modeller arasındaki ödünler ("Choosing a model" bölümü).
 5. [Addy Osmani: Tokens](https://addyosmani.com/agentic-engineering/tokens/) *(article)* — Girdi ve çıktı token'ı, fiyatlandırma ve maliyetle ilişkisi.
 6. [Anthropic: Choosing a Claude model and effort level in Claude Code](https://claude.com/blog/claude-model-and-effort-level-in-claude-code) *(article)* — Model ile effort'un neyi değiştirdiği, hangisine ne zaman dokunulacağı.
-7. [Google: Prompt design strategies](https://ai.google.dev/gemini-api/docs/prompting-strategies) *(doc)* — Gemini 3'ün düşünme davranışı ("Enhancing reasoning and planning" bölümü).
-8. [Anthropic: Claude Code Overview](https://code.claude.com/docs/en/overview) *(doc)* — Claude Code'un terminal, IDE, masaüstü ve web'de çalıştığı yerler.
-9. [USENIX Security: We Have a Package for You! A Comprehensive Analysis of Package Hallucinations by Code Generating LLMs](https://www.usenix.org/conference/usenixsecurity25/presentation/spracklen) *(research)* — Spracklen ve diğerleri, USENIX Security 2025. 16 modelde var olmayan paket önerme oranları.
-10. [Claude Platform: Reduce hallucinations](https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/reduce-hallucinations) *(doc)* — "Bilmiyorum" izni, alıntıyla temellendirme ve kaynakla doğrulama.
+7. [Claude Code: Best practices](https://code.claude.com/docs/en/best-practices) *(doc)* — `/effort` seviyeleri, ne zaman değiştirileceği ve `ultrathink`.
+8. [Google: Prompt design strategies](https://ai.google.dev/gemini-api/docs/prompting-strategies) *(doc)* — Gemini 3'ün düşünme davranışı ("Enhancing reasoning and planning" bölümü).
+9. [Anthropic: Claude Code Overview](https://code.claude.com/docs/en/overview) *(doc)* — Claude Code'un terminal, IDE, masaüstü ve web'de çalıştığı yerler.
+10. [USENIX Security: We Have a Package for You! A Comprehensive Analysis of Package Hallucinations by Code Generating LLMs](https://www.usenix.org/conference/usenixsecurity25/presentation/spracklen) *(research)* — Spracklen ve diğerleri, USENIX Security 2025. 16 modelde var olmayan paket önerme oranları.
+11. [Claude Platform: Reduce hallucinations](https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/reduce-hallucinations) *(doc)* — "Bilmiyorum" izni, alıntıyla temellendirme ve kaynakla doğrulama.

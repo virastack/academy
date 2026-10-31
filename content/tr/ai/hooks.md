@@ -1,7 +1,7 @@
 ---
 title: "Hooks ve izin modları"
 description: "Agent'ı kurala bağlama: format, lint ve test kapısı, tehlikeli işlemleri engelleme ve izin modları."
-lastVerified: "2026-10-26"
+lastVerified: "2026-10-31"
 translationKey: "ai/hooks"
 ---
 
@@ -9,7 +9,7 @@ translationKey: "ai/hooks"
 
 ## Hook nedir?
 
-**Hook, agent'ın çalışmasındaki belirli anlarda otomatik çalışan bir shell komutudur.**[^2] Agent bir dosyayı düzenledikten sonra, bir komutu çalıştırmadan önce ya da işi bitirdiğini söylediğinde devreye girer. Model karar vermez, komut her seferinde çalışır.[^2]
+**Hook, agent'ın çalışmasındaki belirli anlarda otomatik çalışan bir shell komutudur.**[^2] Agent bir dosyayı düzenledikten sonra, bir komutu çalıştırmadan önce ya da işi bitirdiğini söylediğinde devreye girer. Model karar vermez, komut her seferinde çalışır.[^2] Yargı gerektiren işler için bir modele soran `prompt` ve `agent` hook'ları da vardır, ama onlar aynı kesinliği vermez.[^1]
 
 Frontend'de en çok işe yarayan üç an:
 
@@ -85,7 +85,7 @@ if ! OUTPUT=$(pnpm test --run 2>&1); then
 fi
 ```
 
-`stop_hook_active` kontrolü sonsuz döngüyü önler. [!claudeCode], bir `Stop` hook'u arka arkaya sekiz kez engellerse onu yok sayar.[^2]
+`stop_hook_active` kontrolü sonsuz döngüyü önler. [!claudeCode], bir `Stop` hook'u arada araç çağrısı olmadan arka arkaya sekiz kez engellerse onu yok sayar.[^2]
 
 > [!WARNING]
 >
@@ -97,11 +97,13 @@ Hook'lar kuralı zorlar. İzin modları ise agent'ın **ne kadar sormadan** çal
 
 | Mod | Agent ne yapar | Ne zaman |
 | :-- | :-- | :-- |
-| **Manual** *(default)* | Düzenleme ve komutlardan önce sorar | Tanımadığınız kod tabanı |
+| **auto** *(terminal ve VS Code'da başlangıç modu)* | Sormadan çalışır, ayrı bir model riskli işlemleri engeller | Günlük işler ve uzun görevler |
+| **Manual** *(`claude -p`'de başlangıç modu)* | Düzenleme ve komutlardan önce sorar | Her adımı görmek istediğinizde |
 | **acceptEdits** | Dosyaları sormadan düzenler, komutlar için sorar | Plan onaylandıktan sonra |
 | **plan** | Yalnızca okur ve plan önerir | Büyük değişiklikten önce |
-| **auto** | Her şeyi yapar, ayrı bir model riskli işlemleri engeller | Uzun ve gözetimsiz işler |
 | **bypassPermissions** | Hiçbir şey sormaz | Yalnızca izole bir container veya VM |
+
+Terminal ve VS Code'da auto, v2.1.283'ten beri başlangıç modudur.[^4] Yine de bir modelin kararıdır, yanılabilir. *"Asla"* dediğiniz şeyleri `deny` kuralına veya hook'a yazın.[^1]
 
 Sürekli onay vermek yorucudur. Onuncu onaydan sonra okumadan tıklamaya başlarsınız.[^1] Bunun yerine güvendiğiniz komutlara önceden izin verin, tehlikeli olanları yasaklayın:[^4][^5]
 
@@ -117,6 +119,8 @@ Sürekli onay vermek yorucudur. Onuncu onaydan sonra okumadan tıklamaya başlar
 
 `deny` kuralları her modda geçerlidir, `bypassPermissions` dahil.[^4] Bir `PreToolUse` hook'unun engellemesi de modu değiştirerek aşılamaz.[^2]
 
+Kurallar araç çağrısına bakar, niyete değil. `Read(./.env)` `cat .env` komutunu da yakalar, dosyayı açan bir script'i yakalamaz.[^1] `Bash(rm *)` da `/bin/rm` ve `bash -c 'rm -rf build/'` gibi yazımları kaçırır.[^5] Güvenlik için işletim sistemi düzeyinde sınır koyan sandbox'ı `/sandbox` ile açın ve `deny` kurallarıyla birlikte kullanın.[^1][^5]
+
 > [!CAUTION]
 >
 > Hook'lar sizin kullanıcı yetkinizle çalışan shell komutlarıdır. Bir eklentiden ya da başkasının reposundan gelen hook'u çalıştırmadan önce script'i okuyun.
@@ -130,7 +134,7 @@ Sürekli onay vermek yorucudur. Onuncu onaydan sonra okumadan tıklamaya başlar
 | Her seferinde, istisnasız olması gereken | Hook |
 | Agent'ın neye dokunabileceği | İzin kuralları ve izin modu |
 
-Kural dosyanızdaki bir satıra agent sürekli uymuyorsa ve satır gerçekten şartsa, onu hook'a taşıyın.[^1]
+Kural dosyanızdaki bir satıra agent sürekli uymuyorsa ve satır gerçekten şartsa, onu hook'a taşıyın. Tersi de geçerli: yalnızca tercih olan bir şey için hook yazdıysanız silin. Zorunlu kuralları az tutun, çünkü her biri ara sıra yanlış anda devreye girer ve bakım ister.[^1]
 
 ## Kendin dene
 
@@ -147,8 +151,8 @@ Kural dosyanızdaki bir satıra agent sürekli uymuyorsa ve satır gerçekten ş
 
 ## Kaynaklar
 
-1. [Claude Code: Best practices](https://code.claude.com/docs/en/best-practices) *(doc)* — Kural dosyası tavsiyedir, hook kesindir; Stop hook ile doğrulama ve izin onayı yorgunluğu.
+1. [Claude Code: Best practices](https://code.claude.com/docs/en/best-practices) *(doc)* — Kural dosyası tavsiyedir, hook kesindir; Stop hook, izin kuralı sınırları, auto modun yeri ve zorunlu kuralları az tutmak.
 2. [Claude Code: Automate actions with hooks](https://code.claude.com/docs/en/hooks-guide) *(doc)* — Olaylar, stdin JSON, çıkış kodu 2, Prettier ve dosya koruma örnekleri, Stop hook sınırı.
 3. [Cursor: Hooks](https://cursor.com/docs/agent/hooks) *(doc)* — `.cursor/hooks.json`, olay listesi ve çıkış kodlarının anlamı.
 4. [Claude Code: Permission modes](https://code.claude.com/docs/en/permission-modes) *(doc)* — Manual, acceptEdits, plan, auto, dontAsk ve bypassPermissions modları.
-5. [Claude Code: Configure permissions](https://code.claude.com/docs/en/permissions) *(doc)* — `allow`, `ask` ve `deny` kurallarının yazımı ve önceliği.
+5. [Claude Code: Configure permissions](https://code.claude.com/docs/en/permissions) *(doc)* — `allow`, `ask` ve `deny` kurallarının yazımı, önceliği, sınırları ve sandbox ilişkisi.

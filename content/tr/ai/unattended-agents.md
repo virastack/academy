@@ -1,7 +1,7 @@
 ---
 title: "Gözetimsiz agent"
 description: "Bulutta ve arka planda çalışan agent'lar, GitHub'da @claude ile iş verme, otomatik PR incelemesi ve sonucu doğrulama."
-lastVerified: "2026-10-26"
+lastVerified: "2026-10-31"
 translationKey: "ai/unattended-agents"
 ---
 
@@ -86,10 +86,12 @@ Maliyet iki kalemden oluşur: GitHub Actions dakikaları ve token. `claude_args`
 
 ```bash
 claude -p "Fix the lint errors in the changed files" \
-  --allowedTools "Edit,Bash(pnpm lint *)"
+  --allowedTools "Edit,Bash(pnpm lint *)" \
+  --permission-mode dontAsk \
+  --max-turns 20
 ```
 
-`--output-format json` sonucu bir script'in okuyabileceği biçimde verir. `--allowedTools` gözetimsiz çalışmada yalnızca izin verdiğiniz araçların kullanılmasını sağlar.[^4]
+`--output-format json` sonucu bir script'in okuyabileceği biçimde verir. `--allowedTools` listedeki araçlara önceden izin verir, `--permission-mode dontAsk` soru gerektirecek diğer her şeyi reddeder. `--max-turns` tur sayısını sınırlar.[^4] Toplu bir işi önce üç dosyada deneyin, prompt'u düzeltin, sonra kalanını çalıştırın.[^4]
 
 ## Sonucu doğrulamak
 
@@ -98,6 +100,18 @@ Agent ne kadar uzun gözetimsiz çalışırsa, işi bitti saymadan önceki bağ�
 1. **Kontrol edilebilir bir hedef verin.** Agent çalıştırabileceği bir kontrol olmadan "bitti gibi görünüyor" noktasında durur.[^4] Test komutunu prompt'a yazın ya da [Hooks ve izin modları](/academy/ai/hooks) dersindeki `Stop` hook'unu kullanın.
 2. **Kanıt isteyin.** Test çıktısı, çalıştırılan komut, ekran görüntüsü. Kanıtı okumak, doğrulamayı baştan yapmaktan hızlıdır.[^4]
 3. **Riskli işi izole edin.** [Simon Willison](https://simonwillison.net) riskli işleri yerel terminal yerine bulutta, asenkron çalışan agent'lara veriyor.[^5] Agent sizin makinenize ve anahtarlarınıza dokunamaz.
+
+İşi bırakmadan önce şu beş soruyu o işe göre cevaplayın:[^4]
+
+| Soru | Olası cevaplar |
+| :-- | :-- |
+| **Bitişi biliyor mu?** | Spec dosyası, geçmesi gereken test, `/goal` koşulu |
+| **Kendini kontrol edebiliyor mu?** | Test paketi, `Stop` hook'u, inceleme adımı |
+| **Neye dokunabilir?** | İzin kuralları, `dontAsk`, sandbox, worktree |
+| **Onu ne durdurur?** | `--max-turns`, `--max-budget-usd`, harcama limiti |
+| **Sonuç nereye gider, kim onaylar?** | PR veya yorum, merge'ü onaylayan bir kişi |
+
+`/goal` ile verdiğiniz koşulu ayrı bir model her turdan sonra kontrol eder, agent koşul sağlanana kadar devam eder. Bu, agent'ın işi bitirmeden özet yazıp durduğu uzun işlerde işe yarar.[^4]
 
 > [!WARNING]
 >
@@ -121,5 +135,5 @@ Agent ne kadar uzun gözetimsiz çalışırsa, işi bitti saymadan önceki bağ�
 1. [Claude Code: Use Claude Code in the cloud](https://code.claude.com/docs/en/claude-code-on-the-web) *(doc)* — Bulut oturumu, `--cloud`, `--teleport`, auto-fix, limitler ve güvenlik.
 2. [Cursor: Cloud Agents](https://cursor.com/docs/cloud-agent) *(doc)* — Bulutta çalışan agent'lar, başlatma yolları ve PR olarak teslim.
 3. [Claude Code: GitHub Actions](https://code.claude.com/docs/en/github-actions) *(doc)* — `/install-github-app`, `@claude`, otomatik inceleme workflow'u, secret'lar ve maliyet.
-4. [Claude Code: Best practices](https://code.claude.com/docs/en/best-practices) *(doc)* — Headless mod, `--allowedTools`, doğrulama ve bağımsız inceleme.
+4. [Claude Code: Best practices](https://code.claude.com/docs/en/best-practices) *(doc)* — Headless mod, `--allowedTools`, `dontAsk`, gözetimsiz çalışmadan önceki beş soru, `/goal` ve doğrulama.
 5. [Simon Willison](https://simonwillison.net): [Embracing the parallel coding agent lifestyle](https://simonwillison.net/2025/Oct/5/parallel-coding-agents/) *(article)* — 5 Ekim 2025. Riskli işler için asenkron bulut agent'ları.

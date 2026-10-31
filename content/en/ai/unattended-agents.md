@@ -1,7 +1,7 @@
 ---
 title: "Unattended agents"
 description: "Agents in the cloud and in the background, assigning work with @claude on GitHub, automatic PR review and verifying the result."
-lastVerified: "2026-10-26"
+lastVerified: "2026-10-31"
 translationKey: "ai/unattended-agents"
 ---
 
@@ -86,10 +86,12 @@ The cost has two parts: GitHub Actions minutes and tokens. Limit the number of r
 
 ```bash
 claude -p "Fix the lint errors in the changed files" \
-  --allowedTools "Edit,Bash(pnpm lint *)"
+  --allowedTools "Edit,Bash(pnpm lint *)" \
+  --permission-mode dontAsk \
+  --max-turns 20
 ```
 
-`--output-format json` gives the result in a form a script can read. `--allowedTools` makes sure only the tools you permitted are used while it runs unattended.[^4]
+`--output-format json` gives the result in a form a script can read. `--allowedTools` pre-approves the listed tools, `--permission-mode dontAsk` refuses anything else that would have prompted, and `--max-turns` caps the rounds.[^4] For a batch job, try three files first, fix the prompt, then run the rest.[^4]
 
 ## Verifying the result
 
@@ -98,6 +100,18 @@ The longer the agent runs unattended, the more the independent check before you 
 1. **Give it a goal that can be checked.** Without a check it can run, the agent stops at "this looks done".[^4] Put the test command in the prompt, or use the `Stop` hook from the [Hooks and permission modes](/academy/ai/hooks) lesson.
 2. **Ask for proof.** The test output, the command that was run, a screenshot. Reading the proof is faster than verifying everything from scratch.[^4]
 3. **Isolate risky work.** [Simon Willison](https://simonwillison.net) hands risky work to agents running asynchronously in the cloud instead of in a local terminal.[^5] There the agent cannot touch your machine or your keys.
+
+Before you walk away, answer these five questions for that specific job:[^4]
+
+| Question | Possible answers |
+| :-- | :-- |
+| **Does it know what done looks like?** | A spec file, a test it has to turn green, a `/goal` condition |
+| **Can it check its own work?** | The test suite, a `Stop` hook, a review step |
+| **What can it touch?** | Permission rules, `dontAsk`, the sandbox, a worktree |
+| **What stops it?** | `--max-turns`, `--max-budget-usd`, a spend limit |
+| **Where does the result go, and who signs off?** | A PR or a comment, and a person who approves the merge |
+
+With `/goal`, a separate model checks your condition after every turn and the agent keeps going until it's met. That helps on long runs, where an agent can stop at a progress summary with work still open.[^4]
 
 > [!WARNING]
 >
@@ -121,5 +135,5 @@ The longer the agent runs unattended, the more the independent check before you 
 1. [Claude Code: Use Claude Code in the cloud](https://code.claude.com/docs/en/claude-code-on-the-web) *(doc)* — The cloud session, `--cloud`, `--teleport`, Auto-fix, limits and security.
 2. [Cursor: Cloud Agents](https://cursor.com/docs/cloud-agent) *(doc)* — Agents running in the cloud, the ways to start them and delivery as a PR.
 3. [Claude Code: GitHub Actions](https://code.claude.com/docs/en/github-actions) *(doc)* — `/install-github-app`, `@claude`, the automatic review workflow, secrets and cost.
-4. [Claude Code: Best practices](https://code.claude.com/docs/en/best-practices) *(doc)* — Headless mode, `--allowedTools`, verification and independent review.
+4. [Claude Code: Best practices](https://code.claude.com/docs/en/best-practices) *(doc)* — Headless mode, `--allowedTools`, `dontAsk`, the five questions before an unattended run, `/goal` and verification.
 5. [Simon Willison](https://simonwillison.net): [Embracing the parallel coding agent lifestyle](https://simonwillison.net/2025/Oct/5/parallel-coding-agents/) *(article)* — October 5, 2025. Asynchronous cloud agents for risky work.
