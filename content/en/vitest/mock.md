@@ -131,7 +131,7 @@ If you do not pass a factory function, Vitest loads the original module and mock
 
 ## MSW: mocking the network request
 
-The products come from an API. Instead of mocking the `fetch` function by hand, use MSW ([Mock Service Worker](https://mswjs.io)).[^5] MSW intercepts the network request and returns a fake response.[^6][^7] Your application code keeps using the real `fetch`.
+The products come from an API. Instead of mocking the `fetch` function by hand, use [!msw] ([Mock Service Worker](https://mswjs.io)).[^5] MSW intercepts the network request and returns a fake response.[^6][^7] Your application code keeps using the real `fetch`.
 
 Write the API call first:
 

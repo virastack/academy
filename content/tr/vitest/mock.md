@@ -131,7 +131,7 @@ Fabrika fonksiyonu vermezseniz Vitest özgün modülü yükler ve dışa aktard�
 
 ## MSW: ağ isteğini mock'lama
 
-Ürünler API'den gelir. `fetch` fonksiyonunu elle mock'lamak yerine MSW ([Mock Service Worker](https://mswjs.io)) kullanın.[^5] MSW ağ isteğini yakalar ve sahte yanıt döner.[^6][^7] Uygulama kodunuz gerçek `fetch` kullanmaya devam eder.
+Ürünler API'den gelir. `fetch` fonksiyonunu elle mock'lamak yerine [!msw] ([Mock Service Worker](https://mswjs.io)) kullanın.[^5] MSW ağ isteğini yakalar ve sahte yanıt döner.[^6][^7] Uygulama kodunuz gerçek `fetch` kullanmaya devam eder.
 
 Önce API çağrısını yazın:
 
