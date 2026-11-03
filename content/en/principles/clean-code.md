@@ -1,7 +1,7 @@
 ---
 title: "Clean Code and the basic principles"
 description: "DRY, KISS and YAGNI: when they help and when they are overdone."
-lastVerified: "2026-10-23"
+lastVerified: "2026-11-03"
 translationKey: "principles/clean-code"
 ---
 

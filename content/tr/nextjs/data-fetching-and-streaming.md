@@ -1,7 +1,7 @@
 ---
 title: "Veri çekme ve streaming"
 description: "Server'da veri okuma, Suspense ile akış, şelaleyi önleme ve client'ta veri."
-lastVerified: "2026-10-21"
+lastVerified: "2026-11-03"
 translationKey: "nextjs/data-fetching-and-streaming"
 ---
 

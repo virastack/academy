@@ -1,7 +1,7 @@
 ---
 title: "Ürün kataloğu ve sepet"
 description: "Filtre store'u, slice'lı kalıcı sepet ve türetilen stok uyarısı."
-lastVerified: "2026-10-21"
+lastVerified: "2026-11-03"
 translationKey: "zustand/project"
 ---
 

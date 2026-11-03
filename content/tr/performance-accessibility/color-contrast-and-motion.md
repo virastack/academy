@@ -1,7 +1,7 @@
 ---
 title: "Renk, kontrast ve hareket"
 description: "Okunabilir renkler, yakınlaştırma ve azaltılmış hareket."
-lastVerified: "2026-10-17"
+lastVerified: "2026-11-03"
 translationKey: "performance-accessibility/color-contrast-and-motion"
 ---
 

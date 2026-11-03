@@ -1,7 +1,7 @@
 ---
 title: "Monorepo"
 description: "pnpm workspace ve Turborepo ile paylaşılan paketler ve ortak UI kütüphanesi."
-lastVerified: "2026-10-15"
+lastVerified: "2026-11-03"
 translationKey: "architecture/monorepo"
 ---
 

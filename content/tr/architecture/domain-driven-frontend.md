@@ -1,7 +1,7 @@
 ---
 title: "Domain odaklı frontend"
 description: "DDD'den frontend'e ne alınır: ortak dil ve bağlam sınırları."
-lastVerified: "2026-10-25"
+lastVerified: "2026-11-03"
 translationKey: "architecture/domain-driven-frontend"
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "Refs and the DOM"
 description: "Reaching the DOM, the ref prop, ref callback cleanup and Fragment refs."
-lastVerified: "2026-10-21"
+lastVerified: "2026-11-03"
 translationKey: "react/refs-and-dom"
 ---
 

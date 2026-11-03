@@ -1,7 +1,7 @@
 ---
 title: "State"
 description: "Snapshots and updaters, immutable updates, and structuring state well."
-lastVerified: "2026-10-21"
+lastVerified: "2026-11-03"
 translationKey: "react/state"
 ---
 

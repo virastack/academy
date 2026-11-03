@@ -1,7 +1,7 @@
 ---
 title: "CI/CD (GitHub Actions)"
 description: "Lint, test ve Docker işleriyle deploy hattı, secret'lar ve ortamlar."
-lastVerified: "2026-10-22"
+lastVerified: "2026-11-03"
 translationKey: "production/cicd"
 ---
 

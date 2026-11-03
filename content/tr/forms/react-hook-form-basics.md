@@ -1,7 +1,7 @@
 ---
 title: "React Hook Form temelleri"
 description: "register, handleSubmit, formState ve doğrulama modu."
-lastVerified: "2026-10-22"
+lastVerified: "2026-11-03"
 translationKey: "forms/react-hook-form-basics"
 ---
 

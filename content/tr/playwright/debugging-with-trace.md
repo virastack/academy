@@ -1,7 +1,7 @@
 ---
 title: "Trace ile hata ayıklama"
 description: "UI Mode, Inspector, trace ve kırılgan testler."
-lastVerified: "2026-10-22"
+lastVerified: "2026-11-03"
 translationKey: "playwright/debugging-with-trace"
 ---
 

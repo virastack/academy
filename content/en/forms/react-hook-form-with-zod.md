@@ -1,7 +1,7 @@
 ---
 title: "React Hook Form with Zod"
 description: "The resolver, input and output types, and rules across fields."
-lastVerified: "2026-10-22"
+lastVerified: "2026-11-03"
 translationKey: "forms/react-hook-form-with-zod"
 ---
 

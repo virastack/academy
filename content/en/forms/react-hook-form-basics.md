@@ -1,7 +1,7 @@
 ---
 title: "React Hook Form basics"
 description: "register, handleSubmit, formState and the validation mode."
-lastVerified: "2026-10-22"
+lastVerified: "2026-11-03"
 translationKey: "forms/react-hook-form-basics"
 ---
 

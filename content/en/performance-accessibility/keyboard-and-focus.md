@@ -1,7 +1,7 @@
 ---
 title: "Keyboard and focus management"
 description: "Navigating with the keyboard, and visible focus."
-lastVerified: "2026-10-17"
+lastVerified: "2026-11-03"
 translationKey: "performance-accessibility/keyboard-and-focus"
 ---
 

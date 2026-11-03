@@ -1,7 +1,7 @@
 ---
 title: "Building an agent team"
 description: "A line of spec, frontend, test and review subagents, the failure loop, the lead's summary and agent teams."
-lastVerified: "2026-10-26"
+lastVerified: "2026-11-03"
 translationKey: "ai/agent-teams"
 ---
 

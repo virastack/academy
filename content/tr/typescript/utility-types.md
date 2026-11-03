@@ -1,7 +1,7 @@
 ---
 title: "Utility types"
 description: "keyof, typeof, Partial, Pick, Omit ve Record ile tip türetme."
-lastVerified: "2026-10-17"
+lastVerified: "2026-11-03"
 translationKey: "typescript/utility-types"
 ---
 

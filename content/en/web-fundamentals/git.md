@@ -1,7 +1,7 @@
 ---
 title: "Git"
 description: "Version control with commits, branches and a remote."
-lastVerified: "2026-10-17"
+lastVerified: "2026-11-03"
 translationKey: "web-fundamentals/git"
 ---
 

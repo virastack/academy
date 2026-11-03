@@ -1,7 +1,7 @@
 ---
 title: "Feature flags and release strategy"
 description: "The Flags SDK, a percentage rollout, canary and blue-green."
-lastVerified: "2026-10-22"
+lastVerified: "2026-11-03"
 translationKey: "production/feature-flags-and-release-strategy"
 ---
 

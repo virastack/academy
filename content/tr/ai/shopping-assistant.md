@@ -1,7 +1,7 @@
 ---
 title: "AI alışveriş asistanı"
 description: "Araç çağırma, kullanıcı onayı, prompt injection koruması ve rate limit ile çalışan bir alışveriş asistanı."
-lastVerified: "2026-10-15"
+lastVerified: "2026-11-03"
 translationKey: "ai/shopping-assistant"
 ---
 

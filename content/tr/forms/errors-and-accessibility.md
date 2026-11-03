@@ -1,7 +1,7 @@
 ---
 title: "Hata gösterimi ve erişilebilirlik"
 description: "Hatayı alana bağlamak, odak ve zamanlama."
-lastVerified: "2026-10-22"
+lastVerified: "2026-11-03"
 translationKey: "forms/errors-and-accessibility"
 ---
 

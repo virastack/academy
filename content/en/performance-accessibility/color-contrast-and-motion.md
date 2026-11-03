@@ -1,7 +1,7 @@
 ---
 title: "Colour, contrast and motion"
 description: "Readable colours, zooming and reduced motion."
-lastVerified: "2026-10-17"
+lastVerified: "2026-11-03"
 translationKey: "performance-accessibility/color-contrast-and-motion"
 ---
 

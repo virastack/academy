@@ -1,7 +1,7 @@
 ---
 title: "Security and cost"
 description: "Prompt injection, protecting the API key, rate limiting and token cost."
-lastVerified: "2026-10-15"
+lastVerified: "2026-11-03"
 translationKey: "ai/security-and-cost"
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "MCP"
 description: "What is MCP? Connecting servers like Figma, Playwright and Next.js DevTools to an agent."
-lastVerified: "2026-10-14"
+lastVerified: "2026-11-03"
 translationKey: "ai/mcp"
 ---
 

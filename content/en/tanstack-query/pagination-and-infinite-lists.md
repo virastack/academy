@@ -1,7 +1,7 @@
 ---
 title: "Pagination and infinite lists"
 description: "keepPreviousData, preparing the next page and useInfiniteQuery."
-lastVerified: "2026-10-21"
+lastVerified: "2026-11-03"
 translationKey: "tanstack-query/pagination-and-infinite-lists"
 ---
 

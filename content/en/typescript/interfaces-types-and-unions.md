@@ -1,7 +1,7 @@
 ---
 title: "Interface, type and union"
 description: "Object shapes, type aliases, unions and literal types."
-lastVerified: "2026-10-17"
+lastVerified: "2026-11-03"
 translationKey: "typescript/interfaces-types-and-unions"
 ---
 

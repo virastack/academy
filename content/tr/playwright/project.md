@@ -1,7 +1,7 @@
 ---
 title: "Sipariş paneli testleri"
 description: "Oturumlu ve rollere ayrılmış bir paneli uçtan uca test etmek."
-lastVerified: "2026-10-22"
+lastVerified: "2026-11-03"
 translationKey: "playwright/project"
 ---
 

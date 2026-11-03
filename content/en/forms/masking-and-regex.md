@@ -1,7 +1,7 @@
 ---
 title: "Masking and regex"
 description: "The displayed value, the raw value and @virastack/mask."
-lastVerified: "2026-10-22"
+lastVerified: "2026-11-03"
 translationKey: "forms/masking-and-regex"
 ---
 

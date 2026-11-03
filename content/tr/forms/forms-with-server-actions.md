@@ -1,7 +1,7 @@
 ---
 title: "Server Actions ile form"
 description: "useActionState, sunucuda Zod ve sunucu hatası."
-lastVerified: "2026-10-22"
+lastVerified: "2026-11-03"
 translationKey: "forms/forms-with-server-actions"
 ---
 

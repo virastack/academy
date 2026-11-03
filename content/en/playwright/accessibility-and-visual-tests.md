@@ -1,7 +1,7 @@
 ---
 title: "Accessibility and visual tests"
 description: "axe, the keyboard, aria snapshots and screenshots."
-lastVerified: "2026-10-22"
+lastVerified: "2026-11-03"
 translationKey: "playwright/accessibility-and-visual-tests"
 ---
 

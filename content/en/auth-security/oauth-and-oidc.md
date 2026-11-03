@@ -1,7 +1,7 @@
 ---
 title: "OAuth and OIDC flows"
 description: "The authorization code flow and PKCE, access and ID tokens, and how 'Sign in with Google' works."
-lastVerified: "2026-10-18"
+lastVerified: "2026-11-03"
 translationKey: "auth-security/oauth-and-oidc"
 ---
 

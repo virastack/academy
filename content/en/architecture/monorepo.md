@@ -1,7 +1,7 @@
 ---
 title: "Monorepo"
 description: "Shared packages and a common UI library with a pnpm workspace and Turborepo."
-lastVerified: "2026-10-15"
+lastVerified: "2026-11-03"
 translationKey: "architecture/monorepo"
 ---
 

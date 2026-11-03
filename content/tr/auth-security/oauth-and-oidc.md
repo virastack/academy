@@ -1,7 +1,7 @@
 ---
 title: "OAuth ve OIDC akışları"
 description: "Authorization code ve PKCE, access ve ID token; \"Google ile giriş\" nasıl çalışır."
-lastVerified: "2026-10-18"
+lastVerified: "2026-11-03"
 translationKey: "auth-security/oauth-and-oidc"
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "Sipariş panelini yayına hazırlama"
 description: "Ortam doğrulama, log, hata ekranları, feature flag, Docker ve CI ile bir paneli canlıya hazırlamak."
-lastVerified: "2026-10-22"
+lastVerified: "2026-11-03"
 translationKey: "production/project"
 ---
 

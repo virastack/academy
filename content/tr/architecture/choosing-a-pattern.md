@@ -1,7 +1,7 @@
 ---
 title: "Desen seçimi"
 description: "FSD, DDD, component-driven ve Atomic Design: hangisi hangi soruya cevap verir."
-lastVerified: "2026-10-25"
+lastVerified: "2026-11-03"
 translationKey: "architecture/choosing-a-pattern"
 ---
 

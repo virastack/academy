@@ -1,7 +1,7 @@
 ---
 title: "Suspense ve hata yönetimi"
 description: "Global toast, throwOnError, useSuspenseQuery ve hata sonrası yeniden deneme."
-lastVerified: "2026-10-21"
+lastVerified: "2026-11-03"
 translationKey: "tanstack-query/suspense-and-error-handling"
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "Choosing a pattern"
 description: "FSD, DDD, component-driven and Atomic Design: which one answers which question."
-lastVerified: "2026-10-25"
+lastVerified: "2026-11-03"
 translationKey: "architecture/choosing-a-pattern"
 ---
 

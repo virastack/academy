@@ -1,7 +1,7 @@
 ---
 title: "Typed product catalogue"
 description: "Building a product list, a filter and a cart with types end to end."
-lastVerified: "2026-10-17"
+lastVerified: "2026-11-03"
 translationKey: "typescript/project"
 ---
 

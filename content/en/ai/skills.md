@@ -1,7 +1,7 @@
 ---
 title: "Skills"
 description: "Turning repeated work into a skill and using ready-made frontend skills."
-lastVerified: "2026-10-14"
+lastVerified: "2026-11-03"
 translationKey: "ai/skills"
 ---
 

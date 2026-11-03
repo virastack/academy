@@ -1,7 +1,7 @@
 ---
 title: "Showing errors and accessibility"
 description: "Attaching the error to the field, focus and timing."
-lastVerified: "2026-10-22"
+lastVerified: "2026-11-03"
 translationKey: "forms/errors-and-accessibility"
 ---
 

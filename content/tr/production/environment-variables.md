@@ -1,7 +1,7 @@
 ---
 title: "Ortam değişkenleri"
 description: "Yapılandırmayı koddan ayırmak, NEXT_PUBLIC_ ve Zod ile doğrulama."
-lastVerified: "2026-10-22"
+lastVerified: "2026-11-03"
 translationKey: "production/environment-variables"
 ---
 

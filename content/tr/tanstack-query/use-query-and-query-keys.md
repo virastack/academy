@@ -1,7 +1,7 @@
 ---
 title: "useQuery ve query key"
 description: "status ile fetchStatus, anahtarı bağımlılık dizisi gibi kurmak ve iptal."
-lastVerified: "2026-10-21"
+lastVerified: "2026-11-03"
 translationKey: "tanstack-query/use-query-and-query-keys"
 ---
 

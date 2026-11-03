@@ -1,7 +1,7 @@
 ---
 title: "Introduction"
 description: "What is frontend testing? Which tools are used?"
-lastVerified: "2026-10-14"
+lastVerified: "2026-11-03"
 translationKey: "vitest/introduction"
 ---
 

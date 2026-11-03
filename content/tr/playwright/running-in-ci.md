@@ -1,7 +1,7 @@
 ---
 title: "CI'da çalıştırma"
 description: "GitHub Actions, sharding ve kırılgan testler."
-lastVerified: "2026-10-22"
+lastVerified: "2026-11-03"
 translationKey: "playwright/running-in-ci"
 ---
 

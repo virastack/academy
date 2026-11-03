@@ -1,7 +1,7 @@
 ---
 title: "Sprint ve ritüeller"
 description: "Sprint, daily, planning ve retro toplantıları ne işe yarar."
-lastVerified: "2026-10-16"
+lastVerified: "2026-11-03"
 translationKey: "glossary/sprints-and-rituals"
 ---
 

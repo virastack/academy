@@ -1,7 +1,7 @@
 ---
 title: "Effects and when you don't need one"
 description: "Synchronising with an external system, cleanup, useEffectEvent and Effect-free solutions."
-lastVerified: "2026-10-21"
+lastVerified: "2026-11-03"
 translationKey: "react/effects"
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "Git"
 description: "Commit, branch ve uzak depo ile sürüm kontrolü."
-lastVerified: "2026-10-17"
+lastVerified: "2026-11-03"
 translationKey: "web-fundamentals/git"
 ---
 

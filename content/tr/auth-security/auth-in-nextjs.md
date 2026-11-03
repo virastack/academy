@@ -1,7 +1,7 @@
 ---
 title: "Next.js'te auth"
 description: "Auth kütüphanesi seçimi, giriş, oturum okuma ve proxy ile yönlendirme."
-lastVerified: "2026-10-18"
+lastVerified: "2026-11-03"
 translationKey: "auth-security/auth-in-nextjs"
 ---
 

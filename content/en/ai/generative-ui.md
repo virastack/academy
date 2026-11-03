@@ -1,7 +1,7 @@
 ---
 title: "Generative UI"
 description: "Showing a tool result as a component, with its loading and error states."
-lastVerified: "2026-10-15"
+lastVerified: "2026-11-03"
 translationKey: "ai/generative-ui"
 ---
 

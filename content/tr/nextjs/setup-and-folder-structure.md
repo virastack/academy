@@ -1,13 +1,13 @@
 ---
 title: "Kurulum ve proje yapısı"
 description: "create-next-app varsayılanları, app klasörü, özel dosyalar ve kodun yeri."
-lastVerified: "2026-10-21"
+lastVerified: "2026-11-03"
 translationKey: "nextjs/setup-and-folder-structure"
 ---
 
 ## Bu rehber ne anlatıyor
 
-[!nextjs] dokümanı güncel ve ayrıntılı. Bu rehber onu tekrar etmiyor. Her derste konuyu kısaca özetleyip Next.js ekibinin ve deneyimli mühendislerin önerilerini, yaygın hataları topluyor. Sürüm: Next.js 16.4 *(Ekim 2026)*, React 19.3.[^1]
+[!nextjs] dokümanı güncel ve ayrıntılı. Bu rehber onu tekrar etmiyor. Her derste konuyu kısaca özetleyip Next.js ekibinin ve deneyimli mühendislerin önerilerini, yaygın hataları topluyor. Sürüm: Next.js 16.4 *(Kasım 2026)*, React 19.3.[^1]
 
 Ön koşul [React](/academy/react/setup-and-tooling) rehberi. Component, state, Suspense ve Actions'ı orada gördünüz. Burada bunların sunucuyla birleştiği yeri öğreneceksiniz.
 

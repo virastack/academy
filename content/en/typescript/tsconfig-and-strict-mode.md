@@ -1,7 +1,7 @@
 ---
 title: "tsconfig and strict mode"
 description: "Compiler settings, the strict flags and type checking in CI."
-lastVerified: "2026-10-17"
+lastVerified: "2026-11-03"
 translationKey: "typescript/tsconfig-and-strict-mode"
 ---
 

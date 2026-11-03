@@ -1,7 +1,7 @@
 ---
 title: "Feature-Sliced Design"
 description: "Katmanlar, dilimler ve tek yönlü import kuralıyla frontend mimarisi."
-lastVerified: "2026-10-25"
+lastVerified: "2026-11-03"
 translationKey: "architecture/feature-sliced-design"
 ---
 

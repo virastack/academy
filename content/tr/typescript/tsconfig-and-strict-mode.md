@@ -1,7 +1,7 @@
 ---
 title: "tsconfig ve strict mod"
 description: "Derleyici ayarları, strict bayrakları ve CI'da tip kontrolü."
-lastVerified: "2026-10-17"
+lastVerified: "2026-11-03"
 translationKey: "typescript/tsconfig-and-strict-mode"
 ---
 

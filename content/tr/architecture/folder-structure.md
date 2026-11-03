@@ -1,7 +1,7 @@
 ---
 title: "Klasör yapısı ve isimlendirme"
 description: "Feature-based yapı, dosya isimlendirme ve import kuralları."
-lastVerified: "2026-10-22"
+lastVerified: "2026-11-03"
 translationKey: "architecture/folder-structure"
 ---
 

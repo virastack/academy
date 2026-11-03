@@ -1,7 +1,7 @@
 ---
 title: "Deployment options"
 description: "A Node.js server, Docker, static output and platform adapters."
-lastVerified: "2026-10-22"
+lastVerified: "2026-11-03"
 translationKey: "production/deployment-options"
 ---
 

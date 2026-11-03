@@ -1,7 +1,7 @@
 ---
 title: "Introduction and setup"
 description: "What TypeScript is, why it is used and type checking in a first project."
-lastVerified: "2026-10-17"
+lastVerified: "2026-11-03"
 translationKey: "typescript/introduction-and-setup"
 ---
 

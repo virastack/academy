@@ -1,7 +1,7 @@
 ---
 title: "Authorisation and roles"
 description: "Checking roles and permissions, and protecting pages, APIs and Server Actions."
-lastVerified: "2026-10-18"
+lastVerified: "2026-11-03"
 translationKey: "auth-security/authorization-and-roles"
 ---
 

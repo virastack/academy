@@ -1,7 +1,7 @@
 ---
 title: "Component-driven and Atomic Design"
 description: "Building an interface from the bottom up and classifying the shared UI parts."
-lastVerified: "2026-10-25"
+lastVerified: "2026-11-03"
 translationKey: "architecture/component-driven-and-atomic-design"
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "Component and code organisation"
 description: "Splitting components, separating shared code and keeping the boundaries."
-lastVerified: "2026-10-15"
+lastVerified: "2026-11-03"
 translationKey: "architecture/component-organization"
 ---
 

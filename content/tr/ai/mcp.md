@@ -1,7 +1,7 @@
 ---
 title: "MCP"
 description: "MCP nedir? Figma, Playwright ve Next.js DevTools gibi sunucuları agent'a bağlama."
-lastVerified: "2026-10-14"
+lastVerified: "2026-11-03"
 translationKey: "ai/mcp"
 ---
 

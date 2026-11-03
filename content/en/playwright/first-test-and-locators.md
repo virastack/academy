@@ -1,7 +1,7 @@
 ---
 title: "The first test and locators"
 description: "getByRole, strict mode, filtering and within()."
-lastVerified: "2026-10-22"
+lastVerified: "2026-11-03"
 translationKey: "playwright/first-test-and-locators"
 ---
 

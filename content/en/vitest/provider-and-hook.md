@@ -1,7 +1,7 @@
 ---
 title: "Provider and hook"
 description: "The cart Provider, renderWithProviders and renderHook."
-lastVerified: "2026-10-14"
+lastVerified: "2026-11-03"
 translationKey: "vitest/provider-and-hook"
 ---
 

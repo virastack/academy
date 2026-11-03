@@ -1,7 +1,7 @@
 ---
 title: "Domain-driven frontend"
 description: "What to take from DDD into the frontend: the ubiquitous language and bounded contexts."
-lastVerified: "2026-10-25"
+lastVerified: "2026-11-03"
 translationKey: "architecture/domain-driven-frontend"
 ---
 

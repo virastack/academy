@@ -1,7 +1,7 @@
 ---
 title: "Bundle boyutu"
 description: "Paketi küçültme ve neyin yüklendiğini görme."
-lastVerified: "2026-10-17"
+lastVerified: "2026-11-03"
 translationKey: "performance-accessibility/bundle-size"
 ---
 

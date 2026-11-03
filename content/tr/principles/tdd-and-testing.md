@@ -1,7 +1,7 @@
 ---
 title: "TDD ve test yaklaşımları"
 description: "Red-Green-Refactor döngüsü ve Testing Trophy."
-lastVerified: "2026-10-24"
+lastVerified: "2026-11-03"
 translationKey: "principles/tdd-and-testing"
 ---
 

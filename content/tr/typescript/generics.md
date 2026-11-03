@@ -1,7 +1,7 @@
 ---
 title: "Generic'ler"
 description: "Tipe göre çalışan, yeniden kullanılabilir fonksiyon ve tipler."
-lastVerified: "2026-10-17"
+lastVerified: "2026-11-03"
 translationKey: "typescript/generics"
 ---
 

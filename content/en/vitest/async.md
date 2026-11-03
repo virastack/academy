@@ -1,7 +1,7 @@
 ---
 title: "Asynchronous tests"
 description: "findBy, waitFor and fake timers."
-lastVerified: "2026-10-14"
+lastVerified: "2026-11-03"
 translationKey: "vitest/async"
 ---
 

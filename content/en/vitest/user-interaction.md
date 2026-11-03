@@ -1,7 +1,7 @@
 ---
 title: "User interaction"
 description: "userEvent, a search box and a coupon form."
-lastVerified: "2026-10-14"
+lastVerified: "2026-11-03"
 translationKey: "vitest/user-interaction"
 ---
 

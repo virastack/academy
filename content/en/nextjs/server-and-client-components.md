@@ -1,7 +1,7 @@
 ---
 title: "Server and Client Components"
 description: "The 'use client' boundary, composition, serialisation and server-only."
-lastVerified: "2026-10-21"
+lastVerified: "2026-11-03"
 translationKey: "nextjs/server-and-client-components"
 ---
 

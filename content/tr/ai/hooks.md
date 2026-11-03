@@ -1,7 +1,7 @@
 ---
 title: "Hooks ve izin modları"
 description: "Agent'ı kurala bağlama: format, lint ve test kapısı, tehlikeli işlemleri engelleme ve izin modları."
-lastVerified: "2026-10-31"
+lastVerified: "2026-11-03"
 translationKey: "ai/hooks"
 ---
 

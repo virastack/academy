@@ -1,7 +1,7 @@
 ---
 title: "Pre-release checklist"
 description: "What to look at before going live, and the release-day plan."
-lastVerified: "2026-10-22"
+lastVerified: "2026-11-03"
 translationKey: "production/pre-release-checklist"
 ---
 

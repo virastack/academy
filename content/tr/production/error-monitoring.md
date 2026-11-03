@@ -1,7 +1,7 @@
 ---
 title: "Hata izleme"
 description: "onRequestError, hata kodu, Sentry ve işe yarar uyarılar."
-lastVerified: "2026-10-22"
+lastVerified: "2026-11-03"
 translationKey: "production/error-monitoring"
 ---
 

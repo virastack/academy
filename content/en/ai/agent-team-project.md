@@ -1,7 +1,7 @@
 ---
 title: "A feature with an AI team"
 description: "Adding a cart coupon feature with a team of spec, frontend, test and review agents."
-lastVerified: "2026-10-26"
+lastVerified: "2026-11-03"
 translationKey: "ai/agent-team-project"
 ---
 

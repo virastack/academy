@@ -1,7 +1,7 @@
 ---
 title: "Custom hook"
 description: "Hook kuralları, mantığı hook'a taşıma ve useSyncExternalStore."
-lastVerified: "2026-10-21"
+lastVerified: "2026-11-03"
 translationKey: "react/custom-hooks"
 ---
 

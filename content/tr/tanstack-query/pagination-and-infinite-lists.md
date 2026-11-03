@@ -1,7 +1,7 @@
 ---
 title: "Sayfalama ve sonsuz liste"
 description: "keepPreviousData, sonraki sayfayı hazırlamak ve useInfiniteQuery."
-lastVerified: "2026-10-21"
+lastVerified: "2026-11-03"
 translationKey: "tanstack-query/pagination-and-infinite-lists"
 ---
 

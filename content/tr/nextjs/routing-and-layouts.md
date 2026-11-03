@@ -1,7 +1,7 @@
 ---
 title: "Routing ve layout"
 description: "Sayfa, layout, dinamik segment, route group ve Link ile gezinme."
-lastVerified: "2026-10-21"
+lastVerified: "2026-11-03"
 translationKey: "nextjs/routing-and-layouts"
 ---
 

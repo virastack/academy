@@ -1,7 +1,7 @@
 ---
 title: "Basic types and inference"
 description: "Primitive types, arrays, function types, any and unknown, with type inference."
-lastVerified: "2026-10-17"
+lastVerified: "2026-11-03"
 translationKey: "typescript/basic-types-and-inference"
 ---
 

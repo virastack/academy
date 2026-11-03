@@ -1,7 +1,7 @@
 ---
 title: "Suspense and error handling"
 description: "A global toast, throwOnError, useSuspenseQuery and retrying after an error."
-lastVerified: "2026-10-21"
+lastVerified: "2026-11-03"
 translationKey: "tanstack-query/suspense-and-error-handling"
 ---
 

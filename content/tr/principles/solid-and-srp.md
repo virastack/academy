@@ -1,7 +1,7 @@
 ---
 title: "SOLID ve SRP"
 description: "Sorumlulukların ayrılması ve bağımlılık yönetimi, React örnekleriyle."
-lastVerified: "2026-10-23"
+lastVerified: "2026-11-03"
 translationKey: "principles/solid-and-srp"
 ---
 

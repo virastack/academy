@@ -1,7 +1,7 @@
 ---
 title: "Ürün yönetim paneli"
 description: "Sayfalama, prefetch, Suspense, mutation ve optimistic update ile bir panel."
-lastVerified: "2026-10-21"
+lastVerified: "2026-11-03"
 translationKey: "tanstack-query/project"
 ---
 

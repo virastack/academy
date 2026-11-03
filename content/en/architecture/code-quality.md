@@ -1,7 +1,7 @@
 ---
 title: "Code quality and team standards"
 description: "ESLint, Prettier, commit rules and automated checks in CI."
-lastVerified: "2026-10-15"
+lastVerified: "2026-11-03"
 translationKey: "architecture/code-quality"
 ---
 

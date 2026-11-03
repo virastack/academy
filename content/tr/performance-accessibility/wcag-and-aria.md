@@ -1,7 +1,7 @@
 ---
 title: "WCAG ve ARIA"
 description: "Hedeflenen kurallar ve HTML'in yetmediği yerde ARIA."
-lastVerified: "2026-10-17"
+lastVerified: "2026-11-03"
 translationKey: "performance-accessibility/wcag-and-aria"
 ---
 

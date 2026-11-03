@@ -1,7 +1,7 @@
 ---
 title: "Narrowing and type guards"
 description: "Narrowing a union, discriminated unions and safe type checks."
-lastVerified: "2026-10-17"
+lastVerified: "2026-11-03"
 translationKey: "typescript/narrowing-and-type-guards"
 ---
 

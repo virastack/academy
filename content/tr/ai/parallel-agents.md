@@ -1,7 +1,7 @@
 ---
 title: "Paralel agent'lar"
 description: "Git worktree ile birden çok agent'ı aynı anda, birbirinin dosyasını ezmeden çalıştırma."
-lastVerified: "2026-10-26"
+lastVerified: "2026-11-03"
 translationKey: "ai/parallel-agents"
 ---
 

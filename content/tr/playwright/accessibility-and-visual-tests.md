@@ -1,7 +1,7 @@
 ---
 title: "Erişilebilirlik ve görsel testler"
 description: "axe, klavye, aria snapshot ve ekran görüntüsü."
-lastVerified: "2026-10-22"
+lastVerified: "2026-11-03"
 translationKey: "playwright/accessibility-and-visual-tests"
 ---
 

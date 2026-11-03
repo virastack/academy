@@ -1,7 +1,7 @@
 ---
 title: "Basics"
 description: "The first test, render, expect and matchers."
-lastVerified: "2026-10-14"
+lastVerified: "2026-11-03"
 translationKey: "vitest/basics"
 ---
 

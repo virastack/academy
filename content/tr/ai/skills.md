@@ -1,7 +1,7 @@
 ---
 title: "Skills"
 description: "Tekrar eden işleri skill'e dönüştürme ve hazır frontend skill'lerini kullanma."
-lastVerified: "2026-10-14"
+lastVerified: "2026-11-03"
 translationKey: "ai/skills"
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "Secret and dependency security"
 description: "Keeping keys away from the client, .env and npm supply chain attacks."
-lastVerified: "2026-10-22"
+lastVerified: "2026-11-03"
 translationKey: "auth-security/secrets-and-dependencies"
 ---
 

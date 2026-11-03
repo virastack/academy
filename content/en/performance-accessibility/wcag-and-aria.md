@@ -1,7 +1,7 @@
 ---
 title: "WCAG and ARIA"
 description: "The rules to aim for, and ARIA where HTML is not enough."
-lastVerified: "2026-10-17"
+lastVerified: "2026-11-03"
 translationKey: "performance-accessibility/wcag-and-aria"
 ---
 

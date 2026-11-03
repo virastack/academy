@@ -1,7 +1,7 @@
 ---
 title: "Terminal and npm"
 description: "The basic commands, installing Node and managing packages."
-lastVerified: "2026-10-17"
+lastVerified: "2026-11-03"
 translationKey: "web-fundamentals/terminal-and-npm"
 ---
 

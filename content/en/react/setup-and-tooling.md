@@ -1,7 +1,7 @@
 ---
 title: "Setup and tooling"
 description: "A framework or Vite, Strict Mode, lint rules and writing React with AI."
-lastVerified: "2026-10-21"
+lastVerified: "2026-11-03"
 translationKey: "react/setup-and-tooling"
 ---
 

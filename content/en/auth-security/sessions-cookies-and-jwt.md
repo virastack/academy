@@ -1,7 +1,7 @@
 ---
 title: "Sessions, cookies and JWT"
 description: "The difference between a server session and a JWT, the cookie flags, and where to store the token."
-lastVerified: "2026-10-18"
+lastVerified: "2026-11-03"
 translationKey: "auth-security/sessions-cookies-and-jwt"
 ---
 

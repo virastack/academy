@@ -1,7 +1,7 @@
 ---
 title: "Spec-driven development"
 description: "Having the agent write a spec and a task list first, then implementing task by task and keeping the spec current."
-lastVerified: "2026-10-31"
+lastVerified: "2026-11-03"
 translationKey: "ai/spec-driven-development"
 ---
 

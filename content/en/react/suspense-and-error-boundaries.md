@@ -1,7 +1,7 @@
 ---
 title: "Suspense and error boundaries"
 description: "The loading state, reading a promise with use, and the Error Boundary."
-lastVerified: "2026-10-21"
+lastVerified: "2026-11-03"
 translationKey: "react/suspense-and-error-boundaries"
 ---
 

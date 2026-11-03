@@ -1,7 +1,7 @@
 ---
 title: "Props ve composition"
 description: "Veri aktarma, children ve slot'lar, props'u state'e kopyalamama."
-lastVerified: "2026-10-21"
+lastVerified: "2026-11-03"
 translationKey: "react/props-and-composition"
 ---
 

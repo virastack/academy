@@ -1,7 +1,7 @@
 ---
 title: "Images and fonts"
 description: "Image size, format and font loading."
-lastVerified: "2026-10-17"
+lastVerified: "2026-11-03"
 translationKey: "performance-accessibility/images-and-fonts"
 ---
 

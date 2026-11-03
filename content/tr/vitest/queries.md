@@ -1,7 +1,7 @@
 ---
 title: "Sorgular"
 description: "getBy, queryBy, findBy ve sorgu önceliği."
-lastVerified: "2026-10-14"
+lastVerified: "2026-11-03"
 translationKey: "vitest/queries"
 ---
 

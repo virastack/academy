@@ -1,7 +1,7 @@
 ---
 title: "Setup and devtools"
 description: "The QueryClient, the defaults that surprise people, Devtools and the ESLint plugin."
-lastVerified: "2026-10-21"
+lastVerified: "2026-11-03"
 translationKey: "tanstack-query/setup-and-devtools"
 ---
 

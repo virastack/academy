@@ -1,7 +1,7 @@
 ---
 title: "CSS"
 description: "Seçiciler, kutu modeli ve sayfa düzeni."
-lastVerified: "2026-10-17"
+lastVerified: "2026-11-03"
 translationKey: "web-fundamentals/css"
 ---
 

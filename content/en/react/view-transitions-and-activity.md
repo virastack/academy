@@ -1,7 +1,7 @@
 ---
 title: "View Transition and Activity"
 description: "Animating transitions and keeping the state of a hidden screen."
-lastVerified: "2026-10-21"
+lastVerified: "2026-11-03"
 translationKey: "react/view-transitions-and-activity"
 ---
 

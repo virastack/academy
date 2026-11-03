@@ -1,7 +1,7 @@
 ---
 title: "Selector ve yeniden render"
 description: "Atomik selector, useShallow ve custom hook."
-lastVerified: "2026-10-21"
+lastVerified: "2026-11-03"
 translationKey: "zustand/selectors-and-rerenders"
 ---
 

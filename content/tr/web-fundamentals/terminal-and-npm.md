@@ -1,7 +1,7 @@
 ---
 title: "Terminal ve npm"
 description: "Temel komutlar, Node kurulumu ve paket yönetimi."
-lastVerified: "2026-10-17"
+lastVerified: "2026-11-03"
 translationKey: "web-fundamentals/terminal-and-npm"
 ---
 

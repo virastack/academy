@@ -1,7 +1,7 @@
 ---
 title: "Yetkilendirme ve roller"
 description: "Rol ve izin kontrolü; sayfa, API ve Server Action koruması."
-lastVerified: "2026-10-18"
+lastVerified: "2026-11-03"
 translationKey: "auth-security/authorization-and-roles"
 ---
 

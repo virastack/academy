@@ -1,7 +1,7 @@
 ---
 title: "Bundle size"
 description: "Shrinking the bundle and seeing what gets loaded."
-lastVerified: "2026-10-17"
+lastVerified: "2026-11-03"
 translationKey: "performance-accessibility/bundle-size"
 ---
 

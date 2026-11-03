@@ -1,7 +1,7 @@
 ---
 title: "Agentic kodlama"
 description: "Claude Code ve Cursor gibi araçlarla planla, kodla, test et döngüsü ve subagent'lar."
-lastVerified: "2026-10-31"
+lastVerified: "2026-11-03"
 translationKey: "ai/agentic-coding"
 ---
 

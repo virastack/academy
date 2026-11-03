@@ -1,7 +1,7 @@
 ---
 title: "HTML"
 description: "Semantic elements and page structure."
-lastVerified: "2026-10-17"
+lastVerified: "2026-11-03"
 translationKey: "web-fundamentals/html"
 ---
 

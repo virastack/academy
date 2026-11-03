@@ -1,7 +1,7 @@
 ---
 title: "Unattended agents"
 description: "Agents in the cloud and in the background, assigning work with @claude on GitHub, automatic PR review and verifying the result."
-lastVerified: "2026-10-31"
+lastVerified: "2026-11-03"
 translationKey: "ai/unattended-agents"
 ---
 

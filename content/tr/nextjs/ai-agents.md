@@ -1,7 +1,7 @@
 ---
 title: "AI agent'larla Next.js"
 description: "Paketle gelen doküman, AGENTS.md, MCP, hata prompt'ları ve Next.js skill'leri."
-lastVerified: "2026-10-21"
+lastVerified: "2026-11-03"
 translationKey: "nextjs/ai-agents"
 ---
 

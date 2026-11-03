@@ -1,7 +1,7 @@
 ---
 title: "Metadata and SEO"
 description: "metadata, generateMetadata, OG images, sitemap, robots and JSON-LD."
-lastVerified: "2026-10-21"
+lastVerified: "2026-11-03"
 translationKey: "nextjs/metadata-and-seo"
 ---
 

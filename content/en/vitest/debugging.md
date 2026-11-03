@@ -1,7 +1,7 @@
 ---
 title: "Debugging"
 description: "screen.debug, the common errors and coverage."
-lastVerified: "2026-10-14"
+lastVerified: "2026-11-03"
 translationKey: "vitest/debugging"
 ---
 

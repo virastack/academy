@@ -1,7 +1,7 @@
 ---
 title: "Tailwind"
 description: "Utility sınıflarıyla stil ve responsive düzen."
-lastVerified: "2026-10-17"
+lastVerified: "2026-11-03"
 translationKey: "web-fundamentals/tailwind"
 ---
 

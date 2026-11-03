@@ -1,7 +1,7 @@
 ---
 title: "Kurulum ve devtools"
 description: "QueryClient, şaşırtan varsayılanlar, Devtools ve ESLint eklentisi."
-lastVerified: "2026-10-21"
+lastVerified: "2026-11-03"
 translationKey: "tanstack-query/setup-and-devtools"
 ---
 

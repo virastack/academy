@@ -1,7 +1,7 @@
 ---
 title: "Hata yönetimi"
 description: "Beklenen hatalar, error.tsx ve retry, catchError ve notFound."
-lastVerified: "2026-10-21"
+lastVerified: "2026-11-03"
 translationKey: "nextjs/error-handling"
 ---
 

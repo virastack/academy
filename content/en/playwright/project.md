@@ -1,7 +1,7 @@
 ---
 title: "Order panel tests"
 description: "Testing a panel with sessions and roles end to end."
-lastVerified: "2026-10-22"
+lastVerified: "2026-11-03"
 translationKey: "playwright/project"
 ---
 

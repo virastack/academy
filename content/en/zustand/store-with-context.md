@@ -1,7 +1,7 @@
 ---
 title: "A store with Context"
 description: "Initialising from props, reuse, testing and Next.js."
-lastVerified: "2026-10-21"
+lastVerified: "2026-11-03"
 translationKey: "zustand/store-with-context"
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "Optimistic updates"
 description: "Optimistic updates through variables and through the cache, rolling back, and concurrency."
-lastVerified: "2026-10-21"
+lastVerified: "2026-11-03"
 translationKey: "tanstack-query/optimistic-updates"
 ---
 

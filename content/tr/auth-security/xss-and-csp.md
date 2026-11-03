@@ -1,7 +1,7 @@
 ---
 title: "XSS ve CSP"
 description: "dangerouslySetInnerHTML, güvenli olmayan URL'ler ve Content Security Policy."
-lastVerified: "2026-10-22"
+lastVerified: "2026-11-03"
 translationKey: "auth-security/xss-and-csp"
 ---
 

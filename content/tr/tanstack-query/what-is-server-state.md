@@ -1,13 +1,13 @@
 ---
 title: "Server state nedir"
 description: "Client state farkı, useEffect ile veri çekmenin hataları ve ne zaman gerekmediği."
-lastVerified: "2026-10-21"
+lastVerified: "2026-11-03"
 translationKey: "tanstack-query/what-is-server-state"
 ---
 
 ## Bu rehber ne anlatıyor
 
-[!tanstack-query] dokümanı İngilizce ve kapsamlı. Bu rehber onu tekrar etmiyor. Her derste konuyu kısaca özetleyip kütüphanenin maintainer'larının önerilerini ve yaygın hataları topluyor. Sürüm: TanStack Query v5.104 *(Ekim 2026)*. React 18 ve sonrasıyla çalışır.[^1][^2]
+[!tanstack-query] dokümanı İngilizce ve kapsamlı. Bu rehber onu tekrar etmiyor. Her derste konuyu kısaca özetleyip kütüphanenin maintainer'larının önerilerini ve yaygın hataları topluyor. Sürüm: TanStack Query v5.105 *(Kasım 2026)*. React 18 ve sonrasıyla çalışır.[^1][^2]
 
 Ön koşul, [React](/academy/react) rehberindeki [State](/academy/react/state) ve [Effect](/academy/react/effects) dersleri. Örnekler Vite ile kurulmuş bir React projesinde ilerler; Next.js'e özgü kısım [Next.js ile prefetch](/academy/tanstack-query/prefetch-with-nextjs) dersinde.
 

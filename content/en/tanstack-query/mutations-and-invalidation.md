@@ -1,7 +1,7 @@
 ---
 title: "Mutations and invalidation"
 description: "useMutation, invalidation, updating from the response and where the callbacks belong."
-lastVerified: "2026-10-21"
+lastVerified: "2026-11-03"
 translationKey: "tanstack-query/mutations-and-invalidation"
 ---
 

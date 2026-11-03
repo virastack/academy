@@ -1,7 +1,7 @@
 ---
 title: "CSS"
 description: "Selectors, the box model and page layout."
-lastVerified: "2026-10-17"
+lastVerified: "2026-11-03"
 translationKey: "web-fundamentals/css"
 ---
 

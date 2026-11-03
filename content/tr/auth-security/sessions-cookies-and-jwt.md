@@ -1,7 +1,7 @@
 ---
 title: "Oturum, cookie ve JWT"
 description: "Sunucu oturumu ile JWT farkı, cookie bayrakları ve token'ın nerede saklanacağı."
-lastVerified: "2026-10-18"
+lastVerified: "2026-11-03"
 translationKey: "auth-security/sessions-cookies-and-jwt"
 ---
 

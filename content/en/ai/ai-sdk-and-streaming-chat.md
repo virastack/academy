@@ -1,7 +1,7 @@
 ---
 title: "The AI SDK and streaming chat"
 description: "useChat, streamText, choosing a model provider and reflecting a streaming response in the UI."
-lastVerified: "2026-10-15"
+lastVerified: "2026-11-03"
 translationKey: "ai/ai-sdk-and-streaming-chat"
 ---
 

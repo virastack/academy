@@ -1,7 +1,7 @@
 ---
 title: "JavaScript"
 description: "Dilin temelleri, DOM ve asenkron akış."
-lastVerified: "2026-10-17"
+lastVerified: "2026-11-03"
 translationKey: "web-fundamentals/javascript"
 ---
 

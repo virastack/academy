@@ -1,7 +1,7 @@
 ---
 title: "Testing, evals and code review"
 description: "Having tests written, checking with Playwright MCP, measuring model output with evals and reviewing AI code."
-lastVerified: "2026-10-15"
+lastVerified: "2026-11-03"
 translationKey: "ai/testing-evals-and-code-review"
 ---
 

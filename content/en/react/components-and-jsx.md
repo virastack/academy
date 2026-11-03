@@ -1,7 +1,7 @@
 ---
 title: "Components and JSX"
 description: "Splitting up the interface, JSX rules, lists and keys, pure components."
-lastVerified: "2026-10-21"
+lastVerified: "2026-11-03"
 translationKey: "react/components-and-jsx"
 ---
 

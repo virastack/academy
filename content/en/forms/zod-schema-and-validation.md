@@ -1,7 +1,7 @@
 ---
 title: "Schemas and validation with Zod"
 description: "Schemas, type inference, error messages and transforms."
-lastVerified: "2026-10-22"
+lastVerified: "2026-11-03"
 translationKey: "forms/zod-schema-and-validation"
 ---
 

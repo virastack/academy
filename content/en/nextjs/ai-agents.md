@@ -1,7 +1,7 @@
 ---
 title: "Next.js with AI agents"
 description: "The bundled documentation, AGENTS.md, MCP, error prompts and the Next.js skills."
-lastVerified: "2026-10-21"
+lastVerified: "2026-11-03"
 translationKey: "nextjs/ai-agents"
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "Preparing the order panel for release"
 description: "Validating the environment, logs, error screens, a feature flag, Docker and CI to get a panel ready for production."
-lastVerified: "2026-10-22"
+lastVerified: "2026-11-03"
 translationKey: "production/project"
 ---
 

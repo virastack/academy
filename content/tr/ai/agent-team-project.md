@@ -1,7 +1,7 @@
 ---
 title: "AI ekibiyle özellik"
 description: "Spec, frontend, test ve inceleme agent'larından oluşan bir ekiple sepete kupon özelliği ekleme."
-lastVerified: "2026-10-26"
+lastVerified: "2026-11-03"
 translationKey: "ai/agent-team-project"
 ---
 

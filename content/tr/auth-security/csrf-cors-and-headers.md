@@ -1,7 +1,7 @@
 ---
 title: "CSRF, CORS ve güvenlik başlıkları"
 description: "SameSite ile CSRF önlemi, CORS'un ne yaptığı ve temel HTTP güvenlik başlıkları."
-lastVerified: "2026-10-22"
+lastVerified: "2026-11-03"
 translationKey: "auth-security/csrf-cors-and-headers"
 ---
 

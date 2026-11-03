@@ -1,7 +1,7 @@
 ---
 title: "Modeller ve araçlar"
 description: "Model türleri, güçlü ve zayıf yönleri; sohbet, editör ve terminal tabanlı araçlar."
-lastVerified: "2026-10-31"
+lastVerified: "2026-11-03"
 translationKey: "ai/models-and-tools"
 ---
 

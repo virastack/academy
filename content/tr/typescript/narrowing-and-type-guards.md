@@ -1,7 +1,7 @@
 ---
 title: "Narrowing ve type guard"
 description: "Union'ı daraltma, discriminated union ve güvenli tip kontrolü."
-lastVerified: "2026-10-17"
+lastVerified: "2026-11-03"
 translationKey: "typescript/narrowing-and-type-guards"
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "Error handling"
 description: "Expected errors, error.tsx and retry, catchError and notFound."
-lastVerified: "2026-10-21"
+lastVerified: "2026-11-03"
 translationKey: "nextjs/error-handling"
 ---
 

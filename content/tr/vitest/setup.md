@@ -1,7 +1,7 @@
 ---
 title: "Kurulum"
 description: "Vitest, jsdom ve React Testing Library kurulumu."
-lastVerified: "2026-10-14"
+lastVerified: "2026-11-03"
 translationKey: "vitest/setup"
 ---
 

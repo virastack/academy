@@ -1,7 +1,7 @@
 ---
 title: "Interface, type ve union"
 description: "Nesne şekilleri, type alias, union ve literal tipler."
-lastVerified: "2026-10-17"
+lastVerified: "2026-11-03"
 translationKey: "typescript/interfaces-types-and-unions"
 ---
 

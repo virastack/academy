@@ -1,7 +1,7 @@
 ---
 title: "Setup"
 description: "Installing Vitest, jsdom and React Testing Library."
-lastVerified: "2026-10-14"
+lastVerified: "2026-11-03"
 translationKey: "vitest/setup"
 ---
 

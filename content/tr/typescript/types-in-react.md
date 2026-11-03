@@ -1,7 +1,7 @@
 ---
 title: "React'te tipler"
 description: "Props, children, event, hook ve context tipleri."
-lastVerified: "2026-10-17"
+lastVerified: "2026-11-03"
 translationKey: "typescript/types-in-react"
 ---
 

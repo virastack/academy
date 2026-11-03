@@ -1,7 +1,7 @@
 ---
 title: "Your first store"
 description: "create, set, get, and reaching the store from outside React."
-lastVerified: "2026-10-21"
+lastVerified: "2026-11-03"
 translationKey: "zustand/first-store"
 ---
 

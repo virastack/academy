@@ -1,7 +1,7 @@
 ---
 title: "Cache and the rendering model"
 description: "Cache Components, use cache, cacheLife, cacheTag and the static shell."
-lastVerified: "2026-10-21"
+lastVerified: "2026-11-03"
 translationKey: "nextjs/caching-and-rendering"
 ---
 

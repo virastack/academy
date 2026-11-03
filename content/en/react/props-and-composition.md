@@ -1,7 +1,7 @@
 ---
 title: "Props and composition"
 description: "Passing data, children and slots, and not copying props into state."
-lastVerified: "2026-10-21"
+lastVerified: "2026-11-03"
 translationKey: "react/props-and-composition"
 ---
 

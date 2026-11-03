@@ -1,7 +1,7 @@
 ---
 title: "React Hook Form ile Zod"
 description: "Resolver, input ve output tipleri, alanlar arası kural."
-lastVerified: "2026-10-22"
+lastVerified: "2026-11-03"
 translationKey: "forms/react-hook-form-with-zod"
 ---
 

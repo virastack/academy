@@ -1,7 +1,7 @@
 ---
 title: "Forms with Server Actions"
 description: "useActionState, Zod on the server and server errors."
-lastVerified: "2026-10-22"
+lastVerified: "2026-11-03"
 translationKey: "forms/forms-with-server-actions"
 ---
 

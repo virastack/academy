@@ -1,7 +1,7 @@
 ---
 title: "API mocking"
 description: "page.route, changing the response and the request fixture."
-lastVerified: "2026-10-22"
+lastVerified: "2026-11-03"
 translationKey: "playwright/api-mocking"
 ---
 

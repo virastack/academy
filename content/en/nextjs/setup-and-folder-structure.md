@@ -1,13 +1,13 @@
 ---
 title: "Setup and project structure"
 description: "The create-next-app defaults, the app folder, the special files and where code goes."
-lastVerified: "2026-10-21"
+lastVerified: "2026-11-03"
 translationKey: "nextjs/setup-and-folder-structure"
 ---
 
 ## What this guide covers
 
-The [!nextjs] documentation is current and detailed. This guide does not repeat it. Each lesson summarises the topic briefly and gathers the advice of the Next.js team and of experienced engineers, along with the common mistakes. Version: Next.js 16.4 *(October 2026)*, React 19.3.[^1]
+The [!nextjs] documentation is current and detailed. This guide does not repeat it. Each lesson summarises the topic briefly and gathers the advice of the Next.js team and of experienced engineers, along with the common mistakes. Version: Next.js 16.4 *(November 2026)*, React 19.3.[^1]
 
 The prerequisite is the [React](/academy/react/setup-and-tooling) guide. You met components, state, Suspense and Actions there. Here you will learn where they meet the server.
 

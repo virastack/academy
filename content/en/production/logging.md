@@ -1,7 +1,7 @@
 ---
 title: "Logging"
 description: "Structured logs, what to log and what not to log."
-lastVerified: "2026-10-22"
+lastVerified: "2026-11-03"
 translationKey: "production/logging"
 ---
 

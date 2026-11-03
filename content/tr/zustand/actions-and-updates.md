@@ -1,7 +1,7 @@
 ---
 title: "Action ve güncelleme"
 description: "Olay gibi action'lar, immer ve store'u sıfırlamak."
-lastVerified: "2026-10-21"
+lastVerified: "2026-11-03"
 translationKey: "zustand/actions-and-updates"
 ---
 

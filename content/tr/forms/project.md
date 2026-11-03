@@ -1,7 +1,7 @@
 ---
 title: "Satıcı başvuru formu"
 description: "Çok adımlı, maskeli ve sunucuda doğrulanan form."
-lastVerified: "2026-10-22"
+lastVerified: "2026-11-03"
 translationKey: "forms/project"
 ---
 

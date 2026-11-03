@@ -1,7 +1,7 @@
 ---
 title: "Çoklu paket projesi"
 description: "Monorepo içinde ortak UI paketi ve iki uygulama kurma."
-lastVerified: "2026-10-22"
+lastVerified: "2026-11-03"
 translationKey: "architecture/multi-package-project"
 ---
 

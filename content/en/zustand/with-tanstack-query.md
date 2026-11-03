@@ -1,7 +1,7 @@
 ---
 title: "Using it with TanStack Query"
 description: "Driving a query from a filter, and deriving state."
-lastVerified: "2026-10-21"
+lastVerified: "2026-11-03"
 translationKey: "zustand/with-tanstack-query"
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "Environment variables"
 description: "Separating configuration from code, NEXT_PUBLIC_ and validation with Zod."
-lastVerified: "2026-10-22"
+lastVerified: "2026-11-03"
 translationKey: "production/environment-variables"
 ---
 

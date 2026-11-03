@@ -1,7 +1,7 @@
 ---
 title: "A multilingual page and a CI pipeline"
 description: "Translating an existing page into two languages and tying the lint, type and test checks to CI."
-lastVerified: "2026-10-22"
+lastVerified: "2026-11-03"
 translationKey: "architecture/multilingual-ci-project"
 ---
 

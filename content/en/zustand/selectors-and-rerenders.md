@@ -1,7 +1,7 @@
 ---
 title: "Selectors and re-renders"
 description: "Atomic selectors, useShallow and custom hooks."
-lastVerified: "2026-10-21"
+lastVerified: "2026-11-03"
 translationKey: "zustand/selectors-and-rerenders"
 ---
 

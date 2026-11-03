@@ -1,7 +1,7 @@
 ---
 title: "Kurulum ve araçlar"
 description: "Framework mü Vite mi, Strict Mode, lint kuralları ve AI ile React yazmak."
-lastVerified: "2026-10-21"
+lastVerified: "2026-11-03"
 translationKey: "react/setup-and-tooling"
 ---
 

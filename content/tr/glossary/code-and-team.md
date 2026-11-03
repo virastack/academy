@@ -1,7 +1,7 @@
 ---
 title: "Kod ve takım"
 description: "PR ve code review kültürü, tech debt, release ve versiyonlama."
-lastVerified: "2026-10-16"
+lastVerified: "2026-11-03"
 translationKey: "glossary/code-and-team"
 ---
 

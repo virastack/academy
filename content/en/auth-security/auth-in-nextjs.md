@@ -1,7 +1,7 @@
 ---
 title: "Auth in Next.js"
 description: "Choosing an auth library, signing in, reading the session and redirecting with the proxy."
-lastVerified: "2026-10-18"
+lastVerified: "2026-11-03"
 translationKey: "auth-security/auth-in-nextjs"
 ---
 

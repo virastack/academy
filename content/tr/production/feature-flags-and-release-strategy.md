@@ -1,7 +1,7 @@
 ---
 title: "Feature flag ve yayın stratejisi"
 description: "Flags SDK, yüzdeli açılış, canary ve blue-green."
-lastVerified: "2026-10-22"
+lastVerified: "2026-11-03"
 translationKey: "production/feature-flags-and-release-strategy"
 ---
 

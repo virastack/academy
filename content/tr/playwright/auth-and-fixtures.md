@@ -1,7 +1,7 @@
 ---
 title: "Auth ve fixture"
 description: "Fixture yazmak, storageState, roller ve izolasyon."
-lastVerified: "2026-10-22"
+lastVerified: "2026-11-03"
 translationKey: "playwright/auth-and-fixtures"
 ---
 

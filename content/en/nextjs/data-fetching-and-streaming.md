@@ -1,7 +1,7 @@
 ---
 title: "Data fetching and streaming"
 description: "Reading data on the server, streaming with Suspense, avoiding waterfalls and data on the client."
-lastVerified: "2026-10-21"
+lastVerified: "2026-11-03"
 translationKey: "nextjs/data-fetching-and-streaming"
 ---
 

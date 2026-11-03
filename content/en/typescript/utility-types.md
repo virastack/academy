@@ -1,7 +1,7 @@
 ---
 title: "Utility types"
 description: "Deriving types with keyof, typeof, Partial, Pick, Omit and Record."
-lastVerified: "2026-10-17"
+lastVerified: "2026-11-03"
 translationKey: "typescript/utility-types"
 ---
 

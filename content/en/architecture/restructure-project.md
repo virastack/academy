@@ -1,7 +1,7 @@
 ---
 title: "Restructuring a project"
 description: "Moving a messy e-commerce project to a feature-based structure."
-lastVerified: "2026-10-22"
+lastVerified: "2026-11-03"
 translationKey: "architecture/restructure-project"
 ---
 

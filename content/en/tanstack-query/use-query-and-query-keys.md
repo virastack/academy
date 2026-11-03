@@ -1,7 +1,7 @@
 ---
 title: "useQuery and query keys"
 description: "status against fetchStatus, building the key like a dependency array, and cancellation."
-lastVerified: "2026-10-21"
+lastVerified: "2026-11-03"
 translationKey: "tanstack-query/use-query-and-query-keys"
 ---
 

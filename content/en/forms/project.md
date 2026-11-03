@@ -1,7 +1,7 @@
 ---
 title: "Seller application form"
 description: "A multi-step, masked form validated on the server."
-lastVerified: "2026-10-22"
+lastVerified: "2026-11-03"
 translationKey: "forms/project"
 ---
 

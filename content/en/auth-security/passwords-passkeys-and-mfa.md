@@ -1,7 +1,7 @@
 ---
 title: "Passwords, passkeys and 2FA"
 description: "The sign-in form, storing a password on the server, passkeys and two-step verification."
-lastVerified: "2026-10-18"
+lastVerified: "2026-11-03"
 translationKey: "auth-security/passwords-passkeys-and-mfa"
 ---
 

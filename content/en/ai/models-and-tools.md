@@ -1,7 +1,7 @@
 ---
 title: "Models and tools"
 description: "Model types, their strengths and weaknesses; chat, editor and terminal-based tools."
-lastVerified: "2026-10-31"
+lastVerified: "2026-11-03"
 translationKey: "ai/models-and-tools"
 ---
 

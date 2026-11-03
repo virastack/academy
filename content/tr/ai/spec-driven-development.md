@@ -1,7 +1,7 @@
 ---
 title: "Spec-driven geliştirme"
 description: "Agent'a önce spec ve görev listesi yazdırma, sonra görev görev uygulatma ve spec'i güncel tutma."
-lastVerified: "2026-10-31"
+lastVerified: "2026-11-03"
 translationKey: "ai/spec-driven-development"
 ---
 

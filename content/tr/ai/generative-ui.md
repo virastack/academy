@@ -1,7 +1,7 @@
 ---
 title: "Generative UI"
 description: "Tool sonucunu component olarak gösterme, yükleme ve hata durumları."
-lastVerified: "2026-10-15"
+lastVerified: "2026-11-03"
 translationKey: "ai/generative-ui"
 ---
 

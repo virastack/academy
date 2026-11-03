@@ -1,7 +1,7 @@
 ---
 title: "Navigasyon ve prefetch"
 description: "Partial Prefetching, anında navigasyon, korunan state ve useLinkStatus."
-lastVerified: "2026-10-21"
+lastVerified: "2026-11-03"
 translationKey: "nextjs/navigation-and-prefetching"
 ---
 

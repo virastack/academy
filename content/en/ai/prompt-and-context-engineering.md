@@ -1,7 +1,7 @@
 ---
 title: "Prompt and context engineering"
 description: "Writing a good request, giving the right context, CLAUDE.md/AGENTS.md and project rule files."
-lastVerified: "2026-10-31"
+lastVerified: "2026-11-03"
 translationKey: "ai/prompt-and-context-engineering"
 ---
 

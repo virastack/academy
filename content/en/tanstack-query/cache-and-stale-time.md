@@ -1,7 +1,7 @@
 ---
 title: "Cache and stale time"
 description: "staleTime against gcTime, the refetch moments, polling and initialData."
-lastVerified: "2026-10-21"
+lastVerified: "2026-11-03"
 translationKey: "tanstack-query/cache-and-stale-time"
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "Zod ile şema ve doğrulama"
 description: "Şema, tip çıkarımı, hata mesajları ve dönüşüm."
-lastVerified: "2026-10-22"
+lastVerified: "2026-11-03"
 translationKey: "forms/zod-schema-and-validation"
 ---
 

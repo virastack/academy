@@ -1,7 +1,7 @@
 ---
 title: "Slice pattern"
 description: "Store'u küçük store'lara ya da slice'lara bölmek."
-lastVerified: "2026-10-21"
+lastVerified: "2026-11-03"
 translationKey: "zustand/slice-pattern"
 ---
 

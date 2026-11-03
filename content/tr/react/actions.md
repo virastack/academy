@@ -1,7 +1,7 @@
 ---
 title: "Actions ve async güncellemeler"
 description: "Form action'ı, useActionState, useFormStatus ve useOptimistic."
-lastVerified: "2026-10-21"
+lastVerified: "2026-11-03"
 translationKey: "react/actions"
 ---
 

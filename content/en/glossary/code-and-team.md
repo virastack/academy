@@ -1,7 +1,7 @@
 ---
 title: "Code and team"
 description: "The PR and code review culture, tech debt, releases and versioning."
-lastVerified: "2026-10-16"
+lastVerified: "2026-11-03"
 translationKey: "glossary/code-and-team"
 ---
 

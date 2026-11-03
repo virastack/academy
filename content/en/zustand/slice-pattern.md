@@ -1,7 +1,7 @@
 ---
 title: "The slice pattern"
 description: "Splitting the store into small stores or into slices."
-lastVerified: "2026-10-21"
+lastVerified: "2026-11-03"
 translationKey: "zustand/slice-pattern"
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "Agentic coding"
 description: "The plan, code, test loop and subagents in tools like Claude Code and Cursor."
-lastVerified: "2026-10-31"
+lastVerified: "2026-11-03"
 translationKey: "ai/agentic-coding"
 ---
 

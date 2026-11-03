@@ -1,7 +1,7 @@
 ---
 title: "TanStack Query ile birlikte kullanım"
 description: "Filtreyle sorguyu sürmek ve state'i türetmek."
-lastVerified: "2026-10-21"
+lastVerified: "2026-11-03"
 translationKey: "zustand/with-tanstack-query"
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "Route Handlers and the proxy"
 description: "API endpoints, webhooks, proxy.ts and which one to use when."
-lastVerified: "2026-10-21"
+lastVerified: "2026-11-03"
 translationKey: "nextjs/route-handlers-and-proxy"
 ---
 

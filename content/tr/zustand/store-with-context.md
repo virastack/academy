@@ -1,7 +1,7 @@
 ---
 title: "Context ile store"
 description: "Props'tan başlatma, yeniden kullanım, test ve Next.js."
-lastVerified: "2026-10-21"
+lastVerified: "2026-11-03"
 translationKey: "zustand/store-with-context"
 ---
 

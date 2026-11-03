@@ -1,7 +1,7 @@
 ---
 title: "Generics"
 description: "Reusable functions and types that work with whatever type they are given."
-lastVerified: "2026-10-17"
+lastVerified: "2026-11-03"
 translationKey: "typescript/generics"
 ---
 

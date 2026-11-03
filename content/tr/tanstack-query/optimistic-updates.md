@@ -1,7 +1,7 @@
 ---
 title: "Optimistic update"
 description: "variables ve cache ile iyimser güncelleme, geri alma ve eşzamanlılık."
-lastVerified: "2026-10-21"
+lastVerified: "2026-11-03"
 translationKey: "tanstack-query/optimistic-updates"
 ---
 

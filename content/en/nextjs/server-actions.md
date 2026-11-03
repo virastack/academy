@@ -1,7 +1,7 @@
 ---
 title: "Server Actions"
 description: "Forms and mutations, useActionState, updating the cache and security."
-lastVerified: "2026-10-21"
+lastVerified: "2026-11-03"
 translationKey: "nextjs/server-actions"
 ---
 

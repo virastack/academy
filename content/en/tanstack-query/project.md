@@ -1,7 +1,7 @@
 ---
 title: "Product admin panel"
 description: "A panel with pagination, prefetching, Suspense, mutations and optimistic updates."
-lastVerified: "2026-10-21"
+lastVerified: "2026-11-03"
 translationKey: "tanstack-query/project"
 ---
 

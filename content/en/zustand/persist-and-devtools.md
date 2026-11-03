@@ -1,7 +1,7 @@
 ---
 title: "Persist and devtools"
 description: "Persistent state, migrations, hydration and Redux DevTools."
-lastVerified: "2026-10-21"
+lastVerified: "2026-11-03"
 translationKey: "zustand/persist-and-devtools"
 ---
 

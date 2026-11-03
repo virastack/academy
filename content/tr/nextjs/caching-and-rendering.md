@@ -1,7 +1,7 @@
 ---
 title: "Cache ve render modeli"
 description: "Cache Components, use cache, cacheLife, cacheTag ve statik kabuk."
-lastVerified: "2026-10-21"
+lastVerified: "2026-11-03"
 translationKey: "nextjs/caching-and-rendering"
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "Mutation ve invalidation"
 description: "useMutation, invalidation, cevapla güncelleme ve callback'lerin yeri."
-lastVerified: "2026-10-21"
+lastVerified: "2026-11-03"
 translationKey: "tanstack-query/mutations-and-invalidation"
 ---
 

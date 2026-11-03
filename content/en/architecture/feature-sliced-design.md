@@ -1,7 +1,7 @@
 ---
 title: "Feature-Sliced Design"
 description: "A frontend architecture with layers, slices and a one-way import rule."
-lastVerified: "2026-10-25"
+lastVerified: "2026-11-03"
 translationKey: "architecture/feature-sliced-design"
 ---
 

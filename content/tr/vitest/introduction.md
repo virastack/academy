@@ -1,7 +1,7 @@
 ---
 title: "Giriş"
 description: "Frontend test nedir? Hangi araçlar kullanılır?"
-lastVerified: "2026-10-14"
+lastVerified: "2026-11-03"
 translationKey: "vitest/introduction"
 ---
 

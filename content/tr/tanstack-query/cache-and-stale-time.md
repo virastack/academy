@@ -1,7 +1,7 @@
 ---
 title: "Cache ve stale time"
 description: "staleTime ile gcTime, yenileme anları, polling ve initialData."
-lastVerified: "2026-10-21"
+lastVerified: "2026-11-03"
 translationKey: "tanstack-query/cache-and-stale-time"
 ---
 

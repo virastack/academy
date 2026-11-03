@@ -1,7 +1,7 @@
 ---
 title: "A multi-package project"
 description: "Setting up a shared UI package and two applications inside a monorepo."
-lastVerified: "2026-10-22"
+lastVerified: "2026-11-03"
 translationKey: "architecture/multi-package-project"
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "Component-driven ve Atomic Design"
 description: "Arayüzü alttan yukarı kurmak ve ortak UI parçalarını sınıflandırmak."
-lastVerified: "2026-10-25"
+lastVerified: "2026-11-03"
 translationKey: "architecture/component-driven-and-atomic-design"
 ---
 

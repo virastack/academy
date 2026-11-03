@@ -1,7 +1,7 @@
 ---
 title: "TDD and testing approaches"
 description: "The Red-Green-Refactor cycle and the Testing Trophy."
-lastVerified: "2026-10-24"
+lastVerified: "2026-11-03"
 translationKey: "principles/tdd-and-testing"
 ---
 

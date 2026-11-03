@@ -1,7 +1,7 @@
 ---
 title: "Ref ve DOM"
 description: "DOM erişimi, ref prop'u, ref callback cleanup ve Fragment ref'leri."
-lastVerified: "2026-10-21"
+lastVerified: "2026-11-03"
 translationKey: "react/refs-and-dom"
 ---
 

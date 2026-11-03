@@ -1,7 +1,7 @@
 ---
 title: "Error monitoring"
 description: "onRequestError, the error code, Sentry and useful alerts."
-lastVerified: "2026-10-22"
+lastVerified: "2026-11-03"
 translationKey: "production/error-monitoring"
 ---
 

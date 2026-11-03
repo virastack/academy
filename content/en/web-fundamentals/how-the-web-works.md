@@ -1,7 +1,7 @@
 ---
 title: "How the web works"
 description: "The browser, HTTP request/response and DevTools."
-lastVerified: "2026-10-17"
+lastVerified: "2026-11-03"
 translationKey: "web-fundamentals/how-the-web-works"
 ---
 

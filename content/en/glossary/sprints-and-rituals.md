@@ -1,7 +1,7 @@
 ---
 title: "Sprints and rituals"
 description: "What the sprint, daily, planning and retro meetings are for."
-lastVerified: "2026-10-16"
+lastVerified: "2026-11-03"
 translationKey: "glossary/sprints-and-rituals"
 ---
 

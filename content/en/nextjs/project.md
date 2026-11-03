@@ -1,7 +1,7 @@
 ---
 title: "Product catalogue"
 description: "A product list, a detail page and a cart with caching, streaming, a Server Action and metadata."
-lastVerified: "2026-10-21"
+lastVerified: "2026-11-03"
 translationKey: "nextjs/project"
 ---
 

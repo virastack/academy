@@ -1,7 +1,7 @@
 ---
 title: "CSRF, CORS and the security headers"
 description: "Preventing CSRF with SameSite, what CORS does, and the basic HTTP security headers."
-lastVerified: "2026-10-22"
+lastVerified: "2026-11-03"
 translationKey: "auth-security/csrf-cors-and-headers"
 ---
 

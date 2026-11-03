@@ -1,7 +1,7 @@
 ---
 title: "Ürün kataloğu"
 description: "Cache, streaming, Server Action ve metadata ile ürün listesi, detay sayfası ve sepet."
-lastVerified: "2026-10-21"
+lastVerified: "2026-11-03"
 translationKey: "nextjs/project"
 ---
 

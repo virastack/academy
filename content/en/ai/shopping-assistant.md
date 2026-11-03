@@ -1,7 +1,7 @@
 ---
 title: "AI shopping assistant"
 description: "A shopping assistant that works with tool calling, user approval, prompt injection protection and rate limiting."
-lastVerified: "2026-10-15"
+lastVerified: "2026-11-03"
 translationKey: "ai/shopping-assistant"
 ---
 

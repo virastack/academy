@@ -1,7 +1,7 @@
 ---
 title: "Product card"
 description: "A step-by-step test for an e-commerce product card."
-lastVerified: "2026-10-14"
+lastVerified: "2026-11-03"
 translationKey: "vitest/project-product-card"
 ---
 

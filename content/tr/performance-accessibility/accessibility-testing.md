@@ -1,7 +1,7 @@
 ---
 title: "Erişilebilirlik testi"
 description: "Otomatik tarama ve ekran okuyucuyla elle kontrol."
-lastVerified: "2026-10-17"
+lastVerified: "2026-11-03"
 translationKey: "performance-accessibility/accessibility-testing"
 ---
 

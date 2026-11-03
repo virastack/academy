@@ -1,7 +1,7 @@
 ---
 title: "Navigation and prefetching"
 description: "Partial Prefetching, instant navigation, preserved state and useLinkStatus."
-lastVerified: "2026-10-21"
+lastVerified: "2026-11-03"
 translationKey: "nextjs/navigation-and-prefetching"
 ---
 

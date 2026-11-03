@@ -1,7 +1,7 @@
 ---
 title: "Clean Code ve temel prensipler"
 description: "DRY, KISS ve YAGNI: ne zaman işe yarar, ne zaman abartılır."
-lastVerified: "2026-10-23"
+lastVerified: "2026-11-03"
 translationKey: "principles/clean-code"
 ---
 

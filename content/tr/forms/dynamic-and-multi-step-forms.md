@@ -1,7 +1,7 @@
 ---
 title: "Dinamik alanlar ve çok adımlı formlar"
 description: "useFieldArray, Controller ve adım adım doğrulama."
-lastVerified: "2026-10-22"
+lastVerified: "2026-11-03"
 translationKey: "forms/dynamic-and-multi-step-forms"
 ---
 

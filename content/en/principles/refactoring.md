@@ -1,7 +1,7 @@
 ---
 title: "Refactoring"
 description: "Improving code in small steps while preserving its behaviour."
-lastVerified: "2026-10-24"
+lastVerified: "2026-11-03"
 translationKey: "principles/refactoring"
 ---
 

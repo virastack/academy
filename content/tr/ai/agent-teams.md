@@ -1,7 +1,7 @@
 ---
 title: "Agent takımı kurmak"
 description: "Spec, frontend, test ve inceleme rollerinde subagent'larla hat kurma, hata döngüsü, lead özeti ve agent teams."
-lastVerified: "2026-10-26"
+lastVerified: "2026-11-03"
 translationKey: "ai/agent-teams"
 ---
 

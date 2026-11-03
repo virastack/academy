@@ -1,7 +1,7 @@
 ---
 title: "Klavye ve odak yönetimi"
 description: "Klavye ile gezinme ve görünür odak."
-lastVerified: "2026-10-17"
+lastVerified: "2026-11-03"
 translationKey: "performance-accessibility/keyboard-and-focus"
 ---
 

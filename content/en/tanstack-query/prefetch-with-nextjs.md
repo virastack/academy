@@ -1,7 +1,7 @@
 ---
 title: "Prefetching with Next.js"
 description: "Starting on the server and streaming, HydrationBoundary and who owns the data."
-lastVerified: "2026-10-21"
+lastVerified: "2026-11-03"
 translationKey: "tanstack-query/prefetch-with-nextjs"
 ---
 

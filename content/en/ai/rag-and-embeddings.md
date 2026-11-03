@@ -1,7 +1,7 @@
 ---
 title: "RAG and embeddings"
 description: "Searching your own data with embeddings and giving it to the model as context: chunking, measuring search quality and security."
-lastVerified: "2026-10-15"
+lastVerified: "2026-11-03"
 translationKey: "ai/rag-and-embeddings"
 ---
 

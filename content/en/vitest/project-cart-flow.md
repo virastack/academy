@@ -1,7 +1,7 @@
 ---
 title: "Cart flow"
 description: "A full flow test from the product list to the cart."
-lastVerified: "2026-10-14"
+lastVerified: "2026-11-03"
 translationKey: "vitest/project-cart-flow"
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "Suspense ve hata sınırları"
 description: "Yükleme durumu, use ile Promise okuma ve hata sınırı."
-lastVerified: "2026-10-21"
+lastVerified: "2026-11-03"
 translationKey: "react/suspense-and-error-boundaries"
 ---
 

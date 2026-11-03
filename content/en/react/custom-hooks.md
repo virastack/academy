@@ -1,7 +1,7 @@
 ---
 title: "Custom hooks"
 description: "The rules of hooks, moving logic into a hook, and useSyncExternalStore."
-lastVerified: "2026-10-21"
+lastVerified: "2026-11-03"
 translationKey: "react/custom-hooks"
 ---
 

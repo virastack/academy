@@ -1,7 +1,7 @@
 ---
 title: "Ürün sayfası"
 description: "Suspense, Context, Actions, Activity ve ViewTransition ile ürün detay sayfası."
-lastVerified: "2026-10-21"
+lastVerified: "2026-11-03"
 translationKey: "react/project"
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "Tool calling and structured output"
 description: "The model calling a function, structured output with a Zod schema, and user approval."
-lastVerified: "2026-10-15"
+lastVerified: "2026-11-03"
 translationKey: "ai/tool-calling-and-structured-output"
 ---
 

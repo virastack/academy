@@ -1,7 +1,7 @@
 ---
 title: "From design to component"
 description: "Turning a Figma card design into a working, tested React component with an agent, a skill and MCP."
-lastVerified: "2026-10-15"
+lastVerified: "2026-11-03"
 translationKey: "ai/design-to-component"
 ---
 

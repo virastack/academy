@@ -1,7 +1,7 @@
 ---
 title: "Micro frontend"
 description: "When you need it, when you don't, and a basic setup with Vite and Module Federation."
-lastVerified: "2026-10-15"
+lastVerified: "2026-11-03"
 translationKey: "architecture/micro-frontend"
 ---
 

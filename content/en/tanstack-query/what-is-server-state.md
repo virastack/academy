@@ -1,13 +1,13 @@
 ---
 title: "What server state is"
 description: "How it differs from client state, the mistakes in fetching with useEffect, and when you don't need it."
-lastVerified: "2026-10-21"
+lastVerified: "2026-11-03"
 translationKey: "tanstack-query/what-is-server-state"
 ---
 
 ## What this guide covers
 
-The [!tanstack-query] documentation is thorough. This guide does not repeat it. Each lesson summarises the topic briefly and gathers the library maintainers' advice along with the common mistakes. Version: TanStack Query v5.104 *(October 2026)*. It works with React 18 and later.[^1][^2]
+The [!tanstack-query] documentation is thorough. This guide does not repeat it. Each lesson summarises the topic briefly and gathers the library maintainers' advice along with the common mistakes. Version: TanStack Query v5.105 *(November 2026)*. It works with React 18 and later.[^1][^2]
 
 The prerequisites are the [State](/academy/react/state) and [Effects](/academy/react/effects) lessons from the [React](/academy/react) guide. The examples run in a React project set up with Vite; the part specific to Next.js is in the [Prefetching with Next.js](/academy/tanstack-query/prefetch-with-nextjs) lesson.
 

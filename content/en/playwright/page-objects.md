@@ -1,7 +1,7 @@
 ---
 title: "Page Object"
 description: "Collecting locators and flows in page objects."
-lastVerified: "2026-10-22"
+lastVerified: "2026-11-03"
 translationKey: "playwright/page-objects"
 ---
 

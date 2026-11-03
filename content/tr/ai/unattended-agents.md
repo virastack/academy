@@ -1,7 +1,7 @@
 ---
 title: "Gözetimsiz agent"
 description: "Bulutta ve arka planda çalışan agent'lar, GitHub'da @claude ile iş verme, otomatik PR incelemesi ve sonucu doğrulama."
-lastVerified: "2026-10-31"
+lastVerified: "2026-11-03"
 translationKey: "ai/unattended-agents"
 ---
 

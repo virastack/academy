@@ -1,7 +1,7 @@
 ---
 title: "Working methods"
 description: "What Agile, Scrum and Kanban are, and why a team picks one over another."
-lastVerified: "2026-10-16"
+lastVerified: "2026-11-03"
 translationKey: "glossary/working-methods"
 ---
 

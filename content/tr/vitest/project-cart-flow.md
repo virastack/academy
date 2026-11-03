@@ -1,7 +1,7 @@
 ---
 title: "Sepet akışı"
 description: "Ürün listesinden sepete tam akış testi."
-lastVerified: "2026-10-14"
+lastVerified: "2026-11-03"
 translationKey: "vitest/project-cart-flow"
 ---
 

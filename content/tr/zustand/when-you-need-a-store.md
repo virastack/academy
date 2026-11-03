@@ -1,7 +1,7 @@
 ---
 title: "Ne zaman store gerekir"
 description: "State türleri, local state ve Context'in yetmediği yer."
-lastVerified: "2026-10-21"
+lastVerified: "2026-11-03"
 translationKey: "zustand/when-you-need-a-store"
 ---
 

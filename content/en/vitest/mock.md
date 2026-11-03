@@ -1,7 +1,7 @@
 ---
 title: "Mock"
 description: "vi.fn, vi.mock and mocking an API with MSW."
-lastVerified: "2026-10-14"
+lastVerified: "2026-11-03"
 translationKey: "vitest/mock"
 ---
 

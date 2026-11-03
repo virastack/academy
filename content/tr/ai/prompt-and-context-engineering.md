@@ -1,7 +1,7 @@
 ---
 title: "Prompt ve context engineering"
 description: "İyi istek yazma, doğru bağlam verme, CLAUDE.md/AGENTS.md ve proje kural dosyaları."
-lastVerified: "2026-10-31"
+lastVerified: "2026-11-03"
 translationKey: "ai/prompt-and-context-engineering"
 ---
 

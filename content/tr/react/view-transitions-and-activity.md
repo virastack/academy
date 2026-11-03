@@ -1,7 +1,7 @@
 ---
 title: "View Transition ve Activity"
 description: "Geçişleri canlandırma ve gizlenen ekranın state'ini koruma."
-lastVerified: "2026-10-21"
+lastVerified: "2026-11-03"
 translationKey: "react/view-transitions-and-activity"
 ---
 

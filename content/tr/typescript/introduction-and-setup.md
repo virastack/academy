@@ -1,7 +1,7 @@
 ---
 title: "Giriş ve kurulum"
 description: "TypeScript nedir, neden kullanılır ve ilk projede tip kontrolü."
-lastVerified: "2026-10-17"
+lastVerified: "2026-11-03"
 translationKey: "typescript/introduction-and-setup"
 ---
 

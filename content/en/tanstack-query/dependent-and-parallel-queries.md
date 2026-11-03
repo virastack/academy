@@ -1,7 +1,7 @@
 ---
 title: "Dependent and parallel queries"
 description: "useQueries, enabled and skipToken, request waterfalls and prefetching on hover."
-lastVerified: "2026-10-21"
+lastVerified: "2026-11-03"
 translationKey: "tanstack-query/dependent-and-parallel-queries"
 ---
 

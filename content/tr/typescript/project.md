@@ -1,7 +1,7 @@
 ---
 title: "Tipli ürün kataloğu"
 description: "Ürün listesi, filtre ve sepeti uçtan uca tiplerle kurma."
-lastVerified: "2026-10-17"
+lastVerified: "2026-11-03"
 translationKey: "typescript/project"
 ---
 

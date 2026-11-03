@@ -1,7 +1,7 @@
 ---
 title: "Running in CI"
 description: "GitHub Actions, sharding and flaky tests."
-lastVerified: "2026-10-22"
+lastVerified: "2026-11-03"
 translationKey: "playwright/running-in-ci"
 ---
 

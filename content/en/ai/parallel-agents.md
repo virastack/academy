@@ -1,7 +1,7 @@
 ---
 title: "Parallel agents"
 description: "Running several agents at once with git worktree, without overwriting each other's files."
-lastVerified: "2026-10-26"
+lastVerified: "2026-11-03"
 translationKey: "ai/parallel-agents"
 ---
 

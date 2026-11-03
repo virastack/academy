@@ -1,7 +1,7 @@
 ---
 title: "Hooks and permission modes"
 description: "Binding the agent to rules: format, lint and test gates, blocking dangerous commands, and permission modes."
-lastVerified: "2026-10-31"
+lastVerified: "2026-11-03"
 translationKey: "ai/hooks"
 ---
 

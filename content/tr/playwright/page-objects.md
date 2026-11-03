@@ -1,7 +1,7 @@
 ---
 title: "Page Object"
 description: "Locator'ları ve akışları sayfa nesnelerinde toplamak."
-lastVerified: "2026-10-22"
+lastVerified: "2026-11-03"
 translationKey: "playwright/page-objects"
 ---
 

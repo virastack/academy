@@ -1,7 +1,7 @@
 ---
 title: "Secret ve bağımlılık güvenliği"
 description: "Anahtarı client'tan uzak tutma, .env ve npm tedarik zinciri saldırıları."
-lastVerified: "2026-10-22"
+lastVerified: "2026-11-03"
 translationKey: "auth-security/secrets-and-dependencies"
 ---
 

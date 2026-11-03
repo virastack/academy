@@ -1,7 +1,7 @@
 ---
 title: "Persist ve devtools"
 description: "Kalıcı state, migration, hydration ve Redux DevTools."
-lastVerified: "2026-10-21"
+lastVerified: "2026-11-03"
 translationKey: "zustand/persist-and-devtools"
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "Yayın öncesi kontrol listesi"
 description: "Canlıya çıkmadan önce bakılacaklar ve yayın günü planı."
-lastVerified: "2026-10-22"
+lastVerified: "2026-11-03"
 translationKey: "production/pre-release-checklist"
 ---
 

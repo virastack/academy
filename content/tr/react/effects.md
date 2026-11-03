@@ -1,7 +1,7 @@
 ---
 title: "Effect ve ne zaman gerekmez"
 description: "Dış sistemle senkronlama, cleanup, useEffectEvent ve Effect'siz çözümler."
-lastVerified: "2026-10-21"
+lastVerified: "2026-11-03"
 translationKey: "react/effects"
 ---
 

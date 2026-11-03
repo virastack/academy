@@ -1,7 +1,7 @@
 ---
 title: "queryOptions and select"
 description: "Query factories, typed cache reads and reducing renders by selecting data."
-lastVerified: "2026-10-21"
+lastVerified: "2026-11-03"
 translationKey: "tanstack-query/query-options-and-select"
 ---
 

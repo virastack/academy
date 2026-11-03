@@ -1,7 +1,7 @@
 ---
 title: "Bağımlı ve paralel sorgular"
 description: "useQueries, enabled ve skipToken, istek şelalesi ve hover'da prefetch."
-lastVerified: "2026-10-21"
+lastVerified: "2026-11-03"
 translationKey: "tanstack-query/dependent-and-parallel-queries"
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "Next.js ile prefetch"
 description: "Server Component'te başlatıp akıtmak, HydrationBoundary ve veri sahipliği."
-lastVerified: "2026-10-21"
+lastVerified: "2026-11-03"
 translationKey: "tanstack-query/prefetch-with-nextjs"
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "SOLID and SRP"
 description: "Separating responsibilities and managing dependencies, with React examples."
-lastVerified: "2026-10-23"
+lastVerified: "2026-11-03"
 translationKey: "principles/solid-and-srp"
 ---
 

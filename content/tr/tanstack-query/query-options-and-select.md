@@ -1,7 +1,7 @@
 ---
 title: "queryOptions ve select"
 description: "Query factory, tipli cache okuma ve veriyi seçerek render'ı azaltmak."
-lastVerified: "2026-10-21"
+lastVerified: "2026-11-03"
 translationKey: "tanstack-query/query-options-and-select"
 ---
 

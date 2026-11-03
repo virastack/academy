@@ -1,7 +1,7 @@
 ---
 title: "When you need a store"
 description: "The kinds of state, local state, and where Context is not enough."
-lastVerified: "2026-10-21"
+lastVerified: "2026-11-03"
 translationKey: "zustand/when-you-need-a-store"
 ---
 

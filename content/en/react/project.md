@@ -1,7 +1,7 @@
 ---
 title: "Product page"
 description: "A product detail page with Suspense, Context, Actions, Activity and ViewTransition."
-lastVerified: "2026-10-21"
+lastVerified: "2026-11-03"
 translationKey: "react/project"
 ---
 

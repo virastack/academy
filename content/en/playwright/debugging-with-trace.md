@@ -1,7 +1,7 @@
 ---
 title: "Debugging with a trace"
 description: "UI Mode, the Inspector, traces and flaky tests."
-lastVerified: "2026-10-22"
+lastVerified: "2026-11-03"
 translationKey: "playwright/debugging-with-trace"
 ---
 

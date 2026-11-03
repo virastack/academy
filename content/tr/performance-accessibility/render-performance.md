@@ -1,7 +1,7 @@
 ---
 title: "React'te render performansı"
 description: "Gereksiz render ve pahalı güncellemeler."
-lastVerified: "2026-10-17"
+lastVerified: "2026-11-03"
 translationKey: "performance-accessibility/render-performance"
 ---
 

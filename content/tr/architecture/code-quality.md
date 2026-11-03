@@ -1,7 +1,7 @@
 ---
 title: "Kod kalitesi ve ekip standartları"
 description: "ESLint, Prettier, commit kuralları ve CI ile otomatik kontrol."
-lastVerified: "2026-10-15"
+lastVerified: "2026-11-03"
 translationKey: "architecture/code-quality"
 ---
 

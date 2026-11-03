@@ -1,7 +1,7 @@
 ---
 title: "Deploy seçenekleri"
 description: "Node.js sunucusu, Docker, statik çıktı ve platform adaptörleri."
-lastVerified: "2026-10-22"
+lastVerified: "2026-11-03"
 translationKey: "production/deployment-options"
 ---
 

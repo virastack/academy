@@ -1,7 +1,7 @@
 ---
 title: "Render performance in React"
 description: "Unnecessary renders and expensive updates."
-lastVerified: "2026-10-17"
+lastVerified: "2026-11-03"
 translationKey: "performance-accessibility/render-performance"
 ---
 

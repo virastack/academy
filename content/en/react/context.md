@@ -1,7 +1,7 @@
 ---
 title: "Context"
 description: "Sharing without prop drilling, using it with a reducer, and its limits."
-lastVerified: "2026-10-21"
+lastVerified: "2026-11-03"
 translationKey: "react/context"
 ---
 

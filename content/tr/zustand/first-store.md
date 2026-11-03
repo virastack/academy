@@ -1,7 +1,7 @@
 ---
 title: "İlk store"
 description: "create, set, get ve store'a React dışından erişmek."
-lastVerified: "2026-10-21"
+lastVerified: "2026-11-03"
 translationKey: "zustand/first-store"
 ---
 

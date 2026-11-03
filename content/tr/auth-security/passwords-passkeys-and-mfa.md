@@ -1,7 +1,7 @@
 ---
 title: "Parola, passkey ve 2FA"
 description: "Giriş formu, parolanın sunucuda saklanması, passkey ve iki adımlı doğrulama."
-lastVerified: "2026-10-18"
+lastVerified: "2026-11-03"
 translationKey: "auth-security/passwords-passkeys-and-mfa"
 ---
 

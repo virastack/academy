@@ -1,7 +1,7 @@
 ---
 title: "Composition over Inheritance"
 description: "React'te neden kalıtım değil composition kullanılır."
-lastVerified: "2026-10-24"
+lastVerified: "2026-11-03"
 translationKey: "principles/composition"
 ---
 

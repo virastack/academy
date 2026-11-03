@@ -1,7 +1,7 @@
 ---
 title: "Route Handler ve proxy"
 description: "API uç noktası, webhook, proxy.ts ve hangisinin ne zaman kullanılacağı."
-lastVerified: "2026-10-21"
+lastVerified: "2026-11-03"
 translationKey: "nextjs/route-handlers-and-proxy"
 ---
 

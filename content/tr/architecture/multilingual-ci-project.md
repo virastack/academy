@@ -1,7 +1,7 @@
 ---
 title: "Çok dilli sayfa ve CI hattı"
 description: "Mevcut bir sayfayı iki dile çevirip lint, tip ve test kontrollerini CI'a bağlama."
-lastVerified: "2026-10-22"
+lastVerified: "2026-11-03"
 translationKey: "architecture/multilingual-ci-project"
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "Server ve Client Components"
 description: "'use client' sınırı, composition, serileştirme ve server-only."
-lastVerified: "2026-10-21"
+lastVerified: "2026-11-03"
 translationKey: "nextjs/server-and-client-components"
 ---
 

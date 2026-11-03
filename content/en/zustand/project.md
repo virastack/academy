@@ -1,7 +1,7 @@
 ---
 title: "Product catalogue and cart"
 description: "A filter store, a persistent cart built from slices, and a derived stock warning."
-lastVerified: "2026-10-21"
+lastVerified: "2026-11-03"
 translationKey: "zustand/project"
 ---
 
