@@ -78,4 +78,4 @@ FSD'nin tam modelinden farkı şu: `pages`, `widgets` ve `entities` katmanları 
 2. [Feature-Sliced Design: Layers](https://feature-sliced.design/docs/reference/layers) *(doc)* — Katmanların görevleri, `processes`'in kullanımdan kalkması, isteğe bağlı katmanlar ve import kuralı.
 3. [Feature-Sliced Design: Public API](https://feature-sliced.design/docs/reference/public-api) *(doc)* — Dilimin dışa açılan sözleşmesi, `export *` ve döngüsel import uyarıları, `index` dosyalarının tree shaking etkisi.
 4. [Feature-Sliced Design: Usage with Next.js](https://feature-sliced.design/docs/guides/tech/with-nextjs) *(doc)* — `app` ve `pages` çakışması, `_app` ve `_pages` adları, kökte `app/` klasörü ve `index.server.ts`.
-5. [ViraStack AI: architecture.mdc](https://github.com/virastack/ai/blob/main/templates/rules/architecture.mdc) *(repo)* — Start şablonlarındaki klasör ağacı, `features/<feature>/` bölümleri ve import kuralları.
+5. [ViraStack AI: architecture.md](https://github.com/virastack/ai/blob/main/templates/rules/architecture.md) *(repo)* — Start şablonlarındaki klasör ağacı, `features/<feature>/` bölümleri ve import kuralları.

@@ -78,4 +78,4 @@ The difference from FSD's full model is this: there are no `pages`, `widgets` or
 2. [Feature-Sliced Design: Layers](https://feature-sliced.design/docs/reference/layers) *(doc)* — The layers' jobs, `processes` being retired, the optional layers and the import rule.
 3. [Feature-Sliced Design: Public API](https://feature-sliced.design/docs/reference/public-api) *(doc)* — A slice's outward contract, the `export *` and circular import warnings, and the tree shaking effect of `index` files.
 4. [Feature-Sliced Design: Usage with Next.js](https://feature-sliced.design/docs/guides/tech/with-nextjs) *(doc)* — The `app` and `pages` clash, the `_app` and `_pages` names, the `app/` folder in the root, and `index.server.ts`.
-5. [ViraStack AI: architecture.mdc](https://github.com/virastack/ai/blob/main/templates/rules/architecture.mdc) *(repo)* — The folder tree in the Start templates, the `features/<feature>/` segments and the import rules.
+5. [ViraStack AI: architecture.md](https://github.com/virastack/ai/blob/main/templates/rules/architecture.md) *(repo)* — The folder tree in the Start templates, the `features/<feature>/` segments and the import rules.
