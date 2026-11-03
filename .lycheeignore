@@ -1,0 +1,9 @@
+# Sites that answer CI runners with 403 while the page is fine in a browser.
+# Check these by hand when a lesson that cites them is revised.
+^https://www\.npmjs\.com/package/
+^https://www\.scrum\.org/
+^https://x\.com/
+^https://www\.cloudflare\.com/
+^https://www\.figma\.com/community/
+^https://claude\.ai/
+^https://arena\.ai/

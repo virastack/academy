@@ -18,6 +18,14 @@ jobs:
     steps:
       - uses: actions/checkout@v5
 
+      # Lessons link to each other as /academy/<path>. Pointing a root dir at a
+      # folder where academy/ is content/tr lets lychee check those links as
+      # files instead of failing to resolve them.
+      - name: Map /academy to the Turkish lessons
+        run: |
+          mkdir -p "$RUNNER_TEMP/site"
+          ln -s "$GITHUB_WORKSPACE/content/tr" "$RUNNER_TEMP/site/academy"
+
       - name: Check every link in the lessons
         id: lychee
         uses: lycheeverse/lychee-action@v2
@@ -27,7 +35,9 @@ jobs:
             --max-concurrency 8
             --timeout 20
             --max-retries 2
-            --accept 200,206,429
+            --accept 200,202,206,429
+            --root-dir ${{ runner.temp }}/site
+            --fallback-extensions md
             --exclude-path content/en
             "content/**/*.md"
             "*.md"
