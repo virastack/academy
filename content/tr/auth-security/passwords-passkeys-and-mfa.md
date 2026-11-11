@@ -3,6 +3,37 @@ title: "Parola, passkey ve 2FA"
 description: "Giriş formu, parolanın sunucuda saklanması, passkey ve iki adımlı doğrulama."
 lastVerified: "2026-11-03"
 translationKey: "auth-security/passwords-passkeys-and-mfa"
+quiz:
+  - question: "Parolanın tek başına kullanıldığı bir sistemde NIST SP 800-63B-4'e uyan kural seti hangisidir?"
+    options:
+      - "En az 15 karakter; karakter zorunluluğu yok; sızmış parola kontrolü; yalnızca sızıntıda değişiklik"
+      - "En az 8 karakter; büyük harf, rakam ve sembol zorunlu; 90 günde bir değişiklik"
+      - "En az 12 karakter; yapıştırma kapalı"
+      - "En az 15, en fazla 20 karakter; yılda bir değişiklik"
+    answer: 0
+    explanation: "NIST karakter zorunluluğunu ve periyodik değişikliği kaldırır, en az 64 karaktere izin verilmesini ister. 2FA ile birlikteyse alt sınır 8'dir. Parola yöneticilerine ve yapıştırmaya izin verilmelidir."
+  - question: "Have I Been Pwned'a gönderilen `prefix` nedir?"
+    lang: ts
+    code: |-
+      const response = await fetch(
+        `https://api.pwnedpasswords.com/range/${prefix}`,
+        { headers: { "Add-Padding": "true" } },
+      );
+    options:
+      - "SHA-1 hash'inin tamamı"
+      - "Parolanın ilk 5 karakteri"
+      - "Parolanın SHA-1 hash'inin ilk 5 karakteri"
+      - "Parolanın kendisi"
+    answer: 2
+    explanation: "Parola gönderilmez; dönen listede hash'in geri kalanı aranır (k-anonymity). `Add-Padding` yanıta sayısı `0` olan sahte satırlar ekler; bu satırları atlamanız gerekir."
+  - question: "Passkey neden oltalamaya (phishing) dayanıklıdır?"
+    options:
+      - "Giriş SMS ile onaylanır"
+      - "Kod 30 saniyede bir değişir"
+      - "İmza sitenin alan adına bağlıdır; sahte bir giriş sayfası geçerli imza alamaz"
+      - "Sunucu özel anahtarı saklar ve karşılaştırır"
+    answer: 2
+    explanation: "Özel anahtar cihazda kalır, sunucu yalnızca açık anahtarı tutar; veritabanı sızsa bile bununla giriş yapılamaz. TOTP kodu ise sahte siteye girilebilir. Kullanıcı cihazlarını kaybedebileceği için bir kurtarma yolu da planlayın."
 ---
 
 Kullanıcı kimliğini kanıtlamak için üç tür şey kullanabilir: **bildiği** bir şey *(parola)*, **sahip olduğu** bir şey *(telefon, güvenlik anahtarı)* ya da **kendisi olan** bir şey *(parmak izi, yüz)*.[^1] Bu derste parolayla başlayıp iki adımlı doğrulamaya ve parolanın yerini almaya başlayan passkey'lere geçeceğiz.

@@ -3,6 +3,47 @@ title: "State"
 description: "Snapshots and updaters, immutable updates, and structuring state well."
 lastVerified: "2026-11-03"
 translationKey: "react/state"
+quiz:
+  - question: "`quantity` is 1 and the button is clicked. What is `quantity` on the next render?"
+    code: |-
+      function handleAddThree() {
+        setQuantity(quantity + 1);
+        setQuantity(quantity + 1);
+        setQuantity(quantity + 1);
+      }
+    options:
+      - "1"
+      - "2"
+      - "3"
+      - "4"
+    answer: 1
+    explanation: "State is a fixed snapshot for that render; all three calls compute `1 + 1`. To update from the previous value, pass an updater: `setQuantity((q) => q + 1)`."
+  - question: "A product is added to the cart but the screen does not update. Why?"
+    code: |-
+      cart.push(product);
+      setCart(cart);
+    options:
+      - "The same array reference is passed back, so React may not see the change"
+      - "`setCart` only works with an updater function"
+      - "`push` runs asynchronously"
+      - "Arrays cannot be kept in state"
+    answer: 0
+    explanation: "React detects changes by comparing references. Instead of mutating, pass a new array: `setCart([...cart, product])`."
+  - question: "What is the best fix for this code?"
+    code: |-
+      const [products, setProducts] = useState<Product[]>([]);
+      const [inStock, setInStock] = useState<Product[]>([]);
+
+      useEffect(() => {
+        setInStock(products.filter((p) => p.stock > 0));
+      }, [products]);
+    options:
+      - "Use `useLayoutEffect` instead of `useEffect`"
+      - "Delete the `inStock` state and compute `products.filter(...)` during render"
+      - "Change the dependency array to `[]`"
+      - "Call `setInStock` with an updater function"
+    answer: 1
+    explanation: "A value you can compute does not belong in state. If a setter is only called synchronously inside an Effect, delete that state: don't sync state, derive it."
 ---
 
 ## What state is

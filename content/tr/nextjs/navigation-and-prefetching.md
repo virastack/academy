@@ -3,6 +3,37 @@ title: "Navigasyon ve prefetch"
 description: "Partial Prefetching, anında navigasyon, korunan state ve useLinkStatus."
 lastVerified: "2026-11-03"
 translationKey: "nextjs/navigation-and-prefetching"
+quiz:
+  - question: "Partial Prefetching açıkken hangisi URL verisi sayılır ve `<Suspense>` içinde okunmalıdır?"
+    options:
+      - "`params`"
+      - "`\"use cache\"`'li `getProducts()`"
+      - "`headers()`"
+      - "`cookies()`"
+    answer: 0
+    explanation: "App Shell bir rotaya giden bütün linklerde ortaktır, tek bir URL'ye ait veri taşıyamaz. `params` ve `searchParams` URL verisidir; `cookies()` ve `headers()` oturuma göre değişir ve kabukta kalabilir."
+  - question: "Geliştirmede bu uyarı çıkıyor. Dersin önerdiği düzeltme hangisi?"
+    lang: tsx
+    code: |-
+      export default async function ProductPage({ params }: PageProps<"/products/[slug]">) {
+        const { slug } = await params; // "URL data outside of Suspense"
+        // ...
+      }
+    options:
+      - "Dosyaya `\"use client\"` eklemek"
+      - "`params`'ı layout'ta `await` etmek"
+      - "Linklere `prefetch={false}` vermek"
+      - "`params` Promise'ini `await` etmeden `<Suspense>` içindeki bir child'a vermek"
+    answer: 3
+    explanation: "Sayfa `params`'ı `<Suspense>` içindeki bir child'a Promise olarak verir, child onu `await` eder. Böylece kabuk bütün linklerde ortak kalır ve geçiş anında olur."
+  - question: "Cache Components açık bir uygulamada Playwright'ta `page.locator(\"h1\")` iki başlık buluyor. Sebebi nedir?"
+    options:
+      - "`loading.tsx` kendi `h1`'ini ekliyor"
+      - "Ayrıldığınız sayfa `<Activity>` ile gizlenip `display: none` olarak DOM'da kalıyor"
+      - "Hydration başlığı kopyalıyor"
+      - "Next.js sayfayı iki kez render ediyor"
+    answer: 1
+    explanation: "Next.js ayrılan sayfayı silmez, `<Activity>` ile gizler; son üç rota saklanır. Gizli sayfa DOM'da kalır. Görünürlüğe bakan `getByRole` ve `getByLabel` sorgularını kullanın."
 ---
 
 ## Hızlı navigasyonun üç parçası

@@ -3,6 +3,40 @@ title: "OAuth ve OIDC akışları"
 description: "Authorization code ve PKCE, access ve ID token; \"Google ile giriş\" nasıl çalışır."
 lastVerified: "2026-11-03"
 translationKey: "auth-security/oauth-and-oidc"
+quiz:
+  - question: "PKCE kullanan bir akışta authorization code'u yolda yakalayan saldırgan onu neden token'a çeviremez?"
+    options:
+      - "Elinde `code_verifier` yoktur; authorization server onun hash'ini `code_challenge` ile karşılaştırır"
+      - "`state` değeri eşleşmez"
+      - "Code şifrelidir"
+      - "Code bir saniyede geçersiz olur"
+    answer: 0
+    explanation: "Uygulama rastgele bir `code_verifier` üretir, SHA-256 hash'ini `code_challenge` olarak ilk yönlendirmeye ekler ve kodu token'a çevirirken orijinalini gönderir. `state` ise yanıtın sizin başlattığınız akışa ait olduğunu kontrol eder."
+  - question: "Access token ve ID token için hangisi doğrudur?"
+    options:
+      - "İkisi de her zaman JWT'dir ve birbirinin yerine kullanılabilir"
+      - "Access token kullanıcının kim olduğunu söyler"
+      - "Access token API içindir; ID token uygulamanız (client) içindir"
+      - "ID token API'ye gönderilir, access token'ı client okur"
+    answer: 2
+    explanation: "oauth.net'teki kural: ID token API'ye gönderilmez, access token'ı da client okumaz. Access token'ın formatı sağlayıcıya göre değişir ve client için opaktır; ID token her zaman JWT'dir."
+  - question: "Bu ID token'daki kullanıcıyı veritabanınızda hangi alanla eşleştirmelisiniz?"
+    lang: json
+    code: |-
+      {
+        "iss": "https://auth.example.com",
+        "sub": "248289761001",
+        "aud": "shop-web",
+        "nonce": "n-0S6_WzA2Mj",
+        "email": "ayse@example.com"
+      }
+    options:
+      - "`iss` + `sub` ikilisi"
+      - "`email`"
+      - "`aud`"
+      - "`nonce`"
+    answer: 0
+    explanation: "`sub` kullanıcının o sağlayıcıdaki kalıcı kimliğidir; e-posta değişse de değişmez. `aud` token'ın hangi uygulama için üretildiğini, `nonce` isteği ID token'a bağlayıp tekrar oynatmayı önlemeyi söyler."
 ---
 
 "[!google] Google ile giriş yap" düğmesine bastığınızda arka planda iki standart birlikte çalışır: **OAuth 2.0** ve onun üzerine kurulan **OpenID Connect** *(OIDC)*. Bu derste ikisinin ne işe yaradığını, bugün hangi akışın kullanılması gerektiğini ve token'ların nerede durması gerektiğini göreceksiniz.

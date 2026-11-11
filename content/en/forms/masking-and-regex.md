@@ -3,6 +3,35 @@ title: "Masking and regex"
 description: "The displayed value, the raw value and @virastack/mask."
 lastVerified: "2026-11-03"
 translationKey: "forms/masking-and-regex"
+quiz:
+  - question: "What does this test return?"
+    lang: ts
+    code: |-
+      const vatNumber = /\d{9}/;
+      vatNumber.test("abc12345678901234");
+    options:
+      - "It throws an error"
+      - "`true`; without `^` and `$`, any text containing nine digits is accepted"
+      - "`false`"
+      - "`null`"
+    answer: 1
+    explanation: "`^` and `$` anchor the start and the end of the text. Forgetting them is the most common mistake; for exactly nine digits write `/^\\d{9}$/`."
+  - question: "Which input does the lesson recommend for a phone number field?"
+    options:
+      - "`<input type=\"range\" />`"
+      - "`<input type=\"text\" inputmode=\"numeric\" />`"
+      - "`<input type=\"tel\" pattern=\"\\d+\" />`"
+      - "`<input type=\"number\" />`"
+    answer: 1
+    explanation: "Phone, card and IBAN numbers are strings of digits. GOV.UK dropped `type=\"number\"`: screen readers do not recognise it, the mouse wheel changes the value, and long numbers can be rounded. Use a text field with a numeric keyboard."
+  - question: "In a form with `zodResolver`, why do `@virastack/mask`'s own validators not run?"
+    options:
+      - "The mask does not write the raw value to the form"
+      - "The validators attach through `register`'s `validate` rule, and `register` rules do not run when there is a resolver"
+      - "The validators only run on the server"
+      - "The package is incompatible with Zod"
+    answer: 1
+    explanation: "With a resolver, write every rule into the schema against the raw value. `z.creditCard()` covers cards, `z.iban()` covers IBANs, and a short checksum function covers the Turkish ID number."
 ---
 
 ## The displayed value and the raw value

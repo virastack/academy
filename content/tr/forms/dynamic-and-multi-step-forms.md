@@ -3,6 +3,44 @@ title: "Dinamik alanlar ve çok adımlı formlar"
 description: "useFieldArray, Controller ve adım adım doğrulama."
 lastVerified: "2026-11-03"
 translationKey: "forms/dynamic-and-multi-step-forms"
+quiz:
+  - question: "`useFieldArray` listesinde key için doğru değer nedir?"
+    lang: tsx
+    code: |-
+      {fields.map((field, index) => (
+        <div key={index}>
+          <input {...register(`products.${index}.name`)} />
+        </div>
+      ))}
+    options:
+      - "`Math.random()`"
+      - "`index`, burada sorun yok"
+      - "`field.name`"
+      - "`field.id`; `index` olursa ortadan bir satır silinince React input'ları karıştırır"
+    answer: 3
+    explanation: "React Hook Form her satıra benzersiz bir `id` verir; key olarak onu kullanın. v8'de bu alanın adı `field.key` oluyor."
+  - question: "Butona tıklayınca ne olur?"
+    lang: tsx
+    code: |-
+      <form onSubmit={handleSubmit(onSubmit)}>
+        {/* ... */}
+        <button onClick={() => append({ name: "", price: "" })}>Ürün ekle</button>
+      </form>
+    options:
+      - "Form sıfırlanır"
+      - "Hiçbir şey; `append` buton içinde çalışmaz"
+      - "Satır eklenir ve form da gönderilir; butona `type=\"button\"` verilmeli"
+      - "Yalnızca yeni satır eklenir"
+    answer: 2
+    explanation: "Formun içindeki her `<button>` varsayılan olarak gönderir. Ekleme ve silme butonlarına `type=\"button\"` verin."
+  - question: "Tek bir `useForm` ile kurulan çok adımlı formda kullanıcı bir adım geri dönüyor. Önceki adımın değerleri ne olur?"
+    options:
+      - "Korunur; React Hook Form varsayılan olarak unmount olan alanın değerini saklar (`shouldUnregister: false`)"
+      - "Yalnızca hatasız alanlar korunur"
+      - "`trigger` çağrılmadıysa silinir"
+      - "Silinir; adım ekrandan kalkınca alanlar unmount olur"
+    answer: 0
+    explanation: "Geri dönmek için doğrulama gerekmez: `setStep((s) => s - 1)`. Değerler formda durur; ileri giderken `trigger` yalnızca o adımın alanlarını doğrular."
 ---
 
 ## useFieldArray

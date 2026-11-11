@@ -84,7 +84,7 @@ for (const vp of viewports) {
     const small: string[] = [];
     for (const el of await page.locator('button, a[href]').all()) {
       const box = await el.boundingBox();
-      if (box && (box.width < 24 || box.height < 24)) small.push((await el.innerText()).trim() || 'ikon buton');
+      if (box && (box.width < 24 || box.height < 24)) small.push((await el.innerText()).trim() || 'icon button');
     }
     expect(small).toEqual([]);
   });

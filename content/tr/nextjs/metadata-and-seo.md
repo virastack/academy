@@ -3,6 +3,46 @@ title: "Metadata ve SEO"
 description: "metadata, generateMetadata, OG görseli, sitemap, robots ve JSON-LD."
 lastVerified: "2026-11-03"
 translationKey: "nextjs/metadata-and-seo"
+quiz:
+  - question: "`/products` sayfasının başlığı nedir?"
+    lang: tsx
+    code: |-
+      // app/layout.tsx
+      export const metadata: Metadata = {
+        title: { default: "Store", template: "%s | Store" },
+      };
+
+      // app/products/page.tsx
+      export const metadata: Metadata = { title: "Products" };
+    options:
+      - "`Store | Products`"
+      - "`Products`"
+      - "`Products | Store`"
+      - "`Store`"
+    answer: 2
+    explanation: "`title.template` alt segmentlerdeki başlığa ek yapar: `%s` yerine sayfanın başlığı gelir. Template kullanırken `default` zorunludur."
+  - question: "JSON-LD'de `<` karakterini neden `\\u003c` ile değiştiriyoruz?"
+    lang: tsx
+    code: |-
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
+      />
+    options:
+      - "Google başka türlü JSON-LD'yi okumaz"
+      - "Türkçe karakterleri korumak için"
+      - "Dosya boyutunu küçültmek için"
+      - "`JSON.stringify` HTML'i temizlemez; ürün adındaki `</script>` gibi bir değer XSS açığı yaratabilir"
+    answer: 3
+    explanation: "`JSON.stringify` çıktısı HTML için güvenli değildir. Veriden gelen `</script>` script etiketini kapatıp sayfaya kod sokabilir; `<` → `\\u003c` değişimi bunu engeller."
+  - question: "`opengraph-image.tsx` içinde `ImageResponse` ile çizdiğiniz düzen `display: grid` kullanıyor ve bozuk çıkıyor. Sebebi nedir?"
+    options:
+      - "Görsel boyutu 1200×630 değil"
+      - "`ImageResponse` yalnızca Client Component'te çalışır"
+      - "OG görselleri yalnızca PNG dosyası olabilir"
+      - "`ImageResponse` yalnızca flexbox'ı ve CSS'in bir alt kümesini destekler; `display: grid` çalışmaz"
+    answer: 3
+    explanation: "`next/og`'daki `ImageResponse` JSX ve CSS'ten PNG üretir ama yalnızca flexbox ve CSS'in bir alt kümesini destekler. Düzeni flexbox ile kurun."
 ---
 
 ## SEO'da Next.js'in payı

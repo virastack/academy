@@ -3,6 +3,40 @@ title: "Kullanıcı etkileşimi"
 description: "userEvent, arama kutusu ve kupon formu."
 lastVerified: "2026-11-03"
 translationKey: "vitest/user-interaction"
+quiz:
+  - question: "İşlemden sonra input'un değeri nedir?"
+    lang: tsx
+    code: |-
+      // input'un değeri şu an "YAZ"
+      await user.type(input, "2026");
+    options:
+      - "`\"YAZ\"`"
+      - "`\"YAZ2026\"`"
+      - "`\"2026\"`"
+      - "Hata fırlatır"
+    answer: 1
+    explanation: "`user.type` mevcut metni silmez, yeni karakterleri sona ekler. Dolu bir alanı değiştirmek için önce `user.clear` çağırın."
+  - question: "Bir formda metin alanı ve devre dışı (`disabled`) bir gönder butonu var. Kullanıcı alanda `Enter`'a basarsa ne olur?"
+    options:
+      - "Form gönderilir"
+      - "Form gönderilmez; `Enter` formdaki ilk gönder butonuna tıklar ve o buton devre dışıdır"
+      - "Alan temizlenir"
+      - "Buton etkinleşir"
+    answer: 1
+    explanation: "HTML standardına göre metin alanındaki `Enter` ilk gönder butonuna tıklar; buton devre dışıysa form gönderilmez."
+  - question: "Alanda `required` gibi bir kısıt yok. `toBeInvalid()` neden geçer?"
+    lang: tsx
+    code: |-
+      <input id="coupon" aria-invalid={error ? true : undefined} />
+
+      expect(screen.getByLabelText("Kupon kodu")).toBeInvalid();
+    options:
+      - "`toBeInvalid` her zaman geçer"
+      - "Label boş olduğu için"
+      - "`aria-invalid=\"true\"` olan elemanı geçersiz sayar"
+      - "`checkValidity()` `false` döner"
+    answer: 2
+    explanation: "`toBeInvalid()`, `aria-invalid=\"true\"` olan ya da `checkValidity()` sonucu `false` olan elemanı geçersiz sayar. Kısıt olmadığı için `checkValidity()` `true` döner; test `aria-invalid` sayesinde geçer."
 ---
 
 ## userEvent kullanın

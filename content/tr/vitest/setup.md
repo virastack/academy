@@ -3,6 +3,37 @@ title: "Kurulum"
 description: "Vitest, jsdom ve React Testing Library kurulumu."
 lastVerified: "2026-11-03"
 translationKey: "vitest/setup"
+quiz:
+  - question: "Testi çalıştırınca bu hatayı alıyorsunuz. Sebebi nedir?"
+    lang: text
+    code: |-
+      ReferenceError: document is not defined
+    options:
+      - "Setup dosyası yüklenmemiş"
+      - "`@testing-library/dom` kurulu değil"
+      - "Test dosyasının adında `.test.` yok"
+      - "Test ortamı varsayılan `node` olarak kalmış; `environment: \"jsdom\"` eklenmeli"
+    answer: 3
+    explanation: "Vitest'in varsayılan ortamı `node`'dur ve orada `document` yoktur. `test` bloğuna `environment: \"jsdom\"` ekleyin."
+  - question: "Bu hatanın sebebi nedir?"
+    lang: text
+    code: |-
+      Invalid Chai property: toBeInTheDocument
+    options:
+      - "`toBeInTheDocument` Vitest 5'te kaldırıldı"
+      - "jsdom kurulu değil"
+      - "Setup dosyası yüklenmemiş; `@testing-library/jest-dom/vitest` import'u çalışmamış"
+      - "Testte `await` eksik"
+    answer: 2
+    explanation: "jest-dom matcher'larını Vitest'e setup dosyasındaki `import \"@testing-library/jest-dom/vitest\"` ekler. `setupFiles` yolunu kontrol edin."
+  - question: "`globals: false` kullanıyorsunuz. Setup dosyasına ayrıca ne eklemelisiniz?"
+    options:
+      - "`environment: \"node\"`"
+      - "Hiçbir şey"
+      - "`vi.useFakeTimers()`"
+      - "`afterEach(() => cleanup())`; React Testing Library'nin otomatik temizliği global `afterEach`'e bağlıdır"
+    answer: 3
+    explanation: "`globals: false` ile `test`, `expect` ve `vi`'yi her dosyada `vitest`'ten import edersiniz. Otomatik temizlik global `afterEach` olmadan çalışmaz; setup dosyasında `cleanup`'ı kendiniz çağırın."
 ---
 
 ## Gereksinimler

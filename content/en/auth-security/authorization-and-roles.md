@@ -3,6 +3,47 @@ title: "Authorisation and roles"
 description: "Checking roles and permissions, and protecting pages, APIs and Server Actions."
 lastVerified: "2026-11-03"
 translationKey: "auth-security/authorization-and-roles"
+quiz:
+  - question: "With this setting, what happens if `\"role\": \"admin\"` is added to a sign-up request?"
+    lang: ts
+    code: |-
+      user: {
+        additionalFields: {
+          role: { type: "string", defaultValue: "customer", input: false },
+        },
+      },
+    options:
+      - "The user is saved as `admin`"
+      - "The request succeeds but `customer` is written to the database"
+      - "The request fails with 400"
+      - "The account gets locked"
+    answer: 1
+    explanation: "`input: false` stops the field from being sent with a sign-up or update request. Never keep the role in `localStorage`, the URL or a field the client sends, and trust it."
+  - question: "What is the security hole in this function?"
+    lang: ts
+    code: |-
+      export async function cancelOrder(orderId: string) {
+        const user = await getCurrentUser();
+        await db.order.update({
+          where: { id: orderId },
+          data: { status: "cancelled" },
+        });
+      }
+    options:
+      - "`\"use server\"` is missing"
+      - "The order id is not a UUID"
+      - "There is no ownership check; any signed-in user can cancel someone else's order by sending its id (IDOR)"
+      - "There is no sign-in check"
+    answer: 2
+    explanation: "`getCurrentUser` checks sign-in, but nothing checks whether the order belongs to the user. Unguessable ids make IDOR harder but do not solve it; OWASP asks for an authorisation check for every object."
+  - question: "A signed-in customer without the `order:read-all` permission calls a Route Handler. Which status code should it return?"
+    options:
+      - "`200 OK` with an empty list"
+      - "`500 Internal Server Error`"
+      - "`401 Unauthorized`"
+      - "`403 Forbidden`"
+    answer: 3
+    explanation: "`401` means it is not known who you are; `403` means you are known but not allowed, and signing in again will not change that. If you do not want to reveal that the record exists at all, return `404` instead of `403`."
 ---
 
 Authentication answers "who are you?". **Authorization** answers "are you allowed to do this?". Not every signed-in user can do everything: a customer only sees their own order, an editor updates products, an admin manages users.

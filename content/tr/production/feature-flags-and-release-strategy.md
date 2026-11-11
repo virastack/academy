@@ -3,6 +3,37 @@ title: "Feature flag ve yayın stratejisi"
 description: "Flags SDK, yüzdeli açılış, canary ve blue-green."
 lastVerified: "2026-11-03"
 translationKey: "production/feature-flags-and-release-strategy"
+quiz:
+  - question: "Kullanıcıların %10'una özelliği bu satırla açmanın sorunu nedir?"
+    lang: ts
+    code: |-
+      const showSummary = Math.random() < 0.1;
+    options:
+      - "Her istekte farklı sonuç verir; kullanıcı sayfayı yenileyince özellik kaybolabilir"
+      - "%10'dan fazla kişiye açılır"
+      - "Sorun yoktur"
+      - "`Math.random()` sunucuda çalışmaz"
+    answer: 0
+    explanation: "Doğrusu kullanıcıyı sabit bir kovaya yerleştirmektir: kullanıcı kimliğinin özeti 0-99 arasına çevrilir, sayı yüzdeden küçükse kullanıcı içeridedir."
+  - question: "Kova yöntemiyle açılış %10'dan %30'a çıkarılıyor. Daha önce özelliği gören kullanıcılara ne olur?"
+    options:
+      - "Yarısı dışarıda kalır"
+      - "Önce hepsi dışarı alınır"
+      - "Yeniden rastgele dağıtılırlar"
+      - "Hepsi içeride kalır; kovası 10'dan küçük olan 30'dan da küçüktür"
+    answer: 3
+    explanation: "Sabit kova yöntemi kalıcı, dengeli ve büyüyen bir açılış sağlar: aynı kullanıcı hep aynı kovaya düşer ve yüzde artınca kimse dışarıda kalmaz."
+  - question: "Kova hesabına flag'e özel bir `salt` eklemek neden gerekir?"
+    lang: ts
+    code: |-
+      rolloutBucket(id, "order-summary");
+    options:
+      - "Özeti daha güvenli yapmak için"
+      - "Kullanıcı kimliğini gizlemek için"
+      - "Her flag'e farklı bir dağılım vermek için; yoksa her yeni özelliği ilk görenler hep aynı %10 olurdu"
+      - "Hesabı hızlandırmak için"
+    answer: 2
+    explanation: "Tuz olmadan aynı kullanıcı her flag'de aynı kovaya düşer. Flag'e özel tuz her özelliğin açılışını farklı kullanıcılarla başlatır."
 ---
 
 ## Deploy etmek ile yayınlamak farklıdır

@@ -3,6 +3,37 @@ title: "Clean Code ve temel prensipler"
 description: "DRY, KISS ve YAGNI: ne zaman işe yarar, ne zaman abartılır."
 lastVerified: "2026-11-03"
 translationKey: "principles/clean-code"
+quiz:
+  - question: "“The Pragmatic Programmer” kitabındaki tanıma göre DRY'ın asıl konusu nedir?"
+    options:
+      - "Her bilgi parçasının sistemde tek, net ve yetkili bir temsilinin olması"
+      - "Dosya sayısını azaltmak"
+      - "Benzer görünen satırları her zaman birleştirmek"
+      - "Kodu olabildiğince kısa yazmak"
+    answer: 0
+    explanation: "Anahtar kelime bilgidir. Bugün aynı görünen ama farklı sebeplerle değişecek iki kod parçasını birleştirmek sorun çıkarır; AHA ilkesi soyutlamayı tekrar gerçekten görülene kadar bekletmeyi söyler."
+  - question: "KISS'e göre bu kodun daha sade hâli hangisidir?"
+    lang: tsx
+    code: |-
+      const [fullName, setFullName] = useState("");
+      useEffect(() => {
+        setFullName(firstName + " " + lastName);
+      }, [firstName, lastName]);
+    options:
+      - "`useLayoutEffect` kullanmak"
+      - "Değeri Context'e taşımak"
+      - "State ve Effect'i silip render sırasında hesaplamak: `const fullName = firstName + \" \" + lastName`"
+      - "`useMemo` ile sarmak"
+    answer: 2
+    explanation: "Frontend'de en sık karmaşıklık gereksiz state ve Effect'tir. React dokümanına göre gereksiz Effect'leri kaldırmak kodu daha hızlı, takibi kolay ve daha az hata yapan hâle getirir."
+  - question: "Uygulamada şu an tek bir tablo var. YAGNI'ye göre ne yapılmalı?"
+    options:
+      - "Sıralama, filtreleme ve gruplama destekleyen genel bir `DataTable` yazmak"
+      - "Bir tablo kütüphanesi kurup hepsini açmak"
+      - "Bugün gereken `ProductTable`'ı yazmak; ikinci tablo gerçekten gelince genel bileşeni çıkarmak"
+      - "Tablo yazmayı ertelemek"
+    answer: 2
+    explanation: "Henüz gerekmeyen yeteneği şimdi eklemenin yazma, erteleme, taşıma ve onarım maliyetleri vardır. İkinci tablo gelince neyin ortak olduğunu bilirsiniz. YAGNI refactoring'e aykırı değildir."
 ---
 
 Bu rehber frontend geliştiriciler için yazıldı. Örnekler [!react] ve [!typescript] ile, ama fikirler her dilde geçerli. Üç kısa prensip öğreneceksiniz: DRY, KISS ve YAGNI. Her biri bir soruya cevap veriyor.

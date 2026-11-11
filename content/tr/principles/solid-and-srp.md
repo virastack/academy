@@ -3,6 +3,40 @@ title: "SOLID ve SRP"
 description: "Sorumlulukların ayrılması ve bağımlılık yönetimi, React örnekleriyle."
 lastVerified: "2026-11-03"
 translationKey: "principles/solid-and-srp"
+quiz:
+  - question: "Robert C. Martin'e göre Single Responsibility ilkesi ne demektir?"
+    options:
+      - "Bir fonksiyon yalnızca tek bir şey yapmalıdır"
+      - "Bir component en fazla 50 satır olmalıdır"
+      - "Her dosyada tek bir fonksiyon olmalıdır"
+      - "Bir modülün değişmesi için tek bir nedeni olmalıdır; neden, tek bir kişiden ya da iş işlevinden gelen isteklerdir"
+    answer: 3
+    explanation: "SRP \"tek şey yapar\" demek değildir. Hata düzeltmeleri ve refactoring \"neden\" sayılmaz; ölçü satır sayısı değil, değişme nedeni sayısıdır."
+  - question: "Bu component'in kaç değişme nedeni var?"
+    lang: tsx
+    code: |-
+      function ProductList() {
+        const { data: products = [] } = useQuery({
+          queryKey: ["products"],
+          queryFn: () => fetch("/api/products").then((res) => res.json()),
+        });
+        return products.map((p) => <li key={p.id}>{p.name}: {p.price.toFixed(2)} TL</li>);
+      }
+    options:
+      - "İki"
+      - "Bir"
+      - "Hiç"
+      - "Üç: API değişir, fiyat formatı değişir, tasarım değişir"
+    answer: 3
+    explanation: "Veri çekme, fiyat biçimlendirme ve çizim ayrı nedenlerle değişir. Ders bunları `products.api.ts`, `format-price.ts`, `use-products.ts` ve yalnızca çizen `ProductList`'e ayırır."
+  - question: "Component'in `fetch(\"/api/products\")` yerine `useProducts()` çağırması Dependency Inversion açısından ne kazandırır?"
+    options:
+      - "Hata yönetimi gereksiz olur"
+      - "Dependency injection otomatik yapılır"
+      - "Component URL'ye, HTTP'ye ve cevabın şekline değil, yalnızca \"ürünler\" kavramına bağlı olur; veri kaynağı değişse component değişmez"
+      - "İstek daha hızlı gider"
+    answer: 2
+    explanation: "Üst seviye kurallar alt seviye ayrıntılara bağlı olmamalı, bağımlılık soyutlamalara doğru akmalı. DIP dependency injection ile aynı şey değildir. Hiç değişmeyecek bir bağımlılık için ek katman eklemeyin."
 ---
 
 SOLID, nesne yönelimli tasarımdan gelen beş prensip. Frontend geliştirici olarak sınıf yazmıyor olabilirsiniz, ama fikirler [!react] component'lerine ve hook'larına da uyuyor. Bu rehber en çok işe yarayan ikisine odaklanıyor: SRP ve DIP.

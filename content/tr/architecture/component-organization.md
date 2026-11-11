@@ -3,6 +3,34 @@ title: "Component ve kod organizasyonu"
 description: "Component'leri bölme, ortak kodu ayırma ve sınırları koruma."
 lastVerified: "2026-11-03"
 translationKey: "architecture/component-organization"
+quiz:
+  - question: "Her yeni ihtiyaç için bir boolean prop eklenen bu component'e dersin önerdiği alternatif hangisi?"
+    lang: tsx
+    code: |-
+      <ProductCard showPrice showBadge compact onSale />
+    options:
+      - "Compound component: `<ProductCard>` içine çağıranın seçtiği `<ProductCard.Title>`, `<ProductCard.Price>` gibi parçalar"
+      - "Daha fazla boolean prop eklemek ve içeride `switch` kullanmak"
+      - "Bütün prop'ları tek bir `options` nesnesinde toplamak"
+      - "Her varyant için ayrı bir kopya component"
+    answer: 0
+    explanation: "Boolean'lar çoğaldıkça içerideki koşullar da çoğalır. Compound component'te kök ortak state ve context'i tutar; gizlenecekleri boolean'la değil, görünecekleri JSX'le söylersiniz."
+  - question: "Ürün listesindeki arama kutusunun metnini hem kutu hem liste kullanıyor. State nerede durmalı?"
+    options:
+      - "Kutuyu ve listeyi saran en yakın ortak ebeveynde"
+      - "Arama kutusunun içinde; liste ref ile okur"
+      - "URL'de, her zaman"
+      - "Global bir store'da"
+    answer: 0
+    explanation: "State onu kullananların en yakın ortak noktasında tutulur, daha aşağıda değil. Global store'a yalnızca gerçekten uygulama geneli olan veri girer; hızlı değişen global state yavaş uygulamaların yaygın nedenlerindendir."
+  - question: "`features/products`'ın `features/cart`'tan import etmesini otomatik olarak engellemek için ders hangi aracı kullanır?"
+    options:
+      - "`import/no-restricted-paths` zone'ları (`target`, `from`, `except`)"
+      - "`import/no-cycle`"
+      - "Prettier"
+      - "Kod incelemesinde dikkat etmek"
+    answer: 0
+    explanation: "Yazılı kural ihlal edilir, lint kuralı edilmez. Zone listesi yetmemeye başlarsa `eslint-plugin-boundaries` mimariyi tek yerde tarif etmenizi sağlar."
 ---
 
 [Önceki rehberde](/academy/architecture/folder-structure) klasör yapısını kurduk. Bu rehber o yapının içindeki üç soruya cevap veriyor: bir component ne zaman bölünür, state ve mantık nereye konur, sınırlar nasıl bozulmadan kalır.

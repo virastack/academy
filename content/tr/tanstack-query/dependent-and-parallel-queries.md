@@ -3,6 +3,45 @@ title: "Bağımlı ve paralel sorgular"
 description: "useQueries, enabled ve skipToken, istek şelalesi ve hover'da prefetch."
 lastVerified: "2026-11-03"
 translationKey: "tanstack-query/dependent-and-parallel-queries"
+quiz:
+  - question: "`user` henüz gelmedi. Yükleme göstergesi için hangi bayrak doğru?"
+    lang: tsx
+    code: |-
+      const { data: orders, isPending, isLoading } = useQuery({
+        ...orderQueries.list(user?.id ?? 0),
+        enabled: !!user?.id,
+      });
+    options:
+      - "`isFetching`, çünkü sorgu bekliyor"
+      - "`isLoading`, çünkü yalnızca ilk istek gerçekten sürerken `true` olur"
+      - "`isError`"
+      - "`isPending`, çünkü istek sürüyor"
+    answer: 1
+    explanation: "`enabled: false` olan sorgu `status: \"pending\"` ve `fetchStatus: \"idle\"` durumunda bekler; `isPending` istek başlamadan da `true`'dur. `isLoading` (`isPending && isFetching`) yalnızca ilk istek sürerken `true` olur."
+  - question: "Ne olur?"
+    lang: tsx
+    code: |-
+      const query = useQuery({
+        queryKey: ["orders", user?.id],
+        queryFn: user ? () => fetchOrders(user.id) : skipToken,
+      });
+
+      query.refetch(); // user yokken
+    options:
+      - "Hiçbir şey olmaz"
+      - "Sorgu çalışır ve `user.id` `undefined` ile istek atılır"
+      - "Sorgu `skipToken`'ı yok sayar"
+      - "`refetch()` çalışmaz, `Missing queryFn` hatası verir; elle tetiklemek için `enabled: false` kullanılmalı"
+    answer: 3
+    explanation: "`skipToken` ile kurulan sorguda `refetch()` çalışmaz. Sorguyu elle tetiklemeniz gerekiyorsa `enabled: false` kullanın."
+  - question: "Sepetteki ürün sayısı değişken ve her ürün için bir detay sorgusu gerekiyor. Hangisi kullanılır?"
+    options:
+      - "`useQueries`"
+      - "Tüm id'leri tek bir `useQuery` anahtarına koymak"
+      - "`productIds.map(...)` içinde `useQuery` çağırmak"
+      - "`useInfiniteQuery`"
+    answer: 0
+    explanation: "Hook kuralları döngüde `useQuery` çağırmaya izin vermez. Sayısı değişen sorgular için `useQueries` var; `combine` sonucu tek bir değere çevirir."
 ---
 
 ## Paralel sorgular

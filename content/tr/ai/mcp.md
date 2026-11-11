@@ -3,6 +3,31 @@ title: "MCP"
 description: "MCP nedir? Figma, Playwright ve Next.js DevTools gibi sunucuları agent'a bağlama."
 lastVerified: "2026-11-03"
 translationKey: "ai/mcp"
+quiz:
+  - question: "Agent'ın bir Figma çerçevesini kendisi okuyabilmesi için hangisi gerekir?"
+    options:
+      - "Bir MCP sunucusu"
+      - "`AGENTS.md`'ye bir kural"
+      - "Bir skill"
+      - "Bir subagent"
+    answer: 0
+    explanation: "Skill bir işi nasıl yapacağına dair talimat verir; MCP agent'ın erişemediği bir sisteme araç erişimi verir. Bir araçtan sohbete sürekli veri kopyalıyorsanız o aracı bağlayın."
+  - question: "Simon Willison'ın \"ölümcül üçlü\"sü hangi üç özelliğin aynı agent'ta birleşmesidir?"
+    options:
+      - "Özel veriye erişim, güvenilmeyen içerik görme ve dışarıyla iletişim kurabilme"
+      - "Hızlı model, uzun bağlam, çok araç"
+      - "OAuth, API anahtarı ve webhook"
+      - "Dosya yazma, terminal, internet"
+    answer: 0
+    explanation: "Üçü bir aradaysa saldırgan, agent'ın okuduğu içeriğe yazdığı talimatla veri sızdırtabilir. Koruma ürünleri bunu %100 engelleyemez; tek güvenli yol üçlüyü kurmamaktır."
+  - question: "Playwright MCP sayfayı nasıl okur?"
+    options:
+      - "Ekran görüntüsünü görsel modelle yorumlayarak"
+      - "Erişilebilirlik ağacından alınan snapshot ile; eylemleri snapshot'taki referanslarla yapar"
+      - "Sayfanın HTML kaynağını indirerek"
+      - "Tarayıcının ağ kayıtlarından"
+    answer: 1
+    explanation: "Bu yüzden görsel modele gerek kalmaz. Oturum açılmış kalıcı profille rastgele siteler gezdirmek ölümcül üçlüye yaklaşır; gezintiyi `localhost`'la sınırlayın, gerekirse `--isolated` kullanın."
 ---
 
 MCP (Model Context Protocol), yapay zekâ uygulamalarını dış sistemlere bağlamak için açık bir standarttır.[^1] Bir sunucu bağladığınızda agent o sistemin araçlarını kendisi çağırır: Figma'dan tasarımı okur, tarayıcıyı sürer, çalışan dev sunucusundan hataları alır. Sizin sohbete yapıştırdığınız bilgiyle yetinmez.

@@ -3,6 +3,42 @@ title: "Composition over Inheritance"
 description: "React'te neden kalıtım değil composition kullanılır."
 lastVerified: "2026-11-03"
 translationKey: "principles/composition"
+quiz:
+  - question: "React'te kırmızı bir `DangerButton` yapmanın önerilen yolu hangisi?"
+    options:
+      - "`class DangerButton extends Button {}`"
+      - "`Button`'ın kaynağını kopyalayıp değiştirmek"
+      - "`Button`'ı render eden ve `variant=\"danger\"` veren yeni bir component (composition)"
+      - "`Button`'a bir mixin eklemek"
+    answer: 2
+    explanation: "React ekibi kod paylaşmak için composition önerir; binlerce component'te kalıtım hiyerarşisi gerektiren bir durum bulunmadı. Bu kalıbın adı specialization'dır."
+  - question: "Bu HOC kullanımının sorunu nedir?"
+    lang: tsx
+    code: |-
+      function Page() {
+        const EnhancedList = withLogging(ProductList);
+        return <EnhancedList />;
+      }
+    options:
+      - "`withLogging` bir hook olmalıdır"
+      - "Sorun yok"
+      - "HOC'ler artık çalışmaz"
+      - "HOC render içinde uygulanmış; her render'da yeni bir component türü oluşur ve alt ağacın state'i kaybolur"
+    answer: 3
+    explanation: "HOC'ler render içinde uygulanmamalıdır. Modern React kodunda mantık paylaşımı için çoğunlukla custom hook kullanılır; hook'lar component ağacını değiştirmeden mantığı paylaşır."
+  - question: "React dokümanı bu tür genel \"yaşam döngüsü\" hook'larını neden önermez?"
+    lang: ts
+    code: |-
+      function useMount(callback: () => void) {
+        useEffect(callback, []);
+      }
+    options:
+      - "Daha yavaş çalışırlar"
+      - "Linter doğrudan `useEffect` çağrılarını denetler, sarmalanmış hâli denetlemez; eksik bağımlılık hatası gözden kaçar"
+      - "Hook adları `use` ile başlayamaz"
+      - "Server Component'te çalışmazlar"
+    answer: 1
+    explanation: "Somut amacı olan hook'lar yazın (`useOnlineStatus` gibi). Her tekrarı hook'a çıkarmak da gerekmez; biraz tekrar sorun değildir."
 ---
 
 Başka bir dilde nesne yönelimli programlama yaptıysanız, ortak davranışı kalıtımla paylaşmaya alışkın olabilirsiniz. Bu rehber [!react] için tek bir soruyu cevaplıyor: ortak kodu nasıl paylaşırsınız? Cevap: kalıtımla değil, composition ile.

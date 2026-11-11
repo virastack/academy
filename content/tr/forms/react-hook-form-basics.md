@@ -3,6 +3,37 @@ title: "React Hook Form temelleri"
 description: "register, handleSubmit, formState ve doğrulama modu."
 lastVerified: "2026-11-03"
 translationKey: "forms/react-hook-form-basics"
+quiz:
+  - question: "Bu satırın gizli sorunu nedir?"
+    lang: tsx
+    code: |-
+      return <button disabled={!formState.isDirty || !formState.isValid}>Kaydet</button>;
+    options:
+      - "`isValid` diye bir alan yok"
+      - "`formState` bir Proxy'dir; `isDirty` `false` iken `isValid` hiç okunmaz ve ona abone olunmaz"
+      - "`disabled` boolean alamaz"
+      - "`isDirty` yalnızca gönderimden sonra dolar"
+    answer: 1
+    explanation: "React Hook Form yalnızca render sırasında okunan alanlara abone olur. Kısa devre yüzünden `isValid` okunmadan kalabilir. İhtiyacınız olan alanları koşulsuz okuyun: `const { isDirty, isValid } = formState;`."
+  - question: "Alan boş gönderilirse `age` ne olur?"
+    lang: tsx
+    code: |-
+      <input type="number" {...register("age", { valueAsNumber: true })} />
+    options:
+      - "`undefined`"
+      - "`\"\"`"
+      - "`NaN`"
+      - "`0`"
+    answer: 2
+    explanation: "`valueAsNumber` değeri sayıya çevirir; boş alan `NaN` olur. Dönüşüm doğrulamadan önce çalışır, bu yüzden boş alanı ayrıca ele almanız gerekir."
+  - question: "Gönderimden sonra formu temizlemek için dokümanın önerdiği yol hangisi?"
+    options:
+      - "Sayfayı yenilemek"
+      - "Her alana `value=\"\"` vermek"
+      - "`onSubmit`'in sonunda `reset()` çağırmak"
+      - "`isSubmitSuccessful`'u bir effect'te izleyip `true` olunca `reset()` çağırmak"
+    answer: 3
+    explanation: "`handleSubmit` gönderim durumunu `onSubmit` bittikten sonra günceller. `reset`'i `onSubmit` içinde çağırırsanız değerler temizlenir ama `isSubmitSuccessful` gibi alanlar eski kalır."
 ---
 
 ## Kurulum ve ilk form

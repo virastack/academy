@@ -3,6 +3,45 @@ title: "Effects and when you don't need one"
 description: "Synchronising with an external system, cleanup, useEffectEvent and Effect-free solutions."
 lastVerified: "2026-11-03"
 translationKey: "react/effects"
+quiz:
+  - question: "Where should the purchase request be sent?"
+    code: |-
+      useEffect(() => {
+        if (submitted) {
+          post("/api/orders", cart);
+        }
+      }, [submitted, cart]);
+    options:
+      - "Leave it as is and just add a cleanup"
+      - "In the checkout button's event handler"
+      - "Inside `useLayoutEffect`"
+      - "At module level, outside the component"
+    answer: 1
+    explanation: "This code runs because the user did something, not because the component appeared on screen. A request tied to a user action belongs in an event handler."
+  - question: "`cartCount` goes from 2 to 3 while `productId` stays the same. Then `productId` changes. Which is true?"
+    code: |-
+      const onVisit = useEffectEvent((visitedId: string) => {
+        logVisit(visitedId, cartCount);
+      });
+
+      useEffect(() => {
+        onVisit(productId);
+      }, [productId]);
+    options:
+      - "It is logged when the product changes but sees the first cart count (2)"
+      - "The visit is never logged because `cartCount` is not in the dependency array"
+      - "The visit is logged again when `cartCount` changes"
+      - "It is logged when the product changes and sees the current cart count (3)"
+    answer: 3
+    explanation: "Code inside `useEffectEvent` always reads the latest value but does not re-sync the Effect when that value changes. The Effect only runs when `productId` changes."
+  - question: "In a search box the user types fast and an old response that arrives late overwrites the new one. What is this problem called, and what is the lesson's fix?"
+    options:
+      - "A stale closure; keep the query in `useRef`"
+      - "A memory leak; keep the result in `useMemo`"
+      - "Batching; apply the update with `flushSync`"
+      - "A race condition; cancel the request with `AbortController` in the cleanup"
+    answer: 3
+    explanation: "An old response overwriting a newer one is a race condition. Calling `controller.abort()` in the Effect's cleanup cancels the previous request."
 ---
 
 ## What an Effect is for

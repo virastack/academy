@@ -3,6 +3,40 @@ title: "Assertions and waiting"
 description: "Auto-waiting, web-first assertions and hydration."
 lastVerified: "2026-11-03"
 translationKey: "playwright/assertions-and-waiting"
+quiz:
+  - question: "The \"Saved\" message appears 100 ms after the click. Why is this line flaky?"
+    lang: ts
+    code: |-
+      expect(await page.getByText("Saved").isVisible()).toBe(true);
+    options:
+      - "`toBe` is not asynchronous"
+      - "`isVisible()` returns the current state and does not wait; `await expect(...).toBeVisible()` would wait"
+      - "`getByText` cannot find the message"
+      - "It is not flaky"
+    answer: 1
+    explanation: "Web-first assertions keep checking until the condition holds (5 s by default). General assertions that start with `expect(value)` do not wait."
+  - question: "On a server-rendered Next.js page, Playwright clicks the submit button before React has attached to the page. What happens to a form handled by `onSubmit`?"
+    options:
+      - "Nothing happens"
+      - "`onSubmit` does not run; the browser submits the form itself, the page reloads and the fields are cleared"
+      - "The test fails immediately"
+      - "Playwright holds the click until hydration finishes"
+    answer: 1
+    explanation: "The button is visible and enabled, so it gets clicked, but without hydration there is no handler. Fixes: make the form work without JavaScript through a Server Action, or wait for something only client code renders."
+  - question: "Without a timeout, how long does `toPass` keep retrying?"
+    lang: ts
+    code: |-
+      await expect(async () => {
+        const response = await page.request.get("/api/orders");
+        expect(response.status()).toBe(200);
+      }).toPass();
+    options:
+      - "Its default timeout is 0, so only the test timeout bounds it"
+      - "For the 5 seconds set in `expect`"
+      - "Only once"
+      - "Exactly 10 seconds"
+    answer: 0
+    explanation: "`toPass` has a default timeout of 0 and does not use the `expect` setting. Give it a timeout yourself: `toPass({ timeout: 10_000 })`."
 ---
 
 ## Why don't we write waits?

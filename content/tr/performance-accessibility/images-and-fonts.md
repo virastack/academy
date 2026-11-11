@@ -3,6 +3,34 @@ title: "Görsel ve font"
 description: "Görsel boyutu, format ve font yükleme."
 lastVerified: "2026-11-03"
 translationKey: "performance-accessibility/images-and-fonts"
+quiz:
+  - question: "Bu görsel sayfanın LCP öğesi. `loading=\"lazy\"` neden sorun?"
+    lang: html
+    code: |-
+      <img src="hero.avif" loading="lazy" width="1200" height="600" alt="Campaign image" />
+    options:
+      - "Tarayıcı görselin ekranda olduğunu sayfayı yerleştirdikten sonra anlar ve indirme gecikir; LCP görseli lazy olmamalı"
+      - "`width` ve `height` ile birlikte kullanılamaz"
+      - "Sorun değil, bant genişliği kazandırır"
+      - "AVIF lazy yüklenemez"
+    answer: 0
+    explanation: "Lazy loading ekranın altındaki görseller içindir. İlk ekrandaki görsellerden kaldırmak bir testte mobil LCP'yi %18 iyileştirdi; LCP görseline `fetchpriority=\"high\"` de verilebilir."
+  - question: "`<img>`'e `width` ve `height` yazmak ne sağlar?"
+    options:
+      - "Görsel daha hızlı iner"
+      - "Görsel her ekranda bu piksel boyutunda gösterilir"
+      - "Görsel bu boyutlarda sıkıştırılır"
+      - "Tarayıcı en-boy oranını hesaplayıp görsel inmeden yerini ayırır; içerik kaymaz (CLS)"
+    answer: 3
+    explanation: "Boyutu verilmemiş görsel indiğinde altındaki her şeyi iter. Boyutu bilemediğinizde CSS `aspect-ratio` ile yer ayırabilirsiniz; görünen boyutu yine CSS belirler."
+  - question: "Web fontu yüzünden oluşan layout shift'i tamamen önlemek istiyorsanız hangi `font-display` değeri en güvenlisidir?"
+    options:
+      - "`swap`"
+      - "`auto`"
+      - "`block`"
+      - "`optional`"
+    answer: 3
+    explanation: "`optional`'da font yaklaşık 100 ms içinde gelmezse o sayfada hiç kullanılmaz, kayma olmaz; bedeli ilk ziyarette fontun görünmeyebilmesidir. `swap` metni en hızlı gösterir ama font gelince kayma olabilir."
 ---
 
 ## Görsel ve font neden önemli

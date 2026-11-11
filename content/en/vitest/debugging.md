@@ -3,6 +3,39 @@ title: "Debugging"
 description: "screen.debug, the common errors and coverage."
 lastVerified: "2026-11-03"
 translationKey: "vitest/debugging"
+quiz:
+  - question: "What is this error most likely telling you?"
+    lang: text
+    code: |-
+      TestingLibraryElementError: Unable to find an accessible element with the role "article"
+      Here are the accessible roles:
+        status:
+    options:
+      - "The products have not arrived yet; only the loading message (`status`) is on screen, so use `findBy`"
+      - "You need to call `screen.debug()`"
+      - "The product cards lack an `aria-label`"
+      - "The `article` role is not supported"
+    answer: 0
+    explanation: "Seeing only `status` in the role list means the test checked before loading finished. Use `await screen.findBy` instead of `getBy`."
+  - question: "What is the right response to this warning?"
+    lang: text
+    code: |-
+      An update to ProductList inside a test was not wrapped in act(...).
+    options:
+      - "Remove the `useEffect` from the component"
+      - "Skip the test with `test.skip`"
+      - "Silence `console.error`"
+      - "At the end of the test, wait for the expected result with `await findBy` or `await waitFor`"
+    answer: 3
+    explanation: "The warning means the component updated state after the test stopped waiting, so the test does not wait long enough. Wait for the result; with timers, wrap `vi.advanceTimersByTime` in `act`. Do not hide the warning."
+  - question: "Which is true about 100% coverage?"
+    options:
+      - "It proves the app is bug-free"
+      - "It shows the code ran, not that the tests are correct"
+      - "Every project should aim for it"
+      - "It can only be measured with E2E tests"
+    answer: 1
+    explanation: "Coverage shows how much of the code the tests executed. Use it to find untested parts, but do not aim for 100%; focus on the important flows."
 ---
 
 ## What to do when a test breaks

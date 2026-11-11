@@ -223,9 +223,10 @@ track becomes `PayPal`.
 author and stays, with the e-mail address next to it.
 
 Invented host names follow the same rule: `api.magaza.test` became
-`api.shop.test` in `examples/vitest/project` and in both locales' lessons. A
-host name that is part of what a lesson teaches *(the `blog.magaza.com`
-same-site example in `auth-security`)* is decided in that lesson's own pass.
+`api.shop.test` in `examples/vitest/project` and in both locales' lessons. The
+same-site example in `auth-security` follows it too: `magaza.com` and
+`blog.magaza.com` became `shop.example` and `blog.shop.example`, and the
+attacker's page is `attacker.example`, in both locales.
 
 ### Money and formatting
 

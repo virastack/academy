@@ -68,14 +68,14 @@ export function ProductTable({ selectedId, onSelect }: ProductTableProps) {
       )}
 
       <button onClick={() => setPage((p) => p - 1)} disabled={page === 1}>
-        Önceki
+        Previous
       </button>
-      <span> Sayfa {page} </span>
+      <span> Page {page} </span>
       <button
         onClick={() => setPage((p) => p + 1)}
         disabled={isPlaceholderData || !data?.hasMore}
       >
-        Sonraki
+        Next
       </button>
       {isFetching && <span>Updating...</span>}
     </section>

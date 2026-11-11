@@ -3,6 +3,39 @@ title: "Route Handlers and the proxy"
 description: "API endpoints, webhooks, proxy.ts and which one to use when."
 lastVerified: "2026-11-03"
 translationKey: "nextjs/route-handlers-and-proxy"
+quiz:
+  - question: "You need an address that the CMS calls when content changes. Which is the right tool?"
+    options:
+      - "`proxy.ts`"
+      - "A Server Component"
+      - "A Server Action"
+      - "A Route Handler (`route.ts`)"
+    answer: 3
+    explanation: "Addresses called from outside (webhooks, mobile app APIs, OAuth callbacks) are Route Handler work. Server Actions change data from forms and buttons; the proxy runs before every request."
+  - question: "What happens if `matcher` is not set?"
+    lang: ts
+    code: |-
+      // proxy.ts
+      export function proxy(request: NextRequest) {
+        // rewrite for an A/B test
+      }
+
+      // export const config = { matcher: "/" };  ← missing
+    options:
+      - "The proxy never runs"
+      - "The build fails"
+      - "The proxy runs on every request, static files and images included"
+      - "The proxy only runs on the home page"
+    answer: 2
+    explanation: "Without `matcher` the proxy runs on every request; a wrong redirect can block CSS and images too. For simple redirects, check `redirects` in `next.config.ts` first."
+  - question: "Can the same folder have both `page.tsx` and `route.ts`?"
+    options:
+      - "Yes; `GET` requests go to `route.ts`, the rest to the page"
+      - "Yes; `page.tsx` always wins"
+      - "No; both would take over every request to that address"
+      - "Yes; `route.ts` is moved under `/api` automatically"
+    answer: 2
+    explanation: "An address is either a page or a Route Handler. Since each takes over every request to that address, they cannot live in the same folder."
 ---
 
 ## Which one for what

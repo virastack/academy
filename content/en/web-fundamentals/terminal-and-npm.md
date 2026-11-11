@@ -3,6 +3,36 @@ title: "Terminal and npm"
 description: "The basic commands, installing Node and managing packages."
 lastVerified: "2026-11-03"
 translationKey: "web-fundamentals/terminal-and-npm"
+quiz:
+  - question: "When `npm install` runs, which version does this range accept?"
+    lang: json
+    code: |-
+      "dependencies": {
+        "some-lib": "^1.0.4"
+      }
+    options:
+      - "`1.4.2`"
+      - "`1.0.3`"
+      - "`0.9.9`"
+      - "`2.0.0`"
+    answer: 0
+    explanation: "`^` accepts minor and patch updates: `1.0.4` and above, below `2.0.0`. `1.4.2` is in that range; `2.0.0` is a new major version, and `1.0.3` and `0.9.9` are older than `1.0.4`."
+  - question: "In CI you want to install exactly what the lockfile says, fail on a mismatch and change no files. Which command?"
+    options:
+      - "`npm update`"
+      - "`npx install`"
+      - "`npm ci`"
+      - "`npm install`"
+    answer: 2
+    explanation: "`npm ci` follows the lockfile exactly, fails on a mismatch and does not change files. `npm install` may update the lockfile."
+  - question: "The project has a `pnpm-lock.yaml`. Which command adds Vite as a development-only tool?"
+    options:
+      - "`pnpm add -D vite`"
+      - "`pnpm add vite`"
+      - "`npm install -D vite`"
+      - "`pnpm dlx vite`"
+    answer: 0
+    explanation: "Use one package manager per project; with a pnpm lockfile the command is pnpm too. `-D` writes the package to `devDependencies`. `pnpm dlx` runs a package once without installing it."
 ---
 
 ## What is a terminal?

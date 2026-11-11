@@ -3,6 +3,36 @@ title: "Context ile store"
 description: "Props'tan başlatma, yeniden kullanım, test ve Next.js."
 lastVerified: "2026-11-03"
 translationKey: "zustand/store-with-context"
+quiz:
+  - question: "Next.js'te modül düzeyinde `create` ile kurulan bir store neden sorun çıkarır?"
+    options:
+      - "Store her istekte silinir"
+      - "`create` yalnızca Vite'ta çalışır"
+      - "Sunucuda istekler arasında paylaşılır; bir kullanıcının verisi diğerine sızabilir"
+      - "Server Component'ler store'u okuyamaz"
+    answer: 2
+    explanation: "Sunucu aynı anda birçok isteğe cevap verir ve modül düzeyindeki store hepsinde ortaktır. Store istek başına, bir Provider içinde `createStore` ile oluşturulmalıdır."
+  - question: "Context'e değer yerine store örneğini koymak neden gereksiz render'a yol açmaz?"
+    options:
+      - "Context yalnızca ilk render'da okunur"
+      - "Zustand Context'i kendiliğinden memoize eder"
+      - "Store örneği hiç değişmez; değer seçimini Zustand'ın selector'ları yapar"
+      - "Provider bir Server Component'tir"
+    answer: 2
+    explanation: "Context'in `value`'su değişmediği için onu okuyan component'ler render olmaz. Her component `useStore(store, selector)` ile yalnızca ihtiyacı olan parçaya abone olur."
+  - question: "`selectedFromServer` sonradan değişirse store ne olur?"
+    lang: tsx
+    code: |-
+      <SelectionProvider initialSelected={selectedFromServer}>
+        <CategoryFilter />
+      </SelectionProvider>
+    options:
+      - "Provider hata fırlatır"
+      - "Store kendiliğinden yeni değerle güncellenir"
+      - "Store iki değeri birleştirir"
+      - "Değişmez; bu bir başlangıç değeridir, sıfırlamak için Provider'a `key` verilir"
+    answer: 3
+    explanation: "Store `useState`'in başlatıcısında bir kez oluşturulur; prop yalnızca başlangıç değeridir. Prop değişince store'u sıfırlamak istiyorsanız Provider'a `key` verin."
 ---
 
 ## Global store'un sınırları

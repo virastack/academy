@@ -3,6 +3,41 @@ title: "CSRF, CORS and the security headers"
 description: "Preventing CSRF with SameSite, what CORS does, and the basic HTTP security headers."
 lastVerified: "2026-11-03"
 translationKey: "auth-security/csrf-cors-and-headers"
+quiz:
+  - question: "You opened CORS on your API only to `https://partner.example.com`. What happens to a plain form `POST` from an attacker's site?"
+    options:
+      - "The browser never sends the request"
+      - "The server rejects it with `403` automatically"
+      - "The request is still sent; CORS only stops the response being read"
+      - "The browser first asks with `OPTIONS` and is refused"
+    answer: 2
+    explanation: "A plain `POST` like a form is sent without a preflight, so CSRF works regardless of your CORS settings. Only requests with custom headers, a JSON body or methods such as `PUT` and `DELETE` ask first with `OPTIONS`."
+  - question: "In Next.js, which one automatically compares the request's `Origin` header with `Host`?"
+    options:
+      - "The Server Action"
+      - "The Route Handler"
+      - "Both"
+      - "Neither"
+    answer: 0
+    explanation: "A Server Action is only called with `POST`, and it is rejected if the origin does not match. A Route Handler has no such check; you add one yourself that looks at `Sec-Fetch-Site`, or at `Origin` when that is missing."
+  - question: "For a request from a subdomain that carries `Sec-Fetch-Site: same-site`, what does this function return?"
+    lang: ts
+    code: |-
+      export function isCrossSiteRequest(request: Request) {
+        const site = request.headers.get("sec-fetch-site");
+        if (site) {
+          return site !== "same-origin";
+        }
+        const origin = request.headers.get("origin");
+        return origin !== null && origin !== new URL(request.url).origin;
+      }
+    options:
+      - "It looks at the `Origin` header"
+      - "`true`; only `same-origin` requests pass"
+      - "It throws"
+      - "`false`; it counts as the same site"
+    answer: 1
+    explanation: "A site is not an origin: subdomains count as the same site, which is why a `SameSite` cookie does not protect against them. This check is stricter; when `Sec-Fetch-Site` is missing it falls back to `Origin` for older browsers."
 ---
 
 When the browser makes a request to a site, it adds that site's cookies by itself. **CSRF** *(Cross-Site Request Forgery)* uses that: while the user is on another site, that site submits a form to your site in the background. Because the cookie is added, the server thinks the user made the request themselves.[^1]

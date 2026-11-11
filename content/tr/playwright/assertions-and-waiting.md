@@ -3,6 +3,40 @@ title: "Assertion ve bekleme"
 description: "Otomatik bekleme, web-first assertion ve hidrasyon."
 lastVerified: "2026-11-03"
 translationKey: "playwright/assertions-and-waiting"
+quiz:
+  - question: "\"Saved\" mesajı tıklamadan 100 ms sonra görünüyor. Bu satır neden kırılgan?"
+    lang: ts
+    code: |-
+      expect(await page.getByText("Saved").isVisible()).toBe(true);
+    options:
+      - "`toBe` asenkron değildir"
+      - "`isVisible()` o anki durumu döndürür ve beklemez; `await expect(...).toBeVisible()` beklerdi"
+      - "`getByText` mesajı bulamaz"
+      - "Kırılgan değildir"
+    answer: 1
+    explanation: "Web-first assertion'lar koşul sağlanana kadar tekrar kontrol eder (varsayılan 5 sn). `expect(value)` ile başlayan genel assertion'lar ise beklemez."
+  - question: "Server-side render edilen bir Next.js sayfasında Playwright, React sayfaya bağlanmadan önce gönder butonuna tıklıyor. `onSubmit` ile yönetilen formda ne olur?"
+    options:
+      - "Hiçbir şey olmaz"
+      - "`onSubmit` çalışmaz; tarayıcı formu kendisi gönderir, sayfa yenilenir ve alanlar boşalır"
+      - "Test derhâl hata verir"
+      - "Playwright tıklamayı hidrasyon bitene kadar bekletir"
+    answer: 1
+    explanation: "Buton görünür ve etkin olduğu için tıklanır ama hidrasyon olmadan handler yoktur. Çözümler: formu Server Action ile JavaScript'siz de çalışır yapmak ya da yalnızca client kodu çalışınca görünen bir şeyi beklemek."
+  - question: "`toPass`'e süre verilmezse ne kadar tekrar dener?"
+    lang: ts
+    code: |-
+      await expect(async () => {
+        const response = await page.request.get("/api/orders");
+        expect(response.status()).toBe(200);
+      }).toPass();
+    options:
+      - "Varsayılan zaman aşımı 0'dır; yalnızca test süresi sınırlar"
+      - "`expect` ayarındaki 5 saniye boyunca"
+      - "Yalnızca bir kez"
+      - "Tam 10 saniye"
+    answer: 0
+    explanation: "`toPass`'in varsayılan zaman aşımı 0'dır ve `expect` ayarındaki süreyi kullanmaz. Süreyi kendiniz verin: `toPass({ timeout: 10_000 })`."
 ---
 
 ## Neden bekleme yazmıyoruz?

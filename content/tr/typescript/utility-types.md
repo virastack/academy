@@ -3,6 +3,50 @@ title: "Utility types"
 description: "keyof, typeof, Partial, Pick, Omit ve Record ile tip türetme."
 lastVerified: "2026-11-03"
 translationKey: "typescript/utility-types"
+quiz:
+  - question: "Hangi çağrı derleme hatası verir?"
+    lang: ts
+    code: |-
+      type ProductUpdate = Partial<Omit<Product, "id">>;
+
+      function updateProduct(id: number, changes: ProductUpdate) {}
+    options:
+      - "`updateProduct(1, { price: 1199 })`"
+      - "`updateProduct(1, { name: \"Headphones\", price: 999 })`"
+      - "`updateProduct(1, { id: 2 })`"
+      - "`updateProduct(1, {})`"
+    answer: 2
+    explanation: "`Omit` `id`'yi çıkarır, `Partial` kalan alanların hepsini opsiyonel yapar. Boş object ve alt kümeler geçerlidir; `id` artık tipte olmadığı için fazla özellik hatası verir."
+  - question: "Anahtar yanlış yazılmış. Ne olur?"
+    lang: ts
+    code: |-
+      type Draft = Omit<Product, "nmae">;
+    options:
+      - "`name` alanı yine çıkarılır"
+      - "`Draft` `never` olur"
+      - "Hata vermez; `Draft`, `Product`'ın aynısı olur"
+      - "Hata: `\"nmae\"` `Product`'ın anahtarı değil"
+    answer: 2
+    explanation: "`Pick` verdiğiniz anahtarın gerçekten var olduğunu kontrol eder, `Omit` etmez. Var olmayan bir anahtar hiçbir şeyi çıkarmaz ve tip sessizce aynı kalır."
+  - question: "Son satırda ne olur?"
+    lang: ts
+    code: |-
+      // tsconfig: "strict": true, noUncheckedIndexedAccess kapalı
+      type Route = { path: string; title: string };
+
+      const routes: Record<string, Route> = {
+        home: { path: "/", title: "Ana sayfa" },
+        cart: { path: "/cart", title: "Cart" },
+      };
+
+      routes.wishlist.path;
+    options:
+      - "Derlenir ama çalışırken patlar"
+      - "`satisfies` olmadığı için `routes` `any` olur"
+      - "`undefined` döner, hata olmaz"
+      - "Derleme hatası: `wishlist` diye bir özellik yok"
+    answer: 0
+    explanation: "Annotation ile tip `Record<string, Route>`'a genişler ve hangi anahtarların olduğu unutulur; her string anahtar geçerli sayılır. `satisfies Record<string, Route>` yazılsaydı tip `\"home\" | \"cart\"` anahtarlarını korur ve `wishlist` derleme hatası olurdu."
 ---
 
 ## Neden tip türetmek

@@ -3,6 +3,40 @@ title: "queryOptions ve select"
 description: "Query factory, tipli cache okuma ve veriyi seçerek render'ı azaltmak."
 lastVerified: "2026-11-03"
 translationKey: "tanstack-query/query-options-and-select"
+quiz:
+  - question: "TkDodo sorgu ayarlarını paylaşmak için neden custom hook yerine `queryOptions`'ı önerir?"
+    options:
+      - "`queryOptions` veriyi kendiliğinden cache'ler"
+      - "Custom hook'lar v5'te kaldırıldı"
+      - "`queryOptions` çalışma anında daha hızlıdır"
+      - "Ayar yalnızca component'te değil, prefetch'te, route loader'da ve sunucuda da kullanılabilir; `useSuspenseQuery` ve `useQueries` ile de çalışır"
+    answer: 3
+    explanation: "Hook yalnızca component'te ya da başka bir hook'ta çağrılır ve sizi `useQuery`'ye bağlar. `queryOptions` sadece ayarı paylaşır, her yerde çalışır ve tip bilgisini korur."
+  - question: "`productQueries.detail`, `queryOptions` ile yazılmış ve `fetchProduct` `Promise<Product>` döndürüyor. `product`'ın tipi nedir?"
+    lang: ts
+    code: |-
+      const product = queryClient.getQueryData(productQueries.detail(1).queryKey);
+    options:
+      - "`unknown`"
+      - "`any`"
+      - "`Product | undefined`"
+      - "`Product`"
+    answer: 2
+    explanation: "`queryOptions`'tan gelen anahtar `queryFn`'in dönüş tipiyle etiketlenir. Cache'te o veri henüz olmayabileceği için sonuç `Product | undefined`'dır; elle yazılmış bir dizi anahtarla `unknown` dönerdi."
+  - question: "Listedeki bir ürünün adı değişti ama stoktaki ürün sayısı aynı kaldı. Component yeniden render olur mu?"
+    lang: tsx
+    code: |-
+      const { data: count } = useQuery({
+        ...productQueries.list(category),
+        select: (products) => products.filter((p) => p.stock > 0).length,
+      });
+    options:
+      - "Yalnızca `staleTime` dolmuşsa"
+      - "Evet, cache'teki veri her değiştiğinde render olur"
+      - "`select` hiç yeniden çalışmaz"
+      - "Hayır; component yalnızca `select`'in sonucuna abonedir ve sonuç değişmedi"
+    answer: 3
+    explanation: "`select` veri değişince yeniden çalışır ama component yalnızca sonucu değişince render olur. Sayı aynı kaldığı için render olmaz."
 ---
 
 ## Custom hook neden yetmez

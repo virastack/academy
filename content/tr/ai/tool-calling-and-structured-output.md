@@ -3,6 +3,36 @@ title: "Tool calling ve structured output"
 description: "Modelin fonksiyon çağırması, Zod şemasıyla yapılandırılmış çıktı ve kullanıcı onayı."
 lastVerified: "2026-11-03"
 translationKey: "ai/tool-calling-and-structured-output"
+quiz:
+  - question: "Araç kullanan bir route'ta `stopWhen` verilmezse ne olur?"
+    options:
+      - "SDK hata fırlatır"
+      - "Araç hiç çağrılmaz"
+      - "Döngü tek adımda biter: araç çalışır ama model sonucu yorumlamaz, `text` boş kalır ve `finishReason` `tool-calls` olur"
+      - "Döngü sonsuza kadar sürer"
+    answer: 2
+    explanation: "Bir adım, modelin bir kez üretmesi ve çağırdığı araçların çalıştırılmasıdır. Araç kullanan her route'a `stopWhen: isStepCount(n)` ekleyin."
+  - question: "`cancelOrder` aracı `toolApproval` ile onaya bağlı. Kullanıcının o siparişin sahibi olduğunu nerede doğrulamalısınız?"
+    options:
+      - "Onay butonunda"
+      - "Gerek yok; onay yeterli"
+      - "Sistem talimatında"
+      - "Aracın `execute` fonksiyonunda, sunucuda"
+    answer: 3
+    explanation: "Onay kararı client'ta verilir ve \"kullanıcı bunu gerçekten istiyor mu?\" sorusuna cevaptır. Sahipliği sunucuda doğrulamıyorsanız onay bir güvenlik önlemi değildir."
+  - question: "Bu kod neden yanlıştır?"
+    lang: ts
+    code: |-
+      for await (const partial of result.partialOutputStream) {
+        await db.recipe.save(partial);
+      }
+    options:
+      - "`Output.object` akış desteklemez"
+      - "Parçalı nesneler doğrulanmaz ve yarım değerler içerebilir; kaydetmek için `await result.output` beklenmeli"
+      - "`partialOutputStream` yalnızca client'ta çalışır"
+      - "`for await` akışlarla kullanılamaz"
+    answer: 1
+    explanation: "`partialOutputStream` yalnızca önizleme içindir: `ingredients: ['lentils', 's']` gibi yarım değerler gelebilir. `await result.output` şemaya göre doğrulanmış son hâli verir."
 ---
 
 Model yalnızca metin üretmez. İki şey daha yapabilir: bir fonksiyonu çağırmak istemek (tool calling) ve çıktısını bir şemaya uydurmak (structured output). Tool calling'de model, tanımladığınız fonksiyonu girdisiyle birlikte çağırmak ister, SDK fonksiyonu çalıştırır ve sonucu modele geri verir.[^1] Frontend'de bunun karşılığı şunlar: modelin sipariş durumunu gerçek servisten sorgulaması, geri alınamaz bir işlemden önce kullanıcıya sorması, serbest metinden form alanlarını çıkarması.
@@ -30,11 +60,11 @@ export const tools = {
   getOrderStatus: tool({
     description: 'Returns the shipping status of an order.',
     inputSchema: z.object({
-      orderId: z.string().describe('The order number, e.g. TR-1042'),
+      orderId: z.string().describe('The order number, e.g. ORD-1042'),
     }),
     execute: async ({ orderId }) => ({
       orderId,
-      status: 'kargoda',
+      status: 'shipped',
       eta: '2026-10-18',
     }),
   }),
@@ -313,7 +343,7 @@ import { generateText, Output } from 'ai';
 import { z } from 'zod';
 
 const ticketSchema = z.object({
-  intent: z.enum(['siparis_durumu', 'iade', 'diger']),
+  intent: z.enum(['order_status', 'return', 'other']),
   orderId: z.string().nullable(),
   urgent: z.boolean(),
 });
@@ -324,7 +354,7 @@ export async function classify(text: string) {
     output: Output.object({ schema: ticketSchema }),
     prompt: text,
   });
-  return output; // { intent: 'siparis_durumu' | 'iade' | 'diger'; orderId: string | null; urgent: boolean }
+  return output; // { intent: 'order_status' | 'return' | 'other'; orderId: string | null; urgent: boolean }
 }
 ```
 
@@ -371,7 +401,7 @@ export async function streamRecipe() {
 }
 ```
 
-- **Yarım değerler:** `partialOutputStream` her an eldeki parçalı nesneyi verir. Doğrulanmadığı için `ingredients: ['mercimek', 's']` gibi yarım değerler içerebilir.[^4] Bunu yalnızca önizleme için kullanın, kaydetmek veya işlemek için `await result.output`'u bekleyin.
+- **Yarım değerler:** `partialOutputStream` her an eldeki parçalı nesneyi verir. Doğrulanmadığı için `ingredients: ['lentils', 's']` gibi yarım değerler içerebilir.[^4] Bunu yalnızca önizleme için kullanın, kaydetmek veya işlemek için `await result.output`'u bekleyin.
 - **Eleman eleman:** `Output.array` ile `elementStream` yalnızca tamamlanmış ve doğrulanmış elemanları verir.[^4] Liste türü sonuçları ekrana kart kart eklemek için uygundur.
 - **Client'ta:** Akan nesneyi doğrudan hook'a bağlamak için `@ai-sdk/react` içinde `useObject` var.[^4]
 

@@ -12,7 +12,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
   await connection();
 
   return (
-    <html lang="tr">
+    <html lang="en">
       <body>{children}</body>
     </html>
   );

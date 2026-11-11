@@ -3,6 +3,45 @@ title: "Basic types and inference"
 description: "Primitive types, arrays, function types, any and unknown, with type inference."
 lastVerified: "2026-11-03"
 translationKey: "typescript/basic-types-and-inference"
+quiz:
+  - question: "Which types does TypeScript give these two variables, in order?"
+    lang: ts
+    code: |-
+      let orderStatus = "pending";
+      const currency = "EUR";
+    options:
+      - "`any` and `string`"
+      - "`string` and `\"EUR\"`"
+      - "`\"pending\"` and `\"EUR\"`"
+      - "`string` and `string`"
+    answer: 1
+    explanation: "`let` can change later, so it gets the general type (`string`). `const` cannot change, so the value itself becomes the type: the literal type `\"EUR\"`."
+  - question: "What is the type of `config`?"
+    lang: ts
+    code: |-
+      const config = { currency: "EUR", taxRate: 0.2 } as const;
+    options:
+      - "`{ currency: \"EUR\"; taxRate: 0.2 }`"
+      - "`{ currency: string; taxRate: number }`"
+      - "`{ readonly currency: \"EUR\"; readonly taxRate: 0.2 }`"
+      - "`{ readonly currency: string; readonly taxRate: number }`"
+    answer: 2
+    explanation: "Object properties normally get the general type. `as const` makes every value literal and `readonly`; `config.taxRate = 0.1` is an error."
+  - question: "Which line is a compile error?"
+    lang: ts
+    code: |-
+      const fromAny: any = JSON.parse('{"price": 249}');
+      fromAny.prise.toFixed(2);
+
+      const fromUnknown: unknown = JSON.parse('{"price": 249}');
+      fromUnknown.price;
+    options:
+      - "Only `fromAny.prise.toFixed(2)`"
+      - "Only `fromUnknown.price`"
+      - "Both"
+      - "Neither"
+    answer: 1
+    explanation: "`any` turns type checking off: the misspelled `prise` compiles but crashes at runtime. `unknown` allows no operation until its type is checked: `'fromUnknown' is of type 'unknown'`."
 ---
 
 ## Writing a type

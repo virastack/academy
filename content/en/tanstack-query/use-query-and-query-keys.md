@@ -3,6 +3,38 @@ title: "useQuery and query keys"
 description: "status against fetchStatus, building the key like a dependency array, and cancellation."
 lastVerified: "2026-11-03"
 translationKey: "tanstack-query/use-query-and-query-keys"
+quiz:
+  - question: "What happens to this query when there is no coupon?"
+    lang: ts
+    code: |-
+      queryFn: async () => {
+        const response = await fetch(`/api/coupons/${code}`);
+        if (response.status === 404) return undefined; // no coupon
+        return response.json();
+      }
+    options:
+      - "The query stays `pending` forever"
+      - "The query counts as failed; return `null` to mean \"no data\""
+      - "`data` is `undefined` and `status` stays `success`"
+      - "TanStack Query turns the 404 into an error by itself"
+    answer: 1
+    explanation: "A query that returns `undefined` counts as failed. Return `null` to mean \"no data\", and throw for real errors."
+  - question: "Which two keys point to the same query?"
+    options:
+      - "`[\"products\"]` and `[\"product\"]`"
+      - "`[\"products\", 1]` and `[\"products\", \"1\"]`"
+      - "`[\"products\", { page: 1, sort: \"price\" }]` and `[\"products\", { sort: \"price\", page: 1 }]`"
+      - "`[\"products\", 1, \"price\"]` and `[\"products\", \"price\", 1]`"
+    answer: 2
+    explanation: "Keys are hashed deterministically: the order inside objects does not matter, but the order in the array and the types of the values do."
+  - question: "Data is on screen when a background refetch fails. What state is the query in?"
+    options:
+      - "`status: \"error\"` with `data` `undefined`"
+      - "`status: \"pending\"`"
+      - "`status: \"error\"` but the old `data` is still there"
+      - "`status: \"success\"` with an empty `error`"
+    answer: 2
+    explanation: "When a background refetch fails, the query is in `error` and still holds the old data. If you check the error first, the list the user is reading turns into an error screen; `error` does not mean \"no data\"."
 ---
 
 ## The first query

@@ -3,6 +3,31 @@ title: "Giriş"
 description: "Frontend test nedir? Hangi araçlar kullanılır?"
 lastVerified: "2026-11-03"
 translationKey: "vitest/introduction"
+quiz:
+  - question: "Bir açılır menünün ekranın dışına taşıp taşmadığını (layout) test etmek istiyorsunuz. Hangisi uygundur?"
+    options:
+      - "Gerçek tarayıcıda çalışan bir test: E2E (Playwright) ya da Vitest Browser Mode"
+      - "`toBeInTheDocument` ile kontrol"
+      - "Vitest + React Testing Library ile jsdom'da component testi"
+      - "Saf fonksiyon için unit test"
+    answer: 0
+    explanation: "Component testi gerçek bir tarayıcıda çalışmaz; jsdom Node.js içinde DOM'u simüle eder ve layout hesaplamaz. Layout, CSS ve tarayıcıya özel davranış için gerçek tarayıcı gerekir."
+  - question: "Bir component için hangisi test edilmemelidir?"
+    options:
+      - "Tıklamanın sonucu"
+      - "Hata ve boş durumları"
+      - "Kullanıcının ekranda gördüğü metin"
+      - "Component'in iç state değişkeninin adı"
+    answer: 3
+    explanation: "Testler yazılımın kullanılış biçimine benzedikçe güven verir. İç state adları ve iç fonksiyonlar kullanıcıya görünmez; onlara bağlı test küçük bir refactoring'de kırılır."
+  - question: "Testing Trophy yaklaşımı yatırımın büyük bölümünü hangi test türüne yapmayı önerir?"
+    options:
+      - "Yalnızca E2E testlere"
+      - "Tek fonksiyonu test eden unit testlere"
+      - "Snapshot testlerine"
+      - "Birden fazla parçanın birlikte çalıştığı entegrasyon testlerine"
+    answer: 3
+    explanation: "Testing Trophy, birden fazla parçanın birlikte çalıştığı entegrasyon testlerine ağırlık verir. Component testi bu yaklaşıma uyar."
 ---
 
 ## Frontend test nedir?

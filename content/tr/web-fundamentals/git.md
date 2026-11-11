@@ -3,6 +3,46 @@ title: "Git"
 description: "Commit, branch ve uzak depo ile sürüm kontrolü."
 lastVerified: "2026-11-03"
 translationKey: "web-fundamentals/git"
+quiz:
+  - question: "`.env` artık `.gitignore`'da. Git ne yapar?"
+    lang: bash
+    code: |-
+      # .env daha önce commit edilmişti
+      echo ".env" >> .gitignore
+    options:
+      - "`.env`'i takip etmeye devam eder; önce `git rm --cached .env` gerekir"
+      - "`.env`'i repodan ve geçmişten kendiliğinden siler"
+      - "`.env`'deki şifreleri gizler"
+      - "`.env`'i bir sonraki commit'te repodan çıkarır"
+    answer: 0
+    explanation: "Zaten commit edilmiş bir dosyayı `.gitignore`'a yazmak onu repodan çıkarmaz. `git rm --cached .env` ile takipten çıkarın; şifre bir kez push edildiyse anahtarı da değiştirin."
+  - question: "Kendi branch'inizde `git merge main` çalıştırdınız ve bu conflict çıktı. Sizin branch'inizdeki hâl hangisidir?"
+    lang: html
+    code: |-
+      <<<<<<< HEAD
+      <button class="btn-primary">Sepete ekle</button>
+      =======
+      <button class="btn btn-lg">Sepete Ekle</button>
+      >>>>>>> main
+    options:
+      - "`HEAD` ile `=======` arası"
+      - "`=======` ile `>>>>>>> main` arası"
+      - "İkisi de `main`'den gelir"
+      - "İşaretlerin arasındaki her şey silinmiştir"
+    answer: 0
+    explanation: "`HEAD` ile `=======` arası bulunduğunuz branch'in, `=======` ile `>>>>>>>` arası gelen branch'in hâlidir. Karar verip üç işaret satırını silin, test edin ve `git add` ile çözüldü olarak işaretleyin."
+  - question: "Branch'i açtığınızdan beri `main`'e hiç commit girmedi. Bu merge ne yapar?"
+    lang: bash
+    code: |-
+      git switch main
+      git merge add-to-cart-button
+    options:
+      - "Branch'teki commit'leri tek commit'e sıkıştırır"
+      - "İki ucu birleştiren yeni bir merge commit oluşturur"
+      - "Her zaman conflict çıkarır"
+      - "Yalnızca `main`'in işaretçisini ileri alır (fast-forward)"
+    answer: 3
+    explanation: "`main` siz ayrıldığınızdan beri değişmediyse Git işaretçiyi ileri alır; buna fast-forward denir. İki taraf da ilerlediyse yeni bir merge commit oluşur."
 ---
 
 ## Git nedir

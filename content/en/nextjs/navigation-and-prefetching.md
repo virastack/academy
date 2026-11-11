@@ -3,6 +3,37 @@ title: "Navigation and prefetching"
 description: "Partial Prefetching, instant navigation, preserved state and useLinkStatus."
 lastVerified: "2026-11-03"
 translationKey: "nextjs/navigation-and-prefetching"
+quiz:
+  - question: "With Partial Prefetching on, which one counts as URL data and should be read inside `<Suspense>`?"
+    options:
+      - "`params`"
+      - "`getProducts()` with `\"use cache\"`"
+      - "`headers()`"
+      - "`cookies()`"
+    answer: 0
+    explanation: "The App Shell is shared by every link to a route, so it cannot carry data for one URL. `params` and `searchParams` are URL data; `cookies()` and `headers()` vary by session and can stay in the shell."
+  - question: "This warning shows up in development. Which fix does the lesson recommend?"
+    lang: tsx
+    code: |-
+      export default async function ProductPage({ params }: PageProps<"/products/[slug]">) {
+        const { slug } = await params; // "URL data outside of Suspense"
+        // ...
+      }
+    options:
+      - "Add `\"use client\"` to the file"
+      - "Await `params` in the layout instead"
+      - "Give the links `prefetch={false}`"
+      - "Pass the `params` Promise, without awaiting it, to a child inside `<Suspense>`"
+    answer: 3
+    explanation: "The page passes `params` as a Promise to a child inside `<Suspense>`, and the child awaits it. The shell stays shared across links and the navigation is instant."
+  - question: "In an app with Cache Components, Playwright's `page.locator(\"h1\")` finds two headings. Why?"
+    options:
+      - "`loading.tsx` adds its own `h1`"
+      - "The page you left is hidden with `<Activity>` and stays in the DOM with `display: none`"
+      - "Hydration duplicates the heading"
+      - "Next.js renders the page twice"
+    answer: 1
+    explanation: "Next.js does not remove the page you left; it hides it with `<Activity>`, keeping the last three routes. The hidden page stays in the DOM. Use visibility-aware queries such as `getByRole` and `getByLabel`."
 ---
 
 ## The three parts of fast navigation

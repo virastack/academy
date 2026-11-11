@@ -3,6 +3,46 @@ title: "Auth and fixtures"
 description: "Writing fixtures, storageState, roles and isolation."
 lastVerified: "2026-11-03"
 translationKey: "playwright/auth-and-fixtures"
+quiz:
+  - question: "Why does the `toHaveURL` line before `storageState` matter?"
+    lang: ts
+    code: |-
+      setup("sign in as an admin", async ({ page, loginPage }) => {
+        await loginPage.goto();
+        await loginPage.login("admin@example.com");
+        await expect(page).toHaveURL("/orders");
+        await page.context().storageState({ path: "playwright/.auth/admin.json" });
+      });
+    options:
+      - "It is unnecessary"
+      - "`storageState` only works on `/orders`"
+      - "It makes the test faster"
+      - "The cookie is written with the redirect; saving before the address changes stores an empty state"
+    answer: 3
+    explanation: "After signing in, the session cookie arrives with the redirect. Wait for the redirect, then save; otherwise the other tests start signed out."
+  - question: "If the test fails, does the last line run?"
+    lang: ts
+    code: |-
+      tempOrder: async ({ request }, use) => {
+        const order = await (await request.post("/api/orders", { data: { customer: "Test" } })).json();
+        await use(order);
+        await request.delete(`/api/orders/${order.id}`);
+      },
+    options:
+      - "No, you need `afterEach`"
+      - "Only when `retries` is on"
+      - "No, only if the test passes"
+      - "Yes; code after `use` is the teardown and runs even if the test fails"
+    answer: 3
+    explanation: "A fixture sets up, hands the value to the test with `use`, and cleans up after `use` returns. Setup and teardown live in one place."
+  - question: "The setup project gives every test the same admin session. One test cancels an order while another counts \"orders being prepared\", and the result depends on the order. Which is one of the recommended fixes?"
+    options:
+      - "Delete the cancel test"
+      - "Have the test that changes data sign in with its own session or create its own data"
+      - "Serialise everything with `workers: 1`"
+      - "Add `waitForTimeout(2000)` to the counting test"
+    answer: 1
+    explanation: "Every test should start from a known state and pass in any order. Options: its own session, a separate account per worker, or creating its own data."
 ---
 
 ## What is a fixture?

@@ -3,6 +3,41 @@ title: "Routing and layouts"
 description: "Pages, layouts, dynamic segments, route groups and navigating with Link."
 lastVerified: "2026-11-03"
 translationKey: "nextjs/routing-and-layouts"
+quiz:
+  - question: "What is wrong with this page in Next.js 16?"
+    lang: tsx
+    code: |-
+      export default function ProductPage({ params }: PageProps<"/products/[slug]">) {
+        return <h1>{params.slug}</h1>;
+      }
+    options:
+      - "`params` is only available in layouts"
+      - "Nothing"
+      - "`slug` is `undefined` only in development"
+      - "`params` is a Promise; it cannot be read without `await`"
+    answer: 3
+    explanation: "Since Next.js 15, `params` and `searchParams` are Promises. Make the page `async` and write `const { slug } = await params`; `params.slug` is the old tutorial style."
+  - question: "Why is putting the session check in `app/account/layout.tsx` not enough?"
+    options:
+      - "Layouts cannot be Server Components"
+      - "Layouts cannot read `cookies()`"
+      - "The layout does not re-render on navigation, so it does not protect every child page"
+      - "Next.js always builds layouts as static"
+    answer: 2
+    explanation: "A shared layout does not re-render when you move between its child pages. The check runs there once and does not protect every page; do the check close to the data."
+  - question: "For a Client Component in the App Router, which is true about this import?"
+    lang: tsx
+    code: |-
+      "use client";
+
+      import { useRouter } from "next/router";
+    options:
+      - "`useRouter` no longer exists; use `<Link>` instead"
+      - "It only works in Server Components"
+      - "It is wrong; `next/router` belongs to the Pages Router, the right one is `next/navigation`"
+      - "It is correct"
+    answer: 2
+    explanation: "`next/router` belongs to the old Pages Router and does not work in the App Router. For programmatic navigation take `useRouter` from `next/navigation`. AI tools often mix the two up."
 ---
 
 ## A folder is an address

@@ -3,6 +3,37 @@ title: "Setup and tooling"
 description: "A framework or Vite, Strict Mode, lint rules and writing React with AI."
 lastVerified: "2026-11-03"
 translationKey: "react/setup-and-tooling"
+quiz:
+  - question: "In development you see an Effect run twice. What is the right approach?"
+    code: |-
+      createRoot(document.getElementById("root")!).render(
+        <StrictMode>
+          <App />
+        </StrictMode>,
+      );
+    options:
+      - "Delete the Effect, since it will also run twice in production"
+      - "Remove `StrictMode`"
+      - "Switch the Effect to `useLayoutEffect`"
+      - "Write the missing cleanup for the Effect"
+    answer: 3
+    explanation: "Strict Mode sets up and tears down Effects one extra time in development only; it does not affect the production build. Running twice is not a bug but a test that reveals a missing cleanup. The fix is to write the cleanup."
+  - question: "For a new web project where SEO, first-load speed and server data matter, what does the lesson recommend?"
+    options:
+      - "Vite + React Router + TanStack Query"
+      - "Next.js or React Router framework mode"
+      - "Expo"
+      - "`create-react-app`"
+    answer: 1
+    explanation: "The React team recommends starting a new app with a framework; when SEO, first load and server data matter, that is Next.js or React Router framework mode. Vite is for browser-only SPAs, Expo is for mobile, and `create-react-app` is no longer used."
+  - question: "The app works, but state is changed during render and a component is defined inside another component. What catches these bugs?"
+    options:
+      - "The Oxlint in the Vite template, with its default setup"
+      - "The Profiler tab of React DevTools"
+      - "TypeScript's `strict` mode"
+      - "The `recommended` preset of `eslint-plugin-react-hooks`"
+    answer: 3
+    explanation: "The Oxlint in the Vite template only turns on `rules-of-hooks`. The `recommended` preset of `eslint-plugin-react-hooks` includes rules built on React Compiler's analysis that catch changing state during render and defining components inside components."
 ---
 
 ## What this guide covers

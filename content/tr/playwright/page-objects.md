@@ -3,6 +3,39 @@ title: "Page Object"
 description: "Locator'ları ve akışları sayfa nesnelerinde toplamak."
 lastVerified: "2026-11-03"
 translationKey: "playwright/page-objects"
+quiz:
+  - question: "Bu Page Object metodunun sorunu nedir?"
+    lang: ts
+    code: |-
+      async isErrorVisible(): Promise<boolean> {
+        return this.error.isVisible();
+      }
+
+      // testte
+      expect(await loginPage.isErrorVisible()).toBe(true);
+    options:
+      - "`isVisible` Page Object'te kullanılamaz"
+      - "Boolean döndürmek web-first assertion'ın beklemesini kaybettirir; locator döndürüp testte `expect` ile doğrulayın"
+      - "Metod adı uzun"
+      - "Sorun yok"
+    answer: 1
+    explanation: "`isVisible()` o anki durumu döndürür. Locator alanını açın (`loginPage.error`) ve testte `await expect(loginPage.error).toBeVisible()` yazın."
+  - question: "\"Mesaj doğru mu, satır iptal edildi mi?\" gibi testin asıl iddiası nerede durmalı?"
+    options:
+      - "Page Object'in eylem metodunda"
+      - "Testin içinde; okuyan kişi neyin doğrulandığını Page Object'e girmeden görmeli"
+      - "Ayrı bir yardımcı dosyada"
+      - "Fixture'ın temizlik kısmında"
+    answer: 1
+    explanation: "Page Object eylemin tamamlandığını bekleyebilir (sonraki sayfa geldi mi). Senaryoya özel beklenen değerler ve asıl iddia testte durur."
+  - question: "Page Object'te locator'ları constructor'da tanımlamak neden güvenlidir?"
+    options:
+      - "Playwright locator'ları önbelleğe alır"
+      - "Constructor `async`'tir"
+      - "Constructor sayfa yüklendikten sonra çalışır"
+      - "Locator oluşturmak sayfaya dokunmaz; element ancak eylem ya da assertion anında aranır"
+    answer: 3
+    explanation: "Locator bir tariftir. Constructor'da oluşturulup sonra kullanıldığında her seferinde güncel element aranır."
 ---
 
 ## Sorun: Tekrar eden locator'lar

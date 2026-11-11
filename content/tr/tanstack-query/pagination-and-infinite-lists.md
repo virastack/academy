@@ -3,6 +3,42 @@ title: "Sayfalama ve sonsuz liste"
 description: "keepPreviousData, sonraki sayfayı hazırlamak ve useInfiniteQuery."
 lastVerified: "2026-11-03"
 translationKey: "tanstack-query/pagination-and-infinite-lists"
+quiz:
+  - question: "Yeni sayfa gelene kadar \"Sonraki\" butonunu kapatmak ve listeyi soluklaştırmak için hangi bayrak kullanılır?"
+    lang: tsx
+    code: |-
+      const { data, isPlaceholderData } = useQuery({
+        ...productQueries.page(page),
+        placeholderData: keepPreviousData,
+      });
+    options:
+      - "`isPlaceholderData`"
+      - "`isError`"
+      - "`isPending`"
+      - "`isLoading`"
+    answer: 0
+    explanation: "`keepPreviousData` yeni sayfa gelene kadar önceki sayfayı ekranda tutar; `isPlaceholderData` ekrandaki verinin önceki sayfadan kaldığını söyler. `isPending` burada `false`'tur çünkü gösterilecek veri var."
+  - question: "Kullanıcı sonsuz listede 20 sayfa yükledi; liste eskiyip yenileniyor. Ne olur?"
+    options:
+      - "Yalnızca son sayfa yeniden çekilir"
+      - "Sayfalar ilk sayfadan başlayarak sırayla yeniden çekilir, yani 20 istek"
+      - "Yalnızca ilk sayfa yeniden çekilir"
+      - "Sonsuz listeler yenilenmez"
+    answer: 1
+    explanation: "Sonsuz liste cache'te tek bir sorgudur ve her sayfa bir öncekinden aldığı parametreyle gelir. Bu yüzden yenileme ilk sayfadan sırayla yapılır; tekrar eden ya da atlanan kayıt oluşmaz. `maxPages` bu bedeli sınırlar."
+  - question: "Buton neden `isFetching` sürerken de kapatılıyor?"
+    lang: tsx
+    code: |-
+      <button onClick={() => fetchNextPage()} disabled={!hasNextPage || isFetching}>
+        Daha fazla
+      </button>
+    options:
+      - "Erişilebilirlik kuralı gereği"
+      - "Bütün sayfalar tek cache girdisini paylaşır; arka plan yenilemesi sürerken `fetchNextPage` çağırmak veriyi ezebilir"
+      - "`fetchNextPage` yalnızca `isFetching` `false` iken tanımlıdır"
+      - "Sunucuyu yormamak için"
+    answer: 1
+    explanation: "Sonsuz listede aynı anda tek bir istek olabilir. Kaydırınca yüklerken de aynı kontrolü yapın: `hasNextPage && !isFetching && fetchNextPage()`."
 ---
 
 ## Sayfa sayfa listelemek

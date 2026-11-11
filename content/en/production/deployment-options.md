@@ -3,6 +3,37 @@ title: "Deployment options"
 description: "A Node.js server, Docker, static output and platform adapters."
 lastVerified: "2026-11-03"
 translationKey: "production/deployment-options"
+quiz:
+  - question: "You built with `output: \"standalone\"` and started with this command; images and CSS return 404. Why?"
+    lang: bash
+    code: |-
+      node .next/standalone/server.js
+    options:
+      - "You must use `next start`"
+      - "`standalone` cannot serve static files"
+      - "`PORT` is not set"
+      - "The `public` and `.next/static` folders are not copied into the standalone output; copy them or serve them from a CDN"
+    answer: 3
+    explanation: "The docs expect these folders to be served from a CDN ideally. If the server should serve them, copy `public` and `.next/static` into the standalone folder."
+  - question: "Why is `CMD [\"node\", \"server.js\"]` recommended over this line in a Dockerfile?"
+    lang: dockerfile
+    code: |-
+      CMD ["npm", "start"]
+    options:
+      - "`npm start` boots more slowly"
+      - "`npm start` needs root"
+      - "`npm` is not in the image"
+      - "`npm start` does not forward signals such as `SIGTERM` to the Node.js process, which breaks graceful shutdown"
+    answer: 3
+    explanation: "`node` started in exec form receives signals directly; the Next.js server listens for `SIGTERM` and shuts down after finishing in-flight requests."
+  - question: "A private npm registry token is needed during the build. How should it be passed in the Dockerfile?"
+    options:
+      - "With `ENV NPM_TOKEN=...`"
+      - "With `RUN --mount=type=secret`; the secret is only visible during that command"
+      - "By copying the `.env` file into the image"
+      - "With `ARG NPM_TOKEN`"
+    answer: 1
+    explanation: "According to the Docker docs, `ARG` and `ENV` values remain in the final image. Also keep `.env*` files out of the build context with `.dockerignore`."
 ---
 
 ## Four routes

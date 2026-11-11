@@ -3,6 +3,31 @@ title: "Core Web Vitals"
 description: "LCP, INP ve CLS'nin ne anlama geldiği."
 lastVerified: "2026-11-03"
 translationKey: "performance-accessibility/core-web-vitals"
+quiz:
+  - question: "Bir sayfanın INP değeri 75. persentilde 300 ms. Hangi banttadır?"
+    options:
+      - "İyi"
+      - "İyileştirilmeli"
+      - "Kötü"
+      - "INP sahada ölçülemez"
+    answer: 1
+    explanation: "INP için iyi ≤ 200 ms, iyileştirilmeli 200-500 ms, kötü > 500 ms'dir. 300 ms iyileştirilmeli bandındadır."
+  - question: "Bir sayfanın bir metrikte \"iyi\" sayılması için 75. persentil kuralı ne ister?"
+    options:
+      - "Ziyaretlerin ortalaması eşiğin altında olmalı"
+      - "Ziyaretlerin %25'i eşiği geçmeli"
+      - "Her dört ziyaretten en az üçü eşiğin altında kalmalı"
+      - "En yavaş ziyaret bile eşiğin altında olmalı"
+    answer: 2
+    explanation: "Değerlendirme tek ziyarete göre yapılmaz. 75. persentil ziyaretlerin çoğunu temsil eder ve birkaç aşırı ölçümün sonucu bozmasını engeller."
+  - question: "Kullanıcı bir menü butonuna tıklıyor; menü 200 ms içinde açılıp altındaki içeriği aşağı itiyor. Bu kayma CLS'e sayılır mı?"
+    options:
+      - "Hayır; tıklamadan sonraki 500 ms içindeki kaymalar beklenen kabul edilir"
+      - "Yalnızca 1 saniyeden uzun sürerse sayılır"
+      - "Evet, her kayma sayılır"
+      - "Yalnızca mobilde sayılır"
+    answer: 0
+    explanation: "Kullanıcının etkileşiminden sonraki 500 ms içindeki kaymalar beklenen kabul edilir. CLS ise sayfa boyunca biriken toplam değil, en kötü kayma grubunun puanıdır."
 ---
 
 ## Core Web Vitals nedir

@@ -3,6 +3,37 @@ title: "Provider ve hook"
 description: "Sepet Provider'ı, renderWithProviders ve renderHook."
 lastVerified: "2026-11-03"
 translationKey: "vitest/provider-and-hook"
+quiz:
+  - question: "`CartProvider`'ın `initialItems` prop'u testlerde ne sağlar?"
+    options:
+      - "Sepeti tıklamalarla ürün eklemeden dolu başlatır; her test tek bir şeyi test eder"
+      - "Provider'ı devre dışı bırakır"
+      - "Testleri paralel çalıştırır"
+      - "Gerçek API'den sepeti yükler"
+    answer: 0
+    explanation: "Rozet testi `initialItems` sayesinde ürün ekleme akışına bağlı kalmaz. Testler daha kısa olur ve biri kırılınca diğeri etkilenmez."
+  - question: "Bu testte eksik olan nedir?"
+    lang: tsx
+    code: |-
+      const { result } = renderHook(() => useCart(), { wrapper });
+
+      result.current.addToCart(keyboard);
+      expect(result.current.totalCount).toBe(1);
+    options:
+      - "`renderHook` yerine `render` kullanılmalı"
+      - "`toBe` yerine `toEqual` kullanılmalı"
+      - "State değiştiren çağrı `act(() => { ... })` ile sarılmalı"
+      - "`wrapper` gereksizdir"
+    answer: 2
+    explanation: "`renderHook` ile test ederken state değiştiren çağrıları `act` ile sarın; React güncellemeyi bitirmeden doğrulama yapılmaz."
+  - question: "TanStack Query kullanan bir component'i test ederken dersin önerisi hangisi?"
+    options:
+      - "Uygulamanın `QueryClient`'ını bütün testlerde paylaşmak"
+      - "`staleTime: 0` vermek"
+      - "Her test için yeni bir `QueryClient` oluşturmak ve `retry: false` ayarlamak"
+      - "`useQuery`'yi `vi.mock` ile mock'lamak"
+    answer: 2
+    explanation: "Paylaşılan client testler arasında cache taşır. Varsayılan `retry` başarısız isteği tekrar denediği için test uzar; testlerde kapatın."
 ---
 
 ## Neden provider gerekir?

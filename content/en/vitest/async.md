@@ -3,6 +3,47 @@ title: "Asynchronous tests"
 description: "findBy, waitFor and fake timers."
 lastVerified: "2026-11-03"
 translationKey: "vitest/async"
+quiz:
+  - question: "You want to wait for \"Loading products...\" to disappear. Which is right?"
+    options:
+      - "`await waitFor(() => expect(screen.queryByText(\"Loading products...\")).not.toBeInTheDocument())`"
+      - "`expect(await screen.findByText(\"Loading products...\")).not.toBeInTheDocument()`"
+      - "`expect(screen.getByText(\"Loading products...\")).not.toBeInTheDocument()`"
+      - "`await waitFor(() => screen.findByText(\"Loading products...\"))`"
+    answer: 0
+    explanation: "For an element that will disappear, use `waitFor` with `queryBy`. `findBy` waits for appearance, `getBy` throws when nothing matches, and `findBy` inside `waitFor` is redundant."
+  - question: "Why does this test time out?"
+    lang: tsx
+    code: |-
+      beforeEach(() => {
+        vi.useFakeTimers();
+      });
+
+      test("shows the toast", async () => {
+        render(<AddedToast productName="Wireless Headphones" />);
+        expect(await screen.findByRole("status")).toBeInTheDocument();
+      });
+    options:
+      - "`useRealTimers` is missing from `afterEach`"
+      - "`vi.useFakeTimers()` stalls `findBy`; it needs `{ shouldAdvanceTime: true }`"
+      - "`findByRole` does not work with fake timers; use `getByRole`"
+      - "The toast does not render"
+    answer: 1
+    explanation: "A plain `vi.useFakeTimers()` freezes time, so `findBy` and `userEvent` hang. Use `vi.useFakeTimers({ shouldAdvanceTime: true })`, and for `userEvent` also pass `advanceTimers: vi.advanceTimersByTime`."
+  - question: "What is wrong with this pattern?"
+    lang: tsx
+    code: |-
+      await waitFor(async () => {
+        await user.click(screen.getByRole("button", { name: "Add to cart" }));
+        expect(screen.getByRole("status")).toBeInTheDocument();
+      });
+    options:
+      - "`getByRole` cannot be used inside `waitFor`"
+      - "`waitFor` does not accept async functions"
+      - "`waitFor` runs the function again and again, so the click repeats on every retry"
+      - "Nothing"
+    answer: 2
+    explanation: "Put only `expect` checks inside `waitFor`. Do the user action first, outside `waitFor`."
 ---
 
 ## What is an asynchronous interface?

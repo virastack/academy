@@ -3,6 +3,38 @@ title: "The first test and locators"
 description: "getByRole, strict mode, filtering and within()."
 lastVerified: "2026-11-03"
 translationKey: "playwright/first-test-and-locators"
+quiz:
+  - question: "When this line runs, what happens on the page?"
+    lang: ts
+    code: |-
+      const submit = page.getByRole("button", { name: "Sign in" });
+    options:
+      - "The button is looked up at once and fails if missing"
+      - "Nothing; a locator is a recipe, and the element is only looked up during an action or assertion"
+      - "The button is found and cached"
+      - "The page reloads"
+    answer: 1
+    explanation: "Creating a locator does not touch the page. The element is looked up during `click()` or an assertion, every time; even after a re-render it finds the current element."
+  - question: "Does this locator find the \"Sign in\" button?"
+    lang: ts
+    code: |-
+      page.getByRole("button", { name: "sign" });
+      // The page only has a "Sign in" button
+    options:
+      - "Yes; by default `name` is case-insensitive and matches a substring"
+      - "Only with `exact: true`"
+      - "No; it needs an exact match"
+      - "No; `name` is case-sensitive"
+    answer: 0
+    explanation: "For an exact match pass `exact: true`, or use a regular expression such as `/^sign in$/i`."
+  - question: "The page has two \"Cancel\" buttons and `getByRole(\"button\", { name: \"Cancel\" }).click()` gives a \"strict mode violation\". What is the recommended fix?"
+    options:
+      - "`click({ force: true })`"
+      - "Use `page.locator(\"button.cancel\")`"
+      - "Narrow the search: look inside the relevant row or dialog"
+      - "Add `.first()`"
+    answer: 2
+    explanation: "`first()` finds the right element today and silently clicks the wrong one when the order changes. Narrow with `filter` or chaining; CSS-class locators break when the design changes."
 ---
 
 ## The shape of a test

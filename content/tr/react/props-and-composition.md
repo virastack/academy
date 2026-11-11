@@ -3,6 +3,39 @@ title: "Props ve composition"
 description: "Veri aktarma, children ve slot'lar, props'u state'e kopyalamama."
 lastVerified: "2026-11-03"
 translationKey: "react/props-and-composition"
+quiz:
+  - question: "Ebeveyn başka bir kullanıcı seçip yeni bir `email` gönderdiğinde `value` ne olur?"
+    code: |-
+      function EmailField({ email }: { email: string }) {
+        const [value, setValue] = useState(email);
+        return <input value={value} onChange={(e) => setValue(e.target.value)} />;
+      }
+    options:
+      - "React hata verir"
+      - "Component baştan kurulur ve yeni değeri alır"
+      - "Yeni `email` ile kendiliğinden güncellenir"
+      - "Eski değerde kalır"
+    answer: 3
+    explanation: "`useState`'in başlangıç değeri yalnızca component ilk kez ekrana geldiğinde okunur. Prop'u state'e kopyalamak sonraki güncellemeleri görmezden gelir."
+  - question: "Alanı kullanıcı düzenleyecek, ilk değer prop'tan geliyor ve başka kullanıcı seçilince alan sıfırlanmalı. Dersin önerdiği çözüm hangisi?"
+    options:
+      - "`useEffect` ile prop değişince `setValue` çağırmak"
+      - "State'i kaldırıp prop'u doğrudan input'a vermek"
+      - "Prop'u `initialEmail` diye adlandırıp component'e `key={user.id}` vermek"
+      - "Değeri `useRef`'te tutmak"
+    answer: 2
+    explanation: "`key` değişince React component'i baştan kurar ve `useState` yeni başlangıç değerini okur. `initial` öneki prop'un sonradan dikkate alınmayacağını söyler."
+  - question: "`user`, `Layout` ve `Header` üzerinden yalnızca `UserMenu`'ya ulaşmak için taşınıyor. React dokümanı Context'ten önce ne denemeyi önerir?"
+    code: |-
+      <Layout user={user} />
+      // Layout → Header → UserMenu
+    options:
+      - "`user`'ı kullanan component'i JSX olarak `children` ya da slot ile geçirmek"
+      - "Bir `UserContext` oluşturmak"
+      - "Global bir store'a taşımak"
+      - "Ara component'lere `{...props}` ile her şeyi iletmek"
+    answer: 0
+    explanation: "Doküman Context'ten önce props'la devam etmeyi, sonra ara component'lere `children` geçirmeyi önerir. Ara katmanlar `user`'ı bilmez; körü körüne spread ise verinin nereden geldiğini gizler."
 ---
 
 ## Props nedir

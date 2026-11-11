@@ -3,6 +3,44 @@ title: "tsconfig and strict mode"
 description: "Compiler settings, the strict flags and type checking in CI."
 lastVerified: "2026-11-03"
 translationKey: "typescript/tsconfig-and-strict-mode"
+quiz:
+  - question: "What is the type of `first`?"
+    lang: ts
+    code: |-
+      // tsconfig: "strict": true, noUncheckedIndexedAccess off
+      const products: Product[] = await fetchProducts();
+      const first = products[0];
+    options:
+      - "`Product`"
+      - "`Product | null`"
+      - "`Product | undefined`"
+      - "`any`"
+    answer: 0
+    explanation: "`noUncheckedIndexedAccess` is not part of `strict`. With it off, array access returns `Product` and the empty-array case is not in the type; turn it on and the result is `Product | undefined`."
+  - question: "What does this setting, copied from an old guide, do in TypeScript 7?"
+    lang: json
+    code: |-
+      {
+        "compilerOptions": {
+          "baseUrl": ".",
+          "paths": { "@/*": ["src/*"] }
+        }
+      }
+    options:
+      - "It only prints a warning"
+      - "It errors with `Option 'baseUrl' has been removed.`; write the paths as `./src/*` without `baseUrl`"
+      - "It works fine"
+      - "It ignores `paths` but compiles"
+    answer: 1
+    explanation: "`baseUrl` was deprecated in TypeScript 6.0 and removed in 7. Write the paths with a leading `./` and no `baseUrl`."
+  - question: "The `@/*` alias is defined with `paths` in `tsconfig`; the editor shows no error but Vite cannot resolve `@/components/ProductCard`. Why?"
+    options:
+      - "`paths` only tells TypeScript about the mapping; the bundler has to know it at runtime too (in Vite, `resolve: { tsconfigPaths: true }`)"
+      - "`baseUrl` is missing"
+      - "Vite does not support aliases"
+      - "`moduleResolution` should be `node`"
+    answer: 0
+    explanation: "`paths` does not rewrite imports in the output; it is only for type checking. In Vite turn on `resolve: { tsconfigPaths: true }` in `vite.config.ts`; Next.js reads `paths` itself."
 ---
 
 ## What tsconfig.json is

@@ -3,6 +3,37 @@ title: "Setup"
 description: "Installing Vitest, jsdom and React Testing Library."
 lastVerified: "2026-11-03"
 translationKey: "vitest/setup"
+quiz:
+  - question: "Running the test gives this error. Why?"
+    lang: text
+    code: |-
+      ReferenceError: document is not defined
+    options:
+      - "The setup file was not loaded"
+      - "`@testing-library/dom` is not installed"
+      - "The test file's name has no `.test.`"
+      - "The test environment is still the default `node`; add `environment: \"jsdom\"`"
+    answer: 3
+    explanation: "Vitest's default environment is `node`, which has no `document`. Add `environment: \"jsdom\"` to the `test` block."
+  - question: "What causes this error?"
+    lang: text
+    code: |-
+      Invalid Chai property: toBeInTheDocument
+    options:
+      - "`toBeInTheDocument` was removed in Vitest 5"
+      - "jsdom is not installed"
+      - "The setup file was not loaded, so the `@testing-library/jest-dom/vitest` import never ran"
+      - "An `await` is missing in the test"
+    answer: 2
+    explanation: "The setup file's `import \"@testing-library/jest-dom/vitest\"` adds the jest-dom matchers to Vitest. Check the `setupFiles` path."
+  - question: "You use `globals: false`. What else must you add to the setup file?"
+    options:
+      - "`environment: \"node\"`"
+      - "Nothing"
+      - "`vi.useFakeTimers()`"
+      - "`afterEach(() => cleanup())`; React Testing Library's automatic cleanup relies on a global `afterEach`"
+    answer: 3
+    explanation: "With `globals: false` you import `test`, `expect` and `vi` from `vitest` in every file. Automatic cleanup does not run without a global `afterEach`, so call `cleanup` yourself in the setup file."
 ---
 
 ## Requirements

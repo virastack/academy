@@ -3,6 +3,58 @@ title: "Narrowing ve type guard"
 description: "Union'ı daraltma, discriminated union ve güvenli tip kontrolü."
 lastVerified: "2026-11-03"
 translationKey: "typescript/narrowing-and-type-guards"
+quiz:
+  - question: "`showStock(0)` ne döndürür?"
+    lang: ts
+    code: |-
+      function showStock(stock: number | undefined) {
+        if (!stock) return "Bilgi yok";
+        return stock === 0 ? "Tükendi" : `${stock} adet`;
+      }
+
+      showStock(0);
+    options:
+      - "`\"Tükendi\"`"
+      - "`\"Bilgi yok\"`"
+      - "`\"0 adet\"`"
+      - "Derleme hatası verir"
+    answer: 1
+    explanation: "`0` falsy olduğu için `if (!stock)` onu da yakalar. `0` olabilen değerlerde açık karşılaştırma yazın: `if (stock === undefined)`."
+  - question: "Union'a `idle` eklendi ama `case \"idle\"` yazılmadı. Ne olur?"
+    lang: ts
+    code: |-
+      type ProductsState =
+        | { status: "idle" }
+        | { status: "loading" }
+        | { status: "success"; data: Product[] };
+
+      switch (state.status) {
+        case "loading": return "Loading...";
+        case "success": return `${state.data.length}`;
+        default: {
+          const exhaustiveCheck: never = state;
+          return exhaustiveCheck;
+        }
+      }
+    options:
+      - "Derleme hatası: `{ status: \"idle\" }` tipi `never`'a atanamaz"
+      - "Yalnızca çalışma anında hata çıkar"
+      - "`switch` eksik durumu kendiliğinden ekler"
+      - "Hiçbir şey; `default` dalı `idle`'ı karşılar"
+    answer: 0
+    explanation: "Bütün durumlar ele alındığında `default`'ta `state` `never` olur. Bir durum unutulursa geriye o üye kalır ve `never`'a atama, unutulan durumu adıyla söyleyen bir derleme hatası verir."
+  - question: "Bu kod için hangisi doğru?"
+    lang: ts
+    code: |-
+      const data = JSON.parse('{"id": 1}') as Product;
+      data.name.toUpperCase();
+    options:
+      - "TypeScript `name` eksik diye derleme hatası verir"
+      - "`as` veriyi doğrular ve uymazsa hata fırlatır"
+      - "`name` kendiliğinden boş string olur"
+      - "Derlenir ama çalışırken patlar; `as` hiçbir kontrol yapmaz"
+    answer: 3
+    explanation: "Type assertion TypeScript'e \"tipini ben biliyorum\" demektir ve çalışma anında hiçbir kontrol yapmaz. `name` `undefined` olduğu için kod çalışırken hata verir. Önce gerçek bir kontrolle daraltın."
 ---
 
 ## Narrowing nedir
@@ -48,7 +100,7 @@ function showStock(stock: number | undefined) {
   if (stock === undefined) {
     return "Bilgi yok";
   }
-  return stock === 0 ? "Sold out" : `${stock} adet`; // stock: number
+  return stock === 0 ? "Tükendi" : `${stock} adet`; // stock: number
 }
 ```
 

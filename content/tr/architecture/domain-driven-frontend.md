@@ -3,6 +3,31 @@ title: "Domain odaklı frontend"
 description: "DDD'den frontend'e ne alınır: ortak dil ve bağlam sınırları."
 lastVerified: "2026-11-03"
 translationKey: "architecture/domain-driven-frontend"
+quiz:
+  - question: "Tasarımda \"sipariş\", API'de `purchase`, kodda `Txn` deniyor. DDD'nin hangi fikri bu sorunu hedefler?"
+    options:
+      - "Value Object"
+      - "Ortak dil (ubiquitous language): aynı kavrama tasarımda, API'de ve kodda aynı ad"
+      - "Aggregate"
+      - "Repository"
+    answer: 1
+    explanation: "Aynı kavramın üç adı olunca her yeni gelen çeviri yapmak zorunda kalır. Ürün sözlüğünü tek yerde tutup tip, component ve klasör adlarını oradan almak önerilir."
+  - question: "Ödeme ekranında \"müşteri\" adres ve ödeme yöntemidir, destek ekranında açık taleplerdir. Ders ne önerir?"
+    options:
+      - "`Customer` adını kullanmamak"
+      - "Bütün alanları içeren tek bir global `Customer` tipi"
+      - "Alanların hepsini opsiyonel yapmak"
+      - "Her bağlamın (özellik klasörünün) kendi `Customer` tipi; API cevabı her bağlamın tipine çevrilir"
+    answer: 3
+    explanation: "DDD sistemi bağlamlara (bounded context) böler ve her bağlamın kendi tutarlı modeli olur. Tek global tip her ekranı gereksiz alanlarla doldurur."
+  - question: "Basit bir CRUD yönetim panelinde ders DDD'den ne kadarını önerir?"
+    options:
+      - "Hiçbirini"
+      - "Entity, Value Object, Service ve Aggregate dahil tamamını"
+      - "Yalnızca ortak dil ve ayrı tipler; kalanını karmaşıklık gerçekten ortaya çıkınca düşünmek"
+      - "Yalnızca Aggregate'leri"
+    answer: 2
+    explanation: "Fowler DDD'yi özellikle karmaşık alanlara uygun bulur. Ayrıntılı desenler çoğu arayüz kodunda gereksiz ağırlıktır."
 ---
 
 **Domain-Driven Design** *(DDD)* adını Eric Evans'ın 2003 tarihli kitabından aldı. [Martin Fowler](https://martinfowler.com) onu şöyle özetler: geliştirme, alanın süreçlerini ve kurallarını yakalayan bir modeli programlamak etrafında döner.[^1] Çoğu frontend projesi için kitabın tamamı gerekmez. İki fikir işe yarar: **ortak dil** ve **bağlam sınırları**.

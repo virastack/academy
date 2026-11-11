@@ -3,6 +3,41 @@ title: "Routing ve layout"
 description: "Sayfa, layout, dinamik segment, route group ve Link ile gezinme."
 lastVerified: "2026-11-03"
 translationKey: "nextjs/routing-and-layouts"
+quiz:
+  - question: "Next.js 16'da bu sayfanın sorunu nedir?"
+    lang: tsx
+    code: |-
+      export default function ProductPage({ params }: PageProps<"/products/[slug]">) {
+        return <h1>{params.slug}</h1>;
+      }
+    options:
+      - "`params` yalnızca layout'ta kullanılabilir"
+      - "Sorun yok"
+      - "`slug` yalnızca geliştirmede `undefined` olur"
+      - "`params` bir Promise'tir; `await` etmeden okunamaz"
+    answer: 3
+    explanation: "Next.js 15'ten beri `params` ve `searchParams` Promise'tir. Sayfayı `async` yapıp `const { slug } = await params` yazın; `params.slug` eski tutorial'lardaki yazımdır."
+  - question: "Oturum kontrolünü `app/account/layout.tsx`'e koymak neden yeterli değildir?"
+    options:
+      - "Layout'lar Server Component olamaz"
+      - "Layout'larda `cookies()` okunamaz"
+      - "Layout gezinmede yeniden render edilmediği için her alt sayfayı korumaz"
+      - "Next.js layout'ları build'de statik üretir"
+    answer: 2
+    explanation: "Ortak layout, alt sayfalar arasında geçerken yeniden render edilmez. Kontrol orada bir kez çalışır ve her sayfayı korumaz; kontrolü veriye yakın yapın."
+  - question: "App Router'daki bir Client Component'te bu import için hangisi doğru?"
+    lang: tsx
+    code: |-
+      "use client";
+
+      import { useRouter } from "next/router";
+    options:
+      - "`useRouter` artık yoktur, yerine `<Link>` kullanılır"
+      - "Yalnızca Server Component'te çalışır"
+      - "Yanlıştır; `next/router` Pages Router'a aittir, doğrusu `next/navigation`"
+      - "Doğrudur"
+    answer: 2
+    explanation: "`next/router` eski Pages Router'a aittir ve App Router'da çalışmaz. Kodla yönlendirme için `useRouter`'ı `next/navigation`'dan alın. AI araçları bu ikisini sık karıştırır."
 ---
 
 ## Klasör = adres

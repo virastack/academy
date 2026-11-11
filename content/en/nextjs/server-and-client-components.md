@@ -3,6 +3,44 @@ title: "Server and Client Components"
 description: "The 'use client' boundary, composition, serialisation and server-only."
 lastVerified: "2026-11-03"
 translationKey: "nextjs/server-and-client-components"
+quiz:
+  - question: "Which prop cannot be passed from a Server Component to a Client Component?"
+    options:
+      - "JSX"
+      - "A Promise"
+      - "`new Date()`"
+      - "A plain function such as `onClick={() => console.log(\"x\")}`"
+    answer: 3
+    explanation: "Props that cross the boundary travel over the network and must be serialisable. `Date`, Promises and JSX pass; a plain function does not. Write event handlers inside the Client Component."
+  - question: "What is the right way to show the `<CartItems />` Server Component, which reads the cart on the server, inside this drawer?"
+    lang: tsx
+    code: |-
+      // components/drawer.tsx
+      "use client";
+
+      export function Drawer({ children }: { children: React.ReactNode }) {
+        // open/close state
+      }
+    options:
+      - "Import and render `CartItems` inside `drawer.tsx`"
+      - "Pass `<CartItems />` to `<Drawer>` as `children` in the layout"
+      - "Read the cart from `localStorage`"
+      - "Add `\"use client\"` to `CartItems` and fetch the data in `useEffect`"
+    answer: 1
+    explanation: "A Client Component cannot import a Server Component; whatever it imports becomes client code. It can receive one as `children`, though: `CartItems` renders on the server and `Drawer` only places the result."
+  - question: "What does this Client Component print when it runs in the browser?"
+    lang: tsx
+    code: |-
+      "use client";
+
+      console.log(process.env.API_KEY);
+    options:
+      - "The value of the API key"
+      - "It fails the build"
+      - "A `process is not defined` error"
+      - "An empty string"
+    answer: 3
+    explanation: "Only environment variables that start with `NEXT_PUBLIC_` go into the client bundle; the rest are empty strings on the client. Mark code that reads secrets with `server-only`."
 ---
 
 ## Two environments, one tree

@@ -3,6 +3,38 @@ title: "CI'da çalıştırma"
 description: "GitHub Actions, sharding ve kırılgan testler."
 lastVerified: "2026-11-03"
 translationKey: "playwright/running-in-ci"
+quiz:
+  - question: "`if: ${{ !cancelled() }}` neden var?"
+    lang: yaml
+    code: |-
+      - uses: actions/upload-artifact@v7
+        if: ${{ !cancelled() }}
+        with:
+          name: playwright-report
+          path: playwright-report/
+    options:
+      - "İş iptal edilince raporu silmek için"
+      - "Testler düşse de raporun yüklenmesi için; asıl ihtiyaç duyulan an testlerin düştüğü andır"
+      - "Raporu yalnızca testler geçerse yüklemek için"
+      - "Paralel çalıştırmayı açmak için"
+    answer: 1
+    explanation: "Varsayılan olarak bir adım düşünce sonraki adımlar çalışmaz. Bu koşul, düşen testlerin raporunu ve trace'ini indirip incelemenizi sağlar."
+  - question: "CI'da Playwright tarayıcılarını önbelleğe almak için Playwright dokümanı ne der?"
+    options:
+      - "Önermez; önbelleği geri yüklemek indirmek kadar sürer ve Linux'ta sistem bağımlılıkları önbelleğe alınamaz"
+      - "Mutlaka önbelleğe alın"
+      - "Yalnızca Firefox'u önbelleğe alın"
+      - "Docker imajı kullanılıyorsa zorunludur"
+    answer: 0
+    explanation: "İşe yarayan önbellek npm paketleridir (`actions/setup-node`'un `cache: npm` ayarı). Süreyi kısaltmak için yalnızca kullandığınız tarayıcıyı kurun."
+  - question: "`retries: 2` ile bir test ilk denemede düşüp ikinci denemede geçti. Rapor onu nasıl gösterir?"
+    options:
+      - "Hiç göstermez"
+      - "Geçti olarak, iz bırakmadan"
+      - "\"flaky\" olarak işaretler"
+      - "Başarısız olarak"
+    answer: 2
+    explanation: "`retries` kırılganlığı gizlemez, raporlar. Trace'i açıp nedenini bulun; hiç tahammül etmek istemiyorsanız `--fail-on-flaky-tests` ile flaky testleri de başarısız sayın."
 ---
 
 ## Neden CI?

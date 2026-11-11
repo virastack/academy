@@ -3,6 +3,38 @@ title: "Suspense and error handling"
 description: "A global toast, throwOnError, useSuspenseQuery and retrying after an error."
 lastVerified: "2026-11-03"
 translationKey: "tanstack-query/suspense-and-error-handling"
+quiz:
+  - question: "In v5, the same query is used in three components and you want a single toast for an error. Where should it be triggered?"
+    options:
+      - "With `throwOnError: true`"
+      - "In the `QueryCache`'s `onError`"
+      - "In each component, watching `error` with `useEffect`"
+      - "In `useQuery`'s `onError` callback"
+    answer: 1
+    explanation: "v5 removed `useQuery`'s callbacks; they ran separately in every component and could show several toasts for one error. The `QueryCache`'s `onError` runs once per request."
+  - question: "How do the two requests run?"
+    lang: tsx
+    code: |-
+      function ProductPage({ id }: { id: number }) {
+        const { data: product } = useSuspenseQuery(productQueries.detail(id));
+        const { data: reviews } = useSuspenseQuery(reviewQueries.list(id));
+        // ...
+      }
+    options:
+      - "The second never runs"
+      - "In parallel"
+      - "In sequence: the first suspends, and the second only starts once the first data arrives"
+      - "They are merged into one request"
+    answer: 2
+    explanation: "Two `useSuspenseQuery` calls in one component create a waterfall. Use `useSuspenseQueries`, or split the queries into separate components, to run them in parallel."
+  - question: "The \"Try again\" button in the Error Boundary resets the boundary, but the error comes right back. Why, and what is the fix?"
+    options:
+      - "Turn off `throwOnError`"
+      - "The network is still down; there is no fix"
+      - "The query is still in the error state; use `QueryErrorResetBoundary` to reset the query along with the boundary"
+      - "Set `retry: false`"
+    answer: 2
+    explanation: "When the boundary resets, the component re-renders, but the query is still in error and throws again at once. Pass `QueryErrorResetBoundary`'s `reset` to the `ErrorBoundary`'s `onReset`."
 ---
 
 ## Three ways to show an error

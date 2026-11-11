@@ -3,6 +3,43 @@ title: "Selectors and re-renders"
 description: "Atomic selectors, useShallow and custom hooks."
 lastVerified: "2026-11-03"
 translationKey: "zustand/selectors-and-rerenders"
+quiz:
+  - question: "What does this code do in Zustand v5?"
+    lang: ts
+    code: |-
+      const { items, isOpen } = useCartStore((state) => ({
+        items: state.items,
+        isOpen: state.isOpen,
+      }));
+    options:
+      - "Only causes extra renders"
+      - "`isOpen` is always `undefined`"
+      - "Works fine"
+      - "The page stops with a \"Maximum update depth exceeded\" error"
+    answer: 3
+    explanation: "The selector creates a new object every time and `Object.is` never treats two objects as equal. Since v5 follows React's behaviour, this turns into an endless render loop. Fix it with `useShallow` or two separate atomic selectors."
+  - question: "When does this component re-render?"
+    lang: ts
+    code: |-
+      const { items } = useCartStore();
+    options:
+      - "Only when `items` changes"
+      - "On every change in the store, `isOpen` included"
+      - "Never"
+      - "Only on the first render"
+    answer: 1
+    explanation: "Without a selector the hook returns the whole state, so the component re-renders on every change. TkDodo recommends writing a selector even when the store holds a single value."
+  - question: "Which is true for this selector?"
+    lang: ts
+    code: |-
+      const ids = useCartStore((state) => state.items.map((item) => item.id));
+    options:
+      - "It is fine; the result is always the same reference"
+      - "Wrap the result in `useMemo`"
+      - "`map` creates a new array every time; wrap it in `useShallow`"
+      - "`map` cannot be used in a selector"
+    answer: 2
+    explanation: "`filter`, `map` and `Object.keys` return new references. `useShallow` compares the array shallowly and returns the previous reference while the elements stay the same, so the component does not re-render."
 ---
 
 ## How a selector is compared

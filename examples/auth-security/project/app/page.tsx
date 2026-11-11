@@ -4,7 +4,7 @@ export default function Home() {
   return (
     <main>
       <h1>Store Administration</h1>
-      <Link href="/admin">Panele git</Link>
+      <Link href="/admin">Go to the admin panel</Link>
     </main>
   );
 }

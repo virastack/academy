@@ -3,6 +3,51 @@ title: "Refs and the DOM"
 description: "Reaching the DOM, the ref prop, ref callback cleanup and Fragment refs."
 lastVerified: "2026-11-03"
 translationKey: "react/refs-and-dom"
+quiz:
+  - question: "The button is clicked three times. What happens?"
+    code: |-
+      function Counter() {
+        const countRef = useRef(0);
+        return (
+          <>
+            <button onClick={() => countRef.current++}>+</button>
+            <p>{countRef.current}</p>
+          </>
+        );
+      }
+    options:
+      - "The value goes up, but the screen does not update because no render is triggered"
+      - "React throws an error"
+      - "The screen updates on every click"
+      - "The value does not go up because `ref.current` is read-only"
+    answer: 0
+    explanation: "Changing a ref does not trigger a render, and refs should not be read during render. Data shown on screen belongs in state."
+  - question: "In React 19, what is enough to pass a ref to your own component?"
+    code: |-
+      <TextField ref={inputRef} placeholder="Email" />
+    options:
+      - "`useImperativeHandle` is required"
+      - "Take `ref` like any other prop and pass it to the `<input>`"
+      - "Wrap the component in `forwardRef`"
+      - "Pass the ref as a separate prop named `inputRef`"
+    answer: 1
+    explanation: "Since React 19, `ref` is a regular prop in function components. `forwardRef` is no longer needed and will be removed in future."
+  - question: "In React 19, when is the function returned from a ref callback called?"
+    code: |-
+      function measure(node: HTMLElement) {
+        const observer = new ResizeObserver(log);
+        observer.observe(node);
+        return () => observer.disconnect();
+      }
+
+      <article ref={measure}>...</article>;
+    options:
+      - "After every render"
+      - "Never; the return value is ignored"
+      - "When the element is removed from the DOM"
+      - "As soon as the element is added to the DOM"
+    answer: 2
+    explanation: "In React 19 a ref callback can return a cleanup, which is called when the element is removed. Strict Mode sets it up and tears it down one extra time in development."
 ---
 
 ## What a ref is

@@ -3,6 +3,43 @@ title: "Skills"
 description: "Tekrar eden işleri skill'e dönüştürme ve hazır frontend skill'lerini kullanma."
 lastVerified: "2026-11-03"
 translationKey: "ai/skills"
+quiz:
+  - question: "Skill'in kural dosyasından (`AGENTS.md`) farkı nedir?"
+    options:
+      - "Skill her oturumda tamamen yüklenir"
+      - "Skill'in yalnızca açıklaması bağlamda durur, gövdesi kullanıldığında yüklenir"
+      - "Skill yalnızca elle çağrılabilir"
+      - "Skill yalnızca Claude Code'da çalışır"
+    answer: 1
+    explanation: "Kural dosyası her işte geçerli olgular içindir, skill belli bir işte izlenecek prosedür içindir. Uzun referans malzeme, kullanılana kadar neredeyse maliyetsizdir."
+  - question: "Agent'ın bu skill'i kendiliğinden çalıştırmasını engelleyip yalnızca sizin `/deploy` ile tetiklemeniz için ne eklenir?"
+    lang: markdown
+    code: |-
+      ---
+      name: deploy
+      description: Deploys the app to production.
+      ---
+    options:
+      - "`disable-model-invocation: true`"
+      - "`user-invocable: false`"
+      - "`tools: Read`"
+      - "`paths: \"**/*.tsx\"`"
+    answer: 0
+    explanation: "Varsayılanda hem siz hem agent skill'i çalıştırabilir. Yan etkisi olan `deploy` ve `commit` gibi işlerde agent'ın tetiklemesini kapatın. `user-invocable: false` ise tersidir: yalnızca agent'ın bilmesi gereken arka plan bilgisi için."
+  - question: "Bu skill neden nadiren doğru zamanda devreye girer?"
+    lang: markdown
+    code: |-
+      ---
+      name: docs
+      description: Belgelerle ilgilenir.
+      ---
+    options:
+      - "Skill gövdesi eksik"
+      - "Agent skill'i yalnızca `description`'a bakarak seçer; bu metin ne yaptığını ve ne zaman kullanılacağını söylemiyor"
+      - "Skill `.claude/skills/` dışında"
+      - "`name` çok kısa"
+    answer: 1
+    explanation: "`description`'a hem \"ne yapar\" hem \"ne zaman\" yazın, üçüncü şahısla (\"ekler\"). Önemli kullanım durumunu başa koyun."
 ---
 
 Aynı talimatı üçüncü kez sohbete yapıştırıyorsanız, o iş skill olmak istiyordur. [!claudeCode] dokümanı skill'i tam bu durumlar için öneriyor: aynı talimatı, kontrol listesini ya da çok adımlı prosedürü tekrar tekrar yapıştırıyorsanız veya `CLAUDE.md`'nizdeki bir bölüm olgu olmaktan çıkıp prosedüre dönüştüyse.[^1]

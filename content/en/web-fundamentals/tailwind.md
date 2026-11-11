@@ -3,6 +3,40 @@ title: "Tailwind"
 description: "Styling and responsive layout with utility classes."
 lastVerified: "2026-11-03"
 translationKey: "web-fundamentals/tailwind"
+quiz:
+  - question: "How does the text look on a 375px-wide phone?"
+    lang: html
+    code: |-
+      <p class="sm:text-center">Free shipping</p>
+    options:
+      - "Centred, because `sm:` means small screens"
+      - "Not centred; `sm:` only applies at 640px and up"
+      - "Not centred on any screen"
+      - "Centred only below 640px"
+    answer: 1
+    explanation: "Tailwind is mobile-first: a class without a prefix applies everywhere, and `sm:` applies from 40rem (640px) up. To centre on mobile, write it without a prefix and override for larger screens: `text-center sm:text-left`."
+  - question: "When `color` is `\"blue\"`, why is the button not blue?"
+    lang: tsx
+    code: |-
+      <button className={`bg-${color}-600`}>Save</button>
+    options:
+      - "There is no `bg-blue-600` class"
+      - "Tailwind classes only work when written in a CSS file"
+      - "Template strings do not work in JSX"
+      - "Tailwind scans source files as plain text; `bg-blue-600` never appears there, so its CSS is not generated"
+    answer: 3
+    explanation: "Tailwind cannot see class names assembled at runtime. Write the full class names in the source, for example in a map like `{ blue: \"bg-blue-600\" }`."
+  - question: "What does this call return when `isLarge` is `true`? (`cn` = `clsx` + `tailwind-merge`)"
+    lang: ts
+    code: |-
+      cn("px-2 py-1", isLarge && "px-4");
+    options:
+      - "`\"py-1 px-4\"`"
+      - "`\"px-2 py-1 px-4\"`"
+      - "`\"px-4\"`"
+      - "`\"px-2 py-1\"`"
+    answer: 0
+    explanation: "`clsx` collects the conditional classes and `tailwind-merge` keeps the later of the conflicting `px-2` and `px-4`. The result is `\"py-1 px-4\"`."
 ---
 
 ## What Tailwind is

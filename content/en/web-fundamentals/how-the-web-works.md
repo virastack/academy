@@ -3,6 +3,37 @@ title: "How the web works"
 description: "The browser, HTTP request/response and DevTools."
 lastVerified: "2026-11-03"
 translationKey: "web-fundamentals/how-the-web-works"
+quiz:
+  - question: "When this address is opened, which part of the URL is never sent to the server?"
+    lang: text
+    code: |-
+      https://www.example.com:443/products/book?color=blue&page=2#reviews
+    options:
+      - "`/products/book`"
+      - "`?color=blue&page=2`"
+      - "`#reviews`"
+      - "`www.example.com`"
+    answer: 2
+    explanation: "The anchor (the part after `#`) points to a place inside the page and is never sent to the server. The domain travels in the `Host` header, and the path and parameters travel with the request itself."
+  - question: "The browser asks for a file again and the server returns this response. What does it mean?"
+    lang: text
+    code: |-
+      HTTP/1.1 304 Not Modified
+    options:
+      - "The server could not handle the request"
+      - "The file has moved permanently to another address"
+      - "The cached copy is still valid"
+      - "The file was not found"
+    answer: 2
+    explanation: "`3xx` is the redirection class; `304` says the cached copy is still valid. A permanent move is `301`, not found is `404`, and server errors are `5xx`."
+  - question: "You pointed your site's DNS record at a new server, but some users keep reaching the old one for a while. Why?"
+    options:
+      - "DNS records are only published once a day"
+      - "The browser stores the IP address permanently"
+      - "The HTTPS certificate has to be renewed first"
+      - "Caches keep the answer for the record's TTL"
+    answer: 3
+    explanation: "Every DNS record has a TTL, and the browser, operating system and resolver caches keep the answer for that long. That is why not everyone sees the change at once."
 ---
 
 ## Client and server

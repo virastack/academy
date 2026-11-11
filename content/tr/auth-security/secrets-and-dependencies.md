@@ -3,6 +3,35 @@ title: "Secret ve bağımlılık güvenliği"
 description: "Anahtarı client'tan uzak tutma, .env ve npm tedarik zinciri saldırıları."
 lastVerified: "2026-11-03"
 translationKey: "auth-security/secrets-and-dependencies"
+quiz:
+  - question: "Bir API anahtarı açık bir depoya commit'lendi. OWASP'ın önerdiği sıra hangisidir?"
+    options:
+      - "Git geçmişini yeniden yazıp force push yapmak"
+      - "Dosyayı silip yeni commit atmak"
+      - "Önce anahtarı iptal etmek, sonra yenisini üretmek, en son kayıtlardan temizlemek"
+      - "Dosyayı `.gitignore`'a eklemek"
+    answer: 2
+    explanation: "Dosyayı silmek yetmez, anahtar eski commit'lerde durur. Geçmişi yeniden yazmak diğer kopyaları düzeltmez; anahtarı iptal etmek tek kesin çözümdür. GitHub'ın push protection özelliği bilinen anahtar biçimlerini push sırasında yakalar."
+  - question: "Bu ayarla, 6 gün önce yayınlanan `next@16.4.2` kurulmak istenirse ne olur?"
+    lang: ini
+    code: |-
+      # .npmrc
+      min-release-age=7
+    options:
+      - "npm bir onay sorar"
+      - "O sürüm kurulmaz; 7 günden eski uygun sürüm (`16.4.1`) gelir"
+      - "Kurulur, ayar yalnızca CI'da çalışır"
+      - "Kurulum hata verip durur"
+    answer: 1
+    explanation: "Ele geçirilmiş sürümler çoğu zaman birkaç gün içinde fark edilip kaldırılır; bekleme bu süreyi kazandırır. Bekleme güvenlik yamalarını da geciktirir, gerekirse paketi `min-release-age-exclude` listesine ekleyin."
+  - question: "Yapay zekânın uydurduğu bir paket adıyla önceden yayınlanmış sahte pakete ne denir?"
+    options:
+      - "Lockfile drift"
+      - "Slopsquatting"
+      - "Typosquatting"
+      - "Ele geçirilmiş paket"
+    answer: 1
+    explanation: "Typosquatting `cross-env` yerine `crossenv` gibi benzer isimdir. Yapay zekânın önerdiği bir paketi kurmadan önce `npm view <paket>` ile var olduğunu, indirme sayısını ve deposunu kontrol edin."
 ---
 
 Bir uygulama iki yoldan, kendi kodunuzda hiçbir hata yokken de ele geçirilebilir. Ya bir anahtar sızar ya da kurduğunuz bir paket kötü kod taşır. Bu ders ikisinin de en sık görülen hâllerini ve basit önlemlerini anlatıyor.

@@ -3,6 +3,31 @@ title: "Domain-driven frontend"
 description: "What to take from DDD into the frontend: the ubiquitous language and bounded contexts."
 lastVerified: "2026-11-03"
 translationKey: "architecture/domain-driven-frontend"
+quiz:
+  - question: "It is \"order\" in the design, `purchase` in the API and `Txn` in the code. Which DDD idea targets this problem?"
+    options:
+      - "Value Object"
+      - "Ubiquitous language: the same name for a concept in design, API and code"
+      - "Aggregate"
+      - "Repository"
+    answer: 1
+    explanation: "When one concept has three names, everyone who joins has to translate. Keep the product glossary in one place and take type, component and folder names from it."
+  - question: "On the checkout screen a \"customer\" is an address and a payment method; on the support screen it is open tickets. What does the lesson suggest?"
+    options:
+      - "Avoid the name `Customer`"
+      - "A single global `Customer` type with every field"
+      - "Make every field optional"
+      - "Each context (feature folder) gets its own `Customer` type, and the API response is mapped to each context's type"
+    answer: 3
+    explanation: "DDD splits the system into bounded contexts, each with its own consistent model. A single global type fills every screen with fields it does not need."
+  - question: "For a simple CRUD admin panel, how much of DDD does the lesson recommend?"
+    options:
+      - "None of it"
+      - "All of it, including Entity, Value Object, Service and Aggregate"
+      - "Only the ubiquitous language and separate types; consider the rest when complexity actually shows up"
+      - "Only Aggregates"
+    answer: 2
+    explanation: "Fowler sees DDD as best suited to complex domains. The detailed patterns are unnecessary weight in most UI code."
 ---
 
 **Domain-Driven Design** *(DDD)* takes its name from Eric Evans's 2003 book. [Martin Fowler](https://martinfowler.com) summarises it like this: development revolves around programming a model that captures the domain's processes and rules.[^1] For most frontend projects the whole book is not needed. Two ideas are useful: the **ubiquitous language** and **bounded contexts**.

@@ -3,6 +3,51 @@ title: "Generics"
 description: "Reusable functions and types that work with whatever type they are given."
 lastVerified: "2026-11-03"
 translationKey: "typescript/generics"
+quiz:
+  - question: "What is the type of `firstName`?"
+    lang: ts
+    code: |-
+      function getFirst<T>(items: T[]): T | undefined {
+        return items[0];
+      }
+
+      const firstName = getFirst(["Headphones", "Keyboard"]);
+    options:
+      - "`any`"
+      - "`string[]`"
+      - "`string`"
+      - "`string | undefined`"
+    answer: 3
+    explanation: "TypeScript looks at the argument and infers that `T` is `string` (type argument inference). The return type is `T | undefined`, so the result is `string | undefined`."
+  - question: "Why use a generic with a constraint instead of typing the parameter as `{ price: number }[]`?"
+    lang: ts
+    code: |-
+      function sortByPrice<T extends { price: number }>(items: T[]): T[] {
+        return [...items].sort((a, b) => a.price - b.price);
+      }
+    options:
+      - "The generic version runs faster"
+      - "The return type keeps what came in; pass `Product[]` and you get `Product[]`, without losing fields like `name`"
+      - "`sort` does not compile without a generic"
+      - "`extends` checks at runtime that the price is a number"
+    answer: 1
+    explanation: "With a `{ price: number }[]` parameter, the result would also be `{ price: number }[]` and the other fields would drop out of the type. `T extends { price: number }` allows access to `price` and returns what came in unchanged."
+  - question: "Which is true for this usage?"
+    lang: ts
+    code: |-
+      async function fetchJson<T>(url: string): Promise<T> {
+        const response = await fetch(url);
+        return response.json();
+      }
+
+      const products = await fetchJson<Product[]>("/api/products");
+    options:
+      - "It is a compile error because `response.json()` returns `unknown`"
+      - "TypeScript verifies that the response is `Product[]`"
+      - "It is safe because `T` is inferred from the argument"
+      - "It is an unchecked type assertion, no different from writing `as Product[]`"
+    answer: 3
+    explanation: "`response.json()` returns `any`, and `T` only appears in the return type. A return-only generic like this is `any` in disguise; if the server returns something else, TypeScript cannot know. Take the data as `unknown` and validate it."
 ---
 
 ## Why generics

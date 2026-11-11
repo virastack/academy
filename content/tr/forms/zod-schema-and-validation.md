@@ -3,6 +3,49 @@ title: "Zod ile şema ve doğrulama"
 description: "Şema, tip çıkarımı, hata mesajları ve dönüşüm."
 lastVerified: "2026-11-03"
 translationKey: "forms/zod-schema-and-validation"
+quiz:
+  - question: "Kullanıcı planı seçmedi ve iki şifre farklı. Hangi hatalar görünür?"
+    lang: ts
+    code: |-
+      const schema = z
+        .object({
+          plan: z.enum(["basic", "pro"]),
+          password: z.string().min(8),
+          confirmPassword: z.string(),
+        })
+        .refine((data) => data.password === data.confirmPassword, {
+          error: "The passwords do not match.",
+          path: ["confirmPassword"],
+        });
+    options:
+      - "Hiçbiri"
+      - "İkisi de"
+      - "Yalnızca şifre hatası"
+      - "Yalnızca `plan` hatası; tip hatası varken nesnenin `.refine`'ı çalışmaz"
+    answer: 3
+    explanation: "Zod refinement'a yalnızca tipi doğru veriyi verir. Seçilmemiş enum bir tip hatasıdır, bu yüzden şifre kontrolü kullanıcı planı seçene kadar çalışmaz. Gerekirse `when` seçeneğiyle koşulu kendiniz belirleyin."
+  - question: "Kullanıcı web sitesi alanını boş bıraktı (`\"\"`). Ne olur?"
+    lang: ts
+    code: |-
+      website: z.url().optional(),
+    options:
+      - "Reddedilir; `optional` yalnızca `undefined`'ı kabul eder"
+      - "`undefined`'a çevrilir"
+      - "Geçer; alan opsiyonel"
+      - "Zod bir uyarı verir ama geçer"
+    answer: 0
+    explanation: "Formdan gelen boş alan `\"\"`'dır, `undefined` değil. Boş bırakılabilir URL için `z.union([z.url(...), z.literal(\"\")])` yazın."
+  - question: "Yaş alanı boş gönderilirse ne olur?"
+    lang: ts
+    code: |-
+      age: z.coerce.number().int().min(0),
+    options:
+      - "`Number(\"\")` `0` olduğu için `0` olarak geçer"
+      - "\"Zorunlu\" hatası verir"
+      - "`NaN` olarak reddedilir"
+      - "`undefined` olur"
+    answer: 0
+    explanation: "`z.coerce.number()` değeri `Number()` ile çevirir ve boş metin `0` olur. Zorunlu sayı için boş metni önce yakalayın: `z.string().min(1, ...).pipe(z.coerce.number<string>()...)`."
 ---
 
 ## Neden şema?

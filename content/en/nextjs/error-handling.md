@@ -3,6 +3,40 @@ title: "Error handling"
 description: "Expected errors, error.tsx and retry, catchError and notFound."
 lastVerified: "2026-11-03"
 translationKey: "nextjs/error-handling"
+quiz:
+  - question: "If the product does not exist, what is shown?"
+    lang: tsx
+    code: |-
+      try {
+        const product = await getProduct(slug);
+        if (!product) notFound();
+        return <h1>{product.name}</h1>;
+      } catch {
+        return <p>Something went wrong.</p>;
+      }
+    options:
+      - "\"Something went wrong.\", because `notFound()` works by throwing and the `catch` catches it"
+      - "`not-found.tsx`"
+      - "An empty page"
+      - "`error.tsx`"
+    answer: 0
+    explanation: "`notFound()` and `redirect()` work by throwing internally. Called inside a `try` block, they are caught by the `catch` and do nothing; call them outside `try`/`catch`."
+  - question: "What is the difference between `retry()` in `error.tsx` and `reset()` in older examples?"
+    options:
+      - "They do the same thing"
+      - "`reset()` refetches data, `retry()` reloads the page"
+      - "`retry()` only works in `global-error.tsx`"
+      - "`retry()` refetches the segment's data and re-renders; `reset()` only clears the error state"
+    answer: 3
+    explanation: "`retry()` became stable in 16.3 and re-renders after fetching the data again. `reset()` only clears the error state and does not refetch."
+  - question: "`notFound()` is called in a child component after the page has started streaming. What happens?"
+    options:
+      - "The response turns into `404`"
+      - "The response stays `200`; Next.js adds a `noindex` meta tag to the page"
+      - "The response becomes `500`"
+      - "A server-side HTTP redirect happens"
+    answer: 1
+    explanation: "Once streaming has started, the server has committed to a `200` status and cannot switch to `404`. Next.js adds `<meta name=\"robots\" content=\"noindex\">` so search engines do not index the page."
 ---
 
 ## Two kinds of error

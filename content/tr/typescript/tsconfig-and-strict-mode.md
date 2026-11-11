@@ -3,6 +3,44 @@ title: "tsconfig ve strict mod"
 description: "Derleyici ayarları, strict bayrakları ve CI'da tip kontrolü."
 lastVerified: "2026-11-03"
 translationKey: "typescript/tsconfig-and-strict-mode"
+quiz:
+  - question: "`first`'in tipi nedir?"
+    lang: ts
+    code: |-
+      // tsconfig: "strict": true, noUncheckedIndexedAccess kapalı
+      const products: Product[] = await fetchProducts();
+      const first = products[0];
+    options:
+      - "`Product`"
+      - "`Product | null`"
+      - "`Product | undefined`"
+      - "`any`"
+    answer: 0
+    explanation: "`noUncheckedIndexedAccess` `strict`'in parçası değildir. Kapalıyken dizi erişimi `Product` döner ve boş dizi ihtimali tipte görünmez; açınca sonuç `Product | undefined` olur."
+  - question: "Eski bir rehberden kopyalanan bu ayar TypeScript 7'de ne yapar?"
+    lang: json
+    code: |-
+      {
+        "compilerOptions": {
+          "baseUrl": ".",
+          "paths": { "@/*": ["src/*"] }
+        }
+      }
+    options:
+      - "Yalnızca uyarı verir"
+      - "Hata verir: `Option 'baseUrl' has been removed.`; yollar `./src/*` diye `baseUrl` olmadan yazılmalı"
+      - "Sorunsuz çalışır"
+      - "`paths`'i yok sayar ama derler"
+    answer: 1
+    explanation: "`baseUrl` TypeScript 6.0'da kullanımdan kaldırıldı, 7'de tamamen silindi. Yolların başına `./` ekleyerek `baseUrl` olmadan yazın."
+  - question: "`@/*` alias'ı `tsconfig`'teki `paths` ile tanımlı; editör hata vermiyor ama Vite `@/components/ProductCard` import'unu çözemiyor. Sebebi nedir?"
+    options:
+      - "`paths` yalnızca TypeScript'e eşlemeyi anlatır; çalışma anında bundler'ın da bilmesi gerekir (Vite'ta `resolve: { tsconfigPaths: true }`)"
+      - "`baseUrl` eklenmemiş"
+      - "Vite alias'ları desteklemez"
+      - "`moduleResolution` `node` olmalı"
+    answer: 0
+    explanation: "`paths` çıktıdaki import'ları değiştirmez, yalnızca tip kontrolü içindir. Vite'ta `vite.config.ts` içinde `resolve: { tsconfigPaths: true }` açılır; Next.js `paths`'i kendisi okur."
 ---
 
 ## tsconfig.json nedir

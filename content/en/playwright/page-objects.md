@@ -3,6 +3,39 @@ title: "Page Object"
 description: "Collecting locators and flows in page objects."
 lastVerified: "2026-11-03"
 translationKey: "playwright/page-objects"
+quiz:
+  - question: "What is wrong with this Page Object method?"
+    lang: ts
+    code: |-
+      async isErrorVisible(): Promise<boolean> {
+        return this.error.isVisible();
+      }
+
+      // in the test
+      expect(await loginPage.isErrorVisible()).toBe(true);
+    options:
+      - "`isVisible` cannot be used in a Page Object"
+      - "Returning a boolean loses the waiting of web-first assertions; return the locator and assert with `expect` in the test"
+      - "The name is too long"
+      - "Nothing"
+    answer: 1
+    explanation: "`isVisible()` returns the current state. Expose the locator (`loginPage.error`) and write `await expect(loginPage.error).toBeVisible()` in the test."
+  - question: "Where should a test's main claim, such as \"is the message right, was the row cancelled\", live?"
+    options:
+      - "In the Page Object's action method"
+      - "In the test; a reader should see what is verified without opening the Page Object"
+      - "In a separate helper file"
+      - "In the fixture's teardown"
+    answer: 1
+    explanation: "A Page Object may wait for an action to complete (did the next page load). Scenario-specific expected values and the main claim belong in the test."
+  - question: "Why is it safe to define locators in a Page Object's constructor?"
+    options:
+      - "Playwright caches locators"
+      - "The constructor is `async`"
+      - "The constructor runs after the page loads"
+      - "Creating a locator does not touch the page; the element is only looked up during an action or assertion"
+    answer: 3
+    explanation: "A locator is a recipe. Created in the constructor and used later, it looks up the current element every time."
 ---
 
 ## The problem: repeated locators

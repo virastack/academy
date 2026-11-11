@@ -15,7 +15,7 @@ Bir mağazanın ürün yönetim panelini kuracaksınız. Panel:
 - Detayı `useSuspenseQuery` ile okur; hata olursa "Tekrar dene" gösterir.
 - Stoğu günceller; detay cevapla, liste invalidation ile yenilenir.
 - Favori butonu sunucuyu beklemeden değişir; hata olursa geri alınır.
-- Yorumları üçer üçer "Daha fazla" ile yükler; yeni yorum gönderilirken soluk görünür.
+- Yorumları üçer üçer "Load more" ile yükler; yeni yorum gönderilirken soluk görünür.
 - Arka planda başarısız olan yenilemeleri bir toast ile bildirir.
 
 Amaç tasarım değil, derslerdeki parçaların birlikte çalışmasıdır. Her parçanın hangi dersten geldiği:
@@ -329,14 +329,14 @@ export function ProductTable({ selectedId, onSelect }: ProductTableProps) {
       )}
 
       <button onClick={() => setPage((p) => p - 1)} disabled={page === 1}>
-        Önceki
+        Previous
       </button>
-      <span> Sayfa {page} </span>
+      <span> Page {page} </span>
       <button
         onClick={() => setPage((p) => p + 1)}
         disabled={isPlaceholderData || !data?.hasMore}
       >
-        Sonraki
+        Next
       </button>
       {isFetching && <span>Updating...</span>}
     </section>
@@ -346,7 +346,7 @@ export function ProductTable({ selectedId, onSelect }: ProductTableProps) {
 
 Üç ayrıntı:[^4][^5]
 
-- `keepPreviousData` yeni sayfa gelene kadar eskisini tutar. `isPlaceholderData` true iken "Sonraki" kapalıdır; kullanıcı henüz gelmemiş bir sayfanın ötesine geçemez.
+- `keepPreviousData` yeni sayfa gelene kadar eskisini tutar. `isPlaceholderData` true iken "Next" kapalıdır; kullanıcı henüz gelmemiş bir sayfanın ötesine geçemez.
 - `useEffect`, gösterilen sayfa gerçek veriyken bir sonrakini `queryClient.query` ile arka planda yükler. `void` ve `.catch(noop)` prefetch hatasını yutar; asıl sorgu hatayı zaten yeniden dener.
 - Arama formu kontrolsüzdür; değer yalnızca "Ara"ya basınca state'e, oradan anahtara geçer.
 
@@ -621,7 +621,7 @@ createRoot(document.getElementById("root")!).render(
 );
 ```
 
-`npm run dev` ile açın ve şu sırayı deneyin: ilk yükleme, "Sonraki", bir ürünün üzerine gelip tıklama *(detay anında açılmalı)*, "Daha fazla", stok güncelleme, favoriye art arda basma, yorum gönderme, "shirt" araması. Devtools panelinde her adımda hangi sorgunun `fetching`, `stale` ya da `inactive` olduğunu izleyin.
+`npm run dev` ile açın ve şu sırayı deneyin: ilk yükleme, "Next", bir ürünün üzerine gelip tıklama *(detay anında açılmalı)*, "Load more", stok güncelleme, favoriye art arda basma, yorum gönderme, "shirt" araması. Devtools panelinde her adımda hangi sorgunun `fetching`, `stale` ya da `inactive` olduğunu izleyin.
 
 Son olarak kontrol edin:
 

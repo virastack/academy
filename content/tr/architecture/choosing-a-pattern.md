@@ -3,6 +3,31 @@ title: "Desen seçimi"
 description: "FSD, DDD, component-driven ve Atomic Design: hangisi hangi soruya cevap verir."
 lastVerified: "2026-11-03"
 translationKey: "architecture/choosing-a-pattern"
+quiz:
+  - question: "\"Kod nereye konur, kim kimi import eder?\" sorusuna hangi desen cevap verir?"
+    options:
+      - "Component-driven geliştirme"
+      - "Feature-Sliced Design"
+      - "DDD'nin ortak dili"
+      - "Atomic Design"
+    answer: 1
+    explanation: "Desenler birbirinin alternatifi değildir: FSD klasör yapısını ve import yönünü, ortak dil isimleri, Atomic Design ortak UI parçalarını, component-driven çalışma biçimini belirler."
+  - question: "Dersin önerdiği sırada FSD'nin katman kuralı ne zaman eklenir?"
+    options:
+      - "Ekip ve kod büyüyüp bağımlılıklar karışmaya başlayınca"
+      - "Yalnızca monorepo'larda"
+      - "Projenin ilk gününde"
+      - "Hiçbir zaman"
+    answer: 0
+    explanation: "Çoğu proje için özellik klasörleri ve tek yönlü import yeter. FSD kademeli benimsenebilir; geçiş işareti mimarinin sorun çıkarmaya başlamasıdır."
+  - question: "Bir mimari kuralın gerçekten uygulanması için dersin önerdiği soru hangisidir?"
+    options:
+      - "Kural README'de yazıyor mu?"
+      - "Herkes kuralı biliyor mu?"
+      - "Kural otomatik kontrol ediliyor mu? (ör. FSD için Steiger linter'ı)"
+      - "Kural kod incelemesinde soruluyor mu?"
+    answer: 2
+    explanation: "Yazılı kural ihlal edilir, lint kuralı edilmez. FSD kuralları denetleyen Steiger'ı sunar; diğer sınırlar ESLint kurallarıyla korunur."
 ---
 
 Önceki üç ders birbirinin alternatifi değil. Her biri farklı bir soruya cevap veriyor. Bu ders hangisini ne zaman ekleyeceğinize karar vermenize yardım eder.

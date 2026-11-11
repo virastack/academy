@@ -3,6 +3,31 @@ title: "Showing errors and accessibility"
 description: "Attaching the error to the field, focus and timing."
 lastVerified: "2026-11-03"
 translationKey: "forms/errors-and-accessibility"
+quiz:
+  - question: "Why should `role=\"alert\"` not be added to every field's error message?"
+    options:
+      - "It clashes with `aria-invalid`"
+      - "Screen readers do not support `role=\"alert\"`"
+      - "`role=\"alert\"` only works on a `<div>`"
+      - "A message is read the moment it appears; in a form with many fields, ten messages are read at once on submit"
+    answer: 3
+    explanation: "For field messages `aria-describedby` is enough: the message is tied to the field and read when the field gets focus. Keep `role=\"alert\"` for single messages such as the form's general error."
+  - question: "The user leaves a field and clicks \"Submit\" at once; `blur` shows the error and the click misses. What is the fix?"
+    options:
+      - "Turn validation off entirely"
+      - "Reserve a fixed height for the error message so the buttons below do not move when it appears"
+      - "Add `role=\"alert\"`"
+      - "Move the button above the field"
+    answer: 1
+    explanation: "When a message is inserted under a field, everything below shifts and the click lands elsewhere. The `Field` component prevents this by reserving space for the message (`min-h-5`)."
+  - question: "Following GOV.UK's rules, which is the best message for an empty name field?"
+    options:
+      - "\"Enter your name.\""
+      - "\"This field is required.\""
+      - "\"Invalid entry.\""
+      - "\"Please don't forget to enter a valid value!\""
+    answer: 0
+    explanation: "Give an instruction for an empty field, use the label's words, and neither blame nor apologise. \"Enter your name.\" says what to do, briefly and clearly."
 ---
 
 ## Being visible is not enough

@@ -3,6 +3,39 @@ title: "Measuring (Lighthouse, DevTools)"
 description: "Reading a Lighthouse score and what to look at in DevTools."
 lastVerified: "2026-10-17"
 translationKey: "performance-accessibility/measuring"
+quiz:
+  - question: "Which of these is not one of the metrics in the Lighthouse performance score?"
+    options:
+      - "Total Blocking Time (TBT)"
+      - "Interaction to Next Paint (INP)"
+      - "Cumulative Layout Shift (CLS)"
+      - "Largest Contentful Paint (LCP)"
+    answer: 1
+    explanation: "A lab test cannot know when a user would interact, so it uses TBT for responsiveness. TBT can be good while field INP is poor."
+  - question: "Lighthouse gives a different score on every run for the same page. What does the Lighthouse team recommend?"
+    options:
+      - "Use the highest score"
+      - "Run several Lighthouse audits at once on the same machine"
+      - "Only look at the desktop score"
+      - "Look at the median of several runs"
+    answer: 3
+    explanation: "Most of the variance comes from the environment (ads, network, hardware, extensions). The median of 5 runs is about twice as stable as a single run; do not run several Lighthouse audits at once."
+  - question: "What is wrong with this usage?"
+    lang: tsx
+    code: |-
+      export function WebVitals() {
+        useReportWebVitals((metric) => {
+          navigator.sendBeacon("/analytics", JSON.stringify(metric));
+        });
+        return null;
+      }
+    options:
+      - "The callback is a new function on every render, so the same metric can be reported more than once; define it outside the component"
+      - "`sendBeacon` does not work while the page unloads"
+      - "`useReportWebVitals` must run in a Server Component"
+      - "This hook cannot measure INP"
+    answer: 0
+    explanation: "Pass `useReportWebVitals` a stable function defined outside the component. The hook runs in a Client Component; keeping it in its own file and adding it to the root layout keeps the client boundary to that module."
 ---
 
 ## What measuring is

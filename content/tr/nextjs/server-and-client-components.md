@@ -3,6 +3,44 @@ title: "Server ve Client Components"
 description: "'use client' sınırı, composition, serileştirme ve server-only."
 lastVerified: "2026-11-03"
 translationKey: "nextjs/server-and-client-components"
+quiz:
+  - question: "Server Component'ten Client Component'e hangi prop geçemez?"
+    options:
+      - "JSX"
+      - "Bir Promise"
+      - "`new Date()`"
+      - "`onClick={() => console.log(\"x\")}` gibi sıradan bir fonksiyon"
+    answer: 3
+    explanation: "Sınırdan geçen prop'lar ağ üzerinden gider ve serileştirilebilir olmalıdır. `Date`, Promise ve JSX geçer; sıradan fonksiyon geçmez. Event handler'ları Client Component'in içinde yazın."
+  - question: "Sepeti sunucuda okuyan `<CartItems />` Server Component'ini bu çekmecede göstermenin doğru yolu hangisi?"
+    lang: tsx
+    code: |-
+      // components/drawer.tsx
+      "use client";
+
+      export function Drawer({ children }: { children: React.ReactNode }) {
+        // açma-kapama state'i
+      }
+    options:
+      - "`drawer.tsx` içinde `CartItems`'ı import edip render etmek"
+      - "`<CartItems />`'ı layout'ta `<Drawer>`'a `children` olarak vermek"
+      - "Sepeti `localStorage`'dan okumak"
+      - "`CartItems`'a `\"use client\"` ekleyip veriyi `useEffect` ile çekmek"
+    answer: 1
+    explanation: "Client Component, Server Component'i import edemez; import ettiği her şey client olur. Ama onu `children` olarak alabilir: `CartItems` sunucuda render edilir, `Drawer` yalnızca hazır sonucu yerleştirir."
+  - question: "Bu Client Component tarayıcıda çalıştığında ne yazdırır?"
+    lang: tsx
+    code: |-
+      "use client";
+
+      console.log(process.env.API_KEY);
+    options:
+      - "API anahtarının değerini"
+      - "Build hatası verir"
+      - "`process is not defined` hatası"
+      - "Boş string"
+    answer: 3
+    explanation: "Client paketine yalnızca `NEXT_PUBLIC_` ile başlayan ortam değişkenleri girer; diğerleri client'ta boş string olur. Gizli anahtarları okuyan kodu `server-only` ile işaretleyin."
 ---
 
 ## İki ortam, tek ağaç

@@ -3,6 +3,34 @@ title: "Optimistic update"
 description: "variables ve cache ile iyimser güncelleme, geri alma ve eşzamanlılık."
 lastVerified: "2026-11-03"
 translationKey: "tanstack-query/optimistic-updates"
+quiz:
+  - question: "Hangisi iyimser güncelleme için iyi bir adaydır?"
+    options:
+      - "Gönderince kapanan bir dialog"
+      - "Ödeme alıp başka sayfaya yönlendiren bir form"
+      - "Kaydı sunucunun id verdiği ve sıralı listeye eklediği yeni ürün formu"
+      - "Bir ürünü favorilere ekleyen buton"
+    answer: 3
+    explanation: "İyimser güncelleme, nadiren başarısız olan ve anında geri bildirim gerçekten gereken küçük değişiklikler içindir. Yönlendiren formlar ve kapanan dialog'larda geri almak zordur; sunucunun mantığını taklit etmek de kolay değildir."
+  - question: "İyimser satırı `variables` ile gösteriyorsunuz. Mutation başarısız olursa ne yapmanız gerekir?"
+    lang: tsx
+    code: |-
+      {addReview.isPending && <li style={{ opacity: 0.5 }}>{addReview.variables}</li>}
+    options:
+      - "Geri alma kodu gerekmez; cache'e dokunulmadı, `variables` durduğu için \"Tekrar dene\" aynı değeri yeniden gönderebilir"
+      - "Sayfayı yenilemek"
+      - "`cancelQueries` çağırmak"
+      - "Cache'i `onError`'da eski hâline döndürmek"
+    answer: 0
+    explanation: "`variables` yolu cache'e hiç dokunmaz. Hata olursa `variables` silinmez; aynı değeri tekrar göndermek yeter. Cache yolunda ise geri almayı `onError`'da elle yazarsınız."
+  - question: "Cache üzerinden iyimser güncellemede `onMutate`'in ilk adımı neden `cancelQueries`'tir?"
+    options:
+      - "Mutation isteğini hızlandırmak için"
+      - "Cache'i boşaltmak için"
+      - "Uçuştaki sorgular gelip iyimser değerin üstüne yazmasın diye"
+      - "Hata olursa geri almak için"
+    answer: 2
+    explanation: "İyimser değeri yazmadan önce aynı anahtardaki uçuştaki istekler iptal edilir. Aksi hâlde geç gelen eski cevap iyimser değeri ezer."
 ---
 
 ## Ne zaman gerekir

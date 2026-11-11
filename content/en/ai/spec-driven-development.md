@@ -3,6 +3,31 @@ title: "Spec-driven development"
 description: "Having the agent write a spec and a task list first, then implementing task by task and keeping the spec current."
 lastVerified: "2026-11-03"
 translationKey: "ai/spec-driven-development"
+quiz:
+  - question: "What is the main difference between plan mode and a spec file?"
+    options:
+      - "A plan is more detailed"
+      - "A plan is committed, a spec is not"
+      - "A spec can only be written with Spec Kit"
+      - "A plan stays in the conversation and ends with the session; a spec lives in the repo, is reviewed in a PR and is read again in a new session"
+    answer: 3
+    explanation: "A plan suits a job of a few files; a spec suits a feature that spans several sessions. If a decision changes, update the spec first, then the code."
+  - question: "Which is a well-written acceptance criterion?"
+    options:
+      - "\"The coupon should work properly.\""
+      - "\"Entering `SALE10` takes 10% off the subtotal.\""
+      - "\"The coupon code should be clean.\""
+      - "\"The coupon form should be user-friendly.\""
+    answer: 1
+    explanation: "A testable criterion is both a target for the agent and a test for you. End the spec with the relevant files, what is out of scope, and a check that proves the feature works."
+  - question: "Where do you write information that stays the same for every feature, such as commands, folder structure and code style?"
+    options:
+      - "In `AGENTS.md`"
+      - "In the commit message"
+      - "In each feature's spec"
+      - "In the task list"
+    answer: 0
+    explanation: "A spec belongs to one feature only: the goal, acceptance criteria, files, what is out of scope, and boundaries (always, ask first, never)."
 ---
 
 Telling an agent *"add a coupon code to the cart"* and waiting starts fast but usually ends up in the wrong place. The model decides every question you did not answer by guessing. The [!github] team sums the problem up like this: we treat agents like a search engine, when they are more like a pair programmer who takes everything literally.[^1]

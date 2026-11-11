@@ -3,6 +3,36 @@ title: "A store with Context"
 description: "Initialising from props, reuse, testing and Next.js."
 lastVerified: "2026-11-03"
 translationKey: "zustand/store-with-context"
+quiz:
+  - question: "Why is a module-level store created with `create` a problem in Next.js?"
+    options:
+      - "The store is cleared on every request"
+      - "`create` only works with Vite"
+      - "On the server it is shared between requests, so one user's data can leak to another"
+      - "Server Components cannot read the store"
+    answer: 2
+    explanation: "The server handles many requests at once and a module-level store is shared by all of them. Create the store per request, inside a Provider, with `createStore`."
+  - question: "Why does putting the store instance, not a value, in Context avoid extra renders?"
+    options:
+      - "Context is only read on the first render"
+      - "Zustand memoizes the Context by itself"
+      - "The store instance never changes; Zustand's selectors pick the values"
+      - "The Provider is a Server Component"
+    answer: 2
+    explanation: "The Context `value` never changes, so its readers do not re-render. Each component subscribes to just the part it needs with `useStore(store, selector)`."
+  - question: "If `selectedFromServer` changes later, what happens to the store?"
+    lang: tsx
+    code: |-
+      <SelectionProvider initialSelected={selectedFromServer}>
+        <CategoryFilter />
+      </SelectionProvider>
+    options:
+      - "The Provider throws an error"
+      - "The store updates to the new value by itself"
+      - "The store merges both values"
+      - "Nothing; it is an initial value, so give the Provider a `key` to reset it"
+    answer: 3
+    explanation: "The store is created once in `useState`'s initializer; the prop is only the initial value. If you want the store to reset when the prop changes, give the Provider a `key`."
 ---
 
 ## The limits of a global store

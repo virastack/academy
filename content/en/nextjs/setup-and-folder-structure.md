@@ -3,6 +3,31 @@ title: "Setup and project structure"
 description: "The create-next-app defaults, the app folder, the special files and where code goes."
 lastVerified: "2026-11-03"
 translationKey: "nextjs/setup-and-folder-structure"
+quiz:
+  - question: "Which file creates a new address?"
+    options:
+      - "`app/products/utils.ts`"
+      - "`app/(shop)/cart/page.tsx`"
+      - "`app/products/product-card.tsx`"
+      - "`app/products/_components/page.tsx`"
+    answer: 1
+    explanation: "An address is only created by `page.tsx` or `route.ts`, which is why colocation is safe. A folder starting with `_` is left out of routing entirely. A route group in parentheses is not added to the URL: `app/(shop)/cart/page.tsx` → `/cart`."
+  - question: "How do you run lint in CI for a Next.js 16 project?"
+    options:
+      - "Lint is not supported in Next.js 16"
+      - "With `next lint`"
+      - "With `npm run lint` as a separate step"
+      - "`next build` already runs lint"
+    answer: 2
+    explanation: "Since Next.js 16, `next build` does not run lint and there is no `next lint` command. Run lint separately with `npm run lint`."
+  - question: "What does the `AGENTS.md` that `create-next-app` adds do?"
+    options:
+      - "It adds a built-in AI feature to Next.js"
+      - "It tells agents to read the docs in `node_modules/next/dist/docs/`, which match the installed version, instead of their training data"
+      - "It runs an agent during the build"
+      - "It defines the project's lint rules"
+    answer: 1
+    explanation: "`AGENTS.md` points agents to the docs shipped in the package, which match the installed version exactly. `npx next upgrade` moves those docs to the new version as well."
 ---
 
 ## What this guide covers

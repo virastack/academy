@@ -3,6 +3,52 @@ title: "Component ve JSX"
 description: "Arayüzü bölme, JSX kuralları, liste ve key, saf component."
 lastVerified: "2026-11-03"
 translationKey: "react/components-and-jsx"
+quiz:
+  - question: "`items` boş bir diziyken ekranda ne görünür?"
+    code: |-
+      <div>
+        {items.length && <List items={items} />}
+      </div>
+    options:
+      - "`false`"
+      - "React hata fırlatır"
+      - "`0`"
+      - "Hiçbir şey"
+    answer: 2
+    explanation: "`items.length` `0` olduğunda `&&` ifadesi `0` döndürür ve React `0`'ı render eder. `items.length > 0 &&` yazın ya da ternary kullanın."
+  - question: "Her satırında bir `<input>` olan listede kullanıcı ilk satıra metin yazıyor, sonra liste ters çevriliyor. Ne olur?"
+    code: |-
+      {products.map((product, index) => (
+        <li key={index}>
+          {product.name} <input />
+        </li>
+      ))}
+    options:
+      - "React key çakışması hatası verir"
+      - "Metin ilk satırda kalır ve artık başka bir ürünün satırında görünür"
+      - "Tüm input'lar boşalır"
+      - "Metin, ait olduğu ürünle birlikte listenin sonuna taşınır"
+    answer: 1
+    explanation: "Key `index` olunca sıra değişse de ilk satırın key'i yine `0`'dır; React o satırın state'ini ve DOM'unu yerinde tutar. Metin başka ürünün satırında kalır. Key veriden gelmeli: `product.id`."
+  - question: "Bu component'te hangi satır saflık kuralını bozmaz?"
+    code: |-
+      let renderCount = 0;
+
+      function ProductCard({ product }: ProductCardProps) {
+        renderCount++;                 // A
+        product.viewed = true;         // B
+        const tags: string[] = [];
+        tags.push(product.category);   // C
+        document.title = product.name; // D
+        return <h2>{product.name}</h2>;
+      }
+    options:
+      - "A"
+      - "B"
+      - "C"
+      - "D"
+    answer: 2
+    explanation: "Render içinde yeni oluşturulan bir diziyi değiştirmek serbesttir. A dışarıdaki değişkeni, B prop'u, D `document.title`'ı değiştirir; bunlar render'dan önce var olan şeylerdir."
 ---
 
 ## Arayüzü kutulara bölün

@@ -3,6 +3,38 @@ title: "Building an agent team"
 description: "A line of spec, frontend, test and review subagents, the failure loop, the lead's summary and agent teams."
 lastVerified: "2026-11-03"
 translationKey: "ai/agent-teams"
+quiz:
+  - question: "What does the `tools` field give this role?"
+    lang: markdown
+    code: |-
+      ---
+      name: reviewer
+      description: Reviews the diff against SPEC.md.
+      tools: Read, Grep, Glob
+      ---
+    options:
+      - "It makes the role run faster"
+      - "It brings the role's token use to zero"
+      - "It makes the role talk only to the lead"
+      - "The role can only read and report; it cannot edit files or run commands"
+    answer: 3
+    explanation: "What really defines a role is the `tools` field: what it can touch. `frontend-dev` gets `Read, Edit, Write, Bash`; `reviewer` only reads."
+  - question: "Why do roles hand work to each other through files such as `SPEC.md` and `test-report.md`?"
+    options:
+      - "The agents share files, not conversations, so each one starts with a clean context"
+      - "Files are faster to read"
+      - "It is required because subagents cannot message each other"
+      - "Files are committed automatically"
+    answer: 0
+    explanation: "The lead should give each worker the goal, output format, tools and boundaries clearly. A turn limit (\"at most 3 rounds\") also stops the loop from running forever."
+  - question: "According to Anthropic's measurements, why are most coding jobs a poor fit for multi-agent systems?"
+    options:
+      - "Models do not understand each other"
+      - "There are many dependencies between agents and the work parallelises little; multi-agent systems also use about 15 times the tokens of a chat"
+      - "Multi-agent systems cannot write tests"
+      - "Multi-agent only works in Python"
+    answer: 1
+    explanation: "The guide's main advice: find the simplest solution that works, and add complexity only when it measurably improves the result. A single agent's plan mode and a test command cover most jobs."
 ---
 
 The goal is this: one agent writes the spec, a second writes the code, a third tests it. If a test fails, the work goes back to the agent that writes code. At the end a **lead** *(a managing agent)* summarizes for you what was done. First, let's look at which work actually needs a team.

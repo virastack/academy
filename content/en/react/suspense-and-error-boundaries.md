@@ -3,6 +3,44 @@ title: "Suspense and error boundaries"
 description: "The loading state, reading a promise with use, and the Error Boundary."
 lastVerified: "2026-11-03"
 translationKey: "react/suspense-and-error-boundaries"
+quiz:
+  - question: "What happens in this component?"
+    code: |-
+      function ProductDetails({ id }: { id: string }) {
+        const product = use(fetch(`/api/products/${id}`).then((r) => r.json()));
+        return <h1>{product.name}</h1>;
+      }
+    options:
+      - "Every render creates a new Promise, so the fallback keeps coming back"
+      - "`use` only works in Server Components"
+      - "The data is fetched once and shown"
+      - "The Promise is cached automatically on the first render"
+    answer: 0
+    explanation: "A Promise read with `use` must be cached. `use(fetch(...))` inside render creates a new Promise on every render."
+  - question: "`ProductList` fetches its data with `useEffect` + `setState`. What is shown until the data arrives?"
+    code: |-
+      <Suspense fallback={<Skeleton />}>
+        <ProductList />
+      </Suspense>
+    options:
+      - "The boundary waits for nothing; `ProductList` renders in its own empty state"
+      - "A blank white screen"
+      - "The nearest Error Boundary"
+      - "`<Skeleton />`"
+    answer: 0
+    explanation: "Suspense does not detect data fetched inside an Effect. A boundary only waits for `lazy`, a Promise read with `use`, and a stylesheet with `precedence`."
+  - question: "What catches the error thrown in the button's `onClick`?"
+    code: |-
+      <ErrorBoundary fallback={<p>Error</p>}>
+        <button onClick={() => { throw new Error("Failed"); }}>Save</button>
+      </ErrorBoundary>
+    options:
+      - "Wrapping the JSX in `try/catch` is enough"
+      - "The `ErrorBoundary` catches it and shows the fallback"
+      - "A Suspense boundary catches it"
+      - "The Error Boundary does not; store the error in state or pass it on with `showBoundary`"
+    answer: 3
+    explanation: "Errors thrown in event handlers are outside an Error Boundary's reach. Either store them in state and show them, or pass them to the boundary with `showBoundary` from `useErrorBoundary`."
 ---
 
 ## Declaring the loading state in the tree

@@ -3,6 +3,42 @@ title: "WCAG ve ARIA"
 description: "Hedeflenen kurallar ve HTML'in yetmediği yerde ARIA."
 lastVerified: "2026-11-03"
 translationKey: "performance-accessibility/wcag-and-aria"
+quiz:
+  - question: "Bu `aria-label` ne yapar?"
+    lang: tsx
+    code: |-
+      <div aria-label="Kampanya bilgisi">Yaz indirimi başladı.</div>
+    options:
+      - "Güvenilir şekilde isim vermez; `aria-label` rolü `generic` olan düz `<div>` ve `<span>`'de çalışmaz"
+      - "Div'e erişilebilir bir isim verir"
+      - "Div'i bir landmark yapar"
+      - "Metnin yerine okunur"
+    answer: 0
+    explanation: "`aria-label` yalnızca etkileşimli elementlerde, widget'larda, landmark'larda ve görsellerde güvenilir çalışır. Görünür bir etiket varsa onun yerine `aria-labelledby` kullanın."
+  - question: "Mesaj neden çoğu zaman ekran okuyucuda duyurulmaz?"
+    lang: tsx
+    code: |-
+      {saved && <p role="status">Değişiklikler kaydedildi.</p>}
+    options:
+      - "Live region içerik değişmeden önce sayfada olmalıdır; element mesajla birlikte render edilince duyurulmaz"
+      - "Odağın mesaja taşınması gerekir"
+      - "`aria-live=\"assertive\"` gerekir"
+      - "`role=\"status\"` yalnızca `<div>`'de çalışır"
+    answer: 0
+    explanation: "Live region'ı boş hâliyle ilk markup'ta bırakıp yalnızca içeriğini değiştirin: `<p role=\"status\">{saved ? \"...\" : \"\"}</p>`. Durum mesajında odağı oraya taşımayın."
+  - question: "Bu kodun sorunu nedir?"
+    lang: tsx
+    code: |-
+      <div aria-hidden="true">
+        <button>Kapat</button>
+      </div>
+    options:
+      - "Buton görünmez olur"
+      - "Sorun yok"
+      - "Buton erişilebilirlik ağacından çıkar ama hâlâ odak alır; klavye kullanıcısı ekran okuyucunun göremediği bir yere odaklanır"
+      - "`aria-hidden` yalnızca ikonlarda çalışır"
+    answer: 2
+    explanation: "`aria-hidden=\"true\"` elementi ve çocuklarını erişilebilirlik ağacından çıkarır ama ekranda ve Tab sırasında bırakır. Odaklanabilir bir elemente ya da onu içeren kapsayıcıya vermeyin."
 ---
 
 ## Erişilebilirlik nedir

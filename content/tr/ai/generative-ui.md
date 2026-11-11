@@ -3,6 +3,35 @@ title: "Generative UI"
 description: "Tool sonucunu component olarak gösterme, yükleme ve hata durumları."
 lastVerified: "2026-11-03"
 translationKey: "ai/generative-ui"
+quiz:
+  - question: "Bu dersteki generative UI yaklaşımında model ne üretir?"
+    options:
+      - "Bileşenin CSS'ini"
+      - "Sunucuda çalışan bir React Server Component"
+      - "Her istekte sıfırdan JSX kodu"
+      - "Bir araç çağrısı; aracın döndürdüğü düz veri sizin React bileşeninize prop olarak geçer"
+    answer: 3
+    explanation: "Model \"ne gösterilecek\"e karar verir, \"nasıl görüneceği\" sizin tasarım sisteminizde kalır. Sonuç düz veri olduğu için kaydedilip sonra aynı bileşenle yeniden çizilebilir."
+  - question: "Kullanıcı `stop()` ile akışı kesti ve araç parçası `input-streaming`'de kaldı. Mesaj kaydedilip sonra yüklenirse ne olur?"
+    options:
+      - "Parça kendiliğinden `output-error`'a geçer"
+      - "Araç yeniden çalışır"
+      - "İskelet sonsuza dek döner; iskeleti yalnızca akış sürerken ve son mesajda gösteren bir `live` bayrağı gerekir"
+      - "Mesaj yüklenmez"
+    answer: 2
+    explanation: "`stop()` sonrası `status` `ready`'ye döner ama parça kendiliğinden hata ya da sonuç durumuna geçmez. `live` bayrağı `status`'tan türetilir: `submitted` ya da `streaming`."
+  - question: "Kayıtlı bir mesajda `status` artık enum'da olmayan bir değer taşıyor ve `OrderCard` hata fırlatıyor. Kart bir Error Boundary (`ToolBoundary`) ile sarılmamışsa ne olur?"
+    lang: tsx
+    code: |-
+      case 'output-available':
+        return <OrderCard {...part.output} />; // STATUS[status].toUpperCase()
+    options:
+      - "Yalnızca o kart boş görünür"
+      - "Araç yeniden çağrılır"
+      - "React hatayı yok sayar"
+      - "Hata tüm sohbeti düşürür"
+    answer: 3
+    explanation: "Sınır varsa yalnızca o kart \"This result cannot be shown.\" olur ve mesajın metni görünmeye devam eder. Yüklerken `validateUIMessages` ile geçmişi güncel şemalara göre de doğrulayın."
 ---
 
 Generative UI'da model arayüz kodu üretmez. Bir aracı çağırır, aracın döndürdüğü düz veri de sizin React bileşeninize prop olarak geçer.[^1] Model "ne gösterilecek"e karar verir, "nasıl görüneceği" sizin tasarım sisteminizde kalır. Builder.io yazısı da aynı yönü savunuyor: araç çağrıları hazır bileşenlere eşlenmeli, her istekte sıfırdan kod üretmek yavaş ve kırılgan.[^2] Sonuç düz veri olduğu için kaydedilebilir ve sonra aynı bileşenle yeniden çizilebilir.
@@ -37,11 +66,11 @@ export const tools = {
   getOrderStatus: tool({
     description: 'Shows the shipping status of an order as a card.',
     inputSchema: z.object({
-      orderId: z.string().describe('The order number, e.g. TR-1042'),
+      orderId: z.string().describe('The order number, e.g. ORD-1042'),
     }),
     outputSchema: z.object({
       orderId: z.string(),
-      status: z.enum(['hazirlaniyor', 'kargoda', 'teslim-edildi']),
+      status: z.enum(['preparing', 'shipped', 'delivered']),
       eta: z.string().nullable(),
     }),
     execute: ({ orderId }) => orderService.getStatus(orderId),
@@ -57,16 +86,16 @@ import { Component, type ReactNode } from 'react';
 import type { Order } from './orders';
 
 const STATUS: Record<Order['status'], string> = {
-  hazirlaniyor: 'Preparing',
-  kargoda: 'Kargoda',
-  'teslim-edildi': 'Teslim edildi',
+  preparing: 'Preparing',
+  shipped: 'Shipped',
+  delivered: 'Delivered',
 };
 
 export function OrderCard({ orderId, status, eta }: Order) {
   return (
     <div data-ui="order-card">
       <strong>{orderId}</strong> · {STATUS[status].toUpperCase()}
-      {eta && <span> · tahmini teslimat {eta}</span>}
+      {eta && <span> · estimated delivery {eta}</span>}
     </div>
   );
 }
@@ -74,7 +103,7 @@ export function OrderCard({ orderId, status, eta }: Order) {
 export function OrderCardSkeleton({ orderId }: { orderId?: string }) {
   return (
     <div data-ui="skeleton" aria-busy="true">
-      {orderId ? `${orderId} sorgulanıyor…` : 'Querying the order…'}
+      {orderId ? `Querying ${orderId}…` : 'Querying the order…'}
     </div>
   );
 }
@@ -164,7 +193,7 @@ export function MessageParts({ message, live }: { message: GenMessage; live: boo
 }
 ```
 
-- **İskelet, kısmi girdiyle beslenir:** `input-streaming`'de `part.input` kısmidir ve alanlar yarım gelebilir. Etiket önce "Querying the order…", sonra `TR`, sonra `TR-1042` olur. Kısmi değeri yalnızca etiket için kullanın, işlem için kullanmayın.
+- **İskelet, kısmi girdiyle beslenir:** `input-streaming`'de `part.input` kısmidir ve alanlar yarım gelebilir. Etiket önce "Querying the order…", sonra `ORD`, sonra `ORD-1042` olur. Kısmi değeri yalnızca etiket için kullanın, işlem için kullanmayın.
 - **`ToolBoundary`:** Çıktı bileşeni çökerse yalnızca o kart düşer. Nedenini aşağıdaki "Kaydedilen mesajlar" bölümünde göreceksiniz.
 - **`default` kolu:** `isToolUIPart` statik ve dinamik araç parçalarını yakalar. Bu kol olmazsa client'ın tanımadığı bir araç hiçbir şey çizmez ve parça sessizce kaybolur.
 
@@ -189,7 +218,7 @@ trackShipment: tool({
 }),
 ```
 
-Client'ta ara sonuç da `output-available` olarak gelir. Ayırt etmek için `part.preliminary` bayrağına bakın: ara sonuçta `true`, kesin sonuçta `false` olur. Ekranda sıra şöyle akar: iskelet, "Querying the carrier…" (ara sonuç), "TR-5: kargoda" (kesin sonuç).
+Client'ta ara sonuç da `output-available` olarak gelir. Ayırt etmek için `part.preliminary` bayrağına bakın: ara sonuçta `true`, kesin sonuçta `false` olur. Ekranda sıra şöyle akar: iskelet, "Querying the carrier…" (ara sonuç), "ORD-5: shipped" (kesin sonuç).
 
 ```tsx
 case 'tool-trackShipment':

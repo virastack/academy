@@ -3,6 +3,31 @@ title: "Parallel agents"
 description: "Running several agents at once with git worktree, without overwriting each other's files."
 lastVerified: "2026-11-03"
 translationKey: "ai/parallel-agents"
+quiz:
+  - question: "How do two agents work in parallel in the same repo without overwriting each other's files?"
+    options:
+      - "Open two terminals"
+      - "Keep changes with `git stash`"
+      - "Give each agent its own git worktree"
+      - "Switch to different branches in the same folder"
+    answer: 2
+    explanation: "A worktree is a second working folder tied to the same repo: it has its own files and branch, while the commit history and remote are shared. Switching branches in one folder still shares the files."
+  - question: "The new worktree Claude Code opened has no `.env` file. Why, and what is the fix?"
+    options:
+      - "You have to commit `.env` by hand"
+      - "A worktree is a clean checkout, so gitignored files do not come along; files listed in `.worktreeinclude` at the root are copied"
+      - "You need to symlink `node_modules`"
+      - "The worktree is broken and must be recreated"
+    answer: 1
+    explanation: "Add the `.claude/worktrees/` folder to `.gitignore` too. Do not symlink `node_modules`; run `pnpm install` in each worktree."
+  - question: "According to Simon Willison, what is the real limit on parallel work?"
+    options:
+      - "The number of agents"
+      - "How fast you can review"
+      - "The token limit"
+      - "The number of CPU cores"
+    answer: 1
+    explanation: "You can properly review and merge only one large change at a time. Add work that needs little attention alongside it (small prototypes, maintenance); do not parallelise work that touches the same files."
 ---
 
 You don't have to sit and watch an agent while it works on a feature. In the same stretch of time you can give a second agent a bug fix and a third one some research. The problem: if they all work in the same folder they overwrite each other's files. The fix is to give every agent its own working copy.

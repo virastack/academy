@@ -3,6 +3,45 @@ title: "Prefetching with Next.js"
 description: "Starting on the server and streaming, HydrationBoundary and who owns the data."
 lastVerified: "2026-11-03"
 translationKey: "tanstack-query/prefetch-with-nextjs"
+quiz:
+  - question: "Why is a new `QueryClient` created for every request on the server?"
+    lang: ts
+    code: |-
+      export function getQueryClient() {
+        if (environmentManager.isServer()) {
+          return makeQueryClient();
+        }
+        browserQueryClient ??= makeQueryClient();
+        return browserQueryClient;
+      }
+    options:
+      - "Because the server runs out of memory"
+      - "Because Next.js needs a new Context per request"
+      - "With a single client, data could leak between users"
+      - "To avoid overwriting the browser's client"
+    answer: 2
+    explanation: "A single server client's cache would be shared by every user's requests. A new client per request prevents data leaking between users; in the browser one client is enough."
+  - question: "Why can the `queryFn` of a query prefetched on the server not be a `server-only` function that talks to the database?"
+    options:
+      - "The same `queryOptions` also run in the browser; when the query goes stale, the client calls `queryFn` itself"
+      - "`server-only` functions cannot be async"
+      - "Database queries cannot be cached"
+      - "Server Components cannot start queries"
+    answer: 0
+    explanation: "`queryFn` runs in two places. To work in the browser, it has to call a Route Handler or an external API. It should not be a Server Action either; Actions called from the client run one at a time."
+  - question: "What is wrong with this pattern?"
+    lang: tsx
+    code: |-
+      // Server Component
+      const products = await queryClient.query(productQueries.list("all"));
+      return <p>{products.length} products</p>;
+    options:
+      - "`query` does not run on the server"
+      - "`await` is not allowed"
+      - "The count is always `0`"
+      - "When the client refreshes the query, Client Components update but this Server Component does not, leaving two versions of the same data on screen"
+    answer: 3
+    explanation: "For TanStack Query, a Server Component is only the place to prefetch. Do not render the result on the server or pass it down as a prop; TanStack Query cannot refresh a Server Component."
 ---
 
 ## First: do you really need it?

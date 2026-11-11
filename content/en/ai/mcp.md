@@ -3,6 +3,31 @@ title: "MCP"
 description: "What is MCP? Connecting servers like Figma, Playwright and Next.js DevTools to an agent."
 lastVerified: "2026-11-03"
 translationKey: "ai/mcp"
+quiz:
+  - question: "What does the agent need to be able to read a Figma frame by itself?"
+    options:
+      - "An MCP server"
+      - "A rule in `AGENTS.md`"
+      - "A skill"
+      - "A subagent"
+    answer: 0
+    explanation: "A skill gives instructions on how to do a job; MCP gives tool access to a system the agent cannot otherwise reach. If you keep copying data from a tool into the chat, connect that tool."
+  - question: "Simon Willison's \"lethal trifecta\" is the combination of which three properties in one agent?"
+    options:
+      - "Access to private data, exposure to untrusted content, and the ability to communicate externally"
+      - "A fast model, long context, many tools"
+      - "OAuth, an API key and a webhook"
+      - "File writing, a terminal, the internet"
+    answer: 0
+    explanation: "With all three together, an attacker can get data leaked through instructions written into content the agent reads. Guardrail products cannot block this 100%; the only safe way is not to build the trifecta."
+  - question: "How does Playwright MCP read a page?"
+    options:
+      - "By interpreting a screenshot with a vision model"
+      - "Through a snapshot of the accessibility tree; it acts with references from that snapshot"
+      - "By downloading the page's HTML source"
+      - "From the browser's network log"
+    answer: 1
+    explanation: "That is why no vision model is needed. Browsing random sites with a signed-in persistent profile gets close to the lethal trifecta; keep browsing to `localhost` and use `--isolated` if needed."
 ---
 
 MCP (the Model Context Protocol) is an open standard for connecting AI applications to outside systems.[^1] Once you connect a server, the agent calls that system's tools itself: it reads the design from Figma, drives the browser, pulls errors from the running dev server. It is no longer limited to what you paste into the chat.

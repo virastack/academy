@@ -3,6 +3,37 @@ title: "TanStack Query ile birlikte kullanım"
 description: "Filtreyle sorguyu sürmek ve state'i türetmek."
 lastVerified: "2026-11-03"
 translationKey: "zustand/with-tanstack-query"
+quiz:
+  - question: "Filtre panelinde `setCategory(\"shoes\")` çağrılınca ürün listesine ne olur?"
+    lang: ts
+    code: |-
+      export function useFilteredProducts() {
+        const category = useCategory(); // Zustand
+        return useQuery({ ...productQueries.list({ category }), placeholderData: keepPreviousData });
+      }
+    options:
+      - "Hiçbir şey; Zustand TanStack Query'yi tetikleyemez"
+      - "Store sorgu sonucunu kendisi çeker"
+      - "Liste için `refetch()`'i elle çağırmak gerekir"
+      - "Kategori query key'in parçası olduğu için sorgu kendiliğinden yeniden çalışır"
+    answer: 3
+    explanation: "Filtre store'da, ürün listesi TanStack Query'de durur. Filtre query key'e girdiği için değiştiği anda sorgu kendiliğinden çalışır; `keepPreviousData` eski listeyi ekranda tutar."
+  - question: "Store'da seçili kullanıcının `id`'si var ama kullanıcı sunucudan silindi. TkDodo'nun önerdiği yaklaşım hangisi?"
+    options:
+      - "Sorgu sonucu değişince `useEffect` ile store'daki seçimi `null` yapmak"
+      - "Sorguya `staleTime: Infinity` vermek"
+      - "Seçimi her render'da türetmek: listede bu `id` varsa o kullanıcı, yoksa `null`"
+      - "Kullanıcı listesini store'a kopyalamak"
+    answer: 2
+    explanation: "Elle senkronlamak yerine türetin: ek render ve Effect gerekmez, kullanıcı listeye geri eklenirse seçim kendiliğinden geri gelir. Store, arayüzde ne seçildiğinin kaydıdır."
+  - question: "Sepetteki adet (Zustand) stoktan (TanStack Query) fazlaysa uyarı göstermek istiyorsunuz. Hangisi?"
+    options:
+      - "Stok değişince `useEffect` ile sepet adedini düşürmek"
+      - "Sepeti de TanStack Query'ye taşımak"
+      - "Stok bilgisini sepet store'una kopyalamak"
+      - "İki kaynağı render sırasında birleştirmek: `item.quantity > product.stock` ise uyarı"
+    answer: 3
+    explanation: "Sepet kullanıcının seçimidir ve store'da durur; stok sunucunun verisidir. İkisini render'da birleştirince kullanıcı adedi azaltınca ya da stok artınca uyarı kendiliğinden kaybolur."
 ---
 
 ## Görev paylaşımı

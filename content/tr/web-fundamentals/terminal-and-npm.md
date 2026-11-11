@@ -3,6 +3,36 @@ title: "Terminal ve npm"
 description: "Temel komutlar, Node kurulumu ve paket yönetimi."
 lastVerified: "2026-11-03"
 translationKey: "web-fundamentals/terminal-and-npm"
+quiz:
+  - question: "`npm install` çalıştığında bu aralık hangi sürümü kabul eder?"
+    lang: json
+    code: |-
+      "dependencies": {
+        "some-lib": "^1.0.4"
+      }
+    options:
+      - "`1.4.2`"
+      - "`1.0.3`"
+      - "`0.9.9`"
+      - "`2.0.0`"
+    answer: 0
+    explanation: "`^` minor ve patch güncellemelerini kabul eder: `1.0.4` ve üstü, `2.0.0`'ın altı. `1.4.2` bu aralıkta; `2.0.0` yeni bir major sürümdür, `1.0.3` ve `0.9.9` ise `1.0.4`'ten eskidir."
+  - question: "CI'da paketleri lockfile'a birebir uyarak kurmak, uyuşmazlıkta hata almak ve hiçbir dosyayı değiştirmemek istiyorsunuz. Hangi komut?"
+    options:
+      - "`npm update`"
+      - "`npx install`"
+      - "`npm ci`"
+      - "`npm install`"
+    answer: 2
+    explanation: "`npm ci` lockfile'a birebir uyar, uyuşmazlıkta hata verir ve dosyaları değiştirmez. `npm install` lockfile'ı güncelleyebilir."
+  - question: "Projede `pnpm-lock.yaml` var. Vite'ı yalnızca geliştirmede kullanılacak bir araç olarak eklemek için doğru komut hangisi?"
+    options:
+      - "`pnpm add -D vite`"
+      - "`pnpm add vite`"
+      - "`npm install -D vite`"
+      - "`pnpm dlx vite`"
+    answer: 0
+    explanation: "Bir projede tek paket yöneticisi kullanılır; lockfile pnpm'inse komut da pnpm olur. `-D` paketi `devDependencies`'e yazar. `pnpm dlx` paketi kurmadan tek seferlik çalıştırır."
 ---
 
 ## Terminal nedir?

@@ -3,6 +3,31 @@ title: "Agentic coding"
 description: "The plan, code, test loop and subagents in tools like Claude Code and Cursor."
 lastVerified: "2026-11-03"
 translationKey: "ai/agentic-coding"
+quiz:
+  - question: "The result the agent built from the plan is not what you expected. What does the Cursor team suggest?"
+    options:
+      - "Revert the changes, write the plan more clearly and run it again"
+      - "Fix it step by step with follow-up messages"
+      - "Delete the tests and have them rewritten"
+      - "Switch to a bigger model in the same conversation"
+    answer: 0
+    explanation: "Cursor says this is often faster and cleaner. If the agent adds abstractions you did not ask for, set a limit: \"Make only the requested change.\""
+  - question: "Why do Claude Code's `/rewind` checkpoints not replace git?"
+    options:
+      - "They do not write commit messages"
+      - "They only cover the last hour"
+      - "They only work in plan mode"
+      - "They only cover changes made with the agent's file-editing tools; terminal commands and remote actions such as deploys are not covered"
+    answer: 3
+    explanation: "So commit small and often; each commit is a save point you can return to when the agent next goes wrong."
+  - question: "What do you gain by giving \"look at every `fetch` call in the project and report those without error handling\" to a subagent?"
+    options:
+      - "The subagent uses a more capable model"
+      - "The contents of the files it reads stay out of the main conversation; only a summary comes back"
+      - "The subagent cannot write files"
+      - "The subagent spends fewer tokens"
+    answer: 1
+    explanation: "A subagent works in its own context window. It does not give a better answer for the same job and it costs tokens; the gain is parallelism, keeping long output out of the main context, and a fresh review."
 ---
 
 Working with an agent is nothing like the *"ask a question, copy the answer"* pattern of a chat. You give the agent a job: it opens files, changes code, runs commands. Your job is to set the task up properly and to check what comes out.

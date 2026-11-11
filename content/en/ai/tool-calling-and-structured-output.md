@@ -3,6 +3,36 @@ title: "Tool calling and structured output"
 description: "The model calling a function, structured output with a Zod schema, and user approval."
 lastVerified: "2026-11-03"
 translationKey: "ai/tool-calling-and-structured-output"
+quiz:
+  - question: "What happens in a route that uses tools if you do not set `stopWhen`?"
+    options:
+      - "The SDK throws"
+      - "The tool is never called"
+      - "The loop ends after one step: the tool runs but the model does not interpret the result, `text` stays empty and `finishReason` is `tool-calls`"
+      - "The loop runs forever"
+    answer: 2
+    explanation: "A step is the model generating once and the tools it called being run. Add `stopWhen: isStepCount(n)` to every route that uses tools."
+  - question: "The `cancelOrder` tool requires approval through `toolApproval`. Where should you verify that the user owns the order?"
+    options:
+      - "In the approval button"
+      - "Nowhere; approval is enough"
+      - "In the system instructions"
+      - "In the tool's `execute` function, on the server"
+    answer: 3
+    explanation: "The approval decision is made on the client and answers \"does the user really want this?\". If you do not verify ownership on the server, approval is not a security measure."
+  - question: "Why is this code wrong?"
+    lang: ts
+    code: |-
+      for await (const partial of result.partialOutputStream) {
+        await db.recipe.save(partial);
+      }
+    options:
+      - "`Output.object` does not support streaming"
+      - "Partial objects are not validated and can contain half-finished values; wait for `await result.output` before saving"
+      - "`partialOutputStream` only works on the client"
+      - "`for await` cannot be used with streams"
+    answer: 1
+    explanation: "`partialOutputStream` is for previews only: half values such as `ingredients: ['lentils', 's']` can arrive. `await result.output` gives the final value, validated against the schema."
 ---
 
 A model does more than produce text. It can do two other things: ask for a function to be called (tool calling) and make its output fit a schema (structured output). In tool calling, the model asks for the function you defined to be called with its input, the SDK runs the function and gives the result back to the model.[^1] In frontend work that means: the model querying an order's status from the real service, asking the user before an irreversible operation, and extracting form fields from free text.

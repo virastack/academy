@@ -3,6 +3,35 @@ title: "Generative UI"
 description: "Showing a tool result as a component, with its loading and error states."
 lastVerified: "2026-11-03"
 translationKey: "ai/generative-ui"
+quiz:
+  - question: "In this lesson's generative UI approach, what does the model produce?"
+    options:
+      - "The component's CSS"
+      - "A React Server Component running on the server"
+      - "Fresh JSX code on every request"
+      - "A tool call; the plain data the tool returns is passed to your React component as props"
+    answer: 3
+    explanation: "The model decides \"what to show\", and \"how it looks\" stays in your design system. Because the result is plain data, it can be saved and redrawn later with the same component."
+  - question: "The user stopped the stream with `stop()` and the tool part stayed in `input-streaming`. What happens if the message is saved and loaded later?"
+    options:
+      - "The part moves to `output-error` by itself"
+      - "The tool runs again"
+      - "The skeleton spins forever; you need a `live` flag that shows the skeleton only while streaming and only in the last message"
+      - "The message does not load"
+    answer: 2
+    explanation: "After `stop()`, `status` returns to `ready`, but the part does not move to an error or result state by itself. The `live` flag is derived from `status`: `submitted` or `streaming`."
+  - question: "In a saved message, `status` holds a value no longer in the enum and `OrderCard` throws. If the card is not wrapped in an Error Boundary (`ToolBoundary`), what happens?"
+    lang: tsx
+    code: |-
+      case 'output-available':
+        return <OrderCard {...part.output} />; // STATUS[status].toUpperCase()
+    options:
+      - "Only that card shows empty"
+      - "The tool is called again"
+      - "React ignores the error"
+      - "The error takes down the whole chat"
+    answer: 3
+    explanation: "With the boundary, only that card becomes \"This result cannot be shown.\" and the message text stays visible. When loading, also validate the history against the current schemas with `validateUIMessages`."
 ---
 
 In generative UI the model does not produce interface code. It calls a tool, and the plain data the tool returns is passed to your React component as props.[^1] The model decides "what gets shown" and "how it looks" stays inside your design system. The Builder.io post argues for the same direction: tool calls should map to components you already have, and generating code from scratch on every request is slow and fragile.[^2] Because the result is plain data, it can be persisted and later drawn again with the same component.

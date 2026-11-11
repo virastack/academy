@@ -3,6 +3,45 @@ title: "Sessions, cookies and JWT"
 description: "The difference between a server session and a JWT, the cookie flags, and where to store the token."
 lastVerified: "2026-11-03"
 translationKey: "auth-security/sessions-cookies-and-jwt"
+quiz:
+  - question: "Someone gets hold of this token but does not know `secret`. What can they do?"
+    lang: ts
+    code: |-
+      const token = await new SignJWT({ role: "customer" })
+        .setProtectedHeader({ alg: "HS256" })
+        .setSubject("user_42")
+        .setExpirationTime("15m")
+        .sign(secret);
+
+      // the server, on every request:
+      await jwtVerify(token, secret, { algorithms: ["HS256"] });
+    options:
+      - "Nothing; the payload is encrypted"
+      - "Change `role` to `admin` and use it as a valid token"
+      - "Read the payload; if they change `role`, `jwtVerify` fails on the signature"
+      - "Write `\"alg\": \"none\"` in the header and skip the signature"
+    answer: 2
+    explanation: "A signed JWT is not encrypted; `decodeJwt` reads the payload without a key. The signature guarantees the payload was not changed. The `algorithms: [\"HS256\"]` list also blocks the `alg: none` trick. Do not put data such as email or passwords in the payload."
+  - question: "You need a \"sign out of all devices\" feature: sessions must end at once, before they expire. Which approach makes this simplest?"
+    options:
+      - "A 15-minute JWT"
+      - "Removing the token from `localStorage`"
+      - "A server session; deleting the record from the database is enough"
+      - "A long-lived JWT"
+    answer: 2
+    explanation: "A JWT stays valid until it expires; revoking it early needs a separate block list. With a server session the control is on the server. On sign-out, delete the session on the server too; deleting only the cookie does not invalidate a stolen copy."
+  - question: "On a page that receives these two cookies, what does `document.cookie` return?"
+    lang: http
+    code: |-
+      Set-Cookie: session_id=abc123; HttpOnly; SameSite=Lax; Path=/
+      Set-Cookie: theme=dark; SameSite=Lax; Path=/
+    options:
+      - "`session_id=abc123; theme=dark`"
+      - "An empty string"
+      - "`session_id=abc123`"
+      - "`theme=dark`"
+    answer: 3
+    explanation: "An `HttpOnly` cookie cannot be read from JavaScript; it only shows in DevTools. This stops the token being copied and used elsewhere, but on a page with an XSS hole the attacker can still send requests as the user."
 ---
 
 ## Why a session is needed

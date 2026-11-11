@@ -3,6 +3,40 @@ title: "User interaction"
 description: "userEvent, a search box and a coupon form."
 lastVerified: "2026-11-03"
 translationKey: "vitest/user-interaction"
+quiz:
+  - question: "What is the input's value afterwards?"
+    lang: tsx
+    code: |-
+      // the input currently holds "SUMMER"
+      await user.type(input, "2026");
+    options:
+      - "`\"SUMMER\"`"
+      - "`\"SUMMER2026\"`"
+      - "`\"2026\"`"
+      - "It throws"
+    answer: 1
+    explanation: "`user.type` does not delete the existing text; it appends the new characters. To replace a filled field, call `user.clear` first."
+  - question: "A form has a text field and a disabled submit button. What happens when the user presses `Enter` in the field?"
+    options:
+      - "The form submits"
+      - "The form does not submit; `Enter` clicks the form's first submit button, which is disabled"
+      - "The field is cleared"
+      - "The button becomes enabled"
+    answer: 1
+    explanation: "Per the HTML standard, `Enter` in a text field clicks the first submit button; if that button is disabled, the form does not submit."
+  - question: "The field has no constraint such as `required`. Why does `toBeInvalid()` pass?"
+    lang: tsx
+    code: |-
+      <input id="coupon" aria-invalid={error ? true : undefined} />
+
+      expect(screen.getByLabelText("Coupon code")).toBeInvalid();
+    options:
+      - "`toBeInvalid` always passes"
+      - "Because the label is empty"
+      - "It treats an element with `aria-invalid=\"true\"` as invalid"
+      - "`checkValidity()` returns `false`"
+    answer: 2
+    explanation: "`toBeInvalid()` treats an element as invalid if it has `aria-invalid=\"true\"` or `checkValidity()` returns `false`. With no constraint, `checkValidity()` is `true`; the test passes thanks to `aria-invalid`."
 ---
 
 ## Use userEvent

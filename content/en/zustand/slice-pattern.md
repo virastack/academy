@@ -3,6 +3,31 @@ title: "The slice pattern"
 description: "Splitting the store into small stores or into slices."
 lastVerified: "2026-11-03"
 translationKey: "zustand/slice-pattern"
+quiz:
+  - question: "\"Add to cart\" both updates the cart list and opens the cart drawer. Which structure fits better?"
+    options:
+      - "A separate store in every component"
+      - "Two small stores that know nothing about each other"
+      - "Keeping the drawer state in `useState`"
+      - "A single store made of slices; a shared action in its own slice calls both slices' actions through `get()`"
+    answer: 3
+    explanation: "When the parts change each other, a single store fits better. An action that touches several slices goes into its own slice; `get` sees the whole store."
+  - question: "Both the cart slice and the UI slice have an action called `reset`. What happens?"
+    options:
+      - "TypeScript merges the two `reset`s"
+      - "Since the slices are spread into the same object, the later one overwrites the earlier"
+      - "Both work"
+      - "Zustand warns and ignores the second one"
+    answer: 1
+    explanation: "`...createCartSlice(...a), ...createUiSlice(...a)` spreads both into one object. Field names must not collide; use separate names such as `cartActions` and `uiActions`."
+  - question: "Where should the `persist` middleware go in a store built from slices?"
+    options:
+      - "Middleware cannot be used with slices"
+      - "Inside each slice separately"
+      - "Only on the combined store, inside `create`"
+      - "Only inside the slice that should be saved"
+    answer: 2
+    explanation: "Apply middleware only to the combined store; putting `persist` or `devtools` inside a slice leads to surprises. Pick the fields to save with `partialize`."
 ---
 
 ## Two ways when the store grows

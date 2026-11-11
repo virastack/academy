@@ -3,6 +3,41 @@ title: "Bundle boyutu"
 description: "Paketi küçültme ve neyin yüklendiğini görme."
 lastVerified: "2026-11-03"
 translationKey: "performance-accessibility/bundle-size"
+quiz:
+  - question: "Tree shaking için `require()` yerine ES module (`import`/`export`) neden gerekir?"
+    options:
+      - "`require()` Node.js'te kaldırıldı"
+      - "`require()` TypeScript'te çalışmaz"
+      - "`require()` çalışma anında çağrılan bir fonksiyondur; bundler onu derleme anında güvenle analiz edemez"
+      - "ES module'ler daha küçük dosyalar üretir"
+    answer: 2
+    explanation: "Bundler hangi modülün ne export ettiğini ve nerede import edildiğini `import`/`export` ifadelerinden çıkarır. Paketin `sideEffects` alanı ve named import da tree shaking'e yardım eder."
+  - question: "Bu `lazy` kullanımının sorunu nedir?"
+    lang: tsx
+    code: |-
+      export function Editor() {
+        const MarkdownPreview = lazy(() => import("./MarkdownPreview"));
+        return (
+          <Suspense fallback={<p>Loading...</p>}>
+            <MarkdownPreview />
+          </Suspense>
+        );
+      }
+    options:
+      - "`lazy` component'in içinde çağrılmış; her render'da yeni bir component oluşur ve state sıfırlanır"
+      - "`import()` default export alamaz"
+      - "Sorun yok"
+      - "`lazy` `Suspense` olmadan da çalışır"
+    answer: 0
+    explanation: "`lazy` modülün üst seviyesinde, component'in dışında çağrılmalıdır. İçe aktarılan component default export olmalıdır."
+  - question: "Next.js'te bir chat widget'ı script'i için hangi `next/script` stratejisi uygundur?"
+    options:
+      - "`afterInteractive`"
+      - "`lazyOnload`"
+      - "`worker`"
+      - "`beforeInteractive`"
+    answer: 1
+    explanation: "`lazyOnload` script'i tarayıcı boştayken, her şey yüklendikten sonra yükler; chat ve sosyal medya eklentileri için uygundur. `beforeInteractive` bot tespiti gibi kritik işler, `afterInteractive` analytics içindir; `worker` App Router'da çalışmaz."
 ---
 
 ## Bundle nedir

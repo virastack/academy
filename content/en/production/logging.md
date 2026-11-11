@@ -3,6 +3,39 @@ title: "Logging"
 description: "Structured logs, what to log and what not to log."
 lastVerified: "2026-11-03"
 translationKey: "production/logging"
+quiz:
+  - question: "According to the Twelve-Factor principles, where should an app write its logs?"
+    options:
+      - "Straight to a log search service"
+      - "To a database table"
+      - "To a log file it rotates itself"
+      - "Each event as one line to `stdout`; collecting and shipping is the runtime's job"
+    answer: 3
+    explanation: "Logs are an event stream. `docker logs` and cloud platforms read `stdout`; there is no need to configure a logger that writes files."
+  - question: "What is the risk in this line?"
+    lang: ts
+    code: |-
+      logger.info({ request }, "Request received");
+    options:
+      - "A request id is missing"
+      - "The `info` level is wrong"
+      - "pino cannot log objects"
+      - "Logging the whole request also writes cookies and authorisation headers"
+    answer: 3
+    explanation: "The most common mistake is logging a whole object. Pick the fields you log one by one; pino's `redact` is a safety net, not a substitute for the habit."
+  - question: "Which password is masked?"
+    lang: ts
+    code: |-
+      redact: { paths: ["*.password"], censor: "[redacted]" }
+
+      logger.info({ a: { b: { password: "x" } }, user: { password: "y" } });
+    options:
+      - "Only `a.b.password`"
+      - "Neither"
+      - "Only `user.password`; `*` stands for a single level"
+      - "Both"
+    answer: 2
+    explanation: "`*.password` catches a `password` one level down, not one two levels down like `a.b.password`. Write out the paths you need."
 ---
 
 ## Why do logs exist?

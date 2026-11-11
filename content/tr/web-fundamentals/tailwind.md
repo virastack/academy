@@ -3,6 +3,40 @@ title: "Tailwind"
 description: "Utility sınıflarıyla stil ve responsive düzen."
 lastVerified: "2026-11-03"
 translationKey: "web-fundamentals/tailwind"
+quiz:
+  - question: "375px genişliğindeki bir telefonda metin nasıl görünür?"
+    lang: html
+    code: |-
+      <p class="sm:text-center">Ücretsiz kargo</p>
+    options:
+      - "Ortalanır, çünkü `sm:` küçük ekran demektir"
+      - "Ortalanmaz; `sm:` yalnızca 640px ve üstünde uygulanır"
+      - "Hiçbir ekranda ortalanmaz"
+      - "Yalnızca 640px'in altında ortalanır"
+    answer: 1
+    explanation: "Tailwind mobile-first çalışır: ön eksiz sınıf her ekranda, `sm:` ise 40rem (640px) ve üstünde geçerlidir. Mobilde ortalamak için ön eksiz yazıp büyük ekranı ezin: `text-center sm:text-left`."
+  - question: "`color` değeri `\"blue\"` olduğunda buton neden mavi olmaz?"
+    lang: tsx
+    code: |-
+      <button className={`bg-${color}-600`}>Kaydet</button>
+    options:
+      - "`bg-blue-600` diye bir sınıf yoktur"
+      - "Tailwind sınıfları yalnızca CSS dosyasında yazılırsa çalışır"
+      - "Template string'ler JSX'te çalışmaz"
+      - "Tailwind kaynağı düz metin olarak tarar; `bg-blue-600` kaynakta geçmediği için CSS'i üretilmez"
+    answer: 3
+    explanation: "Tailwind çalışma anında birleştirilen sınıf adlarını göremez. Tam sınıf adlarını kaynakta açıkça yazın, örneğin `{ blue: \"bg-blue-600\" }` gibi bir eşleme ile."
+  - question: "`isLarge` `true` iken bu çağrı ne döndürür? (`cn` = `clsx` + `tailwind-merge`)"
+    lang: ts
+    code: |-
+      cn("px-2 py-1", isLarge && "px-4");
+    options:
+      - "`\"py-1 px-4\"`"
+      - "`\"px-2 py-1 px-4\"`"
+      - "`\"px-4\"`"
+      - "`\"px-2 py-1\"`"
+    answer: 0
+    explanation: "`clsx` koşullu sınıfları toplar, `tailwind-merge` çakışan `px-2` ile `px-4`'ten sonra geleni bırakır. Sonuç `\"py-1 px-4\"` olur."
 ---
 
 ## Tailwind nedir

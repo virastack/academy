@@ -3,6 +3,51 @@ title: "CSS"
 description: "Seçiciler, kutu modeli ve sayfa düzeni."
 lastVerified: "2026-11-03"
 translationKey: "web-fundamentals/css"
+quiz:
+  - question: "Paragraf hangi renkte görünür?"
+    lang: css
+    code: |-
+      /* <div id="main" class="content"><div class="text"><p>Merhaba</p></div></div> */
+      #main p { color: red; }
+      .content .text p { color: blue; }
+    options:
+      - "Mavi, çünkü seçici daha uzun"
+      - "Mavi, çünkü sonra yazılan kural kazanır"
+      - "Kırmızı"
+      - "İki renk birleşir, mor görünür"
+    answer: 2
+    explanation: "`#main p` seçicisinin puanı (1, 0, 1), `.content .text p` seçicisinin puanı (0, 2, 1). Puanlar soldan karşılaştırılır; tek bir ID, kaç class olursa olsun kazanır. Sonra yazılan kural yalnızca specificity eşitse kazanır."
+  - question: "`box-sizing` değiştirilmemişse kutu, border dahil ekranda kaç px genişlik kaplar?"
+    lang: css
+    code: |-
+      .box {
+        width: 200px;
+        padding: 20px;
+        border: 5px solid;
+        margin: 10px;
+      }
+    options:
+      - "200px"
+      - "240px"
+      - "250px"
+      - "270px"
+    answer: 2
+    explanation: "Varsayılan modelde `width` yalnızca içeriğe uygulanır; padding (2 × 20px) ve border (2 × 5px) üstüne eklenir: 200 + 40 + 10 = 250px. Margin kutunun dışındadır."
+  - question: "Öğeler nasıl hizalanır?"
+    lang: css
+    code: |-
+      .list {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+    options:
+      - "Dikeyde ortalanır"
+      - "Yatayda ortalanır"
+      - "Hem yatayda hem dikeyde ortalanır"
+      - "Etkisi olmaz; `align-items` yalnızca `row` yönünde çalışır"
+    answer: 1
+    explanation: "`align-items` çapraz eksende hizalar. `flex-direction: column`'da ana eksen dikey olduğu için çapraz eksen yataydır; öğeler yatayda ortalanır."
 ---
 
 ## CSS nedir

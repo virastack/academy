@@ -3,6 +3,46 @@ title: "Git"
 description: "Version control with commits, branches and a remote."
 lastVerified: "2026-11-03"
 translationKey: "web-fundamentals/git"
+quiz:
+  - question: "`.env` is now in `.gitignore`. What does Git do?"
+    lang: bash
+    code: |-
+      # .env was committed earlier
+      echo ".env" >> .gitignore
+    options:
+      - "Keeps tracking `.env`; you first need `git rm --cached .env`"
+      - "Removes `.env` from the repo and its history by itself"
+      - "Hides the secrets in `.env`"
+      - "Removes `.env` from the repo in the next commit"
+    answer: 0
+    explanation: "Adding an already committed file to `.gitignore` does not remove it from the repo. Untrack it with `git rm --cached .env`; if a secret was ever pushed, rotate it as well."
+  - question: "You ran `git merge main` on your own branch and got this conflict. Which part is your branch's version?"
+    lang: html
+    code: |-
+      <<<<<<< HEAD
+      <button class="btn-primary">Add to cart</button>
+      =======
+      <button class="btn btn-lg">Add To Cart</button>
+      >>>>>>> main
+    options:
+      - "Between `HEAD` and `=======`"
+      - "Between `=======` and `>>>>>>> main`"
+      - "Both come from `main`"
+      - "Everything between the markers has been deleted"
+    answer: 0
+    explanation: "Between `HEAD` and `=======` is the branch you are on; between `=======` and `>>>>>>>` is the incoming branch. Decide, delete the three marker lines, test, and mark it resolved with `git add`."
+  - question: "No commits have landed on `main` since you created the branch. What does this merge do?"
+    lang: bash
+    code: |-
+      git switch main
+      git merge add-to-cart-button
+    options:
+      - "Squashes the branch's commits into one"
+      - "Creates a new merge commit joining both ends"
+      - "Always produces a conflict"
+      - "Only moves `main`'s pointer forward (fast-forward)"
+    answer: 3
+    explanation: "If `main` has not changed since you branched off, Git just moves the pointer forward; this is a fast-forward. If both sides moved on, a new merge commit is created."
 ---
 
 ## What Git is

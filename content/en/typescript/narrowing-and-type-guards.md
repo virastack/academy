@@ -3,6 +3,58 @@ title: "Narrowing and type guards"
 description: "Narrowing a union, discriminated unions and safe type checks."
 lastVerified: "2026-11-03"
 translationKey: "typescript/narrowing-and-type-guards"
+quiz:
+  - question: "What does `showStock(0)` return?"
+    lang: ts
+    code: |-
+      function showStock(stock: number | undefined) {
+        if (!stock) return "No information";
+        return stock === 0 ? "Sold out" : `${stock} in stock`;
+      }
+
+      showStock(0);
+    options:
+      - "`\"Sold out\"`"
+      - "`\"No information\"`"
+      - "`\"0 in stock\"`"
+      - "It is a compile error"
+    answer: 1
+    explanation: "`0` is falsy, so `if (!stock)` catches it too. For values that can be `0`, compare explicitly: `if (stock === undefined)`."
+  - question: "`idle` was added to the union but `case \"idle\"` was not written. What happens?"
+    lang: ts
+    code: |-
+      type ProductsState =
+        | { status: "idle" }
+        | { status: "loading" }
+        | { status: "success"; data: Product[] };
+
+      switch (state.status) {
+        case "loading": return "Loading...";
+        case "success": return `${state.data.length}`;
+        default: {
+          const exhaustiveCheck: never = state;
+          return exhaustiveCheck;
+        }
+      }
+    options:
+      - "A compile error: type `{ status: \"idle\" }` is not assignable to `never`"
+      - "There is only a runtime error"
+      - "`switch` adds the missing case by itself"
+      - "Nothing; the `default` branch covers `idle`"
+    answer: 0
+    explanation: "When every case is handled, `state` is `never` in `default`. If one is forgotten, that member is left over, and assigning it to `never` is a compile error that names the forgotten case."
+  - question: "Which is true for this code?"
+    lang: ts
+    code: |-
+      const data = JSON.parse('{"id": 1}') as Product;
+      data.name.toUpperCase();
+    options:
+      - "TypeScript reports a compile error because `name` is missing"
+      - "`as` validates the data and throws if it does not match"
+      - "`name` becomes an empty string by itself"
+      - "It compiles but crashes at runtime; `as` checks nothing"
+    answer: 3
+    explanation: "A type assertion tells TypeScript \"I know the type\" and does no runtime check. Since `name` is `undefined`, the code fails at runtime. Narrow with a real check first."
 ---
 
 ## What narrowing is

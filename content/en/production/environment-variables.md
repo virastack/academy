@@ -3,6 +3,35 @@ title: "Environment variables"
 description: "Separating configuration from code, NEXT_PUBLIC_ and validation with Zod."
 lastVerified: "2026-11-03"
 translationKey: "production/environment-variables"
+quiz:
+  - question: "You run a single Docker image in preview and production with different `NEXT_PUBLIC_API_URL` values. What value does the browser see?"
+    options:
+      - "The value from `next build` time in both; it is baked into the bundle"
+      - "It is read from the server on each request"
+      - "The value passed with `docker run -e` in each environment"
+      - "The browser cannot see the value at all"
+    answer: 0
+    explanation: "`NEXT_PUBLIC_` is not a permission but a copy instruction: `next build` bakes the value into the JavaScript bundle, and it does not change after the build. Read values that vary by environment on the server, at request time."
+  - question: "When this runs in a Client Component, what is `value`?"
+    lang: ts
+    code: |-
+      const name = "NEXT_PUBLIC_ANALYTICS_ID";
+      const value = process.env[name];
+    options:
+      - "A build error"
+      - "The analytics id"
+      - "It is fetched from the server"
+      - "No value; Next.js does not replace this at build time because the variable name is dynamic"
+    answer: 3
+    explanation: "Next.js only replaces expressions written out in full, like `process.env.NEXT_PUBLIC_ANALYTICS_ID`, at build time. Dynamic access is not replaced."
+  - question: "`LOG_LEVEL` is defined both in `.env.local` and as a real environment variable passed when the server starts. Which does Next.js use?"
+    options:
+      - "The value in `.env.local`"
+      - "It fails the build"
+      - "The real environment variable (`process.env`)"
+      - "The value in `.env`"
+    answer: 2
+    explanation: "The first one found wins, in this order: `process.env`, `.env.$(NODE_ENV).local`, `.env.local`, `.env.$(NODE_ENV)`, `.env`. In production, the platform's values come before every file in the repo."
 ---
 
 ## Configuration is separate from code

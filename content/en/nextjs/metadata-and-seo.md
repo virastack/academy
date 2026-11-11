@@ -3,6 +3,46 @@ title: "Metadata and SEO"
 description: "metadata, generateMetadata, OG images, sitemap, robots and JSON-LD."
 lastVerified: "2026-11-03"
 translationKey: "nextjs/metadata-and-seo"
+quiz:
+  - question: "What is the title of the `/products` page?"
+    lang: tsx
+    code: |-
+      // app/layout.tsx
+      export const metadata: Metadata = {
+        title: { default: "Store", template: "%s | Store" },
+      };
+
+      // app/products/page.tsx
+      export const metadata: Metadata = { title: "Products" };
+    options:
+      - "`Store | Products`"
+      - "`Products`"
+      - "`Products | Store`"
+      - "`Store`"
+    answer: 2
+    explanation: "`title.template` wraps the titles of child segments: the page's title replaces `%s`. When you use a template, `default` is required."
+  - question: "Why replace `<` with `\\u003c` in the JSON-LD?"
+    lang: tsx
+    code: |-
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
+      />
+    options:
+      - "Otherwise Google cannot read the JSON-LD"
+      - "To keep non-ASCII characters intact"
+      - "To make the file smaller"
+      - "`JSON.stringify` does not sanitize HTML; a value like `</script>` in a product name can create an XSS hole"
+    answer: 3
+    explanation: "`JSON.stringify` output is not safe for HTML. A `</script>` coming from the data could close the script tag and inject code; replacing `<` with `\\u003c` prevents it."
+  - question: "The layout you draw with `ImageResponse` in `opengraph-image.tsx` uses `display: grid` and comes out broken. Why?"
+    options:
+      - "The image is not 1200×630"
+      - "`ImageResponse` only works in Client Components"
+      - "OG images can only be PNG files"
+      - "`ImageResponse` only supports flexbox and a subset of CSS; `display: grid` does not work"
+    answer: 3
+    explanation: "`ImageResponse` from `next/og` renders JSX and CSS to a PNG but supports only flexbox and a subset of CSS. Build the layout with flexbox."
 ---
 
 ## What Next.js does for SEO

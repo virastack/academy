@@ -3,6 +3,41 @@ title: "Mutation ve invalidation"
 description: "useMutation, invalidation, cevapla güncelleme ve callback'lerin yeri."
 lastVerified: "2026-11-03"
 translationKey: "tanstack-query/mutations-and-invalidation"
+quiz:
+  - question: "Bu `onSuccess` ile ne olur?"
+    lang: ts
+    code: |-
+      onSuccess: () => {
+        queryClient.invalidateQueries({ queryKey: productQueries.all() });
+      },
+    options:
+      - "Mutation, yenileme bitene kadar `pending` kalır"
+      - "Hata fırlatır"
+      - "Invalidation hiç çalışmaz"
+      - "Promise döndürülmediği için mutation yenilemeyi beklemeden biter; buton yeni veri gelmeden açılır"
+    answer: 3
+    explanation: "Süslü parantezli gövde Promise'i döndürmez. `onSuccess: () => queryClient.invalidateQueries(...)` yazıp Promise'i döndürürseniz mutation yenileme bitene kadar `pending` kalır."
+  - question: "Invalidation'ı `mutate`'e verilen callback'e yazmanın riski nedir?"
+    lang: ts
+    code: |-
+      mutation.mutate(variables, {
+        onSuccess: () => queryClient.invalidateQueries({ queryKey: productQueries.all() }),
+      });
+    options:
+      - "İki kez çalışır"
+      - "Component mutation bitmeden kaldırılırsa bu callback hiç çalışmaz"
+      - "`mutate` callback almaz"
+      - "`useMutation`'daki callback'lerden önce çalışır"
+    answer: 1
+    explanation: "`mutate`'e verilen callback'ler component kaldırılırsa çalışmaz. Mantığı (invalidation, cache güncelleme) `useMutation`'a, arayüz işlerini (toast, yönlendirme) `mutate`'e koyun."
+  - question: "Cache'te filtreli 10 farklı ürün listesi var, ekranda yalnızca biri görünüyor. `invalidateQueries({ queryKey: [\"products\"] })` kaç istek atar?"
+    options:
+      - "0"
+      - "1"
+      - "10"
+      - "11"
+    answer: 1
+    explanation: "Invalidation eşleşen her sorguyu eski işaretler ama yalnızca ekranda olan (active) sorguları hemen yeniden çeker. Diğerleri bir dahaki kullanımda yenilenir."
 ---
 
 ## useMutation

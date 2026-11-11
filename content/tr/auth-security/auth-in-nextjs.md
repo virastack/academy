@@ -3,6 +3,48 @@ title: "Next.js'te auth"
 description: "Auth kütüphanesi seçimi, giriş, oturum okuma ve proxy ile yönlendirme."
 lastVerified: "2026-11-03"
 translationKey: "auth-security/auth-in-nextjs"
+quiz:
+  - question: "Tarayıcıya elle `better-auth.session_token=forged` cookie'si eklenip `/dashboard` açılırsa ne olur?"
+    lang: ts
+    code: |-
+      export function proxy(request: NextRequest) {
+        if (!getSessionCookie(request)) {
+          return NextResponse.redirect(new URL("/sign-in", request.url));
+        }
+        return NextResponse.next();
+      }
+    options:
+      - "Proxy isteği geçirir; sayfadaki `getCurrentUser` oturumu doğrulayamadığı için `/sign-in`'e yönlendirir"
+      - "Dashboard içeriği görünür"
+      - "Proxy cookie'yi doğrular ve isteği reddeder"
+      - "Next.js build hatası verir"
+    answer: 0
+    explanation: "`getSessionCookie` yalnızca cookie'nin var olup olmadığına bakar (iyimser kontrol). Proxy'de yalnızca hızlı yönlendirme yapın; asıl kontrolü veriye yakın, Data Access Layer, Server Action ve Route Handler içinde yapın."
+  - question: "Oturum kontrolünü neden layout'un en üstüne koymamalısınız?"
+    options:
+      - "Layout'lar yalnızca client'ta çalışır"
+      - "Layout'lar her istekte iki kez render edilir"
+      - "Layout'ta `headers()` kullanılamaz"
+      - "Layout'lar sayfalar arasında gezinirken yeniden render edilmez ve alt sayfaların render edilmesini engellemez"
+    answer: 3
+    explanation: "Kontrolü oturumu okuyan tek bir yerde, Data Access Layer'da toplayın ve veriye erişen her yerde çağırın. `server-only` bu dosyanın Client Component'e import edilmesini build hatasıyla engeller."
+  - question: "`cacheComponents: true` açık bir projede bu sayfa için ne olur?"
+    lang: tsx
+    code: |-
+      export default function DashboardPage() {
+        return (
+          <main>
+            <Welcome /> {/* içinde await headers() */}
+          </main>
+        );
+      }
+    options:
+      - "`headers()` boş döner"
+      - "Sayfa tamamen statik üretilir"
+      - "Oturum client'ta okunur"
+      - "Next.js \"runtime data during prerendering\" hatası verir; `<Welcome />` `<Suspense>` içine alınmalı"
+    answer: 3
+    explanation: "Bu modda `headers()` ya da `cookies()` okuyan bileşen `<Suspense>` içinde olmalıdır. Sayfanın geri kalanı statik kalır, kullanıcıya özel kısım akarak gelir; build çıktısında sayfa Partial Prerender (◐) olarak görünür."
 ---
 
 Önceki derslerde oturumun, parolanın ve OAuth'un nasıl çalıştığını gördük. Bu derste hepsini bir [!nextjs] Next.js App Router projesinde bir araya getiriyoruz: kütüphane seçimi, giriş formu, sunucuda oturum okuma, çıkış ve `proxy.ts` ile yönlendirme.

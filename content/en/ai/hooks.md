@@ -3,6 +3,45 @@ title: "Hooks and permission modes"
 description: "Binding the agent to rules: format, lint and test gates, blocking dangerous commands, and permission modes."
 lastVerified: "2026-11-03"
 translationKey: "ai/hooks"
+quiz:
+  - question: "In this `PreToolUse` script, which exit code replaces `?` to block the action and pass the stderr message to the agent?"
+    lang: bash
+    code: |-
+      FILE_PATH=$(jq -r '.tool_input.file_path // empty')
+      if [[ "$FILE_PATH" == *".env"* ]]; then
+        echo "Blocked: $FILE_PATH is protected" >&2
+        exit ?
+      fi
+      exit 0
+    options:
+      - "`127`"
+      - "`2`"
+      - "`1`"
+      - "`0`"
+    answer: 1
+    explanation: "Exit code 2 blocks the action, and the stderr message goes back to the agent as feedback. Exit code 0 does not approve the action, it only raises no objection; the normal permission flow still runs."
+  - question: "What does this check at the top of a `Stop` hook do?"
+    lang: bash
+    code: |-
+      INPUT=$(cat)
+      if [ "$(echo "$INPUT" | jq -r '.stop_hook_active')" = "true" ]; then
+        exit 0
+      fi
+    options:
+      - "Runs the hook only in CI"
+      - "Prevents an infinite loop: if the hook has already kept the agent going, it lets the agent stop"
+      - "Stops the agent from asking questions"
+      - "Speeds up the tests"
+    answer: 1
+    explanation: "In a `Stop` hook, exit code 2 means \"not done yet\" and the agent keeps working. The hook runs every time the agent finishes a reply; with a long test suite, run only the tests for changed files."
+  - question: "You wrote \"run the tests after every change\" in `CLAUDE.md`, but the agent sometimes skips it. If the rule is truly required, what should you do?"
+    options:
+      - "Write it twice in the file"
+      - "Move it into a hook"
+      - "Move it into a skill"
+      - "Write it in capitals with IMPORTANT"
+    answer: 1
+    explanation: "A rule file goes to the model as context, and following it is not guaranteed. Anything that must happen every time, without exception, belongs in a hook. The reverse also holds: if you wrote a hook for a mere preference, delete it."
 ---
 
 You wrote *"run the tests after every change"* in `CLAUDE.md`, and the agent still skips it sometimes. That is not a bug. A rule file goes to the model as context and following it is not guaranteed *(see [Prompt and context engineering](/academy/ai/prompt-and-context-engineering))*. For something that has to happen every time, without exception, you use a hook.[^1]

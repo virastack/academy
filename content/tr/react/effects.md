@@ -3,6 +3,45 @@ title: "Effect ve ne zaman gerekmez"
 description: "Dış sistemle senkronlama, cleanup, useEffectEvent ve Effect'siz çözümler."
 lastVerified: "2026-11-03"
 translationKey: "react/effects"
+quiz:
+  - question: "Satın alma isteği nerede atılmalı?"
+    code: |-
+      useEffect(() => {
+        if (submitted) {
+          post("/api/orders", cart);
+        }
+      }, [submitted, cart]);
+    options:
+      - "Böyle kalmalı, yalnızca cleanup eklenmeli"
+      - "Satın alma butonunun event handler'ında"
+      - "`useLayoutEffect` içinde"
+      - "Modül seviyesinde, component dışında"
+    answer: 1
+    explanation: "Kod component ekranda göründüğü için değil, kullanıcı bir şey yaptığı için çalışıyor. Kullanıcı eylemine bağlı istek event handler'a aittir."
+  - question: "`cartCount` 2'den 3'e çıkıyor, `productId` aynı kalıyor. Sonra `productId` değişiyor. Hangisi doğru?"
+    code: |-
+      const onVisit = useEffectEvent((visitedId: string) => {
+        logVisit(visitedId, cartCount);
+      });
+
+      useEffect(() => {
+        onVisit(productId);
+      }, [productId]);
+    options:
+      - "Ürün değişince loglanır ama ilk sepet sayısını (2) görür"
+      - "`cartCount` bağımlılık dizisinde olmadığı için ziyaret hiç loglanmaz"
+      - "`cartCount` değişince ziyaret tekrar loglanır"
+      - "Ürün değişince loglanır ve güncel sepet sayısını (3) görür"
+    answer: 3
+    explanation: "`useEffectEvent` içindeki kod değeri her zaman güncel okur ama o değer değişince Effect'i yeniden senkronlamaz. Effect yalnızca `productId` değişince çalışır."
+  - question: "Arama kutusunda kullanıcı hızlı yazıyor ve geç gelen eski cevap yenisinin üstüne yazılıyor. Bu sorunun adı ve dersteki çözümü hangisi?"
+    options:
+      - "Stale closure; sorguyu `useRef`'te tutmak"
+      - "Memory leak; sonucu `useMemo` ile saklamak"
+      - "Batching; güncellemeyi `flushSync` ile yapmak"
+      - "Race condition; isteği `AbortController` ile cleanup'ta iptal etmek"
+    answer: 3
+    explanation: "Eski cevabın yenisini ezmesi race condition'dır. Effect'in cleanup'ında `controller.abort()` çağırmak önceki isteği iptal eder."
 ---
 
 ## Effect ne içindir

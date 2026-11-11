@@ -3,6 +3,44 @@ title: "React'te tipler"
 description: "Props, children, event, hook ve context tipleri."
 lastVerified: "2026-11-03"
 translationKey: "typescript/types-in-react"
+quiz:
+  - question: "`product` bir `Product` iken son satırda ne olur?"
+    lang: tsx
+    code: |-
+      const [selected, setSelected] = useState(null);
+
+      setSelected(product);
+    options:
+      - "`selected` `Product | undefined` olur"
+      - "`selected` kendiliğinden `any` olur"
+      - "Sorun olmaz"
+      - "Hata: state'in tipi yalnızca `null` olduğu için ürün atanamaz"
+    answer: 3
+    explanation: "Başlangıç değeri tipi belirler: `useState(null)` yalnızca `null` tipini verir. Değer sonra başka bir tip alacaksa generic'i siz yazın: `useState<Product | null>(null)`."
+  - question: "Anlamlı bir varsayılan değeri olmayan sepet context'i için önerilen kalıp hangisi?"
+    options:
+      - "`createContext({} as CartContextValue)`"
+      - "`createContext<CartContextValue | null>(null)` ve `null`'ı kontrol edip hata fırlatan bir `useCart` hook'u"
+      - "`createContext<any>(null)`"
+      - "`createContext<CartContextValue>(null!)`"
+    answer: 1
+    explanation: "Tipe `| null` ekleyip kontrolü bir custom hook'a koyun: provider unutulursa hata hemen görünür, `useCart` kullananlar `null` kontrolü yapmaz. `null!` ya da `{} as ...` derleyiciyi susturur ve hatayı çalışma anına kaydırır."
+  - question: "Son satırda ne olur?"
+    lang: tsx
+    code: |-
+      type CartAction =
+        | { type: "add"; product: Product }
+        | { type: "remove"; id: number };
+
+      const [items, dispatch] = useReducer(cartReducer, []);
+      dispatch({ type: "remove" });
+    options:
+      - "Çalışma anında sepet boşalır"
+      - "Hata: `remove` action'ında `id` eksik"
+      - "Geçerlidir; `id` opsiyoneldir"
+      - "Hata: `type` yalnızca `\"add\"` olabilir"
+    answer: 1
+    explanation: "Action'lar bir discriminated union'dır. `type: \"remove\"` seçildiğinde action o üyeye daralır ve `id` zorunlu olur; eksik alan derleme hatası verir."
 ---
 
 ## React ve TypeScript

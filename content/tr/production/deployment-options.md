@@ -3,6 +3,37 @@ title: "Deploy seçenekleri"
 description: "Node.js sunucusu, Docker, statik çıktı ve platform adaptörleri."
 lastVerified: "2026-11-03"
 translationKey: "production/deployment-options"
+quiz:
+  - question: "`output: \"standalone\"` ile build alıp bu komutla başlattınız; görseller ve CSS 404 veriyor. Sebebi nedir?"
+    lang: bash
+    code: |-
+      node .next/standalone/server.js
+    options:
+      - "`next start` kullanılmalı"
+      - "`standalone` statik dosya sunamaz"
+      - "`PORT` verilmemiş"
+      - "`public` ve `.next/static` klasörleri standalone çıktısına kopyalanmaz; elle kopyalanmalı ya da bir CDN'den sunulmalı"
+    answer: 3
+    explanation: "Doküman bu klasörlerin ideal olarak bir CDN'den sunulmasını bekler. Sunucunun kendisi sunacaksa `public` ve `.next/static`'i standalone klasörüne kopyalayın."
+  - question: "Dockerfile'da bu satır yerine neden `CMD [\"node\", \"server.js\"]` önerilir?"
+    lang: dockerfile
+    code: |-
+      CMD ["npm", "start"]
+    options:
+      - "`npm start` daha yavaş açılır"
+      - "`npm start` root yetkisi ister"
+      - "`npm` imajda yoktur"
+      - "`npm start` `SIGTERM` gibi sinyalleri Node.js sürecine iletmez; temiz kapanış bozulur"
+    answer: 3
+    explanation: "Exec biçimiyle başlatılan `node` sinyalleri doğrudan alır; Next.js sunucusu `SIGTERM`'i dinleyip süren istekleri bitirerek kapanır."
+  - question: "Build sırasında özel bir npm kayıt defterinin token'ı gerekiyor. Dockerfile'da nasıl verilmeli?"
+    options:
+      - "`ENV NPM_TOKEN=...` ile"
+      - "`RUN --mount=type=secret` ile; secret yalnızca o komut boyunca görünür"
+      - "`.env` dosyasını imaja kopyalayarak"
+      - "`ARG NPM_TOKEN` ile"
+    answer: 1
+    explanation: "Docker dokümanına göre `ARG` ve `ENV` değerleri son imajda kalır. `.dockerignore` ile `.env*` dosyalarını da build bağlamının dışında tutun."
 ---
 
 ## Dört yol

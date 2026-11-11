@@ -3,6 +3,53 @@ title: "Veri çekme ve streaming"
 description: "Server'da veri okuma, Suspense ile akış, şelaleyi önleme ve client'ta veri."
 lastVerified: "2026-11-03"
 translationKey: "nextjs/data-fetching-and-streaming"
+quiz:
+  - question: "Bu kalıbın sorunu nedir?"
+    lang: tsx
+    code: |-
+      // app/products/page.tsx (Server Component)
+      const res = await fetch("http://localhost:3000/api/products");
+      const products = await res.json();
+    options:
+      - "`res.json()` Server Component'te desteklenmez"
+      - "`fetch` Server Component'te çalışmaz"
+      - "Route Handler'lar Server Component'ten çağrılamaz"
+      - "İkisi de sunucuda çalışır; araya gereksiz bir HTTP isteği girer, fonksiyonu doğrudan çağırmak gerekir"
+    answer: 3
+    explanation: "Server Component'ten kendi API route'unuza `fetch` atmak ekstra bir istek demektir. Veriyi okuyan fonksiyonu (`getProducts()`) doğrudan çağırın."
+  - question: "A ve B yaklaşık ne kadar sürer?"
+    lang: tsx
+    code: |-
+      // getProduct ~300 ms, getReviews ~500 ms, birbirine bağlı değil
+
+      // A
+      const product = await getProduct(slug);
+      const reviews = await getReviews(slug);
+
+      // B
+      const [product, reviews] = await Promise.all([getProduct(slug), getReviews(slug)]);
+    options:
+      - "A ~800 ms, B ~500 ms"
+      - "A ~500 ms, B ~500 ms"
+      - "A ~800 ms, B ~800 ms"
+      - "A ~500 ms, B ~300 ms"
+    answer: 0
+    explanation: "Art arda yazılan `await`'ler sırayla çalışır: süre ikisinin toplamıdır. `Promise.all` ikisini birlikte başlatır: süre en yavaşı kadardır."
+  - question: "`getUser`'ın sonucu iki farklı kullanıcının istekleri arasında paylaşılır mı?"
+    lang: ts
+    code: |-
+      import { cache } from "react";
+
+      export const getUser = cache(async (id: string) => {
+        return db.user.findUnique({ where: { id } });
+      });
+    options:
+      - "Yalnızca production'da paylaşılır"
+      - "Hayır; `React.cache` yalnızca tek bir isteğin içinde geçerlidir"
+      - "Evet, `cache` istekler arasında saklar"
+      - "Bir saat boyunca paylaşılır"
+    answer: 1
+    explanation: "`React.cache` aynı istek içindeki tekrar çağrıların tek sonucu paylaşmasını sağlar; istekler arasında veri saklamaz. İstekler arası cache için `\"use cache\"` vardır."
 ---
 
 ## Veriyi component'te okumak

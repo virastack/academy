@@ -3,6 +3,40 @@ title: "SOLID and SRP"
 description: "Separating responsibilities and managing dependencies, with React examples."
 lastVerified: "2026-11-03"
 translationKey: "principles/solid-and-srp"
+quiz:
+  - question: "According to Robert C. Martin, what does the Single Responsibility Principle mean?"
+    options:
+      - "A function should do only one thing"
+      - "A component should be at most 50 lines"
+      - "Each file should hold one function"
+      - "A module should have one reason to change; the reason is requests coming from one person or business function"
+    answer: 3
+    explanation: "SRP does not mean \"does one thing\". Bug fixes and refactoring do not count as reasons; the measure is the number of reasons to change, not the number of lines."
+  - question: "How many reasons to change does this component have?"
+    lang: tsx
+    code: |-
+      function ProductList() {
+        const { data: products = [] } = useQuery({
+          queryKey: ["products"],
+          queryFn: () => fetch("/api/products").then((res) => res.json()),
+        });
+        return products.map((p) => <li key={p.id}>{p.name}: €{p.price.toFixed(2)}</li>);
+      }
+    options:
+      - "Two"
+      - "One"
+      - "None"
+      - "Three: the API changes, the price format changes, the design changes"
+    answer: 3
+    explanation: "Fetching, price formatting and rendering change for different reasons. The lesson splits them into `products.api.ts`, `format-price.ts`, `use-products.ts` and a `ProductList` that only renders."
+  - question: "From a Dependency Inversion angle, what does calling `useProducts()` instead of `fetch(\"/api/products\")` give the component?"
+    options:
+      - "Error handling becomes unnecessary"
+      - "Dependency injection happens automatically"
+      - "The component depends only on the \"products\" concept, not on the URL, HTTP or the response shape; if the data source changes, the component does not"
+      - "The request is faster"
+    answer: 2
+    explanation: "High-level rules should not depend on low-level details; dependencies should point towards abstractions. DIP is not the same as dependency injection. Do not add a layer for a dependency that will never change."
 ---
 
 SOLID is five principles coming from object-oriented design. As a frontend developer you may not be writing classes, but the ideas suit [!react] components and hooks too. This guide focuses on the two that help the most: SRP and DIP.

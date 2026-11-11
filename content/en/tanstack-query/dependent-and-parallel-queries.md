@@ -3,6 +3,45 @@ title: "Dependent and parallel queries"
 description: "useQueries, enabled and skipToken, request waterfalls and prefetching on hover."
 lastVerified: "2026-11-03"
 translationKey: "tanstack-query/dependent-and-parallel-queries"
+quiz:
+  - question: "`user` has not arrived yet. Which flag is right for a loading indicator?"
+    lang: tsx
+    code: |-
+      const { data: orders, isPending, isLoading } = useQuery({
+        ...orderQueries.list(user?.id ?? 0),
+        enabled: !!user?.id,
+      });
+    options:
+      - "`isFetching`, because the query is waiting"
+      - "`isLoading`, because it is only `true` while the first request is actually running"
+      - "`isError`"
+      - "`isPending`, because a request is running"
+    answer: 1
+    explanation: "A query with `enabled: false` waits in `status: \"pending\"` and `fetchStatus: \"idle\"`; `isPending` is `true` even before any request. `isLoading` (`isPending && isFetching`) is only `true` while the first request runs."
+  - question: "What happens?"
+    lang: tsx
+    code: |-
+      const query = useQuery({
+        queryKey: ["orders", user?.id],
+        queryFn: user ? () => fetchOrders(user.id) : skipToken,
+      });
+
+      query.refetch(); // while user is missing
+    options:
+      - "Nothing happens"
+      - "The query runs and sends a request with `user.id` as `undefined`"
+      - "The query ignores `skipToken`"
+      - "`refetch()` does not work and fails with `Missing queryFn`; use `enabled: false` if you need to trigger it by hand"
+    answer: 3
+    explanation: "`refetch()` does not work on a query built with `skipToken`. If you need to trigger the query manually, use `enabled: false`."
+  - question: "The number of products in the cart varies and each needs a detail query. Which do you use?"
+    options:
+      - "`useQueries`"
+      - "Put all ids in a single `useQuery` key"
+      - "Call `useQuery` inside `productIds.map(...)`"
+      - "`useInfiniteQuery`"
+    answer: 0
+    explanation: "The rules of hooks do not allow calling `useQuery` in a loop. For a varying number of queries there is `useQueries`; `combine` turns the results into a single value."
 ---
 
 ## Parallel queries

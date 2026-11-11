@@ -3,6 +3,42 @@ title: "Pagination and infinite lists"
 description: "keepPreviousData, preparing the next page and useInfiniteQuery."
 lastVerified: "2026-11-03"
 translationKey: "tanstack-query/pagination-and-infinite-lists"
+quiz:
+  - question: "Which flag disables \"Next\" and fades the list until the new page arrives?"
+    lang: tsx
+    code: |-
+      const { data, isPlaceholderData } = useQuery({
+        ...productQueries.page(page),
+        placeholderData: keepPreviousData,
+      });
+    options:
+      - "`isPlaceholderData`"
+      - "`isError`"
+      - "`isPending`"
+      - "`isLoading`"
+    answer: 0
+    explanation: "`keepPreviousData` keeps the previous page on screen until the new one arrives, and `isPlaceholderData` tells you the data on screen is left over from that page. `isPending` is `false` here, because there is data to show."
+  - question: "The user has loaded 20 pages of an infinite list; the list goes stale and refetches. What happens?"
+    options:
+      - "Only the last page is refetched"
+      - "The pages are refetched in order starting from the first, so 20 requests"
+      - "Only the first page is refetched"
+      - "Infinite lists are never refetched"
+    answer: 1
+    explanation: "An infinite list is a single query in the cache, and each page is fetched with a parameter from the one before. So the refetch goes page by page from the first, avoiding duplicated or skipped records. `maxPages` limits the cost."
+  - question: "Why is the button also disabled while `isFetching` is true?"
+    lang: tsx
+    code: |-
+      <button onClick={() => fetchNextPage()} disabled={!hasNextPage || isFetching}>
+        Load more
+      </button>
+    options:
+      - "Because of an accessibility rule"
+      - "All pages share one cache entry; calling `fetchNextPage` during a background refetch can overwrite the data"
+      - "`fetchNextPage` is only defined while `isFetching` is `false`"
+      - "To spare the server"
+    answer: 1
+    explanation: "An infinite list can only have one request at a time. Do the same check when loading on scroll: `hasNextPage && !isFetching && fetchNextPage()`."
 ---
 
 ## Listing page by page

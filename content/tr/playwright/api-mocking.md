@@ -3,6 +3,39 @@ title: "API mock"
 description: "page.route, yanıt değiştirme ve request fixture'ı."
 lastVerified: "2026-11-03"
 translationKey: "playwright/api-mocking"
+quiz:
+  - question: "Boş liste mesajı neden görünmeyebilir?"
+    lang: ts
+    code: |-
+      await ordersPage.goto();
+      await page.route("**/api/orders?*", (route) => route.fulfill({ json: { orders: [] } }));
+    options:
+      - "`route.continue()` eksik"
+      - "`fulfill` `json` almaz"
+      - "Glob kalıbı yanlış"
+      - "Kural sayfaya gittikten sonra kuruldu; sayfa yüklenirken giden ilk istek yakalanmadı"
+    answer: 3
+    explanation: "Kuralı sayfaya gitmeden önce kurun; böylece yükleme sırasında giden ilk istek de yakalanır."
+  - question: "Bu kural isteği yakalar mı?"
+    lang: ts
+    code: |-
+      await page.route("**/api/orders", (route) => route.fulfill({ json: { orders: [] } }));
+      // sayfa /api/orders?status=all isteği atıyor
+    options:
+      - "Yalnızca Chromium'da"
+      - "Hayır; glob URL'nin tamamına uymalı ve sorgu dizesi de URL'nin parçasıdır"
+      - "Evet"
+      - "Evet, ama yalnızca ilk istekte"
+    answer: 1
+    explanation: "`\"**/api/orders\"` `?status=all`'u kapsamaz. `\"**/api/orders?*\"` ya da bir düzenli ifade kullanın. Glob'da `?` herhangi bir karakter değil, soru işaretinin kendisidir."
+  - question: "Ürün listesi bir Next.js Server Component'te sunucuda `fetch` ile çekiliyor. `page.route` ile bu isteği mock'layabilir misiniz?"
+    options:
+      - "Evet, ama yalnızca `route.fetch()` ile"
+      - "Hayır; `page.route` yalnızca tarayıcının yaptığı istekleri görür, sunucudaki `fetch` tarayıcıdan geçmez"
+      - "Evet, `page.route` tüm istekleri görür"
+      - "Hayır, Next.js mock'lamayı engeller"
+    answer: 1
+    explanation: "Sunucu isteği için seçenekler: test verisiyle dolu ayrı bir ortam, dış servis adresini ortam değişkeniyle sahte sunucuya yönlendirmek ya da sunucu mantığını Vitest ile test etmek."
 ---
 
 ## Neden mock?

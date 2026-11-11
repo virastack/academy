@@ -3,6 +3,45 @@ title: "Next.js ile prefetch"
 description: "Server Component'te başlatıp akıtmak, HydrationBoundary ve veri sahipliği."
 lastVerified: "2026-11-03"
 translationKey: "tanstack-query/prefetch-with-nextjs"
+quiz:
+  - question: "Sunucuda neden her istek için yeni bir `QueryClient` oluşturuluyor?"
+    lang: ts
+    code: |-
+      export function getQueryClient() {
+        if (environmentManager.isServer()) {
+          return makeQueryClient();
+        }
+        browserQueryClient ??= makeQueryClient();
+        return browserQueryClient;
+      }
+    options:
+      - "Sunucu belleği yetmediği için"
+      - "Next.js her istekte yeni Context istediği için"
+      - "Tek bir client kullanılırsa veriler kullanıcılar arasında sızabilir"
+      - "Tarayıcıdaki client'ı ezmemek için"
+    answer: 2
+    explanation: "Sunucudaki tek bir client'ın cache'i bütün kullanıcıların isteklerini paylaşırdı. Her istek için yeni client, kullanıcılar arasında veri sızmasını önler; tarayıcıda ise tek client yeterlidir."
+  - question: "Sunucuda prefetch edilen sorgunun `queryFn`'i neden doğrudan veritabanına giden `server-only` bir fonksiyon olamaz?"
+    options:
+      - "Aynı `queryOptions` tarayıcıda da çalışır; sorgu eskiyince client `queryFn`'i kendisi çağırır"
+      - "`server-only` fonksiyonlar async olamaz"
+      - "Veritabanı sorguları cache'lenemez"
+      - "Server Component'ler sorgu başlatamaz"
+    answer: 0
+    explanation: "`queryFn` iki yerde çalışır. Tarayıcıda çalışabilmesi için bir Route Handler'ı ya da dış API'yi çağırmalıdır. Server Action da olmamalı; client'tan çağrılan Action'lar sırayla çalışır."
+  - question: "Bu kalıbın sorunu nedir?"
+    lang: tsx
+    code: |-
+      // Server Component
+      const products = await queryClient.query(productQueries.list("all"));
+      return <p>{products.length} ürün</p>;
+    options:
+      - "`query` sunucuda çalışmaz"
+      - "`await` yasaktır"
+      - "Sayı her zaman `0` çıkar"
+      - "Client sorguyu yenilediğinde Client Component güncellenir ama bu Server Component güncellenmez; ekranda aynı verinin iki farklı hâli kalır"
+    answer: 3
+    explanation: "TanStack Query açısından Server Component yalnızca prefetch yeridir. Sonucunu sunucuda render etmeyin ya da prop olarak geçmeyin; TanStack Query Server Component'i yenilemeyi bilmez."
 ---
 
 ## Önce: Gerçekten gerekiyor mu

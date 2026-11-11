@@ -3,6 +3,36 @@ title: "Feature-Sliced Design"
 description: "Katmanlar, dilimler ve tek yönlü import kuralıyla frontend mimarisi."
 lastVerified: "2026-11-03"
 translationKey: "architecture/feature-sliced-design"
+quiz:
+  - question: "FSD'de `features/add-to-cart` dilimi için hangi import kurala uygundur?"
+    options:
+      - "`features/wishlist`'ten import"
+      - "`pages/cart`'tan import"
+      - "`entities/product`'tan import"
+      - "`widgets/header`'dan import"
+    answer: 2
+    explanation: "Bir katmandaki modül yalnızca kendi altındaki katmanlardan import edebilir ve aynı katmandaki dilimler birbirini import edemez. `features`, `entities` ve `shared`'i bilir; tersi olmaz."
+  - question: "FSD'yi Next.js ile kullanırken `app` ve `pages` katman adları Next.js'inkilerle çakışır. FSD dokümanının önerisi nedir?"
+    options:
+      - "FSD katmanlarını Next.js'in `app/` klasörünün içine koymak"
+      - "Next.js'in `app/` klasörünü silmek"
+      - "`pages` katmanını hiç kullanmamak"
+      - "FSD katmanlarını `_app` ve `_pages` diye adlandırıp Next.js'in `app/` klasörünü kökte tutmak; rota dosyaları FSD kodunu yeniden dışa aktarır"
+    answer: 3
+    explanation: "Rota dosyaları `@/_pages/...`'tan re-export yapan ince dosyalar olur. Server'a özel dışa aktarımlar için `index.server.ts` önerilir."
+  - question: "FSD açısından bu public API'nin sorunu nedir?"
+    lang: ts
+    code: |-
+      // features/add-to-cart/index.ts
+      export * from './ui'
+      export * from './model'
+    options:
+      - "`index.ts` FSD'de yasaktır"
+      - "`export *` dilimin neyi sunduğunu gizler ve iç ayrıntıyı sızdırabilir"
+      - "Sorun yoktur"
+      - "Dilimler arasında göreli import gerekir"
+    answer: 1
+    explanation: "Dilim dışarıya bir public API açar ve dışarıdaki kod yalnızca oradan ulaşır. Adlandırılmış re-export kullanın; dilim içinde göreli, dilimler arasında mutlak import yazın."
 ---
 
 [Klasör Yapısı ve İsimlendirme](/academy/architecture/folder-structure) rehberinde özelliğe göre dizilimi gördük. **Feature-Sliced Design** *(FSD)* bunun üstüne kural ekler: kodun hangi katmana ait olduğu ve neyi import edebileceği. Bu rehber FSD'nin modelini kısaca anlatıyor, Next.js'e uyarlamasını ve [!virastack] Start'taki kullanımını gösteriyor.

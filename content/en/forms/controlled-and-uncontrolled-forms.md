@@ -3,6 +3,47 @@ title: "Controlled and uncontrolled forms"
 description: "Who holds the value, FormData and the common mistakes."
 lastVerified: "2026-11-03"
 translationKey: "forms/controlled-and-uncontrolled-forms"
+quiz:
+  - question: "What happens when the user tries to type in this field?"
+    lang: tsx
+    code: |-
+      const [name] = useState("Ada");
+
+      <input value={name} />
+    options:
+      - "React treats the value as `defaultValue`"
+      - "The field turns uncontrolled"
+      - "They type normally"
+      - "They cannot; there is a `value` but no `onChange`, so the field is read-only"
+    answer: 3
+    explanation: "A field with `value` but no `onChange` is read-only, and React warns in the console. If it really is read-only, add `readOnly`; otherwise add `onChange` or switch to `defaultValue`."
+  - question: "Why does React warn when the user types the first character?"
+    lang: tsx
+    code: |-
+      const [email, setEmail] = useState<string>();
+
+      <input value={email} onChange={(e) => setEmail(e.target.value)} />
+    options:
+      - "The email field should be `type=\"email\"`"
+      - "The field started as `undefined`, so it counted as uncontrolled, then became controlled"
+      - "`useState` has no type"
+      - "`onChange` is misspelled"
+    answer: 1
+    explanation: "A field that starts as `undefined` is uncontrolled; once a value arrives it becomes controlled, and React warns about switching from uncontrolled to controlled. Start text fields with `\"\"`."
+  - question: "If the user typed `30`, what is `age`?"
+    lang: tsx
+    code: |-
+      <input name="age" type="number" />
+
+      // on submit
+      const age = new FormData(event.currentTarget).get("age");
+    options:
+      - "`null`"
+      - "`NaN`"
+      - "`30` (a number)"
+      - "`\"30\"` (a string)"
+    answer: 3
+    explanation: "`FormData.get` always returns a `string`, a `File` or `null`; a number field also comes in as text. Converting and validating it is your job, which is why you use a schema."
 ---
 
 ## Who holds the value?

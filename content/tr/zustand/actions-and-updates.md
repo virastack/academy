@@ -3,6 +3,47 @@ title: "Action ve güncelleme"
 description: "Olay gibi action'lar, immer ve store'u sıfırlamak."
 lastVerified: "2026-11-03"
 translationKey: "zustand/actions-and-updates"
+quiz:
+  - question: "TkDodo'nun önerdiği yaklaşım hangisi ve neden?"
+    lang: ts
+    code: |-
+      // A
+      const { setItems } = useCartActions();
+      setItems(items.some((i) => i.id === product.id) ? items.map(/* ... */) : [...items, product]);
+
+      // B
+      const { addProduct } = useCartActions();
+      addProduct(product);
+    options:
+      - "B; action bir olay gibi modellenir, iş kuralı tek yerde, store'da durur"
+      - "İkisi eşdeğerdir"
+      - "A; component neyin değişeceğini en iyi bilir"
+      - "A; setter'lar daha hızlıdır"
+    answer: 0
+    explanation: "Action'ları setter değil olay gibi modelleyin: component ne olduğunu söyler, store ne yapılacağına karar verir. \"Aynı ürün eklenirse adedi artır\" kuralı tek yerde durur ve test etmesi kolaydır."
+  - question: "Bu `set` çağrısı ne zaman doğrudur?"
+    lang: ts
+    code: |-
+      set((state) => {
+        const existing = state.items.find((item) => item.id === product.id);
+        if (existing) existing.quantity += 1;
+        else state.items.push({ ...product, quantity: 1 });
+      });
+    options:
+      - "Yalnızca `persist` middleware'iyle"
+      - "Yalnızca store `immer` middleware'iyle oluşturulduysa"
+      - "Her zaman"
+      - "Hiçbir zaman"
+    answer: 1
+    explanation: "Taslağı değiştirip hiçbir şey döndürmemek yalnızca `immer` middleware'i içinde geçerlidir. Middleware yoksa `state.items.push` store'u bozar ve ekran güncellenmez."
+  - question: "Sipariş tamamlanınca sepet store'unu başlangıç hâline döndürmenin dersteki yolu hangisi?"
+    options:
+      - "`useCartStore.destroy()`"
+      - "`create`'in üçüncü parametresi olan store'dan `set(store.getInitialState())`"
+      - "Sayfayı yenilemek"
+      - "Başlangıç değerlerini ayrı bir sabite kopyalayıp `set` ile yazmak zorunludur"
+    answer: 1
+    explanation: "`create`'e verilen fonksiyonun üçüncü parametresi store'un kendisidir; `getInitialState()` ilk state'i verir. Başlangıç değerlerini ayrı bir sabite kopyalamanız gerekmez."
 ---
 
 ## Action'ları ayrı bir nesnede toplayın

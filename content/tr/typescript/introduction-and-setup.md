@@ -3,6 +3,41 @@ title: "Giriş ve kurulum"
 description: "TypeScript nedir, neden kullanılır ve ilk projede tip kontrolü."
 lastVerified: "2026-11-03"
 translationKey: "typescript/introduction-and-setup"
+quiz:
+  - question: "Vite geliştirme sunucusu açıkken bu satırı kaydediyorsunuz. Ne olur?"
+    lang: ts
+    code: |-
+      const price: number = "1299"; // tip hatası
+    options:
+      - "Vite hatayı tarayıcıda gösterip sayfayı durdurur"
+      - "Kod çalışır; Vite `.ts` dosyalarında yalnızca dönüştürme yapar, tip kontrolü yapmaz"
+      - "Vite değeri kendiliğinden `number`'a çevirir"
+      - "Sunucu kodu çalıştırmayı reddeder"
+    answer: 1
+    explanation: "Vite tipleri silip kodu çalıştırır, tip kontrolünü editöre ve build sürecine bırakır. Bu yüzden tip kontrolü ayrıca çalıştırılır (Vite şablonunda `npx tsc -b`)."
+  - question: "Projede tip hatası olduğu hâlde bu komut ne yapar?"
+    lang: bash
+    code: |-
+      # Vite react-ts şablonunun kökünde
+      npx tsc --noEmit
+    options:
+      - "Yalnızca `tsconfig.node.json`'daki dosyaları kontrol eder"
+      - "Hiçbir dosyayı kontrol etmez ve başarılı biter"
+      - "JavaScript dosyalarını üretip hataları uyarı olarak yazar"
+      - "Hataları listeler ve başarısız olur"
+    answer: 1
+    explanation: "Vite şablonundaki kök `tsconfig.json` kendi başına dosya içermez (`\"files\": []`), yalnızca diğer iki dosyaya referans verir. Bu yüzden komut hiçbir şeyi kontrol etmez; Vite projelerinde `npx tsc -b` kullanılır."
+  - question: "Bu satır, API'den gelen verinin gerçekten `Product` şeklinde olduğunu garanti eder mi?"
+    lang: ts
+    code: |-
+      const product: Product = await response.json();
+    options:
+      - "Evet, veri uymazsa `fetch` hata fırlatır"
+      - "Yalnızca `strict` mod açıksa"
+      - "Evet, TypeScript yanıtı çalışma anında doğrular"
+      - "Hayır; tipler çalışmadan önce silinir, gelen veri hiçbir tip kontrolünden geçmez"
+    answer: 3
+    explanation: "TypeScript yalnızca sizin yazdığınız kodu kontrol eder; tipler çalışma anında yoktur. `fetch`, `JSON.parse` ya da form girdisiyle gelen veri ayrıca doğrulanmalıdır (narrowing ya da Zod gibi bir şema ile)."
 ---
 
 ## TypeScript nedir

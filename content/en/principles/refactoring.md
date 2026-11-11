@@ -3,6 +3,31 @@ title: "Refactoring"
 description: "Improving code in small steps while preserving its behaviour."
 lastVerified: "2026-11-03"
 translationKey: "principles/refactoring"
+quiz:
+  - question: "By Fowler's definition, which of these is not refactoring?"
+    options:
+      - "Moving a piece of code into a named function"
+      - "Giving a variable a name that explains its purpose"
+      - "Adding a new discount rule to the price calculation"
+      - "Splitting a complex condition into named functions"
+    answer: 2
+    explanation: "Refactoring reorganises the internal structure without changing externally visible behaviour. A step that changes behaviour is not refactoring; do them as separate steps, ideally separate commits."
+  - question: "You want to add a feature, but the current structure makes it hard. What does Kent Beck suggest?"
+    options:
+      - "Force the feature into the current structure"
+      - "Rewrite the file from scratch"
+      - "Postpone the feature"
+      - "First make the change easy (preparatory refactoring), then make the easy change"
+    answer: 3
+    explanation: "Fowler calls this preparatory refactoring: you prepare the structure first, with the tests still passing, and then the feature goes in easily."
+  - question: "The code is healthy, yet tests keep breaking during refactoring. What is the most likely cause?"
+    options:
+      - "The refactoring changed behaviour"
+      - "Vitest is set up wrong"
+      - "There are too few tests"
+      - "The tests check the component's internal details instead of what the user sees"
+    answer: 3
+    explanation: "According to Kent C. Dodds, you should very rarely need to change tests when refactoring. Write tests that look at what the user sees."
 ---
 
 You want to add a new feature to a working component but the code does not suit it. Either you force the code as it is, or you tidy it up first. This guide covers the second: refactoring. The examples are frontend code, but the ideas hold in any language.

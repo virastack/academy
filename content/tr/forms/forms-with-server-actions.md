@@ -3,6 +3,41 @@ title: "Server Actions ile form"
 description: "useActionState, sunucuda Zod ve sunucu hatası."
 lastVerified: "2026-11-03"
 translationKey: "forms/forms-with-server-actions"
+quiz:
+  - question: "Action hata durumunda neden gönderilen `values`'ı da döndürüyor?"
+    lang: ts
+    code: |-
+      if (!parsed.success) {
+        return { status: "error", fieldErrors: z.flattenError(parsed.error).fieldErrors, values };
+      }
+    options:
+      - "Zod bunu zorunlu kılar"
+      - "Hata ayıklama için"
+      - "React `action` ile gönderilen formu sıfırlar; değerleri `defaultValue`'ya geri vermek kullanıcının yazdıklarını korur"
+      - "İstek boyutunu küçültmek için"
+    answer: 2
+    explanation: "`action` ile gönderilen form işlem bitince uncontrolled alanları sıfırlar. Hata durumunda değerler dönmezse kullanıcının yazdıkları silinir; başarılı gönderimde dönmediği için form temizlenir."
+  - question: "Bu kodun sorunu nedir?"
+    lang: tsx
+    code: |-
+      const [state, submitAction, isPending] = useActionState(updateProfile, { status: "idle" });
+
+      <form onSubmit={handleSubmit((values) => submitAction(values))}>
+    options:
+      - "Action `<form action>`'a verilmediği için `startTransition` içinde çağrılmalı; yoksa React hata verir ve `isPending` güncellenmez"
+      - "`handleSubmit` Server Action'ı çağıramaz"
+      - "`values` FormData olmalı"
+      - "`useActionState` React Hook Form ile kullanılamaz"
+    answer: 0
+    explanation: "`useActionState`'in fonksiyonu transition dışında çağrılırsa React \"An async function with useActionState was called outside of a transition\" hatası verir. `startTransition(() => submitAction(values))` yazın."
+  - question: "Şemada fiyatı metinden sayıya çeviren bir `.transform` var. `handleSubmit`'in verdiği değeri aynı şemayla sunucuda tekrar doğruluyorsunuz. Ne olur?"
+    options:
+      - "Sorunsuz geçer"
+      - "Sunucu doğrulamayı atlar"
+      - "Fiyat iki kez çevrilir"
+      - "Başarısız olur; şema metin bekler ama `handleSubmit` dönüşmüş değeri (sayı) verir"
+    answer: 3
+    explanation: "`handleSubmit` şemanın çıktısını verir. Sunucuyla paylaşılan şemada dönüşüm yapmayın; dönüşümü doğrulamadan sonra sunucuda yapın ya da ham `FormData` gönderin."
 ---
 
 ## Server Action nedir?

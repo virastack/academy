@@ -3,6 +3,37 @@ title: "Clean Code and the basic principles"
 description: "DRY, KISS and YAGNI: when they help and when they are overdone."
 lastVerified: "2026-11-03"
 translationKey: "principles/clean-code"
+quiz:
+  - question: "According to “The Pragmatic Programmer”, what is DRY really about?"
+    options:
+      - "Every piece of knowledge having a single, unambiguous, authoritative representation in the system"
+      - "Reducing the number of files"
+      - "Always merging lines that look alike"
+      - "Writing code as short as possible"
+    answer: 0
+    explanation: "The key word is knowledge. Merging two pieces of code that look alike today but change for different reasons causes trouble; the AHA principle says to wait with the abstraction until the duplication is really there."
+  - question: "Following KISS, what is the simpler version of this code?"
+    lang: tsx
+    code: |-
+      const [fullName, setFullName] = useState("");
+      useEffect(() => {
+        setFullName(firstName + " " + lastName);
+      }, [firstName, lastName]);
+    options:
+      - "Use `useLayoutEffect`"
+      - "Move the value into Context"
+      - "Delete the state and the Effect and compute it during render: `const fullName = firstName + \" \" + lastName`"
+      - "Wrap it in `useMemo`"
+    answer: 2
+    explanation: "The most common complexity in frontend code is unneeded state and Effects. According to the React docs, removing unnecessary Effects makes code faster, easier to follow and less error-prone."
+  - question: "The app has a single table right now. What does YAGNI say to do?"
+    options:
+      - "Write a generic `DataTable` with sorting, filtering and grouping"
+      - "Install a table library and turn everything on"
+      - "Write the `ProductTable` you need today; extract a generic component when a second table really arrives"
+      - "Put off writing the table"
+    answer: 2
+    explanation: "Adding a capability you do not need yet has costs: building it, delaying real work, carrying it and repairing it. When the second table arrives, you will know what is shared. YAGNI does not forbid refactoring."
 ---
 
 This guide was written for frontend developers. The examples are in [!react] and [!typescript], but the ideas hold in any language. You will learn three short principles: DRY, KISS and YAGNI. Each answers one question.

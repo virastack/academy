@@ -3,6 +3,40 @@ title: "Server Actions"
 description: "Forms and mutations, useActionState, updating the cache and security."
 lastVerified: "2026-11-03"
 translationKey: "nextjs/server-actions"
+quiz:
+  - question: "You use a Server Action only in a form on the admin page. Which is true?"
+    options:
+      - "Every Server Action is a public POST endpoint; check identity and permissions inside it"
+      - "CSRF protection replaces the permission check"
+      - "Next.js checks permissions by itself"
+      - "Nobody can call it because the form appears nowhere else"
+    answer: 0
+    explanation: "`\"use server\"` turns the function into a POST endpoint, and anyone can send the same request by hand. Next.js protects against CSRF and limits body size, but identity, permissions and input validation are your job."
+  - question: "The email in a subscribe form is invalid. How should the Server Action report it?"
+    options:
+      - "`redirect(\"/error\")`"
+      - "`throw new Error(\"Invalid email\")`"
+      - "By calling `notFound()`"
+      - "By returning a message for `useActionState` to show"
+    answer: 3
+    explanation: "The docs recommend returning a value for expected errors instead of throwing. `throw` goes to the nearest error boundary, which is too heavy for a validation error."
+  - question: "What is the bug in this Action?"
+    lang: ts
+    code: |-
+      "use server";
+
+      export async function placeOrder(formData: FormData) {
+        await db.order.create({ data: parseOrder(formData) });
+        redirect("/orders");
+        updateTag("orders");
+      }
+    options:
+      - "`redirect` cannot be used in Server Actions"
+      - "There is none"
+      - "Code after `redirect` does not run; put `updateTag` before `redirect`"
+      - "`updateTag` only works in Route Handlers"
+    answer: 2
+    explanation: "`redirect` sends the user to another page and the code after it does not run. Always put refresh calls before `redirect`."
 ---
 
 ## Server Functions and Server Actions

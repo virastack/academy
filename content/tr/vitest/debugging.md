@@ -3,6 +3,39 @@ title: "Hata ayıklama"
 description: "screen.debug, sık hatalar ve coverage."
 lastVerified: "2026-11-03"
 translationKey: "vitest/debugging"
+quiz:
+  - question: "Bu hata en büyük ihtimalle ne söylüyor?"
+    lang: text
+    code: |-
+      TestingLibraryElementError: Unable to find an accessible element with the role "article"
+      Here are the accessible roles:
+        status:
+    options:
+      - "Ürünler henüz gelmedi; ekranda yalnızca yükleme mesajı (`status`) var, `findBy` kullanılmalı"
+      - "`screen.debug()` çağrılmalı"
+      - "Ürün kartlarında `aria-label` eksik"
+      - "`article` rolü desteklenmiyor"
+    answer: 0
+    explanation: "Rol listesinde yalnızca `status` görünmesi, testin yükleme bitmeden kontrol yaptığını gösterir. `getBy` yerine `await screen.findBy` kullanın."
+  - question: "Bu uyarı için doğru yaklaşım hangisi?"
+    lang: text
+    code: |-
+      An update to ProductList inside a test was not wrapped in act(...).
+    options:
+      - "Component'ten `useEffect`'i kaldırmak"
+      - "Testi `test.skip` ile atlamak"
+      - "`console.error`'u susturmak"
+      - "Testin sonunda beklenen sonucu `await findBy` ya da `await waitFor` ile beklemek"
+    answer: 3
+    explanation: "Uyarı, component'in test beklemeyi bıraktıktan sonra state güncellediğini, yani testin eksik beklediğini gösterir. Sonucu bekleyin; zamanlayıcı varsa `vi.advanceTimersByTime`'ı `act` içine alın. Uyarıyı gizlemeyin."
+  - question: "%100 coverage için hangisi doğru?"
+    options:
+      - "Uygulamanın hatasız olduğunu kanıtlar"
+      - "Kodun çalıştığını gösterir, testin doğru olduğunu göstermez"
+      - "Her projede hedeflenmelidir"
+      - "Yalnızca E2E testlerle ölçülebilir"
+    answer: 1
+    explanation: "Coverage, testlerin kodun ne kadarını çalıştırdığını gösterir. Test edilmeyen kısımları bulmak için kullanın ama %100 hedeflemeyin; önemli akışlara odaklanın."
 ---
 
 ## Test kırıldığında ne yapmalı?

@@ -3,6 +3,31 @@ title: "Kurulum ve proje yapısı"
 description: "create-next-app varsayılanları, app klasörü, özel dosyalar ve kodun yeri."
 lastVerified: "2026-11-03"
 translationKey: "nextjs/setup-and-folder-structure"
+quiz:
+  - question: "Hangi dosya yeni bir adres açar?"
+    options:
+      - "`app/products/utils.ts`"
+      - "`app/(shop)/cart/page.tsx`"
+      - "`app/products/product-card.tsx`"
+      - "`app/products/_components/page.tsx`"
+    answer: 1
+    explanation: "Adres yalnızca `page.tsx` ya da `route.ts` ile açılır, bu yüzden colocation güvenlidir. `_` ile başlayan klasör routing'den tamamen çıkar. Parantezli route group URL'ye eklenmez: `app/(shop)/cart/page.tsx` → `/cart`."
+  - question: "Next.js 16 projesinde CI'da lint nasıl çalıştırılır?"
+    options:
+      - "Next.js 16'da lint desteklenmez"
+      - "`next lint` ile"
+      - "`npm run lint` ile ayrı bir adımda"
+      - "`next build` lint'i zaten çalıştırır"
+    answer: 2
+    explanation: "Next.js 16'dan beri `next build` lint çalıştırmaz ve `next lint` komutu yoktur. Lint'i `npm run lint` ile ayrıca çalıştırın."
+  - question: "`create-next-app`'in projeye eklediği `AGENTS.md` ne işe yarar?"
+    options:
+      - "Next.js'e yerleşik bir AI özelliği ekler"
+      - "Agent'a eğitim verisi yerine `node_modules/next/dist/docs/` altındaki, kurulu sürümle eşleşen dokümana bakmasını söyler"
+      - "Build sırasında bir agent çalıştırır"
+      - "Projenin lint kurallarını tanımlar"
+    answer: 1
+    explanation: "`AGENTS.md`, agent'ı paketle gelen ve kurulu sürümle birebir eşleşen dokümana yönlendirir. `npx next upgrade` bu dokümanı da yeni sürüme taşır."
 ---
 
 ## Bu rehber ne anlatıyor

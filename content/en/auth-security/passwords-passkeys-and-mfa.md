@@ -3,6 +3,37 @@ title: "Passwords, passkeys and 2FA"
 description: "The sign-in form, storing a password on the server, passkeys and two-step verification."
 lastVerified: "2026-11-03"
 translationKey: "auth-security/passwords-passkeys-and-mfa"
+quiz:
+  - question: "For a system where the password is used on its own, which rule set follows NIST SP 800-63B-4?"
+    options:
+      - "At least 15 characters; no character rules; a breached-password check; change only after a breach"
+      - "At least 8 characters; uppercase, digit and symbol required; change every 90 days"
+      - "At least 12 characters; pasting disabled"
+      - "At least 15 and at most 20 characters; change once a year"
+    answer: 0
+    explanation: "NIST drops character rules and periodic changes, and asks that at least 64 characters be allowed. With 2FA the minimum is 8. Password managers and pasting must be allowed."
+  - question: "What is the `prefix` sent to Have I Been Pwned?"
+    lang: ts
+    code: |-
+      const response = await fetch(
+        `https://api.pwnedpasswords.com/range/${prefix}`,
+        { headers: { "Add-Padding": "true" } },
+      );
+    options:
+      - "The full SHA-1 hash"
+      - "The first 5 characters of the password"
+      - "The first 5 characters of the password's SHA-1 hash"
+      - "The password itself"
+    answer: 2
+    explanation: "The password is never sent; you look for the rest of the hash in the returned list (k-anonymity). `Add-Padding` adds fake lines with a count of `0` to the response, and you have to skip them."
+  - question: "Why are passkeys resistant to phishing?"
+    options:
+      - "Sign-in is confirmed by SMS"
+      - "The code changes every 30 seconds"
+      - "The signature is tied to the site's domain; a fake sign-in page cannot get a valid signature"
+      - "The server stores the private key and compares it"
+    answer: 2
+    explanation: "The private key stays on the device and the server holds only the public key, so a leaked database cannot be used to sign in. A TOTP code, by contrast, can be typed into a fake site. Users can lose their devices, so plan a recovery path too."
 ---
 
 To prove their identity, a user can use three kinds of thing: something they **know** *(a password)*, something they **have** *(a phone, a security key)* or something they **are** *(a fingerprint, a face)*.[^1] In this lesson we start with passwords and move on to two-step verification and to passkeys, which are starting to replace passwords.

@@ -3,6 +3,43 @@ title: "Selector ve yeniden render"
 description: "Atomik selector, useShallow ve custom hook."
 lastVerified: "2026-11-03"
 translationKey: "zustand/selectors-and-rerenders"
+quiz:
+  - question: "Zustand v5'te bu kod ne yapar?"
+    lang: ts
+    code: |-
+      const { items, isOpen } = useCartStore((state) => ({
+        items: state.items,
+        isOpen: state.isOpen,
+      }));
+    options:
+      - "Yalnızca gereksiz render'a yol açar"
+      - "`isOpen` hep `undefined` olur"
+      - "Sorunsuz çalışır"
+      - "Sayfa \"Maximum update depth exceeded\" hatasıyla durur"
+    answer: 3
+    explanation: "Selector her çalıştığında yeni bir nesne üretir ve `Object.is` iki nesneyi eşit saymaz. v5 React'in davranışına uyduğu için bu sonsuz render döngüsüne döner. Çözüm `useShallow` ya da iki ayrı atomik selector'dır."
+  - question: "Bu component ne zaman yeniden render olur?"
+    lang: ts
+    code: |-
+      const { items } = useCartStore();
+    options:
+      - "Yalnızca `items` değişince"
+      - "Store'daki her değişiklikte, örneğin `isOpen` değişince de"
+      - "Hiçbir zaman"
+      - "Yalnızca ilk render'da"
+    answer: 1
+    explanation: "Selector verilmezse hook bütün state'i döndürür ve component her değişiklikte render olur. TkDodo store'da tek bir değer olsa bile selector yazmayı önerir."
+  - question: "Bu selector için hangisi doğru?"
+    lang: ts
+    code: |-
+      const ids = useCartStore((state) => state.items.map((item) => item.id));
+    options:
+      - "Sorun yok; sonuç her zaman aynı referanstır"
+      - "Sonuç `useMemo` ile sarılmalı"
+      - "`map` her seferinde yeni dizi üretir; `useShallow` ile sarılmalı"
+      - "`map` selector'da kullanılamaz"
+    answer: 2
+    explanation: "`filter`, `map` ya da `Object.keys` yeni referans döndürür. `useShallow` diziyi sığ karşılaştırır; elemanlar aynı kaldıkça önceki referansı döndürür ve component render olmaz."
 ---
 
 ## Selector nasıl karşılaştırılır

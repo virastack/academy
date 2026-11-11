@@ -3,6 +3,47 @@ title: "Context"
 description: "Sharing without prop drilling, using it with a reducer, and its limits."
 lastVerified: "2026-11-03"
 translationKey: "react/context"
+quiz:
+  - question: "There is no `ThemeContext` provider in the tree. What does `PriceTag` read?"
+    code: |-
+      const ThemeContext = createContext<Theme>("light");
+
+      function PriceTag() {
+        const theme = use(ThemeContext);
+        return <span className={`price-${theme}`} />;
+      }
+    options:
+      - "`\"light\"`"
+      - "It throws an error"
+      - "`undefined`"
+      - "`null`"
+    answer: 0
+    explanation: "A reading component gets the value of the nearest provider; without one it sees the default value given to `createContext`."
+  - question: "State and `dispatch` are in two separate contexts. When a product is added to the cart, which component does not re-render?"
+    code: |-
+      <CartContext value={items}>
+        <CartDispatchContext value={dispatch}>{children}</CartDispatchContext>
+      </CartContext>
+    options:
+      - "The cart counter that reads `CartContext`"
+      - "The \"Add to cart\" button that reads only `dispatch`"
+      - "They all re-render"
+      - "The component that reads the cart list (`CartContext`)"
+    answer: 1
+    explanation: "`dispatch` never changes. Components that read only `CartDispatchContext` do not re-render when the cart changes."
+  - question: "You need to read context after an early `return`. Which follows the rules?"
+    code: |-
+      function Panel({ isOpen }: { isOpen: boolean }) {
+        if (!isOpen) return null;
+        const theme = /* ? */;
+      }
+    options:
+      - "Neither; context can only be read at the top"
+      - "Both"
+      - "Only `use(ThemeContext)`"
+      - "Only `useContext(ThemeContext)`"
+    answer: 2
+    explanation: "`use` can be called inside `if` or after an early `return`; `useContext` is a hook and must be called at the top level."
 ---
 
 ## What Context solves

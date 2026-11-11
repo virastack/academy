@@ -3,6 +3,31 @@ title: "Choosing a pattern"
 description: "FSD, DDD, component-driven and Atomic Design: which one answers which question."
 lastVerified: "2026-11-03"
 translationKey: "architecture/choosing-a-pattern"
+quiz:
+  - question: "Which pattern answers \"where does code go, and who imports whom?\""
+    options:
+      - "Component-driven development"
+      - "Feature-Sliced Design"
+      - "DDD's ubiquitous language"
+      - "Atomic Design"
+    answer: 1
+    explanation: "The patterns are not alternatives: FSD sets the folder structure and import direction, the ubiquitous language sets names, Atomic Design classifies shared UI parts, and component-driven sets the way of working."
+  - question: "In the lesson's suggested order, when is FSD's layer rule added?"
+    options:
+      - "When the team and code grow and dependencies start to tangle"
+      - "Only in monorepos"
+      - "On the project's first day"
+      - "Never"
+    answer: 0
+    explanation: "For most projects, feature folders and one-way imports are enough. FSD can be adopted gradually; the signal to move is the architecture starting to cause problems."
+  - question: "To make an architectural rule really stick, which question does the lesson suggest asking?"
+    options:
+      - "Is the rule written in the README?"
+      - "Does everyone know the rule?"
+      - "Is the rule checked automatically? (for FSD, the Steiger linter)"
+      - "Is the rule asked about in code review?"
+    answer: 2
+    explanation: "A written rule gets broken; a lint rule does not. FSD offers Steiger to check its rules; other boundaries are kept with ESLint rules."
 ---
 
 The previous three lessons are not alternatives to each other. Each answers a different question. This lesson helps you decide which one to add when.

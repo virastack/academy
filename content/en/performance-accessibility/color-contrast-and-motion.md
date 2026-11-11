@@ -3,6 +3,31 @@ title: "Colour, contrast and motion"
 description: "Readable colours, zooming and reduced motion."
 lastVerified: "2026-11-03"
 translationKey: "performance-accessibility/color-contrast-and-motion"
+quiz:
+  - question: "The contrast ratio for normal-size text comes out at 4.499:1. Does it meet WCAG 1.4.3 (AA)?"
+    options:
+      - "No; there is no rounding, so it falls below 4.5:1"
+      - "Yes, because it is above 3:1"
+      - "Only in dark mode"
+      - "Yes, it rounds to 4.5"
+    answer: 0
+    explanation: "Normal text needs at least 4.5:1, with no rounding. 3:1 only applies to large text (about 24px, or 18.5px bold)."
+  - question: "A checkbox with a `#9D9D9D` grey border on white has a 2.7:1 contrast. Which is true?"
+    options:
+      - "It fails 1.4.11 Non-text Contrast; visuals that identify a component need at least 3:1 against the adjacent colour"
+      - "It needs 4.5:1"
+      - "It is only an issue at AAA"
+      - "No problem; a border is not text"
+    answer: 0
+    explanation: "Meaningful visuals such as input borders, checkbox outlines, selected-state marks and focus indicators need 3:1 at AA. Disabled components are an exception."
+  - question: "A user turns on \"reduce motion\" in their operating system. What happens to the CSS animations on your site?"
+    options:
+      - "They stop only in Safari"
+      - "Their durations are halved"
+      - "They stop by themselves"
+      - "They do not stop by themselves; honouring the preference with `prefers-reduced-motion` is the developer's job"
+    answer: 3
+    explanation: "The operating system does not turn off web animations; the browser passes the preference on through `prefers-reduced-motion`. The recommended approach is no-motion-first: add animation only under `no-preference`."
 ---
 
 ## What contrast is

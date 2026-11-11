@@ -3,6 +3,38 @@ title: "Agent takımı kurmak"
 description: "Spec, frontend, test ve inceleme rollerinde subagent'larla hat kurma, hata döngüsü, lead özeti ve agent teams."
 lastVerified: "2026-11-03"
 translationKey: "ai/agent-teams"
+quiz:
+  - question: "Bu rolde `tools` alanı ne sağlar?"
+    lang: markdown
+    code: |-
+      ---
+      name: reviewer
+      description: Reviews the diff against SPEC.md.
+      tools: Read, Grep, Glob
+      ---
+    options:
+      - "Rolü daha hızlı çalıştırır"
+      - "Rolün token harcamasını sıfırlar"
+      - "Rolün yalnızca lead'le konuşmasını sağlar"
+      - "Rol yalnızca okuyup rapor verir; dosya düzenleyemez, komut çalıştıramaz"
+    answer: 3
+    explanation: "Rolü asıl belirleyen `tools` alanıdır: neye dokunabileceği. `frontend-dev` `Read, Edit, Write, Bash` alır, `reviewer` yalnızca okur."
+  - question: "Roller birbirine iş verirken neden `SPEC.md` ve `test-report.md` gibi dosyaları kullanır?"
+    options:
+      - "Agent'lar konuşmaları değil dosyaları paylaşır; böylece her biri temiz bir bağlamla başlar"
+      - "Dosyalar daha hızlı okunur"
+      - "Subagent'lar birbirine mesaj atamadığı için zorunludur"
+      - "Dosyalar otomatik commit edilir"
+    answer: 0
+    explanation: "Lead her işçiye amacı, çıktı biçimini, kullanacağı araçları ve sınırları açıkça vermeli. Tur sınırı (\"en fazla 3 tur\") da döngünün sonsuza gitmesini önler."
+  - question: "Anthropic'in ölçümüne göre çoğu kodlama işi neden çoklu agent sistemine uygun değildir?"
+    options:
+      - "Modeller birbirini anlamaz"
+      - "Agent'lar arasında çok bağımlılık olur ve iş az paralelleşir; üstelik çoklu agent sistemleri sohbetin yaklaşık 15 katı token harcar"
+      - "Çoklu agent sistemleri test yazamaz"
+      - "Çoklu agent yalnızca Python'da çalışır"
+    answer: 1
+    explanation: "Rehberin ana tavsiyesi: işe yarayan en basit çözümü bulun, karmaşıklığı ancak sonucu ölçülebilir şekilde iyileştiriyorsa ekleyin. Tek agent'ın plan modu ve bir test komutu çoğu işe yeter."
 ---
 
 Hedef şu: bir agent spec'i yazar, ikincisi kodu yazar, üçüncüsü test eder. Test kırılırsa iş kod yazan agent'a geri döner. En sonda bir **lead** *(yönetici agent)* ne yapıldığını size özetler. Önce hangi işin takım gerektirdiğine bakalım.

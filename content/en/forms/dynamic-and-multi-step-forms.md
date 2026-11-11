@@ -3,6 +3,44 @@ title: "Dynamic fields and multi-step forms"
 description: "useFieldArray, Controller and validating step by step."
 lastVerified: "2026-11-03"
 translationKey: "forms/dynamic-and-multi-step-forms"
+quiz:
+  - question: "What is the right key in a `useFieldArray` list?"
+    lang: tsx
+    code: |-
+      {fields.map((field, index) => (
+        <div key={index}>
+          <input {...register(`products.${index}.name`)} />
+        </div>
+      ))}
+    options:
+      - "`Math.random()`"
+      - "`index` is fine here"
+      - "`field.name`"
+      - "`field.id`; with `index`, React mixes up the inputs when a row in the middle is removed"
+    answer: 3
+    explanation: "React Hook Form gives every row a unique `id`; use it as the key. In v8 the field is renamed `field.key`."
+  - question: "What happens when the button is clicked?"
+    lang: tsx
+    code: |-
+      <form onSubmit={handleSubmit(onSubmit)}>
+        {/* ... */}
+        <button onClick={() => append({ name: "", price: "" })}>Add product</button>
+      </form>
+    options:
+      - "The form is reset"
+      - "Nothing; `append` does not work inside a button"
+      - "A row is added and the form is submitted too; the button needs `type=\"button\"`"
+      - "Only a new row is added"
+    answer: 2
+    explanation: "Every `<button>` inside a form submits by default. Give the add and remove buttons `type=\"button\"`."
+  - question: "In a multi-step form built with a single `useForm`, the user goes back one step. What happens to the previous step's values?"
+    options:
+      - "They are kept; by default React Hook Form keeps the value of an unmounted field (`shouldUnregister: false`)"
+      - "Only valid fields are kept"
+      - "They are lost unless `trigger` was called"
+      - "They are lost; the fields unmount when the step leaves the screen"
+    answer: 0
+    explanation: "Going back needs no validation: `setStep((s) => s - 1)`. The values stay in the form; going forward, `trigger` validates only that step's fields."
 ---
 
 ## useFieldArray

@@ -3,6 +3,52 @@ title: "Components and JSX"
 description: "Splitting up the interface, JSX rules, lists and keys, pure components."
 lastVerified: "2026-11-03"
 translationKey: "react/components-and-jsx"
+quiz:
+  - question: "What appears on screen when `items` is an empty array?"
+    code: |-
+      <div>
+        {items.length && <List items={items} />}
+      </div>
+    options:
+      - "`false`"
+      - "React throws an error"
+      - "`0`"
+      - "Nothing"
+    answer: 2
+    explanation: "When `items.length` is `0`, the `&&` expression returns `0` and React renders `0`. Write `items.length > 0 &&` or use a ternary."
+  - question: "Each row has an `<input>`. The user types into the first row, then the list is reversed. What happens?"
+    code: |-
+      {products.map((product, index) => (
+        <li key={index}>
+          {product.name} <input />
+        </li>
+      ))}
+    options:
+      - "React reports a key conflict"
+      - "The text stays in the first row, which now shows another product"
+      - "All inputs are cleared"
+      - "The text moves to the end of the list with its product"
+    answer: 1
+    explanation: "With `index` as the key, the first row still has key `0` after the order changes, so React keeps that row's state and DOM in place. The text ends up on another product's row. Keys should come from the data: `product.id`."
+  - question: "Which line in this component does not break the purity rule?"
+    code: |-
+      let renderCount = 0;
+
+      function ProductCard({ product }: ProductCardProps) {
+        renderCount++;                 // A
+        product.viewed = true;         // B
+        const tags: string[] = [];
+        tags.push(product.category);   // C
+        document.title = product.name; // D
+        return <h2>{product.name}</h2>;
+      }
+    options:
+      - "A"
+      - "B"
+      - "C"
+      - "D"
+    answer: 2
+    explanation: "Changing an array you created during render is fine. A changes an outside variable, B changes a prop and D changes `document.title`; those all existed before render."
 ---
 
 ## Split the interface into boxes

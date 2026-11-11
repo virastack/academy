@@ -3,6 +3,35 @@ title: "Accessibility and visual tests"
 description: "axe, the keyboard, aria snapshots and screenshots."
 lastVerified: "2026-11-03"
 translationKey: "playwright/accessibility-and-visual-tests"
+quiz:
+  - question: "What is wrong with this scan?"
+    lang: ts
+    code: |-
+      await ordersPage.goto();
+      const results = await new AxeBuilder({ page }).analyze();
+    options:
+      - "`AxeBuilder` does not work with Playwright"
+      - "It does not wait for the page to be ready; scanning before the list loads only scans the loading text"
+      - "`analyze` must be synchronous"
+      - "Nothing"
+    answer: 1
+    explanation: "Wait until the page is ready before scanning, for example `await expect(ordersPage.rows).toHaveCount(6)`."
+  - question: "When `toHaveScreenshot` runs for the first time with no reference image, what happens (default mode)?"
+    options:
+      - "The test passes and the image is saved"
+      - "The test is skipped"
+      - "It errors and writes nothing"
+      - "The image is written but the test fails, so a new snapshot is not silently accepted"
+    answer: 3
+    explanation: "To write missing images and pass the test, use `--update-snapshots=missing`, added in Playwright 1.64."
+  - question: "A reference screenshot taken on macOS does not match on Linux in CI. What does the lesson recommend?"
+    options:
+      - "Set `maxDiffPixels` very high"
+      - "Use only WebKit"
+      - "Delete the visual tests"
+      - "Generate references in CI or in Playwright's official Docker image"
+    answer: 3
+    explanation: "Font and rendering differences keep screenshots from matching across platforms; the file name even includes the browser and OS. Run the tests in the environment where the reference was made."
 ---
 
 ## Three different questions

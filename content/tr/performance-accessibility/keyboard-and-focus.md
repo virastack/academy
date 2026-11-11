@@ -3,6 +3,39 @@ title: "Klavye ve odak yönetimi"
 description: "Klavye ile gezinme ve görünür odak."
 lastVerified: "2026-11-03"
 translationKey: "performance-accessibility/keyboard-and-focus"
+quiz:
+  - question: "`tabindex=\"-1\"` ne yapar?"
+    options:
+      - "Elemanı Tab sırasında en başa alır"
+      - "Eleman Tab ile ulaşılamaz ama JavaScript ile `focus()` yapılabilir"
+      - "Elemanı erişilebilirlik ağacından çıkarır"
+      - "Elemanı tamamen odaklanamaz yapar"
+    answer: 1
+    explanation: "`-1` tipik olarak açılınca odak verilecek hata özeti, başlık ya da panel içindir. `0` elemanı DOM'daki yerine göre Tab sırasına ekler; pozitif değerleri kullanmayın."
+  - question: "Fareyle tıklanan butonda odak çerçevesi çıkmasın ama klavyeyle gelindiğinde görünsün istiyorsunuz. Doğru yol hangisi?"
+    options:
+      - "Çerçeveyi tamamen kaldırıp `box-shadow` kullanmak"
+      - "`:focus-visible` ile kendi göstergenizi vermek"
+      - "`tabindex=\"-1\"` eklemek"
+      - "`button:focus { outline: none; }`"
+    answer: 1
+    explanation: "`:focus-visible` yalnızca tarayıcı kullanıcının odağı görmesi gerektiğine karar verdiğinde eşleşir. Çerçeveyi kaldırmak WCAG 2.4.7'de başarısızlıktır; `outline` düzeni kaydırmaz ve forced colors modunda korunur."
+  - question: "Bu skip link neden çalışmaz?"
+    lang: css
+    code: |-
+      .skip-link {
+        display: none;
+      }
+      .skip-link:focus {
+        display: block;
+      }
+    options:
+      - "`:focus` skip link'te desteklenmez"
+      - "Skip link `<button>` olmalı"
+      - "`display: none` bağlantıyı klavyeden de kaldırır; odak hiç gelemez, ekran dışına alınarak gizlenmeli"
+      - "`href` eksik"
+    answer: 2
+    explanation: "Skip link odak gelene kadar `position: absolute; left: -9999px;` gibi ekran dışına alınarak gizlenir. `display: none` ve `hidden` onu Tab sırasından da çıkarır."
 ---
 
 ## Klavye erişilebilirliği nedir

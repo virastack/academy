@@ -3,6 +3,37 @@ title: "Error monitoring"
 description: "onRequestError, the error code, Sentry and useful alerts."
 lastVerified: "2026-11-03"
 translationKey: "production/error-monitoring"
+quiz:
+  - question: "In production a Server Component throws. What does the user see in `error.tsx`?"
+    options:
+      - "A generic message and a `digest` id that matches the server logs"
+      - "The full message and stack trace"
+      - "Nothing; the page stays blank"
+      - "Only the HTTP 500 code"
+    answer: 0
+    explanation: "A server error reaches the browser without detail; the real message is hidden so it cannot leak sensitive information. Show the `digest` and support can find the same error in the logs."
+  - question: "Why did this narrowing fall short in the lesson's project?"
+    lang: tsx
+    code: |-
+      export default function Error({ error }: { error: unknown }) {
+        const digest = error instanceof Error ? (error as { digest?: string }).digest : undefined;
+        // ...
+      }
+    options:
+      - "The `error` prop is always a `string`"
+      - "A server error thrown inside Suspense arrived as an object with `message`, `stack` and `digest` that did not pass `instanceof Error`"
+      - "`instanceof` does not work in TypeScript"
+      - "`digest` only exists on client errors"
+    answer: 1
+    explanation: "In Next.js 16 `error` is `unknown`. Instead of `instanceof Error`, check that the field exists and has the right type: `\"digest\" in error && typeof error.digest === \"string\"`."
+  - question: "Which situation is most worth an alert?"
+    options:
+      - "Every new occurrence of a known error"
+      - "A new type of error appearing after a deploy"
+      - "A brief spike in one server's memory"
+      - "A user submitting an invalid form"
+    answer: 1
+    explanation: "Every alert should be actionable. New error types and sudden jumps in a known error's count are worth alerting on; expected errors (invalid forms) are not reported as errors, and user-facing symptoms come first."
 ---
 
 ## Users don't report errors

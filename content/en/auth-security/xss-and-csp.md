@@ -3,6 +3,39 @@ title: "XSS and CSP"
 description: "dangerouslySetInnerHTML, unsafe URLs and Content Security Policy."
 lastVerified: "2026-11-03"
 translationKey: "auth-security/xss-and-csp"
+quiz:
+  - question: "Why does this component fail on the server?"
+    lang: tsx
+    code: |-
+      // Server Component
+      import DOMPurify from "dompurify";
+
+      export function PostBody({ html }: { html: string }) {
+        return <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(html) }} />;
+      }
+    options:
+      - "`dangerouslySetInnerHTML` is banned in Server Components"
+      - "DOMPurify only works with React 18"
+      - "DOMPurify needs a DOM and there is none on the server; use `isomorphic-dompurify`, which uses jsdom underneath"
+      - "It should be `html` instead of `__html`"
+    answer: 2
+    explanation: "Even in a `\"use client\"` component, SSR raises `sanitize is not a function`. Keep DOMPurify and the server-side jsdom up to date; new bypasses are found as browsers change."
+  - question: "Why can a page using a nonce-based strict CSP not be statically generated?"
+    options:
+      - "`'strict-dynamic'` blocks static files"
+      - "The CSP header is only added at the CDN"
+      - "Next.js only applies CSP in development"
+      - "The nonce changes on every request; scripts in pre-generated HTML cannot get the new nonce"
+    answer: 3
+    explanation: "So the page renders dynamically, and the nonce is incompatible with Partial Prerendering (`cacheComponents: true`). Before going live, use `Content-Security-Policy-Report-Only` to see what would be blocked."
+  - question: "React 19 blocks `javascript:` addresses in `href`. Why do you still need a scheme check like `isSafeUrl` for a website address the user types in?"
+    options:
+      - "Other schemes such as `data:` and the open redirect problem are still yours"
+      - "`javascript:` is only blocked in `src`"
+      - "You do not; React 19 is enough"
+      - "React 19 only blocks it in development"
+    answer: 0
+    explanation: "OWASP says React's protection does not replace application-specific URL checking. Check the schemes you allow (`https:`, `http:`) explicitly with `new URL()`."
 ---
 
 **XSS** *(Cross-Site Scripting)* is an attacker running their own JavaScript on your page. Because the code runs on your domain, it can make requests with the user's session, read the data on the page and change the form.[^1]

@@ -105,7 +105,7 @@ function lessonsOf(curriculum) {
 
 function splitFrontmatter(source) {
   const match = source.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n?/);
-  if (!match) return { keys: [], values: {}, body: source };
+  if (!match) return { keys: [], values: {}, body: source, frontmatter: "" };
 
   const keys = [];
   const values = {};
@@ -116,7 +116,68 @@ function splitFrontmatter(source) {
     values[field[1]] = field[2].replace(/^"(.*)"$/, "$1");
   }
 
-  return { keys, values, body: source.slice(match[0].length) };
+  return { keys, values, body: source.slice(match[0].length), frontmatter: match[1] };
+}
+
+/**
+ * The shape of the frontmatter `quiz` block: options per question, the answer
+ * index and whether a code sample is attached. The wording is a rewrite; the
+ * shape and the correct answer must match the Turkish lesson exactly.
+ */
+function analyzeQuiz(frontmatter) {
+  const start = frontmatter.search(/^quiz:\s*$/m);
+  if (start === -1) return null;
+
+  const questions = [];
+  let inOptions = false;
+  for (const line of frontmatter.slice(start).split("\n").slice(1)) {
+    if (/^\S/.test(line)) break;
+    if (/^ {2}- question:/.test(line)) {
+      questions.push({ options: 0, answer: null, code: false, lines: [] });
+      inOptions = false;
+    }
+    const current = questions.at(-1);
+    if (!current) continue;
+    current.lines.push(line);
+    if (/^ {4}code:/.test(line)) current.code = true;
+    if (/^ {4}options:\s*$/.test(line)) inOptions = true;
+    else if (/^ {4}\S/.test(line)) inOptions = false;
+    if (inOptions && /^ {6}- /.test(line)) current.options += 1;
+    const answer = line.match(/^ {4}answer:\s*(\d+)\s*$/);
+    if (answer) current.answer = Number(answer[1]);
+  }
+  return questions;
+}
+
+function checkQuiz(file, trQuiz, enQuiz, kind) {
+  if (!trQuiz && !enQuiz) return;
+  if (!trQuiz || !enQuiz) {
+    fail(file, `quiz exists only in ${trQuiz ? "tr" : "en"}`);
+    return;
+  }
+  if (kind && kind !== "lesson") {
+    fail(file, `quiz on a "${kind}" lesson; only regular lessons get one`);
+  }
+  for (const [locale, quiz] of [["tr", trQuiz], ["en", enQuiz]]) {
+    if (quiz.length !== 3) fail(file, `quiz has ${quiz.length} questions in ${locale}, expected 3`);
+    for (const [i, question] of quiz.entries()) {
+      if (question.options !== 4) {
+        fail(file, `quiz question ${i + 1} has ${question.options} options in ${locale}, expected 4`);
+      }
+      if (question.answer === null || question.answer > 3) {
+        fail(file, `quiz question ${i + 1} has no valid answer (0-3) in ${locale}`);
+      }
+    }
+  }
+  if (trQuiz.length !== enQuiz.length) return;
+  for (const [i, question] of trQuiz.entries()) {
+    if (enQuiz[i].answer !== question.answer) {
+      fail(file, `quiz question ${i + 1}: answer is ${enQuiz[i].answer} in en, ${question.answer} in tr`);
+    }
+    if (enQuiz[i].code !== question.code) {
+      fail(file, `quiz question ${i + 1}: code sample exists only in ${question.code ? "tr" : "en"}`);
+    }
+  }
 }
 
 /** Body with fenced code blocks removed, so markers in code are not counted. */
@@ -125,7 +186,7 @@ function withoutCode(body) {
 }
 
 function analyze(source) {
-  const { keys, values, body } = splitFrontmatter(source);
+  const { keys, values, body, frontmatter } = splitFrontmatter(source);
   const prose = withoutCode(body);
   // An image written inside an inline code span is a code sample, not a content image.
   const proseWithoutInlineCode = prose.replace(/`[^`\n]*`/g, "");
@@ -156,6 +217,7 @@ function analyze(source) {
     keys,
     values,
     body,
+    quiz: analyzeQuiz(frontmatter),
     prose,
     headings,
     footnotes,
@@ -239,6 +301,15 @@ function checkPlacement(file, lesson) {
 
 function checkTurkishLeftovers(file, lesson, id) {
   const allowedHere = [...TURKISH_ALLOWED, ...(TURKISH_ALLOWED_IN.get(id) ?? [])];
+  for (const [i, question] of (lesson.quiz ?? []).entries()) {
+    for (const line of question.lines) {
+      let rest = line;
+      for (const allowed of allowedHere) rest = rest.replaceAll(allowed, "");
+      if (TURKISH_LETTERS.test(rest)) {
+        warn(file, `quiz question ${i + 1} still has Turkish letters: ${line.trim().slice(0, 80)}`);
+      }
+    }
+  }
   const lines = lesson.body.split("\n");
   for (const [i, line] of lines.entries()) {
     if (!TURKISH_LETTERS.test(line)) continue;
@@ -279,6 +350,7 @@ function checkLesson(track, slug, trCurriculumEntry, enCurriculumEntry) {
   if ("draft" in tr.values !== ("draft" in en.values)) {
     fail(file, "draft flag does not match the Turkish lesson");
   }
+  checkQuiz(file, tr.quiz, en.quiz, trCurriculumEntry?.kind);
 
   if (enCurriculumEntry) {
     if (en.values.title !== enCurriculumEntry.title) {

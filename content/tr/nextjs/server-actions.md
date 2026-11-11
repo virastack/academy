@@ -3,6 +3,40 @@ title: "Server Actions"
 description: "Form ve mutation, useActionState, cache'i güncelleme ve güvenlik."
 lastVerified: "2026-11-03"
 translationKey: "nextjs/server-actions"
+quiz:
+  - question: "Bir Server Action'ı yalnızca admin sayfasındaki formda kullanıyorsunuz. Hangisi doğru?"
+    options:
+      - "Her Server Action açık bir POST uç noktasıdır; içinde kimlik ve yetki kontrolü yapılmalı"
+      - "CSRF koruması yetki kontrolünün yerine geçer"
+      - "Next.js yetki kontrolünü kendiliğinden yapar"
+      - "Form başka yerde görünmediği için kimse çağıramaz"
+    answer: 0
+    explanation: "`\"use server\"` fonksiyonu bir POST uç noktasına çevirir; herkes aynı isteği elle gönderebilir. Next.js CSRF'e ve gövde boyutuna karşı korur ama kimlik, yetki ve girdi doğrulaması sizin işinizdir."
+  - question: "Abonelik formunda e-posta geçersiz. Server Action bunu nasıl bildirmeli?"
+    options:
+      - "`redirect(\"/error\")`"
+      - "`throw new Error(\"Geçersiz e-posta\")`"
+      - "`notFound()` çağırarak"
+      - "`useActionState`'e gösterilecek bir mesaj döndürerek"
+    answer: 3
+    explanation: "Doküman beklenen hatalar için `throw` yerine değer döndürmeyi önerir. `throw` en yakın hata sınırına gider; doğrulama hatası için fazla serttir."
+  - question: "Bu Action'daki hata nedir?"
+    lang: ts
+    code: |-
+      "use server";
+
+      export async function placeOrder(formData: FormData) {
+        await db.order.create({ data: parseOrder(formData) });
+        redirect("/orders");
+        updateTag("orders");
+      }
+    options:
+      - "`redirect` Server Action'da kullanılamaz"
+      - "Hata yok"
+      - "`redirect`'ten sonraki kod çalışmaz; `updateTag`'i `redirect`'ten önce yazın"
+      - "`updateTag` yalnızca Route Handler'da çalışır"
+    answer: 2
+    explanation: "`redirect` başka sayfaya yönlendirir ve sonrasındaki kod çalışmaz. Yenileme çağrılarını her zaman `redirect`'ten önce yazın."
 ---
 
 ## Server Function ve Server Action

@@ -3,6 +3,38 @@ title: "Suspense ve hata yönetimi"
 description: "Global toast, throwOnError, useSuspenseQuery ve hata sonrası yeniden deneme."
 lastVerified: "2026-11-03"
 translationKey: "tanstack-query/suspense-and-error-handling"
+quiz:
+  - question: "v5'te aynı sorgu üç component'te kullanılıyor ve hata için tek bir toast göstermek istiyorsunuz. Toast nerede tetiklenmeli?"
+    options:
+      - "`throwOnError: true` ile"
+      - "`QueryCache`'in `onError`'ında"
+      - "Her component'te `useEffect` ile `error`'u izleyerek"
+      - "`useQuery`'nin `onError` callback'inde"
+    answer: 1
+    explanation: "v5'te `useQuery`'nin callback'leri kaldırıldı; her component'te ayrı çalışıp aynı hata için birden fazla toast gösterebiliyorlardı. `QueryCache`'in `onError`'ı her istek için bir kez çalışır."
+  - question: "İki istek nasıl çalışır?"
+    lang: tsx
+    code: |-
+      function ProductPage({ id }: { id: number }) {
+        const { data: product } = useSuspenseQuery(productQueries.detail(id));
+        const { data: reviews } = useSuspenseQuery(reviewQueries.list(id));
+        // ...
+      }
+    options:
+      - "İkincisi hiç çalışmaz"
+      - "Paralel çalışır"
+      - "Sırayla çalışır: ilki askıya alır, ikincisi ancak ilk veri gelince başlar"
+      - "İkisi tek isteğe birleştirilir"
+    answer: 2
+    explanation: "Aynı component'teki iki `useSuspenseQuery` şelale oluşturur. Paralel olmaları için `useSuspenseQueries` kullanın ya da sorguları ayrı component'lere bölün."
+  - question: "Error Boundary'deki \"Tekrar dene\" butonu sınırı sıfırlıyor ama hata hemen yine görünüyor. Sebebi ve çözümü nedir?"
+    options:
+      - "`throwOnError` kapatılmalı"
+      - "Ağ hâlâ kapalı; çözüm yok"
+      - "Sorgu hâlâ hata durumundadır; sınırla birlikte sorguyu da sıfırlamak için `QueryErrorResetBoundary` kullanılmalı"
+      - "`retry: false` ayarlanmalı"
+    answer: 2
+    explanation: "Sınır sıfırlanınca component yeniden render olur ama sorgu hâlâ hata durumunda olduğu için hemen yine fırlatır. `QueryErrorResetBoundary`'nin `reset`'ini `ErrorBoundary`'nin `onReset`'ine verin."
 ---
 
 ## Hatayı göstermenin üç yolu

@@ -3,6 +3,39 @@ title: "Mock"
 description: "vi.fn, vi.mock and mocking an API with MSW."
 lastVerified: "2026-11-03"
 translationKey: "vitest/mock"
+quiz:
+  - question: "Why does this mock not work?"
+    lang: tsx
+    code: |-
+      const fakeTrack = vi.fn();
+
+      vi.mock(import("./analytics"), () => ({ trackEvent: fakeTrack }));
+    options:
+      - "Vitest moves `vi.mock` to the top of the file (hoisting); when the factory runs, `fakeTrack` is not defined yet"
+      - "The `import()` form is not supported"
+      - "`vi.fn()` cannot be used in a module mock"
+      - "`trackEvent` is not exported"
+    answer: 0
+    explanation: "`vi.mock` runs before the imports. That is why the factory cannot use other variables from the file; write the call at the top level."
+  - question: "Why does this line fail in a test?"
+    lang: ts
+    code: |-
+      await fetch("/products");
+    options:
+      - "There is no handler for `GET`"
+      - "`fetch` does not exist in jsdom"
+      - "MSW blocks relative URLs"
+      - "A relative URL cannot be resolved in Node; use a full URL"
+    answer: 3
+    explanation: "Give `fetch` a full URL in tests (`https://api.shop.test/products`). A relative URL can fail with `Failed to parse URL`, depending on the test environment."
+  - question: "In a `ProductCard` test, which one should be mocked?"
+    options:
+      - "Your own `PriceTag` component used inside the card"
+      - "The `ProductCard` under test itself"
+      - "The analytics module that calls `navigator.sendBeacon`"
+      - "React Testing Library's `render`"
+    answer: 2
+    explanation: "Mock network requests, analytics and browser APIs with side effects. Do not mock your own child components, the component under test, or React and Testing Library functions."
 ---
 
 ## What is a mock?

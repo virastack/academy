@@ -3,6 +3,34 @@ title: "Optimistic updates"
 description: "Optimistic updates through variables and through the cache, rolling back, and concurrency."
 lastVerified: "2026-11-03"
 translationKey: "tanstack-query/optimistic-updates"
+quiz:
+  - question: "Which one is a good candidate for an optimistic update?"
+    options:
+      - "A dialog that closes on submit"
+      - "A payment form that redirects to another page"
+      - "A new-product form where the server assigns the id and the position in a sorted list"
+      - "A button that adds a product to favourites"
+    answer: 3
+    explanation: "Optimistic updates suit small changes that rarely fail and really need instant feedback. Rolling back is hard for redirecting forms and closing dialogs, and imitating the server's logic is not easy either."
+  - question: "You show the optimistic row with `variables`. What do you need to do if the mutation fails?"
+    lang: tsx
+    code: |-
+      {addReview.isPending && <li style={{ opacity: 0.5 }}>{addReview.variables}</li>}
+    options:
+      - "No rollback code is needed; the cache was never touched, and since `variables` is still there, \"Try again\" can resend the same value"
+      - "Reload the page"
+      - "Call `cancelQueries`"
+      - "Restore the cache in `onError`"
+    answer: 0
+    explanation: "The `variables` approach never touches the cache. On error `variables` is kept, so resending the same value is enough. With the cache approach you write the rollback in `onError` yourself."
+  - question: "In a cache-based optimistic update, why is `cancelQueries` the first step in `onMutate`?"
+    options:
+      - "To speed up the mutation request"
+      - "To empty the cache"
+      - "So in-flight queries do not arrive and overwrite the optimistic value"
+      - "To roll back on error"
+    answer: 2
+    explanation: "Before writing the optimistic value, in-flight requests for the same key are cancelled. Otherwise a late old response would overwrite it."
 ---
 
 ## When you need it

@@ -3,6 +3,47 @@ title: "Context"
 description: "Prop drilling olmadan paylaşım, reducer ile birlikte kullanım ve sınırları."
 lastVerified: "2026-11-03"
 translationKey: "react/context"
+quiz:
+  - question: "Ağaçta hiç `ThemeContext` provider'ı yok. `PriceTag` hangi değeri okur?"
+    code: |-
+      const ThemeContext = createContext<Theme>("light");
+
+      function PriceTag() {
+        const theme = use(ThemeContext);
+        return <span className={`price-${theme}`} />;
+      }
+    options:
+      - "`\"light\"`"
+      - "Hata fırlatır"
+      - "`undefined`"
+      - "`null`"
+    answer: 0
+    explanation: "Okuyan component en yakın provider'ın değerini alır; provider yoksa `createContext`'e verilen varsayılan değeri görür."
+  - question: "State ve `dispatch` iki ayrı context'te. Sepete ürün eklenince hangi component render olmaz?"
+    code: |-
+      <CartContext value={items}>
+        <CartDispatchContext value={dispatch}>{children}</CartDispatchContext>
+      </CartContext>
+    options:
+      - "`CartContext`'i okuyan sepet sayacı"
+      - "Yalnızca `dispatch`'i okuyan \"Add to cart\" butonu"
+      - "Hepsi render olur"
+      - "Sepet listesini (`CartContext`) okuyan component"
+    answer: 1
+    explanation: "`dispatch` hiç değişmez. Yalnızca `CartDispatchContext`'i okuyan component'ler sepet değiştiğinde render olmaz."
+  - question: "Erken `return`'den sonra context okumak gerekiyor. Hangisi kurallara uygundur?"
+    code: |-
+      function Panel({ isOpen }: { isOpen: boolean }) {
+        if (!isOpen) return null;
+        const theme = /* ? */;
+      }
+    options:
+      - "Hiçbiri; context yalnızca en üstte okunur"
+      - "İkisi de"
+      - "Yalnızca `use(ThemeContext)`"
+      - "Yalnızca `useContext(ThemeContext)`"
+    answer: 2
+    explanation: "`use`, `if` içinde ya da erken `return`'den sonra çağrılabilir; `useContext` bir hook olarak en üst seviyede çağrılmalıdır."
 ---
 
 ## Context ne çözer

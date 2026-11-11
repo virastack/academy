@@ -3,6 +3,36 @@ title: "Trace ile hata ayıklama"
 description: "UI Mode, Inspector, trace ve kırılgan testler."
 lastVerified: "2026-11-03"
 translationKey: "playwright/debugging-with-trace"
+quiz:
+  - question: "Yerelde düşen bir test için trace neden yok?"
+    lang: ts
+    code: |-
+      // playwright.config.ts
+      retries: process.env.CI ? 2 : 0,
+      use: { trace: "on-first-retry" },
+    options:
+      - "`show-trace` komutu çalıştırılmamış"
+      - "Yerelde `retries: 0` olduğu için ilk tekrar deneme hiç olmaz; `--trace on` ile açın"
+      - "Trace yalnızca CI'da desteklenir"
+      - "Trace yalnızca başarılı testler için kaydedilir"
+    answer: 1
+    explanation: "`\"on-first-retry\"` yalnızca ilk tekrar denemede kaydeder. Yerelde tekrar deneme olmadığı için komut satırından `npx playwright test --trace on` kullanın."
+  - question: "Birbirine gizlice bağımlı testleri (biri ancak belirli bir sırada düşüyor) bulmak için hangisi tasarlanmıştır?"
+    options:
+      - "`--headed`"
+      - "`--ui`"
+      - "`--shuffle`"
+      - "`--last-failed`"
+    answer: 2
+    explanation: "`--shuffle` (1.64) testleri rastgele sırayla çalıştırır; tohum değeriyle aynı sıra tekrar üretilir. `--repeat-each` ise zamanlamaya bağlı hataları ortaya çıkarır."
+  - question: "Trace viewer'daki snapshot'lar nedir?"
+    options:
+      - "Testin video kaydı"
+      - "DOM kopyaları; geliştirici araçlarıyla incelenip locator denenebilir"
+      - "Sayfanın PNG ekran görüntüleri"
+      - "Yalnızca ağ isteklerinin kaydı"
+    answer: 1
+    explanation: "Snapshot'lar ekran görüntüsü değil, eylemin öncesi, anı ve sonrasının DOM kopyasıdır. Playwright dokümanı CI hataları için video ve ekran görüntüsü yerine trace önerir."
 ---
 
 ## Önce hata mesajını okuyun

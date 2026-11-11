@@ -3,6 +3,38 @@ title: "İlk test ve locator'lar"
 description: "getByRole, strict mod, filtreleme ve within()."
 lastVerified: "2026-11-03"
 translationKey: "playwright/first-test-and-locators"
+quiz:
+  - question: "Bu satır çalıştığında sayfada ne olur?"
+    lang: ts
+    code: |-
+      const submit = page.getByRole("button", { name: "Sign in" });
+    options:
+      - "Buton hemen aranır ve bulunamazsa hata verir"
+      - "Hiçbir şey; locator bir tariftir, element ancak bir eylem ya da assertion sırasında aranır"
+      - "Buton bulunur ve önbelleğe alınır"
+      - "Sayfa yeniden yüklenir"
+    answer: 1
+    explanation: "Locator oluşturmak sayfaya dokunmaz. Element `click()` ya da bir assertion sırasında, her seferinde yeniden aranır; sayfa yeniden render olsa da güncel elementi bulur."
+  - question: "Bu locator \"Sign in\" butonunu bulur mu?"
+    lang: ts
+    code: |-
+      page.getByRole("button", { name: "sign" });
+      // Sayfada yalnızca "Sign in" butonu var
+    options:
+      - "Evet; `name` varsayılan olarak büyük küçük harf duyarsız ve parça eşleşmesi yapar"
+      - "Yalnızca `exact: true` ile"
+      - "Hayır; tam eşleşme gerekir"
+      - "Hayır; `name` büyük küçük harfe duyarlıdır"
+    answer: 0
+    explanation: "Tam eşleşme için `exact: true` verin ya da `/^sign in$/i` gibi bir düzenli ifade kullanın."
+  - question: "Sayfada iki \"Cancel\" butonu var ve `getByRole(\"button\", { name: \"Cancel\" }).click()` \"strict mode violation\" veriyor. Önerilen çözüm hangisi?"
+    options:
+      - "`click({ force: true })`"
+      - "`page.locator(\"button.cancel\")` kullanmak"
+      - "Aramayı daraltmak: ilgili satırın ya da diyaloğun içinde aramak"
+      - "`.first()` eklemek"
+    answer: 2
+    explanation: "`first()` bugün doğru elementi bulur, yarın sıralama değişince sessizce yanlışına tıklar. Aramayı `filter` ya da zincirleme ile daraltın; CSS sınıfına bağlı locator'lar tasarım değişince kırılır."
 ---
 
 ## Bir testin yapısı
@@ -145,7 +177,7 @@ Başlık satırını dışarıda bırakmak için hücre içeren satırları alı
 Playwright 1.64 ile gelen `within()`, elinizdeki iki locator'ı doğal sırayla birleştirir: "bu buton, şu diyaloğun içinde".[^6]
 
 ```ts
-const save = page.getByRole("button", { name: "Kaydet" });
+const save = page.getByRole("button", { name: "Save" });
 const dialog = page.getByRole("dialog");
 await save.within(dialog).click();
 ```

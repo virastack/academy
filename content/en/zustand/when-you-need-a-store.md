@@ -3,6 +3,31 @@ title: "When you need a store"
 description: "The kinds of state, local state, and where Context is not enough."
 lastVerified: "2026-11-03"
 translationKey: "zustand/when-you-need-a-store"
+quiz:
+  - question: "The category filter on a product list should open the same view when the link is shared, and the back button should return to the previous filter. Where should the filter live?"
+    options:
+      - "In `useState`"
+      - "In a Zustand store"
+      - "In the URL (search params or nuqs)"
+      - "In the TanStack Query cache"
+    answer: 2
+    explanation: "State that must be shareable or reachable with the back button belongs in the URL. A filter in a store cannot be shared and breaks the back button."
+  - question: "What is the problem with sharing a cart that changes on every click through Context?"
+    options:
+      - "The Context value is lost on reload"
+      - "Context cannot hold arrays"
+      - "Context only works in Server Components"
+      - "When `value` changes, every component that reads it re-renders, even those interested in only one part"
+    answer: 3
+    explanation: "Context carries a value; it does not manage state. That is fine for a rarely changing theme, but a busy cart causes needless renders. A store lets each component subscribe to just the part it needs with a selector."
+  - question: "Which line in an old article shows that the code is Zustand v4?"
+    options:
+      - "`import { useShallow } from \"zustand/react/shallow\";`"
+      - "`import { create } from \"zustand\";`"
+      - "`create<CartState>()((set) => ({ ... }))`"
+      - "`import create from \"zustand\";`"
+    answer: 3
+    explanation: "v5 removed the default export; `create` is a named export. A default import, or `shallow` passed next to a selector, means v4 code."
 ---
 
 ## Classify the state first

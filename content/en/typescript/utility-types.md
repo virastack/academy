@@ -3,6 +3,50 @@ title: "Utility types"
 description: "Deriving types with keyof, typeof, Partial, Pick, Omit and Record."
 lastVerified: "2026-11-03"
 translationKey: "typescript/utility-types"
+quiz:
+  - question: "Which call is a compile error?"
+    lang: ts
+    code: |-
+      type ProductUpdate = Partial<Omit<Product, "id">>;
+
+      function updateProduct(id: number, changes: ProductUpdate) {}
+    options:
+      - "`updateProduct(1, { price: 1199 })`"
+      - "`updateProduct(1, { name: \"Headphones\", price: 999 })`"
+      - "`updateProduct(1, { id: 2 })`"
+      - "`updateProduct(1, {})`"
+    answer: 2
+    explanation: "`Omit` removes `id` and `Partial` makes every remaining field optional. An empty object and any subset are valid; `id` is no longer in the type, so it is an excess property error."
+  - question: "The key is misspelled. What happens?"
+    lang: ts
+    code: |-
+      type Draft = Omit<Product, "nmae">;
+    options:
+      - "The `name` field is removed anyway"
+      - "`Draft` becomes `never`"
+      - "No error; `Draft` is the same as `Product`"
+      - "Error: `\"nmae\"` is not a key of `Product`"
+    answer: 2
+    explanation: "`Pick` checks that the key you pass really exists; `Omit` does not. A key that does not exist removes nothing, and the type silently stays the same."
+  - question: "What happens on the last line?"
+    lang: ts
+    code: |-
+      // tsconfig: "strict": true, noUncheckedIndexedAccess off
+      type Route = { path: string; title: string };
+
+      const routes: Record<string, Route> = {
+        home: { path: "/", title: "Home" },
+        cart: { path: "/cart", title: "Cart" },
+      };
+
+      routes.wishlist.path;
+    options:
+      - "It compiles but crashes at runtime"
+      - "`routes` is `any` because there is no `satisfies`"
+      - "It returns `undefined` without an error"
+      - "A compile error: there is no `wishlist` property"
+    answer: 0
+    explanation: "With an annotation the type widens to `Record<string, Route>` and the actual keys are forgotten; any string key is accepted. With `satisfies Record<string, Route>` the type would keep the `\"home\" | \"cart\"` keys and `wishlist` would be a compile error."
 ---
 
 ## Why derive types

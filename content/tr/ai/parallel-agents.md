@@ -3,6 +3,31 @@ title: "Paralel agent'lar"
 description: "Git worktree ile birden çok agent'ı aynı anda, birbirinin dosyasını ezmeden çalıştırma."
 lastVerified: "2026-11-03"
 translationKey: "ai/parallel-agents"
+quiz:
+  - question: "Aynı repoda iki agent'ın birbirinin dosyasını ezmeden paralel çalışması için ne yapılır?"
+    options:
+      - "İki terminal açmak"
+      - "Değişiklikleri `git stash` ile saklamak"
+      - "Her agent'a ayrı bir git worktree vermek"
+      - "Aynı klasörde farklı branch'lere geçmek"
+    answer: 2
+    explanation: "Worktree aynı repoya bağlı ikinci bir çalışma klasörüdür: kendi dosyaları ve branch'i vardır, commit geçmişi ve remote ortaktır. Aynı klasörde branch değiştirmek dosyaları paylaşmaya devam eder."
+  - question: "Claude Code'un açtığı yeni worktree'de `.env` dosyası yok. Sebep ve çözüm nedir?"
+    options:
+      - "`.env`'yi elle commit etmek gerekir"
+      - "Worktree temiz bir checkout'tur ve gitignore'daki dosyalar gelmez; kökteki `.worktreeinclude`'a yazılanlar kopyalanır"
+      - "`node_modules`'ü symlink'lemek gerekir"
+      - "Worktree bozuktur, yeniden açılmalı"
+    answer: 1
+    explanation: "`.claude/worktrees/` klasörünü de `.gitignore`'a ekleyin. `node_modules`'ü symlink ile bağlamayın, her worktree'de `pnpm install` çalıştırın."
+  - question: "Simon Willison'a göre paralel çalışmanın asıl sınırı nedir?"
+    options:
+      - "Agent sayısı"
+      - "Sizin inceleme hızınız"
+      - "Token limiti"
+      - "Makinenin işlemci sayısı"
+    answer: 1
+    explanation: "Büyük değişikliklerden aynı anda yalnızca birini düzgün inceleyip birleştirebilirsiniz. Yanına az dikkat isteyen işler (küçük prototip, bakım) ekleyin; aynı dosyalara dokunan işleri paralellemeyin."
 ---
 
 Agent bir özellik üzerinde çalışırken onu izlemek zorunda değilsiniz. Aynı sürede ikinci bir agent'a bir hata düzeltmesi, üçüncüsüne bir araştırma verebilirsiniz. Sorun şu: hepsi aynı klasörde çalışırsa birbirinin dosyasını ezer. Çözüm, her agent'a kendi çalışma kopyasını vermektir.

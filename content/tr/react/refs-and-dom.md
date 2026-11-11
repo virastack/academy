@@ -3,6 +3,51 @@ title: "Ref ve DOM"
 description: "DOM erişimi, ref prop'u, ref callback cleanup ve Fragment ref'leri."
 lastVerified: "2026-11-03"
 translationKey: "react/refs-and-dom"
+quiz:
+  - question: "Butona üç kez basılıyor. Ne olur?"
+    code: |-
+      function Counter() {
+        const countRef = useRef(0);
+        return (
+          <>
+            <button onClick={() => countRef.current++}>+</button>
+            <p>{countRef.current}</p>
+          </>
+        );
+      }
+    options:
+      - "Değer artar ama render tetiklenmediği için ekran güncellenmez"
+      - "React hata fırlatır"
+      - "Ekran her tıklamada güncellenir"
+      - "`ref.current` salt okunur olduğu için değer artmaz"
+    answer: 0
+    explanation: "Ref değişince render tetiklemez ve render sırasında okunmamalıdır. Ekranda görünen veri state olmalıdır."
+  - question: "React 19'da kendi component'inize ref vermek için hangisi yeterlidir?"
+    code: |-
+      <TextField ref={inputRef} placeholder="E-posta" />
+    options:
+      - "`useImperativeHandle` kullanmak zorunludur"
+      - "`ref`'i diğer prop'lar gibi alıp `<input>`'a vermek"
+      - "Component'i `forwardRef` ile sarmak"
+      - "Ref'i `inputRef` adlı ayrı bir prop olarak geçirmek"
+    answer: 1
+    explanation: "React 19'dan beri `ref` fonksiyon component'lerde sıradan bir prop'tur. `forwardRef` artık gerekmez ve ileride kaldırılacak."
+  - question: "React 19'da ref callback'ten dönen fonksiyon ne zaman çağrılır?"
+    code: |-
+      function measure(node: HTMLElement) {
+        const observer = new ResizeObserver(log);
+        observer.observe(node);
+        return () => observer.disconnect();
+      }
+
+      <article ref={measure}>...</article>;
+    options:
+      - "Her render'dan sonra"
+      - "Hiçbir zaman; dönen değer yok sayılır"
+      - "Eleman DOM'dan kaldırıldığında"
+      - "Eleman DOM'a eklendiği anda"
+    answer: 2
+    explanation: "React 19'da ref callback bir cleanup döndürebilir; eleman kaldırılınca çağrılır. Strict Mode development'ta bunu bir kez fazladan kurup söker."
 ---
 
 ## Ref nedir

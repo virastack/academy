@@ -3,6 +3,37 @@ title: "Web nasıl çalışır"
 description: "Tarayıcı, HTTP istek/yanıt ve DevTools."
 lastVerified: "2026-11-03"
 translationKey: "web-fundamentals/how-the-web-works"
+quiz:
+  - question: "Bu adres açıldığında URL'nin hangi parçası server'a hiç gönderilmez?"
+    lang: text
+    code: |-
+      https://www.example.com:443/urunler/kitap?renk=mavi&sayfa=2#yorumlar
+    options:
+      - "`/urunler/kitap`"
+      - "`?renk=mavi&sayfa=2`"
+      - "`#yorumlar`"
+      - "`www.example.com`"
+    answer: 2
+    explanation: "Anchor (`#` ile başlayan kısım) sayfa içindeki bir yeri gösterir ve server'a hiç gönderilmez. Alan adı `Host` başlığıyla, path ve parametreler isteğin kendisiyle gider."
+  - question: "Tarayıcı bir dosyayı yeniden istiyor ve server bu yanıtı dönüyor. Bu ne anlama gelir?"
+    lang: text
+    code: |-
+      HTTP/1.1 304 Not Modified
+    options:
+      - "Server isteği işleyemedi"
+      - "Dosya kalıcı olarak başka adrese taşındı"
+      - "Önbellekteki kopya hâlâ geçerli"
+      - "Dosya bulunamadı"
+    answer: 2
+    explanation: "`3xx` yönlendirme sınıfıdır; `304`, önbellekteki kopyanın hâlâ geçerli olduğunu söyler. Kalıcı taşınma `301`, bulunamadı `404`, server hatası `5xx`'tir."
+  - question: "Sitenizin DNS kaydını yeni bir server'a çevirdiniz ama bazı kullanıcılar bir süre daha eski server'a gidiyor. Sebebi nedir?"
+    options:
+      - "DNS kayıtları günde yalnızca bir kez yayınlanır"
+      - "Tarayıcı IP adresini kalıcı olarak kaydeder"
+      - "Önce HTTPS sertifikasının yenilenmesi gerekir"
+      - "Önbellekler cevabı kaydın TTL'i boyunca saklar"
+    answer: 3
+    explanation: "Her DNS kaydının bir TTL'i vardır ve tarayıcı, işletim sistemi ve resolver önbellekleri cevabı bu süre boyunca saklar. Bu yüzden değişikliği herkes hemen görmez."
 ---
 
 ## Client ve server

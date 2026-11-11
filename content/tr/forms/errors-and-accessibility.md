@@ -3,6 +3,31 @@ title: "Hata gösterimi ve erişilebilirlik"
 description: "Hatayı alana bağlamak, odak ve zamanlama."
 lastVerified: "2026-11-03"
 translationKey: "forms/errors-and-accessibility"
+quiz:
+  - question: "Neden her alanın hata mesajına `role=\"alert\"` eklenmemelidir?"
+    options:
+      - "`aria-invalid` ile çakışır"
+      - "Ekran okuyucular `role=\"alert\"`'ü desteklemez"
+      - "`role=\"alert\"` yalnızca `<div>`'de çalışır"
+      - "Mesaj göründüğü an okunur; çok alanlı formda gönderimde on mesaj birden okunur"
+    answer: 3
+    explanation: "Alan mesajlarında `aria-describedby` yeterlidir; mesaj alana bağlanır ve alana gelince okunur. `role=\"alert\"`'ü formun genel hatası gibi tek mesajlara bırakın."
+  - question: "Kullanıcı bir alandan çıkıp hemen \"Gönder\"e tıklıyor; `blur` hata mesajını gösteriyor ve tıklama boşa gidiyor. Çözüm nedir?"
+    options:
+      - "Doğrulamayı tamamen kapatmak"
+      - "Hata mesajı için sabit bir yükseklik ayırmak; mesaj gelince altındaki düğmeler kaymaz"
+      - "`role=\"alert\"` eklemek"
+      - "Butonu alanın üstüne taşımak"
+    answer: 1
+    explanation: "Mesaj alanın altına eklenince altındaki her şey kayar ve tıklama başka yere düşer. `Field` component'i mesaj için yer ayırarak (`min-h-5`) bunu önler."
+  - question: "Boş bırakılan ad alanı için GOV.UK kurallarına göre en iyi mesaj hangisi?"
+    options:
+      - "\"Adınızı girin.\""
+      - "\"Bu alan zorunlu.\""
+      - "\"Geçersiz giriş.\""
+      - "\"Lütfen geçerli bir değer girmeyi unutmayın!\""
+    answer: 0
+    explanation: "Boş alanda talimat verin, etiketle aynı kelimeleri kullanın, suçlamayın ve özür dilemeyin. \"Adınızı girin.\" ne yapılacağını kısa ve net söyler."
 ---
 
 ## Hata görünmek yetmez

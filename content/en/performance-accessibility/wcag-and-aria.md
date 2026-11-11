@@ -3,6 +3,42 @@ title: "WCAG and ARIA"
 description: "The rules to aim for, and ARIA where HTML is not enough."
 lastVerified: "2026-11-03"
 translationKey: "performance-accessibility/wcag-and-aria"
+quiz:
+  - question: "What does this `aria-label` do?"
+    lang: tsx
+    code: |-
+      <div aria-label="Campaign info">The summer sale has started.</div>
+    options:
+      - "It does not reliably name anything; `aria-label` does not work on a plain `<div>` or `<span>` whose role is `generic`"
+      - "It gives the div an accessible name"
+      - "It turns the div into a landmark"
+      - "It is read instead of the text"
+    answer: 0
+    explanation: "`aria-label` only works reliably on interactive elements, widgets, landmarks and images. If there is a visible label, use `aria-labelledby` instead."
+  - question: "Why is this message often not announced by screen readers?"
+    lang: tsx
+    code: |-
+      {saved && <p role="status">Changes saved.</p>}
+    options:
+      - "A live region must be on the page before its content changes; rendering the element together with the message is usually not announced"
+      - "Focus must move to the message"
+      - "It needs `aria-live=\"assertive\"`"
+      - "`role=\"status\"` only works on a `<div>`"
+    answer: 0
+    explanation: "Leave the live region empty in the initial markup and only change its content: `<p role=\"status\">{saved ? \"...\" : \"\"}</p>`. Do not move focus to a status message."
+  - question: "What is wrong with this code?"
+    lang: tsx
+    code: |-
+      <div aria-hidden="true">
+        <button>Close</button>
+      </div>
+    options:
+      - "The button becomes invisible"
+      - "Nothing"
+      - "The button is removed from the accessibility tree but can still get focus, so keyboard users land somewhere screen readers cannot see"
+      - "`aria-hidden` only works on icons"
+    answer: 2
+    explanation: "`aria-hidden=\"true\"` removes the element and its children from the accessibility tree but leaves them on screen and in the Tab order. Do not put it on a focusable element or a container that holds one."
 ---
 
 ## What accessibility is

@@ -3,6 +3,40 @@ title: "Monorepo"
 description: "Shared packages and a common UI library with a pnpm workspace and Turborepo."
 lastVerified: "2026-11-03"
 translationKey: "architecture/monorepo"
+quiz:
+  - question: "What does the `workspace:*` protocol give you?"
+    lang: json
+    code: |-
+      "dependencies": {
+        "@repo/ui": "workspace:*"
+      }
+    options:
+      - "It publishes the package to npm"
+      - "It rebuilds the package on every build"
+      - "pnpm only resolves to the local workspace package, so no other version slips in from the registry"
+      - "It downloads the latest npm version"
+    answer: 2
+    explanation: "A scoped prefix that cannot be taken on npm, such as `@repo`, is also a safe choice. pnpm catalogs keep shared versions in one place."
+  - question: "Why does this setting not work in a Just-in-Time internal package?"
+    lang: json
+    code: |-
+      // packages/ui/tsconfig.json (Just-in-Time package)
+      "compilerOptions": { "paths": { "@/*": ["./src/*"] } }
+    options:
+      - "`paths` is banned in monorepos"
+      - "Turborepo removes `paths`"
+      - "`@/` only works in Next.js"
+      - "The consuming app compiles the package, so the package's `paths` setting does not apply; use Node.js subpath imports (`\"#*\"`)"
+    answer: 3
+    explanation: "A Just-in-Time package exports TypeScript files directly and the app's bundler compiles them. Add `\"imports\": { \"#*\": \"./src/*\" }` to `package.json` and import like `#utils.ts`."
+  - question: "How are the jobs of a pnpm workspace and Turborepo divided?"
+    options:
+      - "pnpm is only used in CI"
+      - "pnpm discovers packages, links them and keeps one lockfile; Turborepo orders tasks, runs them in parallel and caches the results"
+      - "They do the same thing"
+      - "Turborepo installs dependencies and pnpm runs tasks"
+    answer: 1
+    explanation: "Turborepo sits on top of the package manager's workspace feature. In `turbo.json`, `^build` builds dependencies first and `outputs` says which files to cache."
 ---
 
 A monorepo is more than one application and package living in a single repository. You share the common UI components, the TypeScript settings and the types without splitting them into separate repositories. The coordination cost between teams drops, and you can update a package and the applications that use it in a single change.[^1] This guide sets the most common pair in frontend up: **pnpm** workspaces, which link the packages together, and **Turborepo**, which orders the tasks and caches them.

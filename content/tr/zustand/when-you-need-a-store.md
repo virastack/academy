@@ -3,6 +3,31 @@ title: "Ne zaman store gerekir"
 description: "State türleri, local state ve Context'in yetmediği yer."
 lastVerified: "2026-11-03"
 translationKey: "zustand/when-you-need-a-store"
+quiz:
+  - question: "Ürün listesindeki kategori filtresi, link paylaşıldığında aynı görünümü açmalı ve geri butonuyla önceki filtreye dönülmeli. Filtre nerede durmalı?"
+    options:
+      - "`useState`'te"
+      - "Zustand store'unda"
+      - "URL'de (search params ya da nuqs)"
+      - "TanStack Query cache'inde"
+    answer: 2
+    explanation: "Paylaşılabilir olması ya da geri tuşuyla dönülebilmesi gereken durum URL'e aittir. Store'a konan filtre paylaşılamaz ve geri butonu çalışmaz."
+  - question: "Her tıklamada değişen sepeti Context ile paylaşmanın sorunu nedir?"
+    options:
+      - "Context değeri sayfa yenilenince kaybolur"
+      - "Context'te dizi saklanamaz"
+      - "Context yalnızca Server Component'te çalışır"
+      - "`value` değişince onu okuyan tüm component'ler render olur, yalnızca bir parçasıyla ilgilenenler bile"
+    answer: 3
+    explanation: "Context bir değeri taşır, state yönetmez. Seyrek değişen tema için sorun değildir; sık değişen sepette gereksiz render'a yol açar. Store ise selector ile yalnızca gereken parçaya abone olmayı sağlar."
+  - question: "Eski bir yazıdaki hangi satır, kodun Zustand v4'e ait olduğunu gösterir?"
+    options:
+      - "`import { useShallow } from \"zustand/react/shallow\";`"
+      - "`import { create } from \"zustand\";`"
+      - "`create<CartState>()((set) => ({ ... }))`"
+      - "`import create from \"zustand\";`"
+    answer: 3
+    explanation: "v5 default export'u kaldırdı; `create` adlı export ile alınır. Default export ya da selector'ın yanında `shallow` görürseniz v4 kodudur."
 ---
 
 ## Önce state'i sınıflandırın

@@ -3,6 +3,31 @@ title: "Prompt ve context engineering"
 description: "İyi istek yazma, doğru bağlam verme, CLAUDE.md/AGENTS.md ve proje kural dosyaları."
 lastVerified: "2026-11-03"
 translationKey: "ai/prompt-and-context-engineering"
+quiz:
+  - question: "20.000 token'ı aşan bir log yapıştırıp onunla ilgili soru soracaksınız. Hangi sıralama önerilir?"
+    options:
+      - "Logu üç parçaya bölüp ayrı mesajlarda göndermek"
+      - "Önce log, soru sona"
+      - "Önce soru, log sona"
+      - "Soruyu hem başa hem sona yazmak"
+    answer: 1
+    explanation: "Anthropic bu sıralamanın yanıt kalitesini %30'a kadar artırdığını, etkinin özellikle karmaşık ve çok belgeli girdilerde görüldüğünü bildiriyor."
+  - question: "Projede hem `CLAUDE.md` hem `AGENTS.md` var. Claude Code ne yapar ve ikisini nasıl birleştirirsiniz?"
+    options:
+      - "Hiçbirini okumaz; `.claude/rules/`'a taşırsınız"
+      - "İkisini de okur; birleştirmeye gerek yoktur"
+      - "Yalnızca `AGENTS.md`'yi okur; `CLAUDE.md`'yi silersiniz"
+      - "Yalnızca `CLAUDE.md`'yi okur; `CLAUDE.md` içine `@AGENTS.md` yazarsınız"
+    answer: 3
+    explanation: "Dizinde `CLAUDE.md` yoksa Claude Code `AGENTS.md`'yi okur; ikisi varsa yalnızca `CLAUDE.md` okunur. Kural dosyası bağlam olarak gider, uyum garantisi yoktur."
+  - question: "Kural dosyasına hangisini yazmak en çok işe yarar?"
+    options:
+      - "Paket yöneticisi ve tam doğrulama komutları gibi koddan anlaşılmayan bilgiler"
+      - "Klasör yapısının tam ağacı"
+      - "Stil rehberinin tamamı"
+      - "Projenin teknoloji listesi"
+    answer: 0
+    explanation: "Model klasör yapısını ve teknoloji listesini kendisi bulur; ETH Zürih'in çalışmasında repo özetleri başarıyı artırmadı. Stil kurallarını linter'a bırakın, dosyayı kısa tutun."
 ---
 
 Yapay zekâdan aldığınız kodun kalitesi iki şeye bağlı: modele **ne dediğiniz** (prompt) ve modelin **o an neleri gördüğü** (context). Bu rehber önce ikisini, sonra projeniz için bir kez yazıp her konuşmada kullanacağınız kural dosyalarını anlatıyor.

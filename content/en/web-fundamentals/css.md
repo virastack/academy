@@ -3,6 +3,51 @@ title: "CSS"
 description: "Selectors, the box model and page layout."
 lastVerified: "2026-11-03"
 translationKey: "web-fundamentals/css"
+quiz:
+  - question: "What colour is the paragraph?"
+    lang: css
+    code: |-
+      /* <div id="main" class="content"><div class="text"><p>Hello</p></div></div> */
+      #main p { color: red; }
+      .content .text p { color: blue; }
+    options:
+      - "Blue, because the selector is longer"
+      - "Blue, because the rule written later wins"
+      - "Red"
+      - "The two colours mix into purple"
+    answer: 2
+    explanation: "`#main p` scores (1, 0, 1) and `.content .text p` scores (0, 2, 1). Scores are compared from the left, so a single ID beats any number of classes. The later rule wins only when specificity is equal."
+  - question: "If `box-sizing` is left at its default, how wide is the box on screen, border included?"
+    lang: css
+    code: |-
+      .box {
+        width: 200px;
+        padding: 20px;
+        border: 5px solid;
+        margin: 10px;
+      }
+    options:
+      - "200px"
+      - "240px"
+      - "250px"
+      - "270px"
+    answer: 2
+    explanation: "In the default model `width` applies to the content only; padding (2 × 20px) and border (2 × 5px) are added on top: 200 + 40 + 10 = 250px. Margin sits outside the box."
+  - question: "How are the items aligned?"
+    lang: css
+    code: |-
+      .list {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+    options:
+      - "Centred vertically"
+      - "Centred horizontally"
+      - "Centred both horizontally and vertically"
+      - "No effect; `align-items` only works with `row`"
+    answer: 1
+    explanation: "`align-items` aligns on the cross axis. With `flex-direction: column` the main axis is vertical, so the cross axis is horizontal and the items are centred horizontally."
 ---
 
 ## What CSS is

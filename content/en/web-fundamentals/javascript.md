@@ -3,6 +3,50 @@ title: "JavaScript"
 description: "The basics of the language, the DOM and asynchronous flow."
 lastVerified: "2026-11-03"
 translationKey: "web-fundamentals/javascript"
+quiz:
+  - question: "What do these two lines return, in order?"
+    lang: js
+    code: |-
+      0 == "0";
+      0 === "0";
+    options:
+      - "`true`, `true`"
+      - "`true`, `false`"
+      - "`false`, `true`"
+      - "`false`, `false`"
+    answer: 1
+    explanation: "`==` converts types before comparing, so `0 == \"0\"` is `true`. `===` does not convert; a number and a string are not equal. Use `===` for comparisons."
+  - question: "What does `b()` return on the last line?"
+    lang: js
+    code: |-
+      function createCounter() {
+        let count = 0;
+        return () => ++count;
+      }
+
+      const a = createCounter();
+      a();
+      a();
+      const b = createCounter();
+      b(); // ?
+    options:
+      - "`0`"
+      - "`1`"
+      - "`2`"
+      - "`3`"
+    answer: 1
+    explanation: "Each `createCounter()` call creates its own `count`, and the returned function remembers it through a closure. `b`'s counter is separate from `a`'s, so its first call returns `1`."
+  - question: "What happens when the server returns 404?"
+    lang: js
+    code: |-
+      const response = await fetch("/api/missing"); // the server returns 404
+    options:
+      - "`fetch` throws and the `catch` block runs"
+      - "`fetch` does not throw; `response.ok` is `false`"
+      - "`response` is `null`"
+      - "`response.json()` throws the error by itself"
+    answer: 1
+    explanation: "`fetch` only fails on a network error; it does not throw on 404 or 500. That is why you always check `response.ok`."
 ---
 
 ## What JavaScript is

@@ -3,6 +3,48 @@ title: "Auth in Next.js"
 description: "Choosing an auth library, signing in, reading the session and redirecting with the proxy."
 lastVerified: "2026-11-03"
 translationKey: "auth-security/auth-in-nextjs"
+quiz:
+  - question: "A `better-auth.session_token=forged` cookie is added to the browser by hand and `/dashboard` is opened. What happens?"
+    lang: ts
+    code: |-
+      export function proxy(request: NextRequest) {
+        if (!getSessionCookie(request)) {
+          return NextResponse.redirect(new URL("/sign-in", request.url));
+        }
+        return NextResponse.next();
+      }
+    options:
+      - "The proxy lets the request through; `getCurrentUser` on the page cannot validate the session and redirects to `/sign-in`"
+      - "The dashboard content is shown"
+      - "The proxy validates the cookie and rejects the request"
+      - "Next.js fails the build"
+    answer: 0
+    explanation: "`getSessionCookie` only checks whether the cookie exists (an optimistic check). Do only a fast redirect in the proxy; do the real check close to the data, inside the Data Access Layer, the Server Action and the Route Handler."
+  - question: "Why should you not put the session check at the top of a layout?"
+    options:
+      - "Layouts only run on the client"
+      - "Layouts render twice on every request"
+      - "`headers()` cannot be used in a layout"
+      - "Layouts are not re-rendered while navigating between pages, and they do not stop child pages from rendering"
+    answer: 3
+    explanation: "Keep the session-reading code in one place, the Data Access Layer, and call it wherever data is accessed. `server-only` turns importing that file into a Client Component into a build error."
+  - question: "In a project with `cacheComponents: true`, what happens to this page?"
+    lang: tsx
+    code: |-
+      export default function DashboardPage() {
+        return (
+          <main>
+            <Welcome /> {/* calls await headers() inside */}
+          </main>
+        );
+      }
+    options:
+      - "`headers()` returns empty"
+      - "The page is generated fully static"
+      - "The session is read on the client"
+      - "Next.js raises a \"runtime data during prerendering\" error; `<Welcome />` must be wrapped in `<Suspense>`"
+    answer: 3
+    explanation: "In this mode a component that reads `headers()` or `cookies()` has to be inside `<Suspense>`. The rest of the page stays static and the user-specific part streams in; the build output marks the page as Partial Prerender (◐)."
 ---
 
 In the previous lessons we saw how a session, a password and OAuth work. In this lesson we bring them all together in a [!nextjs] Next.js App Router project: choosing a library, the sign-in form, reading the session on the server, signing out and redirecting with `proxy.ts`.

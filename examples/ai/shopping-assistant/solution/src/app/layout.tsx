@@ -5,7 +5,7 @@ export const metadata: Metadata = { title: 'Shopping assistant', icons: { icon: 
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="tr">
+    <html lang="en">
       <body>{children}</body>
     </html>
   );

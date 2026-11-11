@@ -3,6 +3,38 @@ title: "useQuery ve query key"
 description: "status ile fetchStatus, anahtarı bağımlılık dizisi gibi kurmak ve iptal."
 lastVerified: "2026-11-03"
 translationKey: "tanstack-query/use-query-and-query-keys"
+quiz:
+  - question: "Kupon yoksa bu sorgu ne olur?"
+    lang: ts
+    code: |-
+      queryFn: async () => {
+        const response = await fetch(`/api/coupons/${code}`);
+        if (response.status === 404) return undefined; // kupon yok
+        return response.json();
+      }
+    options:
+      - "Sorgu sonsuza kadar `pending` kalır"
+      - "Sorgu başarısız sayılır; \"veri yok\" için `null` döndürülmeli"
+      - "`data` `undefined` olur ve `status` `success` kalır"
+      - "TanStack Query 404'ü kendiliğinden hataya çevirir"
+    answer: 1
+    explanation: "`undefined` dönen sorgu başarısız sayılır. \"Veri yok\" demek için `null` döndürün; gerçek hatalarda ise hata fırlatın."
+  - question: "Hangi iki anahtar aynı sorguyu gösterir?"
+    options:
+      - "`[\"products\"]` ve `[\"product\"]`"
+      - "`[\"products\", 1]` ve `[\"products\", \"1\"]`"
+      - "`[\"products\", { page: 1, sort: \"price\" }]` ve `[\"products\", { sort: \"price\", page: 1 }]`"
+      - "`[\"products\", 1, \"price\"]` ve `[\"products\", \"price\", 1]`"
+    answer: 2
+    explanation: "Anahtarlar deterministik olarak hash'lenir: nesnelerin içindeki sıra önemsizdir, dizideki sıra ve değerlerin tipi önemlidir."
+  - question: "Ekranda veri varken arka plandaki yenileme başarısız oluyor. Sorgu hangi durumdadır?"
+    options:
+      - "`status: \"error\"` ve `data` `undefined`"
+      - "`status: \"pending\"`"
+      - "`status: \"error\"` ama eski `data` hâlâ duruyor"
+      - "`status: \"success\"` ve `error` boş"
+    answer: 2
+    explanation: "Arka plan yenilemesi başarısız olursa sorgu hem `error` durumundadır hem de eski veriyi taşır. Önce hatayı kontrol ederseniz kullanıcının baktığı liste hata ekranına dönüşür; `error` \"veri yok\" demek değildir."
 ---
 
 ## İlk sorgu

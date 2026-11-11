@@ -3,6 +3,39 @@ title: "Ölçüm (Lighthouse, DevTools)"
 description: "Lighthouse skorunu okumak ve DevTools'ta nelere bakılacağı."
 lastVerified: "2026-10-17"
 translationKey: "performance-accessibility/measuring"
+quiz:
+  - question: "Lighthouse performans skorunu oluşturan metrikler arasında hangisi yoktur?"
+    options:
+      - "Total Blocking Time (TBT)"
+      - "Interaction to Next Paint (INP)"
+      - "Cumulative Layout Shift (CLS)"
+      - "Largest Contentful Paint (LCP)"
+    answer: 1
+    explanation: "Lab testi kullanıcının sayfayla ne zaman etkileşeceğini bilemez, bu yüzden yanıt verme hızı için TBT'ye bakılır. TBT iyi olup sahadaki INP kötü olabilir."
+  - question: "Aynı sayfa için Lighthouse her çalıştırmada farklı skor veriyor. Lighthouse ekibinin önerisi nedir?"
+    options:
+      - "En yüksek skoru kullanmak"
+      - "Aynı makinede aynı anda birkaç Lighthouse çalıştırmak"
+      - "Yalnızca masaüstü skoruna bakmak"
+      - "Birden fazla çalıştırmanın medyanına bakmak"
+    answer: 3
+    explanation: "Değişkenliğin çoğu ortamdan gelir (reklam, ağ, donanım, eklentiler). 5 çalıştırmanın medyanı tek çalıştırmadan yaklaşık iki kat daha kararlıdır; aynı anda birden fazla Lighthouse çalıştırmayın."
+  - question: "Bu kullanımın sorunu nedir?"
+    lang: tsx
+    code: |-
+      export function WebVitals() {
+        useReportWebVitals((metric) => {
+          navigator.sendBeacon("/analytics", JSON.stringify(metric));
+        });
+        return null;
+      }
+    options:
+      - "Callback her render'da yeni fonksiyon olduğu için aynı metrik birden fazla kez raporlanabilir; component dışında tanımlayın"
+      - "`sendBeacon` sayfa kapanırken çalışmaz"
+      - "`useReportWebVitals` Server Component'te çalışmalı"
+      - "INP bu hook ile ölçülemez"
+    answer: 0
+    explanation: "`useReportWebVitals`'a component dışında tanımlanmış sabit bir fonksiyon verin. Hook bir Client Component'te çalışır; ayrı bir dosyada tutup root layout'a eklemek client sınırını o modülle sınırlar."
 ---
 
 ## Ölçüm nedir

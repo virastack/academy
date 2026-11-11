@@ -3,6 +3,36 @@ title: "Feature-Sliced Design"
 description: "A frontend architecture with layers, slices and a one-way import rule."
 lastVerified: "2026-11-03"
 translationKey: "architecture/feature-sliced-design"
+quiz:
+  - question: "In FSD, which import is allowed for the `features/add-to-cart` slice?"
+    options:
+      - "Importing from `features/wishlist`"
+      - "Importing from `pages/cart`"
+      - "Importing from `entities/product`"
+      - "Importing from `widgets/header`"
+    answer: 2
+    explanation: "A module may only import from layers below its own, and slices on the same layer cannot import each other. `features` knows `entities` and `shared`, never the reverse."
+  - question: "When using FSD with Next.js, the `app` and `pages` layer names clash with Next.js's. What do the FSD docs suggest?"
+    options:
+      - "Put the FSD layers inside Next.js's `app/` folder"
+      - "Delete Next.js's `app/` folder"
+      - "Never use the `pages` layer"
+      - "Rename the FSD layers `_app` and `_pages` and keep Next.js's `app/` folder at the root; route files re-export FSD code"
+    answer: 3
+    explanation: "Route files become thin files that re-export from `@/_pages/...`. For server-only exports, `index.server.ts` is recommended."
+  - question: "From an FSD point of view, what is wrong with this public API?"
+    lang: ts
+    code: |-
+      // features/add-to-cart/index.ts
+      export * from './ui'
+      export * from './model'
+    options:
+      - "`index.ts` is forbidden in FSD"
+      - "`export *` hides what the slice offers and can leak internal details"
+      - "Nothing"
+      - "Imports between slices must be relative"
+    answer: 1
+    explanation: "A slice exposes a public API, and outside code reaches it only through there. Use named re-exports; write relative imports inside a slice and absolute imports between slices."
 ---
 
 In the [Folder structure and naming](/academy/architecture/folder-structure) guide we saw arranging by feature. **Feature-Sliced Design** *(FSD)* adds rules on top of that: which layer a piece of code belongs to and what it can import. This guide covers FSD's model briefly, and shows its adaptation to Next.js and its use in [!virastack] Start.

@@ -3,6 +3,37 @@ title: "What server state is"
 description: "How it differs from client state, the mistakes in fetching with useEffect, and when you don't need it."
 lastVerified: "2026-11-03"
 translationKey: "tanstack-query/what-is-server-state"
+quiz:
+  - question: "On a shop page, which one is server state?"
+    options:
+      - "The selected tab"
+      - "Whether the product filter modal is open"
+      - "The text typed in the search box"
+      - "The product's stock count"
+    answer: 3
+    explanation: "Server state lives somewhere you do not control, others can change it, and your copy can go stale. Another customer may buy the last item while you look at it; the modal, the tab and the input value live only in the browser."
+  - question: "Why is copying the product list from `useQuery` into a Zustand store discouraged?"
+    options:
+      - "TanStack Query prevents copying"
+      - "Zustand cannot store arrays"
+      - "Once copied, you miss background updates and end up keeping two sources of truth in sync"
+      - "The store's data is lost on reload"
+    answer: 2
+    explanation: "TkDodo's rule: do not copy server data into client state. TanStack Query refreshes data in the background, and the copy in the store never hears about it."
+  - question: "When the category changes quickly, why does a late old response not overwrite the new category's data?"
+    lang: tsx
+    code: |-
+      useQuery({
+        queryKey: ["products", category],
+        queryFn: () => fetchProducts(category),
+      });
+    options:
+      - "TanStack Query queues the requests"
+      - "The old request is always cancelled automatically"
+      - "Data is stored by key (`category`), so each response lands in its own cache entry"
+      - "A `useEffect` cleanup prevents it"
+    answer: 2
+    explanation: "Responses are stored by key, so there is no race condition. Cancellation is not automatic: it only happens if you pass the `signal` from `queryFn` to `fetch`."
 ---
 
 ## What this guide covers

@@ -3,6 +3,50 @@ title: "Actions ve async güncellemeler"
 description: "Form action'ı, useActionState, useFormStatus ve useOptimistic."
 lastVerified: "2026-11-03"
 translationKey: "react/actions"
+quiz:
+  - question: "Form gönderilirken `pending` ne olur?"
+    code: |-
+      function NewsletterForm() {
+        const { pending } = useFormStatus();
+        return (
+          <form action={subscribe}>
+            <button disabled={pending}>Subscribe</button>
+          </form>
+        );
+      }
+    options:
+      - "Gönderim sürerken `true` olur"
+      - "React hata fırlatır"
+      - "Yalnızca `onSubmit` ile çalışır"
+      - "Hep `false` kalır, çünkü `useFormStatus` yalnızca ebeveyndeki formu okur"
+    answer: 3
+    explanation: "`useFormStatus` aynı component'teki `<form>`'u değil, üstteki formu görür. Butonu ayrı bir component yapıp formun içine koymak gerekir."
+  - question: "İstek başarısız olursa kalp ne olur?"
+    code: |-
+      startTransition(async () => {
+        setOptimisticFavorite(!optimisticFavorite);
+        await action(!optimisticFavorite);
+      });
+    options:
+      - "React isteği otomatik olarak tekrar dener"
+      - "Dolu kalır"
+      - "Kalp boşalır ve buton devre dışı kalır"
+      - "İyimser değer kaybolur ve gerçek değere döner"
+    answer: 3
+    explanation: "`useOptimistic`'in değeri Action sürerken geçicidir; Action bitince gerçek kaynağa döner. İstek başarısızsa iyimser değer kaybolur."
+  - question: "`setCount` çağrısı transition olarak mı işlenir?"
+    code: |-
+      startTransition(async () => {
+        await addToCart(productId);
+        setCount((c) => c + 1);
+      });
+    options:
+      - "Hayır; `await`'ten sonraki güncellemeyi tekrar `startTransition` ile sarmak gerekir"
+      - "Evet, `startTransition` içindeki her şey transition'dır"
+      - "Yalnızca `useOptimistic` ile transition olur"
+      - "`await`'ten sonra state güncellemek yasaktır, hata verir"
+    answer: 0
+    explanation: "`await`'ten sonra yapılan state güncellemeleri transition sayılmaz; tekrar `startTransition` ile sarılır. Bu bir JavaScript sınırlamasıdır."
 ---
 
 ## Action nedir

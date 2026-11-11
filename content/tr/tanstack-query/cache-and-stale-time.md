@@ -3,6 +3,31 @@ title: "Cache ve stale time"
 description: "staleTime ile gcTime, yenileme anları, polling ve initialData."
 lastVerified: "2026-11-03"
 translationKey: "tanstack-query/cache-and-stale-time"
+quiz:
+  - question: "`staleTime: 0` ve varsayılan `gcTime` ile sorguyu kullanan bütün component'ler kapandı. Kullanıcı 3 dakika sonra sayfaya geri dönüyor. Ne olur?"
+    options:
+      - "Hata verir; veri silinmiştir"
+      - "Veri cache'ten gelir, hiç istek atılmaz"
+      - "Veri cache'ten anında gelir, arka planda yenilenir"
+      - "Cache boş olduğu için yükleme ekranı görünür"
+    answer: 2
+    explanation: "Kullanılmayan veri `gcTime` (5 dakika) dolunca silinir. 3 dakika içinde dönüldüğü için veri hâlâ cache'tedir; `staleTime: 0` olduğu için eski sayılır ve arka planda yenilenir."
+  - question: "`staleTime: Infinity` ile `staleTime: 'static'` arasındaki fark nedir?"
+    options:
+      - "`Infinity` olan sorgu `invalidateQueries` ile yine yenilenir, `'static'` olan yenilenmez"
+      - "`'static'` veriyi hiç cache'lemez"
+      - "Fark yoktur"
+      - "`Infinity` yalnızca sunucuda çalışır"
+    answer: 0
+    explanation: "İkisi de veriyi kendiliğinden eskitmez. `invalidateQueries` `Infinity` olan sorguyu yeniler; `'static'`, uygulama açıkken asla değişmeyen veri (açılışta gelen yetkiler, feature flag) içindir ve yenilenmez."
+  - question: "Detay sayfasını listede zaten gelmiş gerçek ürün verisiyle doldurmak istiyorsunuz; veri tazeyse istek atılmasın. Hangisi?"
+    options:
+      - "`useEffect` içinde `setQueryData`"
+      - "`select`"
+      - "`initialData` (ve `initialDataUpdatedAt`)"
+      - "`placeholderData`"
+    answer: 2
+    explanation: "`initialData` cache'e gerçek veri olarak yazılır ve `staleTime`'a uyar; tazeyse istek atılmaz. `placeholderData` cache'e yazılmaz ve her zaman gerçek veri istenir. `initialDataUpdatedAt` verinin ne zaman çekildiğini söyler."
 ---
 
 ## Stale-While-Revalidate

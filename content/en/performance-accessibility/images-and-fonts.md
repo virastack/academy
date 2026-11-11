@@ -3,6 +3,34 @@ title: "Images and fonts"
 description: "Image size, format and font loading."
 lastVerified: "2026-11-03"
 translationKey: "performance-accessibility/images-and-fonts"
+quiz:
+  - question: "This image is the page's LCP element. Why is `loading=\"lazy\"` a problem?"
+    lang: html
+    code: |-
+      <img src="hero.avif" loading="lazy" width="1200" height="600" alt="Campaign image" />
+    options:
+      - "The browser only realises the image is on screen after layout, so the download starts late; the LCP image should not be lazy"
+      - "It cannot be combined with `width` and `height`"
+      - "It is not a problem; it saves bandwidth"
+      - "AVIF cannot be lazy-loaded"
+    answer: 0
+    explanation: "Lazy loading is for images below the fold. Removing it from above-the-fold images improved mobile LCP by 18% in one test; the LCP image can also get `fetchpriority=\"high\"`."
+  - question: "What does writing `width` and `height` on an `<img>` achieve?"
+    options:
+      - "The image downloads faster"
+      - "The image is shown at that pixel size on every screen"
+      - "The image is compressed to that size"
+      - "The browser works out the aspect ratio and reserves the space before the image arrives, so content does not shift (CLS)"
+    answer: 3
+    explanation: "An image without dimensions pushes everything below it when it loads. If you cannot know the size, reserve space with CSS `aspect-ratio`; CSS still decides the displayed size."
+  - question: "If you want to prevent web-font layout shift entirely, which `font-display` value is safest?"
+    options:
+      - "`swap`"
+      - "`auto`"
+      - "`block`"
+      - "`optional`"
+    answer: 3
+    explanation: "With `optional`, if the font does not arrive within about 100 ms it is not used on that page, so there is no shift; the cost is that it may not show on the first visit. `swap` shows text fastest but can shift when the font arrives."
 ---
 
 ## Why images and fonts matter

@@ -3,6 +3,44 @@ title: "Queries"
 description: "getBy, queryBy, findBy and query priority."
 lastVerified: "2026-11-03"
 translationKey: "vitest/queries"
+quiz:
+  - question: "When the message is not on screen, what does this line do?"
+    lang: tsx
+    code: |-
+      expect(screen.getByText("No products found.")).not.toBeInTheDocument();
+    options:
+      - "It waits for the message to appear"
+      - "`getByText` throws when it finds nothing, so `not.toBeInTheDocument` is never reached"
+      - "It passes"
+      - "It returns `null` and passes"
+    answer: 1
+    explanation: "Use `queryBy` to check for absence; it returns `null` when nothing matches. `getBy` is for elements that must be in the DOM right now."
+  - question: "Which one finds the heading?"
+    lang: tsx
+    code: |-
+      render(<h2>Mechanical Keyboard</h2>);
+
+      screen.getByText("keyboard");   // A
+      screen.getByText(/keyboard/i);  // B
+    options:
+      - "Only A"
+      - "Only B"
+      - "Both"
+      - "Neither"
+    answer: 1
+    explanation: "Text queries default to an exact, case-sensitive match, so A finds nothing. A regex matches partially and case-insensitively, so B finds it."
+  - question: "What does this query do?"
+    lang: tsx
+    code: |-
+      render(<button hidden>Close</button>);
+      screen.getByRole("button");
+    options:
+      - "It throws; by default `getByRole` ignores elements removed from the accessibility tree"
+      - "It finds the button"
+      - "It warns and returns the button"
+      - "It returns `null`"
+    answer: 0
+    explanation: "Elements that are `hidden`, `display: none`, `visibility: hidden` or `aria-hidden=\"true\"` are ignored by default. Add `hidden: true` to find them."
 ---
 
 ## The basic rule

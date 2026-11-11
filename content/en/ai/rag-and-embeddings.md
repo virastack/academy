@@ -3,6 +3,31 @@ title: "RAG and embeddings"
 description: "Searching your own data with embeddings and giving it to the model as context: chunking, measuring search quality and security."
 lastVerified: "2026-11-03"
 translationKey: "ai/rag-and-embeddings"
+quiz:
+  - question: "You built the index with one embedding model; now you want to embed questions with a different model. What should you do?"
+    options:
+      - "Index and query must use the same model; if you change the model, rebuild the whole index"
+      - "Match the vector size with `dimensions`"
+      - "Index only the newly added documents with the new model"
+      - "Use Euclidean distance instead of cosine"
+    answer: 0
+    explanation: "Vectors from different models do not live in the same space; even with equal sizes they cannot be compared. Some providers want separate modes for documents and questions (`input_type` in Voyage)."
+  - question: "When a RAG answer comes out bad, what should you do first?"
+    options:
+      - "Measure whether the search brought the right chunk (`hit@k`)"
+      - "Raise `k` as high as possible"
+      - "Make the system instructions longer"
+      - "Use a bigger model"
+    answer: 0
+    explanation: "In the lesson, the measurement caught that the right chunk did not come back for one question. A larger `k` also brings noise; tune the threshold and `k` by measuring. The threshold makes \"I don't know\" possible for off-topic questions."
+  - question: "All users' documents are in the same vector index. How do you stop one user's question from returning another user's document?"
+    options:
+      - "Filter the search query by the user's identity (permission-aware access)"
+      - "Encrypt the vectors"
+      - "Write \"do not show other people's documents\" in the system instructions"
+      - "Lower `k` to 1"
+    answer: 0
+    explanation: "Retrieved chunks are untrusted data going into the model. Clean documents from users before indexing them; storing sensitive data as vectors does not hide it, since text can be reconstructed from vectors."
 ---
 
 The model does not know your data: your product catalogue, your returns policy, your internal documents. RAG (retrieval-augmented generation) solves that like this: it finds the pieces that fit the question and gives them to the model along with the question.[^1] As [Willison](https://simonwillison.net) puts it, the hard part is finding the best pieces to put into the prompt.[^2]

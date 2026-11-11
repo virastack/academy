@@ -3,6 +3,40 @@ title: "Monorepo"
 description: "pnpm workspace ve Turborepo ile paylaşılan paketler ve ortak UI kütüphanesi."
 lastVerified: "2026-11-03"
 translationKey: "architecture/monorepo"
+quiz:
+  - question: "`workspace:*` protokolü ne sağlar?"
+    lang: json
+    code: |-
+      "dependencies": {
+        "@repo/ui": "workspace:*"
+      }
+    options:
+      - "Paketi npm'e yayınlar"
+      - "Paketi her build'de yeniden derler"
+      - "pnpm yalnızca yerel workspace paketine çözümler; yanlışlıkla registry'den başka bir sürüm inmez"
+      - "Paketin en son npm sürümünü indirir"
+    answer: 2
+    explanation: "`@repo` gibi npm'de alınamayan bir kapsamlı önek de güvenli bir seçimdir. Ortak sürümleri tek yerde tutmak için pnpm catalogs kullanılabilir."
+  - question: "Just-in-Time bir iç pakette bu ayar neden işe yaramaz?"
+    lang: json
+    code: |-
+      // packages/ui/tsconfig.json (Just-in-Time paket)
+      "compilerOptions": { "paths": { "@/*": ["./src/*"] } }
+    options:
+      - "`paths` monorepo'da yasaktır"
+      - "Turborepo `paths`'i siler"
+      - "`@/` yalnızca Next.js'te çalışır"
+      - "Paketi tüketen uygulama derlediği için paketin `paths` ayarı çalışmaz; Node.js subpath imports (`\"#*\"`) kullanılmalı"
+    answer: 3
+    explanation: "Just-in-Time paket TypeScript dosyalarını doğrudan export eder ve uygulamanın bundler'ı derler. `package.json`'a `\"imports\": { \"#*\": \"./src/*\" }` yazıp kodda `#utils.ts` gibi import edin."
+  - question: "pnpm workspace ile Turborepo'nun görevleri nasıl ayrılır?"
+    options:
+      - "pnpm yalnızca CI'da kullanılır"
+      - "pnpm paketleri keşfeder, birbirine bağlar ve tek lockfile tutar; Turborepo görevleri sıralar, paralel çalıştırır ve sonuçları önbelleğe alır"
+      - "İkisi aynı işi yapar"
+      - "Turborepo bağımlılıkları indirir, pnpm görevleri çalıştırır"
+    answer: 1
+    explanation: "Turborepo paket yöneticisinin workspace özelliğinin üzerine kuruludur. `turbo.json`'da `^build` bağımlılıkları önce derler, `outputs` önbelleğe alınacak dosyaları söyler."
 ---
 
 Monorepo, birden fazla uygulama ve paketin tek bir repoda durmasıdır. Ortak UI bileşenlerini, TypeScript ayarlarını ve tipleri ayrı bir repoya bölmeden paylaşırsınız. Takımlar arası koordinasyon maliyeti düşer, paketi ve onu kullanan uygulamaları tek bir değişiklikte güncelleyebilirsiniz.[^1] Bu rehber frontend'de en yaygın ikiliyi kuruyor: paketleri birbirine bağlayan **pnpm** workspace ve görevleri sıralayıp önbelleğe alan **Turborepo**.

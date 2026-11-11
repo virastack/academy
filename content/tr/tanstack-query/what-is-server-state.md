@@ -3,6 +3,37 @@ title: "Server state nedir"
 description: "Client state farkı, useEffect ile veri çekmenin hataları ve ne zaman gerekmediği."
 lastVerified: "2026-11-03"
 translationKey: "tanstack-query/what-is-server-state"
+quiz:
+  - question: "Bir e-ticaret sayfasındaki hangisi server state'tir?"
+    options:
+      - "Seçili sekme"
+      - "Ürün filtresi modalının açık olup olmadığı"
+      - "Arama kutusuna yazılan metin"
+      - "Ürünün stok adedi"
+    answer: 3
+    explanation: "Server state sizin kontrol etmediğiniz bir yerde durur, başkaları da değiştirebilir ve kopyası eskiyebilir. Siz bakarken başka bir müşteri son ürünü alabilir; modal, sekme ve input değeri ise yalnızca tarayıcıda yaşar."
+  - question: "`useQuery` ile gelen ürün listesini bir Zustand store'una kopyalamak neden önerilmez?"
+    options:
+      - "TanStack Query kopyalamayı engeller"
+      - "Zustand dizi saklayamaz"
+      - "Kopyalayınca arka plandaki güncellemeleri kaçırırsınız ve iki gerçeği senkron tutmaya çalışırsınız"
+      - "Store'daki veri sayfa yenilenince kaybolur"
+    answer: 2
+    explanation: "TkDodo'nun kuralı: sunucudan gelen veriyi client state'e kopyalamayın. TanStack Query veriyi arka planda yeniler; store'daki kopya bundan habersiz kalır."
+  - question: "Kategori hızlı hızlı değiştiğinde geç gelen eski cevap neden yeni kategorinin verisinin üstüne yazmaz?"
+    lang: tsx
+    code: |-
+      useQuery({
+        queryKey: ["products", category],
+        queryFn: () => fetchProducts(category),
+      });
+    options:
+      - "TanStack Query istekleri sıraya koyar"
+      - "Eski istek her zaman otomatik iptal edilir"
+      - "Veri anahtara (`category`) göre saklandığı için her cevap kendi cache girdisine yazılır"
+      - "`useEffect` cleanup'ı bunu engeller"
+    answer: 2
+    explanation: "Cevaplar anahtara göre saklanır, bu yüzden yarış durumu oluşmaz. İptal ise otomatik değildir: yalnızca `queryFn`'e gelen `signal`'ı `fetch`'e verirseniz gerçekleşir."
 ---
 
 ## Bu rehber ne anlatıyor

@@ -3,6 +3,39 @@ title: "Mock"
 description: "vi.fn, vi.mock ve MSW ile API mock'u."
 lastVerified: "2026-11-03"
 translationKey: "vitest/mock"
+quiz:
+  - question: "Bu mock neden çalışmaz?"
+    lang: tsx
+    code: |-
+      const fakeTrack = vi.fn();
+
+      vi.mock(import("./analytics"), () => ({ trackEvent: fakeTrack }));
+    options:
+      - "Vitest `vi.mock`'u dosyanın başına taşır (hoisting); fabrika çalıştığında `fakeTrack` henüz tanımlı değildir"
+      - "`import()` biçimi desteklenmez"
+      - "`vi.fn()` modül mock'unda kullanılamaz"
+      - "`trackEvent` export edilmemiş"
+    answer: 0
+    explanation: "`vi.mock` import'lardan önce çalışır. Bu yüzden fabrika fonksiyonunda dosyadaki diğer değişkenleri kullanamazsınız; çağrıyı en üst seviyede yazın."
+  - question: "Bu satır testte neden başarısız olur?"
+    lang: ts
+    code: |-
+      await fetch("/products");
+    options:
+      - "Handler `GET` için tanımlı değil"
+      - "`fetch` jsdom'da yoktur"
+      - "MSW göreli URL'leri engeller"
+      - "Node ortamında göreli URL çözümlenemez; tam URL kullanın"
+    answer: 3
+    explanation: "Testte `fetch`'e tam URL verin (`https://api.shop.test/products`). Göreli URL test ortamına göre `Failed to parse URL` hatası verebilir."
+  - question: "`ProductCard` testinde hangisi mock'lanmalıdır?"
+    options:
+      - "Kartın içinde kullanılan kendi `PriceTag` component'iniz"
+      - "Test ettiğiniz `ProductCard`'ın kendisi"
+      - "`navigator.sendBeacon` çağıran analitik modülü"
+      - "React Testing Library'nin `render` fonksiyonu"
+    answer: 2
+    explanation: "Ağ istekleri, analitik ve yan etkisi olan tarayıcı API'leri mock'lanır. Kendi alt component'lerinizi, test ettiğiniz component'i ve React ya da Testing Library fonksiyonlarını mock'lamayın."
 ---
 
 ## Mock nedir?

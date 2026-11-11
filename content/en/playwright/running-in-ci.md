@@ -3,6 +3,38 @@ title: "Running in CI"
 description: "GitHub Actions, sharding and flaky tests."
 lastVerified: "2026-11-03"
 translationKey: "playwright/running-in-ci"
+quiz:
+  - question: "Why is `if: ${{ !cancelled() }}` there?"
+    lang: yaml
+    code: |-
+      - uses: actions/upload-artifact@v7
+        if: ${{ !cancelled() }}
+        with:
+          name: playwright-report
+          path: playwright-report/
+    options:
+      - "To delete the report when the job is cancelled"
+      - "To upload the report even when tests fail; that is exactly when you need it"
+      - "To upload the report only when tests pass"
+      - "To enable parallel runs"
+    answer: 1
+    explanation: "By default, later steps do not run once a step fails. This condition lets you download the report and traces of the failing tests."
+  - question: "What do the Playwright docs say about caching browsers in CI?"
+    options:
+      - "They advise against it: restoring the cache takes as long as downloading, and Linux system dependencies cannot be cached"
+      - "Always cache them"
+      - "Cache only Firefox"
+      - "It is required when using a Docker image"
+    answer: 0
+    explanation: "The cache that pays off is npm packages (`cache: npm` in `actions/setup-node`). To save time, install only the browser you use."
+  - question: "With `retries: 2`, a test failed on the first attempt and passed on the second. How does the report show it?"
+    options:
+      - "It does not show it"
+      - "As passed, with no trace"
+      - "It marks it as \"flaky\""
+      - "As failed"
+    answer: 2
+    explanation: "`retries` does not hide flakiness; it reports it. Open the trace to find the cause; for zero tolerance, `--fail-on-flaky-tests` treats flaky tests as failures."
 ---
 
 ## Why CI?

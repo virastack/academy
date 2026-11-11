@@ -3,6 +3,42 @@ title: "View Transition ve Activity"
 description: "Geçişleri canlandırma ve gizlenen ekranın state'ini koruma."
 lastVerified: "2026-11-03"
 translationKey: "react/view-transitions-and-activity"
+quiz:
+  - question: "Buton düz `setIsOpen` çağırıyor. `SizeGuide` açılırken ne olur?"
+    code: |-
+      <button onClick={() => setIsOpen((open) => !open)}>Beden tablosu</button>
+      {isOpen && (
+        <ViewTransition>
+          <SizeGuide />
+        </ViewTransition>
+      )}
+    options:
+      - "Animasyonsuz açılır, çünkü güncelleme bir Transition değil"
+      - "Varsayılan cross-fade animasyonuyla açılır"
+      - "React hata fırlatır"
+      - "Yalnızca kapanırken animasyon çalışır"
+    answer: 0
+    explanation: "Animasyon yalnızca güncelleme bir Transition olduğunda çalışır: `startTransition`, Suspense boundary'nin açılması ya da `useDeferredValue`. Düz `setState` animasyonsuz uygulanır."
+  - question: "Kullanıcı yorum formuna yazıyor, sonra sekmeyi değiştirip geri dönüyor. Hangisi doğru?"
+    code: |-
+      <Activity mode={tab === "reviews" ? "visible" : "hidden"}>
+        <ReviewList />
+      </Activity>
+    options:
+      - "State ve DOM korunur; gizliyken Effect'ler sökülür"
+      - "State korunur, Effect'ler gizliyken de çalışmaya devam eder"
+      - "State silinir, form boş açılır"
+      - "DOM silinir ama state korunur"
+    answer: 0
+    explanation: "`mode=\"hidden\"` çocukları `display: none` ile saklar ve Effect'leri söker. `visible`'a dönünce state ve DOM olduğu gibi gelir, Effect'ler yeniden kurulur."
+  - question: "Hareketi azaltmak isteyen kullanıcılar için `ViewTransition` animasyonlarında ne yapılmalı?"
+    options:
+      - "Hiçbir şey; React bunları kendiliğinden kapatır"
+      - "`ViewTransition` yerine `Activity` kullanmak"
+      - "`prefers-reduced-motion` media query ile kapatmak ya da yumuşatmak"
+      - "`startViewTransition`'ı elle çağırıp kontrol etmek"
+    answer: 2
+    explanation: "React hareketi azaltmak isteyen kullanıcılar için animasyonları kendiliğinden kapatmaz. Doküman `prefers-reduced-motion` ile kapatmayı ya da yumuşatmayı önerir."
 ---
 
 ## İki yeni bileşen

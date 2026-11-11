@@ -3,6 +3,44 @@ title: "Kurulum"
 description: "Playwright'ı eklemek, yapılandırma ve webServer."
 lastVerified: "2026-11-03"
 translationKey: "playwright/setup"
+quiz:
+  - question: "Yerelde bir terminalde `npm run dev` açıkken `npx playwright test` çalıştırırsanız ne olur?"
+    lang: ts
+    code: |-
+      webServer: {
+        command: "npm run build && npm run start",
+        url: "http://localhost:3000",
+        reuseExistingServer: !process.env.CI,
+      },
+    options:
+      - "Port çakışması yüzünden testler başlamaz"
+      - "Playwright önce build alıp yeni bir sunucu başlatır"
+      - "Dev sunucusunu kapatıp production sunucusu açar"
+      - "Zaten çalışan sunucuyu kullanır; CI'da ise her zaman yenisini başlatır"
+    answer: 3
+    explanation: "`reuseExistingServer` yerelde çalışan bir sunucu varsa onu kullanır. Göndermeden önce dev sunucusunu kapatıp production build ile bir kez çalıştırın; Next.js dokümanı testleri production build'e karşı çalıştırmayı önerir."
+  - question: "Playwright'ta varsayılan olarak bir test ve bir web-first assertion ne kadar bekler?"
+    options:
+      - "Test 30 sn, assertion 5 sn"
+      - "Test 5 sn, assertion 30 sn"
+      - "İkisi de 30 sn"
+      - "Test sınırsız, assertion 1 sn"
+    answer: 0
+    explanation: "Her test varsayılan 30 saniye, her web-first assertion 5 saniye bekler. Eylem ve gezinmenin ayrı bir sınırı yoktur; test süresiyle sınırlıdır."
+  - question: "`npx playwright test` hangi projeleri çalıştırır?"
+    lang: ts
+    code: |-
+      projects: [
+        { name: "chromium", use: { ...devices["Desktop Chrome"] } },
+        { name: "firefox", use: { ...devices["Desktop Firefox"] }, default: false },
+      ],
+    options:
+      - "Yalnızca `firefox`'u"
+      - "Hiçbirini; proje adı verilmeli"
+      - "İkisini de"
+      - "Yalnızca `chromium`'u; hepsini çalıştırmak için `--project=\"*\"` gerekir"
+    answer: 3
+    explanation: "`default: false` (Playwright 1.64) projeyi yapılandırmada tutar ama varsayılan çalıştırmadan çıkarır. Yerelde yalnızca Chromium çalışır, CI'da `--project=\"*\"` ile hepsi."
 ---
 
 ## Uçtan uca test nedir?

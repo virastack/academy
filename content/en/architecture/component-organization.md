@@ -3,6 +3,34 @@ title: "Component and code organisation"
 description: "Splitting components, separating shared code and keeping the boundaries."
 lastVerified: "2026-11-03"
 translationKey: "architecture/component-organization"
+quiz:
+  - question: "For this component, which gains a boolean prop for every new need, what alternative does the lesson recommend?"
+    lang: tsx
+    code: |-
+      <ProductCard showPrice showBadge compact onSale />
+    options:
+      - "A compound component: inside `<ProductCard>`, the caller picks parts such as `<ProductCard.Title>` and `<ProductCard.Price>`"
+      - "Add more boolean props and use a `switch` inside"
+      - "Collect all props in a single `options` object"
+      - "A separate copy of the component for each variant"
+    answer: 0
+    explanation: "As booleans multiply, so do the conditions inside. In a compound component the root holds shared state and context; you say what to show with JSX, not what to hide with booleans."
+  - question: "The search box text in a product list is used by both the box and the list. Where should that state live?"
+    options:
+      - "In the closest common parent that wraps the box and the list"
+      - "Inside the search box; the list reads it with a ref"
+      - "Always in the URL"
+      - "In a global store"
+    answer: 0
+    explanation: "State lives at the closest point shared by its users, not lower. Only data that is truly app-wide goes into a global store; fast-changing global state is a common cause of slow apps."
+  - question: "Which tool does the lesson use to automatically stop `features/products` from importing from `features/cart`?"
+    options:
+      - "`import/no-restricted-paths` zones (`target`, `from`, `except`)"
+      - "`import/no-cycle`"
+      - "Prettier"
+      - "Watching for it in code review"
+    answer: 0
+    explanation: "A written rule gets broken; a lint rule does not. If the zone list stops being enough, `eslint-plugin-boundaries` lets you describe the architecture in one place."
 ---
 
 In [the previous guide](/academy/architecture/folder-structure) we set the folder structure up. This guide answers three questions inside that structure: when a component is split, where state and logic go, and how the boundaries stay unbroken.

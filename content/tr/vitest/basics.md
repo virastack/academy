@@ -3,6 +3,42 @@ title: "Temeller"
 description: "İlk test, render, expect ve matcher'lar."
 lastVerified: "2026-11-03"
 translationKey: "vitest/basics"
+quiz:
+  - question: "Bu test neden başarısız olabilir?"
+    lang: tsx
+    code: |-
+      const user = userEvent.setup();
+      render(<ProductCard product={product} onAddToCart={onAddToCart} />);
+
+      user.click(screen.getByRole("button", { name: "Add to cart" }));
+      expect(onAddToCart).toHaveBeenCalledWith(product);
+    options:
+      - "`toHaveBeenCalledWith` mock fonksiyonlarda çalışmaz"
+      - "`getByRole` butonu bulamaz"
+      - "`userEvent.setup()` render'dan sonra çağrılmalı"
+      - "`user.click` bir Promise döndürür; `await` olmadığı için doğrulama tıklama bitmeden çalışır"
+    answer: 3
+    explanation: "Tüm `user.*` metotları Promise döndürür. Her çağrıya `await` yazın."
+  - question: "Hangisi doğru?"
+    lang: tsx
+    code: |-
+      render(<p hidden>Out of stock</p>);
+      const message = screen.getByText("Out of stock");
+    options:
+      - "`toBeInTheDocument()` geçer, `toBeVisible()` başarısız olur"
+      - "`toBeVisible()` geçer, `toBeInTheDocument()` başarısız olur"
+      - "İkisi de başarısız olur"
+      - "İkisi de geçer: `toBeInTheDocument()` ve `toBeVisible()`"
+    answer: 0
+    explanation: "`hidden` attribute'lu eleman DOM'dadır ama görünür değildir. Kullanıcının görmesi gereken elemanlar için `toBeVisible` kullanın."
+  - question: "`test.only` commit edilirse ne olur?"
+    options:
+      - "Hiçbir şey; yalnızca o test hızlanır"
+      - "Yerelde diğer testler çalışmaz ve eksik bir sonuca güvenirsiniz; CI'da Vitest varsayılan olarak hata verir"
+      - "Vitest dosyayı atlar"
+      - "CI'da da yalnızca o test çalışır ve geçer"
+    answer: 1
+    explanation: "`.only` diğer testleri atlatır. CI'da Vitest `.only` için hata verir, ama oraya gitmeden silin."
 ---
 
 ## Test yapısı

@@ -3,6 +3,31 @@ title: "Persist ve devtools"
 description: "Kalıcı state, migration, hydration ve Redux DevTools."
 lastVerified: "2026-11-03"
 translationKey: "zustand/persist-and-devtools"
+quiz:
+  - question: "Sayfa yenilenince sepetteki ürünler kalsın ama çekmecenin açık olup olmadığı saklanmasın. Hangisi?"
+    options:
+      - "`version: 1`"
+      - "`name: \"cart-items\"`"
+      - "`storage: createJSONStorage(() => sessionStorage)`"
+      - "`partialize: (state) => ({ items: state.items })`"
+    answer: 3
+    explanation: "Varsayılan olarak tüm state saklanır. `partialize` saklanacak alanları seçer; geçici değerler (çekmece açık mı) dışarıda kalır."
+  - question: "Next.js'te `persist` kullanan sepet store'u hydration hatası veriyor. Dersteki çözüm hangisi?"
+    options:
+      - "`skipHydration: true` verip `persist.rehydrate()`'i mount sonrası bir effect'te çağırmak"
+      - "`persist`'i kaldırmak"
+      - "`localStorage` yerine cookie kullanmak"
+      - "Store'u Server Component'te okumak"
+    answer: 0
+    explanation: "Sunucuda `localStorage` yoktur ve sepet boş render edilir. Tarayıcıda store hemen dolarsa ilk render farklı olur. `skipHydration` otomatik hydration'ı kapatır, `rehydrate()` mount'tan sonra çağrılır."
+  - question: "Saklanan verinin şeklini değiştirip `version`'ı 0'dan 1'e çıkardınız ama `migrate` yazmadınız. Kullanıcının eski kaydına ne olur?"
+    options:
+      - "Kayıt varsayılan olarak kullanılmaz"
+      - "Eski kayıt olduğu gibi yüklenir"
+      - "Uygulama hata verip açılmaz"
+      - "Yeni şekle kendiliğinden çevrilir"
+    answer: 0
+    explanation: "Depolamadaki sürüm koddakinden farklıysa kayıt varsayılan olarak kullanılmaz. Eski veriyi korumak için `migrate` yazın."
 ---
 
 ## persist ile saklamak

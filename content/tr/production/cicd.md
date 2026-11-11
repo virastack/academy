@@ -3,6 +3,34 @@ title: "CI/CD (GitHub Actions)"
 description: "Lint, test ve Docker işleriyle deploy hattı, secret'lar ve ortamlar."
 lastVerified: "2026-11-03"
 translationKey: "production/cicd"
+quiz:
+  - question: "Sürekli teslim (continuous delivery) ile sürekli deploy (continuous deployment) arasındaki fark nedir?"
+    options:
+      - "Sürekli teslimde otomatik test yoktur"
+      - "Hiçbir fark yoktur"
+      - "Sürekli teslimde yazılım her an yayınlanabilir ama canlıya çıkmak bir onaya bağlıdır; sürekli deploy'da hattan geçen her değişiklik otomatik yayınlanır"
+      - "Sürekli deploy günde bir kez çalışır"
+    answer: 2
+    explanation: "Fowler sürekli deploy'u sürekli teslimin bir adım ötesi olarak tanımlar. GitHub ortamlarındaki \"gerekli onaylayıcılar\" sürekli teslimin onay adımıdır."
+  - question: "Fork'tan açılan pull request'lerin de secret'lara erişmesi için iş akışını `pull_request_target`'a çevirmek neden tehlikelidir?"
+    options:
+      - "Bu tetikleyici fork'un kodunu deponuzun yetkileriyle çalıştırabilir"
+      - "Fork'lar için hiç çalışmaz"
+      - "Secret'lar loglarda maskelenmez"
+      - "`pull_request_target` yavaştır"
+    answer: 0
+    explanation: "Fork'tan gelen pull request'ler varsayılan olarak secret'lara erişemez ve token'ları salt okunurdur. Bu bir korumadır; `pull_request_target` ile aşmayın."
+  - question: "GitHub bu tür üçüncü parti eylemler için ne önerir?"
+    lang: yaml
+    code: |-
+      - uses: some-org/deploy-action@v3
+    options:
+      - "Her zaman `@main` kullanmak"
+      - "Tam commit SHA'sına sabitlemek; etiketler taşınabilir"
+      - "Yalnızca `@latest` kullanmak"
+      - "Sürüm yazmamak"
+    answer: 1
+    explanation: "Eylemin sahibinin hesabı ele geçirilip etiket başka commit'e yönlendirilirse iş akışınız o kodu çalıştırır. Topluluk eylemlerini SHA'ya sabitleyip Dependabot ile güncel tutun."
 ---
 
 ## Üç kavram

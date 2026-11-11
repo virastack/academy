@@ -3,6 +3,37 @@ title: "Feature flags and release strategy"
 description: "The Flags SDK, a percentage rollout, canary and blue-green."
 lastVerified: "2026-11-03"
 translationKey: "production/feature-flags-and-release-strategy"
+quiz:
+  - question: "What is wrong with turning a feature on for 10% of users with this line?"
+    lang: ts
+    code: |-
+      const showSummary = Math.random() < 0.1;
+    options:
+      - "It gives a different result on every request; the feature can vanish when the user reloads"
+      - "More than 10% get it"
+      - "Nothing"
+      - "`Math.random()` does not work on the server"
+    answer: 0
+    explanation: "The right way is to put each user in a fixed bucket: hash the user id to a number from 0 to 99, and the user is in if the number is below the percentage."
+  - question: "With the bucket method the rollout goes from 10% to 30%. What happens to users who already saw the feature?"
+    options:
+      - "Half of them drop out"
+      - "They are all taken out first"
+      - "They are redistributed at random"
+      - "They all stay in; a bucket below 10 is also below 30"
+    answer: 3
+    explanation: "The fixed-bucket method gives a rollout that is sticky, balanced and growing: a user always lands in the same bucket, and nobody drops out as the percentage rises."
+  - question: "Why add a flag-specific `salt` to the bucket calculation?"
+    lang: ts
+    code: |-
+      rolloutBucket(id, "order-summary");
+    options:
+      - "To make the hash more secure"
+      - "To hide the user id"
+      - "To give each flag a different distribution; otherwise the same 10% would always see new features first"
+      - "To speed up the calculation"
+    answer: 2
+    explanation: "Without a salt, a user lands in the same bucket for every flag. A per-flag salt starts each feature's rollout with a different set of users."
 ---
 
 ## Deploying and releasing are different

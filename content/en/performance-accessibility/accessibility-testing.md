@@ -3,6 +3,31 @@ title: "Accessibility testing"
 description: "Automated scanning and manual checking with a screen reader."
 lastVerified: "2026-11-03"
 translationKey: "performance-accessibility/accessibility-testing"
+quiz:
+  - question: "An axe scan found no violations. Which is true?"
+    options:
+      - "The page is accessible"
+      - "The page meets WCAG AAA"
+      - "No automatically detectable issue was found; things like the accuracy of alt text or the focus order still need manual checks"
+      - "Screen reader testing is unnecessary"
+    answer: 2
+    explanation: "Automated tools find problems visible in the code but cannot answer questions that need context. A clean report does not mean \"accessible\"; it is where manual checking starts."
+  - question: "Your component scan with axe-core in Vitest + JSDOM never reports contrast issues. Why?"
+    options:
+      - "The `color-contrast` rule does not run in JSDOM; test contrast in a real browser (with Playwright)"
+      - "`withTags` is missing"
+      - "axe does not check contrast"
+      - "The component has no contrast problems"
+    answer: 0
+    explanation: "axe-core's JSDOM support is limited. In a real browser the contrast rule runs; that is the biggest gain of end-to-end scanning."
+  - question: "What should you do so that accessibility issues in a dropdown menu show up in the scan?"
+    options:
+      - "Open the menu, wait for it to appear, then scan"
+      - "Leave the menu out with `.exclude()`"
+      - "Turn rules off with `disableRules`"
+      - "Scan the page twice"
+    answer: 0
+    explanation: "Issues in a closed menu do not show up. Open sections that appear on interaction, wait for them, then scan; do not hide problems permanently with `exclude`."
 ---
 
 ## What accessibility testing is

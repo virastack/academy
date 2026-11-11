@@ -3,6 +3,31 @@ title: "Models and tools"
 description: "Model types, their strengths and weaknesses; chat, editor and terminal-based tools."
 lastVerified: "2026-11-03"
 translationKey: "ai/models-and-tools"
+quiz:
+  - question: "The agent read the relevant files for the `CartSummary` bug and ran the test, but still solves it wrongly. What step does the lesson suggest?"
+    options:
+      - "Switch to a faster model"
+      - "Raise the effort"
+      - "Move up a model tier"
+      - "Add \"think hard\" to the prompt"
+    answer: 2
+    explanation: "If the model made a shallow patch without reading the file, the problem is effort. If it read the files and ran the test and is still wrong, the problem is the model. Phrases like \"think hard\" do not go above the effort setting."
+  - question: "Which model tier fits updating import paths in 30 files?"
+    options:
+      - "The fast and cheap tier"
+      - "A reasoning model at maximum effort"
+      - "The balanced tier"
+      - "The most capable tier"
+    answer: 0
+    explanation: "Do not give mechanical updates with no logical risk to expensive models. On a simple job a big model spends more tokens and costs more per token; output tokens are also usually several times pricier than input."
+  - question: "The library in your project is newer than the model's training date, and the model suggests the old API. What does the lesson suggest?"
+    options:
+      - "Set effort to `max`"
+      - "Tell the model to \"be sure\""
+      - "Pick a bigger model"
+      - "Give the current documentation as context"
+    answer: 3
+    explanation: "The model's knowledge stops at its training date; a bigger model or higher effort does not change that. It can also suggest packages that do not exist, so check every suggested package on npm before installing."
 ---
 
 In frontend development, AI has two layers:

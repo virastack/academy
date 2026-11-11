@@ -3,6 +3,37 @@ title: "Using it with TanStack Query"
 description: "Driving a query from a filter, and deriving state."
 lastVerified: "2026-11-03"
 translationKey: "zustand/with-tanstack-query"
+quiz:
+  - question: "When the filter panel calls `setCategory(\"shoes\")`, what happens to the product list?"
+    lang: ts
+    code: |-
+      export function useFilteredProducts() {
+        const category = useCategory(); // Zustand
+        return useQuery({ ...productQueries.list({ category }), placeholderData: keepPreviousData });
+      }
+    options:
+      - "Nothing; Zustand cannot trigger TanStack Query"
+      - "The store fetches the result itself"
+      - "You have to call `refetch()` by hand"
+      - "Since the category is part of the query key, the query runs again by itself"
+    answer: 3
+    explanation: "The filter lives in the store and the product list in TanStack Query. Because the filter is in the query key, the query runs as soon as it changes; `keepPreviousData` keeps the old list on screen."
+  - question: "The store holds the selected user's `id`, but the user was deleted on the server. Which approach does TkDodo recommend?"
+    options:
+      - "Set the selection to `null` with a `useEffect` when the query result changes"
+      - "Give the query `staleTime: Infinity`"
+      - "Derive the selection on every render: the user with that `id` if it is in the list, otherwise `null`"
+      - "Copy the user list into the store"
+    answer: 2
+    explanation: "Derive instead of syncing by hand: no extra render or Effect, and if the user comes back, the selection returns by itself. The store records what was selected in the UI."
+  - question: "You want to warn when the quantity in the cart (Zustand) is higher than the stock (TanStack Query). Which approach?"
+    options:
+      - "Lower the cart quantity with a `useEffect` when the stock changes"
+      - "Move the cart to TanStack Query too"
+      - "Copy the stock into the cart store"
+      - "Combine both sources during render: warn if `item.quantity > product.stock`"
+    answer: 3
+    explanation: "The cart is the user's choice and lives in the store; stock is server data. Combining them during render makes the warning disappear by itself when the user lowers the quantity or stock goes up."
 ---
 
 ## The division of labour

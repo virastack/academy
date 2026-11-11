@@ -3,6 +3,37 @@ title: "Unattended agents"
 description: "Agents in the cloud and in the background, assigning work with @claude on GitHub, automatic PR review and verifying the result."
 lastVerified: "2026-11-03"
 translationKey: "ai/unattended-agents"
+quiz:
+  - question: "What happens if you start a job with `claude --cloud` without pushing your local commits?"
+    options:
+      - "The command fails"
+      - "The virtual machine clones the repo from GitHub, so your local commits are not there"
+      - "The cloud session copies your local folder"
+      - "The commits are pushed automatically"
+    answer: 1
+    explanation: "Push first. The suggested flow: work out the plan locally in plan mode, write it to a file and push, then hand the implementation to the cloud."
+  - question: "In this command, what does `--permission-mode dontAsk` do?"
+    lang: bash
+    code: |-
+      claude -p "Fix the lint errors in the changed files" \
+        --allowedTools "Edit,Bash(pnpm lint *)" \
+        --permission-mode dontAsk \
+        --max-turns 20
+    options:
+      - "Allows everything without asking"
+      - "Denies anything not in the `--allowedTools` list that would need a question"
+      - "Asks the user at every step"
+      - "Puts the agent in read-only mode"
+    answer: 1
+    explanation: "`--allowedTools` pre-approves the listed tools, and `--max-turns` caps the number of turns. Try a batch job on a few files first, fix the prompt, then run the rest."
+  - question: "Why should auto-fix be turned off in a repo with deploy automation triggered by comments?"
+    options:
+      - "Issue and PR comments can be written by outsiders and can hide instructions; with auto-fix on, the agent also writes comments on your behalf"
+      - "Auto-fix only runs on draft PRs"
+      - "Auto-fix doubles CI minutes"
+      - "Auto-fix blocks deploys"
+    answer: 0
+    explanation: "The longer an agent runs unattended, the more an independent check matters: a checkable goal, evidence and isolation. Keep the API key only as a repo secret, too."
 ---
 
 So far the agent has run on your computer, with you sitting in front of it. But plenty of work can move forward without waiting for you. Starting a bug fix from your phone and reviewing its PR in the evening, or having every PR reviewed automatically, are examples. In this lesson we take the agent off your machine and away from your screen.

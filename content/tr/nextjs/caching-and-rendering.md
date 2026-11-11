@@ -3,6 +3,38 @@ title: "Cache ve render modeli"
 description: "Cache Components, use cache, cacheLife, cacheTag ve statik kabuk."
 lastVerified: "2026-11-03"
 translationKey: "nextjs/caching-and-rendering"
+quiz:
+  - question: "Bu kodun sorunu ve çözümü nedir?"
+    lang: tsx
+    code: |-
+      async function getRecommendations() {
+        "use cache";
+        const segment = (await cookies()).get("segment")?.value;
+        return db.product.findMany({ where: { segment } });
+      }
+    options:
+      - "`\"use cache\"` içinde `cookies()` çağrılamaz; değeri dışarıda okuyup argüman olarak verin"
+      - "Sorun yok; cookie cache anahtarına kendiliğinden girer"
+      - "`cookies()` yalnızca Client Component'te çalışır"
+      - "`cacheLife` yazılmadığı için cache hiç çalışmaz"
+    answer: 0
+    explanation: "`cookies()`, `headers()` ve `searchParams` istek anında bilinir ve `\"use cache\"` içinde okunamaz. Değeri dışarıda okuyup argüman olarak verin; argümanlar cache anahtarına girer."
+  - question: "Cache Components açık bir projede AI asistanı sayfaya `export const revalidate = 60` eklemeyi öneriyor. Güncel karşılığı nedir?"
+    options:
+      - "`export const dynamic = \"force-static\"`"
+      - "`revalidatePath` çağrısını sayfanın içine yazmak"
+      - "`fetch(url, { next: { revalidate: 60 } })`"
+      - "`\"use cache\"` ve `cacheLife`"
+    answer: 3
+    explanation: "`revalidate`, `dynamic = \"force-static\"` ve `fetch`'in `next.revalidate` seçeneği önceki modele aittir. Cache Components'te neyin cache'leneceğini `\"use cache\"` ile, süresini `cacheLife` ile söylersiniz."
+  - question: "Kullanıcı bir Server Action ile yorum yazdı ve kendi yorumunu hemen görmeli. Hangi çağrı?"
+    options:
+      - "`updateTag(\"reviews\")`"
+      - "`cacheLife(\"seconds\")`"
+      - "Route Handler'da `revalidatePath(\"/reviews\")`"
+      - "`revalidateTag(\"reviews\", \"max\")`"
+    answer: 0
+    explanation: "`updateTag` kaydı hemen siler ve kullanıcı kendi değişikliğini anında görür; yalnızca Server Action'da çalışır. `revalidateTag` eskiyi sunarken arka planda yeniler."
 ---
 
 ## Varsayılan: Her şey dinamik

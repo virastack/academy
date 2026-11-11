@@ -3,6 +3,44 @@ title: "Sorgular"
 description: "getBy, queryBy, findBy ve sorgu önceliği."
 lastVerified: "2026-11-03"
 translationKey: "vitest/queries"
+quiz:
+  - question: "Mesaj ekranda yokken bu satır ne yapar?"
+    lang: tsx
+    code: |-
+      expect(screen.getByText("No products found.")).not.toBeInTheDocument();
+    options:
+      - "Mesajın gelmesini bekler"
+      - "`getByText` eleman bulamayınca hata fırlatır; `not.toBeInTheDocument`'e hiç ulaşılmaz"
+      - "Geçer"
+      - "`null` döner ve geçer"
+    answer: 1
+    explanation: "Yokluğu kontrol ederken `queryBy` kullanın; eleman yoksa `null` döner. `getBy` eleman şu anda DOM'da olmalıysa kullanılır."
+  - question: "Hangisi başlığı bulur?"
+    lang: tsx
+    code: |-
+      render(<h2>Mechanical Keyboard</h2>);
+
+      screen.getByText("keyboard");   // A
+      screen.getByText(/keyboard/i);  // B
+    options:
+      - "Yalnızca A"
+      - "Yalnızca B"
+      - "İkisi de"
+      - "Hiçbiri"
+    answer: 1
+    explanation: "Metin sorguları varsayılan olarak tam eşleşme ve büyük/küçük harf duyarlı çalışır; A bulamaz. Regex kısmi ve harf duyarsız eşleştiği için B bulur."
+  - question: "Bu sorgu ne yapar?"
+    lang: tsx
+    code: |-
+      render(<button hidden>Close</button>);
+      screen.getByRole("button");
+    options:
+      - "Hata fırlatır; `getByRole` erişilebilirlik ağacından çıkarılan elemanları varsayılan olarak yok sayar"
+      - "Butonu bulur"
+      - "Uyarı verip butonu döndürür"
+      - "`null` döner"
+    answer: 0
+    explanation: "`hidden`, `display: none`, `visibility: hidden` ve `aria-hidden=\"true\"` elemanlar varsayılan olarak yok sayılır. Onları bulmak için `hidden: true` ekleyin."
 ---
 
 ## Temel kural

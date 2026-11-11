@@ -38,6 +38,44 @@ translationKey: "vitest/introduction"
 
 - `translationKey` is `<track>/<lesson>`, and it is the same in every locale.
 
+## Quiz
+
+A regular lesson (`kind: "lesson"`, not a project or the glossary) can end with
+a short quiz. It lives in the frontmatter, so it never counts towards the
+300-character publish threshold.
+
+```yaml
+quiz:
+  - question: "`items` boş bir diziyken ekranda ne görünür?"
+    code: |-
+      <div>
+        {items.length && <List items={items} />}
+      </div>
+    options:
+      - "Hiçbir şey"
+      - "`0`"
+      - "`false`"
+      - "React hata fırlatır"
+    answer: 1
+    explanation: "`items.length` `0` olduğunda `&&` ifadesi `0` döndürür ve React `0`'ı render eder."
+```
+
+- Exactly **3 questions**, each with exactly **4 options**. `answer` is the
+  zero-based index of the one correct option.
+- `code` is optional. Its language is `tsx` unless `lang` says otherwise
+  (`lang: css`). Write it with `|-` so the indentation is kept.
+- `question`, `options` and `explanation` accept inline code in backticks.
+- Aim for medium-to-hard: apply what the lesson teaches to a short piece of
+  code (predict the result, pick the rule that wins) rather than recall a
+  definition.
+- **Every question must be answerable from the lesson itself** and have exactly
+  one correct option. Check each one against the lesson text and its sources;
+  a question that is not in the lesson, or is open to two readings, does not
+  ship. When a lesson's `lastVerified` changes, check its quiz too.
+- The English quiz is written in the same pass. It keeps the same order of
+  questions, the same option order and the same `answer` index;
+  `node scripts/check-translation.mjs` compares them.
+
 ## Callouts
 
 ```md

@@ -3,6 +3,31 @@ title: "Yayın öncesi kontrol listesi"
 description: "Canlıya çıkmadan önce bakılacaklar ve yayın günü planı."
 lastVerified: "2026-11-03"
 translationKey: "production/pre-release-checklist"
+quiz:
+  - question: "`Strict-Transport-Security` başlığı ne zaman eklenmelidir?"
+    options:
+      - "Site tamamen HTTPS ile sunuluyorsa; başlık tarayıcıya siteyi bundan sonra yalnızca HTTPS ile açmasını söyler"
+      - "Yalnızca geliştirme ortamında"
+      - "Yalnızca CDN arkasındaysa"
+      - "Her projede ilk gün"
+    answer: 0
+    explanation: "HSTS'i HTTPS'e tam geçmeden eklemeyin; tarayıcı siteyi HTTP ile açmayı reddeder."
+  - question: "Yetki kontrolü için kontrol listesi ne ister?"
+    options:
+      - "Her Server Action ve Route Handler kendi içinde kimlik ve yetki kontrolü yapmalı"
+      - "Sayfa düzeyindeki kontrol yeterlidir"
+      - "Kontrolü yalnızca `proxy.ts`'te yapmak yeterlidir"
+      - "Yalnızca admin sayfalarında kontrol gerekir"
+    answer: 0
+    explanation: "Next.js dokümanı yalnızca proxy'ye ya da sayfa düzeyindeki kontrole güvenmemenizi söyler. Her uç nokta açıktır; kontrol veriye yakın yapılır."
+  - question: "Build çıktısında statik olmasını beklediğiniz bir pazarlama sayfası `ƒ` ile görünüyor. Bu ne anlama gelir?"
+    options:
+      - "Sayfa build'de hata verdi"
+      - "Sayfa statik ve CDN'den sunuluyor"
+      - "Sayfa yalnızca geliştirmede çalışıyor"
+      - "Sayfa isteğe bağlı (dinamik) render ediliyor; istek anı verisi okuyan bir şey var, incelenmeli"
+    answer: 3
+    explanation: "Route tablosunda statik sayfalar `○`, isteğe bağlı olanlar `ƒ` ya da `◐` (Partial Prerender) ile görünür. Beklenmeyen `ƒ`, sayfanın cookie, başlık ya da cache'lenmemiş veri okuduğunu gösterir."
 ---
 
 ## Neden liste?

@@ -3,6 +3,31 @@ title: "Persist and devtools"
 description: "Persistent state, migrations, hydration and Redux DevTools."
 lastVerified: "2026-11-03"
 translationKey: "zustand/persist-and-devtools"
+quiz:
+  - question: "After a reload the cart items should stay, but whether the drawer was open should not be saved. Which option?"
+    options:
+      - "`version: 1`"
+      - "`name: \"cart-items\"`"
+      - "`storage: createJSONStorage(() => sessionStorage)`"
+      - "`partialize: (state) => ({ items: state.items })`"
+    answer: 3
+    explanation: "By default the whole state is saved. `partialize` picks the fields to save, leaving temporary values (is the drawer open) out."
+  - question: "A cart store with `persist` causes a hydration error in Next.js. What is the lesson's fix?"
+    options:
+      - "Set `skipHydration: true` and call `persist.rehydrate()` in an effect after mount"
+      - "Remove `persist`"
+      - "Use cookies instead of `localStorage`"
+      - "Read the store in a Server Component"
+    answer: 0
+    explanation: "The server has no `localStorage` and renders an empty cart. If the store fills immediately in the browser, the first render differs. `skipHydration` turns off automatic hydration, and `rehydrate()` runs after mount."
+  - question: "You changed the shape of the saved data and bumped `version` from 0 to 1, without writing `migrate`. What happens to a user's old record?"
+    options:
+      - "By default the record is not used"
+      - "The old record is loaded as is"
+      - "The app fails to start"
+      - "It is converted to the new shape automatically"
+    answer: 0
+    explanation: "If the stored version differs from the code's, the record is not used by default. Write `migrate` to keep the old data."
 ---
 
 ## Storing with persist

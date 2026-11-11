@@ -3,6 +3,39 @@ title: "AI SDK ve streaming sohbet"
 description: "useChat, streamText, model sağlayıcısı seçimi ve akan yanıtı arayüze yansıtma."
 lastVerified: "2026-11-03"
 translationKey: "ai/ai-sdk-and-streaming-chat"
+quiz:
+  - question: "Kullanıcı Gönder'e bastı, istek gitti ama modelden henüz ilk parça gelmedi. `useChat`'in `status` değeri nedir?"
+    options:
+      - "`ready`"
+      - "`error`"
+      - "`streaming`"
+      - "`submitted`"
+    answer: 3
+    explanation: "`submitted` aşamasında yükleme göstergesi, `streaming` aşamasında büyüyen metin ve Durdur butonu gösterilir. 1 saniyeden kısa beklemelerde yükleme durumu titreme yapar."
+  - question: "Client'tan gelen `model` anahtarını kontrol ederken neden `model in MODELS` yerine `Object.hasOwn` kullanılır?"
+    lang: ts
+    code: |-
+      const MODELS = {
+        claude: 'anthropic/claude-sonnet-5.5',
+        gpt: 'openai/gpt-6-astra',
+      } as const;
+
+      const key = model && Object.hasOwn(MODELS, model) ? model : 'claude';
+    options:
+      - "`in`, `toString` gibi prototipten gelen anahtarlarda da `true` döner"
+      - "`Object.hasOwn` daha hızlıdır"
+      - "`in` `as const` nesnelerde çalışmaz"
+      - "`in` TypeScript'te derlenmez"
+    answer: 0
+    explanation: "Client'tan model adını doğrudan `streamText`'e vermeyin; yalnızca bir anahtar gönderin ve sunucuda izin listesiyle eşleştirin."
+  - question: "Sunucuda hata olduğunda `toUIMessageStream`'in `onError` fonksiyonu ne döndürmelidir?"
+    options:
+      - "Hiçbir şey; hata client'ta zaten gösterilir"
+      - "Kullanıcıya genel bir mesaj; ayrıntı sunucuda loglanır"
+      - "`error.stack`"
+      - "`error.message`"
+    answer: 1
+    explanation: "Hata mesajları sunucuya ait iç bilgiler taşıyabilir. `onError` verilmezse client'a `An error occurred.` gider; client'ta hata `error` nesnesinde görünür ve `regenerate()` ile yeniden denenebilir."
 ---
 
 Yapay zekâ yanıtının tamamını beklemek yerine, model ürettikçe parça parça göstermek sohbet arayüzünün temelidir: kullanıcı yanıtı hazır olur olmaz görmeye başlar.[^1] AI SDK bu işi ikiye böler. Server'da `streamText` modeli çağırır, client'ta `useChat` gelen akışı mesaj durumuna çevirir.[^1]

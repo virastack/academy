@@ -3,6 +3,44 @@ title: "Setup"
 description: "Adding Playwright, the configuration and webServer."
 lastVerified: "2026-11-03"
 translationKey: "playwright/setup"
+quiz:
+  - question: "With `npm run dev` running in a terminal, what happens when you run `npx playwright test` locally?"
+    lang: ts
+    code: |-
+      webServer: {
+        command: "npm run build && npm run start",
+        url: "http://localhost:3000",
+        reuseExistingServer: !process.env.CI,
+      },
+    options:
+      - "Tests do not start because of a port clash"
+      - "Playwright builds first and starts a new server"
+      - "It stops the dev server and starts a production one"
+      - "It reuses the server that is already running; in CI it always starts a new one"
+    answer: 3
+    explanation: "`reuseExistingServer` reuses a server running locally. Before pushing, stop the dev server and run once against a production build; the Next.js docs recommend testing the production build."
+  - question: "By default, how long do a Playwright test and a web-first assertion wait?"
+    options:
+      - "Test 30 s, assertion 5 s"
+      - "Test 5 s, assertion 30 s"
+      - "Both 30 s"
+      - "Test unlimited, assertion 1 s"
+    answer: 0
+    explanation: "Each test waits 30 seconds by default, and each web-first assertion 5 seconds. Actions and navigation have no limit of their own; the test timeout bounds them."
+  - question: "Which projects does `npx playwright test` run?"
+    lang: ts
+    code: |-
+      projects: [
+        { name: "chromium", use: { ...devices["Desktop Chrome"] } },
+        { name: "firefox", use: { ...devices["Desktop Firefox"] }, default: false },
+      ],
+    options:
+      - "Only `firefox`"
+      - "None; a project name is required"
+      - "Both"
+      - "Only `chromium`; running all needs `--project=\"*\"`"
+    answer: 3
+    explanation: "`default: false` (Playwright 1.64) keeps a project in the config but out of the default run. Locally only Chromium runs; in CI `--project=\"*\"` runs them all."
 ---
 
 ## What is an end-to-end test?

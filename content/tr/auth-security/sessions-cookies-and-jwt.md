@@ -3,6 +3,45 @@ title: "Oturum, cookie ve JWT"
 description: "Sunucu oturumu ile JWT farkı, cookie bayrakları ve token'ın nerede saklanacağı."
 lastVerified: "2026-11-03"
 translationKey: "auth-security/sessions-cookies-and-jwt"
+quiz:
+  - question: "Bu token'ı ele geçiren ama `secret`'ı bilmeyen biri ne yapabilir?"
+    lang: ts
+    code: |-
+      const token = await new SignJWT({ role: "customer" })
+        .setProtectedHeader({ alg: "HS256" })
+        .setSubject("user_42")
+        .setExpirationTime("15m")
+        .sign(secret);
+
+      // sunucu her istekte:
+      await jwtVerify(token, secret, { algorithms: ["HS256"] });
+    options:
+      - "Hiçbir şey; payload şifrelidir"
+      - "`role`'ü `admin` yapıp geçerli bir token olarak kullanabilir"
+      - "Payload'ı okuyabilir; `role`'ü değiştirirse `jwtVerify` imza hatası verir"
+      - "Header'a `\"alg\": \"none\"` yazıp imzayı atlatabilir"
+    answer: 2
+    explanation: "İmzalı JWT şifreli değildir; `decodeJwt` anahtar olmadan payload'ı okur. İmza payload'ın değiştirilmediğini garanti eder. `algorithms: [\"HS256\"]` listesi `alg: none` hilesini de engeller. Payload'a e-posta ya da parola gibi bilgiler koymayın."
+  - question: "\"Tüm cihazlardan çıkış yap\" özelliği isteniyor: oturum süresi dolmadan anında bitmeli. Hangi yaklaşım bunu en basit sağlar?"
+    options:
+      - "15 dakikalık JWT"
+      - "Token'ı `localStorage`'dan silmek"
+      - "Sunucu oturumu; kaydı veritabanından silmek yeter"
+      - "Uzun ömürlü JWT"
+    answer: 2
+    explanation: "JWT süresi dolana kadar geçerlidir; erken iptal için ayrı bir engel listesi gerekir. Sunucu oturumunda kontrol sunucudadır. Çıkışta da oturumu sunucuda silin; yalnızca cookie'yi silmek çalınmış bir kopyayı geçersiz kılmaz."
+  - question: "Bu iki cookie'yi alan sayfada `document.cookie` ne döndürür?"
+    lang: http
+    code: |-
+      Set-Cookie: session_id=abc123; HttpOnly; SameSite=Lax; Path=/
+      Set-Cookie: theme=dark; SameSite=Lax; Path=/
+    options:
+      - "`session_id=abc123; theme=dark`"
+      - "Boş metin"
+      - "`session_id=abc123`"
+      - "`theme=dark`"
+    answer: 3
+    explanation: "`HttpOnly` cookie JavaScript'ten okunamaz, yalnızca DevTools'ta görünür. Bu, token'ın kopyalanıp başka yerden kullanılmasını engeller; ama XSS açığı olan sayfada saldırgan yine kullanıcı adına istek atabilir."
 ---
 
 ## Oturum neden gerekir

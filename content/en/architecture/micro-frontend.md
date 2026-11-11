@@ -3,6 +3,37 @@ title: "Micro frontend"
 description: "When you need it, when you don't, and a basic setup with Vite and Module Federation."
 lastVerified: "2026-11-03"
 translationKey: "architecture/micro-frontend"
+quiz:
+  - question: "A single team only wants shorter build times. Are micro frontends the right tool?"
+    options:
+      - "No; micro frontends are a deployment decision, used when independent deploys are required"
+      - "Yes, but only with iframes"
+      - "Yes, it is the fastest way"
+      - "Yes, Module Federation speeds up builds"
+    answer: 0
+    explanation: "Their real gain is team autonomy and speed to market, not performance. For most teams the fastest path is a modular monolith with clear module boundaries."
+  - question: "What does `singleton: true` give you for React?"
+    lang: ts
+    code: |-
+      shared: {
+        react: { singleton: true },
+        'react-dom': { singleton: true },
+      }
+    options:
+      - "React is embedded in the entry file up front"
+      - "Only one version is loaded in the shared scope; if host and remote want different versions, the higher one loads"
+      - "Each remote loads its own copy of React"
+      - "React only runs in the host"
+    answer: 1
+    explanation: "`singleton` is a must for libraries that need exactly one copy, like React. Share only what really must be single; the side asking for the lower version gets a console warning."
+  - question: "For sharing data between micro frontends, which raises the risk of a \"distributed monolith\"?"
+    options:
+      - "A shared global store that every app reads and writes"
+      - "A custom event"
+      - "A URL parameter"
+      - "A callback passed down"
+    answer: 0
+    explanation: "A global store, or a shell that knows everything, ties the apps together again. When they need to communicate, use custom events, callbacks or the URL, and keep the shell thin."
 ---
 
 A micro frontend is an architectural style where frontend applications that can be released independently are combined into a single whole.[^1] Every team owns its own vertical slice (the cart page, say) from the idea to production, while the user sees a single product.[^1] This guide answers the real question first: do you really need this? Then it builds the smallest working setup with **Module Federation** on **Vite**.

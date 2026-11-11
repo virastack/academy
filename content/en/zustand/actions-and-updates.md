@@ -3,6 +3,47 @@ title: "Actions and updates"
 description: "Actions as events, immer and resetting the store."
 lastVerified: "2026-11-03"
 translationKey: "zustand/actions-and-updates"
+quiz:
+  - question: "Which approach does TkDodo recommend, and why?"
+    lang: ts
+    code: |-
+      // A
+      const { setItems } = useCartActions();
+      setItems(items.some((i) => i.id === product.id) ? items.map(/* ... */) : [...items, product]);
+
+      // B
+      const { addProduct } = useCartActions();
+      addProduct(product);
+    options:
+      - "B; the action is modelled as an event, and the business rule lives in one place, the store"
+      - "They are equivalent"
+      - "A; the component knows best what should change"
+      - "A; setters are faster"
+    answer: 0
+    explanation: "Model actions as events, not setters: the component says what happened and the store decides what to do. The rule \"adding the same product increases the quantity\" stays in one place and is easy to test."
+  - question: "When is this `set` call correct?"
+    lang: ts
+    code: |-
+      set((state) => {
+        const existing = state.items.find((item) => item.id === product.id);
+        if (existing) existing.quantity += 1;
+        else state.items.push({ ...product, quantity: 1 });
+      });
+    options:
+      - "Only with the `persist` middleware"
+      - "Only if the store was created with the `immer` middleware"
+      - "Always"
+      - "Never"
+    answer: 1
+    explanation: "Mutating a draft and returning nothing is only valid inside the `immer` middleware. Without it, `state.items.push` corrupts the store and the screen does not update."
+  - question: "How does the lesson reset the cart store after checkout?"
+    options:
+      - "`useCartStore.destroy()`"
+      - "`set(store.getInitialState())`, using the store passed as `create`'s third parameter"
+      - "Reload the page"
+      - "You have to copy the initial values into a separate constant and `set` them"
+    answer: 1
+    explanation: "The third parameter of the function passed to `create` is the store itself; `getInitialState()` returns the initial state. There is no need to copy the initial values into a separate constant."
 ---
 
 ## Gather the actions in an object of their own

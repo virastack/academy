@@ -3,6 +3,31 @@ title: "Slice pattern"
 description: "Store'u küçük store'lara ya da slice'lara bölmek."
 lastVerified: "2026-11-03"
 translationKey: "zustand/slice-pattern"
+quiz:
+  - question: "\"Sepete ekle\" hem sepet listesini güncelliyor hem sepet çekmecesini açıyor. Hangi yapı daha uygundur?"
+    options:
+      - "Her component'te ayrı store"
+      - "Birbirini hiç bilmeyen iki küçük store"
+      - "Çekmece durumunu `useState`'te tutmak"
+      - "Slice'lardan oluşan tek store; ortak action ayrı bir slice'ta `get()` ile iki slice'ın action'ını çağırır"
+    answer: 3
+    explanation: "Parçalar birbirini değiştiriyorsa tek store daha uygundur. Birden fazla slice'ı ilgilendiren action ayrı bir slice'a konur; `get` tüm store'u görür."
+  - question: "Hem sepet slice'ında hem arayüz slice'ında `reset` adlı bir action var. Ne olur?"
+    options:
+      - "TypeScript iki `reset`'i birleştirir"
+      - "Slice'lar aynı nesneye yayıldığı için sonraki öncekini ezer"
+      - "İkisi de çalışır"
+      - "Zustand bir uyarı verip ikincisini yok sayar"
+    answer: 1
+    explanation: "`...createCartSlice(...a), ...createUiSlice(...a)` aynı nesneye yayılır. Alan adları çakışmamalı; `cartActions`, `uiActions` gibi ayrı adlar verin."
+  - question: "`persist` middleware'i slice'larla kurulan bir store'da nereye konmalı?"
+    options:
+      - "Middleware slice'larla kullanılamaz"
+      - "Her slice'ın içine ayrı ayrı"
+      - "Yalnızca birleşmiş store'a, `create`'in içine"
+      - "Yalnızca saklanacak slice'ın içine"
+    answer: 2
+    explanation: "Middleware'i yalnızca birleşmiş store'a uygulayın; bir slice'ın içine `persist` ya da `devtools` koymak beklenmedik sonuçlar doğurur. Saklanacak alanları `partialize` ile seçin."
 ---
 
 ## Store büyüdüğünde iki yol

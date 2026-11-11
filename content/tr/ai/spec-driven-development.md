@@ -3,6 +3,31 @@ title: "Spec-driven geliştirme"
 description: "Agent'a önce spec ve görev listesi yazdırma, sonra görev görev uygulatma ve spec'i güncel tutma."
 lastVerified: "2026-11-03"
 translationKey: "ai/spec-driven-development"
+quiz:
+  - question: "Plan modu ile spec dosyasının temel farkı nedir?"
+    options:
+      - "Plan daha ayrıntılıdır"
+      - "Plan commit edilir, spec edilmez"
+      - "Spec yalnızca Spec Kit ile yazılabilir"
+      - "Plan konuşmada kalır ve oturumla biter; spec repoda durur, PR'da incelenir ve yeni oturumda tekrar okunur"
+    answer: 3
+    explanation: "Plan birkaç dosyalık işler içindir; spec birden çok oturuma yayılan özellikler içindir. Karar değişirse önce spec'i, sonra kodu güncelleyin."
+  - question: "Hangisi iyi yazılmış bir kabul kriteridir?"
+    options:
+      - "\"Kupon düzgün çalışsın.\""
+      - "\"`SALE10` girildiğinde ara toplamdan %10 düşülür.\""
+      - "\"Kupon kodu temiz yazılsın.\""
+      - "\"Kupon formu kullanıcı dostu olsun.\""
+    answer: 1
+    explanation: "Test edilebilir kriter hem agent'a hedef hem size test olur. Spec'i ilgili dosyaları, kapsam dışını ve özelliği kanıtlayan bir doğrulamayla bitirin."
+  - question: "Komutlar, klasör yapısı ve kod stili gibi her özellikte aynı kalan bilgiler nereye yazılır?"
+    options:
+      - "`AGENTS.md`'ye"
+      - "Commit mesajına"
+      - "Her özelliğin spec'ine"
+      - "Görev listesine"
+    answer: 0
+    explanation: "Spec yalnızca o özelliğe aittir: hedef, kabul kriterleri, dosyalar, kapsam dışı ve sınırlar (her zaman, önce sor, asla)."
 ---
 
 Agent'a *"sepete kupon kodu ekle"* deyip beklemek hızlı başlar ama çoğu zaman yanlış yerde biter. Model söylemediğiniz her kararı kendi tahminiyle verir. [!github] ekibi sorunu şöyle özetliyor: agent'lara arama motoru gibi davranıyoruz, oysa onlar her şeyi harfi harfine alan bir eş programcı gibidir.[^1]

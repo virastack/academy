@@ -3,6 +3,31 @@ title: "Component-driven ve Atomic Design"
 description: "Arayüzü alttan yukarı kurmak ve ortak UI parçalarını sınıflandırmak."
 lastVerified: "2026-11-03"
 translationKey: "architecture/component-driven-and-atomic-design"
+quiz:
+  - question: "Atomic Design'da etiket, input ve butondan oluşan bir arama formu hangi aşamadadır?"
+    options:
+      - "Atom"
+      - "Molekül"
+      - "Organizma"
+      - "Şablon"
+    answer: 1
+    explanation: "Atom daha fazla bölününce işlevini yitiren temel öğedir (buton, input). Birlikte çalışan basit atom grubu moleküldür; site başlığı gibi karmaşık bölümler organizmadır."
+  - question: "Uygulamanın tamamını `atoms/`, `molecules/` ve `organisms/` klasörlerine bölmek neden önerilmez?"
+    options:
+      - "Bu, türe göre dizilimdir; bir özelliğin kodunu tek yerde bulma avantajını götürür. Ders Atomic Design'ı yalnızca ortak UI kitini sınıflandırmak için önerir"
+      - "Atomic Design klasör adı kabul etmez"
+      - "Bu klasörler derleme hatası verir"
+      - "Brad Frost aşama adlarının değiştirilmesini yasaklar"
+    answer: 0
+    explanation: "Atomic Design bir zihinsel modeldir, katı bir dogma değildir; Frost aşama adlarının ekibe göre değiştirilebileceğini söyler. Ortak UI kiti (`shared/ui`) için kullanın, özellik koduna uygulamayın."
+  - question: "Component-driven geliştirmenin ilk adımı hangisidir?"
+    options:
+      - "Önce bütün sayfaları kurmak"
+      - "Tasarım sistemini yazmak"
+      - "Sayfaları backend'e bağlamak"
+      - "Component'leri izole kurup durumlarını tek tek tanımlamak"
+    answer: 3
+    explanation: "Sıra: component'leri izole kurun, birleştirip büyük parçalar yapın, sahte veriyle sayfaları kurun, sonra veriye ve API'ye bağlayın."
 ---
 
 İkisi de arayüzü küçük parçalardan kurar ama farklı sorulara cevap verir. **Component-driven geliştirme** nasıl çalışacağınızı, **Atomic Design** parçaları nasıl sınıflandırıp adlandıracağınızı anlatır.

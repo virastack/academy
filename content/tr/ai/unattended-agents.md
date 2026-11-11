@@ -3,6 +3,37 @@ title: "Gözetimsiz agent"
 description: "Bulutta ve arka planda çalışan agent'lar, GitHub'da @claude ile iş verme, otomatik PR incelemesi ve sonucu doğrulama."
 lastVerified: "2026-11-03"
 translationKey: "ai/unattended-agents"
+quiz:
+  - question: "Yerel commit'lerinizi push etmeden `claude --cloud` ile bir iş başlatırsanız ne olur?"
+    options:
+      - "Komut hata verir"
+      - "Sanal makine repoyu GitHub'dan klonladığı için yerel commit'leriniz orada olmaz"
+      - "Bulut oturumu yerel klasörünüzü kopyalar"
+      - "Commit'ler otomatik push edilir"
+    answer: 1
+    explanation: "Önce push edin. Önerilen akış: planı yerelde plan modunda çıkarın, bir dosyaya yazıp push edin, uygulamayı buluta verin."
+  - question: "Bu komutta `--permission-mode dontAsk` ne yapar?"
+    lang: bash
+    code: |-
+      claude -p "Fix the lint errors in the changed files" \
+        --allowedTools "Edit,Bash(pnpm lint *)" \
+        --permission-mode dontAsk \
+        --max-turns 20
+    options:
+      - "Her şeye sormadan izin verir"
+      - "`--allowedTools` listesinde olmayan ve soru gerektirecek her şeyi reddeder"
+      - "Her adımda kullanıcıya sorar"
+      - "Agent'ı yalnızca okuma moduna alır"
+    answer: 1
+    explanation: "`--allowedTools` listedeki araçlara önceden izin verir, `--max-turns` tur sayısını sınırlar. Toplu bir işi önce birkaç dosyada deneyin, prompt'u düzeltin, sonra kalanını çalıştırın."
+  - question: "Yorumla tetiklenen deploy otomasyonu olan bir repoda neden auto-fix kapatılmalıdır?"
+    options:
+      - "Issue ve PR yorumları dışarıdan yazılabilir ve talimat gizlenebilir; auto-fix açıkken agent sizin adınıza yorum da yazar"
+      - "Auto-fix yalnızca taslak PR'larda çalışır"
+      - "Auto-fix CI dakikalarını iki katına çıkarır"
+      - "Auto-fix deploy'u engeller"
+    answer: 0
+    explanation: "Agent ne kadar uzun gözetimsiz çalışırsa bağımsız kontrol o kadar önemlidir: kontrol edilebilir hedef, kanıt ve izolasyon. API anahtarını da yalnızca repo secret'ı olarak saklayın."
 ---
 
 Şimdiye kadar agent sizin bilgisayarınızda, siz başındayken çalıştı. Oysa birçok iş sizi beklemeden de ilerleyebilir. Telefondan bir hata düzeltmesi başlatıp akşam PR'ını incelemek, her PR'a otomatik inceleme yaptırmak bunlara örnek. Bu derste agent'ı makinenizden ve ekrandan ayırıyoruz.

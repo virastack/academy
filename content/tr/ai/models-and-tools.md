@@ -3,6 +3,31 @@ title: "Modeller ve araçlar"
 description: "Model türleri, güçlü ve zayıf yönleri; sohbet, editör ve terminal tabanlı araçlar."
 lastVerified: "2026-11-03"
 translationKey: "ai/models-and-tools"
+quiz:
+  - question: "Agent `CartSummary` hatası için ilgili dosyaları okudu, testi çalıştırdı ama hâlâ yanlış çözüyor. Dersin önerdiği adım hangisidir?"
+    options:
+      - "Daha hızlı bir modele geçmek"
+      - "Effort'u artırmak"
+      - "Bir üst model katmanına geçmek"
+      - "Prompt'a \"iyice düşün\" eklemek"
+    answer: 2
+    explanation: "Model dosyayı okumadan yüzeysel bir yama yapıp bıraktıysa sorun effort'tur. Okuyup test çalıştırdığı hâlde yanlış çözüyorsa sorun modeldir. \"İyice düşün\" gibi ifadeler effort ayarının üstüne çıkarmaz."
+  - question: "30 dosyada import yollarını güncellemek için hangi model katmanı uygundur?"
+    options:
+      - "Hızlı ve ucuz katman"
+      - "En yüksek effort'lu düşünen model"
+      - "Dengeli katman"
+      - "En güçlü katman"
+    answer: 0
+    explanation: "Mantıksal risk taşımayan mekanik güncellemeleri pahalı modellere bırakmayın. Basit işte büyük model hem daha çok token harcar hem de token başı ücreti yüksektir; çıktı token'ı da girdiden genellikle birkaç kat pahalıdır."
+  - question: "Projedeki kütüphane modelin eğitim tarihinden yeni ve model eski API'yi öneriyor. Ders ne önerir?"
+    options:
+      - "Effort'u `max` yapmak"
+      - "Modele \"emin ol\" demek"
+      - "Daha büyük bir model seçmek"
+      - "Güncel dokümanı bağlama vermek"
+    answer: 3
+    explanation: "Modelin bilgisi eğitim tarihinde kalır; büyük model ya da yüksek effort bunu değiştirmez. Model var olmayan paket de önerebilir; önerilen her paketi kurmadan önce npm'de kontrol edin."
 ---
 
 Frontend geliştirmesinde yapay zekâ iki katmandan oluşur:

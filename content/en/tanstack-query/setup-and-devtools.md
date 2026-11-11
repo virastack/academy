@@ -3,6 +3,47 @@ title: "Setup and devtools"
 description: "The QueryClient, the defaults that surprise people, Devtools and the ESLint plugin."
 lastVerified: "2026-11-03"
 translationKey: "tanstack-query/setup-and-devtools"
+quiz:
+  - question: "What is wrong with this code?"
+    lang: tsx
+    code: |-
+      function App() {
+        const queryClient = new QueryClient();
+        return (
+          <QueryClientProvider client={queryClient}>
+            <Shop />
+          </QueryClientProvider>
+        );
+      }
+    options:
+      - "Nothing"
+      - "An app needs more than one provider"
+      - "`QueryClientProvider` can only be used in `main.tsx`"
+      - "A new `QueryClient` is created on every render and the cache is reset"
+    answer: 3
+    explanation: "Create the `QueryClient` outside the component. If you need it inside, use `useState(() => new QueryClient())`. The `stable-query-client` lint rule catches this."
+  - question: "The API returns an error, but the error screen only appears a few seconds later. Why?"
+    options:
+      - "Devtools delays the request"
+      - "Because `staleTime` defaults to `0`"
+      - "Because `gcTime` is 5 minutes"
+      - "The default `retry` is 3; the request is retried 3 more times with increasing delay"
+    answer: 3
+    explanation: "The error screen does not show until the three retries are done. That is why tests set `retry: false`."
+  - question: "What happens to the Devtools panel in a production build?"
+    lang: tsx
+    code: |-
+      <QueryClientProvider client={queryClient}>
+        <App />
+        <ReactQueryDevtools initialIsOpen={false} />
+      </QueryClientProvider>
+    options:
+      - "You have to remove it by hand"
+      - "Users see it too"
+      - "It is left out of the bundle automatically; it is only included when `NODE_ENV === \"development\"`"
+      - "It stays hidden but remains in the bundle"
+    answer: 2
+    explanation: "The panel is only bundled in development mode; it drops out of the production build automatically."
 ---
 
 ## Setup

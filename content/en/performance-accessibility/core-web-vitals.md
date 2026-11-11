@@ -3,6 +3,31 @@ title: "Core Web Vitals"
 description: "What LCP, INP and CLS mean."
 lastVerified: "2026-11-03"
 translationKey: "performance-accessibility/core-web-vitals"
+quiz:
+  - question: "A page's INP at the 75th percentile is 300 ms. Which band is it in?"
+    options:
+      - "Good"
+      - "Needs improvement"
+      - "Poor"
+      - "INP cannot be measured in the field"
+    answer: 1
+    explanation: "For INP, good is ≤ 200 ms, needs improvement is 200-500 ms, and poor is > 500 ms. 300 ms is in needs improvement."
+  - question: "For a page to count as \"good\" on a metric, what does the 75th-percentile rule require?"
+    options:
+      - "The average visit must be under the threshold"
+      - "25% of visits must exceed it"
+      - "At least three out of four visits must be under it"
+      - "Even the slowest visit must be under it"
+    answer: 2
+    explanation: "The assessment is not based on a single visit. The 75th percentile represents most visits and keeps a few extreme measurements from skewing the result."
+  - question: "A user clicks a menu button; the menu opens within 200 ms and pushes the content below it down. Does this shift count towards CLS?"
+    options:
+      - "No; shifts within 500 ms after a click are treated as expected"
+      - "Only if it lasts longer than 1 second"
+      - "Yes, every shift counts"
+      - "Only on mobile"
+    answer: 0
+    explanation: "Shifts within 500 ms after a user interaction count as expected. And CLS is not the running total over the page's life but the score of the worst group of shifts."
 ---
 
 ## What Core Web Vitals are

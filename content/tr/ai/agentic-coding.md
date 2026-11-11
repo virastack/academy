@@ -3,6 +3,31 @@ title: "Agentic kodlama"
 description: "Claude Code ve Cursor gibi araçlarla planla, kodla, test et döngüsü ve subagent'lar."
 lastVerified: "2026-11-03"
 translationKey: "ai/agentic-coding"
+quiz:
+  - question: "Agent'ın planla uyguladığı sonuç beklediğiniz gibi çıkmadı. Cursor ekibinin önerisi nedir?"
+    options:
+      - "Değişiklikleri geri alıp planı daha net yazmak ve yeniden çalıştırmak"
+      - "Takip mesajlarıyla adım adım düzeltmek"
+      - "Testleri silip yeniden yazdırmak"
+      - "Aynı konuşmada daha büyük bir modele geçmek"
+    answer: 0
+    explanation: "Cursor bunun çoğu zaman daha hızlı ve daha temiz sonuç verdiğini söylüyor. Agent istemediğiniz soyutlama eklerse sınır koyun: \"Yalnızca istenen değişikliği yap.\""
+  - question: "Claude Code'un `/rewind` checkpoint'leri neden git'in yerini tutmaz?"
+    options:
+      - "Commit mesajı yazmaz"
+      - "Yalnızca son bir saati kapsar"
+      - "Yalnızca plan modunda çalışır"
+      - "Yalnızca agent'ın dosya düzenleme araçlarıyla yaptığı değişiklikleri kapsar; terminal komutları ve deploy gibi uzak işlemler kapsanmaz"
+    answer: 3
+    explanation: "Bu yüzden küçük ve sık commit atın; her commit agent'ın bir sonraki hatasında geri dönebileceğiniz bir kayıt noktasıdır."
+  - question: "\"Projedeki tüm `fetch` çağrılarına bak, hata yönetimi olmayanları raporla\" işini subagent'a vermenin kazancı nedir?"
+    options:
+      - "Subagent daha güçlü bir model kullanır"
+      - "Okunan dosyaların içeriği ana konuşmaya girmez, yalnızca özet döner"
+      - "Subagent dosyalara yazamaz"
+      - "Subagent daha az token harcar"
+    answer: 1
+    explanation: "Subagent kendi context penceresinde çalışır. Aynı işte daha iyi cevap vermez ve token harcar; kazanç paralellik, uzun çıktıyı ana bağlamın dışında tutmak ve taze gözle incelemedir."
 ---
 
 Agent'la çalışmak, sohbetteki *"soruyu sor, cevabı kopyala"* düzenine benzemez. Agent'a bir iş verirsiniz: dosyaları açar, kodu değiştirir, komutları çalıştırır. Sizin işiniz görevi doğru kurmak ve çıkan sonucu kontrol etmektir.

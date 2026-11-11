@@ -3,6 +3,55 @@ title: "Interface, type ve union"
 description: "Nesne şekilleri, type alias, union ve literal tipler."
 lastVerified: "2026-11-03"
 translationKey: "typescript/interfaces-types-and-unions"
+quiz:
+  - question: "Son satırda ne olur?"
+    lang: ts
+    code: |-
+      interface Customer {
+        id: number;
+      }
+
+      interface Customer {
+        email: string;
+      }
+
+      const customer: Customer = { id: 1 };
+    options:
+      - "Geçerlidir"
+      - "İkinci interface birinciyi ezer; hata `id` için verilir"
+      - "Hata: `Duplicate identifier 'Customer'`"
+      - "Hata: `email` eksik"
+    answer: 3
+    explanation: "Aynı isimle yazılan iki interface tek interface'e birleşir (declaration merging). `Customer` artık `id` ve `email` ister. Aynısını `type` ile yazsaydınız `Duplicate identifier` hatası alırdınız."
+  - question: "Son satır hata verir mi?"
+    lang: ts
+    code: |-
+      type Product = { id: number; name: string; price: number };
+
+      const draft = { id: 1, name: "Wireless Headphones", price: 1299.9, colour: "siyah" };
+      const product: Product = draft;
+    options:
+      - "Evet: `'colour' does not exist in type 'Product'`"
+      - "Hayır, ama `colour` çalışma anında silinir"
+      - "Evet, ama yalnızca çalışma anında"
+      - "Hayır; fazla özellik kontrolü yalnızca taze object literal'larda çalışır"
+    answer: 3
+    explanation: "Object literal doğrudan `Product`'a verilseydi `colour` hata olurdu. Önce başka bir değişkene atandığı için tipler şekle göre karşılaştırılır ve `draft`, `Product`'ın istediği her alana sahiptir."
+  - question: "Fonksiyonun içinde, daraltma yapmadan hangisi hata vermeden derlenir?"
+    lang: ts
+    code: |-
+      type ProductId = number | string;
+
+      function findProduct(id: ProductId) {
+        // ?
+      }
+    options:
+      - "`id.toUpperCase()`"
+      - "`id.toFixed(0)`"
+      - "`id.length`"
+      - "`id.toString()`"
+    answer: 3
+    explanation: "TypeScript yalnızca union'ın her üyesinde geçerli olan işlemlere izin verir. `toString` hem `number` hem `string`'de vardır; diğerleri yalnızca birinde."
 ---
 
 ## Object tiplerine isim vermek

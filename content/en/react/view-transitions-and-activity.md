@@ -3,6 +3,42 @@ title: "View Transition and Activity"
 description: "Animating transitions and keeping the state of a hidden screen."
 lastVerified: "2026-11-03"
 translationKey: "react/view-transitions-and-activity"
+quiz:
+  - question: "The button calls a plain `setIsOpen`. What happens when `SizeGuide` opens?"
+    code: |-
+      <button onClick={() => setIsOpen((open) => !open)}>Size guide</button>
+      {isOpen && (
+        <ViewTransition>
+          <SizeGuide />
+        </ViewTransition>
+      )}
+    options:
+      - "It opens without animation, because the update is not a Transition"
+      - "It opens with the default cross-fade"
+      - "React throws an error"
+      - "Only the closing animation runs"
+    answer: 0
+    explanation: "Animations only run when the update is a Transition: `startTransition`, a Suspense boundary revealing, or `useDeferredValue`. A plain `setState` is applied without animation."
+  - question: "The user types into the review form, switches tabs and comes back. Which is true?"
+    code: |-
+      <Activity mode={tab === "reviews" ? "visible" : "hidden"}>
+        <ReviewList />
+      </Activity>
+    options:
+      - "State and DOM are kept; Effects are torn down while hidden"
+      - "State is kept and Effects keep running while hidden"
+      - "State is deleted and the form opens empty"
+      - "The DOM is deleted but state is kept"
+    answer: 0
+    explanation: "`mode=\"hidden\"` hides the children with `display: none` and tears down their Effects. Back to `visible`, state and DOM return as they were and Effects are set up again."
+  - question: "What should you do with `ViewTransition` animations for users who want less motion?"
+    options:
+      - "Nothing; React turns them off by itself"
+      - "Use `Activity` instead of `ViewTransition`"
+      - "Turn them off or soften them with the `prefers-reduced-motion` media query"
+      - "Call `startViewTransition` yourself to control them"
+    answer: 2
+    explanation: "React does not turn animations off by itself for users who want less motion. The docs recommend turning them off or softening them with `prefers-reduced-motion`."
 ---
 
 ## Two new components

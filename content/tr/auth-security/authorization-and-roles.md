@@ -3,6 +3,47 @@ title: "Yetkilendirme ve roller"
 description: "Rol ve izin kontrolü; sayfa, API ve Server Action koruması."
 lastVerified: "2026-11-03"
 translationKey: "auth-security/authorization-and-roles"
+quiz:
+  - question: "Bu ayarla kayıt isteğine `\"role\": \"admin\"` eklenirse ne olur?"
+    lang: ts
+    code: |-
+      user: {
+        additionalFields: {
+          role: { type: "string", defaultValue: "customer", input: false },
+        },
+      },
+    options:
+      - "Kullanıcı `admin` olarak kaydedilir"
+      - "İstek başarılı olur ama veritabanına `customer` yazılır"
+      - "İstek 400 hatası verir"
+      - "Hesap kilitlenir"
+    answer: 1
+    explanation: "`input: false` alanın kayıt ya da güncelleme isteğiyle gönderilmesini engeller. Rolü `localStorage`'da, URL'de ya da client'ın gönderdiği bir alanda tutup ona güvenmeyin."
+  - question: "Bu fonksiyondaki güvenlik açığı nedir?"
+    lang: ts
+    code: |-
+      export async function cancelOrder(orderId: string) {
+        const user = await getCurrentUser();
+        await db.order.update({
+          where: { id: orderId },
+          data: { status: "cancelled" },
+        });
+      }
+    options:
+      - "`\"use server\"` eksik"
+      - "Sipariş kimliği UUID değil"
+      - "Sahiplik kontrolü yok; giriş yapmış herhangi bir kullanıcı başkasının sipariş kimliğini göndererek iptal edebilir (IDOR)"
+      - "Giriş kontrolü yok"
+    answer: 2
+    explanation: "`getCurrentUser` girişi kontrol eder ama sipariş kullanıcıya ait mi diye bakılmıyor. Tahmin edilemez kimlikler IDOR'u zorlaştırır ama çözmez; OWASP her nesne için ayrı yetki kontrolü ister."
+  - question: "Giriş yapmış ama `order:read-all` izni olmayan bir müşteri Route Handler'a istek atıyor. Hangi durum kodu dönmeli?"
+    options:
+      - "`200 OK` ve boş liste"
+      - "`500 Internal Server Error`"
+      - "`401 Unauthorized`"
+      - "`403 Forbidden`"
+    answer: 3
+    explanation: "`401` kim olduğun belli değil, `403` kim olduğunu biliyorum ama izin yok demektir; tekrar giriş yapmak sonucu değiştirmez. Kaydın varlığını bile göstermek istemiyorsanız `403` yerine `404` dönebilirsiniz."
 ---
 
 Kimlik doğrulama "sen kimsin?" sorusunu yanıtlar. **Yetkilendirme** *(authorization)* ise "bunu yapmaya iznin var mı?" sorusunu. Giriş yapmış her kullanıcı her şeyi yapamaz: müşteri yalnızca kendi siparişini görür, editör ürün günceller, yönetici kullanıcıları yönetir.

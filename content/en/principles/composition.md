@@ -3,6 +3,42 @@ title: "Composition over Inheritance"
 description: "Why composition, not inheritance, is used in React."
 lastVerified: "2026-11-03"
 translationKey: "principles/composition"
+quiz:
+  - question: "What is the recommended way to make a red `DangerButton` in React?"
+    options:
+      - "`class DangerButton extends Button {}`"
+      - "Copying `Button`'s source and changing it"
+      - "A new component that renders `Button` with `variant=\"danger\"` (composition)"
+      - "Adding a mixin to `Button`"
+    answer: 2
+    explanation: "The React team recommends composition for sharing code; across thousands of components they found no case that needed an inheritance hierarchy. This pattern is called specialization."
+  - question: "What is wrong with this use of a HOC?"
+    lang: tsx
+    code: |-
+      function Page() {
+        const EnhancedList = withLogging(ProductList);
+        return <EnhancedList />;
+      }
+    options:
+      - "`withLogging` should be a hook"
+      - "Nothing"
+      - "HOCs no longer work"
+      - "The HOC is applied inside render, so a new component type is created on every render and the subtree's state is lost"
+    answer: 3
+    explanation: "HOCs should not be applied inside render. Modern React code mostly shares logic with custom hooks, which do it without reshaping the component tree."
+  - question: "Why do the React docs advise against generic \"lifecycle\" hooks like this?"
+    lang: ts
+    code: |-
+      function useMount(callback: () => void) {
+        useEffect(callback, []);
+      }
+    options:
+      - "They run slower"
+      - "The linter checks direct `useEffect` calls but not wrapped ones, so missing-dependency bugs slip through"
+      - "Hook names cannot start with `use`"
+      - "They do not work in Server Components"
+    answer: 1
+    explanation: "Write hooks with a concrete purpose (like `useOnlineStatus`). Nor do you need to turn every repetition into a hook; a little duplication is fine."
 ---
 
 If you have done object-oriented programming in another language, you may be used to sharing common behaviour through inheritance. This guide answers a single question for [!react]: how do you share shared code? The answer: not with inheritance but with composition.

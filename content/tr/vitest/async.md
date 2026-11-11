@@ -3,6 +3,47 @@ title: "Asenkron testler"
 description: "findBy, waitFor ve fake timers."
 lastVerified: "2026-11-03"
 translationKey: "vitest/async"
+quiz:
+  - question: "\"Loading products...\" mesajının kaybolmasını beklemek istiyorsunuz. Hangisi doğru?"
+    options:
+      - "`await waitFor(() => expect(screen.queryByText(\"Loading products...\")).not.toBeInTheDocument())`"
+      - "`expect(await screen.findByText(\"Loading products...\")).not.toBeInTheDocument()`"
+      - "`expect(screen.getByText(\"Loading products...\")).not.toBeInTheDocument()`"
+      - "`await waitFor(() => screen.findByText(\"Loading products...\"))`"
+    answer: 0
+    explanation: "Kaybolacak eleman için `waitFor` ve `queryBy` kullanılır. `findBy` görünmesini bekler, `getBy` yoksa hata fırlatır, `waitFor` içinde `findBy` gereksizdir."
+  - question: "Bu test neden zaman aşımıyla biter?"
+    lang: tsx
+    code: |-
+      beforeEach(() => {
+        vi.useFakeTimers();
+      });
+
+      test("shows the toast", async () => {
+        render(<AddedToast productName="Wireless Headphones" />);
+        expect(await screen.findByRole("status")).toBeInTheDocument();
+      });
+    options:
+      - "`afterEach`'te `useRealTimers` eksik"
+      - "`vi.useFakeTimers()` `findBy`'ı bekletir; `{ shouldAdvanceTime: true }` gerekir"
+      - "`findByRole` fake timer'larla çalışmaz, `getByRole` kullanılmalı"
+      - "Toast render olmaz"
+    answer: 1
+    explanation: "Düz `vi.useFakeTimers()` zamanı dondurur ve `findBy` ile `userEvent` beklemede kalır. `vi.useFakeTimers({ shouldAdvanceTime: true })` kullanın; `userEvent` için ayrıca `advanceTimers: vi.advanceTimersByTime` verin."
+  - question: "Bu kalıbın sorunu nedir?"
+    lang: tsx
+    code: |-
+      await waitFor(async () => {
+        await user.click(screen.getByRole("button", { name: "Add to cart" }));
+        expect(screen.getByRole("status")).toBeInTheDocument();
+      });
+    options:
+      - "`getByRole` `waitFor` içinde kullanılamaz"
+      - "`waitFor` async fonksiyon almaz"
+      - "`waitFor` fonksiyonu tekrar tekrar çalıştırır; tıklama da her denemede tekrar eder"
+      - "Sorun yok"
+    answer: 2
+    explanation: "`waitFor` içine yalnızca `expect` kontrolleri koyun. Kullanıcı işlemini önce, `waitFor`'ın dışında yapın."
 ---
 
 ## Asenkron arayüz nedir?

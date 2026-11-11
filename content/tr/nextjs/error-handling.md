@@ -3,6 +3,40 @@ title: "Hata yönetimi"
 description: "Beklenen hatalar, error.tsx ve retry, catchError ve notFound."
 lastVerified: "2026-11-03"
 translationKey: "nextjs/error-handling"
+quiz:
+  - question: "Ürün yoksa ne görünür?"
+    lang: tsx
+    code: |-
+      try {
+        const product = await getProduct(slug);
+        if (!product) notFound();
+        return <h1>{product.name}</h1>;
+      } catch {
+        return <p>Bir hata oluştu.</p>;
+      }
+    options:
+      - "\"Bir hata oluştu.\" mesajı; `notFound()` içeride hata fırlatarak çalıştığı için `catch` onu yakalar"
+      - "`not-found.tsx` gösterilir"
+      - "Boş sayfa"
+      - "`error.tsx` gösterilir"
+    answer: 0
+    explanation: "`notFound()` ve `redirect()` içeride bir hata fırlatarak çalışır. `try` bloğunun içinde çağrılırlarsa `catch` yakalar ve çalışmazlar; onları `try`/`catch` dışında çağırın."
+  - question: "`error.tsx`'teki `retry()` ile eski örneklerdeki `reset()` arasındaki fark nedir?"
+    options:
+      - "Aynı şeyi yaparlar"
+      - "`reset()` veriyi yeniden çeker, `retry()` sayfayı yeniler"
+      - "`retry()` yalnızca `global-error.tsx`'te çalışır"
+      - "`retry()` segmentin verisini yeniden çekip render eder; `reset()` yalnızca hata durumunu temizler"
+    answer: 3
+    explanation: "`retry()` 16.3'te kararlı hâle geldi ve veriyi tekrar çekerek render eder. `reset()` yalnızca hata durumunu temizler, veriyi yeniden çekmez."
+  - question: "Sayfa akmaya başladıktan sonra bir child component'te `notFound()` çağrılıyor. Ne olur?"
+    options:
+      - "Yanıt `404`'e döner"
+      - "Yanıt `200` kalır; Next.js sayfaya `noindex` meta etiketi ekler"
+      - "Yanıt `500` olur"
+      - "Sunucu tarafı bir HTTP yönlendirmesi yapılır"
+    answer: 1
+    explanation: "Akış başladıysa sunucu `200` durum koduna bağlanmıştır ve sonradan `404`'e çevrilemez. Next.js sayfaya `<meta name=\"robots\" content=\"noindex\">` ekler, arama motoru sayfayı dizine almaz."
 ---
 
 ## İki tür hata

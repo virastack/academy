@@ -3,6 +3,35 @@ title: "Secret and dependency security"
 description: "Keeping keys away from the client, .env and npm supply chain attacks."
 lastVerified: "2026-11-03"
 translationKey: "auth-security/secrets-and-dependencies"
+quiz:
+  - question: "An API key was committed to a public repository. What order does OWASP recommend?"
+    options:
+      - "Rewrite the git history and force push"
+      - "Delete the file and make a new commit"
+      - "Revoke the key first, then produce a new one, and clean it from the records last"
+      - "Add the file to `.gitignore`"
+    answer: 2
+    explanation: "Deleting the file is not enough; the key stays in old commits. Rewriting history does not fix other copies; revoking the key is the only sure fix. GitHub's push protection catches known key formats at push time."
+  - question: "With this setting, what happens if you try to install `next@16.4.2`, published 6 days ago?"
+    lang: ini
+    code: |-
+      # .npmrc
+      min-release-age=7
+    options:
+      - "npm asks for confirmation"
+      - "That version is not installed; the matching version older than 7 days (`16.4.1`) comes instead"
+      - "It installs; the setting only works in CI"
+      - "The install fails and stops"
+    answer: 1
+    explanation: "Compromised versions are often noticed and removed within a few days; the wait buys you that time. It delays security patches too, so add a package to `min-release-age-exclude` if needed."
+  - question: "What is a fake package published in advance under a package name an AI made up called?"
+    options:
+      - "Lockfile drift"
+      - "Slopsquatting"
+      - "Typosquatting"
+      - "A compromised package"
+    answer: 1
+    explanation: "Typosquatting is a similar name, such as `crossenv` instead of `cross-env`. Before installing a package an AI suggests, check with `npm view <package>` that it exists, and look at its downloads and repository."
 ---
 
 An application can be taken over two ways even when there is no mistake in your own code. Either a key leaks, or a package you installed carries malicious code. This lesson covers the most common forms of both and the simple measures against them.

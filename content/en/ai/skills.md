@@ -3,6 +3,43 @@ title: "Skills"
 description: "Turning repeated work into a skill and using ready-made frontend skills."
 lastVerified: "2026-11-03"
 translationKey: "ai/skills"
+quiz:
+  - question: "How is a skill different from a rule file (`AGENTS.md`)?"
+    options:
+      - "A skill loads fully in every session"
+      - "Only a skill's description stays in the context; its body loads when it is used"
+      - "A skill can only be invoked by hand"
+      - "A skill only works in Claude Code"
+    answer: 1
+    explanation: "A rule file holds facts that apply to every job; a skill holds a procedure for a specific job. Long reference material costs almost nothing until it is used."
+  - question: "What do you add so the agent cannot run this skill on its own, and only you trigger it with `/deploy`?"
+    lang: markdown
+    code: |-
+      ---
+      name: deploy
+      description: Deploys the app to production.
+      ---
+    options:
+      - "`disable-model-invocation: true`"
+      - "`user-invocable: false`"
+      - "`tools: Read`"
+      - "`paths: \"**/*.tsx\"`"
+    answer: 0
+    explanation: "By default both you and the agent can run a skill. For jobs with side effects, such as `deploy` and `commit`, turn off agent triggering. `user-invocable: false` is the opposite: for background knowledge only the agent needs."
+  - question: "Why does this skill rarely trigger at the right time?"
+    lang: markdown
+    code: |-
+      ---
+      name: docs
+      description: Handles documents.
+      ---
+    options:
+      - "The skill body is missing"
+      - "The agent picks a skill by looking at nothing but the `description`, and this text does not say what it does or when to use it"
+      - "The skill is outside `.claude/skills/`"
+      - "The `name` is too short"
+    answer: 1
+    explanation: "Put both \"what it does\" and \"when\" in the `description`, in the third person (\"adds\"). Put the important use case first."
 ---
 
 If you are pasting the same instruction into a chat for the third time, that job wants to be a skill. The [!claudeCode] docs recommend skills for exactly these situations: when you keep pasting the same instruction, checklist or multi-step procedure, or when a section of your `CLAUDE.md` has stopped being a fact and turned into a procedure.[^1]

@@ -3,6 +3,47 @@ title: "Controlled ve uncontrolled formlar"
 description: "Değeri kimin tuttuğu, FormData ve yaygın hatalar."
 lastVerified: "2026-11-03"
 translationKey: "forms/controlled-and-uncontrolled-forms"
+quiz:
+  - question: "Kullanıcı bu alana yazmaya çalışınca ne olur?"
+    lang: tsx
+    code: |-
+      const [name] = useState("Ada");
+
+      <input value={name} />
+    options:
+      - "React değeri `defaultValue` sayar"
+      - "Alan uncontrolled'a döner"
+      - "Normal şekilde yazar"
+      - "Yazamaz; `value` var ama `onChange` yok, alan salt okunur olur"
+    answer: 3
+    explanation: "`value` verilen ama `onChange` olmayan alan salt okunurdur ve React konsolda uyarır. Gerçekten salt okunursa `readOnly` verin; değilse `onChange` ekleyin ya da `defaultValue`'ya geçin."
+  - question: "Kullanıcı ilk harfi yazdığında React neden uyarı verir?"
+    lang: tsx
+    code: |-
+      const [email, setEmail] = useState<string>();
+
+      <input value={email} onChange={(e) => setEmail(e.target.value)} />
+    options:
+      - "E-posta alanı `type=\"email\"` olmalı"
+      - "Alan `undefined` ile başladığı için uncontrolled sayıldı, sonra controlled oldu"
+      - "`useState`'e tip verilmemiş"
+      - "`onChange` yanlış yazılmış"
+    answer: 1
+    explanation: "Başlangıçta `undefined` olan alan uncontrolled'dır; değer gelince controlled olur ve React \"uncontrolled'dan controlled'a geçiş\" uyarısı verir. Metin alanlarını `\"\"` ile başlatın."
+  - question: "Kullanıcı `30` yazdıysa `age` nedir?"
+    lang: tsx
+    code: |-
+      <input name="age" type="number" />
+
+      // gönderimde
+      const age = new FormData(event.currentTarget).get("age");
+    options:
+      - "`null`"
+      - "`NaN`"
+      - "`30` (number)"
+      - "`\"30\"` (string)"
+    answer: 3
+    explanation: "`FormData.get` her zaman `string`, `File` ya da `null` döndürür; sayı alanı da metin gelir. Dönüştürmek ve doğrulamak sizin işinizdir, bu yüzden bir şema kullanılır."
 ---
 
 ## Değeri kim tutuyor?

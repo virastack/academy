@@ -3,6 +3,31 @@ title: "RAG ve embedding"
 description: "Kendi verinizi embedding ile arayıp modele bağlam olarak verme, parçalama, arama kalitesini ölçme ve güvenlik."
 lastVerified: "2026-11-03"
 translationKey: "ai/rag-and-embeddings"
+quiz:
+  - question: "İndeksi bir embedding modeliyle ürettiniz; şimdi soruları başka bir modelle vektöre çevirmek istiyorsunuz. Ne yapmalısınız?"
+    options:
+      - "İndeks ile sorgu aynı modeli kullanmalı; modeli değiştirirseniz tüm indeksi yeniden üretin"
+      - "Vektör boyutunu `dimensions` ile eşitlemek"
+      - "Yalnızca yeni eklenen belgeleri yeni modelle indekslemek"
+      - "Kosinüs yerine öklid mesafesi kullanmak"
+    answer: 0
+    explanation: "Farklı modellerin vektörleri aynı uzayda değildir; boyutları eşit olsa bile karşılaştırılamaz. Bazı sağlayıcılar doküman ve soru için ayrı mod ister (Voyage'da `input_type`)."
+  - question: "RAG cevabı kötü çıktığında ilk ne yapmalısınız?"
+    options:
+      - "Aramanın doğru parçayı getirip getirmediğini ölçmek (`hit@k`)"
+      - "`k` değerini en yükseğe çıkarmak"
+      - "Sistem talimatını uzatmak"
+      - "Modeli büyütmek"
+    answer: 0
+    explanation: "Dersteki ölçüm, \"taksit\" sorusunda doğru parçanın gelmediğini yakaladı. `k` büyüdükçe gürültü de artar; eşik ve `k`'yı ölçerek ayarlayın. Eşik, konu dışı soruda \"bilmiyorum\" demeyi mümkün kılar."
+  - question: "Tüm kullanıcıların belgeleri aynı vektör indeksinde. Bir kullanıcının sorusunun başkasının belgesini getirmesini nasıl önlersiniz?"
+    options:
+      - "Arama sorgusuna kullanıcının kimliğiyle filtre koyarak (izin farkında erişim)"
+      - "Vektörleri şifreleyerek"
+      - "Sistem talimatına \"başkasının belgesini gösterme\" yazarak"
+      - "`k` değerini 1'e düşürerek"
+    answer: 0
+    explanation: "Aranan parçalar modele giren güvenilmeyen veridir. Kullanıcıdan gelen belgeleri indekse almadan önce temizleyin; hassas veriyi vektör olarak saklamak onu gizlemez, vektörden metin geri kurulabilir."
 ---
 
 Model sizin verinizi bilmez: ürün kataloğunuzu, iade politikanızı, iç dokümanlarınızı. RAG (retrieval-augmented generation) bunu şöyle çözer: soruya uygun parçaları bulur ve modele soruyla birlikte verir.[^1] [Willison](https://simonwillison.net)'ın tespitiyle işin zor kısmı, isteme girecek en iyi parçaları bulmak.[^2]

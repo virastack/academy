@@ -3,6 +3,31 @@ title: "Test, eval ve code review"
 description: "Test yazdırma, Playwright MCP ile kontrol, model çıktısını ölçme (eval) ve AI kodunu gözden geçirme."
 lastVerified: "2026-11-03"
 translationKey: "ai/testing-evals-and-code-review"
+quiz:
+  - question: "AI'ın yazdığı testin sizi gerçekten koruyup korumadığını nasıl anlarsınız?"
+    options:
+      - "Testleri iki kez çalıştırarak"
+      - "Tüm testler yeşil mi diye bakarak"
+      - "Test sayısını sayarak"
+      - "Kodu bilerek bozup testin kırıldığını görerek"
+    answer: 3
+    explanation: "Dersteki zayıf testler, stok sınırı ve tutar hatası bilerek eklendiğinde yine geçti. Willison'a göre her değişiklik, uygulama geri alınınca kırılan bir test içermeli."
+  - question: "Vitest'te `globals` kapalı; testler tek tek geçiyor ama birlikte çalışınca \"Found multiple elements with the role...\" hatası veriyor. Sebep nedir?"
+    options:
+      - "Testing Library otomatik temizlik yapmıyor; `afterEach(() => cleanup())` ya da `globals: true` gerekir"
+      - "Testler paralel çalışıyor"
+      - "jsdom kurulu değil"
+      - "`getByRole` yerine `getByTestId` kullanılmalı"
+    answer: 0
+    explanation: "Otomatik temizlik yalnızca global bir `afterEach` varsa devreye girer. Bu yüzden önceki testin DOM'u sonrakinde kalır ve aynı rol iki kez bulunur."
+  - question: "Eval'de modelle notlandırırken (LLM-as-judge) hangisi önerilir?"
+    options:
+      - "Cevabı üreten modelin kendi cevabını notlaması"
+      - "Kodla notlandırmayı hiç kullanmamak"
+      - "Her cevabı bir kez çalıştırmak"
+      - "Farklı bir model, net bir rubrik ve verilen notların insan etiketleriyle karşılaştırılması"
+    answer: 3
+    explanation: "Önce kodla notlandırmayı (tam eşleşme, içerir mi) deneyin; nüans gerekiyorsa modelle notlandırın. Cevap her seferinde değişebileceği için her vakayı birkaç kez çalıştırın."
 ---
 
 AI test yazmakta hızlıdır. Ama geçen test, işe yarayan test demek değildir. Bu rehberde dört şeyi göreceksiniz: AI'a nasıl test yazdıracağınızı, Playwright MCP ile tarayıcıda nasıl kontrol ettireceğinizi, modelin cevaplarını nasıl ölçeceğinizi ve AI çıktısını nasıl gözden geçireceğinizi. Test örnekleri [Modeller ve Araçlar](/academy/ai/models-and-tools) rehberindeki e-ticaret sepetinden gidiyor: `CartItem` bileşeni, adet butonları ve stok sınırı.
@@ -114,7 +139,7 @@ it('renders', () => {
 
 it('increases quantity', () => {
   render(<CartItem name="Headphones" price={100} stock={3} />);
-  fireEvent.click(screen.getByText('Increase'));
+  fireEvent.click(screen.getByText('Artır'));
   expect(screen.getByText('2 adet')).toBeTruthy();
 });
 ```
@@ -132,21 +157,21 @@ it('updates the amount as the quantity grows', async () => {
   const user = userEvent.setup();
   render(<CartItem name="Headphones" price={100} stock={3} />);
 
-  await user.click(screen.getByRole('button', { name: 'Increase' }));
+  await user.click(screen.getByRole('button', { name: 'Artır' }));
 
   expect(screen.getByText('2 adet')).toBeInTheDocument();
   expect(screen.getByText('₺200,00')).toBeInTheDocument();
 });
 
-it('disables the Increase button when stock runs out', async () => {
+it('disables the Artır button when stock runs out', async () => {
   const user = userEvent.setup();
   render(<CartItem name="Headphones" price={100} stock={3} />);
 
-  await user.click(screen.getByRole('button', { name: 'Increase' }));
-  await user.click(screen.getByRole('button', { name: 'Increase' }));
+  await user.click(screen.getByRole('button', { name: 'Artır' }));
+  await user.click(screen.getByRole('button', { name: 'Artır' }));
 
   expect(screen.getByText('3 adet')).toBeInTheDocument();
-  expect(screen.getByRole('button', { name: 'Increase' })).toBeDisabled();
+  expect(screen.getByRole('button', { name: 'Artır' })).toBeDisabled();
 });
 
 it('never goes below a quantity of 1', () => {
@@ -195,7 +220,7 @@ Aşağıdaki sayfa `CartItem`'ın düz HTML karşılığı:
       <span>Headphones</span>
       <button type="button" id="dec">Azalt</button>
       <span id="qty">1 adet</span>
-      <button type="button" id="inc">Increase</button>
+      <button type="button" id="inc">Artır</button>
       <strong id="total">₺100,00</strong>
     </li>
   </ul>
@@ -239,10 +264,10 @@ Burada demo sayfayı statik sunucuyla açıyoruz. Kendi projenizde `command` ala
 // e2e/cart.spec.ts
 import { expect, test } from '@playwright/test';
 
-test('the Increase button is disabled when stock runs out', async ({ page }) => {
+test('the Artır button is disabled when stock runs out', async ({ page }) => {
   await page.goto('/');
 
-  const inc = page.getByRole('button', { name: 'Increase' });
+  const inc = page.getByRole('button', { name: 'Artır' });
   await inc.click();
   await inc.click();
 
@@ -276,23 +301,23 @@ Demo sayfada `browser_navigate` ve `browser_snapshot` çağrılınca şu çıkt�
 - heading "Sepet" [level=1] [ref=e2]
 - list [ref=e3]:
   - listitem [ref=e4]:
-    - text: Kulaklık
+    - text: Headphones
     - button "Azalt" [disabled] [ref=e5]
     - text: 1 adet
-    - button "Increase" [ref=e6]
+    - button "Artır" [ref=e6]
     - strong [ref=e7]: ₺100,00
 ```
 
-`browser_click` iki kez `Increase` butonuyla çağrılınca anlık görüntü şuna döndü:
+`browser_click` iki kez `Artır` butonuyla çağrılınca anlık görüntü şuna döndü:
 
 ```yaml
     - button "Azalt" [ref=e5]
     - text: 3 adet
-    - button "Increase" [disabled] [ref=e6]
+    - button "Artır" [disabled] [ref=e6]
     - strong [ref=e7]: ₺300,00
 ```
 
-Anlık görüntüdeki rol ve isimler (`button "Increase"`), testte kullandığınız `getByRole('button', { name: 'Artır' })` ile eşleşiyor. `browser_click` ayrıca çalıştırdığı Playwright kodunu da döndürüyor, bu satırı doğrudan teste taşıyabilirsiniz.
+Anlık görüntüdeki rol ve isimler (`button "Artır"`), testte kullandığınız `getByRole('button', { name: 'Artır' })` ile eşleşiyor. `browser_click` ayrıca çalıştırdığı Playwright kodunu da döndürüyor, bu satırı doğrudan teste taşıyabilirsiniz.
 
 [Willison](https://simonwillison.net)'ın önerdiği akış şu: önce değişikliği çalışırken görün, sonra geri alınınca kırılan bir otomatik test yazın.[^7] Playwright MCP ile bu kısalıyor:
 

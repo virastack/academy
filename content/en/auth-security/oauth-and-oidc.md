@@ -3,6 +3,40 @@ title: "OAuth and OIDC flows"
 description: "The authorization code flow and PKCE, access and ID tokens, and how 'Sign in with Google' works."
 lastVerified: "2026-11-03"
 translationKey: "auth-security/oauth-and-oidc"
+quiz:
+  - question: "In a flow with PKCE, why can an attacker who intercepts the authorization code not exchange it for a token?"
+    options:
+      - "They do not have the `code_verifier`; the authorization server compares its hash with the `code_challenge`"
+      - "The `state` value does not match"
+      - "The code is encrypted"
+      - "The code expires in one second"
+    answer: 0
+    explanation: "The app creates a random `code_verifier`, adds its SHA-256 hash to the first redirect as `code_challenge`, and sends the original when exchanging the code. `state`, on the other hand, checks that the response belongs to the flow you started."
+  - question: "Which is true about access tokens and ID tokens?"
+    options:
+      - "Both are always JWTs and are interchangeable"
+      - "The access token tells you who the user is"
+      - "The access token is for the API; the ID token is for your app (the client)"
+      - "The ID token is sent to the API and the client reads the access token"
+    answer: 2
+    explanation: "The rule on oauth.net: an ID token is not sent to an API, and a client does not read an access token. The access token's format depends on the provider and is opaque to the client; the ID token is always a JWT."
+  - question: "Which field should you use to match the user in this ID token to your database?"
+    lang: json
+    code: |-
+      {
+        "iss": "https://auth.example.com",
+        "sub": "248289761001",
+        "aud": "shop-web",
+        "nonce": "n-0S6_WzA2Mj",
+        "email": "alice@example.com"
+      }
+    options:
+      - "The `iss` + `sub` pair"
+      - "`email`"
+      - "`aud`"
+      - "`nonce`"
+    answer: 0
+    explanation: "`sub` is the user's permanent id at that provider; it does not change even if the email does. `aud` says which app the token was issued for, and `nonce` ties the request to the ID token to prevent replay."
 ---
 
 When you press the "Sign in with [!google] Google" button, two standards work together behind the scenes: **OAuth 2.0** and **OpenID Connect** *(OIDC)*, which is built on top of it. In this lesson you will see what each of them is for, which flow should be used today and where the tokens should live.

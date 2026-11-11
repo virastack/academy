@@ -3,6 +3,43 @@ title: "Custom hook"
 description: "Hook kuralları, mantığı hook'a taşıma ve useSyncExternalStore."
 lastVerified: "2026-11-03"
 translationKey: "react/custom-hooks"
+quiz:
+  - question: "`useDebouncedValue` iki farklı component'te çağrılıyor. Hangisi doğru?"
+    options:
+      - "Her çağrı kendi ayrı state'ini oluşturur"
+      - "İkinci çağrı birincinin değerini ezer"
+      - "Hook yalnızca bir component'te kullanılabilir"
+      - "İki component aynı state'i paylaşır"
+    answer: 0
+    explanation: "Hook mantığı paylaşır, state'i paylaşmaz. Ortak state gerekiyorsa state'i ebeveyne taşıyın ya da Context kullanın."
+  - question: "Hook'lar neden `if` içinde çağrılmamalıdır?"
+    code: |-
+      function ProductPage({ isLoggedIn }: Props) {
+        if (isLoggedIn) {
+          const [note, setNote] = useState("");
+        }
+        const [qty, setQty] = useState(1);
+      }
+    options:
+      - "TypeScript hook dönüş tipini çıkaramaz"
+      - "`if` blokları render'da çalışmaz"
+      - "React hook'ları çağrılma sırasıyla tanır; koşul sırayı değiştirince state'ler karışır"
+      - "React hook'ları değişken adlarıyla tanır"
+    answer: 2
+    explanation: "React hook'ları isimle değil çağrılma sırasıyla tanır. Birinci `useState` her render'da birinci olmalıdır. İstisna `use`'dur."
+  - question: "`subscribe` fonksiyonu component'in içinde tanımlanırsa ne olur?"
+    code: |-
+      function useOnlineStatus() {
+        function subscribe(callback: () => void) { /* ... */ }
+        return useSyncExternalStore(subscribe, () => navigator.onLine, () => true);
+      }
+    options:
+      - "Her render'da yeni fonksiyon oluştuğu için React yeniden abone olur"
+      - "`useSyncExternalStore` hata fırlatır"
+      - "React her zaman sunucu değerini (`true`) kullanır"
+      - "Hiçbir fark olmaz"
+    answer: 0
+    explanation: "`subscribe` her render'da yeni bir fonksiyon olursa React yeniden abone olur. Bu yüzden component dışında tanımlanır."
 ---
 
 ## Hook kuralları

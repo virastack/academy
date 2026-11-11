@@ -3,6 +3,45 @@ title: "Hooks ve izin modları"
 description: "Agent'ı kurala bağlama: format, lint ve test kapısı, tehlikeli işlemleri engelleme ve izin modları."
 lastVerified: "2026-11-03"
 translationKey: "ai/hooks"
+quiz:
+  - question: "Bu `PreToolUse` script'inde işlemi engelleyip stderr mesajını agent'a iletmek için `?` yerine hangi çıkış kodu yazılır?"
+    lang: bash
+    code: |-
+      FILE_PATH=$(jq -r '.tool_input.file_path // empty')
+      if [[ "$FILE_PATH" == *".env"* ]]; then
+        echo "Blocked: $FILE_PATH is protected" >&2
+        exit ?
+      fi
+      exit 0
+    options:
+      - "`127`"
+      - "`2`"
+      - "`1`"
+      - "`0`"
+    answer: 1
+    explanation: "Çıkış kodu 2 işlemi engeller ve stderr'deki mesaj agent'a geri bildirim olarak gider. Çıkış kodu 0 işlemi onaylamaz, yalnızca itiraz etmez; normal izin akışı yine çalışır."
+  - question: "`Stop` hook'unun başındaki bu kontrol ne işe yarar?"
+    lang: bash
+    code: |-
+      INPUT=$(cat)
+      if [ "$(echo "$INPUT" | jq -r '.stop_hook_active')" = "true" ]; then
+        exit 0
+      fi
+    options:
+      - "Hook'u yalnızca CI'da çalıştırır"
+      - "Sonsuz döngüyü önler: hook zaten bir kez devam ettirdiyse agent'ın durmasına izin verir"
+      - "Agent'ın soru sormasını engeller"
+      - "Testleri hızlandırır"
+    answer: 1
+    explanation: "`Stop` hook'unda çıkış kodu 2 \"henüz bitmedi\" demektir ve agent çalışmaya devam eder. Hook agent her cevabını bitirdiğinde çalışır; uzun test paketinde yalnızca değişen dosyaların testlerini çalıştırın."
+  - question: "`CLAUDE.md`'ye \"her değişiklikten sonra testleri çalıştır\" yazdınız ama agent bazen atlıyor. Kural gerçekten şartsa ne yapmalısınız?"
+    options:
+      - "Kuralı dosyada iki kez yazmak"
+      - "Kuralı bir hook'a taşımak"
+      - "Kuralı bir skill'e taşımak"
+      - "Kuralı büyük harfle ve IMPORTANT ile yazmak"
+    answer: 1
+    explanation: "Kural dosyası modele bağlam olarak gider, uyulması garanti değildir. Her seferinde istisnasız olması gereken şey hook'tur. Tersi de geçerli: yalnızca tercih olan bir şey için hook yazdıysanız silin."
 ---
 
 `CLAUDE.md`'ye *"her değişiklikten sonra testleri çalıştır"* yazdınız, agent yine de bazen atlıyor. Bu bir hata değil. Kural dosyası modele bağlam olarak gider ve uyulması garanti değildir *(bkz. [Prompt ve context engineering](/academy/ai/prompt-and-context-engineering))*. Her seferinde, istisnasız olması gereken bir şey için hook kullanılır.[^1]

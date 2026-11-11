@@ -3,6 +3,62 @@ title: "React'te render performansı"
 description: "Gereksiz render ve pahalı güncellemeler."
 lastVerified: "2026-11-03"
 translationKey: "performance-accessibility/render-performance"
+quiz:
+  - question: "`Footer` `memo` ile sarılı değil. Kullanıcı input'a yazınca `Footer` yeniden render olur mu?"
+    lang: tsx
+    code: |-
+      function Page() {
+        const [query, setQuery] = useState("");
+        return (
+          <>
+            <input value={query} onChange={(e) => setQuery(e.target.value)} />
+            <Footer year={2026} />
+          </>
+        );
+      }
+    options:
+      - "Hayır, prop'ları değişmediği için"
+      - "Evet; state'i değişen component'in altındaki tüm component'ler render olur"
+      - "Yalnızca `year` değişirse"
+      - "Yalnızca Strict Mode'da"
+    answer: 1
+    explanation: "\"Props değişince component render olur\" yaygın bir yanlış bilgidir. `memo` kullanılmayan bir component prop'ları aynı kalsa da ebeveyniyle birlikte render olur."
+  - question: "`SlowList` `memo` ile sarılı değilse ne olur?"
+    lang: tsx
+    code: |-
+      const deferredText = useDeferredValue(text);
+
+      <SlowList text={deferredText} />
+    options:
+      - "Hata fırlatır"
+      - "Kazanç aynen kalır"
+      - "`useDeferredValue` `SlowList`'i hızlandırır"
+      - "Her tuşta yine render olur ve kazanç kaybolur"
+    answer: 3
+    explanation: "`useDeferredValue` yavaş component'i hızlandırmaz, yalnızca tuşları bloklamamasını sağlar. Bunun için `SlowList` `memo` ile sarılmalıdır; yoksa ebeveyn her tuşta render olunca o da render olur."
+  - question: "Kullanıcı renk input'una yazınca `ExpensiveTree` render olur mu?"
+    lang: tsx
+    code: |-
+      function ColorPicker({ children }: { children: React.ReactNode }) {
+        const [color, setColor] = useState("red");
+        return (
+          <div style={{ color }}>
+            <input value={color} onChange={(e) => setColor(e.target.value)} />
+            {children}
+          </div>
+        );
+      }
+
+      <ColorPicker>
+        <ExpensiveTree />
+      </ColorPicker>
+    options:
+      - "Yalnızca ilk tuşta"
+      - "Yalnızca `memo` ile sarılırsa render olmaz"
+      - "Hayır; `children` ebeveynde oluşturulduğu için `ColorPicker`'ın state'i değişince React onları yeniden render etmez"
+      - "Evet, `ColorPicker`'ın çocuğu olduğu için"
+    answer: 2
+    explanation: "`memo`'ya uzanmadan önce yapıyı değiştirmek çoğu zaman yeter: state'i aşağı taşıyın ya da state'li kısmı `children` alan bir sarmalayıcıya alın."
 ---
 
 ## Render nedir

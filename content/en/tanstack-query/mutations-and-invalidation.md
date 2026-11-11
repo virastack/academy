@@ -3,6 +3,41 @@ title: "Mutations and invalidation"
 description: "useMutation, invalidation, updating from the response and where the callbacks belong."
 lastVerified: "2026-11-03"
 translationKey: "tanstack-query/mutations-and-invalidation"
+quiz:
+  - question: "What happens with this `onSuccess`?"
+    lang: ts
+    code: |-
+      onSuccess: () => {
+        queryClient.invalidateQueries({ queryKey: productQueries.all() });
+      },
+    options:
+      - "The mutation stays `pending` until the refetch is done"
+      - "It throws an error"
+      - "The invalidation never runs"
+      - "No Promise is returned, so the mutation ends without waiting for the refetch; the button re-enables before the new data arrives"
+    answer: 3
+    explanation: "A body in braces does not return the Promise. Write `onSuccess: () => queryClient.invalidateQueries(...)` so the Promise is returned and the mutation stays `pending` until the refetch finishes."
+  - question: "What is the risk of putting the invalidation in a callback passed to `mutate`?"
+    lang: ts
+    code: |-
+      mutation.mutate(variables, {
+        onSuccess: () => queryClient.invalidateQueries({ queryKey: productQueries.all() }),
+      });
+    options:
+      - "It runs twice"
+      - "If the component unmounts before the mutation finishes, this callback never runs"
+      - "`mutate` does not take callbacks"
+      - "It runs before the callbacks in `useMutation`"
+    answer: 1
+    explanation: "Callbacks passed to `mutate` do not run if the component unmounts. Put logic (invalidation, cache updates) in `useMutation`, and UI work (toasts, navigation) in `mutate`."
+  - question: "The cache holds 10 different filtered product lists and only one is on screen. How many requests does `invalidateQueries({ queryKey: [\"products\"] })` send?"
+    options:
+      - "0"
+      - "1"
+      - "10"
+      - "11"
+    answer: 1
+    explanation: "Invalidation marks every matching query stale but only refetches the active ones, the queries on screen, right away. The others refresh the next time they are used."
 ---
 
 ## useMutation

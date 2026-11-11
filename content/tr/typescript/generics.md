@@ -3,6 +3,51 @@ title: "Generic'ler"
 description: "Tipe göre çalışan, yeniden kullanılabilir fonksiyon ve tipler."
 lastVerified: "2026-11-03"
 translationKey: "typescript/generics"
+quiz:
+  - question: "`firstName`'in tipi nedir?"
+    lang: ts
+    code: |-
+      function getFirst<T>(items: T[]): T | undefined {
+        return items[0];
+      }
+
+      const firstName = getFirst(["Headphones", "Keyboard"]);
+    options:
+      - "`any`"
+      - "`string[]`"
+      - "`string`"
+      - "`string | undefined`"
+    answer: 3
+    explanation: "TypeScript argümana bakıp `T`'nin `string` olduğunu kendisi çıkarır (type argument inference). Dönüş tipi `T | undefined` olduğu için sonuç `string | undefined`'dır."
+  - question: "Parametreyi doğrudan `{ price: number }[]` yazmak yerine neden generic ve constraint kullanılıyor?"
+    lang: ts
+    code: |-
+      function sortByPrice<T extends { price: number }>(items: T[]): T[] {
+        return [...items].sort((a, b) => a.price - b.price);
+      }
+    options:
+      - "Generic sürüm çalışma anında daha hızlıdır"
+      - "Dönüş tipi içeri gireni korur; `Product[]` verilince `Product[]` döner, `name` gibi alanlar kaybolmaz"
+      - "Generic olmadan `sort` derlenmez"
+      - "`extends` fiyatın sayı olduğunu çalışma anında kontrol eder"
+    answer: 1
+    explanation: "Parametre `{ price: number }[]` olsaydı sonuç da `{ price: number }[]` olurdu ve diğer alanlar tipten düşerdi. `T extends { price: number }` hem `price`'a erişime izin verir hem de içeri gireni olduğu gibi geri verir."
+  - question: "Bu kullanım için hangisi doğru?"
+    lang: ts
+    code: |-
+      async function fetchJson<T>(url: string): Promise<T> {
+        const response = await fetch(url);
+        return response.json();
+      }
+
+      const products = await fetchJson<Product[]>("/api/products");
+    options:
+      - "`response.json()` `unknown` döndüğü için derleme hatası verir"
+      - "TypeScript yanıtın `Product[]` olduğunu doğrular"
+      - "`T` argümandan çıkarıldığı için güvenlidir"
+      - "Kontrolsüz bir type assertion'dır; `as Product[]` yazmaktan farksızdır"
+    answer: 3
+    explanation: "`response.json()` `any` döner ve `T` yalnızca dönüş tipinde geçer. Bu tür return-only generic'ler kılık değiştirmiş `any`'dir; sunucu başka bir şey dönerse TypeScript bilemez. Veriyi `unknown` alıp doğrulayın."
 ---
 
 ## Neden generic
@@ -32,7 +77,7 @@ function getFirst<T>(items: T[]): T | undefined {
 }
 
 const firstProduct = getFirst(products); // Product | undefined
-const firstName = getFirst(["Headphones", "Klavye"]); // string | undefined
+const firstName = getFirst(["Headphones", "Keyboard"]); // string | undefined
 
 firstProduct?.nmae;
 // Hata: Property 'nmae' does not exist on type 'Product'.

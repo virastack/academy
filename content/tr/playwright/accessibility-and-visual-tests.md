@@ -3,6 +3,35 @@ title: "Erişilebilirlik ve görsel testler"
 description: "axe, klavye, aria snapshot ve ekran görüntüsü."
 lastVerified: "2026-11-03"
 translationKey: "playwright/accessibility-and-visual-tests"
+quiz:
+  - question: "Bu taramanın sorunu nedir?"
+    lang: ts
+    code: |-
+      await ordersPage.goto();
+      const results = await new AxeBuilder({ page }).analyze();
+    options:
+      - "`AxeBuilder` Playwright'ta çalışmaz"
+      - "Sayfanın hazır olması beklenmedi; liste yüklenmeden taranırsa yalnızca \"yükleniyor\" yazısı taranır"
+      - "`analyze` senkron olmalı"
+      - "Sorun yok"
+    answer: 1
+    explanation: "Taramadan önce sayfanın hazır olduğunu bekleyin, örneğin `await expect(ordersPage.rows).toHaveCount(6)`."
+  - question: "`toHaveScreenshot` ilk kez çalıştığında, referans görüntü yokken ne olur (varsayılan mod)?"
+    options:
+      - "Test geçer ve görüntü kaydedilir"
+      - "Test atlanır"
+      - "Hata verir ve hiçbir şey yazılmaz"
+      - "Görüntü yazılır ama test başarısız sayılır; yeni snapshot sessizce kabul edilmez"
+    answer: 3
+    explanation: "Eksik görüntüleri yazıp testi geçirmek için Playwright 1.64'teki `--update-snapshots=missing` kullanılır."
+  - question: "macOS'ta alınan referans ekran görüntüsü CI'daki Linux'ta eşleşmiyor. Dersin önerisi nedir?"
+    options:
+      - "`maxDiffPixels`'ı çok yüksek tutmak"
+      - "Yalnızca WebKit kullanmak"
+      - "Görsel testleri silmek"
+      - "Referansları CI'da ya da Playwright'ın resmi Docker imajında üretmek"
+    answer: 3
+    explanation: "Yazı tipi ve çizim farkları yüzünden platformlar arası görüntüler eşleşmez; dosya adı da tarayıcı ve işletim sistemini içerir. Testleri referansın üretildiği ortamda çalıştırın."
 ---
 
 ## Üç farklı soru

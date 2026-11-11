@@ -3,6 +3,39 @@ title: "XSS ve CSP"
 description: "dangerouslySetInnerHTML, güvenli olmayan URL'ler ve Content Security Policy."
 lastVerified: "2026-11-03"
 translationKey: "auth-security/xss-and-csp"
+quiz:
+  - question: "Bu bileşen sunucuda neden hata verir?"
+    lang: tsx
+    code: |-
+      // Server Component
+      import DOMPurify from "dompurify";
+
+      export function PostBody({ html }: { html: string }) {
+        return <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(html) }} />;
+      }
+    options:
+      - "`dangerouslySetInnerHTML` Server Component'te yasaktır"
+      - "DOMPurify yalnızca React 18'de çalışır"
+      - "DOMPurify bir DOM ister ve sunucuda DOM yoktur; arkada jsdom kullanan `isomorphic-dompurify` gerekir"
+      - "`__html` yerine `html` yazılmalı"
+    answer: 2
+    explanation: "`\"use client\"` bileşeninde bile SSR aşamasında `sanitize is not a function` hatası alınır. DOMPurify'ı ve sunucudaki jsdom'u güncel tutun; tarayıcılar değiştikçe yeni atlatma yolları bulunur."
+  - question: "Nonce tabanlı strict CSP kullanan bir sayfa neden statik üretilemez?"
+    options:
+      - "`'strict-dynamic'` statik dosyaları engeller"
+      - "CSP başlığı yalnızca CDN'de eklenir"
+      - "Next.js CSP'yi yalnızca geliştirme ortamında uygular"
+      - "Nonce her istekte değişir; önceden üretilmiş HTML'deki script'ler yeni nonce'u alamaz"
+    answer: 3
+    explanation: "Bu yüzden sayfa dinamik render edilir ve nonce Partial Prerendering (`cacheComponents: true`) ile uyumsuzdur. Canlıya geçmeden önce `Content-Security-Policy-Report-Only` ile neyin engelleneceğini görün."
+  - question: "React 19 `href` içindeki `javascript:` adreslerini engelliyor. Kullanıcının girdiği web sitesi adresi için `isSafeUrl` gibi bir şema kontrolü neden hâlâ gerekir?"
+    options:
+      - "`data:` gibi diğer şemalar ve açık yönlendirme sorunu hâlâ sizdedir"
+      - "`javascript:` yalnızca `src`'de engellenir"
+      - "Gerekmez; React 19 yeterlidir"
+      - "React 19 bu engeli yalnızca geliştirme ortamında uygular"
+    answer: 0
+    explanation: "OWASP, React'in bu korumasının uygulamaya özgü URL kontrolünün yerini tutmadığını söyler. İzin verdiğiniz şemaları (`https:`, `http:`) `new URL()` ile açıkça kontrol edin."
 ---
 
 **XSS** *(Cross-Site Scripting)*, saldırganın sizin sayfanızda kendi JavaScript kodunu çalıştırmasıdır. Kod sizin alan adınızda çalıştığı için kullanıcının oturumuyla istek atabilir, sayfadaki veriyi okuyabilir, formu değiştirebilir.[^1]

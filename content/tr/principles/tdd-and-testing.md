@@ -3,6 +3,35 @@ title: "TDD ve test yaklaşımları"
 description: "Red-Green-Refactor döngüsü ve Testing Trophy."
 lastVerified: "2026-11-03"
 translationKey: "principles/tdd-and-testing"
+quiz:
+  - question: "Martin Fowler'a göre TDD'de en yaygın hata hangisidir?"
+    options:
+      - "Testi koddan önce yazmak"
+      - "Çok fazla test yazmak"
+      - "Refactor adımını atlamak; sonuç dağınık kod parçalarından oluşan bir yığın olur"
+      - "Kırmızı aşamada testi çalıştırmamak"
+    answer: 2
+    explanation: "Red-Green-Refactor'un üçüncü adımı yeni ve eski kodu düzenleyip yapıyı temiz tutar. Atlanınca kod dağınık parçalar yığınına döner."
+  - question: "Kent Beck'in Canon TDD'sine göre senaryo listesini yazdıktan sonra ne yapılır?"
+    options:
+      - "Bütün senaryoları hemen teste çevirmek"
+      - "Önce bütün kodu yazmak"
+      - "Listeden yalnızca birini çalışan bir teste çevirip onu ve önceki testleri geçirmek"
+      - "Listeyi silip kodla başlamak"
+    answer: 2
+    explanation: "Hiçbiri geçmeden bütün senaryoları baştan teste çevirmek Beck'in uyardığı hatalardandır. Tek bir test yazılır, geçirilir, gerekirse refactor edilir ve liste bitene kadar tekrarlanır."
+  - question: "Beklenen değeri kodun ürettiği sonuçtan kopyalamanın sorunu nedir?"
+    lang: ts
+    code: |-
+      // kodu çalıştırıp çıkan sonucu teste yapıştırmak
+      expect(calculateShipping(cart)).toBe(47.83);
+    options:
+      - "Ondalıklı sayılar test edilemez"
+      - "Test kodun ikinci bir kontrolü olmaktan çıkar; kod yanlışsa test de yanlışı onaylar"
+      - "Test yavaşlar"
+      - "`toBe` yerine `toEqual` gerekir"
+    answer: 1
+    explanation: "Beklenen değer kuraldan ya da senaryodan gelmelidir. Beck'in listesindeki diğer hatalar: assertion'sız test, geçirmek için assertion silmek, testi geçirirken refactoring yapmak."
 ---
 
 **TDD** (*Test-Driven Development*, test güdümlü geliştirme), kodu yazmadan önce testi yazma yöntemidir. Örnekler saf bir fonksiyon üzerinden, ama döngü her kodda aynı. Bu rehber döngüyü, küçük bir örneği ve hangi testi yazacağınıza nasıl karar vereceğinizi anlatıyor.

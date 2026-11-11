@@ -3,6 +3,31 @@ title: "Next.js with AI agents"
 description: "The bundled documentation, AGENTS.md, MCP, error prompts and the Next.js skills."
 lastVerified: "2026-11-03"
 translationKey: "nextjs/ai-agents"
+quiz:
+  - question: "Which of an AI agent's suggestions is the current pattern for Next.js 16.4?"
+    options:
+      - "`import { useRouter } from \"next/router\"`"
+      - "`export const revalidate = 60`"
+      - "`const { slug } = await params`"
+      - "Create a `middleware.ts` file"
+    answer: 2
+    explanation: "`params` has been a Promise since Next.js 15. `middleware.ts` was renamed `proxy.ts`, `revalidate` gave way to `\"use cache\"` and `cacheLife`, and in the App Router `useRouter` comes from `next/navigation`."
+  - question: "The project has both `CLAUDE.md` and the `AGENTS.md` written by Next.js. What makes Claude Code read the Next.js rules?"
+    options:
+      - "Deleting `AGENTS.md`"
+      - "Adding an `@AGENTS.md` line to `CLAUDE.md`"
+      - "Setting `agentRules: true` in `next.config.ts`"
+      - "Nothing; Claude Code reads both"
+    answer: 1
+    explanation: "When a `CLAUDE.md` exists, Claude Code does not read `AGENTS.md`. Import it by writing `@AGENTS.md` inside `CLAUDE.md`."
+  - question: "In Vercel's evaluation, why did a docs index embedded in `AGENTS.md` beat the skill-based approach?"
+    options:
+      - "Information that is always in context beats information the agent has to look up; in many cases the agent never invoked the skill"
+      - "Skills cost extra"
+      - "`AGENTS.md` downloads faster"
+      - "Skills are not supported in Next.js"
+    answer: 0
+    explanation: "The compressed index in `AGENTS.md` passed 100% of the tests, while the skill-based approach topped out at 79%; in 56% of cases the agent never invoked the skill."
 ---
 
 ## The problem: the model knows an older Next.js

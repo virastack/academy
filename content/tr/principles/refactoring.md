@@ -3,6 +3,31 @@ title: "Refactoring"
 description: "Davranışı koruyarak kodu küçük adımlarla iyileştirme."
 lastVerified: "2026-11-03"
 translationKey: "principles/refactoring"
+quiz:
+  - question: "Fowler'ın tanımına göre hangisi refactoring değildir?"
+    options:
+      - "Bir kod parçasını adı olan bir fonksiyona taşımak"
+      - "Bir değişkene amacını anlatan yeni bir ad vermek"
+      - "Fiyat hesabına yeni bir indirim kuralı eklemek"
+      - "Karmaşık bir koşulu adlandırılmış fonksiyonlara bölmek"
+    answer: 2
+    explanation: "Refactoring dışarıdan görünen davranışı değiştirmeden iç yapıyı düzenlemektir. Davranışı değiştiren adım refactoring sayılmaz; ikisini ayrı adımlarda, mümkünse ayrı commit'lerde yapın."
+  - question: "Yeni bir özellik eklemek istiyorsunuz ama mevcut yapı bunu zorlaştırıyor. Kent Beck'in önerisi nedir?"
+    options:
+      - "Özelliği mevcut yapıya zorla eklemek"
+      - "Dosyayı baştan yeniden yazmak"
+      - "Özelliği ertelemek"
+      - "Önce değişikliği kolaylaştırmak (preparatory refactoring), sonra kolay değişikliği yapmak"
+    answer: 3
+    explanation: "Fowler buna preparatory refactoring der: önce yapıyı hazırlarsınız, testler yine geçer; sonra özellik kolayca eklenir."
+  - question: "Kod sağlıklı olduğu hâlde refactoring sırasında testler sürekli kırılıyor. En olası sebep nedir?"
+    options:
+      - "Refactoring davranışı değiştirdi"
+      - "Vitest yanlış kurulmuş"
+      - "Test sayısı yetersiz"
+      - "Testler kullanıcının gördüğünü değil, component'in iç ayrıntılarını test ediyor"
+    answer: 3
+    explanation: "Kent C. Dodds'a göre refactoring'de testi değiştirmeniz çok nadir olmalıdır. Kullanıcının gördüğüne bakan testler yazın."
 ---
 
 Çalışan bir component'e yeni bir özellik eklemek istiyorsunuz ama kod buna uygun değil. Ya kodu olduğu gibi zorlarsınız ya da önce düzenlersiniz. Bu rehber ikincisini anlatıyor: refactoring. Örnekler frontend koduyla, ama fikirler her dilde geçerli.

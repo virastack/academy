@@ -3,6 +3,39 @@ title: "API mocking"
 description: "page.route, changing the response and the request fixture."
 lastVerified: "2026-11-03"
 translationKey: "playwright/api-mocking"
+quiz:
+  - question: "Why might the empty-list message not show?"
+    lang: ts
+    code: |-
+      await ordersPage.goto();
+      await page.route("**/api/orders?*", (route) => route.fulfill({ json: { orders: [] } }));
+    options:
+      - "`route.continue()` is missing"
+      - "`fulfill` does not take `json`"
+      - "The glob pattern is wrong"
+      - "The route was set up after navigating, so the first request during page load was not caught"
+    answer: 3
+    explanation: "Set up the route before navigating, so the first request sent during page load is caught too."
+  - question: "Does this route catch the request?"
+    lang: ts
+    code: |-
+      await page.route("**/api/orders", (route) => route.fulfill({ json: { orders: [] } }));
+      // the page requests /api/orders?status=all
+    options:
+      - "Only in Chromium"
+      - "No; the glob must match the whole URL, and the query string is part of the URL"
+      - "Yes"
+      - "Yes, but only the first request"
+    answer: 1
+    explanation: "`\"**/api/orders\"` does not cover `?status=all`. Use `\"**/api/orders?*\"` or a regular expression. In a glob, `?` is the question mark itself, not any character."
+  - question: "The product list is fetched on the server with `fetch` in a Next.js Server Component. Can you mock that request with `page.route`?"
+    options:
+      - "Yes, but only with `route.fetch()`"
+      - "No; `page.route` only sees requests the browser makes, and a server-side `fetch` never goes through the browser"
+      - "Yes, `page.route` sees every request"
+      - "No, Next.js blocks mocking"
+    answer: 1
+    explanation: "For server requests the options are a separate environment with test data, pointing the external service's address at a fake server through an environment variable, or testing the server logic with Vitest."
 ---
 
 ## Why mock?

@@ -3,6 +3,53 @@ title: "Data fetching and streaming"
 description: "Reading data on the server, streaming with Suspense, avoiding waterfalls and data on the client."
 lastVerified: "2026-11-03"
 translationKey: "nextjs/data-fetching-and-streaming"
+quiz:
+  - question: "What is wrong with this pattern?"
+    lang: tsx
+    code: |-
+      // app/products/page.tsx (Server Component)
+      const res = await fetch("http://localhost:3000/api/products");
+      const products = await res.json();
+    options:
+      - "`res.json()` is not supported in Server Components"
+      - "`fetch` does not work in Server Components"
+      - "Route Handlers cannot be called from Server Components"
+      - "Both run on the server, so an unnecessary HTTP request sits in between; call the function directly"
+    answer: 3
+    explanation: "Fetching your own API route from a Server Component costs an extra request. Call the function that reads the data (`getProducts()`) directly."
+  - question: "Roughly how long do A and B take?"
+    lang: tsx
+    code: |-
+      // getProduct ~300 ms, getReviews ~500 ms, independent of each other
+
+      // A
+      const product = await getProduct(slug);
+      const reviews = await getReviews(slug);
+
+      // B
+      const [product, reviews] = await Promise.all([getProduct(slug), getReviews(slug)]);
+    options:
+      - "A ~800 ms, B ~500 ms"
+      - "A ~500 ms, B ~500 ms"
+      - "A ~800 ms, B ~800 ms"
+      - "A ~500 ms, B ~300 ms"
+    answer: 0
+    explanation: "Consecutive `await`s run in sequence, so the time is the sum of both. `Promise.all` starts both together, so the time is that of the slowest."
+  - question: "Is `getUser`'s result shared between requests from two different users?"
+    lang: ts
+    code: |-
+      import { cache } from "react";
+
+      export const getUser = cache(async (id: string) => {
+        return db.user.findUnique({ where: { id } });
+      });
+    options:
+      - "Only in production"
+      - "No; `React.cache` only applies within a single request"
+      - "Yes, `cache` keeps it across requests"
+      - "Yes, for one hour"
+    answer: 1
+    explanation: "`React.cache` lets repeated calls within the same request share one result; it keeps nothing across requests. For a cache across requests there is `\"use cache\"`."
 ---
 
 ## Reading data in the component

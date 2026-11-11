@@ -3,6 +3,35 @@ title: "Klasör yapısı ve isimlendirme"
 description: "Feature-based yapı, dosya isimlendirme ve import kuralları."
 lastVerified: "2026-11-03"
 translationKey: "architecture/folder-structure"
+quiz:
+  - question: "Bu import macOS'ta çalışıyor ama CI'da \"Module not found\" veriyor. Sebebi nedir?"
+    lang: ts
+    code: |-
+      // dosya: components/CartSummary.tsx
+      import { CartSummary } from './cart-summary'
+    options:
+      - "TypeScript CI'da farklı sürüm"
+      - "Göreli import CI'da yasak"
+      - "CI'da `node_modules` kurulmamış"
+      - "macOS ve Windows büyük/küçük harfi ayırmaz, Linux ayırır; dosya adı ile import yazımı uyuşmuyor"
+    answer: 3
+    explanation: "Tek bir yazım seçin (`kebab-case`) ve lint ile zorlayın (`unicorn/filename-case`). Bileşen adı `PascalCase`, dosya adı `kebab-case` olur."
+  - question: "`features/products` içinde, `features/cart`'taki para birimi formatlama fonksiyonuna ihtiyaç var. Bu yapıda doğru adım hangisi?"
+    options:
+      - "`features/products`'tan `features/cart`'a import etmek"
+      - "Fonksiyonu kopyalayıp üçüncü kullanımı beklemek"
+      - "`features/cart`'ı `features/products`'ın içine taşımak"
+      - "Fonksiyonu global katmana (`helpers/`) taşımak; özellikler birbirini import etmez"
+    answer: 3
+    explanation: "Her şey özellik içinde başlar; ikinci bir özellik aynı koda ihtiyaç duyunca kod global katmana çıkar. Akış tek yönlüdür: ortak kod → özellikler → uygulama. Taşımadan önce iki kullanımın gerçekten aynı kuralı paylaştığından emin olun."
+  - question: "`../` import'larını yasaklamak için ders hangi kuralı önerir?"
+    options:
+      - "`import/no-relative-parent-imports`"
+      - "ESLint'in yerleşik `no-restricted-imports` kuralına `{ patterns: [{ regex: \"^\\\\.\\\\./\" }] }`"
+      - "`unicorn/filename-case`"
+      - "`import/no-cycle`"
+    answer: 1
+    explanation: "`import/no-relative-parent-imports` çözümlenen dosya yoluna baktığı için `@/` ile yazılmış import'ları da hata sayar. `no-restricted-imports` yalnızca `../` ile başlayan import'ları yasaklar; `./b` gibi kardeş import'lar serbest kalır."
 ---
 
 Klasör yapısının işi basit: bir şeyi değiştireceğiniz zaman ilgili dosyaları tek yerde bulmak. Dosyaları türüne göre (`components/`, `hooks/`, `utils/`) değil, ait oldukları özelliğe göre (sepet, ürün listesi, ödeme) gruplarsanız bir özelliği değiştirmek tek klasörde biter. İlke [Kent C. Dodds](https://kentcdodds.com)'ın colocation yazısındaki gibi: kodu ilgili olduğu yere olabildiğince yakın koyun.[^1]

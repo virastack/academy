@@ -3,6 +3,31 @@ title: "AI agent'larla Next.js"
 description: "Paketle gelen doküman, AGENTS.md, MCP, hata prompt'ları ve Next.js skill'leri."
 lastVerified: "2026-11-03"
 translationKey: "nextjs/ai-agents"
+quiz:
+  - question: "Bir AI agent'ın önerilerinden hangisi Next.js 16.4'e uygun güncel kalıptır?"
+    options:
+      - "`import { useRouter } from \"next/router\"`"
+      - "`export const revalidate = 60`"
+      - "`const { slug } = await params`"
+      - "`middleware.ts` dosyası oluşturmak"
+    answer: 2
+    explanation: "`params` Next.js 15'ten beri Promise'tir. `middleware.ts`'in adı `proxy.ts` oldu, `revalidate` yerine `\"use cache\"` ve `cacheLife` var, App Router'da `useRouter` `next/navigation`'dan gelir."
+  - question: "Projede hem `CLAUDE.md` hem Next.js'in yazdığı `AGENTS.md` var. Claude Code'un Next.js kurallarını okuması için ne yapılmalı?"
+    options:
+      - "`AGENTS.md`'yi silmek"
+      - "`CLAUDE.md`'ye `@AGENTS.md` satırı eklemek"
+      - "`next.config.ts`'te `agentRules: true` yazmak"
+      - "Hiçbir şey; Claude Code ikisini de okur"
+    answer: 1
+    explanation: "Claude Code dizinde `CLAUDE.md` varsa `AGENTS.md`'yi okumaz. `CLAUDE.md`'nin içine `@AGENTS.md` yazarak onu içe aktarın."
+  - question: "Vercel'in değerlendirmesinde `AGENTS.md`'ye gömülü doküman dizini neden skill tabanlı yaklaşımdan iyi sonuç verdi?"
+    options:
+      - "Her zaman bağlamda duran bilgi, agent'ın gerektiğinde araması gereken bilgiyi yener; vakaların çoğunda agent skill'i hiç çağırmamıştı"
+      - "Skill'ler ek ücret gerektiriyor"
+      - "`AGENTS.md` internetten daha hızlı iniyor"
+      - "Skill'ler Next.js'te desteklenmiyor"
+    answer: 0
+    explanation: "`AGENTS.md`'deki sıkıştırılmış dizin testlerin %100'ünü geçti, skill tabanlı yaklaşım en iyi %79'da kaldı; vakaların %56'sında agent skill'i hiç çağırmamıştı."
 ---
 
 ## Sorun: Model eski Next.js'i biliyor

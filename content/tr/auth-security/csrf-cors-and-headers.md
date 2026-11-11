@@ -3,13 +3,48 @@ title: "CSRF, CORS ve güvenlik başlıkları"
 description: "SameSite ile CSRF önlemi, CORS'un ne yaptığı ve temel HTTP güvenlik başlıkları."
 lastVerified: "2026-11-03"
 translationKey: "auth-security/csrf-cors-and-headers"
+quiz:
+  - question: "API'nizde CORS'u yalnızca `https://partner.example.com`'a açtınız. Saldırganın sitesindeki sıradan bir form `POST`'u ne olur?"
+    options:
+      - "Tarayıcı isteği hiç göndermez"
+      - "Sunucu isteği otomatik olarak `403` ile reddeder"
+      - "İstek yine gönderilir; CORS yalnızca yanıtın okunmasını engeller"
+      - "Tarayıcı önce `OPTIONS` ile izin ister ve reddedilir"
+    answer: 2
+    explanation: "Form gibi sıradan bir `POST` preflight olmadan gönderilir; CSRF bu yüzden CORS ayarından bağımsız çalışır. Yalnızca özel başlık, JSON gövde ya da `PUT`, `DELETE` gibi metotlar önce `OPTIONS` ile izin ister."
+  - question: "Next.js'te hangisi isteğin `Origin` başlığını `Host` ile kendiliğinden karşılaştırır?"
+    options:
+      - "Server Action"
+      - "Route Handler"
+      - "İkisi de"
+      - "Hiçbiri"
+    answer: 0
+    explanation: "Server Action yalnızca `POST` ile çağrılır ve origin eşleşmezse reddedilir. Route Handler'da bu kontrol yoktur; `Sec-Fetch-Site`, yoksa `Origin` başlığına bakan bir kontrolü kendiniz eklersiniz."
+  - question: "Bir alt alan adından gelen ve `Sec-Fetch-Site: same-site` taşıyan istek için bu fonksiyon ne döndürür?"
+    lang: ts
+    code: |-
+      export function isCrossSiteRequest(request: Request) {
+        const site = request.headers.get("sec-fetch-site");
+        if (site) {
+          return site !== "same-origin";
+        }
+        const origin = request.headers.get("origin");
+        return origin !== null && origin !== new URL(request.url).origin;
+      }
+    options:
+      - "`Origin` başlığına bakar"
+      - "`true`; yalnızca `same-origin` istekler geçer"
+      - "Hata fırlatır"
+      - "`false`; aynı site sayılır"
+    answer: 1
+    explanation: "Site ile origin aynı şey değildir: alt alan adları aynı site sayılır ve `SameSite` cookie bu yüzden onlara karşı korumaz. Bu kontrol daha sıkıdır; `Sec-Fetch-Site` yoksa eski tarayıcılar için `Origin`'e düşer."
 ---
 
 Tarayıcı bir siteye istek atarken o sitenin cookie'lerini kendiliğinden ekler. **CSRF** *(Cross-Site Request Forgery)* bunu kullanır: kullanıcı başka bir sitedeyken, o site arka planda sizin sitenize form gönderir. Cookie eklendiği için sunucu isteği kullanıcının kendisi atmış sanır.[^1]
 
 ```html
-<!-- saldirgan.com -->
-<form action="https://magaza.com/api/transfer" method="POST">
+<!-- attacker.example -->
+<form action="https://shop.example/api/transfer" method="POST">
   <input name="to" value="attacker" />
 </form>
 <script>document.forms[0].submit()</script>
@@ -27,7 +62,7 @@ Testte saldırgan sayfa yukarıdaki formu gönderdi. İstek sunucuya ulaştı am
 
 `SameSite` tek başına yetmez:[^1][^2]
 
-- **Site, origin değildir.** `blog.magaza.com` ile `magaza.com` aynı site sayılır. Bir alt alan adında açık varsa `SameSite` korumaz.
+- **Site, origin değildir.** `blog.shop.example` ile `shop.example` aynı site sayılır. Bir alt alan adında açık varsa `SameSite` korumaz.
 - **`Lax`, `GET` ile gelen yönlendirmelere izin verir.** Durum değiştiren bir işi `GET` ile yapıyorsanız cookie gönderilir.
 - **Eski tarayıcılar** `SameSite`'ı desteklemez.
 

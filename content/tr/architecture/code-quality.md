@@ -3,6 +3,38 @@ title: "Kod kalitesi ve ekip standartları"
 description: "ESLint, Prettier, commit kuralları ve CI ile otomatik kontrol."
 lastVerified: "2026-11-03"
 translationKey: "architecture/code-quality"
+quiz:
+  - question: "Husky ve lint-staged kurulu olduğu hâlde aynı kontroller neden CI'da da çalışmalıdır?"
+    options:
+      - "lint-staged tüm projeyi taramaz, bu yüzden hatalı"
+      - "Hook'lar `git commit --no-verify` ile atlanabilir; CI'daki kontroller zorunlu yapılırsa atlanamayan son kapı olur"
+      - "Hook'lar yalnızca macOS'ta çalışır"
+      - "CI daha hızlıdır"
+    answer: 1
+    explanation: "Editör ve hook hızlı geri bildirim verir, CI son kapıdır. GitHub'da required status checks açılınca kontroller geçmeden birleştirme yapılamaz."
+  - question: "Conventional Commits'e göre `feat!: remove the old checkout API` commit'i SemVer'de neye karşılık gelir?"
+    options:
+      - "PATCH"
+      - "Sürümü etkilemez"
+      - "MINOR"
+      - "MAJOR"
+    answer: 3
+    explanation: "`fix:` PATCH, `feat:` MINOR, `!` ya da `BREAKING CHANGE:` alt bilgisi geriye uyumsuz değişikliktir ve MAJOR'dır. `docs`, `chore` gibi türlerin sürümleme açısından özel anlamı yoktur."
+  - question: "`eslint-config-prettier` neden dizinin en sonunda?"
+    lang: js
+    code: |-
+      export default defineConfig([
+        globalIgnores(['dist/', '.next/']),
+        { files: ['**/*.{ts,tsx}'], extends: [js.configs.recommended, tseslint.configs.recommended] },
+        prettier,
+      ])
+    options:
+      - "Aynı dosyayı eşleyen nesneler birleşir ve çakışmada sonraki kazanır; çakışan biçim kurallarını son söz olarak kapatır"
+      - "Prettier'ı çalıştırmak için"
+      - "ESLint yalnızca son nesneyi okur"
+      - "Alfabetik sıra gereği"
+    answer: 0
+    explanation: "`eslint-config-prettier` biçimle ilgili ESLint kurallarını kapatır, biçimi Prettier yapar. `eslint-plugin-prettier` ise önerilmez: editörde çok sayıda kırmızı çizgi çıkarır ve yavaştır."
 ---
 
 Yazılı kural ihlal edilir, otomatik kural edilmez. Bu rehber ekibin kod standartlarını üç katmanda araçlara bağlıyor: editörde, commit anında ve CI'da. Google'ın kod inceleme rehberi stil konusunda stil rehberini nihai otorite sayarken, yazılım tasarımının neredeyse hiçbir zaman saf bir stil tercihi olmadığını söylüyor.[^1] Stil kurallarını araca devrettiğinizde inceleme zamanı tasarıma kalır.

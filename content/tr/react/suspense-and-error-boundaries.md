@@ -3,6 +3,44 @@ title: "Suspense ve hata sınırları"
 description: "Yükleme durumu, use ile Promise okuma ve hata sınırı."
 lastVerified: "2026-11-03"
 translationKey: "react/suspense-and-error-boundaries"
+quiz:
+  - question: "Bu component'te ne olur?"
+    code: |-
+      function ProductDetails({ id }: { id: string }) {
+        const product = use(fetch(`/api/products/${id}`).then((r) => r.json()));
+        return <h1>{product.name}</h1>;
+      }
+    options:
+      - "Her render yeni bir Promise oluşturur, fallback sürekli tekrar görünür"
+      - "`use` yalnızca Server Components'te çalışır"
+      - "Veri bir kez çekilir ve gösterilir"
+      - "Promise ilk render'da otomatik cache'lenir"
+    answer: 0
+    explanation: "`use` ile okunan Promise cache'lenmelidir. Render içinde `use(fetch(...))` her render'da yeni Promise oluşturur."
+  - question: "`ProductList` veriyi `useEffect` + `setState` ile çekiyor. Veri gelene kadar ne görünür?"
+    code: |-
+      <Suspense fallback={<Skeleton />}>
+        <ProductList />
+      </Suspense>
+    options:
+      - "Boundary hiçbir şey beklemez; `ProductList` kendi boş hâliyle render olur"
+      - "Boş beyaz ekran"
+      - "En yakın Error Boundary"
+      - "`<Skeleton />`"
+    answer: 0
+    explanation: "Suspense, Effect içinde çekilen veriyi algılamaz. Boundary'yi yalnızca `lazy`, `use` ile okunan Promise ve `precedence` verilmiş stylesheet bekletir."
+  - question: "Butonun `onClick`'inde fırlatılan hatayı ne yakalar?"
+    code: |-
+      <ErrorBoundary fallback={<p>Error</p>}>
+        <button onClick={() => { throw new Error("Failed"); }}>Save</button>
+      </ErrorBoundary>
+    options:
+      - "JSX'i `try/catch` ile sarmak yeterlidir"
+      - "`ErrorBoundary` yakalar ve fallback'i gösterir"
+      - "Bir Suspense boundary yakalar"
+      - "Error Boundary yakalamaz; hatayı state'e yazmak ya da `showBoundary` ile iletmek gerekir"
+    answer: 3
+    explanation: "Event handler'larda fırlatılan hatalar Error Boundary'nin dışındadır. Ya state'e yazıp gösterin ya da `useErrorBoundary`'nin `showBoundary`'siyle boundary'ye iletin."
 ---
 
 ## Yükleme durumunu ağaçta tanımlamak

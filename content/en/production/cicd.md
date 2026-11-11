@@ -3,6 +3,34 @@ title: "CI/CD (GitHub Actions)"
 description: "A deploy pipeline with lint, test and Docker jobs, secrets and environments."
 lastVerified: "2026-11-03"
 translationKey: "production/cicd"
+quiz:
+  - question: "What is the difference between continuous delivery and continuous deployment?"
+    options:
+      - "Continuous delivery has no automated tests"
+      - "There is no difference"
+      - "With continuous delivery the software can be released at any time but going live needs an approval; with continuous deployment every change that passes the pipeline goes live automatically"
+      - "Continuous deployment runs once a day"
+    answer: 2
+    explanation: "Fowler describes continuous deployment as one step beyond continuous delivery. \"Required reviewers\" on GitHub environments are the approval step of continuous delivery."
+  - question: "Why is switching a workflow to `pull_request_target` so that pull requests from forks can reach secrets dangerous?"
+    options:
+      - "That trigger can run the fork's code with your repository's permissions"
+      - "It does not run for forks at all"
+      - "Secrets are not masked in logs"
+      - "`pull_request_target` is slow"
+    answer: 0
+    explanation: "Pull requests from forks cannot reach secrets by default and get a read-only token. That is a protection; do not bypass it with `pull_request_target`."
+  - question: "What does GitHub recommend for third-party actions like this?"
+    lang: yaml
+    code: |-
+      - uses: some-org/deploy-action@v3
+    options:
+      - "Always use `@main`"
+      - "Pin them to a full commit SHA; tags can be moved"
+      - "Only use `@latest`"
+      - "Leave out the version"
+    answer: 1
+    explanation: "If the action owner's account is taken over and the tag moved to another commit, your workflow runs that code. Pin community actions to a SHA and keep them updated with Dependabot."
 ---
 
 ## Three ideas

@@ -3,6 +3,31 @@ title: "Cache and stale time"
 description: "staleTime against gcTime, the refetch moments, polling and initialData."
 lastVerified: "2026-11-03"
 translationKey: "tanstack-query/cache-and-stale-time"
+quiz:
+  - question: "With `staleTime: 0` and the default `gcTime`, every component using the query has unmounted. The user comes back 3 minutes later. What happens?"
+    options:
+      - "An error; the data was deleted"
+      - "The data comes from the cache and no request is sent"
+      - "The data comes from the cache at once and is refreshed in the background"
+      - "A loading screen, because the cache is empty"
+    answer: 2
+    explanation: "Unused data is deleted once `gcTime` (5 minutes) passes. Coming back within 3 minutes, the data is still cached; with `staleTime: 0` it is stale, so it is refreshed in the background."
+  - question: "What is the difference between `staleTime: Infinity` and `staleTime: 'static'`?"
+    options:
+      - "A query with `Infinity` is still refreshed by `invalidateQueries`; one with `'static'` is not"
+      - "`'static'` does not cache the data at all"
+      - "There is none"
+      - "`Infinity` only works on the server"
+    answer: 0
+    explanation: "Neither goes stale by itself. `invalidateQueries` refreshes an `Infinity` query; `'static'` is for data that never changes while the app is open (permissions or feature flags loaded at start-up) and is not refreshed."
+  - question: "You want to fill the detail page with the real product data already loaded in the list, without a request while it is fresh. Which one?"
+    options:
+      - "`setQueryData` inside a `useEffect`"
+      - "`select`"
+      - "`initialData` (with `initialDataUpdatedAt`)"
+      - "`placeholderData`"
+    answer: 2
+    explanation: "`initialData` is written to the cache as real data and respects `staleTime`, so nothing is fetched while it is fresh. `placeholderData` is not cached and real data is always requested. `initialDataUpdatedAt` says when the data was fetched."
 ---
 
 ## Stale-While-Revalidate

@@ -3,6 +3,35 @@ title: "Ortam değişkenleri"
 description: "Yapılandırmayı koddan ayırmak, NEXT_PUBLIC_ ve Zod ile doğrulama."
 lastVerified: "2026-11-03"
 translationKey: "production/environment-variables"
+quiz:
+  - question: "Tek bir Docker imajını önizlemede ve canlıda farklı `NEXT_PUBLIC_API_URL` değerleriyle çalıştırıyorsunuz. Tarayıcıdaki değer ne olur?"
+    options:
+      - "İki ortamda da `next build` anındaki değer; değer pakete gömülür"
+      - "Her istekte sunucudan okunur"
+      - "Her ortamda `docker run -e` ile verilen değer"
+      - "Tarayıcı değeri hiç göremez"
+    answer: 0
+    explanation: "`NEXT_PUBLIC_` bir izin değil, kopyalama talimatıdır: `next build` değeri JavaScript paketine gömer ve build'den sonra değişmez. Ortama göre değişmesi gereken değeri sunucuda, istek anında okuyun."
+  - question: "Bu kod Client Component'te çalışınca `value` ne olur?"
+    lang: ts
+    code: |-
+      const name = "NEXT_PUBLIC_ANALYTICS_ID";
+      const value = process.env[name];
+    options:
+      - "Build hatası"
+      - "Analytics kimliği"
+      - "Sunucudan çekilir"
+      - "Değer gelmez; Next.js değişken adı dinamik olduğu için bu ifadeyi build'de değiştirmez"
+    answer: 3
+    explanation: "Next.js yalnızca `process.env.NEXT_PUBLIC_ANALYTICS_ID` gibi doğrudan yazılmış ifadeleri build sırasında değerle değiştirir. Dinamik erişim değiştirilmez."
+  - question: "`LOG_LEVEL` hem `.env.local` dosyasında hem de sunucu başlatılırken verilen gerçek ortam değişkeninde tanımlı. Next.js hangisini kullanır?"
+    options:
+      - "`.env.local`'daki değeri"
+      - "Build hatası verir"
+      - "Gerçek ortam değişkenini (`process.env`)"
+      - "`.env`'deki değeri"
+    answer: 2
+    explanation: "İlk bulunan kazanır ve sıra `process.env`, `.env.$(NODE_ENV).local`, `.env.local`, `.env.$(NODE_ENV)`, `.env` şeklindedir. Canlıda platformun verdiği değerler depodaki her dosyanın önündedir."
 ---
 
 ## Yapılandırma koddan ayrılır

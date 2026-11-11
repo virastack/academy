@@ -3,6 +3,40 @@ title: "React Hook Form with Zod"
 description: "The resolver, input and output types, and rules across fields."
 lastVerified: "2026-11-03"
 translationKey: "forms/react-hook-form-with-zod"
+quiz:
+  - question: "If the schema has no rule for `nickname`, what happens when the field is submitted empty?"
+    lang: tsx
+    code: |-
+      const { register } = useForm({ resolver: zodResolver(signUpSchema) });
+
+      <input {...register("nickname", { required: "A nickname is required." })} />
+    options:
+      - "The \"A nickname is required.\" error appears"
+      - "The form does not submit, but no message shows"
+      - "Both rule sets are merged"
+      - "No error appears; with a resolver, rules in `register` are ignored"
+    answer: 3
+    explanation: "With a resolver, the built-in `register` rules do not run. Every rule and message has to be in the schema."
+  - question: "The password and its confirmation matched; the user then changed the password, but \"The passwords do not match.\" does not appear. What is missing?"
+    options:
+      - "`mode: \"onSubmit\"`"
+      - "`register(\"password\", { deps: \"confirmPassword\" })` on the password field"
+      - "`required` on `confirmPassword`"
+      - "`.transform` instead of `.refine` in the schema"
+    answer: 1
+    explanation: "React Hook Form only updates the error of the field that changed, while the refine writes to `confirmPassword`. `deps` revalidates `confirmPassword` whenever `password` is validated."
+  - question: "What is wrong with using a single generic here?"
+    lang: tsx
+    code: |-
+      // the schema transforms price from string to number
+      useForm<ProductOutput>({ resolver: zodResolver(productSchema) });
+    options:
+      - "The form holds the input type and `handleSubmit` the output type; one generic pins both to the same type and clashes with `zodResolver`"
+      - "`zodResolver` takes no generics"
+      - "Transforms do not run inside forms"
+      - "Nothing"
+    answer: 0
+    explanation: "Either pass no generics and let the resolver infer the type, or pass all three: `useForm<ProductInput, unknown, ProductOutput>`."
 ---
 
 ## Why together?

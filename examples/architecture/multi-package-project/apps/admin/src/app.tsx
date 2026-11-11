@@ -3,8 +3,8 @@ import { Price } from "@repo/ui/price";
 import { useState } from "react";
 
 const initialProducts = [
-  { slug: "mechanical-keyboard", name: "Mekanik Klavye", price: 2499 },
-  { slug: "wireless-mouse", name: "Kablosuz Mouse", price: 899 },
+  { slug: "mechanical-keyboard", name: "Mechanical Keyboard", price: 2499 },
+  { slug: "wireless-mouse", name: "Wireless Mouse", price: 899 },
 ];
 
 export function App() {
@@ -28,8 +28,8 @@ export function App() {
                 <Price value={product.price} />
               </td>
               <td>
-                <Button variant="secondary" onClick={() => discount(product.slug)} aria-label={`${product.name} indirim yap`}>
-                  %10 indirim
+                <Button variant="secondary" onClick={() => discount(product.slug)} aria-label={`Take 10% off ${product.name}`}>
+                  10% off
                 </Button>
               </td>
             </tr>

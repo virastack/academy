@@ -3,6 +3,40 @@ title: "React Hook Form ile Zod"
 description: "Resolver, input ve output tipleri, alanlar arası kural."
 lastVerified: "2026-11-03"
 translationKey: "forms/react-hook-form-with-zod"
+quiz:
+  - question: "Şemada `nickname` için kural yoksa alan boş gönderildiğinde ne olur?"
+    lang: tsx
+    code: |-
+      const { register } = useForm({ resolver: zodResolver(signUpSchema) });
+
+      <input {...register("nickname", { required: "Rumuz zorunlu." })} />
+    options:
+      - "\"Rumuz zorunlu.\" hatası görünür"
+      - "Form gönderilmez ama mesaj da çıkmaz"
+      - "İkisi birleşir"
+      - "Hata görünmez; resolver varken `register`'daki kurallar yok sayılır"
+    answer: 3
+    explanation: "Resolver ile çalışırken yerleşik `register` kuralları çalışmaz. Tüm kurallar ve mesajlar şemada olmalı."
+  - question: "Şifre ve tekrarı eşleşiyordu; kullanıcı sonra şifreyi değiştirdi ama \"The passwords do not match.\" görünmüyor. Ne eksik?"
+    options:
+      - "`mode: \"onSubmit\"`"
+      - "`password` alanına `register(\"password\", { deps: \"confirmPassword\" })`"
+      - "`confirmPassword`'a `required`"
+      - "Şemada `.refine` yerine `.transform`"
+    answer: 1
+    explanation: "React Hook Form yalnızca değişen alanın hatasını günceller; refine ise `confirmPassword`'a yazıyor. `deps`, `password` doğrulanınca `confirmPassword`'ı da yeniden doğrular."
+  - question: "Tek generic'le bu kullanımın sorunu nedir?"
+    lang: tsx
+    code: |-
+      // price şemada string → number transform ediliyor
+      useForm<ProductOutput>({ resolver: zodResolver(productSchema) });
+    options:
+      - "Form girdi tipini, `handleSubmit` çıktı tipini tutar; tek generic ikisini aynıya sabitler ve `zodResolver` ile çakışır"
+      - "`zodResolver` generic kabul etmez"
+      - "Transform form içinde çalışmaz"
+      - "Sorun yok"
+    answer: 0
+    explanation: "Ya hiç generic vermeyin ve tipi resolver'dan çıkarın, ya da üçünü birden verin: `useForm<ProductInput, unknown, ProductOutput>`."
 ---
 
 ## Neden birlikte?

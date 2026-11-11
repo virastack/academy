@@ -3,6 +3,31 @@ title: "Renk, kontrast ve hareket"
 description: "Okunabilir renkler, yakınlaştırma ve azaltılmış hareket."
 lastVerified: "2026-11-03"
 translationKey: "performance-accessibility/color-contrast-and-motion"
+quiz:
+  - question: "Normal boyutlu metin için hesaplanan kontrast oranı 4.499:1. WCAG 1.4.3 (AA) karşılanır mı?"
+    options:
+      - "Hayır; yuvarlama yoktur, 4.5:1'in altında kalır"
+      - "Evet, çünkü 3:1'in üstünde"
+      - "Yalnızca koyu temada"
+      - "Evet, 4.5'e yuvarlanır"
+    answer: 0
+    explanation: "Normal metin için en az 4.5:1 gerekir ve yuvarlama yapılmaz. 3:1 yalnızca büyük metin (yaklaşık 24px ya da 18,5px kalın) içindir."
+  - question: "Beyaz zeminde `#9D9D9D` gri kenarlıklı bir checkbox 2.7:1 kontrast veriyor. Hangisi doğru?"
+    options:
+      - "1.4.11 Non-text Contrast'ı geçemez; bileşeni tanıtan görseller bitişik renge karşı en az 3:1 olmalı"
+      - "4.5:1 gerekir"
+      - "Yalnızca AAA seviyesinde sorun olur"
+      - "Sorun yok; kenarlık metin değildir"
+    answer: 0
+    explanation: "Input kenarlığı, checkbox çerçevesi, seçili durum işareti ve odak göstergesi gibi anlam taşıyan görseller için AA seviyesinde 3:1 gerekir. Devre dışı bileşenler istisnadır."
+  - question: "Kullanıcı işletim sisteminde \"hareketi azalt\" ayarını açtı. Sitenizdeki CSS animasyonları ne olur?"
+    options:
+      - "Yalnızca Safari'de durur"
+      - "Animasyon süreleri yarıya iner"
+      - "Kendiliğinden durur"
+      - "Kendiliğinden durmaz; tercihe `prefers-reduced-motion` ile uymak geliştiricinin işidir"
+    answer: 3
+    explanation: "İşletim sistemi web animasyonlarını kapatmaz; tercih tarayıcı tarafından `prefers-reduced-motion` ile iletilir. Önerilen yol no-motion-first: animasyonu yalnızca `no-preference` iken ekleyin."
 ---
 
 ## Kontrast nedir

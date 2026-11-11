@@ -3,6 +3,45 @@ title: "Temel tipler ve çıkarım"
 description: "Primitive tipler, array, fonksiyon tipleri, any, unknown ve tip çıkarımı."
 lastVerified: "2026-11-03"
 translationKey: "typescript/basic-types-and-inference"
+quiz:
+  - question: "TypeScript bu iki değişkene sırasıyla hangi tipi verir?"
+    lang: ts
+    code: |-
+      let orderStatus = "pending";
+      const currency = "TRY";
+    options:
+      - "`any` ve `string`"
+      - "`string` ve `\"TRY\"`"
+      - "`\"pending\"` ve `\"TRY\"`"
+      - "`string` ve `string`"
+    answer: 1
+    explanation: "`let` sonradan değişebileceği için genel tipi (`string`) alır. `const` değişmeyeceği için değerin kendisi tip olur: `\"TRY\"` literal tipi."
+  - question: "`config`'in tipi nedir?"
+    lang: ts
+    code: |-
+      const config = { currency: "TRY", taxRate: 0.2 } as const;
+    options:
+      - "`{ currency: \"TRY\"; taxRate: 0.2 }`"
+      - "`{ currency: string; taxRate: number }`"
+      - "`{ readonly currency: \"TRY\"; readonly taxRate: 0.2 }`"
+      - "`{ readonly currency: string; readonly taxRate: number }`"
+    answer: 2
+    explanation: "Object özellikleri normalde genel tipi alır. `as const` tüm değerleri literal ve `readonly` yapar; `config.taxRate = 0.1` hata verir."
+  - question: "Hangi satır derleme hatası verir?"
+    lang: ts
+    code: |-
+      const fromAny: any = JSON.parse('{"price": 249}');
+      fromAny.prise.toFixed(2);
+
+      const fromUnknown: unknown = JSON.parse('{"price": 249}');
+      fromUnknown.price;
+    options:
+      - "Yalnızca `fromAny.prise.toFixed(2)`"
+      - "Yalnızca `fromUnknown.price`"
+      - "İkisi de"
+      - "Hiçbiri"
+    answer: 1
+    explanation: "`any` tip kontrolünü kapatır: yazım hatalı `prise` derlenir ama çalışırken patlar. `unknown` ise tipi kontrol edilmeden hiçbir işleme izin vermez: `'fromUnknown' is of type 'unknown'`."
 ---
 
 ## Tip belirtmek

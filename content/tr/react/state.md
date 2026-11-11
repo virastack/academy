@@ -3,6 +3,47 @@ title: "State"
 description: "Snapshot ve updater, immutable güncelleme, state yapısını doğru kurma."
 lastVerified: "2026-11-03"
 translationKey: "react/state"
+quiz:
+  - question: "`quantity` 1 iken butona basılıyor. Bir sonraki render'da `quantity` kaç olur?"
+    code: |-
+      function handleAddThree() {
+        setQuantity(quantity + 1);
+        setQuantity(quantity + 1);
+        setQuantity(quantity + 1);
+      }
+    options:
+      - "1"
+      - "2"
+      - "3"
+      - "4"
+    answer: 1
+    explanation: "State o render için sabit bir fotoğraftır; üç çağrı da `1 + 1` hesaplar. Önceki değere göre güncellemek için updater verin: `setQuantity((q) => q + 1)`."
+  - question: "Sepete ürün eklendiği hâlde ekran güncellenmiyor. Sebep nedir?"
+    code: |-
+      cart.push(product);
+      setCart(cart);
+    options:
+      - "Aynı dizi referansı geri verildiği için React değişikliği görmeyebilir"
+      - "`setCart` yalnızca updater fonksiyonuyla çalışır"
+      - "`push` asenkron çalışır"
+      - "State'te dizi tutulamaz"
+    answer: 0
+    explanation: "React değişikliği referans karşılaştırmasıyla anlar. Mutasyon yerine yeni dizi verin: `setCart([...cart, product])`."
+  - question: "Bu kod için en doğru düzeltme hangisi?"
+    code: |-
+      const [products, setProducts] = useState<Product[]>([]);
+      const [inStock, setInStock] = useState<Product[]>([]);
+
+      useEffect(() => {
+        setInStock(products.filter((p) => p.stock > 0));
+      }, [products]);
+    options:
+      - "`useEffect` yerine `useLayoutEffect` kullanmak"
+      - "`inStock` state'ini silip render sırasında `products.filter(...)` ile hesaplamak"
+      - "Bağımlılık dizisini `[]` yapmak"
+      - "`setInStock`'u updater fonksiyonuyla çağırmak"
+    answer: 1
+    explanation: "Hesaplanabilen değer state'te tutulmaz. Bir setter yalnızca bir Effect içinde senkron çağrılıyorsa o state silinir: state'i senkronlamayın, türetin."
 ---
 
 ## State nedir

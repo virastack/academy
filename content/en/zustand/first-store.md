@@ -3,6 +3,48 @@ title: "Your first store"
 description: "create, set, get, and reaching the store from outside React."
 lastVerified: "2026-11-03"
 translationKey: "zustand/first-store"
+quiz:
+  - question: "After `setTheme(\"dark\")`, what is `user`?"
+    lang: ts
+    code: |-
+      // state: { user: { name: "Ada", theme: "light" } }
+      setTheme: (theme) => set({ user: { theme } }),
+    options:
+      - "TypeScript does not compile this line"
+      - "`{ theme: \"dark\" }`; `name` is lost"
+      - "Nothing changes"
+      - "`{ name: \"Ada\", theme: \"dark\" }`"
+    answer: 1
+    explanation: "`set` only merges one level deep. The `user` object is replaced as a whole, so `name` is lost. Copy the nested object yourself: `set((state) => ({ user: { ...state.user, theme } }))`."
+  - question: "In a store without middleware, what does this action do?"
+    lang: ts
+    code: |-
+      addItem: (item) =>
+        set((state) => {
+          state.items.push(item);
+          return state;
+        }),
+    options:
+      - "Changes the store but subscribers are not notified, so the screen does not update"
+      - "Throws an error"
+      - "Adds the item and the screen updates"
+      - "Adds the item twice"
+    answer: 0
+    explanation: "Do not mutate state; return a new value: `set((state) => ({ items: [...state.items, item] }))`. Mutation is only valid inside the `immer` middleware."
+  - question: "What does this badge do when an item is added to the cart?"
+    lang: tsx
+    code: |-
+      function CartBadge() {
+        const count = useCartStore.getState().items.length;
+        return <span>{count}</span>;
+      }
+    options:
+      - "Does not update; `getState()` does not subscribe, so the component does not re-render"
+      - "Throws an error"
+      - "Refreshes itself every second"
+      - "Updates at once"
+    answer: 0
+    explanation: "`getState()` returns the current state but does not subscribe. Use the hook with a selector in components; `getState()` is for reading the current value in event handlers or outside React."
 ---
 
 ## Setup

@@ -3,6 +3,62 @@ title: "Render performance in React"
 description: "Unnecessary renders and expensive updates."
 lastVerified: "2026-11-03"
 translationKey: "performance-accessibility/render-performance"
+quiz:
+  - question: "`Footer` is not wrapped in `memo`. When the user types in the input, does `Footer` re-render?"
+    lang: tsx
+    code: |-
+      function Page() {
+        const [query, setQuery] = useState("");
+        return (
+          <>
+            <input value={query} onChange={(e) => setQuery(e.target.value)} />
+            <Footer year={2026} />
+          </>
+        );
+      }
+    options:
+      - "No, because its props did not change"
+      - "Yes; every component below the one whose state changed re-renders"
+      - "Only if `year` changes"
+      - "Only in Strict Mode"
+    answer: 1
+    explanation: "\"A component re-renders when its props change\" is a common myth. Without `memo`, a component re-renders with its parent even if its props stay the same."
+  - question: "If `SlowList` is not wrapped in `memo`, what happens?"
+    lang: tsx
+    code: |-
+      const deferredText = useDeferredValue(text);
+
+      <SlowList text={deferredText} />
+    options:
+      - "It throws an error"
+      - "The gain stays the same"
+      - "`useDeferredValue` makes `SlowList` faster"
+      - "It still re-renders on every keystroke and the gain is lost"
+    answer: 3
+    explanation: "`useDeferredValue` does not speed up the slow component; it only keeps it from blocking keystrokes. For that `SlowList` must be wrapped in `memo`; otherwise it renders whenever its parent does, on every keystroke."
+  - question: "When the user types in the colour input, does `ExpensiveTree` re-render?"
+    lang: tsx
+    code: |-
+      function ColorPicker({ children }: { children: React.ReactNode }) {
+        const [color, setColor] = useState("red");
+        return (
+          <div style={{ color }}>
+            <input value={color} onChange={(e) => setColor(e.target.value)} />
+            {children}
+          </div>
+        );
+      }
+
+      <ColorPicker>
+        <ExpensiveTree />
+      </ColorPicker>
+    options:
+      - "Only on the first keystroke"
+      - "Only if it is wrapped in `memo`"
+      - "No; `children` is created in the parent, so React does not re-render it when `ColorPicker`'s state changes"
+      - "Yes, because it is a child of `ColorPicker`"
+    answer: 2
+    explanation: "Before reaching for `memo`, changing the structure is often enough: move state down, or move the stateful part into a wrapper that takes `children`."
 ---
 
 ## What a render is

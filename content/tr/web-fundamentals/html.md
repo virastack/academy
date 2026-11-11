@@ -3,6 +3,34 @@ title: "HTML"
 description: "Anlamlı etiketler ve sayfa yapısı."
 lastVerified: "2026-11-03"
 translationKey: "web-fundamentals/html"
+quiz:
+  - question: "Sayfadaki bir menüyü açan kontrol için en doğru eleman hangisi?"
+    options:
+      - "`<span role=\"button\">Menü</span>`"
+      - "`<div onclick=\"openMenu()\">Menü</div>`"
+      - "`<a href=\"#\">Menü</a>`"
+      - "`<button type=\"button\">Menü</button>`"
+    answer: 3
+    explanation: "Link başka yere götürür, buton bulunduğunuz sayfada işlem yapar. `<div onclick>` klavye odağını ve Enter/Space davranışını kaybettirir; `role=\"button\"` yalnızca anlam ekler, klavye davranışını eklemez."
+  - question: "Görsel tamamen süs amaçlı. `alt` ne olmalı?"
+    lang: html
+    code: |-
+      <img src="divider.svg" alt="?" />
+    options:
+      - "`alt=\"süs görseli\"`"
+      - "`alt=\"görsel\"`"
+      - "`alt=\"\"`"
+      - "`alt` attribute'u hiç yazılmamalı"
+    answer: 2
+    explanation: "Görsel süs içinse `alt=\"\"` bırakılır; ekran okuyucu onu atlar. Bilgi taşıyan görselde ise `alt` o bilgiyi kısa anlatır."
+  - question: "Yalnızca stil vermek için bir kapsayıcı gerekiyor; içinde anlamlı bir bölüm yok. HTML Standard'a göre hangisi kullanılır?"
+    options:
+      - "`<main>`"
+      - "`<div>`"
+      - "`<article>`"
+      - "`<section>`"
+    answer: 1
+    explanation: "`<section>` genel amaçlı bir kutu değildir, başında başlığı olan tematik bir gruptur. Yalnızca stil için kapsayıcı gerekiyorsa `<div>` kullanılır."
 ---
 
 ## HTML nedir

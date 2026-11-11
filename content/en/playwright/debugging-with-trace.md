@@ -3,6 +3,36 @@ title: "Debugging with a trace"
 description: "UI Mode, the Inspector, traces and flaky tests."
 lastVerified: "2026-11-03"
 translationKey: "playwright/debugging-with-trace"
+quiz:
+  - question: "Why is there no trace for a test that failed locally?"
+    lang: ts
+    code: |-
+      // playwright.config.ts
+      retries: process.env.CI ? 2 : 0,
+      use: { trace: "on-first-retry" },
+    options:
+      - "`show-trace` was not run"
+      - "Locally `retries: 0`, so there is never a first retry; turn it on with `--trace on`"
+      - "Traces are only supported in CI"
+      - "Traces are only recorded for passing tests"
+    answer: 1
+    explanation: "`\"on-first-retry\"` only records on the first retry. There are no retries locally, so use `npx playwright test --trace on` from the command line."
+  - question: "Which option is designed to find tests that secretly depend on each other (one only fails in a certain order)?"
+    options:
+      - "`--headed`"
+      - "`--ui`"
+      - "`--shuffle`"
+      - "`--last-failed`"
+    answer: 2
+    explanation: "`--shuffle` (1.64) runs tests in random order, and the seed reproduces the same order. `--repeat-each` surfaces timing-related failures."
+  - question: "What are the snapshots in the trace viewer?"
+    options:
+      - "A video recording of the test"
+      - "DOM copies that you can inspect with dev tools and try locators on"
+      - "PNG screenshots of the page"
+      - "Only a log of network requests"
+    answer: 1
+    explanation: "Snapshots are not screenshots but DOM copies from before, during and after each action. The Playwright docs recommend traces over videos and screenshots for CI failures."
 ---
 
 ## Read the error message first

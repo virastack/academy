@@ -3,6 +3,55 @@ title: "Interface, type and union"
 description: "Object shapes, type aliases, unions and literal types."
 lastVerified: "2026-11-03"
 translationKey: "typescript/interfaces-types-and-unions"
+quiz:
+  - question: "What happens on the last line?"
+    lang: ts
+    code: |-
+      interface Customer {
+        id: number;
+      }
+
+      interface Customer {
+        email: string;
+      }
+
+      const customer: Customer = { id: 1 };
+    options:
+      - "It is valid"
+      - "The second interface overwrites the first; the error is about `id`"
+      - "Error: `Duplicate identifier 'Customer'`"
+      - "Error: `email` is missing"
+    answer: 3
+    explanation: "Two interfaces with the same name merge into one (declaration merging). `Customer` now requires both `id` and `email`. Written with `type`, you would get `Duplicate identifier` instead."
+  - question: "Is the last line an error?"
+    lang: ts
+    code: |-
+      type Product = { id: number; name: string; price: number };
+
+      const draft = { id: 1, name: "Wireless Headphones", price: 1299.9, colour: "black" };
+      const product: Product = draft;
+    options:
+      - "Yes: `'colour' does not exist in type 'Product'`"
+      - "No, but `colour` is removed at runtime"
+      - "Yes, but only at runtime"
+      - "No; the excess property check only runs on fresh object literals"
+    answer: 3
+    explanation: "Had the object literal gone straight into `Product`, `colour` would be an error. Since it was assigned to another variable first, the types are compared by shape, and `draft` has every field `Product` needs."
+  - question: "Inside the function, without narrowing, which one compiles without an error?"
+    lang: ts
+    code: |-
+      type ProductId = number | string;
+
+      function findProduct(id: ProductId) {
+        // ?
+      }
+    options:
+      - "`id.toUpperCase()`"
+      - "`id.toFixed(0)`"
+      - "`id.length`"
+      - "`id.toString()`"
+    answer: 3
+    explanation: "TypeScript only allows operations that are valid on every member of the union. `toString` exists on both `number` and `string`; the others exist on only one."
 ---
 
 ## Naming object types

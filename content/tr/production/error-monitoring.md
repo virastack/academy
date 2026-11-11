@@ -3,6 +3,37 @@ title: "Hata izleme"
 description: "onRequestError, hata kodu, Sentry ve işe yarar uyarılar."
 lastVerified: "2026-11-03"
 translationKey: "production/error-monitoring"
+quiz:
+  - question: "Production'da bir Server Component hata fırlattı. Kullanıcı `error.tsx`'te ne görür?"
+    options:
+      - "Genel bir mesaj ve sunucu loglarıyla eşleştirmeye yarayan bir `digest` kimliği"
+      - "Hatanın tam mesajını ve yığın izini"
+      - "Hiçbir şey; sayfa boş kalır"
+      - "Yalnızca HTTP 500 kodu"
+    answer: 0
+    explanation: "Sunucudaki hata tarayıcıya ayrıntısız gider; asıl mesaj hassas bilgi sızdırmasın diye gizlenir. `digest`'i kullanıcıya gösterirseniz destek ekibi loglarda aynı hatayı bulur."
+  - question: "Dersin projesinde bu daraltma neden yetersiz kaldı?"
+    lang: tsx
+    code: |-
+      export default function Error({ error }: { error: unknown }) {
+        const digest = error instanceof Error ? (error as { digest?: string }).digest : undefined;
+        // ...
+      }
+    options:
+      - "`error` prop'u her zaman `string`'dir"
+      - "Suspense içinde fırlatılan sunucu hatası `message`, `stack` ve `digest` taşıyan ama `instanceof Error`'dan geçmeyen bir nesne olarak geldi"
+      - "`instanceof` TypeScript'te çalışmaz"
+      - "`digest` yalnızca client hatalarında olur"
+    answer: 1
+    explanation: "Next.js 16'da `error` `unknown`'dır. `instanceof Error` yerine alanın varlığını ve tipini kontrol edin: `\"digest\" in error && typeof error.digest === \"string\"`."
+  - question: "Hangi durum bir uyarı (alert) bildirimine en çok değer?"
+    options:
+      - "Bilinen bir hatanın her yeni tekrarı"
+      - "Bir deploy'dan sonra ortaya çıkan yeni bir hata türü"
+      - "Bir sunucunun belleğinin bir an yükselmesi"
+      - "Kullanıcının geçersiz form göndermesi"
+    answer: 1
+    explanation: "Her bildirim eyleme dönüştürülebilir olmalıdır. Yeni hata türleri ve bilinen hatanın sayısındaki ani artışlar uyarıya değer; beklenen hatalar (geçersiz form) hata olarak raporlanmaz, kullanıcıyı etkileyen belirtilere öncelik verilir."
 ---
 
 ## Kullanıcılar hata bildirmez

@@ -3,6 +3,41 @@ title: "Introduction and setup"
 description: "What TypeScript is, why it is used and type checking in a first project."
 lastVerified: "2026-11-03"
 translationKey: "typescript/introduction-and-setup"
+quiz:
+  - question: "You save this line while the Vite dev server is running. What happens?"
+    lang: ts
+    code: |-
+      const price: number = "1299"; // type error
+    options:
+      - "Vite shows the error in the browser and stops the page"
+      - "The code runs; Vite only transforms `.ts` files and does not type-check them"
+      - "Vite converts the value to `number` by itself"
+      - "The server refuses to run the code"
+    answer: 1
+    explanation: "Vite strips the types and runs the code, leaving type checking to the editor and the build. That is why you run the type check separately (`npx tsc -b` in the Vite template)."
+  - question: "The project has type errors. What does this command do?"
+    lang: bash
+    code: |-
+      # in the root of the Vite react-ts template
+      npx tsc --noEmit
+    options:
+      - "Checks only the files in `tsconfig.node.json`"
+      - "Checks no files at all and succeeds"
+      - "Emits JavaScript and prints the errors as warnings"
+      - "Lists the errors and fails"
+    answer: 1
+    explanation: "The root `tsconfig.json` in the Vite template contains no files of its own (`\"files\": []`) and only references the other two. So the command checks nothing; in Vite projects use `npx tsc -b`."
+  - question: "Does this line guarantee that the API data really has the `Product` shape?"
+    lang: ts
+    code: |-
+      const product: Product = await response.json();
+    options:
+      - "Yes, `fetch` throws if the data does not match"
+      - "Only when `strict` mode is on"
+      - "Yes, TypeScript validates the response at runtime"
+      - "No; types are erased before running, so incoming data goes through no type check"
+    answer: 3
+    explanation: "TypeScript only checks the code you write; types do not exist at runtime. Data from `fetch`, `JSON.parse` or form input has to be validated separately (with narrowing or a schema such as Zod)."
 ---
 
 ## What TypeScript is

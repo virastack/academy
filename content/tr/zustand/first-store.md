@@ -3,6 +3,48 @@ title: "İlk store"
 description: "create, set, get ve store'a React dışından erişmek."
 lastVerified: "2026-11-03"
 translationKey: "zustand/first-store"
+quiz:
+  - question: "`setTheme(\"dark\")` çağrıldıktan sonra `user` ne olur?"
+    lang: ts
+    code: |-
+      // state: { user: { name: "Ada", theme: "light" } }
+      setTheme: (theme) => set({ user: { theme } }),
+    options:
+      - "TypeScript bu satırı derlemez"
+      - "`{ theme: \"dark\" }`; `name` silinir"
+      - "Hiçbir şey değişmez"
+      - "`{ name: \"Ada\", theme: \"dark\" }`"
+    answer: 1
+    explanation: "`set` yalnızca bir seviye birleştirir. `user` nesnesi olduğu gibi değiştirildiği için `name` kaybolur. İç içe nesneyi kendiniz kopyalayın: `set((state) => ({ user: { ...state.user, theme } }))`."
+  - question: "Middleware kullanılmayan bir store'da bu action ne yapar?"
+    lang: ts
+    code: |-
+      addItem: (item) =>
+        set((state) => {
+          state.items.push(item);
+          return state;
+        }),
+    options:
+      - "Store'u değiştirir ama aboneler haberdar olmaz; ekran güncellenmez"
+      - "Hata fırlatır"
+      - "Ürünü ekler ve ekran güncellenir"
+      - "Ürünü iki kez ekler"
+    answer: 0
+    explanation: "State'i değiştirmeyin, yeni değer döndürün: `set((state) => ({ items: [...state.items, item] }))`. Mutasyon ancak `immer` middleware'i içinde geçerlidir."
+  - question: "Sepete ürün eklenince bu rozet ne yapar?"
+    lang: tsx
+    code: |-
+      function CartBadge() {
+        const count = useCartStore.getState().items.length;
+        return <span>{count}</span>;
+      }
+    options:
+      - "Güncellenmez; `getState()` abone olmadığı için component yeniden render olmaz"
+      - "Hata fırlatır"
+      - "Her saniye kendiliğinden yenilenir"
+      - "Hemen güncellenir"
+    answer: 0
+    explanation: "`getState()` güncel state'i döndürür ama abone olmaz. Component içinde selector'lı hook kullanın; `getState()` event handler'da ya da React dışında güncel değeri okumak içindir."
 ---
 
 ## Kurulum

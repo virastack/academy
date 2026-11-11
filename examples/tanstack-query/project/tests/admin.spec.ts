@@ -5,13 +5,13 @@ test("lists, paginates and searches products", async ({ page }) => {
   await expect(page.getByRole("button", { name: "Canvas Sneaker" })).toBeVisible();
   await expect(page.locator("tbody tr")).toHaveCount(5);
 
-  await page.getByRole("button", { name: "Sonraki" }).click();
+  await page.getByRole("button", { name: "Next" }).click();
   await expect(page.getByRole("button", { name: "Running Shoe" })).toBeVisible();
 
   await page.getByPlaceholder("Search products").fill("shirt");
   await page.getByRole("button", { name: "Search" }).click();
   await expect(page.locator("tbody tr")).toHaveCount(1);
-  await expect(page.getByText("Sayfa 1")).toBeVisible();
+  await expect(page.getByText("Page 1")).toBeVisible();
 });
 
 test("opens a product, loads more reviews and updates stock", async ({ page }) => {

@@ -3,6 +3,38 @@ title: "Code quality and team standards"
 description: "ESLint, Prettier, commit rules and automated checks in CI."
 lastVerified: "2026-11-03"
 translationKey: "architecture/code-quality"
+quiz:
+  - question: "With Husky and lint-staged installed, why should the same checks also run in CI?"
+    options:
+      - "lint-staged does not scan the whole project, so it is wrong"
+      - "Hooks can be skipped with `git commit --no-verify`; CI with required checks is the last gate that cannot be skipped"
+      - "Hooks only run on macOS"
+      - "CI is faster"
+    answer: 1
+    explanation: "The editor and hooks give fast feedback; CI is the last gate. With required status checks on GitHub, nothing merges until the checks pass."
+  - question: "Under Conventional Commits, what does the commit `feat!: remove the old checkout API` correspond to in SemVer?"
+    options:
+      - "PATCH"
+      - "It does not affect the version"
+      - "MINOR"
+      - "MAJOR"
+    answer: 3
+    explanation: "`fix:` is PATCH, `feat:` is MINOR, and `!` or a `BREAKING CHANGE:` footer marks a breaking change, which is MAJOR. Types like `docs` and `chore` have no special meaning for versioning."
+  - question: "Why is `eslint-config-prettier` at the very end of the array?"
+    lang: js
+    code: |-
+      export default defineConfig([
+        globalIgnores(['dist/', '.next/']),
+        { files: ['**/*.{ts,tsx}'], extends: [js.configs.recommended, tseslint.configs.recommended] },
+        prettier,
+      ])
+    options:
+      - "Objects matching the same file are merged and the later one wins on conflicts, so it gets the last word in turning off clashing formatting rules"
+      - "To run Prettier"
+      - "ESLint only reads the last object"
+      - "Because of alphabetical order"
+    answer: 0
+    explanation: "`eslint-config-prettier` turns off formatting-related ESLint rules and leaves formatting to Prettier. `eslint-plugin-prettier` is not recommended: it floods the editor with red squiggles and is slow."
 ---
 
 A written rule gets broken; an automated rule does not. This guide ties the team's code standards to tools at three layers: in the editor, at commit time and in CI. While Google's code review guide treats the style guide as the final authority on style, it says that software design is almost never a pure matter of style.[^1] Once you hand the style rules to a tool, review time is left for design.

@@ -3,6 +3,37 @@ title: "Kurulum ve araçlar"
 description: "Framework mü Vite mi, Strict Mode, lint kuralları ve AI ile React yazmak."
 lastVerified: "2026-11-03"
 translationKey: "react/setup-and-tooling"
+quiz:
+  - question: "Development'ta bir Effect'in iki kez çalıştığını görüyorsunuz. Doğru yaklaşım hangisi?"
+    code: |-
+      createRoot(document.getElementById("root")!).render(
+        <StrictMode>
+          <App />
+        </StrictMode>,
+      );
+    options:
+      - "Production'da da iki kez çalışacağı için Effect'i silmek"
+      - "`StrictMode`'u kaldırmak"
+      - "Effect'i `useLayoutEffect`'e çevirmek"
+      - "Effect'e eksik cleanup'ı yazmak"
+    answer: 3
+    explanation: "Strict Mode yalnızca development'ta Effect'leri bir kez fazladan kurup söker; production build'i etkilemez. Çift çalışma hata değil, eksik cleanup'ı gösteren bir testtir. Çözüm cleanup yazmaktır."
+  - question: "SEO, ilk yükleme hızı ve sunucu verisinin önemli olduğu yeni bir web projesi için ders hangisini önerir?"
+    options:
+      - "Vite + React Router + TanStack Query"
+      - "Next.js ya da React Router framework modu"
+      - "Expo"
+      - "`create-react-app`"
+    answer: 1
+    explanation: "React ekibi yeni uygulamaya bir framework ile başlamayı önerir; SEO, ilk yükleme ve sunucu verisi önemliyse Next.js ya da React Router framework modu. Vite yalnızca tarayıcıda çalışan SPA için, Expo mobil için; `create-react-app` artık kullanılmıyor."
+  - question: "Uygulama çalışıyor ama render sırasında state değiştiriliyor ve bir component başka bir component'in içinde tanımlanmış. Bu hataları hangisi yakalar?"
+    options:
+      - "Vite şablonundaki Oxlint, varsayılan ayarıyla"
+      - "React DevTools'un Profiler sekmesi"
+      - "TypeScript'in `strict` modu"
+      - "`eslint-plugin-react-hooks`'un `recommended` preset'i"
+    answer: 3
+    explanation: "Vite şablonundaki Oxlint yalnızca `rules-of-hooks` kuralını açar. `eslint-plugin-react-hooks`'un `recommended` preset'i React Compiler analizine dayanan kurallarla render'da state değiştirmeyi ve component içinde component tanımlamayı yakalar."
 ---
 
 ## Bu rehber ne anlatıyor

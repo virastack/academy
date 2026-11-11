@@ -3,6 +3,31 @@ title: "Pre-release checklist"
 description: "What to look at before going live, and the release-day plan."
 lastVerified: "2026-11-03"
 translationKey: "production/pre-release-checklist"
+quiz:
+  - question: "When should the `Strict-Transport-Security` header be added?"
+    options:
+      - "Once the site is served entirely over HTTPS; the header tells the browser to open the site only over HTTPS from then on"
+      - "Only in development"
+      - "Only behind a CDN"
+      - "On day one of every project"
+    answer: 0
+    explanation: "Do not add HSTS before fully moving to HTTPS; the browser will refuse to open the site over HTTP."
+  - question: "What does the checklist require for authorisation?"
+    options:
+      - "Every Server Action and Route Handler checks identity and permissions itself"
+      - "A page-level check is enough"
+      - "Checking only in `proxy.ts` is enough"
+      - "Only admin pages need a check"
+    answer: 0
+    explanation: "The Next.js docs say not to rely only on the proxy or page-level checks. Every endpoint is public; do the check close to the data."
+  - question: "A marketing page you expect to be static shows up as `ƒ` in the build output. What does that mean?"
+    options:
+      - "The page failed at build time"
+      - "The page is static and served from a CDN"
+      - "The page only works in development"
+      - "The page renders on demand (dynamically); something reads request-time data and needs a look"
+    answer: 3
+    explanation: "In the route table static pages show as `○`, on-demand ones as `ƒ` or `◐` (Partial Prerender). An unexpected `ƒ` means the page reads cookies, headers or uncached data."
 ---
 
 ## Why a list?

@@ -3,6 +3,39 @@ title: "Keyboard and focus management"
 description: "Navigating with the keyboard, and visible focus."
 lastVerified: "2026-11-03"
 translationKey: "performance-accessibility/keyboard-and-focus"
+quiz:
+  - question: "What does `tabindex=\"-1\"` do?"
+    options:
+      - "Moves the element to the front of the Tab order"
+      - "The element cannot be reached with Tab but can be focused with `focus()` from JavaScript"
+      - "Removes the element from the accessibility tree"
+      - "Makes the element completely unfocusable"
+    answer: 1
+    explanation: "`-1` is typically for an error summary, heading or panel that receives focus when it opens. `0` adds an element to the Tab order at its DOM position; do not use positive values."
+  - question: "You want no focus ring when a button is clicked with the mouse, but one when it is reached with the keyboard. What is the right way?"
+    options:
+      - "Remove the outline entirely and use `box-shadow`"
+      - "Provide your own indicator with `:focus-visible`"
+      - "Add `tabindex=\"-1\"`"
+      - "`button:focus { outline: none; }`"
+    answer: 1
+    explanation: "`:focus-visible` only matches when the browser decides the user needs to see focus. Removing the outline fails WCAG 2.4.7; `outline` does not shift layout and survives forced colours mode."
+  - question: "Why does this skip link not work?"
+    lang: css
+    code: |-
+      .skip-link {
+        display: none;
+      }
+      .skip-link:focus {
+        display: block;
+      }
+    options:
+      - "`:focus` is not supported on skip links"
+      - "A skip link must be a `<button>`"
+      - "`display: none` also removes the link from the keyboard, so it can never receive focus; hide it by moving it off screen"
+      - "`href` is missing"
+    answer: 2
+    explanation: "Hide the skip link off screen, for example with `position: absolute; left: -9999px;`, until it gets focus. `display: none` and `hidden` remove it from the Tab order too."
 ---
 
 ## What keyboard accessibility is

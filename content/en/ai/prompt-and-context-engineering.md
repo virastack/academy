@@ -3,6 +3,31 @@ title: "Prompt and context engineering"
 description: "Writing a good request, giving the right context, CLAUDE.md/AGENTS.md and project rule files."
 lastVerified: "2026-11-03"
 translationKey: "ai/prompt-and-context-engineering"
+quiz:
+  - question: "You will paste a log of more than 20,000 tokens and ask a question about it. Which order is recommended?"
+    options:
+      - "Split the log into three separate messages"
+      - "Log first, question at the end"
+      - "Question first, log at the end"
+      - "The question at both the start and the end"
+    answer: 1
+    explanation: "Anthropic reports that this order improves response quality by up to 30%, especially with complex inputs made of several documents."
+  - question: "A project has both `CLAUDE.md` and `AGENTS.md`. What does Claude Code do, and how do you combine them?"
+    options:
+      - "It reads neither; you move them to `.claude/rules/`"
+      - "It reads both; no need to combine"
+      - "It reads only `AGENTS.md`; you delete `CLAUDE.md`"
+      - "It reads only `CLAUDE.md`; you write `@AGENTS.md` inside `CLAUDE.md`"
+    answer: 3
+    explanation: "If there is no `CLAUDE.md` in the folder, Claude Code reads `AGENTS.md`; if both exist, only `CLAUDE.md` is read. A rule file goes in as context, with no guarantee of being followed."
+  - question: "Which of these is most useful to put in a rule file?"
+    options:
+      - "Things the code does not reveal, such as the package manager and the exact verification commands"
+      - "The full folder tree"
+      - "The whole style guide"
+      - "The project's technology list"
+    answer: 0
+    explanation: "The model finds the folder structure and technology list itself; in the ETH Zurich study, repo overviews did not improve success. Leave style rules to the linter and keep the file short."
 ---
 
 The quality of the code you get from AI comes down to two things: **what you say** to the model (the prompt) and **what the model can see** at that moment (the context). This guide covers both, and then the rule files you write once for your project and use in every conversation.

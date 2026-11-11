@@ -3,6 +3,31 @@ title: "Introduction"
 description: "What is frontend testing? Which tools are used?"
 lastVerified: "2026-11-03"
 translationKey: "vitest/introduction"
+quiz:
+  - question: "You want to test whether a dropdown overflows the screen (layout). Which fits?"
+    options:
+      - "A test that runs in a real browser: E2E (Playwright) or Vitest Browser Mode"
+      - "A check with `toBeInTheDocument`"
+      - "A component test in jsdom with Vitest + React Testing Library"
+      - "A unit test for a pure function"
+    answer: 0
+    explanation: "Component tests do not run in a real browser; jsdom simulates the DOM inside Node.js and does not compute layout. Layout, CSS and browser-specific behaviour need a real browser."
+  - question: "Which of these should not be tested in a component?"
+    options:
+      - "The result of a click"
+      - "Error and empty states"
+      - "Text the user sees on screen"
+      - "The name of the component's internal state variable"
+    answer: 3
+    explanation: "Tests give more confidence the more they resemble how the software is used. Internal state names and functions are invisible to users; a test tied to them breaks on a small refactor."
+  - question: "Where does the Testing Trophy suggest putting most of the testing effort?"
+    options:
+      - "Only E2E tests"
+      - "Unit tests of single functions"
+      - "Snapshot tests"
+      - "Integration tests, where several pieces work together"
+    answer: 3
+    explanation: "The Testing Trophy puts the weight on integration tests, where several pieces work together. Component tests fit that approach."
 ---
 
 ## What is frontend testing?

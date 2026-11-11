@@ -3,6 +3,35 @@ title: "Folder structure and naming"
 description: "A feature-based structure, file naming and import rules."
 lastVerified: "2026-11-03"
 translationKey: "architecture/folder-structure"
+quiz:
+  - question: "This import works on macOS but fails with \"Module not found\" in CI. Why?"
+    lang: ts
+    code: |-
+      // file: components/CartSummary.tsx
+      import { CartSummary } from './cart-summary'
+    options:
+      - "TypeScript is a different version in CI"
+      - "Relative imports are banned in CI"
+      - "`node_modules` is not installed in CI"
+      - "macOS and Windows ignore letter case, Linux does not; the file name and the import spelling do not match"
+    answer: 3
+    explanation: "Pick one spelling (`kebab-case`) and enforce it with lint (`unicorn/filename-case`). Component names are `PascalCase`, file names `kebab-case`."
+  - question: "`features/products` needs the currency-formatting function that lives in `features/cart`. In this structure, what is the right move?"
+    options:
+      - "Import from `features/cart` inside `features/products`"
+      - "Copy the function and wait for a third use"
+      - "Move `features/cart` inside `features/products`"
+      - "Move the function to the shared layer (`helpers/`); features do not import each other"
+    answer: 3
+    explanation: "Everything starts inside a feature; when a second feature needs the same code, it moves to the shared layer. The flow is one-way: shared code → features → app. Before moving it, make sure both uses really share the same rule."
+  - question: "Which rule does the lesson recommend for banning `../` imports?"
+    options:
+      - "`import/no-relative-parent-imports`"
+      - "ESLint's built-in `no-restricted-imports` with `{ patterns: [{ regex: \"^\\\\.\\\\./\" }] }`"
+      - "`unicorn/filename-case`"
+      - "`import/no-cycle`"
+    answer: 1
+    explanation: "`import/no-relative-parent-imports` looks at the resolved file path, so it flags imports written with `@/` too. `no-restricted-imports` only bans imports starting with `../`; sibling imports such as `./b` stay allowed."
 ---
 
 A folder structure has a simple job: when you are about to change something, finding the relevant files in one place. If you group files not by their type (`components/`, `hooks/`, `utils/`) but by the feature they belong to (the cart, the product list, checkout), changing a feature is done in a single folder. The principle is the one in [Kent C. Dodds](https://kentcdodds.com)'s colocation article: put code as close as possible to where it is relevant.[^1]

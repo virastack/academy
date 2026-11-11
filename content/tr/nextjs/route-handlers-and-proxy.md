@@ -3,6 +3,39 @@ title: "Route Handler ve proxy"
 description: "API uç noktası, webhook, proxy.ts ve hangisinin ne zaman kullanılacağı."
 lastVerified: "2026-11-03"
 translationKey: "nextjs/route-handlers-and-proxy"
+quiz:
+  - question: "CMS'te içerik değişince CMS'in çağıracağı bir adres gerekiyor. Hangisi doğru araç?"
+    options:
+      - "`proxy.ts`"
+      - "Server Component"
+      - "Server Action"
+      - "Route Handler (`route.ts`)"
+    answer: 3
+    explanation: "Dışarıdan çağrılan adresler (webhook, mobil uygulama API'si, OAuth geri dönüşü) Route Handler işidir. Server Action form ve butondan veri değiştirmek, proxy her istekten önce yönlendirmek içindir."
+  - question: "`matcher` yazılmazsa ne olur?"
+    lang: ts
+    code: |-
+      // proxy.ts
+      export function proxy(request: NextRequest) {
+        // A/B testi için rewrite
+      }
+
+      // export const config = { matcher: "/" };  ← eklenmemiş
+    options:
+      - "Proxy hiç çalışmaz"
+      - "Build hata verir"
+      - "Proxy statik dosyalar ve görseller dahil her istekte çalışır"
+      - "Proxy yalnızca ana sayfada çalışır"
+    answer: 2
+    explanation: "`matcher` olmadan proxy her istekte çalışır; yanlış bir yönlendirme CSS'i ve resimleri de engelleyebilir. Basit yönlendirmeler için önce `next.config.ts`'teki `redirects`'e bakın."
+  - question: "Aynı klasörde hem `page.tsx` hem `route.ts` olabilir mi?"
+    options:
+      - "Evet; `GET` istekleri `route.ts`'e, diğerleri sayfaya gider"
+      - "Evet; `page.tsx` her zaman önceliklidir"
+      - "Hayır; ikisi de o adresin tüm isteklerini üstlenir"
+      - "Evet; `route.ts` kendiliğinden `/api` altına taşınır"
+    answer: 2
+    explanation: "Bir adreste ya sayfa ya Route Handler olur. İkisi de o adresin tüm isteklerini üstlendiği için aynı klasörde birlikte duramazlar."
 ---
 
 ## Hangisi ne için

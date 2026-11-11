@@ -3,6 +3,46 @@ title: "Auth ve fixture"
 description: "Fixture yazmak, storageState, roller ve izolasyon."
 lastVerified: "2026-11-03"
 translationKey: "playwright/auth-and-fixtures"
+quiz:
+  - question: "`storageState`'ten önceki `toHaveURL` satırı neden önemlidir?"
+    lang: ts
+    code: |-
+      setup("sign in as an admin", async ({ page, loginPage }) => {
+        await loginPage.goto();
+        await loginPage.login("admin@example.com");
+        await expect(page).toHaveURL("/orders");
+        await page.context().storageState({ path: "playwright/.auth/admin.json" });
+      });
+    options:
+      - "Gereksizdir"
+      - "`storageState` yalnızca `/orders`'ta çalışır"
+      - "Testi hızlandırır"
+      - "Cookie yönlendirmeyle birlikte yazılır; adres değişmeden kaydederseniz boş bir durum saklarsınız"
+    answer: 3
+    explanation: "Giriş sonrasında oturum cookie'si yönlendirmeyle gelir. Yönlendirmeyi bekleyip sonra kaydedin; yoksa diğer testler oturumsuz başlar."
+  - question: "Test başarısız olursa son satır çalışır mı?"
+    lang: ts
+    code: |-
+      tempOrder: async ({ request }, use) => {
+        const order = await (await request.post("/api/orders", { data: { customer: "Test" } })).json();
+        await use(order);
+        await request.delete(`/api/orders/${order.id}`);
+      },
+    options:
+      - "Hayır, `afterEach` gerekir"
+      - "Yalnızca `retries` açıksa"
+      - "Hayır, yalnızca test geçerse"
+      - "Evet; `use`'dan sonraki kod temizliktir ve test başarısız olsa da çalışır"
+    answer: 3
+    explanation: "Fixture hazırlar, `use` ile teste verir, `use` dönünce temizler. Hazırlık ve temizlik aynı yerde durur."
+  - question: "Setup projesi tüm testlere aynı admin oturumunu veriyor. Bir test sipariş iptal ederken başka bir test aynı anda \"hazırlanan siparişleri\" sayıyor ve sonuç sıraya göre değişiyor. Önerilen çözümlerden biri hangisi?"
+    options:
+      - "İptal testini silmek"
+      - "Veriyi değiştiren testin kendi oturumunu açması ya da kendi verisini oluşturması"
+      - "`workers: 1` ile her şeyi sıraya koymak"
+      - "Sayma testine `waitForTimeout(2000)` eklemek"
+    answer: 1
+    explanation: "Her test bilinen bir başlangıç durumundan başlamalı ve hangi sırayla çalışırsa çalışsın geçmelidir. Seçenekler: kendi oturumu, her işçiye ayrı hesap ya da testin kendi verisini oluşturması."
 ---
 
 ## Fixture nedir?

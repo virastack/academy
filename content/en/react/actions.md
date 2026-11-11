@@ -3,6 +3,50 @@ title: "Actions and async updates"
 description: "Form actions, useActionState, useFormStatus and useOptimistic."
 lastVerified: "2026-11-03"
 translationKey: "react/actions"
+quiz:
+  - question: "What is `pending` while the form is submitting?"
+    code: |-
+      function NewsletterForm() {
+        const { pending } = useFormStatus();
+        return (
+          <form action={subscribe}>
+            <button disabled={pending}>Subscribe</button>
+          </form>
+        );
+      }
+    options:
+      - "`true` while the submission runs"
+      - "React throws an error"
+      - "It only works with `onSubmit`"
+      - "Always `false`, because `useFormStatus` only reads a parent form"
+    answer: 3
+    explanation: "`useFormStatus` sees the parent form, not a `<form>` in the same component. The button has to be a separate component inside the form."
+  - question: "If the request fails, what happens to the heart?"
+    code: |-
+      startTransition(async () => {
+        setOptimisticFavorite(!optimisticFavorite);
+        await action(!optimisticFavorite);
+      });
+    options:
+      - "React retries the request automatically"
+      - "It stays filled"
+      - "The heart empties and the button is disabled"
+      - "The optimistic value disappears and it returns to the real value"
+    answer: 3
+    explanation: "The value from `useOptimistic` is temporary while the Action runs; when the Action ends it returns to the real source. If the request fails, the optimistic value disappears."
+  - question: "Is the `setCount` call handled as a transition?"
+    code: |-
+      startTransition(async () => {
+        await addToCart(productId);
+        setCount((c) => c + 1);
+      });
+    options:
+      - "No; the update after `await` has to be wrapped in `startTransition` again"
+      - "Yes, everything inside `startTransition` is a transition"
+      - "Only `useOptimistic` makes it a transition"
+      - "Updating state after `await` is not allowed and throws"
+    answer: 0
+    explanation: "State updates made after an `await` do not count as part of the transition; wrap them in `startTransition` again. This is a JavaScript limitation."
 ---
 
 ## What an Action is

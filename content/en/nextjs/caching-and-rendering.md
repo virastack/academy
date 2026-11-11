@@ -3,6 +3,38 @@ title: "Cache and the rendering model"
 description: "Cache Components, use cache, cacheLife, cacheTag and the static shell."
 lastVerified: "2026-11-03"
 translationKey: "nextjs/caching-and-rendering"
+quiz:
+  - question: "What is wrong with this code, and what is the fix?"
+    lang: tsx
+    code: |-
+      async function getRecommendations() {
+        "use cache";
+        const segment = (await cookies()).get("segment")?.value;
+        return db.product.findMany({ where: { segment } });
+      }
+    options:
+      - "`cookies()` cannot be called inside `\"use cache\"`; read the value outside and pass it as an argument"
+      - "Nothing; the cookie becomes part of the cache key by itself"
+      - "`cookies()` only works in Client Components"
+      - "The cache never works because `cacheLife` is missing"
+    answer: 0
+    explanation: "`cookies()`, `headers()` and `searchParams` are only known at request time and cannot be read inside `\"use cache\"`. Read the value outside and pass it as an argument; arguments become part of the cache key."
+  - question: "In a project with Cache Components, an AI assistant suggests adding `export const revalidate = 60` to a page. What is the current equivalent?"
+    options:
+      - "`export const dynamic = \"force-static\"`"
+      - "Calling `revalidatePath` inside the page"
+      - "`fetch(url, { next: { revalidate: 60 } })`"
+      - "`\"use cache\"` with `cacheLife`"
+    answer: 3
+    explanation: "`revalidate`, `dynamic = \"force-static\"` and `fetch`'s `next.revalidate` option belong to the previous model. With Cache Components you say what to cache with `\"use cache\"` and for how long with `cacheLife`."
+  - question: "A user posted a review with a Server Action and should see it at once. Which call?"
+    options:
+      - "`updateTag(\"reviews\")`"
+      - "`cacheLife(\"seconds\")`"
+      - "`revalidatePath(\"/reviews\")` in a Route Handler"
+      - "`revalidateTag(\"reviews\", \"max\")`"
+    answer: 0
+    explanation: "`updateTag` removes the entry immediately, so users see their own change at once; it only works in Server Actions. `revalidateTag` serves the old data while refreshing in the background."
 ---
 
 ## The default: everything is dynamic

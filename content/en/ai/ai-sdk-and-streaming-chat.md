@@ -3,6 +3,39 @@ title: "The AI SDK and streaming chat"
 description: "useChat, streamText, choosing a model provider and reflecting a streaming response in the UI."
 lastVerified: "2026-11-03"
 translationKey: "ai/ai-sdk-and-streaming-chat"
+quiz:
+  - question: "The user pressed Send and the request went out, but no part has arrived from the model yet. What is `useChat`'s `status`?"
+    options:
+      - "`ready`"
+      - "`error`"
+      - "`streaming`"
+      - "`submitted`"
+    answer: 3
+    explanation: "Show a loading indicator during `submitted`, and the growing text with a Stop button during `streaming`. For waits under 1 second, a loading state causes flicker."
+  - question: "When checking the `model` key sent by the client, why use `Object.hasOwn` instead of `model in MODELS`?"
+    lang: ts
+    code: |-
+      const MODELS = {
+        claude: 'anthropic/claude-sonnet-5.5',
+        gpt: 'openai/gpt-6-astra',
+      } as const;
+
+      const key = model && Object.hasOwn(MODELS, model) ? model : 'claude';
+    options:
+      - "`in` also returns `true` for keys inherited from the prototype, such as `toString`"
+      - "`Object.hasOwn` is faster"
+      - "`in` does not work on `as const` objects"
+      - "`in` does not compile in TypeScript"
+    answer: 0
+    explanation: "Never pass a model name from the client straight to `streamText`; send only a key and match it against an allowlist on the server."
+  - question: "When the server hits an error, what should the `onError` function of `toUIMessageStream` return?"
+    options:
+      - "Nothing; the client shows the error anyway"
+      - "A generic message for the user, with the details logged on the server"
+      - "`error.stack`"
+      - "`error.message`"
+    answer: 1
+    explanation: "Error messages can carry the server's internal details. Without `onError`, the client gets `An error occurred.`; on the client the error shows up in the `error` object and can be retried with `regenerate()`."
 ---
 
 Showing the AI's response piece by piece as the model produces it, instead of waiting for the whole thing, is the foundation of a chat interface: the user starts seeing the answer the moment any of it is ready.[^1] The AI SDK splits that job in two. On the server, `streamText` calls the model; on the client, `useChat` turns the incoming stream into message state.[^1]

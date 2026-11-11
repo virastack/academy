@@ -3,6 +3,31 @@ title: "Testing, evals and code review"
 description: "Having tests written, checking with Playwright MCP, measuring model output with evals and reviewing AI code."
 lastVerified: "2026-11-03"
 translationKey: "ai/testing-evals-and-code-review"
+quiz:
+  - question: "How do you tell whether a test an AI wrote really protects you?"
+    options:
+      - "Run the tests twice"
+      - "Check that all tests are green"
+      - "Count the tests"
+      - "Break the code on purpose and see the test fail"
+    answer: 3
+    explanation: "In the lesson, the weak tests still passed when stock-limit and amount bugs were added on purpose. Willison says every change should come with a test that fails when the implementation is reverted."
+  - question: "In Vitest with `globals` off, tests pass one by one but together they fail with \"Found multiple elements with the role...\". Why?"
+    options:
+      - "Testing Library does not clean up automatically; you need `afterEach(() => cleanup())` or `globals: true`"
+      - "The tests run in parallel"
+      - "jsdom is not installed"
+      - "Use `getByTestId` instead of `getByRole`"
+    answer: 0
+    explanation: "Automatic cleanup only kicks in when a global `afterEach` exists. So the previous test's DOM stays for the next one, and the same role is found twice."
+  - question: "When grading with a model in an eval (LLM-as-judge), what is recommended?"
+    options:
+      - "Let the model that produced the answer grade itself"
+      - "Never use code-based grading"
+      - "Run each answer once"
+      - "A different model, a clear rubric, and comparing its grades with human labels"
+    answer: 3
+    explanation: "Try code-based grading first (exact match, contains); use a model when nuance is needed. Answers can change each time, so run each case several times."
 ---
 
 AI is fast at writing tests. But a test that passes is not the same as a test that does its job. This guide covers four things: how to have AI write tests, how to have it check the result in a browser with Playwright MCP, how to measure the model's answers, and how to review AI output. The test examples follow the e-commerce cart from the [Models and tools](/academy/ai/models-and-tools) guide: the `CartItem` component, the quantity buttons and the stock limit.

@@ -3,6 +3,41 @@ title: "Forms with Server Actions"
 description: "useActionState, Zod on the server and server errors."
 lastVerified: "2026-11-03"
 translationKey: "forms/forms-with-server-actions"
+quiz:
+  - question: "Why does the action also return the submitted `values` on error?"
+    lang: ts
+    code: |-
+      if (!parsed.success) {
+        return { status: "error", fieldErrors: z.flattenError(parsed.error).fieldErrors, values };
+      }
+    options:
+      - "Zod requires it"
+      - "For debugging"
+      - "React resets a form submitted with `action`; giving the values back through `defaultValue` keeps what the user typed"
+      - "To make the request smaller"
+    answer: 2
+    explanation: "A form submitted with `action` resets its uncontrolled fields when the action ends. Without the values, the user's input is lost on error; on success they are not returned, so the form clears."
+  - question: "What is wrong with this code?"
+    lang: tsx
+    code: |-
+      const [state, submitAction, isPending] = useActionState(updateProfile, { status: "idle" });
+
+      <form onSubmit={handleSubmit((values) => submitAction(values))}>
+    options:
+      - "The action is not passed to `<form action>`, so it must be called inside `startTransition`; otherwise React errors and `isPending` never updates"
+      - "`handleSubmit` cannot call a Server Action"
+      - "`values` must be FormData"
+      - "`useActionState` cannot be used with React Hook Form"
+    answer: 0
+    explanation: "If the function from `useActionState` is called outside a transition, React reports \"An async function with useActionState was called outside of a transition\". Write `startTransition(() => submitAction(values))`."
+  - question: "The schema has a `.transform` that turns the price from text into a number. You validate `handleSubmit`'s value again on the server with the same schema. What happens?"
+    options:
+      - "It passes fine"
+      - "The server skips validation"
+      - "The price is converted twice"
+      - "It fails; the schema expects text but `handleSubmit` gives the transformed value (a number)"
+    answer: 3
+    explanation: "`handleSubmit` returns the schema's output. Do not transform in a schema you share with the server; transform on the server after validating, or send the raw `FormData`."
 ---
 
 ## What a Server Action is

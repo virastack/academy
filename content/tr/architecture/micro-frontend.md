@@ -3,6 +3,37 @@ title: "Micro frontend"
 description: "Ne zaman gerekir, ne zaman gerekmez? Vite ve Module Federation ile temel kurulum."
 lastVerified: "2026-11-03"
 translationKey: "architecture/micro-frontend"
+quiz:
+  - question: "Tek bir ekip yalnızca build süresini kısaltmak istiyor. Micro frontend doğru araç mıdır?"
+    options:
+      - "Hayır; micro frontend bir dağıtım kararıdır, bağımsız deploy zorunluysa kullanılır"
+      - "Evet, ama yalnızca iframe ile"
+      - "Evet, en hızlı yol budur"
+      - "Evet, Module Federation build'i hızlandırır"
+    answer: 0
+    explanation: "Asıl kazancı ekip özerkliği ve pazara çıkış hızıdır, performans değil. Çoğu ekip için en hızlı yol net modül sınırlarına sahip bir modüler monolittir."
+  - question: "React için `singleton: true` ne sağlar?"
+    lang: ts
+    code: |-
+      shared: {
+        react: { singleton: true },
+        'react-dom': { singleton: true },
+      }
+    options:
+      - "React önceden giriş dosyasına gömülür"
+      - "Paylaşım kapsamında yalnızca tek sürüm yüklenir; host ve remote farklı sürüm isterse yüksek olan yüklenir"
+      - "Her remote kendi React kopyasını yükler"
+      - "React yalnızca host'ta çalışır"
+    answer: 1
+    explanation: "React gibi tek kopya olması gereken kütüphaneler için `singleton` şarttır. Yalnızca gerçekten tek kopya olması gerekenleri paylaşın; düşük sürümü isteyen taraf konsolda uyarı alır."
+  - question: "Micro frontend'ler arasında veri paylaşmak için hangisi \"dağıtık monolit\" riskini artırır?"
+    options:
+      - "Bütün uygulamaların okuyup yazdığı ortak bir global store"
+      - "Custom event"
+      - "URL parametresi"
+      - "Yukarıdan geçilen callback"
+    answer: 0
+    explanation: "Global store ya da her şeyi bilen bir kabuk uygulamaları yine birbirine bağlar. İletişim gerekiyorsa custom event, callback ya da URL kullanın; kabuğu ince tutun."
 ---
 
 Micro frontend, bağımsız olarak yayınlanabilen frontend uygulamalarının tek bir bütün olarak birleştirildiği mimari stildir.[^1] Her ekip kendi dikey dilimini (örneğin sepet sayfasını) fikirden canlıya kadar sahiplenir, kullanıcı ise tek bir ürün görür.[^1] Bu rehber önce asıl soruyu cevaplıyor: buna gerçekten ihtiyacınız var mı? Sonra **Module Federation** ile **Vite** üzerinde en küçük çalışan kurulumu yapıyor.

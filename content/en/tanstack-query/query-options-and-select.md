@@ -3,6 +3,40 @@ title: "queryOptions and select"
 description: "Query factories, typed cache reads and reducing renders by selecting data."
 lastVerified: "2026-11-03"
 translationKey: "tanstack-query/query-options-and-select"
+quiz:
+  - question: "Why does TkDodo recommend `queryOptions` over a custom hook for sharing query settings?"
+    options:
+      - "`queryOptions` caches the data by itself"
+      - "Custom hooks were removed in v5"
+      - "`queryOptions` is faster at runtime"
+      - "The settings work outside components too (prefetch, route loaders, the server) and with `useSuspenseQuery` and `useQueries`"
+    answer: 3
+    explanation: "A hook can only be called in a component or another hook, and it ties you to `useQuery`. `queryOptions` only shares the settings, works everywhere and keeps the type information."
+  - question: "`productQueries.detail` is written with `queryOptions` and `fetchProduct` returns `Promise<Product>`. What is the type of `product`?"
+    lang: ts
+    code: |-
+      const product = queryClient.getQueryData(productQueries.detail(1).queryKey);
+    options:
+      - "`unknown`"
+      - "`any`"
+      - "`Product | undefined`"
+      - "`Product`"
+    answer: 2
+    explanation: "A key that comes from `queryOptions` is tagged with `queryFn`'s return type. The data may not be in the cache yet, so the result is `Product | undefined`; a hand-written array key would give `unknown`."
+  - question: "One product's name changed in the list but the number of in-stock products stayed the same. Does the component re-render?"
+    lang: tsx
+    code: |-
+      const { data: count } = useQuery({
+        ...productQueries.list(category),
+        select: (products) => products.filter((p) => p.stock > 0).length,
+      });
+    options:
+      - "Only if `staleTime` has passed"
+      - "Yes, it re-renders whenever the cached data changes"
+      - "`select` never runs again"
+      - "No; the component only subscribes to `select`'s result, and that did not change"
+    answer: 3
+    explanation: "`select` runs again when the data changes, but the component only re-renders when its result changes. The count is the same, so there is no render."
 ---
 
 ## Why a custom hook is not enough

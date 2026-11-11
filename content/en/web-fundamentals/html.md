@@ -3,6 +3,34 @@ title: "HTML"
 description: "Semantic elements and page structure."
 lastVerified: "2026-11-03"
 translationKey: "web-fundamentals/html"
+quiz:
+  - question: "Which element is right for a control that opens a menu on the page?"
+    options:
+      - "`<span role=\"button\">Menu</span>`"
+      - "`<div onclick=\"openMenu()\">Menu</div>`"
+      - "`<a href=\"#\">Menu</a>`"
+      - "`<button type=\"button\">Menu</button>`"
+    answer: 3
+    explanation: "A link takes you somewhere else; a button does something on the current page. `<div onclick>` loses keyboard focus and Enter/Space behaviour, and `role=\"button\"` only adds meaning, not keyboard behaviour."
+  - question: "The image is purely decorative. What should `alt` be?"
+    lang: html
+    code: |-
+      <img src="divider.svg" alt="?" />
+    options:
+      - "`alt=\"decorative image\"`"
+      - "`alt=\"image\"`"
+      - "`alt=\"\"`"
+      - "Leave out the `alt` attribute entirely"
+    answer: 2
+    explanation: "For a decorative image use `alt=\"\"`, so screen readers skip it. An image that carries information gets an `alt` that briefly says what it shows."
+  - question: "You need a container only for styling; there is no meaningful section inside. Which one does the HTML Standard say to use?"
+    options:
+      - "`<main>`"
+      - "`<div>`"
+      - "`<article>`"
+      - "`<section>`"
+    answer: 1
+    explanation: "`<section>` is not a generic box; it is a thematic group that starts with a heading. When you only need a container for styling, use `<div>`."
 ---
 
 ## What HTML is

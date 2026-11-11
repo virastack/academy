@@ -3,6 +3,39 @@ title: "Props and composition"
 description: "Passing data, children and slots, and not copying props into state."
 lastVerified: "2026-11-03"
 translationKey: "react/props-and-composition"
+quiz:
+  - question: "The parent selects another user and passes a new `email`. What happens to `value`?"
+    code: |-
+      function EmailField({ email }: { email: string }) {
+        const [value, setValue] = useState(email);
+        return <input value={value} onChange={(e) => setValue(e.target.value)} />;
+      }
+    options:
+      - "React throws an error"
+      - "The component is recreated and takes the new value"
+      - "It updates to the new `email` on its own"
+      - "It keeps the old value"
+    answer: 3
+    explanation: "The initial value of `useState` is read only when the component first appears. Copying a prop into state ignores every update after that."
+  - question: "The user will edit the field, its first value comes from a prop, and it must reset when another user is selected. Which solution does the lesson recommend?"
+    options:
+      - "Call `setValue` in a `useEffect` when the prop changes"
+      - "Remove the state and pass the prop straight to the input"
+      - "Name the prop `initialEmail` and give the component `key={user.id}`"
+      - "Keep the value in a `useRef`"
+    answer: 2
+    explanation: "When `key` changes, React recreates the component and `useState` reads the new initial value. The `initial` prefix says later changes to the prop are ignored."
+  - question: "`user` is passed through `Layout` and `Header` only to reach `UserMenu`. What do the React docs suggest trying before Context?"
+    code: |-
+      <Layout user={user} />
+      // Layout → Header → UserMenu
+    options:
+      - "Pass the component that uses `user` as JSX through `children` or a slot"
+      - "Create a `UserContext`"
+      - "Move it to a global store"
+      - "Forward everything to the middle components with `{...props}`"
+    answer: 0
+    explanation: "The docs suggest keeping props first, then passing `children` to the middle components. The middle layers no longer know about `user`; blind spreading hides where data comes from."
 ---
 
 ## What props are

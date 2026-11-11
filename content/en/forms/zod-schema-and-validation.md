@@ -3,6 +3,49 @@ title: "Schemas and validation with Zod"
 description: "Schemas, type inference, error messages and transforms."
 lastVerified: "2026-11-03"
 translationKey: "forms/zod-schema-and-validation"
+quiz:
+  - question: "The user picked no plan and the two passwords differ. Which errors appear?"
+    lang: ts
+    code: |-
+      const schema = z
+        .object({
+          plan: z.enum(["basic", "pro"]),
+          password: z.string().min(8),
+          confirmPassword: z.string(),
+        })
+        .refine((data) => data.password === data.confirmPassword, {
+          error: "The passwords do not match.",
+          path: ["confirmPassword"],
+        });
+    options:
+      - "Neither"
+      - "Both"
+      - "Only the password error"
+      - "Only the `plan` error; the object's `.refine` does not run while there is a type error"
+    answer: 3
+    explanation: "Zod only passes correctly typed data to a refinement. An unselected enum is a type error, so the password check does not run until the user picks a plan. If needed, set the condition yourself with the `when` option."
+  - question: "The user left the website field empty (`\"\"`). What happens?"
+    lang: ts
+    code: |-
+      website: z.url().optional(),
+    options:
+      - "It is rejected; `optional` only accepts `undefined`"
+      - "It is converted to `undefined`"
+      - "It passes; the field is optional"
+      - "Zod warns but lets it pass"
+    answer: 0
+    explanation: "An empty form field is `\"\"`, not `undefined`. For a URL that may be left empty, write `z.union([z.url(...), z.literal(\"\")])`."
+  - question: "If the age field is submitted empty, what happens?"
+    lang: ts
+    code: |-
+      age: z.coerce.number().int().min(0),
+    options:
+      - "It passes as `0`, because `Number(\"\")` is `0`"
+      - "It fails with a \"required\" error"
+      - "It is rejected as `NaN`"
+      - "It becomes `undefined`"
+    answer: 0
+    explanation: "`z.coerce.number()` converts with `Number()`, and an empty string becomes `0`. For a required number, catch the empty string first: `z.string().min(1, ...).pipe(z.coerce.number<string>()...)`."
 ---
 
 ## Why a schema?

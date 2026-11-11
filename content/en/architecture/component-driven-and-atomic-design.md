@@ -3,6 +3,31 @@ title: "Component-driven and Atomic Design"
 description: "Building an interface from the bottom up and classifying the shared UI parts."
 lastVerified: "2026-11-03"
 translationKey: "architecture/component-driven-and-atomic-design"
+quiz:
+  - question: "In Atomic Design, which stage is a search form made of a label, an input and a button?"
+    options:
+      - "Atom"
+      - "Molecule"
+      - "Organism"
+      - "Template"
+    answer: 1
+    explanation: "An atom is a basic element that loses its function if split further (a button, an input). A simple group of atoms working together is a molecule; complex sections such as a site header are organisms."
+  - question: "Why is splitting the whole app into `atoms/`, `molecules/` and `organisms/` folders discouraged?"
+    options:
+      - "It is organising by type, which loses the benefit of finding a feature's code in one place; the lesson recommends Atomic Design only for classifying the shared UI kit"
+      - "Atomic Design does not accept folder names"
+      - "These folders cause build errors"
+      - "Brad Frost forbids renaming the stages"
+    answer: 0
+    explanation: "Atomic Design is a mental model, not a strict dogma; Frost says teams can rename the stages. Use it for the shared UI kit (`shared/ui`), not for feature code."
+  - question: "What is the first step of component-driven development?"
+    options:
+      - "Build all the pages first"
+      - "Write the design system"
+      - "Connect pages to the backend"
+      - "Build components in isolation and define their states one by one"
+    answer: 3
+    explanation: "The order: build components in isolation, combine them into larger pieces, build pages with mock data, then connect them to data and APIs."
 ---
 
 Both build an interface out of small parts, but they answer different questions. **Component-driven development** describes how you will work, and **Atomic Design** how you will classify and name the parts.

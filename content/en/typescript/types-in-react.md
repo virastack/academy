@@ -3,6 +3,44 @@ title: "Types in React"
 description: "Props, children, event, hook and context types."
 lastVerified: "2026-11-03"
 translationKey: "typescript/types-in-react"
+quiz:
+  - question: "With `product` being a `Product`, what happens on the last line?"
+    lang: tsx
+    code: |-
+      const [selected, setSelected] = useState(null);
+
+      setSelected(product);
+    options:
+      - "`selected` becomes `Product | undefined`"
+      - "`selected` becomes `any` by itself"
+      - "Nothing goes wrong"
+      - "An error: the state's type is only `null`, so a product cannot be assigned"
+    answer: 3
+    explanation: "The initial value decides the type: `useState(null)` gives just `null`. If the value will hold another type later, pass the generic yourself: `useState<Product | null>(null)`."
+  - question: "Which pattern is recommended for a cart context that has no meaningful default value?"
+    options:
+      - "`createContext({} as CartContextValue)`"
+      - "`createContext<CartContextValue | null>(null)` plus a `useCart` hook that checks for `null` and throws"
+      - "`createContext<any>(null)`"
+      - "`createContext<CartContextValue>(null!)`"
+    answer: 1
+    explanation: "Add `| null` to the type and put the check in a custom hook: a missing provider shows up at once, and callers of `useCart` need no `null` check. `null!` or `{} as ...` silences the compiler and moves the bug to runtime."
+  - question: "What happens on the last line?"
+    lang: tsx
+    code: |-
+      type CartAction =
+        | { type: "add"; product: Product }
+        | { type: "remove"; id: number };
+
+      const [items, dispatch] = useReducer(cartReducer, []);
+      dispatch({ type: "remove" });
+    options:
+      - "The cart is emptied at runtime"
+      - "An error: `id` is missing from the `remove` action"
+      - "It is valid; `id` is optional"
+      - "An error: `type` can only be `\"add\"`"
+    answer: 1
+    explanation: "The actions are a discriminated union. Picking `type: \"remove\"` narrows the action to that member, which requires `id`; the missing field is a compile error."
 ---
 
 ## React and TypeScript

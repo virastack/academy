@@ -11,7 +11,7 @@ beforeEach(() => resetCarts());
 describe('tools', () => {
   it('searchProducts runs with the right argument and applies the filter', async () => {
     const model = new MockLanguageModelV4({
-      doStream: [streamToolCall('searchProducts', { query: 'shoes', maxPrice: 3000 }), streamText_('Buldum.')],
+      doStream: [streamToolCall('searchProducts', { query: 'shoes', maxPrice: 3000 }), streamText_('Found it.')],
     });
     const chat = makeChat(model, 'u1');
     await chat.sendMessage({ text: 'shoes under 3000 TL' });
@@ -28,7 +28,7 @@ describe('tools', () => {
 
   it('searchProducts returns only the allowed fields and the untrusted description never reaches the model', async () => {
     const model = new MockLanguageModelV4({
-      doStream: [streamToolCall('searchProducts', { query: 'running' }), streamText_('Buldum.')],
+      doStream: [streamToolCall('searchProducts', { query: 'running' }), streamText_('Found it.')],
     });
     const chat = makeChat(model, 'u1');
     await chat.sendMessage({ text: 'running products' });
@@ -109,12 +109,12 @@ describe('approval and authorization', () => {
     const model = new MockLanguageModelV4({
       doStream: [streamToolCall('addToCart', { productId: 'p-01', quantity: 1 }), streamText_('Added it.')],
     });
-    const chat = makeChat(model, 'ayse');
+    const chat = makeChat(model, 'jane');
     await chat.sendMessage({ text: 'add it' });
     await chat.addToolApprovalResponse({ id: toolPart(chat, 'addToCart').approval.id, approved: true });
     await waitFor(() => toolPart(chat, 'addToCart').state === 'output-available' && chat.status === 'ready');
-    expect(getCart('ayse')).toHaveLength(1);
-    expect(getCart('mehmet')).toEqual([]);
+    expect(getCart('jane')).toHaveLength(1);
+    expect(getCart('marco')).toEqual([]);
   });
 });
 
@@ -124,14 +124,14 @@ describe('rate limit and input limit', () => {
     const statuses: number[] = [];
     let last: Response | undefined;
     for (let i = 0; i < 5; i++) {
-      last = await handler(chatRequest('a', [userMessage('selam')]));
+      last = await handler(chatRequest('a', [userMessage('hello')]));
       statuses.push(last.status);
       await last.text();
     }
     expect(statuses).toEqual([200, 200, 200, 429, 429]);
     expect(Number(last!.headers.get('retry-after'))).toBeGreaterThanOrEqual(1);
 
-    const other = await handler(chatRequest('b', [userMessage('selam')]));
+    const other = await handler(chatRequest('b', [userMessage('hello')]));
     expect(other.status).toBe(200);
   });
 
@@ -152,7 +152,7 @@ describe('rate limit and input limit', () => {
   it('an over-long history and an over-long message are rejected and the model is not called', async () => {
     const model = textModel();
     const handler = createChatHandler({ model });
-    const many = Array.from({ length: 51 }, (_, i) => userMessage('selam', `m${i}`));
+    const many = Array.from({ length: 51 }, (_, i) => userMessage('hello', `m${i}`));
     expect((await handler(chatRequest('a', many))).status).toBe(413);
     expect((await handler(chatRequest('a', [userMessage('x'.repeat(4001))]))).status).toBe(413);
     expect(model.doStreamCalls).toHaveLength(0);
@@ -162,7 +162,7 @@ describe('rate limit and input limit', () => {
 describe('cost', () => {
   it('the call to the model carries a maxOutputTokens limit', async () => {
     const model = textModel();
-    const res = await createChatHandler({ model })(chatRequest('a', [userMessage('selam')]));
+    const res = await createChatHandler({ model })(chatRequest('a', [userMessage('hello')]));
     await res.text();
     const limit = model.doStreamCalls[0].maxOutputTokens;
     expect(limit).toBeDefined();
@@ -182,7 +182,7 @@ describe('cost', () => {
 
   it('usage and cost are reported when each request finishes', async () => {
     const onUsage = vi.fn();
-    const res = await createChatHandler({ model: textModel(), onUsage })(chatRequest('u9', [userMessage('selam')]));
+    const res = await createChatHandler({ model: textModel(), onUsage })(chatRequest('u9', [userMessage('hello')]));
     await res.text();
     await waitFor(() => onUsage.mock.calls.length > 0);
     expect(onUsage).toHaveBeenCalledTimes(1);

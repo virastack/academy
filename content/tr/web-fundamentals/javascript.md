@@ -3,6 +3,50 @@ title: "JavaScript"
 description: "Dilin temelleri, DOM ve asenkron akış."
 lastVerified: "2026-11-03"
 translationKey: "web-fundamentals/javascript"
+quiz:
+  - question: "Bu iki satırın sonucu sırasıyla nedir?"
+    lang: js
+    code: |-
+      0 == "0";
+      0 === "0";
+    options:
+      - "`true`, `true`"
+      - "`true`, `false`"
+      - "`false`, `true`"
+      - "`false`, `false`"
+    answer: 1
+    explanation: "`==` karşılaştırmadan önce tip dönüştürür, bu yüzden `0 == \"0\"` `true` olur. `===` tip dönüştürmez; number ile string eşit değildir. Karşılaştırmada `===` kullanılır."
+  - question: "Son satırda `b()` ne döndürür?"
+    lang: js
+    code: |-
+      function createCounter() {
+        let count = 0;
+        return () => ++count;
+      }
+
+      const a = createCounter();
+      a();
+      a();
+      const b = createCounter();
+      b(); // ?
+    options:
+      - "`0`"
+      - "`1`"
+      - "`2`"
+      - "`3`"
+    answer: 1
+    explanation: "Her `createCounter()` çağrısı kendi `count` değişkenini oluşturur ve dönen fonksiyon onu closure ile hatırlar. `b`'nin sayacı `a`'nınkinden bağımsızdır; ilk çağrıda `1` döner."
+  - question: "Server 404 döndüğünde ne olur?"
+    lang: js
+    code: |-
+      const response = await fetch("/api/missing"); // server 404 döner
+    options:
+      - "`fetch` hata fırlatır ve `catch`'e düşülür"
+      - "`fetch` hata fırlatmaz; `response.ok` `false` olur"
+      - "`response` `null` olur"
+      - "`response.json()` hatayı kendiliğinden fırlatır"
+    answer: 1
+    explanation: "`fetch` yalnızca ağ hatasında başarısız olur; 404 ve 500'de hata fırlatmaz. Bu yüzden `response.ok` her zaman kontrol edilir."
 ---
 
 ## JavaScript nedir
@@ -82,8 +126,8 @@ Closure, React'te hook'ların ve olay işleyicilerinin nasıl çalıştığını
 ```js
 const user = { name: "Ayşe", age: 28 };
 const products = [
-  { name: "Kalem", price: 20 },
-  { name: "Defter", price: 45 },
+  { name: "Pen", price: 20 },
+  { name: "Notebook", price: 45 },
 ];
 ```
 
@@ -94,7 +138,7 @@ const products = [
 ```js
 const { name, age } = user;
 const updatedUser = { ...user, age: 29 }; // yeni object, orijinal değişmez
-const allProducts = [...products, { name: "Silgi", price: 10 }];
+const allProducts = [...products, { name: "Eraser", price: 10 }];
 ```
 
 Spread **sığ kopya** üretir: iç içe object'ler kopyalanmaz, aynı referans paylaşılır.[^9] React'te state'i değiştirmek yerine bu şekilde yeni bir kopya oluşturursunuz.
@@ -111,7 +155,7 @@ En sık kullanılan metotlar şunlardır:[^10]
 | `reduce` | Diziyi tek bir değere indirger *(toplam gibi)* |
 
 ```js
-const names = products.map((p) => p.name); // ["Kalem", "Defter"]
+const names = products.map((p) => p.name); // ["Pen", "Notebook"]
 const cheapProducts = products.filter((p) => p.price < 30);
 const total = products.reduce((sum, p) => sum + p.price, 0); // 65
 ```

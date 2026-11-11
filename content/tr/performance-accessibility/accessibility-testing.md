@@ -3,6 +3,31 @@ title: "Erişilebilirlik testi"
 description: "Otomatik tarama ve ekran okuyucuyla elle kontrol."
 lastVerified: "2026-11-03"
 translationKey: "performance-accessibility/accessibility-testing"
+quiz:
+  - question: "axe taraması hiçbir ihlal bulmadı. Hangisi doğru?"
+    options:
+      - "Sayfa erişilebilirdir"
+      - "Sayfa WCAG AAA'yı karşılar"
+      - "Otomatik olarak yakalanabilen bir hata bulunmadı; alt metninin doğruluğu ya da odak sırası gibi konular elle kontrol edilmeli"
+      - "Ekran okuyucu testi gereksizdir"
+    answer: 2
+    explanation: "Otomatik araçlar kodda görülebilen sorunları bulur ama bağlam isteyen soruları cevaplayamaz. Temiz bir rapor \"erişilebilir\" demek değildir; elle kontrolün başlangıç noktasıdır."
+  - question: "Vitest + JSDOM'da axe-core ile yaptığınız component taramasında kontrast hatası hiç çıkmıyor. Sebebi nedir?"
+    options:
+      - "`color-contrast` kuralı JSDOM'da çalışmaz; kontrastı gerçek tarayıcıda (Playwright ile) test edin"
+      - "`withTags` eksik"
+      - "axe kontrastı kontrol etmez"
+      - "Component'te kontrast sorunu yoktur"
+    answer: 0
+    explanation: "axe-core'un JSDOM desteği sınırlıdır. Gerçek tarayıcıdaki taramada kontrast kuralı çalışır; uçtan uca taramanın en büyük kazancı budur."
+  - question: "Açılır menüdeki erişilebilirlik hatalarının taramada görünmesi için ne yapılmalı?"
+    options:
+      - "Menüyü açıp görünmesini bekledikten sonra taramak"
+      - "`.exclude()` ile menüyü dışarıda bırakmak"
+      - "`disableRules` ile kuralları kapatmak"
+      - "Sayfayı iki kez taramak"
+    answer: 0
+    explanation: "Kapalı bir menüdeki hata taramada görünmez. Etkileşimle görünen bölümleri önce açın, görünmesini bekleyin, sonra tarayın; `exclude` ile sorunları kalıcı olarak gizlemeyin."
 ---
 
 ## Erişilebilirlik testi nedir

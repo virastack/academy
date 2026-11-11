@@ -3,6 +3,37 @@ title: "React Hook Form basics"
 description: "register, handleSubmit, formState and the validation mode."
 lastVerified: "2026-11-03"
 translationKey: "forms/react-hook-form-basics"
+quiz:
+  - question: "What is the hidden problem in this line?"
+    lang: tsx
+    code: |-
+      return <button disabled={!formState.isDirty || !formState.isValid}>Save</button>;
+    options:
+      - "There is no `isValid` field"
+      - "`formState` is a Proxy; while `isDirty` is `false`, `isValid` is never read and never subscribed to"
+      - "`disabled` cannot take a boolean"
+      - "`isDirty` is only set after submit"
+    answer: 1
+    explanation: "React Hook Form only subscribes to the fields read during render. Because of the short circuit, `isValid` may never be read. Read the fields you need unconditionally: `const { isDirty, isValid } = formState;`."
+  - question: "If the field is submitted empty, what is `age`?"
+    lang: tsx
+    code: |-
+      <input type="number" {...register("age", { valueAsNumber: true })} />
+    options:
+      - "`undefined`"
+      - "`\"\"`"
+      - "`NaN`"
+      - "`0`"
+    answer: 2
+    explanation: "`valueAsNumber` converts the value to a number; an empty field becomes `NaN`. The conversion runs before validation, so you have to handle the empty case separately."
+  - question: "How does the documentation recommend clearing the form after submit?"
+    options:
+      - "Reload the page"
+      - "Give every field `value=\"\"`"
+      - "Call `reset()` at the end of `onSubmit`"
+      - "Watch `isSubmitSuccessful` in an effect and call `reset()` when it becomes `true`"
+    answer: 3
+    explanation: "`handleSubmit` updates the submit state after `onSubmit` finishes. Calling `reset` inside `onSubmit` clears the values, but fields like `isSubmitSuccessful` stay stale."
 ---
 
 ## Setup and the first form

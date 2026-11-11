@@ -3,6 +3,35 @@ title: "Maskeleme ve regex"
 description: "Görünen değer, ham değer ve @virastack/mask."
 lastVerified: "2026-11-03"
 translationKey: "forms/masking-and-regex"
+quiz:
+  - question: "Bu test ne döndürür?"
+    lang: ts
+    code: |-
+      const taxNumber = /\d{10}/;
+      taxNumber.test("abc12345678901234");
+    options:
+      - "Hata fırlatır"
+      - "`true`; `^` ve `$` olmadığı için içinde 10 rakam geçen her metin kabul edilir"
+      - "`false`"
+      - "`null`"
+    answer: 1
+    explanation: "`^` ve `$` metnin başını ve sonunu bağlar. Onları unutmak en sık hatadır; tam 10 rakam için `/^\\d{10}$/` yazın."
+  - question: "Telefon numarası alanı için dersin önerdiği input hangisi?"
+    options:
+      - "`<input type=\"range\" />`"
+      - "`<input type=\"text\" inputmode=\"numeric\" />`"
+      - "`<input type=\"tel\" pattern=\"\\d+\" />`"
+      - "`<input type=\"number\" />`"
+    answer: 1
+    explanation: "Telefon, kart ve IBAN rakamlardan oluşan metinlerdir. GOV.UK `type=\"number\"`'ı bıraktı: ekran okuyucular tanımıyor, fare tekerleği değeri değiştiriyor, uzun sayılar yuvarlanabiliyor. Metin alanı ve sayısal klavye kullanın."
+  - question: "`zodResolver` kullanan bir formda `@virastack/mask`'ın kendi doğrulayıcıları neden çalışmaz?"
+    options:
+      - "Maske ham değeri forma yazmaz"
+      - "Doğrulayıcılar `register`'ın `validate` kuralıyla bağlanır; resolver varken `register` kuralları çalışmaz"
+      - "Doğrulayıcılar yalnızca sunucuda çalışır"
+      - "Paket Zod ile uyumsuzdur"
+    answer: 1
+    explanation: "Resolver varken tüm kuralları ham değer üzerinden şemaya yazın. Kart için `z.creditCard()`, IBAN için `z.iban()`, TCKN için kısa bir sağlama fonksiyonu yeterlidir."
 ---
 
 ## Görünen değer, ham değer

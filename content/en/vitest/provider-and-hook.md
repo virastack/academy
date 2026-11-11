@@ -3,6 +3,37 @@ title: "Provider and hook"
 description: "The cart Provider, renderWithProviders and renderHook."
 lastVerified: "2026-11-03"
 translationKey: "vitest/provider-and-hook"
+quiz:
+  - question: "What does `CartProvider`'s `initialItems` prop give you in tests?"
+    options:
+      - "It starts the cart filled without adding items by clicking, so each test checks one thing"
+      - "It disables the provider"
+      - "It runs tests in parallel"
+      - "It loads the cart from the real API"
+    answer: 0
+    explanation: "Thanks to `initialItems`, the badge test does not depend on the add-to-cart flow. Tests stay short, and one breaking does not affect the other."
+  - question: "What is missing from this test?"
+    lang: tsx
+    code: |-
+      const { result } = renderHook(() => useCart(), { wrapper });
+
+      result.current.addToCart(keyboard);
+      expect(result.current.totalCount).toBe(1);
+    options:
+      - "Use `render` instead of `renderHook`"
+      - "Use `toEqual` instead of `toBe`"
+      - "The state-changing call must be wrapped in `act(() => { ... })`"
+      - "`wrapper` is unnecessary"
+    answer: 2
+    explanation: "When testing with `renderHook`, wrap state-changing calls in `act` so the assertion does not run before React finishes the update."
+  - question: "When testing a component that uses TanStack Query, what does the lesson recommend?"
+    options:
+      - "Share the app's `QueryClient` across all tests"
+      - "Set `staleTime: 0`"
+      - "Create a new `QueryClient` per test and set `retry: false`"
+      - "Mock `useQuery` with `vi.mock`"
+    answer: 2
+    explanation: "A shared client carries cache between tests. The default `retry` re-runs failed requests and makes tests slow; turn it off in tests."
 ---
 
 ## Why do you need a provider?

@@ -3,6 +3,39 @@ title: "Loglama"
 description: "Yapılandırılmış log, ne loglanır, ne loglanmaz."
 lastVerified: "2026-11-03"
 translationKey: "production/logging"
+quiz:
+  - question: "Twelve-Factor ilkelerine göre bir uygulama loglarını nereye yazmalı?"
+    options:
+      - "Doğrudan bir log arama servisine"
+      - "Veritabanındaki bir tabloya"
+      - "Kendi döndürdüğü log dosyasına"
+      - "Her olayı tek satır olarak `stdout`'a; toplamak ve göndermek çalışma ortamının işidir"
+    answer: 3
+    explanation: "Log bir olay akışıdır. `docker logs` ve bulut platformları `stdout`'u okur; uygulamada dosyaya yazan bir logger ayarlamaya gerek yoktur."
+  - question: "Bu satırın riski nedir?"
+    lang: ts
+    code: |-
+      logger.info({ request }, "Request received");
+    options:
+      - "İstek kimliği eklenmemiştir"
+      - "`info` seviyesi yanlıştır"
+      - "pino nesne loglayamaz"
+      - "İsteğin tamamı cookie ve yetkilendirme başlıklarını da loga yazar"
+    answer: 3
+    explanation: "En sık hata bir nesnenin tamamını loglamaktır. Loglayacağınız alanları tek tek seçin; pino'nun `redact`'i bir güvenlik ağıdır, alışkanlığın yerini tutmaz."
+  - question: "Hangi parola maskelenir?"
+    lang: ts
+    code: |-
+      redact: { paths: ["*.password"], censor: "[redacted]" }
+
+      logger.info({ a: { b: { password: "x" } }, user: { password: "y" } });
+    options:
+      - "Yalnızca `a.b.password`"
+      - "Hiçbiri"
+      - "Yalnızca `user.password`; `*` tek bir seviyeyi temsil eder"
+      - "İkisi de"
+    answer: 2
+    explanation: "`*.password` bir seviye derindeki `password`'ü yakalar, `a.b.password` gibi iki seviye derindekini yakalamaz. Gerekli yolları açıkça yazın."
 ---
 
 ## Log neden var?

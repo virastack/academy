@@ -3,6 +3,43 @@ title: "Custom hooks"
 description: "The rules of hooks, moving logic into a hook, and useSyncExternalStore."
 lastVerified: "2026-11-03"
 translationKey: "react/custom-hooks"
+quiz:
+  - question: "`useDebouncedValue` is called in two different components. Which is true?"
+    options:
+      - "Each call creates its own separate state"
+      - "The second call overwrites the first one's value"
+      - "The hook can only be used in one component"
+      - "The two components share the same state"
+    answer: 0
+    explanation: "Hooks share logic, not state. If you need shared state, lift it to the parent or use Context."
+  - question: "Why must hooks not be called inside `if`?"
+    code: |-
+      function ProductPage({ isLoggedIn }: Props) {
+        if (isLoggedIn) {
+          const [note, setNote] = useState("");
+        }
+        const [qty, setQty] = useState(1);
+      }
+    options:
+      - "TypeScript cannot infer the hook's return type"
+      - "`if` blocks do not run during render"
+      - "React identifies hooks by call order; a condition changes the order and mixes up state"
+      - "React identifies hooks by their variable names"
+    answer: 2
+    explanation: "React identifies hooks by the order in which they are called, not by name. The first `useState` must be first on every render. The exception is `use`."
+  - question: "What happens if `subscribe` is defined inside the component?"
+    code: |-
+      function useOnlineStatus() {
+        function subscribe(callback: () => void) { /* ... */ }
+        return useSyncExternalStore(subscribe, () => navigator.onLine, () => true);
+      }
+    options:
+      - "A new function is created on every render, so React subscribes again"
+      - "`useSyncExternalStore` throws an error"
+      - "React always uses the server value (`true`)"
+      - "Nothing changes"
+    answer: 0
+    explanation: "If `subscribe` is a new function on every render, React subscribes again. That is why it is defined outside the component."
 ---
 
 ## The rules of hooks

@@ -3,6 +3,42 @@ title: "Basics"
 description: "The first test, render, expect and matchers."
 lastVerified: "2026-11-03"
 translationKey: "vitest/basics"
+quiz:
+  - question: "Why can this test fail?"
+    lang: tsx
+    code: |-
+      const user = userEvent.setup();
+      render(<ProductCard product={product} onAddToCart={onAddToCart} />);
+
+      user.click(screen.getByRole("button", { name: "Add to cart" }));
+      expect(onAddToCart).toHaveBeenCalledWith(product);
+    options:
+      - "`toHaveBeenCalledWith` does not work on mock functions"
+      - "`getByRole` cannot find the button"
+      - "`userEvent.setup()` must be called after render"
+      - "`user.click` returns a Promise; without `await`, the assertion runs before the click finishes"
+    answer: 3
+    explanation: "Every `user.*` method returns a Promise. Put `await` before each call."
+  - question: "Which is true?"
+    lang: tsx
+    code: |-
+      render(<p hidden>Out of stock</p>);
+      const message = screen.getByText("Out of stock");
+    options:
+      - "`toBeInTheDocument()` passes and `toBeVisible()` fails"
+      - "`toBeVisible()` passes and `toBeInTheDocument()` fails"
+      - "Both fail"
+      - "Both pass: `toBeInTheDocument()` and `toBeVisible()`"
+    answer: 0
+    explanation: "An element with the `hidden` attribute is in the DOM but not visible. For elements the user must see, use `toBeVisible`."
+  - question: "What happens if `test.only` is committed?"
+    options:
+      - "Nothing; only that test runs faster"
+      - "Locally the other tests do not run and you trust an incomplete result; in CI Vitest fails by default"
+      - "Vitest skips the file"
+      - "In CI too, only that test runs and passes"
+    answer: 1
+    explanation: "`.only` skips every other test. In CI Vitest fails on `.only` by default, but delete it before it gets that far."
 ---
 
 ## The shape of a test

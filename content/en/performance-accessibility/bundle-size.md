@@ -3,6 +3,41 @@ title: "Bundle size"
 description: "Shrinking the bundle and seeing what gets loaded."
 lastVerified: "2026-11-03"
 translationKey: "performance-accessibility/bundle-size"
+quiz:
+  - question: "Why does tree shaking need ES modules (`import`/`export`) rather than `require()`?"
+    options:
+      - "`require()` was removed from Node.js"
+      - "`require()` does not work in TypeScript"
+      - "`require()` is a function called at runtime, so the bundler cannot safely analyse it at build time"
+      - "ES modules produce smaller files"
+    answer: 2
+    explanation: "The bundler works out what each module exports and where it is imported from the `import`/`export` statements. A package's `sideEffects` field and named imports also help tree shaking."
+  - question: "What is wrong with this use of `lazy`?"
+    lang: tsx
+    code: |-
+      export function Editor() {
+        const MarkdownPreview = lazy(() => import("./MarkdownPreview"));
+        return (
+          <Suspense fallback={<p>Loading...</p>}>
+            <MarkdownPreview />
+          </Suspense>
+        );
+      }
+    options:
+      - "`lazy` is called inside the component, so a new component is created on every render and state resets"
+      - "`import()` cannot load a default export"
+      - "Nothing"
+      - "`lazy` also works without `Suspense`"
+    answer: 0
+    explanation: "Call `lazy` at the top level of the module, outside the component. The imported component must be a default export."
+  - question: "In Next.js, which `next/script` strategy fits a chat widget's script?"
+    options:
+      - "`afterInteractive`"
+      - "`lazyOnload`"
+      - "`worker`"
+      - "`beforeInteractive`"
+    answer: 1
+    explanation: "`lazyOnload` loads the script when the browser is idle, after everything else; it suits chat and social widgets. `beforeInteractive` is for critical things like bot detection, `afterInteractive` for analytics, and `worker` does not work in the App Router."
 ---
 
 ## What a bundle is

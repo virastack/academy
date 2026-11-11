@@ -3,6 +3,35 @@ title: "TDD and testing approaches"
 description: "The Red-Green-Refactor cycle and the Testing Trophy."
 lastVerified: "2026-11-03"
 translationKey: "principles/tdd-and-testing"
+quiz:
+  - question: "According to Martin Fowler, what is the most common mistake in TDD?"
+    options:
+      - "Writing the test before the code"
+      - "Writing too many tests"
+      - "Skipping the refactor step, which leaves a pile of messy code"
+      - "Not running the test in the red phase"
+    answer: 2
+    explanation: "The third step of Red-Green-Refactor tidies new and old code to keep the structure clean. Skip it and the code becomes a pile of scattered pieces."
+  - question: "In Kent Beck's Canon TDD, what comes after writing the list of scenarios?"
+    options:
+      - "Turning every scenario into a test right away"
+      - "Writing all the code first"
+      - "Turning just one item into a running test and making it and all previous tests pass"
+      - "Deleting the list and starting with code"
+    answer: 2
+    explanation: "Turning every scenario into a test up front, before any passes, is one of the mistakes Beck warns about. Write one test, make it pass, refactor if needed, and repeat until the list is done."
+  - question: "What is wrong with copying the expected value from what the code produced?"
+    lang: ts
+    code: |-
+      // running the code and pasting its output into the test
+      expect(calculateShipping(cart)).toBe(47.83);
+    options:
+      - "Decimals cannot be tested"
+      - "The test stops being a second check on the code; if the code is wrong, the test confirms the mistake"
+      - "The test gets slower"
+      - "It needs `toEqual` instead of `toBe`"
+    answer: 1
+    explanation: "The expected value should come from the rule or the scenario. Other mistakes on Beck's list: tests without assertions, deleting assertions to pass, and refactoring while making a test pass."
 ---
 
 **TDD** (*Test-Driven Development*) is the method of writing the test before the code. The examples are built on a pure function, but the cycle is the same for any code. This guide covers the cycle, a small example and how to decide which test to write.

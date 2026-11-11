@@ -3,6 +3,47 @@ title: "Kurulum ve devtools"
 description: "QueryClient, şaşırtan varsayılanlar, Devtools ve ESLint eklentisi."
 lastVerified: "2026-11-03"
 translationKey: "tanstack-query/setup-and-devtools"
+quiz:
+  - question: "Bu kodun sorunu nedir?"
+    lang: tsx
+    code: |-
+      function App() {
+        const queryClient = new QueryClient();
+        return (
+          <QueryClientProvider client={queryClient}>
+            <Shop />
+          </QueryClientProvider>
+        );
+      }
+    options:
+      - "Sorun yok"
+      - "Bir uygulamada birden fazla provider gerekir"
+      - "`QueryClientProvider` yalnızca `main.tsx`'te kullanılabilir"
+      - "Her render'da yeni bir `QueryClient` oluşur ve cache sıfırlanır"
+    answer: 3
+    explanation: "`QueryClient`'ı component'in dışında oluşturun. Component içinde gerekiyorsa `useState(() => new QueryClient())` kullanın. `stable-query-client` lint kuralı bunu yakalar."
+  - question: "API hata döndürüyor ama hata ekranı ancak birkaç saniye sonra görünüyor. Sebebi nedir?"
+    options:
+      - "Devtools isteği geciktiriyor"
+      - "`staleTime` varsayılanı `0` olduğu için"
+      - "`gcTime` 5 dakika olduğu için"
+      - "Varsayılan `retry` 3'tür; istek artan beklemeyle 3 kez daha denenir"
+    answer: 3
+    explanation: "Hata ekranı üç tekrar bitene kadar gelmez. Testlerde bu yüzden `retry: false` ayarlanır."
+  - question: "Production build'de Devtools paneline ne olur?"
+    lang: tsx
+    code: |-
+      <QueryClientProvider client={queryClient}>
+        <App />
+        <ReactQueryDevtools initialIsOpen={false} />
+      </QueryClientProvider>
+    options:
+      - "Elle silmeniz gerekir"
+      - "Kullanıcılara da görünür"
+      - "Kendiliğinden bundle'dan çıkar; yalnızca `NODE_ENV === \"development\"` iken girer"
+      - "Gizli kalır ama bundle'da durur"
+    answer: 2
+    explanation: "Panel yalnızca geliştirme modunda bundle'a girer; production build'den kendiliğinden çıkar."
 ---
 
 ## Kurulum
